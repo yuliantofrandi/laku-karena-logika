@@ -25,13 +25,17 @@ Struktur BKB (5 section):
 
 Prinsip yang dijaga: satu fakta satu rumah (anti-duplikasi), tidak mengarang angka (`[INPUT-NEEDED]` / `[?]`), dan setiap keputusan strategis disertai alasannya.
 
+### `business-strategist-reviewer`
+Menilai dan memberi **skor** pada BKB, lalu menguji strateginya lawan lanskap kompetitor nyata (**competitive analysis**) — semuanya sebagai satu laporan review, **read-only** (tidak mengedit BKB). Sementara `business-knowledge-base` menulis & merapikan dokumen, skill ini berdiri di luar sebagai kritikus: skor 100 poin per dimensi, temuan (cacat penulisan vs celah strategis), dan analisis kompetitor. Angka kompetitor permanen tetap tinggal di BKB §2; analisis kompetitor yang lebih dalam dan bertanggal tinggal di dalam laporan review ini.
+
 ## Pakai
 
 ```
 /business-knowledge-base
+/business-strategist-reviewer
 ```
 
-Atau cukup minta dengan bahasa biasa, mis. *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"*. Skill aktif otomatis saat tugasnya menyusun dokumen strategi produk.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge-base`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-strategist-reviewer`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 
