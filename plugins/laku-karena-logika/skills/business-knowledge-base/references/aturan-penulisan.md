@@ -77,8 +77,8 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   "Timelog bisa lebih murah dari semua nama ini selama harga jualnya di
   bawah ~Rp12.500/karyawan/bln".
 - Kalau ada ketergantungan yang bisa mematikan klaim (mis. memakai API
-  tidak resmi yang rawan diblokir), tulis blok `[!]` di sini dan detailnya
-  di `competitive-landscape.md` § Ancaman Struktural. Jangan disembunyikan
+  tidak resmi yang rawan diblokir), tulis blok `[!]` di sini — ringkas,
+  lengkap dengan risikonya. Jangan disembunyikan
   demi positioning yang bersih — reviewer akan menemukannya.
 - Blok `[!]` boleh bersyarat kalau keputusannya belum dibuat: "Kalau
   memakai WhatsApp tidak resmi, ... [INPUT-NEEDED: keputusan kanal]".
@@ -119,7 +119,7 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 - Uji konsistensi: harga tertinggi harus di bawah batas yang dipasang di
   §2 Celah pasar; harga terendah harus masih menutup biaya variabel (AI,
   pesan) — kalau belum tahu biaya variabelnya, tulis `[?]` dan catat di
-  Ancaman Struktural.
+  blok `[!]` §2 Opportunity.
 
 ## §5 Target Customer Profile
 
@@ -143,22 +143,20 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   karena pencahayaan, sinyal lemah, tidak tahu komplain ke siapa) — ini
   bahan untuk konten onboarding dan FAQ, bukan hanya untuk empati.
 
-## Rujukan ke competitive-landscape.md
+## Angka kompetitor di dalam BKB
 
-File kompetitor dirawat skill terpisah. Yang perlu skill ini tahu hanya
-titik singgungnya:
+Tidak ada file kompetitor terpisah. Angka dan risiko kompetitor tinggal di
+dalam BKB §2, secukupnya untuk membentuk celah pasar dan positioning —
+bukan profil tiap kompetitor satu per satu:
 
 - **§2 Opportunity** memuat angka kompetitor (harga, batas minimum, add-on
-  berbayar) untuk mengukur celah pasar. Angka ini harus konsisten dengan
-  yang tercatat di `competitive-landscape.md` kalau file itu sudah ada —
-  tapi rumah detail per kompetitor tetap di sana, di sini cukup angka yang
-  membentuk celahnya.
-- **Blok `[!]` risiko struktural** di §2 menunjuk pembaca ke bagian Ancaman
-  Struktural di `competitive-landscape.md`. Tulis ringkasan risikonya di
-  BKB; detail, sumber, dan tanggalnya biar skill kompetitor yang mengurus.
-- **Positioning** menarik "alternatif" (termasuk status quo: Excel, grup
-  WA, proses manual) dari daftar kompetitor. Kalau file kompetitor belum
-  ada, tulis alternatif sebisanya dan tandai `[?]`.
-
-Jangan mengedit `competitive-landscape.md` dari skill ini walau terlihat
-salah — laporkan ke user sebagai temuan audit.
+  berbayar) untuk mengukur celah pasar, lengkap dengan sumber dan tanggalnya.
+  Satu angka kompetitor cukup ditulis sekali; kalau dipakai lagi untuk
+  menurunkan batas harga atau di blok `[!]`, rujuk, jangan tulis ulang
+  dengan nilai berbeda.
+- **Blok `[!]` risiko struktural** di §2 memuat ringkasan risikonya langsung
+  — ancaman yang bisa mematikan klaim, cukup untuk dibaca reviewer sebelum
+  memakai klaim di dekatnya.
+- **Positioning** menarik "alternatif" (kompetitor + status quo: Excel, grup
+  WA, proses manual) dari Opportunity. Kalau alternatifnya belum jelas,
+  tulis sebisanya dan tandai `[?]`.

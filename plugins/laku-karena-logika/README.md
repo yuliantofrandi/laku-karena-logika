@@ -35,4 +35,4 @@ Atau cukup minta dengan bahasa biasa, mis. *"buat BKB untuk produk baru X"*, *"i
 
 ## Roadmap skill berikutnya
 
-Plugin ini dirancang menampung banyak skill AI Marketing OS: competitive-landscape, brand-story-writer, company-profile-writer, content-ideator, blog/social content writer — masing-masing membaca output skill sebelumnya.
+Plugin ini dirancang menampung banyak skill AI Marketing OS: brand-story-writer, company-profile-writer, content-ideator, blog/social content writer — masing-masing membaca output skill sebelumnya.

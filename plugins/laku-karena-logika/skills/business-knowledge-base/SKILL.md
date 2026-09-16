@@ -1,6 +1,6 @@
 ---
 name: business-knowledge-base
-description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Product-to-Value Mapping, Pricing Plan, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk Timelog & Humanis di repo `~/Dev/claude`. Pakai skill ini setiap kali user ingin menambah produk baru ke repo itu, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Detail kompetitor (`competitive-landscape.md`) ditangani skill terpisah, bukan skill ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
+description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Product-to-Value Mapping, Pricing Plan, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk Timelog & Humanis di repo `~/Dev/claude`. Pakai skill ini setiap kali user ingin menambah produk baru ke repo itu, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
 ---
 
 # Business Knowledge Base (BKB)
@@ -11,10 +11,9 @@ dibaca skill hilir apa adanya. Tugas skill ini: memastikan produk baru
 mendapat struktur yang persis sama dengan yang sudah ada, dan isinya lolos
 uji kualitas yang sama.
 
-Detail kompetitor tinggal di `competitive-landscape.md` yang berdampingan,
-tapi **file itu milik skill lain** (siklus riset & konsumen hilirnya beda).
-Skill ini hanya membacanya sebagai rujukan saat mengisi §2 Opportunity dan
-Positioning; tidak membuat, mengisi, atau me-refresh-nya.
+Angka dan risiko kompetitor tinggal di dalam BKB — §2 Opportunity (Celah
+pasar) dan Positioning — sebagai satu-satunya rumahnya. Tidak ada file
+kompetitor terpisah.
 
 Acuan hidup: `~/Dev/claude/timelog/` — contoh terisi paling matang,
 termasuk pola snapshot di `timelog/sebelumnya/`. Kalau ada beda antara
@@ -38,7 +37,6 @@ ditulis `[INPUT-NEEDED]`, klaim yang belum terbukti diberi `[?]`.
   template/                  cetakan kosong
   <produk>/
     business-knowledge-base.md   yang BERLAKU — ini yang diedit skill ini
-    competitive-landscape.md     kompetitor — milik skill terpisah
     sebelumnya/                  snapshot manual bernomor = riwayat
 ```
 
@@ -50,10 +48,9 @@ di `<produk>/sebelumnya/` — dan itulah satu-satunya log.
 Konvensi (tiru persis dari isi `timelog/sebelumnya/`):
 - **Sebelum** mengubah sebuah dokumen untuk perubahan yang bermakna, salin
   isi file saat ini ke `sebelumnya/<N>-<nama-dokumen>-sebelum-<slug>.md`.
-- `<N>` = nomor urut berikutnya untuk dokumen itu (BKB dan
-  competitive-landscape punya deret nomor sendiri-sendiri). Cek nomor
-  tertinggi yang sudah ada, tambah satu. Nomor kumulatif, **tidak pernah**
-  dihapus atau dipakai ulang.
+- `<N>` = nomor urut berikutnya untuk BKB. Cek nomor tertinggi yang sudah
+  ada, tambah satu. Nomor kumulatif, **tidak pernah** dihapus atau dipakai
+  ulang.
 - `<slug>` = deskripsi singkat perubahan yang akan dilakukan, kebab-case
   Bahasa Indonesia (mis. `sebelum-pisah-tier-ai`, `sebelum-fix-harga-p2v`).
   Nama file inilah log-nya — buat deskriptif, karena tidak ada pesan commit.
@@ -68,8 +65,7 @@ git, sehingga memusnahkan snapshot manual ini.
 ### A. Produk baru
 
 1. `mkdir ~/Dev/claude/<produk>` (huruf kecil, tanpa spasi), lalu salin
-   `assets/business-knowledge-base.md` ke sana. (File
-   `competitive-landscape.md` dibuat oleh skill kompetitor, bukan di sini.)
+   `assets/business-knowledge-base.md` ke sana.
    **Komentar `<!-- -->`**: hapus semua komentar panduan begitu section-nya
    terisi — file jadi Timelog/Humanis tidak punya komentar, dibaca skill
    hilir apa adanya dan komentar hanya jadi noise. Kalau butuh panduannya
@@ -118,18 +114,16 @@ memakai dokumen:
    sudah ada di section lain. Pengecualian yang wajar: selama §4 masih
    `[INPUT-NEEDED]`, "Skema yang ditawarkan" di §5 dan baris harga di §3
    ikut `[INPUT-NEEDED]` — itu bukan temuan, itu status draf.
-4. Konsistensi dengan file kompetitor (kalau ada): blok `[!]` di BKB §2
-   memang menunjuk ke `competitive-landscape.md`, dan angka kompetitor di
-   §2 Opportunity harus sama dengan yang tercatat di sana. Kalau berbeda,
-   laporkan sebagai temuan — tapi perbaikan di `competitive-landscape.md`
-   adalah wilayah skill kompetitor, jangan diedit dari sini.
+4. Konsistensi angka kompetitor di dalam §2: harga/batas kompetitor yang
+   dipakai di "Celah pasar" harus sama dengan yang dipakai untuk menurunkan
+   batas harga dan yang dirujuk blok `[!]`. Satu angka kompetitor, satu
+   nilai — jangan ada dua versi di section yang sama.
 
 Laporkan temuan sebagai daftar bernomor dengan lokasi (§ dan baris), lalu
 perbaiki yang disetujui.
 
 ## Yang tidak boleh dilakukan
 
-- Membuat atau mengedit `competitive-landscape.md` — itu skill terpisah.
 - Menambah section di luar lima yang ada (Customer Journey, Marketing
   Strategy, Open Items, dsb. sudah sengaja dihapus — rumahnya di skill
   hilir). Kalau user meminta, ingatkan alasannya sekali; kalau tetap

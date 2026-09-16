@@ -32,7 +32,7 @@ suatu saat satu direvisi dan satunya tertinggal.
 Rumah tiap jenis fakta:
   identitas & arah        → §1      problem & value        → §3
   DNA, positioning, pasar → §2      harga & add-on         → §4
-  segmen & persona        → §5      detail kompetitor      → competitive-landscape.md
+  segmen & persona        → §5      angka & risiko kompetitor → §2 Opportunity
 
 
 URUTAN DOKUMEN vs URUTAN PENGISIAN
@@ -95,7 +95,7 @@ Urutan pengisian di dalam section ini:
   2. Opportunity   — gambaran pasar, paling awal
   3. Level 1 & 2   — setelah tahu apa yang sulit ditiru
   4. Positioning   — PALING TERAKHIR; sintesis Opportunity, DNA, §3, §5,
-                     dan alternatif di competitive-landscape.md
+                     dan alternatif (kompetitor + status quo) dari Opportunity
   5. Tagline       — hanya MENCATAT yang sudah beredar -->
 
 ### Category
@@ -136,7 +136,7 @@ Kerangka: [product] adalah [category] — [cara kerja inti dari DNA],
 [pembeda vs alternatif], dengan opsi [Level 2] untuk [segmen yang butuh].
 
 Bahannya: category di atas · DNA Level 1 · problem dari §3 · segmen dari
-§5 · alternatif dari competitive-landscape.md (termasuk status quo:
+§5 · alternatif dari Opportunity di bawah (termasuk status quo:
 Excel, grup WA, proses manual). -->
 
 > ...
@@ -158,8 +158,8 @@ PASAR, bukan soal produk kita. Alasan customer memilih kita ada di DNA.
 
 Celah pasar ditulis dengan ANGKA kompetitor (harga, batas minimum,
 add-on berbayar) supaya celahnya terukur, lalu diturunkan jadi batas
-harga kita. Detail per kompetitor tetap di competitive-landscape.md —
-di sini cukup angka yang membentuk celahnya. -->
+harga kita. Di sini cukup angka yang membentuk celahnya, lengkap dengan
+sumber dan tanggalnya — bukan profil tiap kompetitor satu per satu. -->
 
 - **Kenapa sekarang:** perubahan yang membuat kebutuhan ini mendesak
   belakangan — teknologi jadi murah, regulasi, perubahan perilaku. ...
