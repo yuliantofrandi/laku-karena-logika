@@ -1,0 +1,31 @@
+{
+  "name": "laku-karena-logika",
+  "owner": {
+    "name": "Laku Karena Logika"
+  },
+  "metadata": {
+    "description": "Marketplace pribadi untuk AI Marketing OS — rangkaian skill yang mengubah pengetahuan produk jadi output marketing untuk SaaS.",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "laku-karena-logika",
+      "source": "./plugins/laku-karena-logika",
+      "description": "AI Marketing OS: Business Knowledge Base dan skill marketing lanjutan untuk produk SaaS.",
+      "version": "1.0.0",
+      "category": "productivity",
+      "keywords": [
+        "marketing",
+        "business-strategy",
+        "saas",
+        "knowledge-base",
+        "positioning",
+        "pricing"
+      ],
+      "author": {
+        "name": "Laku Karena Logika"
+      }
+    }
+  ]
+}

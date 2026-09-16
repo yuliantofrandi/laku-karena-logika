@@ -1,0 +1,17 @@
+{
+  "name": "laku-karena-logika",
+  "version": "1.0.0",
+  "description": "AI Marketing OS — rangkaian skill yang mengubah pengetahuan produk jadi output marketing untuk SaaS. Dimulai dari Business Knowledge Base (business-knowledge-base).",
+  "keywords": [
+    "marketing",
+    "business-strategy",
+    "saas",
+    "knowledge-base",
+    "positioning",
+    "pricing",
+    "persona"
+  ],
+  "author": {
+    "name": "Laku Karena Logika"
+  }
+}
