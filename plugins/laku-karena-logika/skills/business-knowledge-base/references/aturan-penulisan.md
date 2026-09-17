@@ -1,8 +1,9 @@
 # Aturan Penulisan & Uji Kualitas per Section
 
 Dipakai saat MENGISI atau MEREVIEW isi. Tiap section punya uji yang harus
-lolos sebelum dianggap selesai. Contoh diambil dari Timelog
-(`~/Dev/claude/timelog/`), produk yang menjadi acuan struktur ini.
+lolos sebelum dianggap selesai. Contoh di bawah diambil dari Timelog, produk
+SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
+"lolos/gagal", bukan folder yang harus ada di mesin Anda.
 
 ## Prinsip umum
 

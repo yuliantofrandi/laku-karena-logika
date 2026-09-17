@@ -22,8 +22,12 @@ mengedit BKB. Temuan yang layak masuk BKB (mis. angka kompetitor baru untuk
 skill `business-knowledge-base`. Pembagian tugas ini disengaja: yang menilai
 tidak boleh sekaligus yang menulis.
 
-Acuan hidup: `~/Dev/claude/timelog/` — BKB terisi paling matang. Kalau ada
-beda antara skill ini dan isi repo, **repo yang benar** — laporkan bedanya.
+Lokasi repo produk tidak di-hardcode: pakai folder tempat user menyimpan
+produknya, atau working directory sesi ini kalau belum disebut. Contoh BKB
+terisi paling matang boleh dipakai sebagai rujukan **kalau kebetulan ada**
+di repo user (mis. folder `timelog/` pada setup penulis skill ini) — jangan
+mengandaikan folder itu ada. Kalau isi BKB nyata berbeda dari skill ini,
+**BKB yang benar** — laporkan bedanya.
 
 ## Kenapa competitive analysis ada di sini, bukan di file sendiri
 
