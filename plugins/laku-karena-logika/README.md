@@ -28,14 +28,20 @@ Prinsip yang dijaga: satu fakta satu rumah (anti-duplikasi), tidak mengarang ang
 ### `business-reviewer`
 Menilai dan memberi **skor** pada BKB, lalu menguji strateginya lawan lanskap kompetitor nyata (**competitive analysis**) — semuanya sebagai satu laporan review, **read-only** (tidak mengedit BKB). Sementara `business-knowledge` menulis & merapikan dokumen, skill ini berdiri di luar sebagai kritikus: skor 100 poin per dimensi, temuan (cacat penulisan vs celah strategis), dan analisis kompetitor. Angka kompetitor permanen tetap tinggal di BKB §2; analisis kompetitor yang lebih dalam dan bertanggal tinggal di dalam laporan review ini.
 
+### `keyword-research`
+Riset buying keyword di Google Ads Keyword Planner (lewat browser), lalu susun jadi Excel siap eksekusi: keyword plan, page brief (title/meta/H1/slug), dan negative keyword. Skill hilir — Langkah 0-nya membaca brief/BKB produk untuk menilai relevansi keyword, jadi melanjutkan rantai dari `business-knowledge`.
+
+> **Catatan lingkungan:** skill ini butuh **Claude-in-Chrome** (otomasi browser) dan skill **`anthropic-skills:xlsx`**, serta menyimpan hasil ke `/mnt/user-data/outputs/` — jadi ditujukan untuk lingkungan **claude.ai/Chat**, bukan alur file lokal Cowork seperti dua skill di atas.
+
 ## Pakai
 
 ```
 /business-knowledge
 /business-reviewer
+/keyword-research
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 
