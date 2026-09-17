@@ -13,6 +13,6 @@ Marketplace plugin pribadi untuk **AI Marketing OS**: rangkaian skill Claude yan
 
 | Plugin | Fungsi |
 |---|---|
-| `laku-karena-logika` | Kumpulan skill AI Marketing OS. Skill pertama: `business-knowledge-base`. |
+| `laku-karena-logika` | Kumpulan skill AI Marketing OS. Skill pertama: `business-knowledge`. |
 
 Detail tiap plugin ada di `plugins/<nama>/README.md`.

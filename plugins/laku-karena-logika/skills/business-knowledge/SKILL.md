@@ -1,5 +1,5 @@
 ---
-name: business-knowledge-base
+name: business-knowledge
 description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Product-to-Value Mapping, Pricing Plan, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk SaaS nyata. Pakai skill ini setiap kali user ingin menambah produk baru, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
 ---
 
