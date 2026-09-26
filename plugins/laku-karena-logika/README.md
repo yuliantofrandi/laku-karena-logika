@@ -33,16 +33,30 @@ Riset buying keyword di Google Ads Keyword Planner (lewat browser), lalu susun j
 
 > **Catatan lingkungan:** skill ini butuh **Claude-in-Chrome** (otomasi browser) dan skill **`anthropic-skills:xlsx`**, serta menyimpan hasil ke `/mnt/user-data/outputs/` — jadi ditujukan untuk lingkungan **claude.ai/Chat**, bukan alur file lokal Cowork seperti dua skill di atas.
 
+### `sosmed-desain`
+Dari topik jadi carousel/story 5–7 frame di kanvas Design Claude, memakai design system Venturo. Kanvas 9:16 (1080 × 1920) dengan semua isi di **zona aman 4:5** (y = 285–1635), sehingga satu desain bisa tampil penuh layar di TikTok/Threads dan di-crop untuk feed Instagram.
+
+### `sosmed-caption`
+Membaca isi desain final, lalu menulis judul + caption singkat (jeda baris, CTA, 3–5 hashtag, ≤ 500 karakter) dan menyimpannya sebagai `caption.md` di folder Google Drive posting setelah disetujui.
+
+### `sosmed-posting`
+Ekspor frame jadi JPEG 9:16 (`9x16-tiktok-threads/`) dan crop 4:5 (`4x5-instagram/`) ke `Sosmed/<judul>/` di Google Drive, lalu—setelah satu konfirmasi—posting lewat Metricool: TikTok + Threads (9:16, musik otomatis TikTok) dan Instagram (carousel 4:5), dipantau sampai tayang. Batasan platform yang sudah terbukti (TikTok hanya JPEG/WebP, musik lewat API hanya TikTok, trik link publik Drive untuk Metricool Free) ada di `references/teknis.md`.
+
+> **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
+
 ## Pakai
 
 ```
 /business-knowledge
 /business-reviewer
 /keyword-research
+/sosmed-desain
+/sosmed-caption
+/sosmed-posting
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 
-Plugin ini dirancang menampung banyak skill AI Marketing OS: brand-story-writer, company-profile-writer, content-ideator, blog/social content writer — masing-masing membaca output skill sebelumnya.
+Plugin ini dirancang menampung banyak skill AI Marketing OS: brand-story-writer, company-profile-writer, content-ideator, blog writer — masing-masing membaca output skill sebelumnya.
