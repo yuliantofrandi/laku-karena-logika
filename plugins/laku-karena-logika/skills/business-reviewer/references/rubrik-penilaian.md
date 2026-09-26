@@ -1,7 +1,7 @@
 # Rubrik Penilaian BKB & Metode Competitive Analysis
 
 Dipakai saat MEMBERI SKOR pada BKB dan menyusun competitive analysis. Rubrik
-ini adalah sisi penilai dari `business-knowledge-base/references/aturan-penulisan.md`
+ini adalah sisi penilai dari `business-knowledge/references/aturan-penulisan.md`
 — aturan itu dipakai untuk MENULIS, rubrik ini untuk MENILAI hasilnya. Kalau
 keduanya berbeda, aturan penulisan yang benar; laporkan bedanya.
 

@@ -1,6 +1,6 @@
 ---
-name: business-strategist-reviewer
-description: Menilai dan memberi SKOR pada Business Knowledge Base (BKB) satu produk SaaS, lalu menguji strateginya lawan lanskap kompetitor nyata (competitive analysis) — semuanya sebagai satu laporan review, bukan mengedit BKB-nya. Pakai skill ini setiap kali user minta "review BKB", "nilai/skor BKB", "seberapa kuat positioning/strategi ini", "stress test", "analisa kompetitor", "competitive analysis", "battlecard", "cek apakah celah pasar kami beneran ada", atau ingin second opinion strategis atas dokumen BKB — bahkan tanpa menyebut kata "review", selama tujuannya menilai kualitas/keterandalan strategi produk, bukan menulis/merapikannya. Bedakan dari business-knowledge-base: skill ITU menulis & merapikan isi BKB (audit internal, anti-duplikasi) dan MENGEDIT file; skill INI berdiri di luar sebagai kritikus — read-only, keluarannya skor + temuan + competitive analysis, tidak menyentuh file kanonik. Ini lapisan Business Intelligence dari AI Marketing OS.
+name: business-reviewer
+description: Menilai dan memberi SKOR pada Business Knowledge Base (BKB) satu produk SaaS, lalu menguji strateginya lawan lanskap kompetitor nyata (competitive analysis) — semuanya sebagai satu laporan review, bukan mengedit BKB-nya. Pakai skill ini setiap kali user minta "review BKB", "nilai/skor BKB", "seberapa kuat positioning/strategi ini", "stress test", "analisa kompetitor", "competitive analysis", "battlecard", "cek apakah celah pasar kami beneran ada", atau ingin second opinion strategis atas dokumen BKB — bahkan tanpa menyebut kata "review", selama tujuannya menilai kualitas/keterandalan strategi produk, bukan menulis/merapikannya. Bedakan dari business-knowledge: skill ITU menulis & merapikan isi BKB (audit internal, anti-duplikasi) dan MENGEDIT file; skill INI berdiri di luar sebagai kritikus — read-only, keluarannya skor + temuan + competitive analysis, tidak menyentuh file kanonik. Ini lapisan Business Intelligence dari AI Marketing OS.
 ---
 
 # Business Strategist Reviewer
@@ -19,17 +19,21 @@ luar yang kritis, bukan penulisnya. Dua tugas dalam satu laporan:
 Skill ini **read-only** terhadap `business-knowledge-base.md`. Tidak pernah
 mengedit BKB. Temuan yang layak masuk BKB (mis. angka kompetitor baru untuk
 §2 Opportunity) ditulis sebagai **rekomendasi** — user menerapkannya lewat
-skill `business-knowledge-base`. Pembagian tugas ini disengaja: yang menilai
+skill `business-knowledge`. Pembagian tugas ini disengaja: yang menilai
 tidak boleh sekaligus yang menulis.
 
-Acuan hidup: `~/Dev/claude/timelog/` — BKB terisi paling matang. Kalau ada
-beda antara skill ini dan isi repo, **repo yang benar** — laporkan bedanya.
+Lokasi repo produk tidak di-hardcode: pakai folder tempat user menyimpan
+produknya, atau working directory sesi ini kalau belum disebut. Contoh BKB
+terisi paling matang boleh dipakai sebagai rujukan **kalau kebetulan ada**
+di repo user (mis. folder `timelog/` pada setup penulis skill ini) — jangan
+mengandaikan folder itu ada. Kalau isi BKB nyata berbeda dari skill ini,
+**BKB yang benar** — laporkan bedanya.
 
 ## Kenapa competitive analysis ada di sini, bukan di file sendiri
 
 Dulu ada `competitive-landscape.md` terpisah. Arsitektur itu ditinggalkan:
 angka kompetitor yang **harus permanen** (harga, batas minimum, add-on) kini
-tinggal di dalam BKB §2 Opportunity, dirawat oleh skill `business-knowledge-base`.
+tinggal di dalam BKB §2 Opportunity, dirawat oleh skill `business-knowledge`.
 
 Yang tidak punya rumah di BKB adalah **riset kompetitor yang lebih dalam dan
 bersiklus sendiri** — profil tiap pemain, kekuatan/kelemahan, ancaman
@@ -171,7 +175,7 @@ Jangan menaruhnya di `sebelumnya/` (itu untuk riwayat BKB, bukan review).
 - **Mengedit `business-knowledge-base.md`.** Sekali pun untuk "sekalian
   merapikan". Yang menilai bukan yang menulis. Temuan → rekomendasi, bukan
   patch. Kalau user minta langsung diperbaiki, alihkan ke skill
-  `business-knowledge-base`.
+  `business-knowledge`.
 - **Menghidupkan lagi `competitive-landscape.md` sebagai file kanonik yang
   dirawat.** Analisis kompetitor tinggal di laporan review bertanggal; angka
   permanen tinggal di BKB §2. Jangan buat file competitor terpisah yang

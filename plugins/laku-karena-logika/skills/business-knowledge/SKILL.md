@@ -1,6 +1,6 @@
 ---
-name: business-knowledge-base
-description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Product-to-Value Mapping, Pricing Plan, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk Timelog & Humanis di repo `~/Dev/claude`. Pakai skill ini setiap kali user ingin menambah produk baru ke repo itu, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
+name: business-knowledge
+description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Product-to-Value Mapping, Pricing Plan, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk SaaS nyata. Pakai skill ini setiap kali user ingin menambah produk baru, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
 ---
 
 # Business Knowledge Base (BKB)
@@ -15,12 +15,21 @@ Angka dan risiko kompetitor tinggal di dalam BKB — §2 Opportunity (Celah
 pasar) dan Positioning — sebagai satu-satunya rumahnya. Tidak ada file
 kompetitor terpisah.
 
-Acuan hidup: `~/Dev/claude/timelog/` — contoh terisi paling matang,
-termasuk pola snapshot di `timelog/sebelumnya/`. Kalau ada beda antara
-skill ini dan isi produk di repo, **repo yang benar** — laporkan bedanya
-ke user, lalu perbarui skill ini. (Catatan: `README.md` di repo masih
-menjelaskan tata kelola berbasis git yang sudah ditinggalkan — abaikan
-bagian git-nya.)
+**Sumber kebenaran struktur & aturan** ada di dua berkas bundel skill ini,
+yang ikut ke mana pun plugin diinstall:
+- `assets/business-knowledge-base.md` — cetakan 5 section.
+- `references/aturan-penulisan.md` — uji kualitas per section.
+
+Baca keduanya sebelum mengisi atau mengaudit; itu acuan yang otoritatif,
+bukan folder produk mana pun di mesin lokal.
+
+**Lokasi repo produk** tidak di-hardcode. Tanyakan/pakai folder tempat
+user menyimpan produk-produknya; kalau user belum menyebut, pakai working
+directory sesi ini. Contoh matang boleh dipakai sebagai rujukan **kalau
+kebetulan ada** di repo user (mis. folder `timelog/` pada setup penulis
+skill ini) — tapi jangan mengandaikan folder itu ada. Kalau isi produk
+nyata berbeda dari skill ini, **produk yang benar** — laporkan bedanya ke
+user, lalu perbarui skill ini.
 
 ## Peran
 
@@ -33,19 +42,23 @@ ditulis `[INPUT-NEEDED]`, klaim yang belum terbukti diberi `[?]`.
 ## Tata letak repo
 
 ```
-~/Dev/claude/
-  template/                  cetakan kosong
+<repo-produk>/               folder pilihan user (bukan path tetap)
   <produk>/
     business-knowledge-base.md   yang BERLAKU — ini yang diedit skill ini
     sebelumnya/                  snapshot manual bernomor = riwayat
 ```
+
+`<repo-produk>` adalah folder tempat user menyimpan produk-produknya —
+ditentukan saat itu juga, bukan lokasi tetap. Cetakan kosong dibaca dari
+`assets/` bundel skill, bukan dari folder `template/` lokal.
 
 ## Riwayat: snapshot manual, bukan git
 
 Folder ini **tidak memakai git**. Riwayat disimpan sebagai snapshot manual
 di `<produk>/sebelumnya/` — dan itulah satu-satunya log.
 
-Konvensi (tiru persis dari isi `timelog/sebelumnya/`):
+Konvensi (kalau folder produk lain di repo user sudah punya `sebelumnya/`,
+tiru persis polanya):
 - **Sebelum** mengubah sebuah dokumen untuk perubahan yang bermakna, salin
   isi file saat ini ke `sebelumnya/<N>-<nama-dokumen>-sebelum-<slug>.md`.
 - `<N>` = nomor urut berikutnya untuk BKB. Cek nomor tertinggi yang sudah
@@ -64,10 +77,10 @@ git, sehingga memusnahkan snapshot manual ini.
 
 ### A. Produk baru
 
-1. `mkdir ~/Dev/claude/<produk>` (huruf kecil, tanpa spasi), lalu salin
-   `assets/business-knowledge-base.md` ke sana.
+1. Buat folder `<repo-produk>/<produk>` (huruf kecil, tanpa spasi) di repo
+   produk user, lalu salin `assets/business-knowledge-base.md` ke sana.
    **Komentar `<!-- -->`**: hapus semua komentar panduan begitu section-nya
-   terisi — file jadi Timelog/Humanis tidak punya komentar, dibaca skill
+   terisi — file BKB yang sudah jadi tidak menyimpan komentar, dibaca skill
    hilir apa adanya dan komentar hanya jadi noise. Kalau butuh panduannya
    lagi, baca dari `assets/`, bukan dari file produk.
 2. Minta brief dari user kalau belum ada: apa produknya, siapa yang pakai,
