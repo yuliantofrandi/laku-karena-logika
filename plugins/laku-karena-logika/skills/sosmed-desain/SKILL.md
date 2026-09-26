@@ -29,7 +29,7 @@ Tulis teks final dalam Bahasa Indonesia yang singkat. Jangan mengarang angka, ha
 
 ## 3. Terapkan design system Venturo
 
-- Design system: artifact **Venturo** `https://claude.ai/artifact/9Xz8mMr54wVGngfEdtyfFn`. Baca `project/README.md` dan `project/tokens.json`-nya, lalu pasang sesuai instruksi tipe Design (namespace `venturo`).
+- Design system: pakai design system brand milik pengguna (`Artifact` action `list` dengan `type: "Design System"`; ambil yang ditandai default, tanyakan bila lebih dari satu). Baca `project/README.md` dan `project/tokens.json`-nya, lalu pasang sesuai instruksi tipe Design.
 - Font: Montserrat (judul 800, isi 500–700); kode: JetBrains Mono.
 - Warna utama: teks `#1f2a2e`, teal `#1b7a86` / `#259ead`, hijau `#56bf99`, hijau muda `#93cc7c`, abu `#58585a`, garis `#d5dfe0`.
 - Latar: SELALU pakai aset pola angka biner milik Venturo (background_venturo) dengan mask gradasi — pekat di pojok kanan-atas dan kiri-bawah, memudar ke putih. Jangan latar penuh satu layar.
