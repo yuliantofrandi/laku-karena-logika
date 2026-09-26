@@ -27,7 +27,7 @@ Detail teknis (render, font, aset, link Drive, payload Metricool) ada di `refere
 
 ### 2. Simpan ke Google Drive
 
-- Folder: `My Drive/Sosmed/<Judul Posting>/` di akun `hello@venturo.id` (lokal Mac: `~/Library/CloudStorage/GoogleDrive-hello@venturo.id/My Drive/Sosmed/<Judul Posting>/`).
+- Folder: `Sosmed/<Judul Posting>/` di Google Drive pengguna yang tersinkron ke komputernya (cara menemukannya ada di `references/teknis.md`).
 - Tulis kedua subfolder. JANGAN menimpa `caption.md`.
 - Cek jumlah file, ukuran piksel, dan urutan.
 

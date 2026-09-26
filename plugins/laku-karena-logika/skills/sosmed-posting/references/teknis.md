@@ -4,7 +4,7 @@
 
 - `Artifact` action `read` pada link kanvas dengan `paths`: `project/canvas.json` dan setiap `project/<Nama>.dc.html`.
 - Aset `/_blob/<id>` (logo, pola latar) diunduh dengan `Artifact` read `path: "<id>"` (satu per panggilan).
-- Aset Venturo yang sudah dikenal: pola latar `b120523b5d2d48dc25a92beb1d3b8e49` (jpg), logo `03ea41e2dbe15f069fc52835ab9bcbc0` (png). ID bisa berbeda di kanvas lain — ambil dari HTML.
+- Ambil ID aset (logo, pola latar) dari atribut `src`/`url(...)` di HTML artboard — ID berbeda per kanvas.
 
 ## Render ke PNG/JPEG (Playwright di workspace cloud)
 
@@ -16,8 +16,8 @@
 
 ## Menyimpan ke Drive lokal
 
-- Minta akses folder `~/Library/CloudStorage` (sekali per sesi) lewat `device_request_folder_access`.
-- Tulis file dengan `device_commit_files` (`stagedPath` di `/mnt/user-data/outputs/...`).
+- Temukan folder Google Drive lokal dengan `get_device_info` / `device_list_dir` (Google Drive for desktop menaruhnya di folder CloudStorage milik pengguna), lalu minta akses sekali per sesi lewat `device_request_folder_access`. Tanyakan ke pengguna bila ada lebih dari satu akun Drive.
+- Tulis file dengan `device_commit_files` (`stagedPath` dari folder output sesi).
 - Membaca file Drive lokal kadang gagal "Resource deadlock avoided" — pakai `device_stage_files` sebagai gantinya.
 - Rename/pindah pakai `mv -n` lewat `device_bash`.
 
@@ -29,7 +29,7 @@
 
 ## Metricool
 
-- Brand: `venturo.pro`, `blogId` **7096352**, timezone `Asia/Jakarta`. Terhubung: TikTok, Instagram, Threads, YouTube (cek ulang dengan `getBrandSettings`).
+- Brand: ambil `blogId` dan `timezone` dari `getBrandSettings` (tanyakan bila ada lebih dari satu brand). Pastikan TikTok, Instagram, dan Threads terhubung di brand itu.
 - `date` dan `publicationDate` harus di masa depan (±3–5 menit dari sekarang).
 
 Payload TikTok + Threads (9:16):

@@ -34,7 +34,7 @@ Tampilkan judul dan caption di chat dalam blok kode agar jeda baris terlihat. Te
 
 ## 5. Simpan `caption.md`
 
-Lokasi: Google Drive `hello@venturo.id` → `My Drive/Sosmed/<Judul Posting>/caption.md` (folder lokal di Mac: `~/Library/CloudStorage/GoogleDrive-hello@venturo.id/My Drive/Sosmed/<Judul Posting>/`). Minta akses folder bila belum terhubung. Jangan menimpa `caption.md` yang sudah ada tanpa izin — jika sudah ada, edit bagian caption saja.
+Lokasi: `Sosmed/<Judul Posting>/caption.md` di Google Drive pengguna yang tersinkron ke komputernya (Google Drive for desktop). Temukan folder `Sosmed` lewat daftar folder di komputer pengguna; bila ada lebih dari satu akun Drive atau folder tidak ditemukan, tanyakan ke pengguna. Minta akses folder bila belum terhubung. Jangan menimpa `caption.md` yang sudah ada tanpa izin — jika sudah ada, edit bagian caption saja.
 
 Format file:
 
