@@ -1,62 +1,59 @@
 ---
 name: sosmed-posting
-description: Mengekspor frame carousel dari kanvas Design Claude menjadi JPEG 9:16 (TikTok & Threads) dan 4:5 (Instagram), menyimpannya ke folder Google Drive posting, lalu memposting ke TikTok, Threads, dan Instagram lewat Metricool dan memantau statusnya sampai tayang. Gunakan saat pengguna berkata "ekspor dan posting", "upload ke tiktok/instagram/threads", "posting carousel ini", "sosmed posting", atau setelah caption disetujui.
+description: Mengekspor frame carousel dari kanvas Design Claude menjadi JPEG 9:16 (TikTok & Threads) dan 4:5 (Instagram) dengan satu skrip, menyimpannya ke folder Google Drive posting, lalu menjadwalkan posting ke TikTok, Threads, dan Instagram lewat Metricool — selesai begitu terjadwal, tanpa menunggu tayang. Gunakan saat pengguna berkata "ekspor dan posting", "upload ke tiktok/instagram/threads", "posting carousel ini", "sosmed posting", atau setelah caption disetujui.
 ---
 
 # Sosmed – Ekspor & Posting
 
-Detail teknis (render, font, aset, link Drive, payload Metricool) ada di `references/teknis.md`. Baca sebelum mulai.
+Target: selesai dalam beberapa menit. Jalan TANPA berhenti setelah satu konfirmasi di awal, dan BERHENTI begitu posting terjadwal di Metricool (tidak memantau sampai tayang). Detail teknis: `references/teknis.md`.
 
 ## Input
 
-- Link kanvas Design posting.
+- Link kanvas Design posting dan daftar artboard versi yang dipilih (mis. `B1-Hook … B6-Penutup`). Kalau kanvas berisi lebih dari satu versi/gaya, ekspor HANYA versi yang dipilih — tanyakan bila belum jelas.
 - Judul posting (= nama folder Drive).
-- `caption.md` di folder posting (buat dulu dengan `sosmed-caption` bila belum ada).
+- `caption.md` (dari `sosmed-caption`) berisi judul, caption ber-enter, dan caption TikTok satu paragraf.
 
-## Langkah
+## 1. Konfirmasi sekali di awal (WAJIB)
 
-### 1. Ekspor frame
+Posting publik butuh persetujuan eksplisit. Tampilkan SATU ringkasan dan tunggu "ya" (boleh digabung dengan persetujuan caption):
 
-1. Baca `project/canvas.json`; ambil artboard sesuai urutan `order`.
-2. Render tiap artboard persis 1080 × 1920 (lihat referensi: font lokal, aset `/_blob/`).
-3. Simpan dua versi, **selalu JPEG** (kualitas 95) — TikTok menolak PNG:
-   - `9x16-tiktok-threads/NN-nama.jpg` — frame utuh 1080 × 1920.
-   - `4x5-instagram/NN-nama.jpg` — crop tengah `(0, 285, 1080, 1635)` = 1080 × 1350.
-4. Penamaan: `01-hook.jpg`, `02-…`, dst. sesuai urutan.
-5. Verifikasi: buat lembar kontak kecil semua frame (9:16 dan 4:5) dan LIHAT gambarnya. Pastikan tidak ada teks/logo terpotong di versi 4:5 dan font Montserrat termuat. Jika terpotong, hentikan dan minta desain diperbaiki (zona konten y = 285–1635).
+- Platform & versi: TikTok (9:16, caption satu paragraf, musik otomatis), Threads (9:16, caption ber-enter), Instagram (carousel 4:5, caption ber-enter, tanpa musik).
+- Judul, frame yang diekspor, waktu tayang (default ±3 menit setelah dikirim, WIB).
 
-### 2. Simpan ke Google Drive
+Setelah "ya", jalankan langkah 2–5 sekaligus tanpa bertanya lagi. Folder induk `Sosmed` di Drive sudah publik permanen ("siapa saja dengan link"), jadi JANGAN minta pengguna mengubah akses folder.
 
-- Folder: `Sosmed/<Judul Posting>/` di Google Drive pengguna yang tersinkron ke komputernya (cara menemukannya ada di `references/teknis.md`).
-- Tulis kedua subfolder. JANGAN menimpa `caption.md`.
-- Cek jumlah file, ukuran piksel, dan urutan.
+## 2. Ekspor frame (satu perintah)
 
-### 3. Konfirmasi sebelum tayang (WAJIB)
+1. `Artifact` read kanvas: `project/canvas.json` + file `.dc.html` artboard yang dipilih (satu panggilan dengan `paths`), `out_dir` ke satu folder scratch.
+2. Jalankan skrip bundel (font & logo/latar Venturo sudah ada di `assets/` skill ini, tidak perlu unduh):
 
-Posting publik butuh persetujuan eksplisit. Tampilkan satu ringkasan dan tunggu jawaban "ya":
+   ```bash
+   python3 <folder skill ini>/scripts/render.py --src <folder kanvas> \
+     --boards B1-Hook,B2-Konteks,... --names 01-hook,02-...,... --out <folder output>
+   ```
 
-- Platform & versi: TikTok + Threads (9:16), Instagram (4:5 carousel).
-- Judul, caption (dari `caption.md`), musik TikTok otomatis.
-- Waktu tayang (default: ±5 menit dari sekarang, WIB).
+   Hasil: `9x16-tiktok-threads/*.jpg` (1080×1920), `4x5-instagram/*.jpg` (1080×1350), `contact.png`, dan laporan per frame.
+3. Skrip berakhir "SEMUA OK" → lanjut. Bila ada "KELUAR ZONA" atau font tidak termuat, berhenti dan laporkan. Lihat `contact.png` sekali untuk cek visual cepat.
+4. Aset `/_blob/` selain logo & pola latar Venturo harus diunduh (`Artifact` read `path: <id>`) lalu dipetakan dengan `--blob id=path`; skrip memberi tahu bila ada yang belum.
 
-Minta pengguna membuat folder posting **publik sementara** ("Siapa saja yang memiliki link – Viewer") bila belum — Metricool paket Free tidak punya integrasi Drive, jadi gambar diambil lewat link publik.
+## 3. Simpan ke Google Drive
 
-### 4. Kirim ke Metricool
+- Folder: `Sosmed/<Judul Posting>/` di Google Drive pengguna yang tersinkron ke komputernya. Tulis kedua subfolder dengan satu `device_commit_files`. JANGAN menimpa `caption.md`.
+- Tunggu ±30–60 detik, lalu cari ID file dengan konektor Google Drive `search_files` (`parentId` subfolder) — satu query untuk kedua subfolder bila bisa.
 
-Buat **dua** posting (media berbeda per ukuran):
+## 4. Kirim ke Metricool (tiga posting, satu giliran paralel)
 
-1. `tiktok` + `threads` → media 9:16, `tiktokData.autoAddMusic: true`, `title` = judul.
-2. `instagram` → media 4:5, `instagramData.type: "POST"` (carousel).
+Media dari link `https://drive.google.com/uc?export=download&id=<ID>` berurutan 01→06.
 
-Catatan: musik otomatis hanya didukung TikTok. Carousel Instagram tidak bisa diberi musik lewat API — sampaikan ke pengguna bila ia meminta musik di Instagram (opsi: tambahkan manual di aplikasi, atau jadikan Reel video + lagu katalog, lihat referensi).
+1. `tiktok` → media 9:16, `text` = caption TikTok satu paragraf, `tiktokData.autoAddMusic: true`, `title` = judul.
+2. `threads` → media 9:16, `text` = caption ber-enter.
+3. `instagram` → media 4:5, `text` = caption ber-enter, `instagramData.type: "POST"`.
 
-### 5. Pantau sampai tayang
+Semua `publicationDate` sama (±3 menit ke depan). Respons tiap posting harus berisi `media` di `static.metricool.com` dan status `PENDING` — itu tanda terjadwal. Bila salah satu ditolak (mis. error media), perbaiki dan kirim ulang platform itu saja.
 
-- Cek `getScheduledPosts` setiap beberapa menit setelah jadwal. Status berjalan: `PENDING` → `PUBLISHING` → `PUBLISHED` (TikTok bisa `AWAITING_CONFIRMATION` sebentar).
-- Jika `ERROR`, baca `detailedStatus`, perbaiki (mis. format gambar), lalu kirim ulang posting baru untuk platform yang gagal saja.
+## 5. Laporan akhir (lalu selesai)
 
-### 6. Laporan akhir
-
-- Berikan link publik tiap platform.
-- Ingatkan pengguna mengembalikan akses folder Drive ke **Dibatasi** (Metricool sudah menyimpan salinan gambar).
-- Sebutkan posting gagal lama (jika ada) yang bisa dihapus dari Planner Metricool.
+- Jam tayang terjadwal dan link Planner Metricool tiap posting.
+- Estimasi kapan muncul di sosmed (kasar, bukan jaminan): Threads & Instagram beberapa menit setelah jam jadwal; TikTok bisa 10–15 menit (proses di sisi TikTok).
+- Pengguna bisa minta "cek status posting <judul>" nanti untuk memeriksa `getScheduledPosts` dan mengambil link publik — JANGAN polling sekarang.
+- Catatan musik: carousel Instagram tidak bisa diberi musik lewat API (tambahkan manual di aplikasi bila perlu).
