@@ -16,14 +16,16 @@
 
 ## Menyimpan ke Drive lokal
 
-- Temukan folder Google Drive lokal dengan `get_device_info` / `device_list_dir` (Google Drive for desktop menaruhnya di folder CloudStorage pengguna), minta akses sekali per sesi lewat `device_request_folder_access`. Tanyakan bila ada lebih dari satu akun Drive.
+- Temukan folder Google Drive lokal dengan `device_bash`: `find $HOME/mnt/CloudStorage -maxdepth 4 -type d -name Sosmed` (Google Drive for desktop menaruhnya di `CloudStorage/GoogleDrive-<akun>/My Drive/`). Bila CloudStorage belum terhubung, minta akses sekali per sesi lewat `device_request_folder_access`. Tanyakan bila ada lebih dari satu akun Drive.
+- Path untuk `device_commit_files` boleh ditulis `~/mnt/CloudStorage/...` (ejaan `device_bash`).
 - Tulis semua file dalam SATU `device_commit_files` (`stagedPath` di folder output sesi).
 - Membaca file Drive lokal kadang gagal "Resource deadlock avoided" — pakai `device_stage_files`.
 - Upload langsung lewat konektor Drive (`create_file` + base64) secara teknis mungkin, tetapi tiap JPEG ±300 KB harus dikirim sebagai teks base64 dalam argumen tool — jauh lebih lambat dan boros daripada sinkron lokal. Tetap pakai sinkron lokal.
 
 ## Link media untuk Metricool
 
-- Setelah tersinkron (±30–60 detik), cari ID dengan Google Drive `search_files` (`parentId = '<id subfolder>'`; bisa `parentId = 'A' or parentId = 'B'`).
+- Sinkron biasanya ±30–90 detik. Jangan jeda tetap: cari ID subfolder (`title = '9x16-tiktok-threads' or title = '4x5-instagram'`, ambil `createdTime` terbaru), lalu `parentId = 'A' or parentId = 'B'`; ulangi tiap ±15 detik sampai lengkap.
+- Rasio ditentukan oleh `parentId`, bukan nama/ukuran file (nama file di kedua subfolder sama).
 - Format media: `https://drive.google.com/uc?export=download&id=<FILE_ID>`. Folder induk `Sosmed` sudah publik permanen, jadi subfolder baru otomatis bisa diakses.
 - Metricool menyalin gambar ke `static.metricool.com/...`; URL itu bisa dipakai ulang untuk posting ulang tanpa Drive.
 
@@ -67,6 +69,10 @@ Kerangka payload (isi `providers`, `text`, dan data jaringan per posting):
 | Caption Threads | ≤ 500 karakter. |
 | Integrasi Drive Metricool | Fitur premium — pakai link publik `uc?export=download`. |
 | Waktu tayang | Threads/IG beberapa menit setelah jadwal; TikTok bisa 10–15 menit. |
+| Upload langsung dari lokal | Tidak bisa lewat API/konektor Metricool (hanya link publik). Upload lokal hanya via web/aplikasi Metricool manual. |
+| Host gambar pihak ketiga (catbox, tmpfiles, dll.) | Diblokir sistem (mengirim file ke layanan luar). Tetap pakai Drive. |
+| Jam jadwal | Ambil dari `TZ=Asia/Jakarta date`; jangan menebak. |
+| Posting satu gambar | Sama seperti carousel, `media` berisi satu URL. |
 
 ## Reel Instagram (opsional)
 
