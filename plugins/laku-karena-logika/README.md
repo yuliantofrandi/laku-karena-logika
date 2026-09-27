@@ -34,13 +34,13 @@ Riset buying keyword di Google Ads Keyword Planner (lewat browser), lalu susun j
 > **Catatan lingkungan:** skill ini butuh **Claude-in-Chrome** (otomasi browser) dan skill **`anthropic-skills:xlsx`**, serta menyimpan hasil ke `/mnt/user-data/outputs/` — jadi ditujukan untuk lingkungan **claude.ai/Chat**, bukan alur file lokal Cowork seperti dua skill di atas.
 
 ### `sosmed-desain`
-Ide → brief (disetujui di chat) → pilih gaya → carousel 5–7 frame di kanvas Design Claude dengan design system Venturo. Dua gaya bergantian agar feed tidak monoton: **Style 1 – kartu miring** dan **Style 2 – blok warna lembut** (detail di `references/gaya.md`). Kanvas 9:16 (1080 × 1920) dengan semua isi di **zona aman 4:5** (y = 285–1635).
+Ide → brief (disetujui di chat) → pilih gaya → carousel 5–7 frame atau satu gambar di kanvas Design Claude dengan design system Venturo. Tiga gaya bergantian agar feed tidak monoton: **Style 1 – kartu miring**, **Style 2 – blok warna lembut**, dan **Style 3 – satu gambar padat** (mis. tabel "tanpa vs dengan AI"; detail di `references/gaya.md`). Kanvas 9:16 (1080 × 1920) dengan semua isi di **zona aman 4:5** (y = 285–1635).
 
 ### `sosmed-caption`
 Menulis judul + dua versi caption dari desain final: ber-enter untuk Instagram & Threads, satu paragraf untuk TikTok (TikTok membuang enter pada posting foto). Tanpa hashtag nama perusahaan, ≤ 500 karakter. Disimpan sebagai `caption.md` di folder Google Drive posting.
 
 ### `sosmed-posting`
-Satu konfirmasi di awal, lalu: `scripts/render.py` merender frame terpilih jadi JPEG 9:16 (`9x16-tiktok-threads/`) dan crop 4:5 (`4x5-instagram/`) dalam hitungan detik (font & logo/latar Venturo dibundel di `assets/`), simpan ke `Sosmed/<judul>/` di Google Drive, lalu jadwalkan tiga posting di Metricool: TikTok (9:16, musik otomatis), Threads (9:16), Instagram (carousel 4:5). Selesai begitu terjadwal, dengan estimasi waktu tayang. Batasan platform yang sudah terbukti ada di `references/teknis.md`.
+Satu konfirmasi di awal, lalu: `scripts/render.py` merender frame terpilih jadi JPEG 9:16 (`9x16-tiktok-threads/`) dan crop 4:5 (`4x5-instagram/`) dalam hitungan detik (font & logo/latar Venturo dibundel di `assets/`), simpan ke `Sosmed/<judul>/` di Google Drive, lalu jadwalkan tiga posting di Metricool: TikTok (9:16, musik otomatis), Threads (9:16), Instagram (carousel/gambar 4:5). Selesai begitu terjadwal, dengan estimasi waktu tayang dan durasi tiap langkah. Batasan platform yang sudah terbukti ada di `references/teknis.md`.
 
 > **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
 

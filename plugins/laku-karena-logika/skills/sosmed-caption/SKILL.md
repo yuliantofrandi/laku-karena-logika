@@ -1,6 +1,6 @@
 ---
 name: sosmed-caption
-description: Menulis judul dan caption posting sosial media Venturo dari isi desain carousel yang sudah final — dua versi: ber-enter untuk Instagram & Threads, satu paragraf untuk TikTok — lalu menyimpannya sebagai caption.md di folder Google Drive posting. Gunakan saat pengguna berkata "buat caption", "tulis caption", "sosmed caption", "caption untuk posting ini", atau setelah desain carousel selesai.
+description: Menulis judul dan caption posting sosial media Venturo dari isi desain (carousel atau satu gambar) yang sudah final — dua versi: ber-enter untuk Instagram & Threads, satu paragraf untuk TikTok — lalu menyimpannya sebagai caption.md di folder Google Drive posting. Gunakan saat pengguna berkata "buat caption", "tulis caption", "sosmed caption", "caption untuk posting ini", atau setelah desain carousel selesai.
 ---
 
 # Sosmed – Caption
@@ -41,7 +41,7 @@ Tampilkan judul dan kedua versi caption dalam blok kode. Terapkan revisi penggun
 
 ## 6. Simpan `caption.md`
 
-Lokasi: `Sosmed/<Judul Posting>/caption.md` di Google Drive pengguna yang tersinkron ke komputernya (Google Drive for desktop). Temukan folder `Sosmed` lewat daftar folder di komputer pengguna; bila ada lebih dari satu akun Drive atau folder tidak ditemukan, tanyakan. Minta akses folder bila belum terhubung. Jangan menimpa `caption.md` yang sudah ada tanpa izin — jika sudah ada, edit bagian yang berubah saja.
+Lokasi: `Sosmed/<Judul Posting>/caption.md` (nama folder TANPA `:` `/` `?` — ganti titik dua dengan " – ", mis. `Hari Kerja Tim Anda – Tanpa AI vs Dengan AI`; judul TikTok tetap boleh memakai titik dua) di Google Drive pengguna yang tersinkron ke komputernya (Google Drive for desktop). Temukan folder `Sosmed` lewat daftar folder di komputer pengguna; bila ada lebih dari satu akun Drive atau folder tidak ditemukan, tanyakan. Minta akses folder bila belum terhubung. Jangan menimpa `caption.md` yang sudah ada tanpa izin — jika sudah ada, edit bagian yang berubah saja.
 
 Format file:
 
@@ -59,9 +59,9 @@ Format file:
 
 ## Urutan gambar
 1. 01-<nama>.jpg
-2. ...
+2. ... (satu baris saja untuk posting satu gambar)
 
-Desain: <Style 1/2>, artboard <daftar artboard> di kanvas <link>.
+Desain: <Style 1/2/3>, artboard <daftar artboard> di kanvas <link>.
 ```
 
 ## 7. Serah terima
