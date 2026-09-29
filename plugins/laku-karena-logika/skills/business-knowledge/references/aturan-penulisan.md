@@ -8,16 +8,17 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
 ## Prinsip umum
 
 1. **Satu fakta satu rumah.** Sebelum menambah kalimat, tanya: sudah ada di
-   section lain? Kalau ya, rujuk ("lihat §3"), jangan salin. User berulang
+   section lain? Kalau ya, rujuk ("lihat §4"), jangan salin. User berulang
    kali memangkas duplikasi — jangan menambah pekerjaan itu.
 2. **Kondisi berlaku saat ini.** Tidak ada "sebelumnya kami...", tidak ada
    decision log, tidak ada versi di badan dokumen. Riwayat hidup sebagai
    snapshot bernomor di `<produk>/sebelumnya/`.
 3. **Keputusan = kesimpulan + alasan.** Pola `... — karena ...`. Reviewer
    menilai dasarnya, bukan hasilnya.
-4. **Angka mengalahkan sifat.** "Lebih murah" lemah; "di bawah ~Rp12.500/
-   karyawan/bln, batas termurah kompetitor bundel" kuat. Kalau angkanya
-   belum ada → `[INPUT-NEEDED]`, jangan dikira-kira tanpa `[?]`.
+4. **Angka mengalahkan sifat.** "Lebih hemat" lemah; "cukup Rp 5.000/
+   karyawan/bln, tanpa biaya setup" kuat. Kalau angkanya belum ada →
+   `[INPUT-NEEDED]`, jangan dikira-kira tanpa `[?]`. Angka di sini angka
+   produk sendiri atau pasar — bukan angka kompetitor (prinsip 7).
 5. **Bahasa:** Indonesia, ringkas, tanpa jargon marketing kosong. Istilah
    teknis/kategori boleh Inggris kalau memang begitu dipakai di pasar
    (Decision Maker, End User, Primary Market).
@@ -25,6 +26,9 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
    persona. Kutipan `> ...` untuk pernyataan inti (vision, mission,
    category, DNA, positioning, tagline). Tabel untuk data terstruktur.
    Tidak ada H1 — nama produk cukup di folder dan field Product name.
+7. **Tanpa kompetitor.** Tidak ada nama merek, harga, atau fitur kompetitor
+   di section mana pun — hanya jenis alternatif tanpa merek. Lihat
+   "Kompetitor tidak ditulis di BKB" di akhir berkas ini.
 
 ## §1 Business Overview
 
@@ -54,7 +58,8 @@ menyertakan pembeda kategori. ✓ "Alat presensi karyawan berbasis WhatsApp
   ✓ "**Setup Minimal**: karyawan cukup kirim foto — tanpa install app,
   tanpa atur jadwal atau shift dulu, presensi langsung jalan."
 - Sulit ditiru karena alasan struktural (incumbent harus mengkanibal
-  produknya sendiri, dsb.), bukan karena teknologinya canggih.
+  produknya sendiri, dsb.), bukan karena teknologinya canggih. Sebut jenis
+  pemainnya ("incumbent global berbayar USD"), bukan mereknya.
 - Kalau alasan sulit-ditirunya masih hipotesis → `[?]`.
 
 **Level 2 — uji:** kuat sekarang, tapi jujur bisa dikejar 1-2 tahun. Ditulis
@@ -74,9 +79,11 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 - Bicara pasar, bukan produk kita.
 - "Kenapa sekarang" menyebut perubahan eksternal (teknologi jadi murah,
   regulasi, perilaku).
-- "Celah pasar" memuat angka kompetitor lalu menurunkan batas harga:
-  "Timelog bisa lebih murah dari semua nama ini selama harga jualnya di
-  bawah ~Rp12.500/karyawan/bln".
+- "Celah pasar" menyebut kebutuhan yang tidak terlayani **jenis**
+  alternatif yang ada — tanpa nama merek, harga, atau fitur kompetitor:
+  ✓ "Aplikasi absensi yang ada menuntut install app dan atur jadwal dulu;
+  grup WA gratis tapi tak tercatat". Apakah celah ini benar-benar kosong
+  diuji `business-reviewer`, bukan ditulis di sini.
 - Kalau ada ketergantungan yang bisa mematikan klaim (mis. memakai API
   tidak resmi yang rawan diblokir), tulis blok `[!]` di sini — ringkas,
   lengkap dengan risikonya. Jangan disembunyikan
@@ -87,7 +94,36 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   yang memaksa keputusannya diambil. Hapus blok hanya kalau memang tidak
   ada risiko struktural.
 
-## §3 Product-to-Value Mapping
+## §3 Pricing Plan
+
+- Diisi PALING TERAKHIR. Kalau §4 dan §5 belum jadi, tandai seluruh section
+  `[INPUT-NEEDED]` dan jangan menebak.
+- Tier dibedakan oleh kapabilitas (Skema 1 vs Skema 2), bukan oleh ukuran
+  perusahaan. Ukuran perusahaan → diskon volume di dalam tier.
+- Tahunan: bayar 10 dapat 12, tulis harga efektif per bulan
+  ("Rp 60.000 (Rp 5.000/bln)") supaya bisa dibandingkan langsung dengan
+  harga bulanan.
+- Blok **Fitur** di bawah harga: satu baris per kapabilitas §4, ✓ atau
+  kosong. "Dukungan" selalu baris terakhir.
+- Add-on di sub-section `### Add-on (...)` dengan tabel sendiri — kolom
+  `Add-on | Harga | Fitur yang didapat` — diletakkan setelah "Kenapa harga
+  ini". **Jangan** jadikan baris di dalam tabel harga skema: tabel skema
+  hanya berisi harga, blok Fitur, dan Dukungan.
+- Judul sub-section menyebut skema yang bisa memasang add-on, sesuai
+  jumlah skema produk ("bisa dipasang ke Skema 1, Skema 2, atau Skema 3";
+  kalau hanya untuk skema tertentu, sebut itu).
+- Harga add-on ditulis per karyawan per bulan (`+Rp .../karyawan/bln`);
+  harga tahunan boleh ditambahkan di bawahnya (`<br>(Rp .../thn)`).
+  Keterangan umum (tidak ikut diskon volume, status `[?]`) ditulis sekali
+  di bawah tabel, bukan diulang per baris.
+- "Kenapa harga ini" berdasar nilai (§4), segmen (§5), dan biaya — tanpa
+  membandingkan dengan harga kompetitor. Apakah harga menang lawan pasar
+  diuji `business-reviewer`.
+- Uji konsistensi: harga terendah harus masih menutup biaya variabel (AI,
+  pesan) — kalau belum tahu biaya variabelnya, tulis `[?]` dan catat di
+  blok `[!]` §2 Opportunity.
+
+## §4 Product-to-Value Mapping
 
 - Urut dari problem paling menyakitkan. Baris pertama = headline konten.
 - Kolom **Customer Problem** ditulis dari mulut customer, konkret, sering
@@ -97,30 +133,12 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   decision-maker (yang membayar). Kalau dua kolom ini berisi hal yang sama,
   salah satunya belum dipikirkan.
 - Kapabilitas yang terikat tier/skema/add-on diberi keterangan dalam kurung
-  di kolom Capability, supaya §4 bisa memetakan ✓ per baris.
+  di kolom Capability, supaya §3 bisa memetakan ✓ per baris.
 - Harga boleh jadi satu baris — "bayar hanya modul yang dipakai" adalah value.
 - Problem tanpa fitur → Capability `[GAP]`. Jangan dihapus.
 - Kalau customer sudah punya aset (spreadsheet gaji dengan rumus PPh21
   sendiri), value "tidak perlu pindah" adalah baris tersendiri — ini sering
   jadi pembeda paling kuat terhadap incumbent yang memaksa migrasi.
-
-## §4 Pricing Plan
-
-- Diisi PALING TERAKHIR. Kalau §3 dan §5 belum jadi, tandai seluruh section
-  `[INPUT-NEEDED]` dan jangan menebak.
-- Tier dibedakan oleh kapabilitas (Skema 1 vs Skema 2), bukan oleh ukuran
-  perusahaan. Ukuran perusahaan → diskon volume di dalam tier.
-- Tahunan: bayar 10 dapat 12, tulis harga efektif per bulan
-  ("Rp 60.000 (Rp 5.000/bln)") supaya bisa dibandingkan langsung dengan
-  kompetitor yang memasang harga per bulan.
-- Blok **Fitur** di bawah harga: satu baris per kapabilitas §3, ✓ atau
-  kosong. "Dukungan" selalu baris terakhir.
-- Add-on di tabel terpisah, harga per karyawan per bulan, bisa dipasang ke
-  semua skema.
-- Uji konsistensi: harga tertinggi harus di bawah batas yang dipasang di
-  §2 Celah pasar; harga terendah harus masih menutup biaya variabel (AI,
-  pesan) — kalau belum tahu biaya variabelnya, tulis `[?]` dan catat di
-  blok `[!]` §2 Opportunity.
 
 ## §5 Target Customer Profile
 
@@ -128,9 +146,9 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   Kematangan teknologi, Skema yang ditawarkan. Sebut juga **Bukan target**
   dan kenapa ("usaha yang sudah pakai HRIS lengkap — bukan kandidat migrasi,
   kita menang di setup minimal, bukan kelengkapan fitur").
-- Business type = ciri operasional yang membuat problem §3 paling terasa
+- Business type = ciri operasional yang membuat problem §4 paling terasa
   (tersebar di banyak lokasi, sudah terbiasa koordinasi via grup WA).
-- Skema yang ditawarkan menghubungkan segmen ke §4 dan memberi alasan:
+- Skema yang ditawarkan menghubungkan segmen ke §3 dan memberi alasan:
   "langsung Skema 2 — anti-kecurangan visual jadi kebutuhan inti segmen
   ini, bukan upsell".
 - Persona 1 (Decision Maker): Role boleh berbeda per market ("HR/Ops
@@ -144,20 +162,21 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   karena pencahayaan, sinyal lemah, tidak tahu komplain ke siapa) — ini
   bahan untuk konten onboarding dan FAQ, bukan hanya untuk empati.
 
-## Angka kompetitor di dalam BKB
+## Kompetitor tidak ditulis di BKB
 
-Tidak ada file kompetitor terpisah. Angka dan risiko kompetitor tinggal di
-dalam BKB §2, secukupnya untuk membentuk celah pasar dan positioning —
-bukan profil tiap kompetitor satu per satu:
+BKB berisi strategi produk sendiri; kompetitor adalah bahan **pengujian**
+strategi itu, dan rumahnya laporan `business-reviewer` (funnel 3 level DNA,
+harga & fitur bertanggal). Karena itu di BKB:
 
-- **§2 Opportunity** memuat angka kompetitor (harga, batas minimum, add-on
-  berbayar) untuk mengukur celah pasar, lengkap dengan sumber dan tanggalnya.
-  Satu angka kompetitor cukup ditulis sekali; kalau dipakai lagi untuk
-  menurunkan batas harga atau di blok `[!]`, rujuk, jangan tulis ulang
-  dengan nilai berbeda.
-- **Blok `[!]` risiko struktural** di §2 memuat ringkasan risikonya langsung
-  — ancaman yang bisa mematikan klaim, cukup untuk dibaca reviewer sebelum
-  memakai klaim di dekatnya.
-- **Positioning** menarik "alternatif" (kompetitor + status quo: Excel, grup
-  WA, proses manual) dari Opportunity. Kalau alternatifnya belum jelas,
-  tulis sebisanya dan tandai `[?]`.
+- **Tidak ada** nama merek kompetitor, harga, fitur, atau perbandingan
+  angka ("3× lebih murah dari X") — di section mana pun.
+- **Boleh** menyebut **jenis alternatif** tanpa merek, secukupnya untuk
+  Celah pasar, DNA, dan Positioning: "tool global berbayar USD", "tool
+  gratis self-serve", "HRIS lengkap", status quo ("Excel, grup WA, proses
+  manual").
+- **Blok `[!]` risiko struktural** tetap ada di §2 — regulasi,
+  ketergantungan API/platform, biaya variabel, dan ancaman dari jenis
+  pemain ("tool gratis menjadikan lantai harga nol") — tanpa menyebut merek.
+- Rekomendasi dari `business-reviewer` diterapkan sebagai **kesimpulan**
+  (DNA turun level, harga dikoreksi, positioning dipertajam), bukan dengan
+  menyalin data kompetitornya ke BKB.

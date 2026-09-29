@@ -19,14 +19,14 @@ Menyusun, mengisi, merevisi, dan mengaudit **Business Knowledge Base (BKB)** sat
 Struktur BKB (5 section):
 1. **Business Overview** — identitas, vision, mission
 2. **Brand Strategy** — category, DNA & pembeda berlevel, positioning, tagline, opportunity
-3. **Product-to-Value Mapping** — problem → benefit → business outcome
-4. **Pricing Plan** — tier, diskon volume, add-on
+3. **Pricing Plan** — tier, diskon volume, add-on
+4. **Product-to-Value Mapping** — problem → benefit → business outcome
 5. **Target Customer Profile** — segmen + buyer persona
 
 Prinsip yang dijaga: satu fakta satu rumah (anti-duplikasi), tidak mengarang angka (`[INPUT-NEEDED]` / `[?]`), dan setiap keputusan strategis disertai alasannya.
 
 ### `business-reviewer`
-Menilai dan memberi **skor** pada BKB, lalu menguji strateginya lawan lanskap kompetitor nyata (**competitive analysis**) — semuanya sebagai satu laporan review, **read-only** (tidak mengedit BKB). Sementara `business-knowledge` menulis & merapikan dokumen, skill ini berdiri di luar sebagai kritikus: skor 100 poin per dimensi, temuan (cacat penulisan vs celah strategis), dan analisis kompetitor. Angka kompetitor permanen tetap tinggal di BKB §2; analisis kompetitor yang lebih dalam dan bertanggal tinggal di dalam laporan review ini.
+Menilai dan memberi **skor** pada BKB, lalu menguji strateginya lawan lanskap kompetitor nyata (**competitive analysis**) — semuanya sebagai satu laporan review, **read-only** (tidak mengedit BKB). Sementara `business-knowledge` menulis & merapikan dokumen, skill ini berdiri di luar sebagai kritikus: skor 100 poin per dimensi, temuan (cacat penulisan vs celah strategis), dan analisis kompetitor. BKB sengaja tidak memuat kompetitor (tanpa merek, harga, atau fitur); seluruh data & analisis kompetitor tinggal di laporan review bertanggal ini.
 
 ### `keyword-research`
 Riset buying keyword di Google Ads Keyword Planner (lewat browser), lalu susun jadi Excel siap eksekusi: keyword plan, page brief (title/meta/H1/slug), dan negative keyword. Skill hilir — Langkah 0-nya membaca brief/BKB produk untuk menilai relevansi keyword, jadi melanjutkan rantai dari `business-knowledge`.

@@ -27,10 +27,10 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
 |---|---:|---|
 | §1 Business Overview | 15 | Vision & Mission lolos ujinya masing-masing |
 | §2 Brand Strategy | 30 | Category, DNA L1/L2, Positioning, Tagline, Opportunity, blok risiko `[!]` — inti strategis, bobot terberat |
-| §3 Product-to-Value Mapping | 15 | Urut dari problem tersakit; benefit ≠ business outcome; kapabilitas terpetakan ke tier; baris "tidak perlu pindah" bila relevan |
-| §4 Pricing Plan | 15 | Tier oleh kapabilitas bukan ukuran; harga efektif tahunan; blok fitur per kapabilitas; harga tertinggi < batas §2; harga terendah menutup biaya variabel |
+| §3 Pricing Plan | 15 | Tier oleh kapabilitas bukan ukuran; harga efektif tahunan; blok fitur per kapabilitas; "kenapa harga ini" berdasar nilai/segmen/biaya; harga terendah menutup biaya variabel |
+| §4 Product-to-Value Mapping | 15 | Urut dari problem tersakit; benefit ≠ business outcome; kapabilitas terpetakan ke tier; baris "tidak perlu pindah" bila relevan |
 | §5 Target Customer Profile | 15 | Primary/Secondary + "Bukan target"; business type = ciri operasional; persona dengan trigger berupa kejadian; pain point end-user teknis-nyata |
-| Konsistensi lintas-section | 10 | Satu fakta satu rumah; harga §4 ↔ batas §2; tiap kapabilitas §3 punya baris ✓ di §4; tiap market §5 menyebut skema §4; positioning hanya memakai klaim yang sudah ada; penanda `[?]`/`[INPUT-NEEDED]` dipakai jujur |
+| Konsistensi lintas-section | 10 | Satu fakta satu rumah; tidak ada nama/harga/fitur kompetitor di section mana pun; tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5 menyebut skema §3; positioning hanya memakai klaim yang sudah ada; penanda `[?]`/`[INPUT-NEEDED]` dipakai jujur |
 
 ### Panduan pengurangan (contoh, bukan daftar tertutup)
 
@@ -39,9 +39,12 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
 - Cacat sebagian (mis. Opportunity punya angka tapi tanpa sumber/tanggal):
   −2 sampai −3.
 - Celah strategis yang membalik logika satu section (mis. funnel Level 2
-  tidak mengerucut, atau celah pasar §2 mengabaikan pemain Level 1 yang lebih
-  murah): −4 sampai −8 di §2, karena merusak fondasi positioning.
+  tidak mengerucut, atau celah pasar §2 ternyata sudah diisi pemain nyata
+  yang lebih murah): −4 sampai −8 di §2, karena merusak fondasi positioning.
 - Cacat kecil/kosmetik (format, satu duplikasi minor): −1.
+- BKB memuat nama merek, harga, atau fitur kompetitor (melanggar aturan
+  "Tanpa kompetitor"): −1 per kemunculan di dimensi tempatnya, maks −3 per
+  dimensi. Data itu dipindah ke competitive analysis laporan, bukan dibuang.
 
 ### Band verdict
 
@@ -130,19 +133,19 @@ seluruh logika celah pasar berdiri di atasnya.
 
 ### Uji silang ke BKB (checklist)
 
-- **Celah pasar §2** — benar kosong di Level 3 funnel? Adakah pemain di
-  Level 1 (yang BKB tidak sebut karena hanya membandingkan sebagian) yang
-  lebih murah atau sudah lolos ke Level 2?
+- **Celah pasar §2** — kebutuhan yang BKB klaim tak terlayani, benar kosong
+  di Level 3 funnel? Adakah pemain Level 1 yang lebih murah atau sudah lolos
+  ke Level 2?
 - **DNA §1/§2** — apakah funnel benar-benar mengerucut di Level 2, atau baru
   mengerucut di Level 3? Kalau baru di Level 3, itu inversi DNA: pembeda yang
   benar-benar sulit ditiru ada di Level 2 BKB, bukan Level 1. Inversi seperti
   ini adalah temuan besar.
-- **Harga §4** — menang lawan **semua level funnel**, atau cuma sebagian?
+- **Harga §3** — menang lawan **semua level funnel**, atau cuma sebagian?
   Sebut eksplisit level mana harga kita kalah, dan apa gantinya (fitur,
   kepercayaan) yang membenarkan selisihnya.
 - **Positioning** — "alternatif" yang dilawan sudah mencakup pemenang
   sebenarnya (sering: status quo indirect), atau cuma kompetitor berbayar?
 
 Temuan yang membalik salah satu di atas masuk **Temuan utama** laporan sebagai
-celah strategis, dan memicu pengurangan skor di §2/§4, bukan sekadar catatan di
+celah strategis, dan memicu pengurangan skor di §2/§3, bukan sekadar catatan di
 bagian competitive analysis.
