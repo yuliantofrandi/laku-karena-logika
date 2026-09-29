@@ -17,8 +17,8 @@ luar yang kritis, bukan penulisnya. Dua tugas dalam satu laporan:
    laporan review ini** — bukan file terpisah.
 
 Skill ini **read-only** terhadap `business-knowledge-base.md`. Tidak pernah
-mengedit BKB. Temuan yang layak masuk BKB (mis. angka kompetitor baru untuk
-§2 Opportunity) ditulis sebagai **rekomendasi** — user menerapkannya lewat
+mengedit BKB. Temuan yang layak mengubah BKB (mis. DNA yang harus turun
+level, harga yang perlu dikoreksi) ditulis sebagai **rekomendasi** — user menerapkannya lewat
 skill `business-knowledge`. Pembagian tugas ini disengaja: yang menilai
 tidak boleh sekaligus yang menulis.
 
@@ -31,17 +31,17 @@ mengandaikan folder itu ada. Kalau isi BKB nyata berbeda dari skill ini,
 
 ## Kenapa competitive analysis ada di sini, bukan di file sendiri
 
-Dulu ada `competitive-landscape.md` terpisah. Arsitektur itu ditinggalkan:
-angka kompetitor yang **harus permanen** (harga, batas minimum, add-on) kini
-tinggal di dalam BKB §2 Opportunity, dirawat oleh skill `business-knowledge`.
+Dulu ada `competitive-landscape.md` terpisah. Arsitektur itu ditinggalkan.
+**BKB sengaja tidak memuat kompetitor sama sekali** — tidak ada nama merek,
+harga, atau fitur mereka; hanya jenis alternatif tanpa merek. BKB adalah
+strategi produk sendiri; kompetitor adalah bahan untuk **menguji** strategi
+itu.
 
-Yang tidak punya rumah di BKB adalah **riset kompetitor yang lebih dalam dan
-bersiklus sendiri** — profil tiap pemain, kekuatan/kelemahan, ancaman
-struktural, kesimpulan apakah moat bertahan. Itu bukan "kondisi berlaku saat
-ini" yang dibaca skill hilir; itu **penilaian bertanggal**. Rumahnya adalah
-laporan review ini — dihasilkan saat diminta, bukan dokumen kanonik yang
-dirawat terus. Jadi: BKB menyimpan **angka** kompetitor; review menyimpan
-**analisis** kompetitor.
+Karena itu **seluruh** data kompetitor — nama, harga, fitur, profil tiap
+pemain, kekuatan/kelemahan, ancaman struktural, kesimpulan apakah moat
+bertahan — rumahnya laporan review ini. Itu bukan "kondisi berlaku saat
+ini" yang dibaca skill hilir; itu **penilaian bertanggal**, dihasilkan saat
+diminta, bukan dokumen kanonik yang dirawat terus.
 
 ## Alur kerja
 
@@ -52,8 +52,8 @@ dirawat terus. Jadi: BKB menyimpan **angka** kompetitor; review menyimpan
    baris/section dan aturan yang dilanggar — skor tanpa alasan konkret tidak
    sah.
 3. **Competitive analysis — funnel 3 level DNA:**
-   - Kalau ada riset kompetitor sebelumnya (laporan review lama, atau angka di
-     BKB §2), pakai sebagai titik awal dan **cek kesegarannya**. Harga & fitur
+   - Kalau ada riset kompetitor sebelumnya (laporan review lama bertanggal),
+     pakai sebagai titik awal dan **cek kesegarannya**. Harga & fitur
      kompetitor berubah kapan saja.
    - Kalau perlu data baru atau verifikasi, riset ke web (website & halaman
      harga kompetitor). Tandai tiap baris: `[FAKTA]` (dicek langsung, dengan
@@ -83,7 +83,7 @@ dirawat terus. Jadi: BKB menyimpan **angka** kompetitor; review menyimpan
      dan **ancaman struktural** (bukan kompetitor, tapi bisa mematikan produk:
      ketergantungan API, biaya variabel, regulasi).
    - Uji silang ke klaim BKB: apakah "celah pasar" §2 benar-benar kosong di
-     Level tertinggi funnel? Apakah harga §4 menang lawan **semua** level
+     Level tertinggi funnel? Apakah harga §3 menang lawan **semua** level
      funnel atau cuma sebagian? Temuan yang membalik logika BKB adalah
      headline laporan, bukan catatan kaki.
 4. **Susun laporan** dengan struktur di bawah. Sampaikan di chat. Simpan ke
@@ -122,7 +122,7 @@ Judul: `Review BKB — <Produk> — <tanggal>`.
    satu tindakan konkret; kolom Δ angka pengurangan poin dimensi itu (harus
    habis sama dengan bobot dikurangi skor akhir dimensinya).
    Kalau satu masalah punya dampak poin di lebih dari satu dimensi (mis. celah
-   pasar §2 yang juga membuat §4 kehilangan poin karena tak mengakui kalah
+   pasar §2 yang juga membuat §3 kehilangan poin karena tak mengakui kalah
    harga), pecah jadi dua baris terpisah — satu di tiap tabel dimensinya —
    dan saling merujuk nomornya di sel Temuan, jangan digabung di satu baris
    saja supaya tetap gampang dipindai per dimensi.
@@ -158,9 +158,12 @@ Judul: `Review BKB — <Produk> — <tanggal>`.
    (cocokkan yang terakhir dengan blok `[!]` BKB §2), lalu daftar **Sumber**
    (URL) di akhir laporan.
 5. **Rekomendasi untuk BKB** — daftar bernomor tindakan konkret per section,
-   diurutkan dari dampak terbesar. Format: "§2 Opportunity — tambah pemain
-   Level 2 X dengan angka Y (sumber Z), karena celah harga saat ini cuma
-   teruji di Level 1."
+   diurutkan dari dampak terbesar. Rekomendasi berupa **kesimpulan** yang
+   ditulis ke BKB tanpa data kompetitor — alasannya boleh merujuk
+   competitive analysis di laporan ini. Format: "§2 DNA L1 — turunkan ke
+   Level 2, karena funnel tidak mengerucut di Level 2 (lihat competitive
+   analysis: 4 pemain lolos)." **Jangan** merekomendasikan menulis nama,
+   harga, atau fitur kompetitor ke BKB.
 
 ## Menyimpan laporan
 
@@ -177,8 +180,8 @@ Jangan menaruhnya di `sebelumnya/` (itu untuk riwayat BKB, bukan review).
   patch. Kalau user minta langsung diperbaiki, alihkan ke skill
   `business-knowledge`.
 - **Menghidupkan lagi `competitive-landscape.md` sebagai file kanonik yang
-  dirawat.** Analisis kompetitor tinggal di laporan review bertanggal; angka
-  permanen tinggal di BKB §2. Jangan buat file competitor terpisah yang
+  dirawat.** Semua data & analisis kompetitor tinggal di laporan review
+  bertanggal; BKB tidak memuat kompetitor. Jangan buat file competitor terpisah yang
   "hidup".
 - **Memberi skor tanpa dasar.** Tiap angka harus bisa ditelusuri ke aturan di
   rubrik dan ke baris di BKB. "Terasa kurang kuat" bukan penilaian.

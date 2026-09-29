@@ -30,22 +30,27 @@ ke section lain, jangan — cukup rujuk section aslinya. Dua salinan berarti
 suatu saat satu direvisi dan satunya tertinggal.
 
 Rumah tiap jenis fakta:
-  identitas & arah        → §1      problem & value        → §3
-  DNA, positioning, pasar → §2      harga & add-on         → §4
-  segmen & persona        → §5      angka & risiko kompetitor → §2 Opportunity
+  identitas & arah        → §1      problem & value        → §4
+  DNA, positioning, pasar → §2      harga & add-on         → §3
+  segmen & persona        → §5      risiko struktural      → §2 blok [!]
+
+KOMPETITOR TIDAK DITULIS DI SINI — tidak ada nama merek, harga, atau
+fitur kompetitor. Cukup JENIS alternatif tanpa merek ("tool global
+berbayar USD", "tool gratis", "Excel & grup WA"). Data & analisis
+kompetitor adalah milik laporan business-reviewer.
 
 
 URUTAN DOKUMEN vs URUTAN PENGISIAN
 =================================
 Letak section mengikuti kebutuhan PEMBACA (siapa kita → apa bedanya →
-apa nilainya → berapa harganya → untuk siapa). Urutan PENGISIAN mengikuti
+berapa harganya → apa nilainya → untuk siapa). Urutan PENGISIAN mengikuti
 ketergantungan data:
 
-  §1 identitas → §2 Opportunity → §3 P2V → §5 Target → §2 DNA & Positioning
-  → §4 Pricing (PALING TERAKHIR — turunan dari segmen + value)
+  §1 identitas → §2 Opportunity → §4 P2V → §5 Target → §2 DNA & Positioning
+  → §3 Pricing (PALING TERAKHIR — turunan dari segmen + value)
 
 Positioning statement dan harga ditulis terakhir karena keduanya
-sintesis dari section lain. Kalau harga berubah, §3 baris "Harga" dan §5
+sintesis dari section lain. Kalau harga berubah, §4 baris "Harga" dan §5
 "Skema yang ditawarkan" wajib ditinjau ulang.
 -->
 
@@ -94,8 +99,8 @@ Urutan pengisian di dalam section ini:
   1. Category      — identitas kategori, jarang berubah
   2. Opportunity   — gambaran pasar, paling awal
   3. Level 1 & 2   — setelah tahu apa yang sulit ditiru
-  4. Positioning   — PALING TERAKHIR; sintesis Opportunity, DNA, §3, §5,
-                     dan alternatif (kompetitor + status quo) dari Opportunity
+  4. Positioning   — PALING TERAKHIR; sintesis Opportunity, DNA, §4, §5,
+                     dan jenis alternatif (tanpa merek) dari Opportunity
   5. Tagline       — hanya MENCATAT yang sudah beredar -->
 
 ### Category
@@ -135,7 +140,7 @@ sama dan harus ditulis ulang setiap positioning berubah.
 Kerangka: [product] adalah [category] — [cara kerja inti dari DNA],
 [pembeda vs alternatif], dengan opsi [Level 2] untuk [segmen yang butuh].
 
-Bahannya: category di atas · DNA Level 1 · problem dari §3 · segmen dari
+Bahannya: category di atas · DNA Level 1 · problem dari §4 · segmen dari
 §5 · alternatif dari Opportunity di bawah (termasuk status quo:
 Excel, grup WA, proses manual). -->
 
@@ -156,21 +161,64 @@ Level 2 berarti menjual keunggulan yang mudah ditiru. -->
 <!-- Menjawab "seberapa besar peluangnya dan kenapa sekarang" — soal
 PASAR, bukan soal produk kita. Alasan customer memilih kita ada di DNA.
 
-Celah pasar ditulis dengan ANGKA kompetitor (harga, batas minimum,
-add-on berbayar) supaya celahnya terukur, lalu diturunkan jadi batas
-harga kita. Di sini cukup angka yang membentuk celahnya, lengkap dengan
-sumber dan tanggalnya — bukan profil tiap kompetitor satu per satu. -->
+Celah pasar ditulis sebagai kebutuhan yang tidak terlayani JENIS
+alternatif yang ada — tanpa nama merek, harga, atau fitur kompetitor.
+Apakah celahnya benar-benar kosong diuji business-reviewer. -->
 
 - **Kenapa sekarang:** perubahan yang membuat kebutuhan ini mendesak
   belakangan — teknologi jadi murah, regulasi, perubahan perilaku. ...
-- **Celah pasar:** kebutuhan yang tidak terlayani pilihan yang ada, dengan
-  angka. ... — [product] bisa lebih murah/lebih cocok selama ...
+- **Celah pasar:** kebutuhan yang tidak terlayani jenis alternatif yang
+  ada (tanpa merek). ... — [product] lebih cocok karena ...
 - **Ukuran & pertumbuhan pasar:** ... <!-- atau [INPUT-NEEDED] -->
 
 > `[!]` **Catatan risiko:** <!-- ketergantungan atau ancaman struktural
 > yang bisa mematikan klaim di atas. Hapus blok ini kalau tidak ada. -->
 
-## 3. Product-to-Value Mapping
+## 3. Pricing Plan
+
+<!-- DIISI PALING TERAKHIR — turunan dari §4 (value) dan §5 (segmen).
+
+Pola: tier dibedakan oleh KAPABILITAS (bukan oleh ukuran perusahaan);
+ukuran perusahaan menentukan DISKON VOLUME di dalam tiap tier. Tahunan
+= bayar 10 bulan dapat 12, tulis juga harga efektif per bulan supaya
+bisa dibandingkan langsung dengan harga bulanan.
+
+Baris fitur di bawah harga: ✓ atau kosong, satu baris per kapabilitas
+dari §4 — jadi pembaca bisa memetakan value ke harga tanpa bolak-balik.
+
+Sebut alasan di bawah tabel kalau ada asumsi (mis. "harga sudah
+mencakup infrastruktur"). Setiap tier & add-on wajib punya jawaban
+"kenapa harga ini" — kalau belum, tandai [?]. -->
+
+| **Harga Bulanan / Karyawan** | **Skema 1 — ...** | **Skema 2 — ...** |
+| --- | --- | --- |
+| < ... | Rp ... | Rp ... |
+| < ... (Rp ... lebih murah) | Rp ... | Rp ... |
+| > ... (Rp ... lebih murah) | Rp ... | Rp ... |
+| **Harga Tahunan / Karyawan**<br>(bayar 10 bulan, dapat 12) | **Skema 1 — ...** | **Skema 2 — ...** |
+| < ... | Rp ...<br>(Rp .../bln) | Rp ...<br>(Rp .../bln) |
+| **Fitur** | | |
+| ... | ✓ | ✓ |
+| ... | | ✓ |
+| Dukungan | Chat, jam kerja | Chat prioritas |
+
+Harga sudah mencakup ... <!-- asumsi yang perlu diketahui pembaca -->
+
+**Kenapa harga ini:** ... — karena ... <!-- dasarnya nilai (§4), segmen (§5), dan biaya — bukan harga kompetitor; itu diuji business-reviewer -->
+
+### Add-on (bisa dipasang ke Skema 1 atau Skema 2)
+
+<!-- Tabel terpisah — JANGAN taruh add-on sebagai baris di tabel harga
+skema. Sesuaikan judul dengan skema yang bisa memasangnya. Harga tahunan
+opsional di bawah harga bulanan: "+Rp .../karyawan/bln<br>(Rp .../thn)". -->
+
+| Add-on | Harga | Fitur yang didapat |
+| --- | --- | --- |
+| ... | +Rp .../karyawan/bln | ... |
+
+Add-on dijual terpisah dari skema dan tidak ikut diskon volume. ...
+
+## 4. Product-to-Value Mapping
 
 <!-- Section paling penting untuk content-ideator dan company-profile-
 writer. Setiap baris = bahan mentah ide konten dan copy website.
@@ -198,50 +246,12 @@ diisi [GAP] — kalau tidak, problem itu hilang dari pandangan. -->
 | ... | ... | ... | ... |
 | ... | ... | ... | ... |
 
-## 4. Pricing Plan
-
-<!-- DIISI PALING TERAKHIR — turunan dari §3 (value) dan §5 (segmen).
-
-Pola: tier dibedakan oleh KAPABILITAS (bukan oleh ukuran perusahaan);
-ukuran perusahaan menentukan DISKON VOLUME di dalam tiap tier. Tahunan
-= bayar 10 bulan dapat 12, tulis juga harga efektif per bulan supaya
-bisa dibandingkan langsung dengan kompetitor.
-
-Baris fitur di bawah harga: ✓ atau kosong, satu baris per kapabilitas
-dari §3 — jadi pembaca bisa memetakan value ke harga tanpa bolak-balik.
-
-Sebut alasan di bawah tabel kalau ada asumsi (mis. "harga sudah
-mencakup infrastruktur"). Setiap tier & add-on wajib punya jawaban
-"kenapa harga ini" — kalau belum, tandai [?]. -->
-
-| **Harga Bulanan / Karyawan** | **Skema 1 — ...** | **Skema 2 — ...** |
-| --- | --- | --- |
-| < ... | Rp ... | Rp ... |
-| < ... (Rp ... lebih murah) | Rp ... | Rp ... |
-| > ... (Rp ... lebih murah) | Rp ... | Rp ... |
-| **Harga Tahunan / Karyawan**<br>(bayar 10 bulan, dapat 12) | **Skema 1 — ...** | **Skema 2 — ...** |
-| < ... | Rp ...<br>(Rp .../bln) | Rp ...<br>(Rp .../bln) |
-| **Fitur** | | |
-| ... | ✓ | ✓ |
-| ... | | ✓ |
-| Dukungan | Chat, jam kerja | Chat prioritas |
-
-Harga sudah mencakup ... <!-- asumsi yang perlu diketahui pembaca -->
-
-**Kenapa harga ini:** ... — karena ... <!-- rujuk celah di §2 Opportunity -->
-
-### Add-on (bisa dipasang ke Skema 1 atau Skema 2)
-
-| Add-on | Harga | Fitur yang didapat |
-| --- | --- | --- |
-| ... | +Rp .../karyawan/bln | ... |
-
 ## 5. Target Customer Profile
 
 <!-- Kriteria tingkat PERUSAHAAN di Primary/Secondary Market; atribut
 ORANG (goals, pain, trigger) di Buyer Personas. Jangan dicampur.
 
-Tiap market wajib menyebut SKEMA yang ditawarkan (rujuk §4) — ini
+Tiap market wajib menyebut SKEMA yang ditawarkan (rujuk §3) — ini
 penghubung segmen ke harga, dan jadi sinyal ke sales/konten skema mana
 yang dipimpin untuk siapa.
 
@@ -253,7 +263,7 @@ menulis konten untuk segmen yang tidak akan membeli. -->
 - **Industry:** ...
 - **Company size:** ... — titik masuk paling kuat di ...
 - **Geography:** ...
-- **Business type:** ciri operasional yang membuat problem di §3 paling
+- **Business type:** ciri operasional yang membuat problem di §4 paling
   terasa. ...
 - **Kematangan teknologi:** ... **Bukan** target: ... (karena ...)
 - **Skema yang ditawarkan:** ... — karena ...

@@ -1,6 +1,6 @@
 ---
 name: business-knowledge
-description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Product-to-Value Mapping, Pricing Plan, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk SaaS nyata. Pakai skill ini setiap kali user ingin menambah produk baru, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
+description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Pricing Plan, Product-to-Value Mapping, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk SaaS nyata. Pakai skill ini setiap kali user ingin menambah produk baru, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
 ---
 
 # Business Knowledge Base (BKB)
@@ -11,9 +11,14 @@ dibaca skill hilir apa adanya. Tugas skill ini: memastikan produk baru
 mendapat struktur yang persis sama dengan yang sudah ada, dan isinya lolos
 uji kualitas yang sama.
 
-Angka dan risiko kompetitor tinggal di dalam BKB — §2 Opportunity (Celah
-pasar) dan Positioning — sebagai satu-satunya rumahnya. Tidak ada file
-kompetitor terpisah.
+**BKB tidak memuat kompetitor.** Tidak ada nama merek kompetitor, harga,
+maupun fitur mereka di dokumen ini — BKB hanya berisi strategi produk
+sendiri. Seluruh data & analisis kompetitor (harga, DNA siapa yang sudah
+meniru, funnel 3 level) tinggal di laporan skill `business-reviewer`, yang
+menguji apakah harga dan DNA di BKB bertahan lawan pasar. Yang boleh ada
+di BKB hanya **jenis alternatif** tanpa merek (mis. "tool global berbayar
+USD", "tool gratis self-serve", "Excel & grup WA") — secukupnya untuk
+Positioning dan Celah pasar.
 
 **Sumber kebenaran struktur & aturan** ada di dua berkas bundel skill ini,
 yang ikut ke mana pun plugin diinstall:
@@ -84,11 +89,11 @@ git, sehingga memusnahkan snapshot manual ini.
    hilir apa adanya dan komentar hanya jadi noise. Kalau butuh panduannya
    lagi, baca dari `assets/`, bukan dari file produk.
 2. Minta brief dari user kalau belum ada: apa produknya, siapa yang pakai,
-   apa yang mereka pakai sekarang, harga kompetitor yang diketahui. Satu
+   apa yang mereka pakai sekarang (jenis alternatif, bukan merek). Satu
    putaran pertanyaan, bukan wawancara panjang — sisanya `[INPUT-NEEDED]`.
 3. Isi dengan **urutan pengisian**, bukan urutan section:
-   `§1 identitas → §2 Opportunity → §3 P2V → §5 Target →
-   §2 DNA & Positioning → §4 Pricing`. Positioning dan harga terakhir
+   `§1 identitas → §2 Opportunity → §4 P2V → §5 Target →
+   §2 DNA & Positioning → §3 Pricing`. Positioning dan harga terakhir
    karena keduanya sintesis dari yang lain.
 4. Sebelum menulis tiap section, baca uji kualitasnya di
    `references/aturan-penulisan.md`. Section yang tidak lolos uji lebih
@@ -111,7 +116,7 @@ basi. Karena itu:
 - Utamakan **Edit** (perubahan bedah) daripada menulis ulang seluruh file.
 - Sebelum menambah kalimat, cek apakah faktanya sudah punya rumah di
   section lain. Kalau ya, rujuk, jangan salin.
-- Kalau harga berubah → tinjau §3 baris harga dan §5 "Skema yang
+- Kalau harga berubah → tinjau §4 baris harga dan §5 "Skema yang
   ditawarkan". Kalau DNA naik/turun level → tinjau Positioning dan Tagline.
 
 ### C. Audit
@@ -121,16 +126,15 @@ memakai dokumen:
 
 1. Duplikasi: satu fakta muncul di dua section? Sisakan di rumahnya.
 2. Penanda: semua `[?]` masih relevan? `[INPUT-NEEDED]` masih kosong?
-3. Konsistensi lintas section: harga tertinggi §4 < batas di §2 Celah
-   pasar; tiap kapabilitas §3 punya baris ✓ di §4; tiap market §5
-   menyebut skema yang ada di §4; positioning hanya memakai klaim yang
-   sudah ada di section lain. Pengecualian yang wajar: selama §4 masih
-   `[INPUT-NEEDED]`, "Skema yang ditawarkan" di §5 dan baris harga di §3
+3. Konsistensi lintas section: tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5
+   menyebut skema yang ada di §3; positioning hanya memakai klaim yang
+   sudah ada di section lain. Pengecualian yang wajar: selama §3 masih
+   `[INPUT-NEEDED]`, "Skema yang ditawarkan" di §5 dan baris harga di §4
    ikut `[INPUT-NEEDED]` — itu bukan temuan, itu status draf.
-4. Konsistensi angka kompetitor di dalam §2: harga/batas kompetitor yang
-   dipakai di "Celah pasar" harus sama dengan yang dipakai untuk menurunkan
-   batas harga dan yang dirujuk blok `[!]`. Satu angka kompetitor, satu
-   nilai — jangan ada dua versi di section yang sama.
+4. Tanpa kompetitor: ada nama merek, harga, atau fitur kompetitor di
+   section mana pun (DNA, Positioning, Opportunity, `[!]`, Pricing)? Ganti
+   dengan jenis alternatif tanpa merek; data kompetitornya milik laporan
+   `business-reviewer`, bukan BKB.
 
 Laporkan temuan sebagai daftar bernomor dengan lokasi (§ dan baris), lalu
 perbaiki yang disetujui.
@@ -148,6 +152,10 @@ perbaiki yang disetujui.
 - Menjalankan `update-sebelumnya.py` atau perintah `git` apa pun di repo
   ini — folder ini sengaja tanpa git.
 - Mengisi angka pasar/harga tanpa sumber. `[INPUT-NEEDED]` bukan aib.
+- Menulis kompetitor di BKB — nama merek, harga, fitur, atau perbandingan
+  "N× lebih murah dari X". Kalau review `business-reviewer` merekomendasikan
+  perubahan, terapkan **kesimpulannya** (DNA diturunkan, harga dikoreksi,
+  positioning dipertajam), bukan data kompetitornya.
 - Merujuk file produk lain ("lihat timelog/business-knowledge-base.md").
   Tiap folder produk harus berdiri sendiri karena skill hilir membaca
   satu folder saja. Fakta bersama disalin per produk lengkap dengan
