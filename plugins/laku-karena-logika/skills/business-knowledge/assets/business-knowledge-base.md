@@ -158,7 +158,7 @@ Level 2 berarti menjual keunggulan yang mudah ditiru. -->
 
 ### Opportunity
 
-<!-- Menjawab "seberapa besar peluangnya dan kenapa sekarang" — soal
+<!-- Menjawab "kenapa sekarang dan di mana celahnya" — soal
 PASAR, bukan soal produk kita. Alasan customer memilih kita ada di DNA.
 
 Celah pasar ditulis sebagai kebutuhan yang tidak terlayani JENIS
@@ -169,7 +169,6 @@ Apakah celahnya benar-benar kosong diuji business-reviewer. -->
   belakangan — teknologi jadi murah, regulasi, perubahan perilaku. ...
 - **Celah pasar:** kebutuhan yang tidak terlayani jenis alternatif yang
   ada (tanpa merek). ... — [product] lebih cocok karena ...
-- **Ukuran & pertumbuhan pasar:** ... <!-- atau [INPUT-NEEDED] -->
 
 > `[!]` **Catatan risiko:** <!-- ketergantungan atau ancaman struktural
 > yang bisa mematikan klaim di atas. Hapus blok ini kalau tidak ada. -->
