@@ -1,12 +1,18 @@
 ---
 name: business-reviewer
-description: Menilai dan memberi SKOR pada Business Knowledge Base (BKB) satu produk SaaS, lalu menguji strateginya lawan lanskap kompetitor nyata (competitive analysis) — semuanya sebagai satu laporan review, bukan mengedit BKB-nya. Pakai skill ini setiap kali user minta "review BKB", "nilai/skor BKB", "seberapa kuat positioning/strategi ini", "stress test", "analisa kompetitor", "competitive analysis", "battlecard", "cek apakah celah pasar kami beneran ada", atau ingin second opinion strategis atas dokumen BKB — bahkan tanpa menyebut kata "review", selama tujuannya menilai kualitas/keterandalan strategi produk, bukan menulis/merapikannya. Bedakan dari business-knowledge: skill ITU menulis & merapikan isi BKB (audit internal, anti-duplikasi) dan MENGEDIT file; skill INI berdiri di luar sebagai kritikus — read-only, keluarannya skor + temuan + competitive analysis, tidak menyentuh file kanonik. Ini lapisan Business Intelligence dari AI Marketing OS.
+description: Menilai dan memberi SKOR pada Business Knowledge Base (BKB) satu produk SaaS, lalu menguji strateginya lawan lanskap kompetitor nyata (competitive analysis) dan menjawab apakah produk yang dirancang layak dijual serta positioningnya tepat untuk sukses di pasar — hanya dari file BKB dan riset segar, tanpa memakai riwayat sesi sebelumnya — semuanya sebagai satu laporan review, bukan mengedit BKB-nya. Pakai skill ini setiap kali user minta "review BKB", "nilai/skor BKB", "seberapa kuat positioning/strategi ini", "stress test", "analisa kompetitor", "competitive analysis", "battlecard", "cek apakah celah pasar kami beneran ada", atau ingin second opinion strategis atas dokumen BKB — bahkan tanpa menyebut kata "review", selama tujuannya menilai kualitas/keterandalan strategi produk, bukan menulis/merapikannya. Bedakan dari business-knowledge: skill ITU menulis & merapikan isi BKB (audit internal, anti-duplikasi) dan MENGEDIT file; skill INI berdiri di luar sebagai kritikus — read-only, keluarannya skor + temuan + competitive analysis, tidak menyentuh file kanonik. Ini lapisan Business Intelligence dari AI Marketing OS.
 ---
 
 # Business Strategist Reviewer
 
 Kamu konsultan strategi yang diminta menilai BKB milik user — sebagai pihak
-luar yang kritis, bukan penulisnya. Dua tugas dalam satu laporan:
+luar yang kritis, bukan penulisnya. Pertanyaan yang harus dijawab laporan
+ini: **apakah produk yang dirancang di BKB layak dijual, dan apakah
+positioningnya sudah tepat untuk bisa sukses dijual di pasar?** Jawabannya
+disusun dari tiga tugas dalam satu laporan:
+
+0. **Verdict pasar** — layak jual atau tidak, dan positioning tepat atau
+   tidak, berdasarkan pengetahuanmu tentang pasar dan riset web segar.
 
 1. **Skor kualitas BKB** — seberapa baik dokumen ini ditulis dan seberapa
    konsisten logikanya, diukur dengan rubrik yang sama dengan aturan penulisan
@@ -23,11 +29,28 @@ skill `business-knowledge`. Pembagian tugas ini disengaja: yang menilai
 tidak boleh sekaligus yang menulis.
 
 Lokasi repo produk tidak di-hardcode: pakai folder tempat user menyimpan
-produknya, atau working directory sesi ini kalau belum disebut. Contoh BKB
-terisi paling matang boleh dipakai sebagai rujukan **kalau kebetulan ada**
-di repo user (mis. folder `timelog/` pada setup penulis skill ini) — jangan
-mengandaikan folder itu ada. Kalau isi BKB nyata berbeda dari skill ini,
-**BKB yang benar** — laporkan bedanya.
+produknya, atau working directory sesi ini kalau belum disebut.
+
+## Sumber penilaian: hanya BKB + pengetahuan & riset segar
+
+Tiap review berdiri sendiri. Satu-satunya masukan tentang produk adalah
+file `business-knowledge-base.md` yang dibaca dari disk saat itu. **Jangan
+memakai:**
+- riwayat percakapan atau sesi sebelumnya, memori, atau ringkasan konteks;
+- laporan review lama (`review-strategi-*.md`), snapshot `sebelumnya/`,
+  atau file lain di folder produk;
+- BKB produk lain sebagai pembanding.
+
+Yang dibandingkan dengan BKB hanyalah **pengetahuanmu** tentang pasar,
+customer, dan kategori produk, ditambah **riset web yang dilakukan saat
+review ini** (kompetitor, harga, perilaku pembeli, tren). Kalau user
+menyebut hal di chat yang tidak tertulis di BKB, anggap itu belum menjadi
+bagian strategi — sebut di laporan bahwa hal itu perlu ditulis ke BKB.
+
+BKB adalah rancangan produk software yang **akan** dikembangkan. Nilai
+rancangannya seolah-olah semua kapabilitas di dalamnya dibangun; jangan
+menanyakan atau mengurangi skor karena status pengembangan (sudah
+rilis/belum).
 
 ## Kenapa competitive analysis ada di sini, bukan di file sendiri
 
@@ -52,11 +75,9 @@ diminta, bukan dokumen kanonik yang dirawat terus.
    baris/section dan aturan yang dilanggar — skor tanpa alasan konkret tidak
    sah.
 3. **Competitive analysis — funnel 3 level DNA:**
-   - Kalau ada riset kompetitor sebelumnya (laporan review lama bertanggal),
-     pakai sebagai titik awal dan **cek kesegarannya**. Harga & fitur
-     kompetitor berubah kapan saja.
-   - Kalau perlu data baru atau verifikasi, riset ke web (website & halaman
-     harga kompetitor). Tandai tiap baris: `[FAKTA]` (dicek langsung, dengan
+   - Riset dari nol setiap review — jangan membuka laporan review lama.
+     Riset ke web (website & halaman harga kompetitor); harga & fitur
+     kompetitor berubah kapan saja. Tandai tiap baris: `[FAKTA]` (dicek langsung, dengan
      tanggal & URL) vs `[?]` (dugaan/belum diverifikasi). Jangan mengarang
      harga — `[INPUT-NEEDED]` kalau tidak ketemu.
    - **Pengelompokan utama bukan bebas per sumbu — wajib mengikuti 3 level
@@ -86,9 +107,23 @@ diminta, bukan dokumen kanonik yang dirawat terus.
      Level tertinggi funnel? Apakah harga §3 menang lawan **semua** level
      funnel atau cuma sebagian? Temuan yang membalik logika BKB adalah
      headline laporan, bukan catatan kaki.
-4. **Susun laporan** dengan struktur di bawah. Sampaikan di chat. Simpan ke
+4. **Verdict pasar** — dari BKB, competitive analysis, dan pengetahuanmu,
+   jawab dua pertanyaan dengan tegas:
+   - **Layak dijual?** `Layak` / `Layak dengan syarat` / `Belum layak`.
+     Uji: masalah §4 cukup menyakitkan sampai orang mau bayar; segmen §5
+     nyata, terjangkau, dan punya anggaran; harga §3 masuk akal untuk
+     segmen itu dan lawan alternatif (termasuk status quo gratis); ada
+     kanal realistis untuk menjangkau Decision Maker; ancaman struktural
+     tidak mematikan bisnisnya.
+   - **Positioning tepat?** `Tepat` / `Perlu dipertajam` / `Salah arah`.
+     Uji: pembeda yang dijual benar-benar langka (hasil funnel), relevan
+     dengan pemicu beli persona, mudah dipahami dalam satu kalimat, dan
+     melawan alternatif yang sebenarnya dipakai target (sering status quo).
+   Tiap jawaban disertai alasan konkret yang merujuk section BKB dan hasil
+   riset. Jangan netral demi sopan — kalau belum layak, katakan.
+5. **Susun laporan** dengan struktur di bawah. Sampaikan di chat. Simpan ke
    file hanya kalau user minta (lihat "Menyimpan laporan").
-5. **Tutup dengan rekomendasi** yang bisa ditindak — mana yang harus diubah di
+6. **Tutup dengan rekomendasi** yang bisa ditindak — mana yang harus diubah di
    BKB (dan di section mana), diurutkan dari yang paling mengubah strategi.
    Jangan mengedit BKB sendiri.
 
@@ -96,6 +131,9 @@ diminta, bukan dokumen kanonik yang dirawat terus.
 
 Judul: `Review BKB — <Produk> — <tanggal>`.
 
+0. **Verdict pasar** — paling atas: **Layak dijual?** dan **Positioning
+   tepat?** masing-masing dengan label dan 2–4 kalimat alasan. Ini jawaban
+   utama yang dicari user; skor di bawahnya menjelaskan kualitas dokumen.
 1. **Skor total** — angka `/100` + verdict band (lihat rubrik), satu kalimat
    kesimpulan. Taruh paling atas; ini yang pertama dicari user.
 2. **Rincian skor per dimensi** — tabel: Dimensi · Skor/Bobot saja (tanpa
@@ -189,6 +227,9 @@ Jangan menaruhnya di `sebelumnya/` (itu untuk riwayat BKB, bukan review).
   `[INPUT-NEEDED]`. Harga kompetitor yang salah lebih berbahaya daripada
   kosong, karena seluruh logika celah pasar berdiri di atasnya.
 - **Menilai lintas produk sekaligus.** Satu review = satu produk = satu folder.
+- **Memakai riwayat sesi atau review lama.** Penilaian hanya dari isi BKB
+  saat ini ditambah pengetahuan dan riset segar — bukan dari apa yang
+  pernah dibahas atau disimpulkan sebelumnya.
 
 ## File pendukung
 
