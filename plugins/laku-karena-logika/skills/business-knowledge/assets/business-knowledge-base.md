@@ -117,21 +117,26 @@ pembaca untuk menaruh produk di kotak yang benar — bukan tagline. -->
 Diurutkan dari yang paling SULIT DITIRU, bukan paling mengesankan —
 fitur paling canggih biasanya justru paling cepat disalin.
 
-Tulis sebagai satu klaim tebal + penjelasan konkret dari sisi pengguna.
-Nilai dari alasan struktural kenapa sulit ditiru, bukan dari bukti
-produk sudah jalan; tandai [?] hanya kalau alasannya lemah. -->
+TO THE POINT: satu baris tebal per pembeda, langsung dipahami orang
+awam tanpa penjelasan. Tanpa label abstrak + keterangan, tanpa "karena",
+tanpa alasan kenapa sulit ditiru. Maks ±12 kata.
+  ✗ **Setup Minimal**: karyawan cukup kirim foto — tanpa install app, ...
+  ✓ **Absen cukup kirim foto di WhatsApp, tanpa install aplikasi** -->
 
-> **...**: ...
+> **...**
 
 ### Level 2 — Pembeda pendukung · kuat saat rilis, bisa dikejar 1-2 tahun
 
 <!-- Kuat saat produk rilis, tapi kompetitor bisa menyusul. Boleh jadi pendukung
 headline, tidak boleh jadi headline utama.
 
+Format sama dengan Level 1: satu baris tebal per pembeda, to the point,
+tanpa keterangan atau alasan.
+
 Syarat masuk pasar (yang semua kompetitor juga punya) TIDAK perlu
 ditulis — dan jangan pernah dijadikan headline. -->
 
-> **...** — ...
+> **...**
 
 ### Positioning
 

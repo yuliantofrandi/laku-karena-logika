@@ -14,7 +14,8 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
    decision log, tidak ada versi di badan dokumen. Riwayat hidup sebagai
    snapshot bernomor di `<produk>/sebelumnya/`.
 3. **Keputusan = kesimpulan + alasan.** Pola `... — karena ...`. Reviewer
-   menilai dasarnya, bukan hasilnya.
+   menilai dasarnya, bukan hasilnya. **Kecuali DNA Level 1 & 2** — keduanya
+   ditulis tanpa alasan (lihat §2).
 4. **Angka mengalahkan sifat.** "Lebih hemat" lemah; "cukup Rp 5.000/
    karyawan/bln, tanpa biaya setup" kuat. Kalau angkanya belum ada →
    `[INPUT-NEEDED]`, jangan dikira-kira tanpa `[?]`. Angka di sini angka
@@ -59,18 +60,24 @@ menyertakan pembeda kategori. ✓ "Alat presensi karyawan berbasis WhatsApp
 + verifikasi AI".
 
 **Level 1 DNA — uji:**
-- Satu klaim tebal, lalu penjelasan dari sisi pengguna (apa yang TIDAK
-  perlu mereka lakukan sering lebih kuat dari apa yang mereka dapat).
-  ✓ "**Setup Minimal**: karyawan cukup kirim foto — tanpa install app,
+- **To the point.** Satu baris tebal per pembeda, maks ±12 kata, yang
+  langsung dipahami orang awam apa bedanya bisnis ini. Tidak ada label
+  abstrak + keterangan, tidak ada "karena", tidak ada alasan kenapa sulit
+  ditiru, tidak ada perbandingan panjang.
+  ✗ "**Setup Minimal**: karyawan cukup kirim foto — tanpa install app,
   tanpa atur jadwal atau shift dulu, presensi langsung jalan."
-- Sulit ditiru karena alasan struktural (incumbent harus mengkanibal
-  produknya sendiri, dsb.), bukan karena teknologinya canggih. Sebut jenis
-  pemainnya ("incumbent global berbayar USD"), bukan mereknya.
-- Alasan sulit-ditiru dinilai dari logika strukturalnya, bukan dari bukti
-  bahwa produk sudah jalan. `[?]` hanya kalau alasannya sendiri lemah.
+  ✓ "**Absen cukup kirim foto di WhatsApp, tanpa install aplikasi**"
+- Kalimatnya sendiri harus menjelaskan pembedanya — kalau butuh keterangan
+  tambahan supaya dipahami, tulis ulang kalimatnya, jangan menambah
+  penjelasan.
+- Pilih yang paling sulit ditiru, bukan yang paling canggih — tapi alasan
+  sulit ditirunya tidak ditulis. Apakah benar sulit ditiru diuji
+  `business-reviewer`.
 
-**Level 2 — uji:** kuat saat produk dirilis, tapi jujur bisa dikejar 1-2 tahun. Ditulis
-kontras dengan alternatif: "bukan cuma mencocokkan nomor HP".
+**Level 2 — uji:** kuat saat produk dirilis, tapi bisa dikejar 1-2 tahun.
+Format sama dengan Level 1: satu baris tebal per pembeda, to the point,
+tanpa keterangan atau alasan. ✓ "**Verifikasi wajah & lokasi otomatis
+dengan AI**".
 
 **Positioning — uji:**
 - Satu paragraf, berisi: product + category + cara kerja inti (DNA) +
