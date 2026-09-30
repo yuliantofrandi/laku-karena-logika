@@ -128,7 +128,10 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   dan menguntungkan di segmen §5 — jangan dibiarkan `[INPUT-NEEDED]`.
 - Tier dibedakan oleh kapabilitas (Skema 1 vs Skema 2), bukan oleh ukuran
   perusahaan. Ukuran perusahaan → diskon volume di dalam tier.
-- Tahunan: bayar 10 dapat 12, tulis harga efektif per bulan
+- Tahunan **selalu** bayar 10 bulan, dapat 12 — harga tahunan = 10 ×
+  harga bulanan, untuk semua skema dan add-on. Ini ketetapan user: jangan
+  diganti skema diskon lain walau sedang memilihkan rekomendasi terbaik.
+  Tulis harga efektif per bulan
   ("Rp 60.000 (Rp 5.000/bln)") supaya bisa dibandingkan langsung dengan
   harga bulanan.
 - Blok **Fitur** di bawah harga: satu baris per kapabilitas §4, ✓ atau
@@ -141,7 +144,8 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   jumlah skema produk ("bisa dipasang ke Skema 1, Skema 2, atau Skema 3";
   kalau hanya untuk skema tertentu, sebut itu).
 - Harga add-on ditulis per karyawan per bulan (`+Rp .../karyawan/bln`);
-  harga tahunan boleh ditambahkan di bawahnya (`<br>(Rp .../thn)`).
+  harga tahunan boleh ditambahkan di bawahnya (`<br>(Rp .../thn)`),
+  tetap 10 × harga bulanan.
   Keterangan umum (tidak ikut diskon volume, status `[?]`) ditulis sekali
   di bawah tabel, bukan diulang per baris.
 - Harga **tidak wajib** disertai alasan ("kenapa harga ini"). Apakah harga

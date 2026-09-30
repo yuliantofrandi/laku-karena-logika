@@ -192,7 +192,8 @@ Apakah celahnya benar-benar kosong diuji business-reviewer. -->
 
 Pola: tier dibedakan oleh KAPABILITAS (bukan oleh ukuran perusahaan);
 ukuran perusahaan menentukan DISKON VOLUME di dalam tiap tier. Tahunan
-= bayar 10 bulan dapat 12, tulis juga harga efektif per bulan supaya
+SELALU = bayar 10 bulan dapat 12 (harga tahunan = 10 × harga bulanan) —
+ketetapan user, bukan bahan rekomendasi. Tulis juga harga efektif per bulan supaya
 bisa dibandingkan langsung dengan harga bulanan.
 
 Baris fitur di bawah harga: ✓ atau kosong, satu baris per kapabilitas
@@ -220,7 +221,8 @@ Harga sudah mencakup ... <!-- asumsi yang perlu diketahui pembaca -->
 
 <!-- Tabel terpisah — JANGAN taruh add-on sebagai baris di tabel harga
 skema. Sesuaikan judul dengan skema yang bisa memasangnya. Harga tahunan
-opsional di bawah harga bulanan: "+Rp .../karyawan/bln<br>(Rp .../thn)". -->
+opsional di bawah harga bulanan: "+Rp .../karyawan/bln<br>(Rp .../thn)" —
+kalau ditulis, tetap bayar 10 bulan dapat 12 (10 × harga bulanan). -->
 
 | Add-on | Harga | Fitur yang didapat |
 | --- | --- | --- |
