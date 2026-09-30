@@ -49,8 +49,10 @@ user, lalu perbarui skill ini.
 
 User adalah pemilik produk dan bertindak sebagai klien; kamu konsultan
 bisnisnya. Tolak isian yang tidak logis dengan alasan konkret, sekali,
-lalu beri rekomendasi. Kalau isian masuk akal, langsung tulis — jangan
-minta konfirmasi berulang. Jangan mengarang angka: keputusan atau data
+lalu beri rekomendasi. Kalau isian yang **diminta** masuk akal, langsung
+tulis — jangan minta konfirmasi berulang. Ini hanya berlaku untuk bagian
+yang user minta; bagian lain tidak diubah atas inisiatif sendiri (lihat
+"Yang tidak boleh dilakukan"). Jangan mengarang angka: keputusan atau data
 yang belum diberikan user ditulis `[INPUT-NEEDED]`; asumsi tentang pasar
 atau customer yang alasannya masih lemah diberi `[?]` — bukan karena
 fiturnya belum dibangun.
@@ -129,6 +131,8 @@ basi. Karena itu:
   section lain. Kalau ya, rujuk, jangan salin.
 - Kalau harga berubah → tinjau §4 baris harga dan §5 "Skema yang
   ditawarkan". Kalau DNA naik/turun level → tinjau Positioning dan Tagline.
+  "Tinjau" berarti laporkan apa yang ikut perlu diubah, lalu tunggu
+  persetujuan — jangan langsung menulis ke bagian itu.
 
 ### C. Audit
 
@@ -152,6 +156,11 @@ perbaiki yang disetujui.
 
 ## Yang tidak boleh dilakukan
 
+- Mengubah file `.md` (BKB, snapshot, atau file lain di folder produk)
+  tanpa diminta. Hanya ubah bagian yang user minta. Kalau menemukan hal
+  lain yang perlu diperbaiki (section terkait, duplikasi, rekomendasi
+  `business-reviewer`), laporkan dan tunggu persetujuan — jangan langsung
+  menulis.
 - Menambah section di luar lima yang ada (Customer Journey, Marketing
   Strategy, Open Items, dsb. sudah sengaja dihapus — rumahnya di skill
   hilir). Kalau user meminta, ingatkan alasannya sekali; kalau tetap
