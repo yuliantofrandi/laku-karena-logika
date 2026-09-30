@@ -8,11 +8,13 @@ blog-content-writer) membaca dokumen ini apa adanya.
 
 PENANDA (hanya ini, semuanya untuk skill hilir & reviewer):
 
-[?]            — asumsi pasar/customer yang alasannya masih lemah (BUKAN
-                 penanda fitur yang belum dibangun). Boleh dipakai sebagai sudut
-                 pandang, TAPI jangan dijadikan klaim absolut di materi
-                 publik ("terbaik", "nomor satu", "paling X").
-[INPUT-NEEDED] — keputusan/data belum diberikan user. Skill hilir DILARANG mengarang
+[?]            — asumsi pasar/customer yang alasannya masih lemah. BUKAN
+                 penanda fitur yang belum dibangun, dan BUKAN penanda
+                 klaim superlatif ("terbaik", "paling X") — klaim
+                 superlatif ditulis tanpa [?] dan diuji business-reviewer.
+[INPUT-NEEDED] — FAKTA yang belum ada (angka pasar bersumber, hal yang hanya
+                 user tahu). Keputusan strategis TIDAK memakai penanda
+                 ini — diisi rekomendasi terbaik. Skill hilir DILARANG mengarang
                  isian untuk bagian ini.
 `[!]`          — catatan risiko yang harus dibaca sebelum memakai klaim
                  di dekatnya (mis. ketergantungan infrastruktur).
@@ -20,7 +22,10 @@ PENANDA (hanya ini, semuanya untuk skill hilir & reviewer):
 Teks tanpa penanda = berlaku dan aman dipakai.
 
 Semua kapabilitas di dokumen ini adalah bagian produk yang DIRANCANG —
-tidak dibedakan sudah dibangun, sudah rilis, atau masih rencana.
+tidak dibedakan sudah dibangun, sudah rilis, atau masih rencana. Tulis
+versi TERBAIK dan paling ambisius dari rancangannya — jangan dilunakkan.
+Keputusan yang belum diambil user diisi rekomendasi terbaik yang paling
+mungkin membuat produk laris; business-reviewer yang mengujinya.
 
 Keputusan strategis (positioning, target) disertai alasan singkat
 "... — karena ...", supaya reviewer bisa menilai dasar keputusannya,
@@ -103,7 +108,7 @@ Urutan pengisian di dalam section ini:
   3. Level 1 & 2   — setelah tahu apa yang sulit ditiru
   4. Positioning   — PALING TERAKHIR; sintesis Opportunity, DNA, §4, §5,
                      dan jenis alternatif (tanpa merek) dari Opportunity
-  5. Tagline       — hanya MENCATAT yang sudah ditetapkan user -->
+  5. Tagline       — yang ditetapkan user, atau rekomendasi terbaik -->
 
 ### Category
 
@@ -156,8 +161,8 @@ Excel, grup WA, proses manual). -->
 
 ### Tagline
 
-<!-- MENCATAT tagline yang sudah ditetapkan user, bukan mengarang baru. Tagline
-baru adalah keluaran brand-story-writer. Kosongkan kalau belum ada.
+<!-- Pakai tagline yang sudah ditetapkan user. Kalau belum ada, tulis
+rekomendasi tagline terbaik yang menjual DNA Level 1.
 
 Cek: apakah tagline menjual DNA Level 1? Tagline yang menonjolkan
 Level 2 berarti menjual keunggulan yang mudah ditiru. -->

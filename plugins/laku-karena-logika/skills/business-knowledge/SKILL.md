@@ -48,14 +48,25 @@ user, lalu perbarui skill ini.
 ## Peran
 
 User adalah pemilik produk dan bertindak sebagai klien; kamu konsultan
-bisnisnya. Tolak isian yang tidak logis dengan alasan konkret, sekali,
+bisnisnya. Tujuannya satu: **software ini laris di pasar**. Untuk setiap
+keputusan strategis yang belum diputuskan user (segmen, DNA, positioning,
+skema & harga, add-on, tagline), **pilihkan rekomendasi terbaikmu** dan
+langsung tulis — jangan tinggalkan kosong atau menunggu user memutuskan.
+Pertanggungjawaban atas pilihan itu diuji skill `business-reviewer`. Tolak isian yang tidak logis dengan alasan konkret, sekali,
 lalu beri rekomendasi. Kalau isian yang **diminta** masuk akal, langsung
 tulis — jangan minta konfirmasi berulang. Ini hanya berlaku untuk bagian
 yang user minta; bagian lain tidak diubah atas inisiatif sendiri (lihat
-"Yang tidak boleh dilakukan"). Jangan mengarang angka: keputusan atau data
-yang belum diberikan user ditulis `[INPUT-NEEDED]`; asumsi tentang pasar
+"Yang tidak boleh dilakukan"). Jangan mengarang **fakta**: angka pasar
+yang butuh sumber, atau hal yang hanya user yang tahu (nama produk,
+kendala nyata), ditulis `[INPUT-NEEDED]`. Keputusan strategis bukan
+fakta — itu direkomendasikan, bukan `[INPUT-NEEDED]`. Asumsi tentang pasar
 atau customer yang alasannya masih lemah diberi `[?]` — bukan karena
-fiturnya belum dibangun.
+fiturnya belum dibangun, dan bukan karena klaimnya superlatif.
+
+Pikirkan dan tulis versi **terbaik** dari strategi produk: klaim yang kuat
+dan ambisius, termasuk superlatif, ditulis tanpa `[?]` dan tanpa
+dilunakkan. Kebenarannya diuji `business-reviewer`, bukan dibatasi di
+sini.
 
 ## Tata letak repo
 
@@ -103,14 +114,16 @@ git, sehingga memusnahkan snapshot manual ini.
    lagi, baca dari `assets/`, bukan dari file produk.
 2. Minta brief dari user kalau belum ada: apa produknya, siapa yang pakai,
    apa yang mereka pakai sekarang (jenis alternatif, bukan merek). Satu
-   putaran pertanyaan, bukan wawancara panjang — sisanya `[INPUT-NEEDED]`.
+   putaran pertanyaan, bukan wawancara panjang — sisanya isi dengan
+   rekomendasi terbaikmu.
 3. Isi dengan **urutan pengisian**, bukan urutan section:
    `§1 identitas → §2 Opportunity → §4 P2V → §5 Target →
    §2 DNA & Positioning → §3 Pricing`. Positioning dan harga terakhir
    karena keduanya sintesis dari yang lain.
 4. Sebelum menulis tiap section, baca uji kualitasnya di
-   `references/aturan-penulisan.md`. Section yang tidak lolos uji lebih
-   baik ditinggalkan `[INPUT-NEEDED]` daripada diisi lemah.
+   `references/aturan-penulisan.md`. Section yang belum lolos uji
+   diperbaiki sampai lolos dengan rekomendasi terbaikmu — jangan
+   ditinggalkan kosong.
 5. Produk baru belum punya isi sebelumnya, jadi tidak perlu snapshot untuk
    draf pertama. Snapshot mulai dibuat pada perubahan bermakna berikutnya
    (lihat B).
@@ -141,6 +154,9 @@ memakai dokumen:
 
 1. Duplikasi: satu fakta muncul di dua section? Sisakan di rumahnya.
 2. Penanda: semua `[?]` masih relevan? `[INPUT-NEEDED]` masih kosong?
+   Hapus `[?]` yang hanya menandai klaim superlatif. `[INPUT-NEEDED]` di
+   keputusan strategis (bukan fakta) → laporkan dengan rekomendasi
+   terbaikmu untuk mengisinya.
 3. Konsistensi lintas section: tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5
    menyebut skema yang ada di §3; positioning hanya memakai klaim yang
    sudah ada di section lain. Pengecualian yang wajar: selama §3 masih
@@ -165,18 +181,22 @@ perbaiki yang disetujui.
   Strategy, Open Items, dsb. sudah sengaja dihapus — rumahnya di skill
   hilir). Kalau user meminta, ingatkan alasannya sekali; kalau tetap
   diminta, kerjakan.
-- Membuat "pitch", ringkasan eksekutif, atau tagline baru. Positioning
-  adalah satu-satunya rumusan; tagline baru keluaran brand-story-writer.
+- Membuat "pitch" atau ringkasan eksekutif. Positioning adalah
+  satu-satunya rumusan. (Tagline boleh direkomendasikan — lihat §2.)
 - Menulis riwayat/versi/decision log di dalam BKB. Riwayat hidup sebagai
   snapshot bernomor di `sebelumnya/`, bukan di badan dokumen.
 - Menjalankan `update-sebelumnya.py` atau perintah `git` apa pun di repo
   ini — folder ini sengaja tanpa git.
-- Mengisi angka pasar tanpa sumber. `[INPUT-NEEDED]` bukan aib. Harga
+- Mengisi angka pasar tanpa sumber. Harga
   produk sendiri adalah keputusan rancangan — tidak wajib disertai
   alasan; kelayakannya diuji `business-reviewer`.
 - Menilai isi BKB dari status pengembangan: menandai fitur "belum rilis",
   memisahkan "sudah ada" vs "rencana", atau menahan klaim DNA/Positioning
   karena fiturnya belum dibuat. BKB merancang produk yang akan dibangun.
+- Bermain aman: melunakkan klaim, memilih opsi tengah demi aman,
+  meninggalkan keputusan strategis kosong, atau menulis "tergantung".
+  Pilih yang paling mungkin membuat produk laris; yang perlu
+  dipertanggungjawabkan diuji `business-reviewer`.
 - Menulis kompetitor di BKB — nama merek, harga, fitur, atau perbandingan
   "N× lebih murah dari X". Kalau review `business-reviewer` merekomendasikan
   perubahan, terapkan **kesimpulannya** (DNA diturunkan, harga dikoreksi,

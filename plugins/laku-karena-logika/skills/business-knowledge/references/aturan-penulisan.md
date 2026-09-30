@@ -18,8 +18,9 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
    ditulis tanpa alasan (lihat §2), dan harga §3 yang tidak wajib
    beralasan.
 4. **Angka mengalahkan sifat.** "Lebih hemat" lemah; "cukup Rp 5.000/
-   karyawan/bln, tanpa biaya setup" kuat. Kalau angkanya belum ada →
-   `[INPUT-NEEDED]`, jangan dikira-kira tanpa `[?]`. Angka di sini angka
+   karyawan/bln, tanpa biaya setup" kuat. Angka keputusan kita (harga,
+   batas tier, diskon) → tetapkan rekomendasi terbaik. Angka fakta pasar
+   yang belum ada sumbernya → `[INPUT-NEEDED]`. Angka di sini angka
    produk sendiri atau pasar — bukan angka kompetitor (prinsip 7).
 5. **Bahasa:** Indonesia, ringkas, tanpa jargon marketing kosong. Istilah
    teknis/kategori boleh Inggris kalau memang begitu dipakai di pasar
@@ -37,6 +38,17 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
    rilis, atau masih rencana. Status pengembangan bukan alasan memberi
    `[?]`/`[INPUT-NEEDED]` atau menahan klaim di DNA, Positioning, Tagline,
    dan Pricing.
+9. **Pikirkan versi terbaik.** Rancang dan tulis strategi paling kuat dan
+   ambisius yang masuk akal untuk produk ini. Klaim superlatif ("terbaik",
+   "paling cepat", "satu-satunya") boleh ditulis dan **tidak** diberi
+   `[?]` — jangan melunakkan klaim demi aman. Menguji apakah klaim itu
+   bertahan di pasar adalah tugas `business-reviewer`.
+10. **Pilihkan rekomendasi terbaik.** Tujuan BKB adalah membuat produk
+    laris. Setiap keputusan strategis yang belum diputuskan user — segmen,
+    DNA, positioning, skema, harga, add-on, tagline — diisi dengan pilihan
+    yang paling mungkin menang di pasar, bukan dibiarkan `[INPUT-NEEDED]`
+    atau diisi opsi tengah yang aman. Pertanggungjawabannya diuji
+    `business-reviewer`.
 
 ## §1 Business Overview
 
@@ -87,7 +99,8 @@ dengan AI**".
 - Tidak mengklaim keadaan jangka panjang dari Vision sebagai hasil produk.
 - Ini satu-satunya "pitch". Jangan buat versi pendek/panjang lain.
 
-**Tagline:** hanya yang sudah ditetapkan user; kosongkan kalau belum. Cek apakah
+**Tagline:** pakai yang sudah ditetapkan user; kalau belum ada,
+rekomendasikan tagline terbaik yang menjual Level 1. Cek apakah
 menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 
 **Opportunity — uji:**
@@ -103,16 +116,16 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   tidak resmi yang rawan diblokir), tulis blok `[!]` di sini — ringkas,
   lengkap dengan risikonya. Jangan disembunyikan
   demi positioning yang bersih — reviewer akan menemukannya.
-- Blok `[!]` boleh bersyarat kalau keputusannya belum dibuat: "Kalau
-  memakai WhatsApp tidak resmi, ... [INPUT-NEEDED: keputusan kanal]".
-  Risiko yang bergantung keputusan tertunda tetap ditulis — justru itu
-  yang memaksa keputusannya diambil. Hapus blok hanya kalau memang tidak
-  ada risiko struktural.
+- Kalau risikonya bergantung pada keputusan yang belum dibuat user (mis.
+  pilihan kanal), pilihkan keputusan terbaik lalu tulis risiko dari
+  pilihan itu — jangan dibiarkan bersyarat. Hapus blok hanya kalau memang
+  tidak ada risiko struktural.
 
 ## §3 Pricing Plan
 
-- Diisi PALING TERAKHIR. Kalau §4 dan §5 belum jadi, tandai seluruh section
-  `[INPUT-NEEDED]` dan jangan menebak.
+- Diisi PALING TERAKHIR, setelah §4 dan §5. Tetapkan skema dan harga
+  rekomendasi terbaikmu — harga yang paling mungkin membuat produk laris
+  dan menguntungkan di segmen §5 — jangan dibiarkan `[INPUT-NEEDED]`.
 - Tier dibedakan oleh kapabilitas (Skema 1 vs Skema 2), bukan oleh ukuran
   perusahaan. Ukuran perusahaan → diskon volume di dalam tier.
 - Tahunan: bayar 10 dapat 12, tulis harga efektif per bulan
@@ -136,8 +149,8 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   ingin menulis alasannya, dasarkan pada nilai (§4), segmen (§5), dan
   biaya — tanpa membandingkan dengan harga kompetitor.
 - Uji konsistensi: harga terendah harus masih menutup biaya variabel (AI,
-  pesan) — kalau belum tahu biaya variabelnya, tulis `[?]` dan catat di
-  blok `[!]` §2 Opportunity.
+  pesan) — kalau biaya variabelnya belum diketahui, pakai perkiraan
+  terbaikmu dan tulis sebagai asumsi di bawah tabel harga.
 
 ## §4 Product-to-Value Mapping
 

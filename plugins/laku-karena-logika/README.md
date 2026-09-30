@@ -23,7 +23,7 @@ Struktur BKB (5 section):
 4. **Product-to-Value Mapping** — problem → benefit → business outcome
 5. **Target Customer Profile** — segmen + buyer persona
 
-Prinsip yang dijaga: satu fakta satu rumah (anti-duplikasi), tidak mengarang angka (`[INPUT-NEEDED]` / `[?]`), dan keputusan strategis (positioning, target) disertai alasannya — harga tidak wajib beralasan karena kelayakannya diuji `business-reviewer`.
+Prinsip yang dijaga: satu fakta satu rumah (anti-duplikasi), tidak mengarang fakta (`[INPUT-NEEDED]` / `[?]`), keputusan strategis diisi rekomendasi terbaik agar produk laris, dan keputusan strategis (positioning, target) disertai alasannya — harga tidak wajib beralasan karena kelayakannya diuji `business-reviewer`.
 
 ### `business-reviewer`
 Menilai dan memberi **skor** pada BKB, lalu menguji strateginya lawan lanskap kompetitor nyata (**competitive analysis**) — semuanya sebagai satu laporan review, **read-only** (tidak mengedit BKB). Sementara `business-knowledge` menulis & merapikan dokumen, skill ini berdiri di luar sebagai kritikus: skor 100 poin per dimensi, temuan (cacat penulisan vs celah strategis), dan analisis kompetitor. BKB sengaja tidak memuat kompetitor (tanpa merek, harga, atau fitur); seluruh data & analisis kompetitor tinggal di laporan review bertanggal ini.
