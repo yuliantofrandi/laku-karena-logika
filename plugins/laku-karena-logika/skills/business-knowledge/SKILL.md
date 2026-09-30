@@ -1,6 +1,6 @@
 ---
 name: business-knowledge
-description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Pricing Plan, Product-to-Value Mapping, Target Customer Profile) — mengikuti struktur dan aturan yang sudah divalidasi lewat produk SaaS nyata. Pakai skill ini setiap kali user ingin menambah produk baru, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
+description: Menyusun, mengisi, merevisi, dan mengaudit Business Knowledge Base (BKB) untuk satu produk SaaS — dokumen kanonik `business-knowledge-base.md` dengan 5 section (Business Overview, Brand Strategy, Pricing Plan, Product-to-Value Mapping, Target Customer Profile) untuk merancang strategi produk software yang akan dikembangkan — mengikuti struktur dan aturan yang sudah divalidasi lewat produk SaaS nyata. Pakai skill ini setiap kali user ingin menambah produk baru, menulis vision/mission/positioning/DNA/pricing/persona/ICP untuk produk SaaS, "buat BKB", "dokumen strategi bisnis", "knowledge base produk", mengisi section yang masih kosong, atau mengaudit duplikasi/konsistensi BKB — bahkan kalau user tidak menyebut kata "BKB" atau "template", selama hasilnya adalah dokumen strategi produk dalam struktur ini. Ini lapisan Product Knowledge → Business Intelligence dari AI Marketing OS; skill hilir (brand-story-writer, company-profile-writer, content-ideator) membaca outputnya.
 ---
 
 # Business Knowledge Base (BKB)
@@ -10,6 +10,15 @@ Satu folder per produk. Dokumen yang dirawat skill ini adalah
 dibaca skill hilir apa adanya. Tugas skill ini: memastikan produk baru
 mendapat struktur yang persis sama dengan yang sudah ada, dan isinya lolos
 uji kualitas yang sama.
+
+**BKB adalah rancangan, bukan laporan kondisi.** Skill ini merancang
+strategi produk software yang **akan** dikembangkan. Jangan
+mempertimbangkan fakta yang sudah ada — apakah fitur sudah dibangun, sudah
+rilis, atau sudah dipakai customer. Semua kapabilitas ditulis sebagai
+bagian produk yang dirancang, dan boleh dipakai penuh di DNA, Positioning,
+Pricing, dan P2V. Jangan menanyakan status pengembangan, jangan memisahkan
+fitur "sudah ada" vs "rencana", dan jangan memberi `[?]` atau
+`[INPUT-NEEDED]` hanya karena fiturnya belum dibuat.
 
 **BKB tidak memuat kompetitor.** Tidak ada nama merek kompetitor, harga,
 maupun fitur mereka di dokumen ini — BKB hanya berisi strategi produk
@@ -41,8 +50,10 @@ user, lalu perbarui skill ini.
 User adalah pemilik produk dan bertindak sebagai klien; kamu konsultan
 bisnisnya. Tolak isian yang tidak logis dengan alasan konkret, sekali,
 lalu beri rekomendasi. Kalau isian masuk akal, langsung tulis — jangan
-minta konfirmasi berulang. Jangan mengarang angka: data yang tidak ada
-ditulis `[INPUT-NEEDED]`, klaim yang belum terbukti diberi `[?]`.
+minta konfirmasi berulang. Jangan mengarang angka: keputusan atau data
+yang belum diberikan user ditulis `[INPUT-NEEDED]`; asumsi tentang pasar
+atau customer yang alasannya masih lemah diberi `[?]` — bukan karena
+fiturnya belum dibangun.
 
 ## Tata letak repo
 
@@ -151,7 +162,11 @@ perbaiki yang disetujui.
   snapshot bernomor di `sebelumnya/`, bukan di badan dokumen.
 - Menjalankan `update-sebelumnya.py` atau perintah `git` apa pun di repo
   ini — folder ini sengaja tanpa git.
-- Mengisi angka pasar/harga tanpa sumber. `[INPUT-NEEDED]` bukan aib.
+- Mengisi angka pasar tanpa sumber. `[INPUT-NEEDED]` bukan aib. Harga
+  produk sendiri adalah keputusan rancangan — cukup disertai alasan.
+- Menilai isi BKB dari status pengembangan: menandai fitur "belum rilis",
+  memisahkan "sudah ada" vs "rencana", atau menahan klaim DNA/Positioning
+  karena fiturnya belum dibuat. BKB merancang produk yang akan dibangun.
 - Menulis kompetitor di BKB — nama merek, harga, fitur, atau perbandingan
   "N× lebih murah dari X". Kalau review `business-reviewer` merekomendasikan
   perubahan, terapkan **kesimpulannya** (DNA diturunkan, harga dikoreksi,

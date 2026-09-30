@@ -29,7 +29,7 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
 | §2 Brand Strategy | 30 | Category, DNA L1/L2, Positioning, Tagline, Opportunity, blok risiko `[!]` — inti strategis, bobot terberat |
 | §3 Pricing Plan | 15 | Tier oleh kapabilitas bukan ukuran; harga efektif tahunan; blok fitur per kapabilitas; "kenapa harga ini" berdasar nilai/segmen/biaya; harga terendah menutup biaya variabel |
 | §4 Product-to-Value Mapping | 15 | Urut dari problem tersakit; benefit ≠ business outcome; kapabilitas terpetakan ke tier; baris "tidak perlu pindah" bila relevan |
-| §5 Target Customer Profile | 15 | Primary/Secondary + "Bukan target"; business type = ciri operasional; persona dengan trigger berupa kejadian; pain point end-user teknis-nyata |
+| §5 Target Customer Profile | 15 | Primary/Secondary + "Bukan target"; business type = ciri operasional; persona dengan trigger berupa kejadian; pain point end-user teknis yang bisa diantisipasi |
 | Konsistensi lintas-section | 10 | Satu fakta satu rumah; tidak ada nama/harga/fitur kompetitor di section mana pun; tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5 menyebut skema §3; positioning hanya memakai klaim yang sudah ada; penanda `[?]`/`[INPUT-NEEDED]` dipakai jujur |
 
 ### Panduan pengurangan (contoh, bukan daftar tertutup)

@@ -1,6 +1,6 @@
 <!--
-Dokumen ini adalah SINGLE SOURCE OF TRUTH strategi bisnis yang BERLAKU
-SAAT INI. Isinya selalu kondisi terkini — tidak menyimpan riwayat versi,
+Dokumen ini adalah SINGLE SOURCE OF TRUTH rancangan strategi produk
+software yang AKAN dikembangkan. Isinya selalu rancangan terkini — tidak menyimpan riwayat versi,
 tidak ada decision log. Riwayat hidup di git, bukan di sini.
 
 Skill hilir (brand-story-writer, company-profile-writer, content-ideator,
@@ -8,15 +8,19 @@ blog-content-writer) membaca dokumen ini apa adanya.
 
 PENANDA (hanya ini, semuanya untuk skill hilir & reviewer):
 
-[?]            — klaim belum tervalidasi. Boleh dipakai sebagai sudut
+[?]            — asumsi pasar/customer yang alasannya masih lemah (BUKAN
+                 penanda fitur yang belum dibangun). Boleh dipakai sebagai sudut
                  pandang, TAPI jangan dijadikan klaim absolut di materi
                  publik ("terbaik", "nomor satu", "paling X").
-[INPUT-NEEDED] — data belum tersedia. Skill hilir DILARANG mengarang
+[INPUT-NEEDED] — keputusan/data belum diberikan user. Skill hilir DILARANG mengarang
                  isian untuk bagian ini.
 `[!]`          — catatan risiko yang harus dibaca sebelum memakai klaim
                  di dekatnya (mis. ketergantungan infrastruktur).
 
 Teks tanpa penanda = berlaku dan aman dipakai.
+
+Semua kapabilitas di dokumen ini adalah bagian produk yang DIRANCANG —
+tidak dibedakan sudah dibangun, sudah rilis, atau masih rencana.
 
 Setiap keputusan strategis (positioning, harga, target) disertai alasan
 singkat "... — karena ...", supaya reviewer bisa menilai dasar
@@ -73,10 +77,7 @@ bukan kegiatan kita dan bukan sekadar angka penjualan.
                                             angkanya melekat pada perubahan
 
 Boleh berskala & terukur, sebaiknya bertanggal. Vision berskala punya
-masa berlaku — begitu tercapai, tetapkan yang baru.
-
-Kapabilitas yang masih rencana boleh hidup di sini, tapi TIDAK boleh
-masuk tagline atau positioning — keduanya menjanjikan kondisi sekarang. -->
+masa berlaku — begitu tercapai, tetapkan yang baru. -->
 
 > ...
 
@@ -101,7 +102,7 @@ Urutan pengisian di dalam section ini:
   3. Level 1 & 2   — setelah tahu apa yang sulit ditiru
   4. Positioning   — PALING TERAKHIR; sintesis Opportunity, DNA, §4, §5,
                      dan jenis alternatif (tanpa merek) dari Opportunity
-  5. Tagline       — hanya MENCATAT yang sudah beredar -->
+  5. Tagline       — hanya MENCATAT yang sudah ditetapkan user -->
 
 ### Category
 
@@ -117,13 +118,14 @@ Diurutkan dari yang paling SULIT DITIRU, bukan paling mengesankan —
 fitur paling canggih biasanya justru paling cepat disalin.
 
 Tulis sebagai satu klaim tebal + penjelasan konkret dari sisi pengguna.
-Kalau belum ada bukti sulit ditiru, tandai [?]. -->
+Nilai dari alasan struktural kenapa sulit ditiru, bukan dari bukti
+produk sudah jalan; tandai [?] hanya kalau alasannya lemah. -->
 
 > **...**: ...
 
-### Level 2 — Pembeda pendukung · kuat sekarang, bisa dikejar 1-2 tahun
+### Level 2 — Pembeda pendukung · kuat saat rilis, bisa dikejar 1-2 tahun
 
-<!-- Kuat hari ini, tapi kompetitor bisa menyusul. Boleh jadi pendukung
+<!-- Kuat saat produk rilis, tapi kompetitor bisa menyusul. Boleh jadi pendukung
 headline, tidak boleh jadi headline utama.
 
 Syarat masuk pasar (yang semua kompetitor juga punya) TIDAK perlu
@@ -148,7 +150,7 @@ Excel, grup WA, proses manual). -->
 
 ### Tagline
 
-<!-- MENCATAT tagline yang sudah beredar, bukan mengarang baru. Tagline
+<!-- MENCATAT tagline yang sudah ditetapkan user, bukan mengarang baru. Tagline
 baru adalah keluaran brand-story-writer. Kosongkan kalau belum ada.
 
 Cek: apakah tagline menjual DNA Level 1? Tagline yang menonjolkan
@@ -237,7 +239,7 @@ kolom Capability: "(tier X)", "(bagian dari Skema 2)", "(add-on Y)".
 Harga sendiri boleh jadi satu baris — "bayar hanya modul yang dipakai"
 adalah value.
 
-Problem yang BELUM terjawab fitur apa pun tetap dicatat, kolom Capability
+Problem yang BELUM terjawab kapabilitas yang dirancang tetap dicatat, kolom Capability
 diisi [GAP] — kalau tidak, problem itu hilang dari pandangan. -->
 
 | Product Capability | Customer Problem | Benefit<br>(end-user) | Business Outcome (decision-maker) |

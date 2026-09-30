@@ -10,7 +10,7 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
 1. **Satu fakta satu rumah.** Sebelum menambah kalimat, tanya: sudah ada di
    section lain? Kalau ya, rujuk ("lihat §4"), jangan salin. User berulang
    kali memangkas duplikasi — jangan menambah pekerjaan itu.
-2. **Kondisi berlaku saat ini.** Tidak ada "sebelumnya kami...", tidak ada
+2. **Rancangan terkini.** Tidak ada "sebelumnya kami...", tidak ada
    decision log, tidak ada versi di badan dokumen. Riwayat hidup sebagai
    snapshot bernomor di `<produk>/sebelumnya/`.
 3. **Keputusan = kesimpulan + alasan.** Pola `... — karena ...`. Reviewer
@@ -29,6 +29,12 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
 7. **Tanpa kompetitor.** Tidak ada nama merek, harga, atau fitur kompetitor
    di section mana pun — hanya jenis alternatif tanpa merek. Lihat
    "Kompetitor tidak ditulis di BKB" di akhir berkas ini.
+8. **Rancangan, bukan laporan kondisi.** BKB merancang strategi produk
+   software yang akan dikembangkan. Semua kapabilitas ditulis sebagai
+   bagian produk yang dirancang — tanpa membedakan sudah dibangun, sudah
+   rilis, atau masih rencana. Status pengembangan bukan alasan memberi
+   `[?]`/`[INPUT-NEEDED]` atau menahan klaim di DNA, Positioning, Tagline,
+   dan Pricing.
 
 ## §1 Business Overview
 
@@ -60,19 +66,20 @@ menyertakan pembeda kategori. ✓ "Alat presensi karyawan berbasis WhatsApp
 - Sulit ditiru karena alasan struktural (incumbent harus mengkanibal
   produknya sendiri, dsb.), bukan karena teknologinya canggih. Sebut jenis
   pemainnya ("incumbent global berbayar USD"), bukan mereknya.
-- Kalau alasan sulit-ditirunya masih hipotesis → `[?]`.
+- Alasan sulit-ditiru dinilai dari logika strukturalnya, bukan dari bukti
+  bahwa produk sudah jalan. `[?]` hanya kalau alasannya sendiri lemah.
 
-**Level 2 — uji:** kuat sekarang, tapi jujur bisa dikejar 1-2 tahun. Ditulis
+**Level 2 — uji:** kuat saat produk dirilis, tapi jujur bisa dikejar 1-2 tahun. Ditulis
 kontras dengan alternatif: "bukan cuma mencocokkan nomor HP".
 
 **Positioning — uji:**
 - Satu paragraf, berisi: product + category + cara kerja inti (DNA) +
   pembeda vs alternatif + opsi Level 2 untuk segmen tertentu.
 - Semua bahannya sudah ada di section lain; positioning hanya merangkai.
-- Tidak menjanjikan hal yang masih di Vision.
+- Tidak mengklaim keadaan jangka panjang dari Vision sebagai hasil produk.
 - Ini satu-satunya "pitch". Jangan buat versi pendek/panjang lain.
 
-**Tagline:** hanya yang sudah beredar; kosongkan kalau belum. Cek apakah
+**Tagline:** hanya yang sudah ditetapkan user; kosongkan kalau belum. Cek apakah
 menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 
 **Opportunity — uji:**
@@ -158,7 +165,8 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 - Buying Trigger = kejadian: "kecurangan absen ketahuan", "salah hitung
   gaji", "buka cabang baru", "sadar bayar mahal HRIS yang cuma dipakai
   modul absensinya".
-- Pain Points end-user harus memuat kekhawatiran teknis nyata (foto ditolak
+- Pain Points end-user harus memuat kekhawatiran teknis yang bisa
+  diantisipasi (foto ditolak
   karena pencahayaan, sinyal lemah, tidak tahu komplain ke siapa) — ini
   bahan untuk konten onboarding dan FAQ, bukan hanya untuk empati.
 
