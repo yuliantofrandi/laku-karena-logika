@@ -36,8 +36,8 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
 
 - Uji inti sebuah sub-bagian gagal total (mis. Vision menyebut mekanisme):
   −3 sampai −5 dari dimensinya.
-- Cacat sebagian (mis. Opportunity punya angka tapi tanpa sumber/tanggal):
-  −2 sampai −3.
+- Cacat sebagian (mis. Celah pasar menyebut merek kompetitor, atau
+  "Kenapa sekarang" tidak menyebut perubahan eksternal): −2 sampai −3.
 - Celah strategis yang membalik logika satu section (mis. funnel Level 2
   tidak mengerucut, atau celah pasar §2 ternyata sudah diisi pemain nyata
   yang lebih murah): −4 sampai −8 di §2, karena merusak fondasi positioning.
