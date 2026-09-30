@@ -22,9 +22,10 @@ Teks tanpa penanda = berlaku dan aman dipakai.
 Semua kapabilitas di dokumen ini adalah bagian produk yang DIRANCANG —
 tidak dibedakan sudah dibangun, sudah rilis, atau masih rencana.
 
-Setiap keputusan strategis (positioning, harga, target) disertai alasan
-singkat "... — karena ...", supaya reviewer bisa menilai dasar
-keputusannya, bukan cuma kesimpulannya.
+Keputusan strategis (positioning, target) disertai alasan singkat
+"... — karena ...", supaya reviewer bisa menilai dasar keputusannya,
+bukan cuma kesimpulannya. Harga TIDAK wajib beralasan — kelayakan harga
+diuji business-reviewer.
 
 
 ATURAN ANTI-DUPLIKASI
@@ -192,9 +193,9 @@ bisa dibandingkan langsung dengan harga bulanan.
 Baris fitur di bawah harga: ✓ atau kosong, satu baris per kapabilitas
 dari §4 — jadi pembaca bisa memetakan value ke harga tanpa bolak-balik.
 
-Sebut alasan di bawah tabel kalau ada asumsi (mis. "harga sudah
-mencakup infrastruktur"). Setiap tier & add-on wajib punya jawaban
-"kenapa harga ini" — kalau belum, tandai [?]. -->
+Tulis asumsi di bawah tabel kalau ada (mis. "harga sudah mencakup
+infrastruktur"). Alasan "kenapa harga ini" TIDAK wajib — kelayakan
+harga diuji business-reviewer. -->
 
 | **Harga Bulanan / Karyawan** | **Skema 1 — ...** | **Skema 2 — ...** |
 | --- | --- | --- |
@@ -209,8 +210,6 @@ mencakup infrastruktur"). Setiap tier & add-on wajib punya jawaban
 | Dukungan | Chat, jam kerja | Chat prioritas |
 
 Harga sudah mencakup ... <!-- asumsi yang perlu diketahui pembaca -->
-
-**Kenapa harga ini:** ... — karena ... <!-- dasarnya nilai (§4), segmen (§5), dan biaya — bukan harga kompetitor; itu diuji business-reviewer -->
 
 ### Add-on (bisa dipasang ke Skema 1 atau Skema 2)
 
