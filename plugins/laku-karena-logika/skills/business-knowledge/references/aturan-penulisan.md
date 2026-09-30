@@ -15,7 +15,8 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
    snapshot bernomor di `<produk>/sebelumnya/`.
 3. **Keputusan = kesimpulan + alasan.** Pola `... — karena ...`. Reviewer
    menilai dasarnya, bukan hasilnya. **Kecuali DNA Level 1 & 2** — keduanya
-   ditulis tanpa alasan (lihat §2).
+   ditulis tanpa alasan (lihat §2), dan harga §3 yang tidak wajib
+   beralasan.
 4. **Angka mengalahkan sifat.** "Lebih hemat" lemah; "cukup Rp 5.000/
    karyawan/bln, tanpa biaya setup" kuat. Kalau angkanya belum ada →
    `[INPUT-NEEDED]`, jangan dikira-kira tanpa `[?]`. Angka di sini angka
@@ -120,8 +121,8 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 - Blok **Fitur** di bawah harga: satu baris per kapabilitas §4, ✓ atau
   kosong. "Dukungan" selalu baris terakhir.
 - Add-on di sub-section `### Add-on (...)` dengan tabel sendiri — kolom
-  `Add-on | Harga | Fitur yang didapat` — diletakkan setelah "Kenapa harga
-  ini". **Jangan** jadikan baris di dalam tabel harga skema: tabel skema
+  `Add-on | Harga | Fitur yang didapat` — diletakkan setelah tabel harga
+  skema. **Jangan** jadikan baris di dalam tabel harga skema: tabel skema
   hanya berisi harga, blok Fitur, dan Dukungan.
 - Judul sub-section menyebut skema yang bisa memasang add-on, sesuai
   jumlah skema produk ("bisa dipasang ke Skema 1, Skema 2, atau Skema 3";
@@ -130,9 +131,10 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
   harga tahunan boleh ditambahkan di bawahnya (`<br>(Rp .../thn)`).
   Keterangan umum (tidak ikut diskon volume, status `[?]`) ditulis sekali
   di bawah tabel, bukan diulang per baris.
-- "Kenapa harga ini" berdasar nilai (§4), segmen (§5), dan biaya — tanpa
-  membandingkan dengan harga kompetitor. Apakah harga menang lawan pasar
-  diuji `business-reviewer`.
+- Harga **tidak wajib** disertai alasan ("kenapa harga ini"). Apakah harga
+  layak dan menang lawan pasar diuji `business-reviewer`. Kalau user tetap
+  ingin menulis alasannya, dasarkan pada nilai (§4), segmen (§5), dan
+  biaya — tanpa membandingkan dengan harga kompetitor.
 - Uji konsistensi: harga terendah harus masih menutup biaya variabel (AI,
   pesan) — kalau belum tahu biaya variabelnya, tulis `[?]` dan catat di
   blok `[!]` §2 Opportunity.

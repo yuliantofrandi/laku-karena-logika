@@ -172,7 +172,8 @@ perbaiki yang disetujui.
 - Menjalankan `update-sebelumnya.py` atau perintah `git` apa pun di repo
   ini — folder ini sengaja tanpa git.
 - Mengisi angka pasar tanpa sumber. `[INPUT-NEEDED]` bukan aib. Harga
-  produk sendiri adalah keputusan rancangan — cukup disertai alasan.
+  produk sendiri adalah keputusan rancangan — tidak wajib disertai
+  alasan; kelayakannya diuji `business-reviewer`.
 - Menilai isi BKB dari status pengembangan: menandai fitur "belum rilis",
   memisahkan "sudah ada" vs "rencana", atau menahan klaim DNA/Positioning
   karena fiturnya belum dibuat. BKB merancang produk yang akan dibangun.
