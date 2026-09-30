@@ -26,7 +26,7 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
 | Dimensi | Bobot | Yang dinilai |
 |---|---:|---|
 | §1 Business Overview | 15 | Vision & Mission lolos ujinya masing-masing |
-| §2 Brand Strategy | 30 | Category, DNA L1/L2, Positioning, Tagline, Opportunity, blok risiko `[!]` — inti strategis, bobot terberat |
+| §2 Brand Strategy | 30 | Category, DNA L1/L2 (satu baris to the point per pembeda, tanpa keterangan/alasan), Positioning, Tagline, Opportunity, blok risiko `[!]` — inti strategis, bobot terberat |
 | §3 Pricing Plan | 15 | Tier oleh kapabilitas bukan ukuran; harga efektif tahunan; blok fitur per kapabilitas; "kenapa harga ini" berdasar nilai/segmen/biaya; harga terendah menutup biaya variabel |
 | §4 Product-to-Value Mapping | 15 | Urut dari problem tersakit; benefit ≠ business outcome; kapabilitas terpetakan ke tier; baris "tidak perlu pindah" bila relevan |
 | §5 Target Customer Profile | 15 | Primary/Secondary + "Bukan target"; business type = ciri operasional; persona dengan trigger berupa kejadian; pain point end-user teknis yang bisa diantisipasi |
