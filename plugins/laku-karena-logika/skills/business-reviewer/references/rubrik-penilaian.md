@@ -30,7 +30,7 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
 | §3 Pricing Plan | 15 | Tier oleh kapabilitas bukan ukuran; harga efektif tahunan; blok fitur per kapabilitas; harga terendah menutup biaya variabel. Harga tidak wajib beralasan di BKB — jangan kurangi skor karena alasan harga tidak ditulis; kelayakan harganya diuji di competitive analysis & Verdict pasar |
 | §4 Product-to-Value Mapping | 15 | Urut dari problem tersakit; benefit ≠ business outcome; kapabilitas terpetakan ke tier; baris "tidak perlu pindah" bila relevan |
 | §5 Target Customer Profile | 15 | Primary/Secondary + "Bukan target"; business type = ciri operasional; persona dengan trigger berupa kejadian; pain point end-user teknis yang bisa diantisipasi |
-| Konsistensi lintas-section | 10 | Satu fakta satu rumah; tidak ada nama/harga/fitur kompetitor di section mana pun; tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5 menyebut skema §3; positioning hanya memakai klaim yang sudah ada; penanda `[?]`/`[INPUT-NEEDED]` dipakai jujur |
+| Konsistensi lintas-section | 10 | Satu fakta satu rumah; tidak ada nama/harga/fitur kompetitor di section mana pun; tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5 menyebut skema §3; positioning hanya memakai klaim yang sudah ada; penanda `[?]`/`[INPUT-NEEDED]` dipakai jujur. Klaim superlatif tanpa `[?]` BUKAN cacat penulisan — BKB sengaja ditulis versi terbaik; kebenaran klaimnya diuji di competitive analysis & Verdict pasar. Keputusan strategis (harga, skema, tagline, segmen) yang diisi rekomendasi konsultan juga bukan cacat — nilai apakah pilihannya tepat untuk laris, dan kalau tidak, sebut pilihan yang lebih baik |
 
 ### Panduan pengurangan (contoh, bukan daftar tertutup)
 
