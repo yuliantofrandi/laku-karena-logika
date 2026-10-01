@@ -4,7 +4,7 @@
   --ink:#1b1626; --ink-2:#4a4458; --muted:#6f6880; --line:#e9e5f0;
   --bg:#ffffff; --bg-soft:#f8f6fc; --bg-tint:#f3edff;
   --surface-dark:linear-gradient(135deg,#1d1330,#2b1840);
-  --radius:14px; --wrap:920px; /* satu kolom untuk header, hero, isi, footer: tepi kiri-kanan selalu segaris */
+  --radius:14px; --wrap:1160px; /* satu kolom untuk header, hero, isi, footer: tepi kiri-kanan selalu segaris */
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -50,7 +50,7 @@ img,svg{max-width:100%}
 .btn-block{display:block;text-align:center;margin-top:14px}
 
 /* hero */
-.hero{background:radial-gradient(1200px 380px at 10% -10%,var(--bg-tint),transparent 70%),radial-gradient(900px 300px at 100% 0,#fff1e3,transparent 70%);padding:48px 0 30px;border-bottom:1px solid var(--line)}
+.hero{background:radial-gradient(1200px 380px at 10% -10%,var(--bg-tint),transparent 70%),radial-gradient(900px 300px at 100% 0,#fff1e3,transparent 70%);padding:48px 0 44px;border-bottom:1px solid var(--line)}
 .hero h1{font-size:clamp(28px,3.8vw,42px);line-height:1.15;letter-spacing:-.02em;margin:10px 0 14px;max-width:880px;font-weight:800}
 .hero.home{padding:72px 0 44px}
 .hero.home h1{font-size:clamp(30px,3.6vw,40px);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:900px}
@@ -62,16 +62,43 @@ img,svg{max-width:100%}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
 @media (min-width:900px){.hero-grid{grid-template-columns:1fr 1fr;gap:40px}}
 .hero-text{min-width:0}
-figure.ilus{margin:28px 0}
+figure.ilus{margin:24px 0}
 figure.ilus img{display:block;width:100%;height:auto;border-radius:18px;background:var(--bg-tint)}
 figure.ilus figcaption{margin-top:8px;font-size:13px;color:var(--muted);text-align:center}
 figure.hero-img{margin:0}
 figure.hero-img img{box-shadow:0 24px 50px -30px rgba(123,44,255,.45)}
 
 /* prose */
-.prose{padding-top:34px;padding-bottom:56px}
-.prose h2{font-size:clamp(24px,3vw,30px);line-height:1.25;letter-spacing:-.01em;margin:52px 0 12px;font-weight:800}
-.prose h3{font-size:20px;margin:30px 0 8px;font-weight:700}
+/* band section: latar bergantian, isi dua kolom */
+.content{padding:0}
+.band{padding:64px 0}
+.band.alt{background:var(--bg-soft)}
+.band.intro{padding:44px 0 8px}
+.band.intro > .wrap > p{font-size:19px;max-width:860px}
+.band.end{padding:8px 0 64px}
+.band.end .cta{margin-top:0}
+.split{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+.split .col-text > :first-child,.split .col-head > :first-child{margin-top:0}
+.split .col-text > :last-child{margin-bottom:0}
+.col-media figure.ilus{margin:0}
+@media (min-width:900px){
+  .split.media{grid-template-columns:1fr 1fr;gap:56px}
+  .split.media.flip .col-media{order:-1}
+  .split.head{grid-template-columns:minmax(240px,4fr) 8fr;gap:56px;align-items:start}
+  .split.head .col-head h2{position:sticky;top:96px}
+}
+.band .wrap > .split + *{margin-top:36px}
+.band .wrap > .split ~ *:last-child{margin-bottom:0}
+details.more{margin-top:14px}
+details.more > summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--purple);font-size:15px}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary:after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+details.more[open] > summary{margin-bottom:6px}
+details.more[open] > summary:after{transform:rotate(-135deg) translateY(-1px)}
+details.more[open] > summary{font-size:0}
+details.more[open] > summary:before{content:"Tutup";font-size:15px}
+.prose h2{font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-.015em;margin:0 0 14px;font-weight:800}
+.prose h3{font-size:19px;margin:22px 0 6px;font-weight:700}
 .prose p,.prose li{color:var(--ink-2)}
 .prose strong{color:var(--ink)}
 .prose ul,.prose ol{padding-left:22px}
@@ -228,6 +255,11 @@ body{padding-bottom:96px}
   .pricing th:first-child,.pricing td:first-child{overflow-wrap:anywhere}
   .pricing td,.pricing th{padding:10px 10px}
   .pricing .btn-sm{padding:8px 10px;font-size:13px}
+}
+@media (max-width:640px){
+  .band{padding:44px 0}
+  .band.intro{padding:32px 0 4px}
+  .band.intro > .wrap > p{font-size:17px}
 }
 @media (max-width:520px){
   body{font-size:16px}

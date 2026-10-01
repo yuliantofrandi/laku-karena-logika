@@ -75,10 +75,20 @@ Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-la
 
 Larangan: tidak menyebut harga, minimum lisensi, bagi hasil, atau persentase penghematan yang belum diputuskan user. Halaman ini sengaja tidak memakai `{{bukti_sosial}}`/`{{testimoni}}` sampai ada mitra whitelabel asli.
 
+## Tampilan: band dua kolom, teks sekunder dilipat
+
+Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan yang dibaca". `build.py` (fungsi `layout_sections`) menata isi secara otomatis, jadi konten cukup ditulis sebagai urutan H2 → paragraf → daftar → gambar → blok:
+- **Band per H2** dengan latar bergantian (`.band` / `.band.alt`). Blok sebelum H2 pertama menjadi band intro, dan `{{cta}}` menjadi band penutup.
+- **Ada gambar** (`{{gambar:…}}`) → dua kolom teks | gambar, bergantian kiri-kanan (`.split.media`, `.flip`). **Tanpa gambar** → judul kiri (sticky) | isi kanan (`.split.head`). Di mobile semuanya menumpuk.
+- **Blok lebar** (`grid`, `table-wrap`, `periode`, `plans`, `quotes`, `proof`) tampil selebar kontainer di bawah baris dua kolom.
+- **Yang tetap terlihat:** H2, 2 kalimat pertama paragraf pembuka, satu daftar pendek (≤4 poin, ±≤14 kata per poin), callout, agitasi, daftar centang, FAQ, dan catatan. **Sisanya** masuk `<details class="more">` "Baca selengkapnya" (berubah jadi "Tutup" saat dibuka). Teks tetap di HTML, jadi aman untuk SEO dan aturan jumlah kata.
+- Target: paragraf yang terlihat ±30–60% di halaman konten. Halaman jualan yang memang pendek boleh lebih tinggi.
+- Tulis paragraf pembuka setiap section dengan **2 kalimat terkuat lebih dulu**, karena hanya itu yang terlihat.
+
 ## Layout: satu kolom, tepi kiri-kanan segaris
 
-- Header, hero (breadcrumb, H1, lead), isi artikel, dan footer memakai **satu kolom yang sama** (`.wrap`, `--wrap: 920px`, padding 20px). Jangan memberi hero/header kolom lebar dan isi kolom sempit: tepi kiri judul dan isi jadi tidak segaris, dan user menilainya "tidak rapi".
-- Tidak ada blok yang "melebar" keluar kolom. Kartu, tabel, testimoni, dan CTA mengikuti lebar kolom.
+- Header, hero (breadcrumb, H1, lead), setiap band, dan footer memakai **satu kontainer yang sama** (`.wrap`, `--wrap: 1160px`, padding 20px). Kolom-kolom berada *di dalam* kontainer itu. Jangan memberi hero/header kolom lebar dan isi kolom sempit: tepi kiri judul dan isi jadi tidak segaris, dan user menilainya "tidak rapi".
+- Tidak ada blok yang keluar dari kontainer. Kartu, tabel, testimoni, dan CTA mengikuti lebar kontainer.
 - Verifikasi di Langkah 4 dengan mengukur tepi kiri-kanan semua halaman di 1440/1280/768/375 px (lihat SKILL.md).
 
 ## Navigasi

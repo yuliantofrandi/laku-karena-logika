@@ -112,7 +112,7 @@ def pricing_table(S, P):
     foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
     buy_head = f'<tr class="buy"><td></td>{"".join(beli(x) for x in s)}</tr>'
     return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua skema →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr>{buy_head}</thead>'
-            f'<tbody>{"".join(rows)}</tbody>{foot}</table></div></div><p class="note">{P["note"]}</p>')
+            f'<tbody>{"".join(rows)}</tbody>{foot}</table></div><p class="note">{P["note"]}</p></div>')
 
 
 def pricing_cards(S, P):
@@ -133,8 +133,8 @@ def pricing_cards(S, P):
             f'<p>{html.escape(x["for"])}</p>'
             f'<a class="btn {btn} btn-block bln" href="{checkout_link(S, x["id"])}" rel="nofollow">{label}</a>'
             f'<a class="btn {btn} btn-block thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{label} · Tahunan</a></div>')
-    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<div class="plans">{"".join(cards)}</div></div>'
-            f'<p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p>')
+    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<div class="plans">{"".join(cards)}</div>'
+            f'<p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p></div>')
 
 
 def addon_table(P):
@@ -329,6 +329,131 @@ def nav_item(it, current, CUR):
     return f'<a href="{slug}"{CUR if slug == current else ""}>{label}</a>'
 
 
+# ---------- tata letak section (band dua kolom + teks dilipat) ----------
+
+VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
+# blok visual: selalu terlihat dan dibuat selebar kontainer
+WIDE = ("grid", "table-wrap", "periode", "plans", "quotes", "proof", "cta")
+# blok yang tetap terlihat di kolom teks
+KEEP = ("callout", "agitate", "checks", "faq", "note")
+
+
+def top_blocks(src):
+    """Pecah HTML jadi elemen tingkat-atas (tanpa parser eksternal)."""
+    blocks, depth, start = [], 0, None
+    for m in re.finditer(r"<!--.*?-->|<(/?)([a-zA-Z][a-zA-Z0-9-]*)\b[^>]*?(/?)>", src, flags=re.S):
+        if m.group(0).startswith("<!--"):
+            continue
+        closing, tag, selfclose = m.group(1), m.group(2).lower(), m.group(3)
+        if tag in VOID or selfclose:
+            if depth == 0:
+                blocks.append(m.group(0))
+            continue
+        if not closing:
+            if depth == 0:
+                start = m.start()
+            depth += 1
+        else:
+            depth -= 1
+            if depth == 0 and start is not None:
+                blocks.append(src[start:m.end()])
+    return blocks
+
+
+def kind(b):
+    m = re.match(r'<([a-z0-9]+)(?:[^>]*class="([^"]*)")?', b)
+    return (m.group(1), (m.group(2) or "").split()) if m else ("", [])
+
+
+def words(b):
+    return len(re.findall(r"\w+", strip_tags(b)))
+
+
+def balanced(frag):
+    opens = re.findall(r"<([a-z0-9]+)\b[^>]*>", frag)
+    closes = re.findall(r"</([a-z0-9]+)>", frag)
+    opens = [t for t in opens if t not in VOID]
+    return sorted(opens) == sorted(closes)
+
+
+def split_lead(p_html, n=2, min_words=40):
+    """Paragraf panjang → (2 kalimat pertama, sisa). Hanya memotong di batas kalimat yang tag-nya seimbang."""
+    m = re.match(r"(<p[^>]*>)(.*)</p>$", p_html, flags=re.S)
+    if not m or words(p_html) < min_words:
+        return p_html, ""
+    open_tag, inner = m.groups()
+    cuts = [x.end() for x in re.finditer(r"[.!?](?:</[a-z]+>)*\s+(?=[A-Z0-9\"“(<])", inner)]
+    count = 0
+    for c in cuts:
+        count += 1
+        if count >= n and balanced(inner[:c]) and words(inner[c:]) >= 12:
+            return f"{open_tag}{inner[:c].rstrip()}</p>", f"<p>{inner[c:].strip()}</p>"
+    return p_html, ""
+
+
+def render_section(blocks, idx):
+    """Satu H2 + isinya → band. Ada gambar: teks | gambar (bergantian). Tanpa gambar: judul | isi."""
+    h2, rest = blocks[0], blocks[1:]
+    fig, wide, text = None, [], []
+    for b in rest:
+        tag, cls = kind(b)
+        if tag == "figure" and fig is None:
+            fig = b
+        elif tag == "aside" or any(c in WIDE for c in cls):
+            wide.append(b)
+        else:
+            text.append(b)
+    faq = any("faq" in kind(b)[1] for b in text)
+    shown, more, seen_p, seen_list = [], [], False, False
+    for b in text:
+        tag, cls = kind(b)
+        if faq or any(c in KEEP for c in cls):
+            shown.append(b)
+        elif tag == "p" and not seen_p:
+            head, tail = split_lead(b)
+            shown.append(head); seen_p = True
+            if tail:
+                more.append(tail)
+        elif (tag in ("ul", "ol") and not seen_list and b.count("<li") <= 4
+              and words(b) / max(b.count("<li"), 1) <= 14):
+            shown.append(b); seen_list = True
+        else:
+            more.append(b)
+    if more and sum(words(b) for b in more) < 20:   # sisa sangat pendek: tidak perlu dilipat
+        shown += more; more = []
+    fold = (f'<details class="more"><summary>Baca selengkapnya</summary>{"".join(more)}</details>' if more else "")
+    band = "band alt" if idx % 2 else "band"
+    if fig:
+        flip = " flip" if idx % 2 else ""
+        row = (f'<div class="split media{flip}"><div class="col-text">{h2}{"".join(shown)}{fold}</div>'
+               f'<div class="col-media">{fig}</div></div>')
+    else:
+        row = f'<div class="split head"><div class="col-head">{h2}</div><div class="col-text">{"".join(shown)}{fold}</div></div>'
+    return f'<section class="{band}"><div class="wrap">{row}{"".join(wide)}</div></section>'
+
+
+def layout_sections(body):
+    blocks = top_blocks(body)
+    intro, sections, cur, tail = [], [], None, []
+    for b in blocks:
+        tag, cls = kind(b)
+        if tag == "aside" and "cta" in cls:
+            tail.append(b)
+        elif tag == "h2":
+            cur = [b]; sections.append(cur)
+        elif cur is None:
+            intro.append(b)
+        else:
+            cur.append(b)
+    out = []
+    if intro:
+        out.append(f'<section class="band intro"><div class="wrap">{"".join(intro)}</div></section>')
+    out += [render_section(s, i) for i, s in enumerate(sections)]
+    if tail:
+        out.append(f'<section class="band end"><div class="wrap">{"".join(tail)}</div></section>')
+    return "\n".join(out)
+
+
 def render(S, page, body, P, all_pages, indexable):
     base = S["site_url"]
     canonical = f'<link rel="canonical" href="{base}{page["slug"]}">' if base else ""
@@ -375,8 +500,8 @@ def render(S, page, body, P, all_pages, indexable):
 <h1>{html.escape(page["h1"])}</h1>
 {f'<p class="lead">{lead}</p>' if lead else ''}
 </div>{hero_img}</div></section>
-<article class="wrap prose">
-{body}
+<article class="content prose">
+{layout_sections(body)}
 </article>
 </main>
 <footer class="site-footer"><div class="wrap">
