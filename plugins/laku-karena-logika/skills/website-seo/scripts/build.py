@@ -85,27 +85,34 @@ def periode_switch(P):
             f'<label for="{n}-bln">Bulanan</label><label for="{n}-thn">Tahunan <span>Hemat {hemat} bulan</span></label></div>')
 
 
-def pricing_table(P):
+def pricing_table(S, P):
     s = P["schemes"]
     FEAT = ' class="featured"'
     head = "".join(f'<th scope="col"{FEAT if x.get("featured") else ""}>{x["name"]}<span>{x["label"]}</span></th>' for x in s)
     m = P["annual_months_paid"]
     rows = []
-    rows.append(f'<tr class="group bln"><th scope="rowgroup" colspan="{len(s)+1}">Harga bulanan / karyawan</th></tr>')
+    rows.append(f'<tr class="group bln"><th scope="rowgroup" colspan="{len(s)+1}"><span>Harga bulanan / karyawan</span></th></tr>')
     for i, lab in enumerate(P["tier_labels"]):
         cells = "".join(f'<td>{rupiah(x["monthly"][i])}<small>per bulan</small></td>' for x in s)
         rows.append(f'<tr class="bln"><th scope="row">{lab}</th>{cells}</tr>')
-    rows.append(f'<tr class="group thn"><th scope="rowgroup" colspan="{len(s)+1}">Harga tahunan / karyawan — {P["annual_rule"].lower()}</th></tr>')
+    rows.append(f'<tr class="group thn"><th scope="rowgroup" colspan="{len(s)+1}"><span>Harga tahunan / karyawan — {P["annual_rule"].lower()}</span></th></tr>')
     for i, lab in enumerate(P["tier_labels"]):
         cells = "".join(
             f'<td>{rupiah(x["monthly"][i]*m)}<small>setara {rupiah(x["monthly"][i]*m/12)}/bln</small></td>' for x in s)
         rows.append(f'<tr class="thn"><th scope="row">{lab}</th>{cells}</tr>')
-    rows.append(f'<tr class="group"><th scope="rowgroup" colspan="{len(s)+1}">Fitur</th></tr>')
+    rows.append(f'<tr class="group"><th scope="rowgroup" colspan="{len(s)+1}"><span>Fitur</span></th></tr>')
     for f in P["features"]:
         cells = "".join(f"<td>{html.escape(c)}</td>" for c in f[1:])
         rows.append(f"<tr><th scope=\"row\">{html.escape(f[0])}</th>{cells}</tr>")
-    return (f'<div class="periode">{periode_switch(P)}<div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody></table></div></div><p class="note">{P["note"]}</p>')
+    def beli(x):
+        btn = "btn-primary" if x.get("featured") else "btn-ghost"
+        lab = S["copy"]["plan_button"].replace("{nama}", x["name"])
+        return (f'<td><a class="btn {btn} btn-sm bln" href="{checkout_link(S, x["id"])}" rel="nofollow">{lab}</a>'
+                f'<a class="btn {btn} btn-sm thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{lab}</a></td>')
+    foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
+    buy_head = f'<tr class="buy"><td></td>{"".join(beli(x) for x in s)}</tr>'
+    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua skema →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr>{buy_head}</thead>'
+            f'<tbody>{"".join(rows)}</tbody>{foot}</table></div></div><p class="note">{P["note"]}</p>')
 
 
 def pricing_cards(S, P):
@@ -504,7 +511,7 @@ def main():
             seen[v] = p["slug"]
 
     tokens = {
-        "{{pricing_table}}": pricing_table(P), "{{pricing_cards}}": pricing_cards(S, P),
+        "{{pricing_table}}": pricing_table(S, P), "{{pricing_cards}}": pricing_cards(S, P),
         "{{addon_table}}": addon_table(P), "{{addon_total_table}}": addon_total_table(P),
         "{{cta}}": cta(S, P), "{{wa_link}}": wa_link(S), "{{checkout_link}}": checkout_link(S),
         "{{tanpa_risiko}}": risk_reversal(S, P), "{{bukti_sosial}}": social_proof(S, SP), "{{testimoni}}": testimonials(SP),
@@ -524,6 +531,9 @@ def main():
             err(p["slug"], f"file konten {f.relative_to(ROOT)} belum ada")
             continue
         raw = f.read_text(encoding="utf-8")
+        n_harga = raw.count("{{pricing_cards}}") + raw.count("{{pricing_table}}")
+        if n_harga > 1:
+            err(p["slug"], f"{n_harga} tampilan harga — cukup satu per halaman ({{{{pricing_table}}}} di /harga, {{{{pricing_cards}}}} di halaman lain)")
         lead = re.match(r"\s*<!--\s*lead:(.*?)-->", raw, flags=re.S)
         if lead:
             p["lead"] = lead.group(1).strip()

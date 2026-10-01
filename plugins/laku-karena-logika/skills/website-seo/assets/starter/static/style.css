@@ -126,7 +126,11 @@ tr:last-child th,tr:last-child td{border-bottom:0}
 .pricing thead th.featured{background:var(--bg-tint);color:var(--purple)}
 .pricing tr.group th{background:#fff;color:var(--purple);font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding-top:18px}
 .pricing td small{display:block;color:var(--muted);font-size:12.5px}
+.pricing tfoot td,.pricing tfoot th{border-top:1px solid var(--line);border-bottom:0;padding-top:14px;padding-bottom:16px}
+.pricing tfoot .btn,.pricing tr.buy .btn{display:block;text-align:center;white-space:nowrap}
+.pricing thead tr.buy td{background:var(--bg-soft);padding-top:0}
 .note{font-size:14px;color:var(--muted)}
+.table-hint{display:none;font-size:13px;color:var(--muted);text-align:right;margin:10px 0 -12px}
 
 /* mock dashboard (ilustrasi) */
 .mock{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff;box-shadow:0 20px 50px -30px rgba(123,44,255,.45);margin:28px 0}
@@ -213,6 +217,17 @@ body{padding-bottom:96px}
   .wa-float strong{font-size:12.5px}
   .wa-float small{font-size:10.5px}
   body{padding-bottom:68px}
+}
+@media (max-width:640px){
+  .table-hint{display:block}
+  .pricing{font-size:14px;min-width:500px}
+  .pricing th:first-child,.pricing td:first-child{position:sticky;left:0;z-index:1;background:#fff;width:112px;min-width:112px;max-width:112px;box-shadow:1px 0 0 var(--line)}
+  .pricing thead th:first-child,.pricing thead tr.buy td:first-child{background:var(--bg-soft)}
+  .pricing tr.group th{position:static;max-width:none;box-shadow:none}
+  .pricing tr.group th span{position:sticky;left:10px}
+  .pricing th:first-child,.pricing td:first-child{overflow-wrap:anywhere}
+  .pricing td,.pricing th{padding:10px 10px}
+  .pricing .btn-sm{padding:8px 10px;font-size:13px}
 }
 @media (max-width:520px){
   body{font-size:16px}

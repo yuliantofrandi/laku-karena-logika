@@ -40,6 +40,13 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 
 Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `wa_title`, `wa_subtitle`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
 
+## Satu tampilan harga per halaman (wajib)
+
+Aturan tetap user: "tabel harganya cukup 1 saja". Setiap halaman memuat **paling banyak satu** dari `{{pricing_cards}}` / `{{pricing_table}}` (build ERROR bila lebih).
+- `/harga` → `{{pricing_table}}` saja: satu tabel lengkap (switch, harga per jumlah karyawan, fitur) dengan tombol beli di **header dan footer** tabel.
+- Halaman lain (beranda, landing Prioritas 1) → `{{pricing_cards}}` saja (ringkas + link ke `/harga`).
+- Mobile: tabel bisa digeser dengan kolom kiri dan judul grup tetap di tempat (sticky), teks panjang dipatahkan, dan ada petunjuk "Geser ke kanan untuk melihat semua skema →". Skema yang disarankan harus tetap mudah ditemukan.
+
 ## Switch harga Bulanan / Tahunan (wajib)
 
 Aturan tetap user: bagian harga **selalu** punya tombol switch Bulanan/Tahunan, baik di kartu (`{{pricing_cards}}`) maupun di tabel lengkap (`{{pricing_table}}`). Keduanya otomatis dari `build.py`.
