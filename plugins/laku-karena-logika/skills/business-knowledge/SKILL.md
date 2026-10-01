@@ -50,7 +50,7 @@ user, lalu perbarui skill ini.
 User adalah pemilik produk dan bertindak sebagai klien; kamu konsultan
 bisnisnya. Tujuannya satu: **software ini laris di pasar**. Untuk setiap
 keputusan strategis yang belum diputuskan user (segmen, DNA, positioning,
-skema & harga, add-on, tagline), **pilihkan rekomendasi terbaikmu** dan
+paket & nama paket, harga, add-on, tagline), **pilihkan rekomendasi terbaikmu** dan
 langsung tulis — jangan tinggalkan kosong atau menunggu user memutuskan.
 Pertanggungjawaban atas pilihan itu diuji skill `business-reviewer`. Tolak isian yang tidak logis dengan alasan konkret, sekali,
 lalu beri rekomendasi. Kalau isian yang **diminta** masuk akal, langsung
@@ -142,7 +142,7 @@ basi. Karena itu:
 - Utamakan **Edit** (perubahan bedah) daripada menulis ulang seluruh file.
 - Sebelum menambah kalimat, cek apakah faktanya sudah punya rumah di
   section lain. Kalau ya, rujuk, jangan salin.
-- Kalau harga berubah → tinjau §4 baris harga dan §5 "Skema yang
+- Kalau harga berubah → tinjau §4 baris harga dan §5 "Paket yang
   ditawarkan". Kalau DNA naik/turun level → tinjau Positioning dan Tagline.
   "Tinjau" berarti laporkan apa yang ikut perlu diubah, lalu tunggu
   persetujuan — jangan langsung menulis ke bagian itu.
@@ -158,9 +158,9 @@ memakai dokumen:
    keputusan strategis (bukan fakta) → laporkan dengan rekomendasi
    terbaikmu untuk mengisinya.
 3. Konsistensi lintas section: tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5
-   menyebut skema yang ada di §3; positioning hanya memakai klaim yang
+   menyebut nama paket yang ada di §3; positioning hanya memakai klaim yang
    sudah ada di section lain. Pengecualian yang wajar: selama §3 masih
-   `[INPUT-NEEDED]`, "Skema yang ditawarkan" di §5 dan baris harga di §4
+   `[INPUT-NEEDED]`, "Paket yang ditawarkan" di §5 dan baris harga di §4
    ikut `[INPUT-NEEDED]` — itu bukan temuan, itu status draf.
 4. Tanpa kompetitor: ada nama merek, harga, atau fitur kompetitor di
    section mana pun (DNA, Positioning, Opportunity, `[!]`, Pricing)? Ganti

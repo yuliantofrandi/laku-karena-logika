@@ -61,7 +61,7 @@ ketergantungan data:
 
 Positioning statement dan harga ditulis terakhir karena keduanya
 sintesis dari section lain. Kalau harga berubah, §4 baris "Harga" dan §5
-"Skema yang ditawarkan" wajib ditinjau ulang.
+"Paket yang ditawarkan" wajib ditinjau ulang.
 -->
 
 ## 1. Business Overview
@@ -190,8 +190,12 @@ Apakah celahnya benar-benar kosong diuji business-reviewer. -->
 
 <!-- DIISI PALING TERAKHIR — turunan dari §4 (value) dan §5 (segmen).
 
-Pola: tier dibedakan oleh KAPABILITAS (bukan oleh ukuran perusahaan);
-ukuran perusahaan menentukan DISKON VOLUME di dalam tiap tier. Tahunan
+NAMA PAKET: langsung tulis nama paket rekomendasi terbaik (pendek,
+mudah diingat, menjual kapabilitasnya) di header kolom — JANGAN memakai
+label generik "Skema 1", "Paket 1", "Tier A", atau "Skema 1 — ...".
+
+Pola: paket dibedakan oleh KAPABILITAS (bukan oleh ukuran perusahaan);
+ukuran perusahaan menentukan DISKON VOLUME di dalam tiap paket. Tahunan
 SELALU = bayar 10 bulan dapat 12 (harga tahunan = 10 × harga bulanan) —
 ketetapan user, bukan bahan rekomendasi. Tulis juga harga efektif per bulan supaya
 bisa dibandingkan langsung dengan harga bulanan.
@@ -203,12 +207,12 @@ Tulis asumsi di bawah tabel kalau ada (mis. "harga sudah mencakup
 infrastruktur"). Alasan "kenapa harga ini" TIDAK wajib — kelayakan
 harga diuji business-reviewer. -->
 
-| **Harga Bulanan / Karyawan** | **Skema 1 — ...** | **Skema 2 — ...** |
+| **Harga Bulanan / Karyawan** | **[Nama Paket]** | **[Nama Paket]** |
 | --- | --- | --- |
 | < ... | Rp ... | Rp ... |
 | < ... (Rp ... lebih murah) | Rp ... | Rp ... |
 | > ... (Rp ... lebih murah) | Rp ... | Rp ... |
-| **Harga Tahunan / Karyawan**<br>(bayar 10 bulan, dapat 12) | **Skema 1 — ...** | **Skema 2 — ...** |
+| **Harga Tahunan / Karyawan**<br>(bayar 10 bulan, dapat 12) | **[Nama Paket]** | **[Nama Paket]** |
 | < ... | Rp ...<br>(Rp .../bln) | Rp ...<br>(Rp .../bln) |
 | **Fitur** | | |
 | ... | ✓ | ✓ |
@@ -217,10 +221,10 @@ harga diuji business-reviewer. -->
 
 Harga sudah mencakup ... <!-- asumsi yang perlu diketahui pembaca -->
 
-### Add-on (bisa dipasang ke Skema 1 atau Skema 2)
+### Add-on (bisa dipasang ke [Nama Paket] atau [Nama Paket])
 
 <!-- Tabel terpisah — JANGAN taruh add-on sebagai baris di tabel harga
-skema. Sesuaikan judul dengan skema yang bisa memasangnya. Harga tahunan
+paket. Sesuaikan judul dengan nama paket yang bisa memasangnya. Harga tahunan
 opsional di bawah harga bulanan: "+Rp .../karyawan/bln<br>(Rp .../thn)" —
 kalau ditulis, tetap bayar 10 bulan dapat 12 (10 × harga bulanan). -->
 
@@ -228,7 +232,7 @@ kalau ditulis, tetap bayar 10 bulan dapat 12 (10 × harga bulanan). -->
 | --- | --- | --- |
 | ... | +Rp .../karyawan/bln | ... |
 
-Add-on dijual terpisah dari skema dan tidak ikut diskon volume. ...
+Add-on dijual terpisah dari paket dan tidak ikut diskon volume. ...
 
 ## 4. Product-to-Value Mapping
 
@@ -245,8 +249,8 @@ Dua kolom benefit dipisah karena pembacanya beda orang:
   Benefit          — yang dirasakan END-USER (pemakai harian)
   Business Outcome — yang dirasakan DECISION-MAKER (pembayar)
 
-Kalau kapabilitas hanya ada di tier/skema/add-on tertentu, sebut di
-kolom Capability: "(tier X)", "(bagian dari Skema 2)", "(add-on Y)".
+Kalau kapabilitas hanya ada di paket/add-on tertentu, sebut di kolom
+Capability dengan nama paketnya: "(paket [Nama Paket])", "(add-on Y)".
 Harga sendiri boleh jadi satu baris — "bayar hanya modul yang dipakai"
 adalah value.
 
@@ -263,8 +267,8 @@ diisi [GAP] — kalau tidak, problem itu hilang dari pandangan. -->
 <!-- Kriteria tingkat PERUSAHAAN di Primary/Secondary Market; atribut
 ORANG (goals, pain, trigger) di Buyer Personas. Jangan dicampur.
 
-Tiap market wajib menyebut SKEMA yang ditawarkan (rujuk §3) — ini
-penghubung segmen ke harga, dan jadi sinyal ke sales/konten skema mana
+Tiap market wajib menyebut PAKET yang ditawarkan (nama paket §3) — ini
+penghubung segmen ke harga, dan jadi sinyal ke sales/konten paket mana
 yang dipimpin untuk siapa.
 
 Sebut juga siapa yang BUKAN target dan kenapa — itu mencegah skill hilir
@@ -278,12 +282,12 @@ menulis konten untuk segmen yang tidak akan membeli. -->
 - **Business type:** ciri operasional yang membuat problem di §4 paling
   terasa. ...
 - **Kematangan teknologi:** ... **Bukan** target: ... (karena ...)
-- **Skema yang ditawarkan:** ... — karena ...
+- **Paket yang ditawarkan:** ... — karena ...
 
 ### Secondary Market
 
-- ... — masuk tier ..., karena ...
-- **Skema yang ditawarkan:** ... — karena ...
+- ... — masuk paket ..., karena ...
+- **Paket yang ditawarkan:** ... — karena ...
 
 ### Buyer Personas
 
