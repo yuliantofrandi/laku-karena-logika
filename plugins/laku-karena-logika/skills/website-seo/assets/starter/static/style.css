@@ -108,15 +108,6 @@ figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
 .panel h3:first-child{margin-top:0}
 .panel .callout{margin:16px 0}
 .split.stack .col-text{max-width:760px}
-.faq-count{margin:0 0 8px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--purple)}
-.faq-topics{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
-.faq-topics a{padding:7px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none}
-.faq-topics a:hover{border-color:var(--purple);color:var(--purple)}
-.col-faq h3.faq-group{margin:28px 0 10px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);scroll-margin-top:96px}
-.col-faq h3.faq-group:first-child{margin-top:0}
-.help-card{margin-top:26px;padding:22px 24px;border-radius:18px;background:#fff;border:1px solid var(--line)}
-.help-card .help-title{font-family:var(--font-head);font-weight:800;font-size:18px;color:var(--ink);margin:0 0 4px}
-.help-card p{margin:0 0 14px;font-size:15px}
 @media (min-width:900px){
   .split.media{grid-template-columns:1fr 1fr;gap:56px}
   .split.media.flip .col-media{order:-1}
@@ -126,8 +117,6 @@ figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
   .panel .two-col{columns:2;column-gap:32px}
   .panel .two-col li{break-inside:avoid}
   .col-text .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .split.faq-row{grid-template-columns:5fr 7fr;gap:56px;align-items:start}
-  .split.faq-row.long .col-text{position:sticky;top:96px}
 }
 .band .wrap > .split + *{margin-top:36px}
 .band .wrap > .split ~ *:last-child{margin-bottom:0}
@@ -202,13 +191,25 @@ tr:last-child th,tr:last-child td{border-bottom:0}
 .mock .legend{display:flex;gap:14px;font-size:12.5px;color:var(--muted);margin-top:12px;flex-wrap:wrap}
 .mock .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
 
-/* faq */
-details.faq{border:1px solid var(--line);border-radius:12px;padding:0 18px;margin:10px 0;background:#fff}
-details.faq summary{cursor:pointer;font-weight:700;padding:15px 0;color:var(--ink);list-style:none;position:relative;padding-right:28px}
+/* faq: judul tengah + satu kotak daftar bergaris + chevron */
+.faq-center{max-width:880px;margin:0 auto;text-align:center}
+.faq-center h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
+.faq-center>p{color:var(--muted);margin:0 auto 8px;max-width:640px}
+.faq-topics{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 0 0}
+.faq-topics a{padding:7px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none}
+.faq-topics a:hover{border-color:var(--purple);color:var(--purple)}
+h3.faq-group{margin:32px 0 10px;text-align:left;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);scroll-margin-top:96px}
+.faq-list{margin-top:32px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+h3.faq-group+.faq-list{margin-top:0}
+details.faq{border-top:1px solid var(--line);padding:0 24px}
+details.faq:first-child{border-top:0}
+details.faq summary{cursor:pointer;font-weight:700;font-size:17px;padding:22px 36px 22px 0;color:var(--ink);list-style:none;position:relative}
 details.faq summary::-webkit-details-marker{display:none}
-details.faq summary:after{content:"+";position:absolute;right:0;top:12px;font-size:22px;color:var(--purple)}
-details.faq[open] summary:after{content:"–"}
-details.faq p{margin:0 0 15px}
+details.faq summary:after{content:"";position:absolute;right:4px;top:50%;width:9px;height:9px;border-right:2px solid var(--ink-2);border-bottom:2px solid var(--ink-2);transform:translateY(-70%) rotate(45deg);transition:transform .2s}
+details.faq[open] summary:after{transform:translateY(-30%) rotate(-135deg)}
+details.faq summary:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+details.faq p{margin:-6px 0 22px;color:var(--ink-2)}
+@media (max-width:640px){details.faq{padding:0 18px}details.faq summary{font-size:16px;padding:18px 32px 18px 0}}
 
 /* cta */
 .cta{margin:56px 0 0;padding:36px;border-radius:24px;background:var(--surface-dark);color:#fff;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
@@ -308,11 +309,6 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 @media (max-width:640px){
   .panel{padding:20px 18px;border-radius:16px}
   .panel .agitate{padding-left:14px}
-  .split.faq-row{display:flex;flex-direction:column;gap:0;align-items:stretch}
-  .split.faq-row .col-text{display:contents}
-  .split.faq-row .faq-count{text-align:left;align-self:flex-start}
-  .split.faq-row .col-faq{order:1;margin-top:20px}
-  .split.faq-row .help-card{order:2;margin-top:24px}
   .hero{padding:36px 0 48px}
   .lead{font-size:17px}
   .hero-cta{display:block;text-align:center}

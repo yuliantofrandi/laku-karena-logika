@@ -34,7 +34,7 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 |---|---|---|
 | Ada `{{gambar:…}}` | `split.media`: teks \| gambar, bergantian kiri-kanan | Kalau kolom teks hanya judul + pembuka, kartu (`grid`) pertama ikut ke kolom teks (2 kolom) supaya seimbang dengan gambar |
 | Ada poin/langkah/contoh/callout (tanpa gambar) | `split.panel-row`: teks (5) \| **panel kartu putih** (7) berisi poin, bergantian kiri-kanan | Panel = pengganti kartu gambar. Daftar > 4 poin otomatis 2 kolom di dalam panel |
-| FAQ | `split.faq-row`: judul + pembuka + **kartu bantuan WA** ("Masih ada pertanyaan?") \| accordion | **Dinamis untuk 20+ pertanyaan** (permintaan user): accordion eksklusif (`<details name>`, hanya satu terbuka); ≥6 pertanyaan → label "N pertanyaan"; >6 → kolom kiri sticky; `<h3>` di antara pertanyaan → grup topik + chip navigasi (anchor) di kolom kiri. Tanpa JS. Mobile: chip → pertanyaan → kartu bantuan. Pembuka otomatis dari `copy.faq_lead` |
+| FAQ | `faq-center` (referensi user, gaya Humanis): **judul besar rata tengah** → **satu kotak putih membulat** berisi baris pertanyaan bergaris pemisah, pertanyaan tebal di kiri + **chevron** di kanan (berputar saat terbuka) | Tanpa kolom kiri, tanpa kartu bantuan (tombol WA melayang sudah ada). Pembuka opsional. **Isi hanya pertanyaan penting** (4–6 yang menentukan keputusan beli: privasi, keamanan data, kontrak, lama aktif, cocok/tidak cocok, white label). Tetap siap 20+ pertanyaan: accordion eksklusif (`<details name>`), `<h3>` di antara pertanyaan → grup topik (kotak per grup) + chip navigasi rata tengah. Tanpa JS |
 | Hanya kartu/tabel/testimoni (atau harga di /harga) | `split.stack`: judul + pembuka (maks 760px) di atas, blok selebar kontainer di bawah | Blok jaminan (`guarantee`) selalu selebar kontainer |
 
 Target keseimbangan: tinggi kolom terpanjang ≤ ±2,2× kolom terpendek di 1440px (kecuali FAQ). Ukur dengan skrip di SKILL.md Langkah 4.
@@ -49,7 +49,7 @@ Dua kolom: kiri judul + ajakan + tombol utama/sekunder; kanan panel transparan b
 - Satu kontainer (`--wrap`) untuk semua bagian, sehingga tepi kiri-kanan selalu segaris.
 
 ## Cek otomatis (`build.py`)
-- **ERROR** jika ada section yang **hanya berisi teks** (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau **tanpa kalimat pembuka** setelah judul (kecuali FAQ, yang diisi otomatis).
+- **ERROR** jika ada section yang **hanya berisi teks** (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau **tanpa kalimat pembuka** setelah judul (kecuali FAQ).
 - **WARNING** jika sebuah section punya > 2 paragraf, judul > 12 kata, ada paragraf > ±45 kata, atau **pembuka/catatan mengulang isi poin, kartu, atau caption** (≥3 frasa 4-kata yang sama, atau ≥2 angka yang sama).
 
 ## Warna & kontras

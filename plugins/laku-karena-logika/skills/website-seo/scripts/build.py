@@ -401,7 +401,7 @@ def render_section(blocks, idx, S=None):
     """Satu H2 + isinya → band, mengikuti standar UI section (acuan disetujui user):
     - ada gambar      → teks | gambar (posisi gambar bergantian)
     - ada poin/daftar → teks | panel kartu berisi poin (panel = pengganti kartu gambar)
-    - FAQ             → judul + kartu bantuan WA | daftar pertanyaan
+    - FAQ             → judul besar rata tengah + satu kotak daftar bergaris dengan chevron
     - hanya blok lebar → judul + pembuka di atas, kartu/tabel selebar kontainer di bawah
     Semua teks terlihat (tanpa lipatan)."""
     h2, rest = blocks[0], blocks[1:]
@@ -426,39 +426,37 @@ def render_section(blocks, idx, S=None):
     scan = [re.sub(r'^<(ul|ol)( class="checks")?', lambda m: f'<{m.group(1)} class="{"checks " if m.group(2) else ""}two-col"', b, count=1)
             if kind(b)[0] in ("ul", "ol") and b.count("<li") > 4 and not fig else b for b in scan]
     faq = any("faq" in kind(b)[1] for b in scan)
-    if faq and not paras and S and S.get("copy", {}).get("faq_lead"):
-        paras = [f'<p>{S["copy"]["faq_lead"]}</p>']
     lead = h2 + "".join(paras)
     if fig:
         flip = " flip" if idx % 2 else ""
         row = (f'<div class="split media{flip}"><div class="col-text">{lead}{"".join(scan)}</div>'
                f'<div class="col-media">{fig}</div></div>')
     elif faq:
-        help_card = ""
-        if S and S.get("copy", {}).get("faq_help_title"):
-            C = S["copy"]
-            help_card = (f'<div class="help-card"><p class="help-title">{C["faq_help_title"]}</p><p>{C["faq_help_text"]}</p>'
-                         f'<a class="btn btn-ghost btn-sm" href="{wa_link(S)}" target="_blank" rel="nofollow noopener">{C["faq_help_button"]}</a></div>')
-        # FAQ dinamis: siap untuk 20+ pertanyaan — grup topik (<h3>) jadi chip navigasi, kolom kiri sticky,
-        # dan accordion eksklusif (<details name>) supaya hanya satu jawaban terbuka. Tanpa JavaScript.
-        faq_html = "".join(scan)
-        n = faq_html.count('<details class="faq"')
-        faq_html = faq_html.replace('<details class="faq">', f'<details class="faq" name="faq-{idx}">')
-        topics = []
-        def _topic(m):
-            label = strip_tags(m.group(1)).strip()
-            tid = f"faq-{idx}-" + re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
-            topics.append((tid, label))
-            return f'<h3 class="faq-group" id="{tid}">{m.group(1)}</h3>'
-        faq_html = re.sub(r"<h3[^>]*>(.*?)</h3>", _topic, faq_html, flags=re.S)
+        # FAQ (layout referensi user): judul besar rata tengah + satu kotak daftar bergaris dengan chevron.
+        # Siap 20+ pertanyaan: accordion eksklusif (<details name>) dan grup topik <h3> → chip navigasi. Tanpa JS.
+        faq_html = "".join(scan).replace('<details class="faq">', f'<details class="faq" name="faq-{idx}">')
+        parts = re.split(r"(<h3[^>]*>.*?</h3>)", faq_html, flags=re.S)
+        topics, body_parts, buf = [], [], []
+        def flush():
+            if "".join(buf).strip():
+                body_parts.append(f'<div class="faq-list">{"".join(buf)}</div>')
+            buf.clear()
+        for part in parts:
+            if part.startswith("<h3"):
+                flush()
+                label = strip_tags(part).strip()
+                tid = f"faq-{idx}-" + re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+                topics.append((tid, label))
+                body_parts.append(f'<h3 class="faq-group" id="{tid}">{html.escape(label)}</h3>')
+            else:
+                buf.append(part)
+        flush()
         nav = ""
         if topics:
             nav = ('<nav class="faq-topics" aria-label="Topik pertanyaan">'
                    + "".join(f'<a href="#{t}">{html.escape(l)}</a>' for t, l in topics) + "</nav>")
-        count = f'<p class="faq-count">{n} pertanyaan</p>' if n >= 6 else ""
-        long_cls = " long" if n > 6 else ""
-        row = (f'<div class="split faq-row{long_cls}"><div class="col-text">{count}{lead}{nav}{help_card}</div>'
-               f'<div class="col-faq">{faq_html}</div></div>')
+        intro = "".join(paras)
+        row = f'<div class="faq-center">{h2}{intro}{nav}{"".join(body_parts)}</div>'
     elif scan:
         flip = " flip" if idx % 2 else ""
         row = f'<div class="split panel-row{flip}"><div class="col-text">{lead}</div><div class="col-panel"><div class="panel">{"".join(scan)}</div></div></div>'

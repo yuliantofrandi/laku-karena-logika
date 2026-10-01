@@ -45,6 +45,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Urgensi + jaminan digabung ke CTA penutup:** "dua section ini sepertinya punya pesan yang sama, gabung jadi 1 section saja" (section "Kenapa sebaiknya mulai bulan ini" + blok jaminan vs CTA penutup). Blok jaminan terpisah juga dihapus dari Monitoring, Time Tracking, dan Harga.
 - **Foto testimoni:** "tambahkan foto dari yang memberikan testimoni, agar lebih terlihat real". Diterapkan sebagai slot foto asli + avatar inisial; foto stok/wajah AI sengaja tidak dipakai karena testimoninya masih data contoh.
 - **FAQ dinamis:** "buat layoutnya lebih dinamis, misal ada 20 FAQ di sini, siapkan untuk itu". Diuji dengan 20 pertanyaan dalam 4 topik: chip topik, kolom kiri sticky, accordion eksklusif, tanpa overflow di mobile.
+- **FAQ gaya referensi:** "mending buat begini, dan pertanyaan FAQ-nya berikan yang penting-penting" (gambar FAQ Humanis). Layout dua kolom + kartu bantuan diganti judul besar rata tengah + satu kotak daftar bergaris dengan chevron. FAQ beranda disusun ulang jadi 6 pertanyaan keputusan (dimata-matai, lokasi & lama simpan data, kontrak, lama aktif, tim lapangan, white label); pertanyaan teknis kecil di halaman lain dibuang.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.

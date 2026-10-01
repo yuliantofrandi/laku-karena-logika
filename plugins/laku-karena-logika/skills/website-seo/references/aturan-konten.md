@@ -11,7 +11,7 @@ Dipakai saat MENULIS atau MEREVISI `content/*.html`. Sebagian besar dicek otomat
 5. **Heading runtut:** satu H1 (dari layout), H2 untuk bagian, H3 di dalam H2. Jangan melompat.
 6. **Semua "Isi Wajib di Halaman"** dari brief ada. **Semua "Internal Link ke"** ditautkan dengan anchor yang deskriptif (bukan "klik di sini").
 7. **Slug tanpa tahun.** Title tanpa tahun dan tanpa "terbaik".
-8. **FAQ** di akhir halaman, memakai `<details class="faq">`, jawaban 1–3 kalimat yang berdiri sendiri. Jumlahnya bebas (layout siap 20+). Lebih dari ±6 pertanyaan: kelompokkan dengan `<h3>Topik</h3>` di antara pertanyaan, karena build otomatis membuat chip topik. FAQ otomatis jadi schema FAQPage.
+8. **FAQ** di akhir halaman, memakai `<details class="faq">`, jawaban 1–3 kalimat yang berdiri sendiri. **Tampilkan hanya pertanyaan penting** (permintaan user): biasanya 4–6 pertanyaan yang menentukan keputusan beli (privasi/keamanan data, kontrak & berhenti, lama sampai aktif, siapa yang cocok/tidak cocok, white label), ditambah pertanyaan dari keyword plan di halaman SEO. Buang pertanyaan teknis kecil atau yang mengulang isi section. Layout tetap siap 20+. Lebih dari ±6 pertanyaan: kelompokkan dengan `<h3>Topik</h3>` di antara pertanyaan, karena build otomatis membuat chip topik. FAQ otomatis jadi schema FAQPage.
 
 ## 2. Klaim & objektivitas
 
