@@ -38,7 +38,7 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 
 ## Teks CTA & copy global
 
-Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `chat_text`, `chat_link`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
+Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `wa_title`, `wa_subtitle`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
 
 ## Navigasi
 
@@ -47,6 +47,9 @@ Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_pr
 
 ## Konversi teknis
 
-- CTA utama = link ke `checkout_url` (template `{skema}`, `{periode}`), `rel="nofollow"`. Kosong = ke `/harga#pilih-skema`. WhatsApp hanya link opsional "Ada pertanyaan sebelum berlangganan?" di blok CTA. Tanpa widget chat pihak ketiga.
-- Sticky CTA bawah di mobile (≤640px).
+- CTA utama = link ke `checkout_url` (template `{skema}`, `{periode}`), `rel="nofollow"`. Kosong = ke `/harga#pilih-skema`.
+- **Tombol WA marketing melayang di bagian bawah SETIAP halaman, desktop & mobile** (aturan tetap user). Bentuknya: kotak membulat indigo (`#4b50a6 → #3b3f8f`), ikon WhatsApp hijau di kiri (SVG inline), judul tebal putih `copy.wa_title` ("Hubungi Kami !!"), dan subjudul `copy.wa_subtitle` ("Konsultasi 100% Gratis"). Link `wa.me/<whatsapp>?text=<whatsapp_text>`, `target="_blank" rel="nofollow noopener"`.
+  - Desktop: pojok kanan bawah. `body` diberi `padding-bottom` agar footer tidak tertutup.
+  - Mobile (≤640px): satu bar bawah berisi tombol langganan (`copy.nav_cta`, mengisi sisa lebar) dan tombol WA versi ringkas, berdampingan dan tidak menumpuk.
+  - Tanpa widget/skrip chat pihak ketiga. WA dipakai untuk konsultasi, bukan pengganti checkout dan bukan "jadwalkan demo".
 - Konversi Google Ads dipasang pada **pembayaran berhasil** (klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.

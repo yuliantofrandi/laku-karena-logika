@@ -129,12 +129,10 @@ def cta(S, P):
     C = S["copy"]
     title, text = C["cta_title"], C["cta_text"]
     terms = "".join(f"<li>{html.escape(t)}</li>" for t in P.get("terms", []))
-    chat =(f'<p class="chat">{C["chat_text"]} <a href="{wa_link(S)}" rel="nofollow">{C["chat_link"]}</a></p>'
-            if S.get("whatsapp") else "")
     return (f'<aside class="cta" id="kontak"><h2>{title}</h2><p>{text}</p>'
             f'<a class="btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["cta_primary"]}</a>'
             f'<a class="btn btn-ghost" href="{C["cta_secondary_href"]}">{C["cta_secondary"]}</a>'
-            f'<ul class="terms">{terms}</ul>{chat}</aside>')
+            f'<ul class="terms">{terms}</ul></aside>')
 
 
 def risk_reversal(S, P):
@@ -165,6 +163,22 @@ def checkout_link(S, skema=None, periode="bulanan"):
     if not url:
         return "/harga#pilih-skema"
     return url.replace("{skema}", str(skema or "")).replace("{periode}", periode)
+
+
+WA_ICON = ('<svg class="wa-icon" width="44" height="44" viewBox="0 0 32 32" aria-hidden="true">'
+           '<circle cx="16" cy="16" r="16" fill="#25D366"/>'
+           '<path d="M16 6.6a9.4 9.4 0 0 0-8.1 14.2L6.6 25.4l4.7-1.3A9.4 9.4 0 1 0 16 6.6z" fill="none" stroke="#fff" stroke-width="2"/>'
+           '<path d="M12.7 10.9c.3-.1.6 0 .8.3l1 1.9c.1.3.1.6-.1.8l-.7.8c.6 1.3 1.7 2.4 3 3l.8-.7c.2-.2.5-.3.8-.1l1.9 1'
+           'c.3.2.4.5.3.8-.3 1.1-1.3 1.8-2.4 1.6-3.3-.6-5.9-3.2-6.5-6.5-.2-1.1.5-2.1 1.6-2.4z" fill="#fff"/></svg>')
+
+
+def float_bar(S):
+    """Bar bawah di semua halaman: tombol WA marketing (desktop & mobile) + tombol langganan (mobile)."""
+    C = S["copy"]
+    return (f'<div class="float-bar">'
+            f'<a class="sticky-cta btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["nav_cta"]}</a>'
+            f'<a class="wa-float" href="{wa_link(S)}" target="_blank" rel="nofollow noopener" aria-label="{C["wa_title"]} — WhatsApp">'
+            f'{WA_ICON}<span><strong>{C["wa_title"]}</strong><small>{C["wa_subtitle"]}</small></span></a></div>')
 
 
 def wa_link(S):
@@ -293,7 +307,7 @@ def render(S, page, body, P, all_pages, indexable):
 <div><h2>Produk</h2><ul>{flinks(produk)}</ul></div>
 <div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
 </div><div class="wrap foot-bottom">© {S["brand"]}{(' · <a href="mailto:' + S["email"] + '">' + S["email"] + '</a>') if S.get("email") else ''}</div></footer>
-<a class="sticky-cta btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["cta_primary"]}</a>
+{float_bar(S)}
 </body>
 </html>
 """
@@ -405,7 +419,8 @@ def main():
         msg = "site.json: checkout_url kosong → tombol beli mengarah ke /harga#pilih-skema"
         (errors if S.get("site_url") else warnings).append(msg + (" — wajib diisi sebelum publish" if S.get("site_url") else ""))
     if not S.get("whatsapp"):
-        warnings.append("site.json: whatsapp kosong → link chat pertanyaan tidak ditampilkan")
+        msg = "site.json: whatsapp kosong → tombol WA melayang mengarah ke #kontak"
+        (errors if S.get("site_url") else warnings).append(msg + (" — wajib diisi sebelum publish" if S.get("site_url") else ""))
 
     if not check_only and not errors:
         if DIST.exists():

@@ -8,8 +8,8 @@
   "checkout_url": "",
   "_checkout_url": "Link halaman langganan/pembayaran. Boleh memuat {skema} (1/2/3) dan {periode} (bulanan/tahunan), mis. https://app.domain-anda.id/daftar?skema={skema}&periode={periode}. Kosong = tombol beli ke /harga#pilih-skema; build publish ditolak.",
   "whatsapp": "",
-  "_whatsapp": "Opsional. Nomor WA untuk pertanyaan sebelum berlangganan (format 62812xxxxxxx). Kosong = link chat tidak ditampilkan.",
-  "whatsapp_text": "Halo, saya ada pertanyaan sebelum berlangganan.",
+  "_whatsapp": "WAJIB sebelum publish. Nomor WA tim marketing (format 62812xxxxxxx) untuk tombol melayang 'Hubungi Kami' di setiap halaman.",
+  "whatsapp_text": "Halo, saya ingin konsultasi.",
   "email": "",
   "legal_reviewed": {
     "/<slug-halaman-hukum>": false
@@ -85,8 +85,8 @@
     ],
     "proof_caption": "Dipakai tim di berbagai industri",
     "plan_button": "Pilih {nama}",
-    "chat_text": "Ada pertanyaan sebelum berlangganan?",
-    "chat_link": "Chat tim kami"
+    "wa_title": "Hubungi Kami !!",
+    "wa_subtitle": "Konsultasi 100% Gratis"
   },
   "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
   "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas."

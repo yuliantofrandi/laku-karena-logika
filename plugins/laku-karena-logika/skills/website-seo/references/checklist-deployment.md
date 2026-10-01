@@ -11,10 +11,10 @@
 - [x] Title 40–60 karakter, meta description 120–155, H1 ≠ title. Dicek otomatis oleh build.
 - [x] JSON-LD: `Organization`, `WebPage`, `BreadcrumbList`, `SoftwareApplication` + `Offer` (harga IDR), `FAQPage`; `AggregateRating` hanya dari ulasan asli.
 - [x] Halaman hukum (mis. panduan UU PDP) `noindex` sampai direview ahli hukum.
-- [x] Mobile: tanpa scroll horizontal di 375px, sticky CTA bawah.
+- [x] Mobile: tanpa scroll horizontal di 375px. Bar bawah berisi Langganan + tombol WA; di desktop tombol WA melayang di kanan bawah (SVG inline, tanpa skrip).
 
 ## Wajib sebelum publish (isi manual)
-1. `site.json` → isi `site_url` (mis. `https://domain-anda.id`), **`checkout_url`** (link langganan/pembayaran, boleh memuat `{skema}` dan `{periode}`), opsional `whatsapp` dan `email`. Build publish ditolak kalau `checkout_url` kosong.
+1. `site.json` → isi `site_url` (mis. `https://domain-anda.id`), **`checkout_url`** (link langganan/pembayaran, boleh memuat `{skema}` dan `{periode}`), **`whatsapp`** (nomor WA marketing untuk tombol melayang), opsional `email`. Build publish ditolak kalau `checkout_url` atau `whatsapp` kosong.
 2. `data/social-proof.json` → ganti semua entri **contoh** dengan data asli, lalu `"contoh": false`. Build publish **ditolak** selama masih ada data contoh.
 3. Halaman hukum → review ahli hukum → ubah `legal_reviewed` jadi `true`.
 4. Pastikan setiap fitur yang disebut di website sudah benar-benar tersedia (BKB adalah rancangan; website adalah janji ke pembeli).

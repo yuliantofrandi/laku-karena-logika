@@ -34,7 +34,7 @@ Lalu satu ronde `AskUserQuestion` untuk hal yang **tidak boleh dikarang** (taruh
 4. **Urgensi** — urgensi alami (disarankan) atau promo asli dengan kuota + tanggal berakhir.
 5. **Title & rating** — ikuti aturan keyword plan (tanpa "terbaik"/tahun; rating hanya dari ulasan asli) — disarankan.
 
-Domain, `checkout_url`, dan nomor WhatsApp tidak perlu ditanyakan di awal: biarkan kosong di `site.json`. Build memberi WARNING saat preview, dan ERROR untuk `checkout_url` kosong saat publish.
+Domain, `checkout_url`, dan nomor WhatsApp marketing tidak perlu ditanyakan di awal: biarkan kosong di `site.json`. Build memberi WARNING saat preview, dan ERROR untuk `checkout_url`/`whatsapp` kosong saat publish.
 
 ## Langkah 1 — Siapkan folder
 
@@ -82,6 +82,7 @@ Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_
 | Klaim terlarang: satu-satunya, termurah, paling murah, pertama di…, nomor satu | ERROR |
 | Data social proof `contoh: true` saat `site_url` terisi (build publish) | ERROR |
 | `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
+| `whatsapp` kosong saat `site_url` terisi (tombol WA melayang mati) | ERROR |
 | Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · > 1.800 kata | WARNING |
 | Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
 
@@ -108,5 +109,5 @@ Singkat dan to the point. Sampaikan:
 - Halaman yang jadi + jumlah kata, dan bahwa semua cek lolos.
 - **WARNING yang tersisa** apa adanya (mis. primary keyword tidak ada di H1 karena brief) dan usul perbaikannya di Excel.
 - Data yang masih contoh, dan bahwa build publish akan menolaknya.
-- Yang wajib sebelum publish: domain, link checkout, review hukum, data asli, dan konfirmasi bahwa semua fitur yang disebut sudah tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
+- Yang wajib sebelum publish: domain, link checkout, nomor WA marketing, review hukum, data asli, dan konfirmasi bahwa semua fitur yang disebut sudah tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
 - Bagian permintaan user yang tidak diikuti dan alasannya (mis. "Terbaik" di title, rating dari data karangan, kuota palsu).
