@@ -213,10 +213,12 @@ details.faq p{margin:-6px 0 22px;color:var(--ink-2)}
 /* cta */
 .cta{margin:56px 0 0;padding:36px;border-radius:24px;background:var(--surface-dark);color:#fff;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
 @media (min-width:900px){.cta{grid-template-columns:1.1fr 1fr;gap:48px;padding:44px}}
-.cta-side{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px 24px}
+.cta-side{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:26px 28px}
+.cta-btns{display:flex;flex-wrap:wrap;gap:10px}
+.cta .cta-btns .btn{margin:0}
+.prose .cta .cta-side ul.terms,.cta .cta-side ul.terms{margin:0;font-size:17px;display:grid;gap:12px}
+.prose .cta .cta-side ul.terms li,.cta .cta-side ul.terms li{margin:0;color:#fff;font-weight:600}
 .prose .cta .cta-label,.cta .cta-label{margin:0 0 6px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#c9b8ff}
-.cta .cta-side ul.terms{margin:0 0 16px}
-.cta .cta-side ul.terms:last-child{margin-bottom:0}
 .prose .cta ul.terms li a,.cta ul.terms li a{color:#fff}
 .prose .cta ul.terms li strong,.cta ul.terms li strong{color:#fff}
 .prose .cta h2,.cta h2{margin:0 0 8px;color:#fff;font-size:26px;font-family:var(--font-head)}

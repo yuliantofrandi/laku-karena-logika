@@ -158,17 +158,28 @@ def addon_total_table(P):
 
 
 def cta(S, P):
-    """CTA penutup = satu-satunya tempat urgensi + jaminan (tidak diulang di section lain).
-    Kiri: judul, ajakan, tombol. Kanan: alasan mulai sekarang (copy.cta_points) + jaminan (pricing terms + risk_extra)."""
+    """CTA penutup = satu-satunya tempat urgensi + jaminan (tidak diulang di section lain), dibuat RINGKAS.
+    Kiri: judul, satu kalimat pendek, tombol. Kanan: satu daftar centang copy.cta_poin (maks 4 poin, masing-masing ≤6 kata)."""
     C = S["copy"]
-    points = "".join(f"<li>{t}</li>" for t in C.get("cta_points", []))            # boleh berisi link
-    terms = "".join(f"<li>{html.escape(t)}</li>" for t in P.get("terms", []) + C.get("risk_extra", []))
-    side = (f'<div class="cta-side">'
-            + (f'<p class="cta-label">{C.get("cta_points_label", "Kenapa mulai sekarang")}</p><ul class="terms">{points}</ul>' if points else "")
-            + f'<p class="cta-label">{C["risk_label"]}</p><ul class="terms">{terms}</ul></div>')
+    points = "".join(f"<li>{t}</li>" for t in C.get("cta_poin", []))            # boleh berisi link
+    side = f'<div class="cta-side"><ul class="terms">{points}</ul></div>' if points else ""
     return (f'<aside class="cta" id="kontak"><div class="cta-main"><h2>{C["cta_title"]}</h2><p>{C["cta_text"]}</p>'
-            f'<a class="btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["cta_primary"]}</a>'
-            f'<a class="btn btn-ghost" href="{C["cta_secondary_href"]}">{C["cta_secondary"]}</a></div>{side}</aside>')
+            f'<div class="cta-btns"><a class="btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["cta_primary"]}</a>'
+            f'<a class="btn btn-ghost" href="{C["cta_secondary_href"]}">{C["cta_secondary"]}</a></div></div>{side}</aside>')
+
+
+def check_cta_copy(S):
+    """CTA penutup harus padat (keluhan user: "terlalu banyak teks")."""
+    C = S["copy"]
+    n = len(strip_tags(C.get("cta_text", "")).split())
+    if n > 16:
+        warnings.append(f"site.json: copy.cta_text {n} kata (maks ±16) — CTA penutup harus singkat")
+    pts = C.get("cta_poin", [])
+    if len(pts) > 4:
+        warnings.append(f"site.json: copy.cta_poin {len(pts)} poin (maks 4)")
+    for t in pts:
+        if len(strip_tags(t).split()) > 6:
+            warnings.append(f"site.json: copy.cta_poin '{strip_tags(t)}' > 6 kata — ringkas jadi frasa pendek")
 
 
 def risk_reversal(S, P):
@@ -708,6 +719,7 @@ def main():
     check_only = "--check" in sys.argv
     S, B, P = load("site.json"), load("data/brief.json"), load("data/pricing.json")
     SP = load("data/social-proof.json")
+    check_cta_copy(S)
     IL = load("data/ilustrasi.json")
     GAMBAR.update({g["id"]: g for g in IL["gambar"]})
     HERO.update(IL.get("hero", {}))

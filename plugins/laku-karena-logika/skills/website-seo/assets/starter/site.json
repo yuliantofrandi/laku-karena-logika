@@ -97,7 +97,7 @@
     "cta_secondary": "Bandingkan Paket",
     "cta_secondary_href": "/harga",
     "cta_title": "Mulai catat kerja tim Anda hari ini",
-    "cta_text": "Pilih skema dan jumlah karyawan, bayar, dan akun langsung aktif. Tim lokal kami membantu memasang agen di laptop tim sampai selesai.",
+    "cta_text": "Bayar, akun langsung aktif. Pemasangan dibantu tim lokal.",
     "risk_label": "Tanpa risiko terkunci",
     "risk_extra": [
       "Karyawan bisa membuka datanya sendiri dan meminta datanya dihapus"
@@ -107,13 +107,14 @@
     "wa_title": "Hubungi Kami !!",
     "wa_subtitle": "Konsultasi 100% Gratis",
     "signin": "Sign In",
-    "cta_points_label": "Kenapa mulai bulan ini",
-    "cta_points": [
-      "<strong><alasan mendesak 1 — fakta dari BKB 'Kenapa sekarang'></strong> — <penjelasan singkat>.",
-      "<strong><alasan mendesak 2></strong> — <penjelasan singkat>."
+    "faq_lead": "Jawaban singkat yang paling sering ditanyakan sebelum memutuskan berlangganan.",
+    "cta_poin": [
+      "Bayar bulanan, berhenti kapan saja",
+      "Tanpa biaya pemasangan",
+      "Data tercatat mulai minggu ini",
+      "Karyawan bisa melihat datanya sendiri"
     ],
-    "_cta_points": "Urgensi alami (bukan kuota palsu) di CTA penutup. Boleh HTML. Jaminan diambil otomatis dari pricing.json terms + risk_extra.",
-    "faq_lead": "Jawaban singkat yang paling sering ditanyakan sebelum memutuskan berlangganan."
+    "_cta_poin": "CTA penutup: maks 4 frasa pendek (≤6 kata) — urgensi alami + jaminan. cta_text ≤16 kata. Jaminan lengkap tetap di /harga (pricing.json terms + risk_extra). Build memberi WARNING bila lebih."
   },
   "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
   "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas.",
