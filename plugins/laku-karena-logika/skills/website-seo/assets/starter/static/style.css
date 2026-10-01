@@ -197,6 +197,14 @@ tr:last-child th,tr:last-child td{border-bottom:0}
 .mock .legend{display:flex;gap:14px;font-size:12.5px;color:var(--muted);margin-top:12px;flex-wrap:wrap}
 .mock .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
 
+/* section ber-angka besar: header tengah, lalu angka | panel */
+.sec-center{max-width:760px;margin:0 auto;text-align:center}
+.sec-center>p{color:var(--muted);margin-left:auto;margin-right:auto}
+.stat-row{display:grid;gap:24px;margin-top:32px;align-items:stretch}
+@media (min-width:900px){.stat-row{grid-template-columns:5fr 7fr;gap:32px}}
+.stat-row .stat{margin:0;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.stat-row .stat strong{font-size:clamp(48px,6vw,72px)}
+.stat-row .stat span{margin-top:12px;font-size:18px}
 /* angka besar di kolom teks */
 .stat{display:grid;grid-template-columns:auto 1fr;column-gap:20px;align-items:center;margin:24px 0 0;padding:18px 22px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(60,30,120,.45)}
 .stat strong{grid-row:1/3;display:block;font-family:var(--font-head);font-weight:800;font-size:clamp(36px,4.4vw,48px);line-height:1;white-space:nowrap;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}

@@ -502,11 +502,14 @@ def render_section(blocks, idx, S=None):
         # angka besar (div.stat) mengisi kolom teks supaya tidak menyisakan ruang kosong di samping panel
         stats = [b for b in scan if "stat" in kind(b)[1]]
         scan = [b for b in scan if b not in stats]
-        lead += "".join(stats)
         # isi panel jauh lebih panjang dari judul+pembuka → kolom teks akan menyisakan ruang kosong;
         # susun judul di atas dan panel selebar kontainer (keluhan user: "atas bawahnya ada blank space")
         lead_len = len(strip_tags(h2)) * 1.8 + sum(len(strip_tags(p)) for p in paras) + 160 * len(stats)
-        if len(strip_tags("".join(scan))) > 2.3 * lead_len:
+        if stats:
+            # section dengan angka besar: judul + pembuka rata tengah di atas, lalu angka | panel (permintaan user: "jadikan di tengah section")
+            row = (f'<div class="sec-center">{lead}</div>'
+                   f'<div class="stat-row"><div class="col-stat">{"".join(stats)}</div><div class="panel">{"".join(scan)}</div></div>')
+        elif len(strip_tags("".join(scan))) > 2.3 * lead_len:
             scan = [re.sub(r'^<(ul|ol)( class="checks")?(?! class="[^"]*two-col)', lambda m: f'<{m.group(1)} class="{"checks " if m.group(2) else ""}two-col"', b, count=1)
                     if kind(b)[0] in ("ul", "ol") and b.count("<li") > 2 and "two-col" not in b else b for b in scan]
             row = f'<div class="split stack"><div class="col-text">{lead}</div></div><div class="panel panel-wide">{"".join(scan)}</div>'
