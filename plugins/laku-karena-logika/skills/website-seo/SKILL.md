@@ -61,6 +61,7 @@ website/
   ilustrasi.py          ← scripts/ilustrasi.py
   data/ilustrasi.json   ← daftar gambar per halaman/section + brief (lihat aturan-ilustrasi.md)
   static/og-image.png   ← python3 tools/og_image.py
+  static/fonts/         ← font heading (Montserrat 800 + lisensi OFL) dari assets/starter
 ```
 
 - `brief_to_json.py <keyword-plan.xlsx> data/brief.json`. **Metadata tidak diketik ulang**: title/meta/H1/keyword/link wajib dibaca build dari brief. Kalau brief melanggar aturan (mis. meta > 155), perbaiki sel di Excel (`openpyxl` tanpa `data_only` agar rumus selamat), lalu jalankan ulang konverter.

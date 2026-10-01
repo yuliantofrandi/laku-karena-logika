@@ -2,6 +2,8 @@
   "brand": "<Nama Produk>",
   "tagline": "<Tagline dari BKB §2>",
   "description": "<Category dari BKB §2, satu kalimat>",
+  "eyebrow": "<slogan brand singkat, mis. dari brand guide>",
+  "_eyebrow": "Teks badge pill di hero beranda (slogan brand). Halaman lain memakai nama halamannya, atau 'eyebrow' di extra_pages.",
   "logo": "static/logo.svg",
   "site_url": "",
   "_site_url": "WAJIB diisi sebelum publish, mis. https://domain-anda.id (tanpa garis miring di akhir). Kosong = sitemap & canonical tidak dibuat.",

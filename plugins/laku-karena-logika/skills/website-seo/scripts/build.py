@@ -20,7 +20,7 @@ from urllib.parse import quote
 import ilustrasi as ILUS
 
 ROOT = Path(__file__).resolve().parent
-SOCIAL = {"testimonials": []}
+SOCIAL = {"testimonials": [], "metrics": []}
 DIST = ROOT / "dist"
 
 # Klaim yang tidak boleh muncul (BKB: penelusuran jam→tugas→aplikasi→layar adalah standar kategori)
@@ -171,10 +171,19 @@ def risk_reversal(S, P):
     return f'<div class="callout guarantee"><p class="label">{S["copy"]["risk_label"]}</p><ul class="checks">{items}</ul></div>'
 
 
+def hero_stats(S):
+    """Baris 3 statistik di hero — dari data/social-proof.json metrics (fakta atau data contoh yang memblokir publish)."""
+    m = SOCIAL.get("metrics", [])[:3]
+    if not m:
+        return ""
+    return '<ul class="hero-stats">' + "".join(
+        f'<li><strong>{html.escape(x["value"])}</strong><span>{html.escape(x["label"])}</span></li>' for x in m) + "</ul>"
+
+
 def social_proof(S, SP):
-    m = "".join(f'<div class="metric"><strong>{html.escape(x["value"])}</strong><span>{html.escape(x["label"])}</span></div>' for x in SP["metrics"])
+    """Strip logo/industri klien (angka statistik sudah tampil di hero)."""
     l = "".join(f'<li>{html.escape(x["name"])}</li>' for x in SP["logos"])
-    return (f'<section class="proof" aria-label="Bukti sosial"><div class="metrics">{m}</div>'
+    return (f'<section class="proof" aria-label="Bukti sosial">'
             f'<p class="proof-cap">{S["copy"]["proof_caption"]}</p><ul class="logos">{l}</ul></section>')
 
 
@@ -461,7 +470,15 @@ def render(S, page, body, P, all_pages, indexable):
     robots = '<meta name="robots" content="index,follow">' if indexable else '<meta name="robots" content="noindex,follow">'
     CUR = ' aria-current="page"'
     nav = "".join(nav_item(it, page["slug"], CUR) for it in S["nav"])
-    crumbs = "" if page["slug"] == "/" else f'<nav class="crumbs" aria-label="Breadcrumb"><a href="/">{S["brand"]}</a> / <span>{page["name"]}</span></nav>'
+    # hero mengikuti layout referensi user: badge pill · H1 · subjudul · 1 CTA → · 3 statistik · gambar di atas bentuk gradasi
+    eyebrow = page.get("eyebrow") or (S.get("eyebrow") if page["slug"] == "/" else page["name"])
+    if page["slug"] == "/404":
+        hero_cta = f'<a class="btn btn-primary btn-lg hero-cta" href="/">Kembali ke beranda <span aria-hidden="true">→</span></a>'
+    elif page["slug"] == "/white-label" and S.get("whitelabel"):
+        hero_cta = (f'<a class="btn btn-primary btn-lg hero-cta" href="{wa_link(S, fill_brand(S, S["whitelabel"]["wa_text"]))}" '
+                    f'target="_blank" rel="nofollow noopener">{S["whitelabel"]["cta_button"]} <span aria-hidden="true">→</span></a>')
+    else:
+        hero_cta = f'<a class="btn btn-primary btn-lg hero-cta" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["cta_primary"]} <span aria-hidden="true">→</span></a>'
     hero_class = "hero home" if page["slug"] == "/" else "hero"
     lead = page.get("lead", "")
     hero_img = figure(GAMBAR[HERO[page["slug"]]], hero=True) if HERO.get(page["slug"]) in GAMBAR else ""
@@ -486,6 +503,7 @@ def render(S, page, body, P, all_pages, indexable):
 {f'<meta property="og:image" content="{base}/{S["og_image"]}"><meta name="twitter:card" content="summary_large_image">' if base and S.get("og_image") else ''}
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#7B2CFF">
+<link rel="preload" href="/static/fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>{CSS}</style>
 <script type="application/ld+json">{jsonld(S, page, body, P, indexable)}</script>
 </head>
@@ -498,9 +516,11 @@ def render(S, page, body, P, all_pages, indexable):
 </div></header>
 <main>
 <section class="{hero_class}"><div class="wrap{' hero-grid' if hero_img else ''}"><div class="hero-text">
-{crumbs}
-<h1>{html.escape(page["h1"])}</h1>
+<p class="eyebrow"><span>{html.escape(eyebrow)}</span></p>
+<h1{' class="long"' if len(page["h1"]) > 55 else ''}>{html.escape(page["h1"])}</h1>
 {f'<p class="lead">{lead}</p>' if lead else ''}
+{hero_cta}
+{hero_stats(S) if page["slug"] != "/404" else ""}
 </div>{hero_img}</div></section>
 <article class="content prose">
 {layout_sections(body)}

@@ -33,6 +33,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Tampilan:** "kurang bagus, banyak blank space, terlalu banyak tulisan". Solusinya: kontainer 1160px, band dua kolom otomatis, dan teks sekunder dilipat. Paragraf yang terlihat turun ke 29–58% di halaman konten tanpa mengurangi jumlah kata.
 - **Nama paket:** "di bagian harga tidak perlu ada tulisan skema". Skema 1/2/3 → Aktivitas / Bukti Visual / Waktu Per Tugas di seluruh website (BKB tetap memakai Skema).
 - **Header:** "semua menu taruh tengah, kecuali menu Langganan; di sebelah kiri Langganan ada tombol Sign In".
+- **Hero:** "untuk hero selalu buat referensinya seperti ini layoutnya" + gambar referensi (badge "Accountability in every hour", H1 besar, CTA "Daftar Sekarang Juga →", statistik, foto orang memegang laptop di atas bentuk gradasi). Statistik "24/7 Monitoring" dari referensi sengaja tidak disalin.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.

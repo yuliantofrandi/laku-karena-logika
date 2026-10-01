@@ -6,7 +6,7 @@ Tujuan: konversi tinggi **tanpa** klaim yang tidak bisa dipertanggungjawabkan. F
 
 | # | Blok | Tahap | Isi wajib |
 |---|---|---|---|
-| 1 | Hero | Attention | **H1 = hasil terbesar untuk klien**, bukan nama/fitur produk. Biasanya juga menjawab keberatan utama. Sub 1–2 kalimat (mekanisme + manfaat). CTA utama + CTA kedua. Microcopy risk reversal di bawah tombol |
+| 1 | Hero | Attention | **Layout hero tetap (lihat "Hero" di bawah).** H1 = hasil terbesar untuk klien, bukan nama/fitur produk, dan sebaiknya ≤55 karakter (lebih panjang otomatis diperkecil) |
 | 2 | Paragraf entitas | — | "<Brand> adalah <category BKB> untuk <segmen>…" untuk Google & mesin AI. Primary = nama brand |
 | 3 | `{{bukti_sosial}}` | Interest | Metrik + logo/industri klien |
 | 4 | Problem | Interest (P) | Situasi pembeli dengan bahasanya sendiri (BKB Persona 1 Pain Points) |
@@ -39,6 +39,17 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 ## Teks CTA & copy global
 
 Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `wa_title`, `wa_subtitle`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
+
+## Hero (layout tetap dari referensi user — semua halaman)
+
+Dirender otomatis oleh `build.py`, sama di semua halaman:
+1. **Badge pill** (`.eyebrow`): bingkai tipis, teks bergradasi brand. Beranda memakai `site.json → eyebrow` (slogan brand); halaman lain memakai nama halaman (atau `eyebrow` di `extra_pages`).
+2. **H1** besar, warna tinta gelap (bukan teks gradasi), font heading `--font-head` (Montserrat 800, di-host sendiri, `font-display:optional` + preload → tanpa render-block dan tanpa CLS). H1 > 55 karakter diberi kelas `long` dan diperkecil.
+3. **Subjudul** = `<!-- lead: … -->` di konten. Isinya teks saja, jangan memasukkan tombol.
+4. **Satu tombol CTA** gradasi besar + panah "→": `copy.cta_primary` ke checkout. Di `/white-label` tombolnya mengarah ke WA penawaran.
+5. **Baris 3 statistik** dari `data/social-proof.json → metrics` (3 pertama). Hanya fakta, atau data contoh yang memblokir publish. Jangan klaim yang bertentangan dengan produk (mis. "24/7 Monitoring" untuk produk yang hanya mencatat sesi kerja). Strip bukti sosial di isi halaman hanya berisi logo/industri agar angka tidak dobel.
+6. **Gambar kanan** di atas **bentuk gradasi brand** yang membulat (pseudo-element), dengan gambar sedikit miring dan keluar dari bentuknya. Gambar hero beranda idealnya **foto orang memegang laptop berisi dashboard, latar transparan**. Tulis ini di `brief`, karena Claude tidak bisa membuat foto.
+- Breadcrumb tidak tampil (badge menggantikannya); BreadcrumbList tetap ada di JSON-LD.
 
 ## Nama paket, bukan "Skema N" (wajib)
 
