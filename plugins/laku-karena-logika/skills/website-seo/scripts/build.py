@@ -707,6 +707,10 @@ def main():
             continue
         raw = f.read_text(encoding="utf-8")
         n_harga = raw.count("{{pricing_cards}}") + raw.count("{{pricing_table}}")
+        if p["slug"] == "/" and n_harga:
+            err("/", "beranda tidak boleh memuat harga — arahkan ke menu Harga (aturan user)")
+        if p["slug"] in S["product_pages"] and not n_harga:
+            err(p["slug"], "ada di product_pages (schema Offer/harga) tapi halaman tidak menampilkan harga")
         if n_harga > 1:
             err(p["slug"], f"{n_harga} tampilan harga — cukup satu per halaman ({{{{pricing_table}}}} di /harga, {{{{pricing_cards}}}} di halaman lain)")
         lead = re.match(r"\s*<!--\s*lead:(.*?)-->", raw, flags=re.S)

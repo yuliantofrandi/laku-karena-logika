@@ -15,7 +15,7 @@ Tujuan: konversi tinggi **tanpa** klaim yang tidak bisa dipertanggungjawabkan. F
 | 7 | Cara kerja | Desire | 3 langkah sampai aktif, sesuai model penjualan. Self-serve: Pilih skema → Bayar, akun aktif → Pasang/onboarding. Mengurangi kesan "ribet" |
 | 8 | Penanganan keberatan | Desire | Keberatan terbesar Persona 1/2 (mis. "dicap mata-mata") dijawab dengan checklist fakta |
 | 9 | `{{testimoni}}` | Desire | 3 kutipan: masalah → hasil, nama berinisial, jabatan, jenis perusahaan + kota |
-| 10 | Harga + `{{tanpa_risiko}}` | Desire → Action | **Switch Bulanan/Tahunan** (wajib), lalu kartu skema masing-masing dengan tombol beli (`Pilih <Nama Paket>` → checkout `{paket}` + `{periode}` sesuai switch); satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
+| 10 | ~~Harga~~ → hanya `{{tanpa_risiko}}` | Desire → Action | **Beranda tidak menampilkan harga** (aturan user: "biarkan orang klik di menu Harga"); build ERROR bila beranda memuat token harga, dan `/` tidak boleh ada di `product_pages`. Blok jaminan tetap ada. Untuk halaman landing produk berlaku: **Switch Bulanan/Tahunan** (wajib), lalu kartu skema masing-masing dengan tombol beli (`Pilih <Nama Paket>` → checkout `{paket}` + `{periode}` sesuai switch); satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
 | 11 | Urgensi | Action | Alasan mulai sekarang |
 | 12 | Jujur soal batas | Kepercayaan | GAP utama BKB, 2–3 kalimat |
 | 13 | FAQ | Action | Keberatan terakhir: kontrak, reaksi tim, lama aktif, siapa yang tidak cocok |

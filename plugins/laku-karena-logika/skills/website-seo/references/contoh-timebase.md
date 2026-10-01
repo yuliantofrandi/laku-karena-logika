@@ -37,6 +37,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Tanpa "Baca selengkapnya":** "saya tidak suka ada baca selengkapnya, karena rata-rata orang tidak klik ini". User memilih "ringkas jadi poin & kartu". Semua halaman ditulis ulang; paragraf terpanjang turun dari 100 ke ≤38 kata; jumlah kata 669–1.033 (minimum diturunkan ke 700).
 - **Standar UI section:** "harusnya UI-nya bagus seperti 3 section yang saya suruh revisi ini … minimal standard setiap section desain UI-nya seperti ini". Hero, band intro, dan section pertama beranda dijadikan acuan (`standar-ui-section.md` + `contoh-ui/`).
 - **Standardisasi semua section:** "cek semua page, dan standardkan untuk desain semua section". Audit menemukan 66 dari 91 section memakai layout judul-kiri yang menyisakan ruang kosong. Diganti 4 layout otomatis (media / panel / FAQ / susun), 15 kalimat pembuka ditambahkan, dan sisa ketimpangan turun dari 66 ke 10 section dengan rasio ±2,2–2,6 yang secara visual masih rapi.
+- **Beranda tanpa harga:** "tidak perlu harga di home, biarkan orang klik di menu harga saja". Kartu harga dihapus dari beranda, blok jaminan dipindah ke "Kenapa sebaiknya mulai bulan ini", schema Offer dicabut dari beranda.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.
