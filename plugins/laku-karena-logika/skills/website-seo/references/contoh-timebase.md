@@ -27,6 +27,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Whitelabel:** "selalu tambahkan menu Whitelabel, software SaaS yang saya buat selalu bisa dibeli dengan merek sendiri; buatkan copywriting global agar bisa dipakai di produk manapun", karena skill ini dipakai untuk banyak landing page produk SaaS/GaaS.
 - **Nama menu:** user bertanya apakah "Whitelabel" tepat. Rekomendasi yang disetujui: **"White Label"** (ejaan baku dua kata, istilah yang dicari calon mitra), slug `/white-label`.
 - **Layout:** "cek layout bagian kanan kiri semua page, terlihat tidak rapi". Penyebabnya: hero di kolom 1120px, isi di kolom 760px. Diperbaiki menjadi satu kolom 920px untuk semua bagian.
+- **Ilustrasi:** "cek semua page selalu tambah gambar-gambar ilustrasi aplikasi / ilustrasi yang dibutuhkan … sehingga website tidak monoton … perhatikan SEO dan PageSpeed karena akan lanjut ke audit SEO". Hasilnya: 35 SVG (≤7 KB) di 11 halaman (3–5 per halaman), hero dua kolom, `docs/daftar-ilustrasi.md` berisi brief, dan og:image PNG.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.

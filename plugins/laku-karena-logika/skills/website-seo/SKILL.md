@@ -17,9 +17,12 @@ Website = HTML statis + CSS inline, dirakit `scripts/build.py` (Python standar, 
 Bundel skill ini:
 - `scripts/build.py` — perakit + pemeriksa aturan. Salin ke root folder website.
 - `scripts/brief_to_json.py` — Excel → `data/brief.json` (butuh `openpyxl`, cukup di venv sementara).
+- `scripts/ilustrasi.py` — generator ilustrasi SVG (mockup UI & konsep) dari `data/ilustrasi.json`. Salin ke root folder website, di samping `build.py`.
+- `scripts/og_image.py` — og:image 1200×630 PNG dari brand/tagline/deskripsi. Salin ke `website/tools/`.
 - `assets/starter/` — `site.json`, `data/pricing.json`, `data/social-proof.json`, `static/` (CSS bertoken warna, logo, favicon), dan kerangka halaman. Isi `data/` adalah contoh nyata produk Timebase — **ganti**.
 - `references/aturan-konten.md` — aturan isi halaman SEO (wajib dibaca sebelum menulis).
 - `references/aturan-sales-page.md` — struktur & psikologi sales page, dan batas kejujurannya.
+- `references/aturan-ilustrasi.md` — aturan gambar ilustrasi per section, SEO gambar, og:image, dan cara mengganti dengan gambar asli user.
 - `references/checklist-deployment.md` — aturan performa + langkah publish.
 - `references/contoh-timebase.md` — peta halaman & keputusan yang sudah divalidasi.
 
@@ -55,6 +58,9 @@ website/
   content/<slug>.html   ← satu file per slug; "/" = index.html
   static/style.css      ← ganti token warna di :root dengan warna brand
   static/logo.svg       ← wajib punya width & height
+  ilustrasi.py          ← scripts/ilustrasi.py
+  data/ilustrasi.json   ← daftar gambar per halaman/section + brief (lihat aturan-ilustrasi.md)
+  static/og-image.png   ← python3 tools/og_image.py
 ```
 
 - `brief_to_json.py <keyword-plan.xlsx> data/brief.json`. **Metadata tidak diketik ulang**: title/meta/H1/keyword/link wajib dibaca build dari brief. Kalau brief melanggar aturan (mis. meta > 155), perbaiki sel di Excel (`openpyxl` tanpa `data_only` agar rumus selamat), lalu jalankan ulang konverter.
@@ -70,7 +76,9 @@ Baca `references/aturan-konten.md` dan `references/aturan-sales-page.md` dulu. R
 - Setiap "Isi Wajib di Halaman" dari brief harus ada. 1.000–1.500 kata untuk halaman brief.
 - Fakta hanya dari BKB. Tidak mengarang OS, integrasi, angka pelanggan, atau fitur.
 
-Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_table}}` `{{addon_total_table}}` `{{tanpa_risiko}}` `{{bukti_sosial}}` `{{testimoni}}` `{{cta}}` `{{checkout_link}}` `{{wa_link}}` `{{harga_mulai}}` `{{brand}}` `{{deskripsi}}` `{{deskripsi_kecil}}` `{{daftar_solusi}}` · khusus whitelabel: `{{wl_kustomisasi}}` `{{wl_ditangani}}` `{{wa_whitelabel}}` `{{cta_whitelabel}}`. Lead di bawah H1 ditulis sebagai komentar pertama: `<!-- lead: ... -->`. FAQ ditulis sebagai `<details class="faq"><summary>…</summary><p>…</p></details>` supaya otomatis jadi schema FAQPage.
+**Ilustrasi wajib di setiap halaman** (aturan tetap user): baca `references/aturan-ilustrasi.md`. Rencanakan satu gambar hero per halaman, plus gambar untuk section-section utama (minimal 3 per halaman). Tulis entri di `data/ilustrasi.json` dengan `brief` gambar pengganti, lalu letakkan `{{gambar:<id>}}` setelah paragraf pertama di bawah H2 section-nya.
+
+Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{pricing_cards}}` `{{addon_table}}` `{{addon_total_table}}` `{{tanpa_risiko}}` `{{bukti_sosial}}` `{{testimoni}}` `{{cta}}` `{{checkout_link}}` `{{wa_link}}` `{{harga_mulai}}` `{{brand}}` `{{deskripsi}}` `{{deskripsi_kecil}}` `{{daftar_solusi}}` · khusus whitelabel: `{{wl_kustomisasi}}` `{{wl_ditangani}}` `{{wa_whitelabel}}` `{{cta_whitelabel}}`. Lead di bawah H1 ditulis sebagai komentar pertama: `<!-- lead: ... -->`. FAQ ditulis sebagai `<details class="faq"><summary>…</summary><p>…</p></details>` supaya otomatis jadi schema FAQPage.
 
 ## Langkah 3 — Build sampai OK
 
@@ -87,6 +95,8 @@ Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_
 | Data social proof `contoh: true` saat `site_url` terisi (build publish) | ERROR |
 | `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
 | Halaman `/white-label` tidak ada, atau menu "White Label" tidak ada di menu utama | ERROR |
+| Gambar per halaman < `min_per_halaman` (3) · gambar tanpa alt · file gambar tidak ada · gambar asli bukan WebP/AVIF/SVG, tanpa w/h, atau > 200 KB | ERROR |
+| Halaman tanpa gambar hero · gambar tidak dipakai · alt > 125 karakter · `og_image` kosong saat publish | WARNING |
 | `whatsapp` kosong saat `site_url` terisi (tombol WA melayang mati) | ERROR |
 | Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · > 1.800 kata | WARNING |
 | Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
@@ -98,6 +108,7 @@ Target Python 3.9 (bawaan macOS): **jangan pakai backslash di dalam ekspresi f-s
 Sajikan `dist/` (`python3 -m http.server <port> --directory dist`, lewat `.claude/launch.json` + `preview_start`), lalu periksa:
 - Screenshot desktop dan mobile (375px): nav tidak terbungkus dua baris, harga tidak meluber, logo rapat.
 - Lewat `javascript_tool`: `performance.getEntriesByType('resource')` harus **kosong** (nol request eksternal), CLS = 0, `scrollWidth <= innerWidth` di mobile, urutan heading, tipe JSON-LD.
+- **Ilustrasi:** buat lembar kontak semua SVG (satu halaman HTML berisi grid `<img>`) dan periksa satu per satu: teks tidak terpotong, tidak menumpuk, dan warna sesuai brand. Lalu di mobile: CLS 0, elemen LCP = gambar hero atau H1, dan gambar di bawah lipatan `loading="lazy"`.
 - **Kerapian tepi kiri-kanan semua halaman** di lebar 1440, 1280, 768, dan 375 px: muat tiap halaman di iframe selebar itu, lalu bandingkan `getBoundingClientRect()` dari `.brand`, `.hero h1`, dan setiap `article.prose > *`. Tepi kiri harus satu nilai, dan tepi kanan blok (kartu, tabel, CTA) juga satu nilai. Selisih ±4px yang sama di semua elemen biasanya berasal dari scrollbar iframe, jadi bandingkan dengan `clientWidth`.
 - Skor PageSpeed asli hanya bisa diukur setelah live. Katakan itu ke user, jangan mengklaim skornya.
 
@@ -106,6 +117,8 @@ Sajikan `dist/` (`python3 -m http.server <port> --directory dist`, lewat `.claud
 Tulis ke `website/docs/`:
 - `wireframe-copywriting.md` — blok demi blok dari hero sampai footer: teks, tahap AIDA/PAS, hook psikologisnya, dan tabel "yang sengaja tidak dipakai + alasannya".
 - `checklist-deployment.md` — salin dari `references/checklist-deployment.md`, sesuaikan slug.
+
+- `daftar-ilustrasi.md` dibuat otomatis oleh build. Sampaikan ke user sebagai daftar gambar yang bisa dikirim untuk mengganti placeholder.
 
 Plus `website/README.md`: perintah build, dan tabel "ubah apa → di file mana".
 

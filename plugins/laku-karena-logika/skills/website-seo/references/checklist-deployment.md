@@ -11,6 +11,7 @@
 - [x] Title 40–60 karakter, meta description 120–155, H1 ≠ title. Dicek otomatis oleh build.
 - [x] JSON-LD: `Organization`, `WebPage`, `BreadcrumbList`, `SoftwareApplication` + `Offer` (harga IDR), `FAQPage`; `AggregateRating` hanya dari ulasan asli.
 - [x] Halaman hukum (mis. panduan UU PDP) `noindex` sampai direview ahli hukum.
+- [x] Gambar: setiap `<img>` punya alt, width/height (CLS 0), hero `fetchpriority="high"`, sisanya `loading="lazy"`; ilustrasi SVG ≤10 KB; og:image 1200×630 PNG.
 - [x] Mobile: tanpa scroll horizontal di 375px. Tombol WA melayang minimalis (latar `--ink`): desktop di kanan bawah; mobile hanya tombol WA ringkas (<3% layar) dengan judul + subjudul. SVG inline, tanpa skrip.
 
 ## Wajib sebelum publish (isi manual)

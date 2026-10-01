@@ -126,5 +126,18 @@
     "cta_title": "Siap meluncurkan software dengan merek Anda?",
     "cta_text": "Ceritakan rencana Anda — target klien, perkiraan jumlah pengguna, dan kebutuhan kustomisasi. Tim kami menyiapkan penawaran white label {{brand}} untuk bisnis Anda.",
     "cta_button": "Minta Penawaran White Label"
-  }
+  },
+  "og_image": "static/og-image.png",
+  "_og_image": "Gambar pratinjau link 1200×630 (PNG/JPG). Buat: python3 tools/og_image.py (macOS), atau desain sendiri.",
+  "ilustrasi_warna": {
+    "p": "#7B2CFF",
+    "k": "#E83AAE",
+    "o": "#FF8A00",
+    "ink": "#1b1626",
+    "mut": "#6f6880",
+    "line": "#e9e5f0",
+    "soft": "#f8f6fc",
+    "tint": "#f3edff"
+  },
+  "_ilustrasi_warna": "Warna design system produk untuk ilustrasi SVG & og:image (p=primer, k=aksen 2, o=aksen 3). Samakan dengan token di static/style.css."
 }

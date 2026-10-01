@@ -17,6 +17,8 @@ import sys
 from pathlib import Path
 from urllib.parse import quote
 
+import ilustrasi as ILUS
+
 ROOT = Path(__file__).resolve().parent
 SOCIAL = {"testimonials": []}
 DIST = ROOT / "dist"
@@ -29,6 +31,9 @@ BANNED_CLAIMS = [
 ]
 
 errors, warnings = [], []
+GAMBAR = {}          # id -> entri data/ilustrasi.json
+HERO = {}            # slug -> id gambar hero
+MAX_KB = 200         # batas ukuran gambar asli (WebP/AVIF) per file
 
 
 def err(page, msg):
@@ -216,6 +221,27 @@ def logo(S):
     return re.sub(r'\s*xmlns="[^"]+"', "", svg, count=1)
 
 
+# ---------- gambar & ilustrasi ----------
+
+def img_src(g):
+    return "/" + (g.get("file") or f'static/ilustrasi/{g["id"]}.svg')
+
+
+def figure(g, hero=False):
+    w, h = g.get("w", ILUS.W), g.get("h", ILUS.H)
+    load = 'loading="eager" fetchpriority="high"' if hero else 'loading="lazy"'
+    cap = f'<figcaption>{html.escape(g["caption"])}</figcaption>' if g.get("caption") else ""
+    return (f'<figure class="ilus{" hero-img" if hero else ""}"><img src="{img_src(g)}" width="{w}" height="{h}" '
+            f'alt="{html.escape(g["alt"])}" {load} decoding="async">{cap}</figure>')
+
+
+def gambar_token(m):
+    gid = m.group(1)
+    if gid not in GAMBAR:
+        return f"{{{{gambar:{gid}}}}}"   # dibiarkan -> tertangkap cek token tak dikenal
+    return figure(GAMBAR[gid])
+
+
 # ---------- layout ----------
 
 def _min_css(c):
@@ -286,6 +312,7 @@ def render(S, page, body, P, all_pages, indexable):
     crumbs = "" if page["slug"] == "/" else f'<nav class="crumbs" aria-label="Breadcrumb"><a href="/">{S["brand"]}</a> / <span>{page["name"]}</span></nav>'
     hero_class = "hero home" if page["slug"] == "/" else "hero"
     lead = page.get("lead", "")
+    hero_img = figure(GAMBAR[HERO[page["slug"]]], hero=True) if HERO.get(page["slug"]) in GAMBAR else ""
     produk = [p for p in all_pages if p["slug"] in S["footer_produk"]]
     panduan = [p for p in all_pages if p not in produk and p["slug"] != "/"]
     flinks = lambda ps: "".join(f'<li><a href="{p["slug"]}">{p["name"]}</a></li>' for p in ps)
@@ -304,6 +331,7 @@ def render(S, page, body, P, all_pages, indexable):
 <meta property="og:title" content="{html.escape(page["title"])}">
 <meta property="og:description" content="{html.escape(page["meta"])}">
 {f'<meta property="og:url" content="{base}{page["slug"]}">' if base else ''}
+{f'<meta property="og:image" content="{base}/{S["og_image"]}"><meta name="twitter:card" content="summary_large_image">' if base and S.get("og_image") else ''}
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#7B2CFF">
 <style>{CSS}</style>
@@ -316,11 +344,11 @@ def render(S, page, body, P, all_pages, indexable):
 <nav class="nav" aria-label="Utama">{nav}<a class="btn btn-primary btn-sm" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["nav_cta"]}</a></nav>
 </div></header>
 <main>
-<section class="{hero_class}"><div class="wrap">
+<section class="{hero_class}"><div class="wrap{' hero-grid' if hero_img else ''}"><div class="hero-text">
 {crumbs}
 <h1>{html.escape(page["h1"])}</h1>
 {f'<p class="lead">{lead}</p>' if lead else ''}
-</div></section>
+</div>{hero_img}</div></section>
 <article class="wrap prose">
 {body}
 </article>
@@ -382,10 +410,56 @@ def check_page(S, B, page, body, slugs):
         err(sid, "masih ada token {{...}} yang tidak dikenal")
 
 
+def check_images(p, used, IL):
+    sid = p["slug"]
+    for gid in used + ([HERO[sid]] if sid in HERO else []):
+        if gid not in GAMBAR:
+            err(sid, f"gambar '{gid}' tidak ada di data/ilustrasi.json")
+            continue
+        g = GAMBAR[gid]
+        f = ROOT / img_src(g).lstrip("/")
+        if not (g.get("alt") or "").strip():
+            err(sid, f"gambar '{gid}' tanpa alt")
+        elif len(g["alt"]) > 125:
+            warn(sid, f"alt gambar '{gid}' {len(g['alt'])} karakter (sebaiknya ≤125)")
+        if not f.exists():
+            err(sid, f"file gambar {f.relative_to(ROOT)} tidak ada")
+            continue
+        if not g.get("auto", True):
+            if f.suffix.lower() not in (".webp", ".avif", ".svg"):
+                err(sid, f"gambar '{gid}' harus WebP/AVIF (atau SVG), bukan {f.suffix}")
+            if not (g.get("w") and g.get("h")):
+                err(sid, f"gambar '{gid}' wajib punya w & h (ukuran asli) agar tidak CLS")
+        kb = f.stat().st_size / 1024
+        if kb > MAX_KB:
+            err(sid, f"gambar '{gid}' {kb:.0f} KB (maks {MAX_KB} KB) — kompres dulu")
+    n = len(set(used + ([HERO[sid]] if sid in HERO else [])))
+    if n < IL.get("min_per_halaman", 3):
+        err(sid, f"hanya {n} gambar (minimal {IL.get('min_per_halaman', 3)} per halaman)")
+    if sid not in HERO:
+        warn(sid, "belum ada gambar hero")
+
+
+def daftar_ilustrasi_md(S, pages, IL):
+    rows = ["# Daftar Ilustrasi — " + S["brand"], "",
+            "Dibuat otomatis oleh `build.py` dari `data/ilustrasi.json`. Kirim gambar pengganti sesuai **brief**; "
+            "kami simpan sebagai WebP/AVIF, lalu `auto` diubah jadi `false`.", "",
+            "| Halaman | Section | ID | Status | Ukuran tampil | Brief gambar pengganti |", "|---|---|---|---|---|---|"]
+    order = {p["slug"]: i for i, p in enumerate(pages)}
+    for g in sorted(IL["gambar"], key=lambda g: (order.get(g["halaman"], 99), g["section"] != "Hero")):
+        status = "placeholder SVG" if g.get("auto", True) else "gambar asli"
+        rows.append(f'| `{g["halaman"]}` | {g["section"]} | `{g["id"]}` | {status} | {g.get("w", ILUS.W)}×{g.get("h", ILUS.H)} (16:10) | {g["brief"]} |')
+    return "\n".join(rows) + "\n"
+
+
 def main():
     check_only = "--check" in sys.argv
     S, B, P = load("site.json"), load("data/brief.json"), load("data/pricing.json")
     SP = load("data/social-proof.json")
+    IL = load("data/ilustrasi.json")
+    GAMBAR.update({g["id"]: g for g in IL["gambar"]})
+    HERO.update(IL.get("hero", {}))
+    ILUS.generate(ROOT, IL, S.get("ilustrasi_warna"))
     global SOCIAL
     SOCIAL = SP
     pages = S["extra_pages"] + B["pages"]
@@ -439,6 +513,10 @@ def main():
             raw = raw.replace(k, v)
             if p.get("lead"):
                 p["lead"] = p["lead"].replace(k, v)
+        used = re.findall(r"\{\{gambar:([a-z0-9-]+)\}\}", raw)
+        raw = re.sub(r"\{\{gambar:([a-z0-9-]+)\}\}", gambar_token, raw)
+        p["_gambar"] = used + ([HERO[p["slug"]]] if p["slug"] in HERO else [])
+        check_images(p, used, IL)
         check_page(S, B, p, raw, slugs)
         indexable = S.get("legal_reviewed", {}).get(p["slug"], True)
         if not indexable:
@@ -452,6 +530,15 @@ def main():
             errors.append(msg + " — ganti dengan data asli sebelum publish")
         else:
             warnings.append(msg + " — boleh untuk preview, build publish akan ditolak")
+    used_all = {gid for p, _, _ in built for gid in p.get("_gambar", [])}
+    for gid in GAMBAR:
+        if gid not in used_all:
+            warnings.append(f"data/ilustrasi.json: gambar '{gid}' tidak dipakai di halaman mana pun")
+    if not check_only:
+        (ROOT / "docs").mkdir(exist_ok=True)
+        (ROOT / "docs" / "daftar-ilustrasi.md").write_text(daftar_ilustrasi_md(S, pages, IL), encoding="utf-8")
+    if S.get("site_url") and not S.get("og_image"):
+        warnings.append("site.json: og_image kosong → pratinjau link di WhatsApp/sosmed tanpa gambar")
     if not S.get("site_url"):
         warnings.append("site.json: site_url kosong → canonical, og:url, sitemap.xml tidak dibuat")
     if not S.get("checkout_url"):

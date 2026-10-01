@@ -51,12 +51,22 @@ img,svg{max-width:100%}
 
 /* hero */
 .hero{background:radial-gradient(1200px 380px at 10% -10%,var(--bg-tint),transparent 70%),radial-gradient(900px 300px at 100% 0,#fff1e3,transparent 70%);padding:48px 0 30px;border-bottom:1px solid var(--line)}
-.hero h1{font-size:clamp(30px,4.6vw,48px);line-height:1.15;letter-spacing:-.02em;margin:10px 0 14px;max-width:880px;font-weight:800}
+.hero h1{font-size:clamp(28px,3.8vw,42px);line-height:1.15;letter-spacing:-.02em;margin:10px 0 14px;max-width:880px;font-weight:800}
 .hero.home{padding:72px 0 44px}
-.hero.home h1{font-size:clamp(30px,6vw,62px);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:900px}
+.hero.home h1{font-size:clamp(30px,3.6vw,40px);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:900px}
 .lead{font-size:19px;color:var(--ink-2);max-width:720px;margin:0}
 .crumbs{font-size:14px;color:var(--muted)}
 .crumbs a{color:var(--muted)}
+
+/* hero dua kolom + ilustrasi */
+.hero-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+@media (min-width:900px){.hero-grid{grid-template-columns:1fr 1fr;gap:40px}}
+.hero-text{min-width:0}
+figure.ilus{margin:28px 0}
+figure.ilus img{display:block;width:100%;height:auto;border-radius:18px;background:var(--bg-tint)}
+figure.ilus figcaption{margin-top:8px;font-size:13px;color:var(--muted);text-align:center}
+figure.hero-img{margin:0}
+figure.hero-img img{box-shadow:0 24px 50px -30px rgba(123,44,255,.45)}
 
 /* prose */
 .prose{padding-top:34px;padding-bottom:56px}
