@@ -379,30 +379,8 @@ def words(b):
     return len(re.findall(r"\w+", strip_tags(b)))
 
 
-def balanced(frag):
-    opens = re.findall(r"<([a-z0-9]+)\b[^>]*>", frag)
-    closes = re.findall(r"</([a-z0-9]+)>", frag)
-    opens = [t for t in opens if t not in VOID]
-    return sorted(opens) == sorted(closes)
-
-
-def split_lead(p_html, n=2, min_words=40):
-    """Paragraf panjang → (2 kalimat pertama, sisa). Hanya memotong di batas kalimat yang tag-nya seimbang."""
-    m = re.match(r"(<p[^>]*>)(.*)</p>$", p_html, flags=re.S)
-    if not m or words(p_html) < min_words:
-        return p_html, ""
-    open_tag, inner = m.groups()
-    cuts = [x.end() for x in re.finditer(r"[.!?](?:</[a-z]+>)*\s+(?=[A-Z0-9\"“(<])", inner)]
-    count = 0
-    for c in cuts:
-        count += 1
-        if count >= n and balanced(inner[:c]) and words(inner[c:]) >= 12:
-            return f"{open_tag}{inner[:c].rstrip()}</p>", f"<p>{inner[c:].strip()}</p>"
-    return p_html, ""
-
-
 def render_section(blocks, idx):
-    """Satu H2 + isinya → band. Ada gambar: teks | gambar (bergantian). Tanpa gambar: judul | isi."""
+    """Satu H2 + isinya → band. Ada gambar: teks | gambar (bergantian). Tanpa gambar: judul | isi. Semua teks terlihat."""
     h2, rest = blocks[0], blocks[1:]
     fig, wide, text = None, [], []
     for b in rest:
@@ -413,32 +391,15 @@ def render_section(blocks, idx):
             wide.append(b)
         else:
             text.append(b)
-    faq = any("faq" in kind(b)[1] for b in text)
-    shown, more, seen_p, seen_list = [], [], False, False
-    for b in text:
-        tag, cls = kind(b)
-        if faq or any(c in KEEP for c in cls):
-            shown.append(b)
-        elif tag == "p" and not seen_p:
-            head, tail = split_lead(b)
-            shown.append(head); seen_p = True
-            if tail:
-                more.append(tail)
-        elif (tag in ("ul", "ol") and not seen_list and b.count("<li") <= 4
-              and words(b) / max(b.count("<li"), 1) <= 14):
-            shown.append(b); seen_list = True
-        else:
-            more.append(b)
-    if more and sum(words(b) for b in more) < 20:   # sisa sangat pendek: tidak perlu dilipat
-        shown += more; more = []
-    fold = (f'<details class="more"><summary>Baca selengkapnya</summary>{"".join(more)}</details>' if more else "")
+    # tanpa "Baca selengkapnya": user tidak suka teks disembunyikan; teks ditulis ringkas dalam poin/kartu
+    body = "".join(text)
     band = "band alt" if idx % 2 else "band"
     if fig:
         flip = " flip" if idx % 2 else ""
-        row = (f'<div class="split media{flip}"><div class="col-text">{h2}{"".join(shown)}{fold}</div>'
+        row = (f'<div class="split media{flip}"><div class="col-text">{h2}{body}</div>'
                f'<div class="col-media">{fig}</div></div>')
     else:
-        row = f'<div class="split head"><div class="col-head">{h2}</div><div class="col-text">{"".join(shown)}{fold}</div></div>'
+        row = f'<div class="split head"><div class="col-head">{h2}</div><div class="col-text">{body}</div></div>'
     return f'<section class="{band}"><div class="wrap">{row}{"".join(wide)}</div></section>'
 
 
@@ -457,13 +418,6 @@ def layout_sections(body):
             cur.append(b)
     out = []
     if intro:
-        # paragraf pengantar: 2 kalimat pertama terlihat, sisanya dilipat (tetap di HTML untuk SEO)
-        for i, b in enumerate(intro):
-            if kind(b)[0] == "p":
-                head, tail = split_lead(b)
-                if tail:
-                    intro[i] = head + f'<details class="more"><summary>Baca selengkapnya</summary>{tail}</details>'
-                break
         out.append(f'<section class="band intro"><div class="wrap">{"".join(intro)}</div></section>')
     out += [render_section(s, i) for i, s in enumerate(sections)]
     if tail:
@@ -563,11 +517,19 @@ def check_page(S, B, page, body, slugs):
     if not first_p or prim not in strip_tags(first_p.group(1)).lower():
         err(sid, f"primary keyword '{page['primary']}' tidak ada di paragraf pertama")
     wc = word_count(body)
-    minw = page.get("min_words", 1000)
-    if wc < minw:
-        err(sid, f"isi {wc} kata (minimal {minw})")
-    elif minw >= 1000 and wc > 1800:
+    if "min_words" in page:                      # halaman tambahan (beranda, harga, white label)
+        if wc < page["min_words"]:
+            err(sid, f"isi {wc} kata (minimal {page['min_words']})")
+    elif wc < 700:                               # halaman brief: ditulis ringkas (poin/kartu), tapi tetap cukup dalam
+        err(sid, f"isi {wc} kata (minimal 700)")
+    elif wc < 1000:
+        warn(sid, f"isi {wc} kata (target keyword plan 1.000–1.500; pertimbangkan tambah poin/kartu/FAQ)")
+    elif wc > 1800:
         warn(sid, f"isi {wc} kata (target 1.000–1.500)")
+    for para in re.findall(r"<p(?:\s[^>]*)?>(.*?)</p>", body, flags=re.S):
+        n = len(re.findall(r"\w+", strip_tags(para)))
+        if n > 45:
+            warn(sid, f"paragraf {n} kata — pecah jadi poin/kartu (maks ±45 kata): “{strip_tags(para).strip()[:50]}…”")
     page["_words"] = wc
     for link in page.get("links", []):
         if f'href="{link}"' not in body:

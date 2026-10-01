@@ -7,7 +7,7 @@ Dipakai saat MENULIS atau MEREVISI `content/*.html`. Sebagian besar dicek otomat
 1. **1 slug = 1 halaman = 1 ad group.** Jangan membuat dua halaman untuk keyword yang sama, termasuk beranda: primary beranda = nama brand, bukan keyword kategori.
 2. **Metadata dari Page Brief, bukan diketik ulang.** Title 40–60 karakter, meta 120–155, H1 berbeda dari title (title untuk SERP, H1 untuk pembaca). Perbaikan dilakukan di Excel, lalu konverter dijalankan ulang.
 3. **Primary keyword** ada di paragraf pertama (wajib), title, dan H1. **Secondary keyword** disebar alami di subjudul dan isi. Keyword berbentuk pertanyaan ("… adalah") cukup dijawab di paragraf dan FAQ, jangan dipaksakan ke H1.
-4. **Panjang:** 1.000–1.500 kata untuk halaman brief (dipakai Ads + SEO sekaligus). Beranda sales page ±900+. Halaman harga ±300+.
+4. **Panjang & bentuk:** target 1.000–1.500 kata untuk halaman brief (minimal 700), tapi **ditulis dalam bentuk yang bisa dipindai**: 1–2 kalimat per section + poin/kartu/tabel. Tidak ada paragraf > ±45 kata dan tidak ada teks tersembunyi. Beranda ±900+, halaman harga ±300+.
 5. **Heading runtut:** satu H1 (dari layout), H2 untuk bagian, H3 di dalam H2. Jangan melompat.
 6. **Semua "Isi Wajib di Halaman"** dari brief ada. **Semua "Internal Link ke"** ditautkan dengan anchor yang deskriptif (bukan "klik di sini").
 7. **Slug tanpa tahun.** Title tanpa tahun dan tanpa "terbaik".

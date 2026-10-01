@@ -74,7 +74,7 @@ website/
 Baca `references/aturan-konten.md` dan `references/aturan-sales-page.md` dulu. Ringkasnya:
 
 - Beranda = **sales page** (AIDA, dengan PAS di blok Interest). Halaman Prioritas 1 (landing Ads) = halaman SEO + komponen jualan (`{{bukti_sosial}}`, `{{testimoni}}`, `{{tanpa_risiko}}`). Halaman Prioritas 2–3 = panduan edukatif + CTA lembut.
-- Setiap "Isi Wajib di Halaman" dari brief harus ada. 1.000–1.500 kata untuk halaman brief.
+- Setiap "Isi Wajib di Halaman" dari brief harus ada. Tulis ringkas: H2 → 1–2 kalimat → poin/kartu/tabel (aturan-sales-page.md). Target 1.000–1.500 kata, minimal 700.
 - Fakta hanya dari BKB. Tidak mengarang OS, integrasi, angka pelanggan, atau fitur.
 
 **Ilustrasi wajib di setiap halaman** (aturan tetap user): baca `references/aturan-ilustrasi.md`. Rencanakan satu gambar hero per halaman, plus gambar untuk section-section utama (minimal 3 per halaman). Tulis entri di `data/ilustrasi.json` dengan `brief` gambar pengganti, lalu letakkan `{{gambar:<id>}}` setelah paragraf pertama di bawah H2 section-nya.
@@ -89,7 +89,7 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 |---|---|
 | Title 40–60, meta 120–155, H1 ≠ title, title/meta/H1 tidak duplikat antar halaman | ERROR |
 | Primary keyword di paragraf pertama | ERROR |
-| Jumlah kata < minimum (1.000 untuk halaman brief; `min_words` untuk extra page) | ERROR |
+| Jumlah kata < 700 (halaman brief) atau < `min_words` (extra page) | ERROR |
 | Link internal wajib dari brief belum ada · link internal ke halaman yang tidak ada | ERROR |
 | Nama kompetitor (dari sheet Negative, kategori "Nama kompetitor") muncul di halaman | ERROR |
 | Klaim terlarang: satu-satunya, termurah, paling murah, pertama di…, nomor satu | ERROR |
@@ -101,7 +101,7 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 | Halaman tanpa gambar hero · gambar tidak dipakai · alt > 125 karakter · `og_image` kosong saat publish | WARNING |
 | `whatsapp` kosong saat `site_url` terisi (tombol WA melayang mati) | ERROR |
 | `signin_url` kosong saat `site_url` terisi (tombol Sign In mati) | ERROR |
-| Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · > 1.800 kata | WARNING |
+| Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · 700–999 atau > 1.800 kata · paragraf > ±45 kata | WARNING |
 | Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
 
 Target Python 3.9 (bawaan macOS): **jangan pakai backslash di dalam ekspresi f-string**. Simpan string berisi tanda kutip ke variabel dulu.
@@ -112,7 +112,7 @@ Sajikan `dist/` (`python3 -m http.server <port> --directory dist`, lewat `.claud
 - Screenshot desktop dan mobile (375px): nav tidak terbungkus dua baris, harga tidak meluber, logo rapat.
 - Lewat `javascript_tool`: `performance.getEntriesByType('resource')` harus **kosong** (nol request eksternal), CLS = 0, `scrollWidth <= innerWidth` di mobile, urutan heading, tipe JSON-LD.
 - **Ilustrasi:** buat lembar kontak semua SVG (satu halaman HTML berisi grid `<img>`) dan periksa satu per satu: teks tidak terpotong, tidak menumpuk, dan warna sesuai brand. Lalu di mobile: CLS 0, elemen LCP = gambar hero atau H1, dan gambar di bawah lipatan `loading="lazy"`.
-- **Porsi teks terlihat:** hitung kata di `p`/`li` di luar `details.more` dibanding total (di luar kartu/tabel/harga/FAQ). Targetnya ±30–60% di halaman konten. Cek juga per band di desktop & mobile: dua kolom seimbang, tidak ada ruang kosong besar, dan "Baca selengkapnya" bisa dibuka/ditutup.
+- **Kepadatan teks:** tidak ada paragraf > ±45 kata (lihat WARNING build), setiap section punya poin/kartu/tabel, dan tidak ada teks tersembunyi ("Baca selengkapnya"). Cek per band di desktop & mobile: dua kolom seimbang, tanpa ruang kosong besar.
 - **Kerapian tepi kiri-kanan semua halaman** di lebar 1440, 1280, 768, dan 375 px: muat tiap halaman di iframe selebar itu, lalu bandingkan `getBoundingClientRect()` dari `.brand`, `.hero h1`, dan setiap `article.prose > *`. Tepi kiri harus satu nilai, dan tepi kanan blok (kartu, tabel, CTA) juga satu nilai. Selisih ±4px yang sama di semua elemen biasanya berasal dari scrollbar iframe, jadi bandingkan dengan `clientWidth`.
 - Skor PageSpeed asli hanya bisa diukur setelah live. Katakan itu ke user, jangan mengklaim skornya.
 

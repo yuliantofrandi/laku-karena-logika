@@ -96,14 +96,17 @@ Larangan: tidak menyebut harga, minimum lisensi, bagi hasil, atau persentase pen
 
 ## Tampilan: band dua kolom, teks sekunder dilipat
 
-Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan yang dibaca". `build.py` (fungsi `layout_sections`) menata isi secara otomatis, jadi konten cukup ditulis sebagai urutan H2 → paragraf → daftar → gambar → blok:
+Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan yang dibaca". `build.py` (fungsi `layout_sections`) menata isi secara otomatis, jadi konten cukup ditulis sebagai urutan H2 → 1–2 kalimat → poin/kartu → gambar → blok:
 - **Band per H2** dengan latar bergantian (`.band` / `.band.alt`). Blok sebelum H2 pertama menjadi **band intro**, dan `{{cta}}` menjadi band penutup.
-- **Band intro** (dikoreksi user: "UI layout-nya masih kurang"): strip bukti sosial tampil **tepat di bawah hero** sebagai *logo cloud* tanpa kotak (label kecil + deretan nama/logo abu-abu, garis tipis pemisah), lalu paragraf pengantar sebagai **pernyataan rata tengah** (maks ±820px; rata kiri di mobile). Paragraf pengantar juga hanya menampilkan 2 kalimat pertama, sisanya dilipat.
+- **Band intro** (dikoreksi user: "UI layout-nya masih kurang"): strip bukti sosial tampil **tepat di bawah hero** sebagai *logo cloud* tanpa kotak (label kecil + deretan nama/logo abu-abu, garis tipis pemisah), lalu paragraf pengantar 1–2 kalimat sebagai **pernyataan rata tengah** (maks ±820px; rata kiri di mobile).
 - **Ada gambar** (`{{gambar:…}}`) → dua kolom teks | gambar, bergantian kiri-kanan (`.split.media`, `.flip`). **Tanpa gambar** → judul kiri (sticky) | isi kanan (`.split.head`). Di mobile semuanya menumpuk.
 - **Blok lebar** (`grid`, `table-wrap`, `periode`, `plans`, `quotes`, `proof`) tampil selebar kontainer di bawah baris dua kolom.
-- **Yang tetap terlihat:** H2, 2 kalimat pertama paragraf pembuka, satu daftar pendek (≤4 poin, ±≤14 kata per poin), callout, agitasi, daftar centang, FAQ, dan catatan. **Sisanya** masuk `<details class="more">` "Baca selengkapnya" (berubah jadi "Tutup" saat dibuka). Teks tetap di HTML, jadi aman untuk SEO dan aturan jumlah kata.
-- Target: paragraf yang terlihat ±30–60% di halaman konten. Halaman jualan yang memang pendek boleh lebih tinggi.
-- Tulis paragraf pembuka setiap section dengan **2 kalimat terkuat lebih dulu**, karena hanya itu yang terlihat.
+- **Tanpa "Baca selengkapnya" / teks tersembunyi** (koreksi user: "saya tidak suka ada baca selengkapnya, karena rata-rata orang tidak klik ini"). Semua teks selalu terlihat, jadi **teks harus ditulis ringkas sejak awal**:
+  - Setiap section: **H2 → 1–2 kalimat (≤ ±30 kata) → elemen yang bisa dipindai**: `ul.checks` (poin pendek dengan awalan tebal), `div.grid` berisi `.card` (judul + 1 kalimat, `span.num` untuk langkah), tabel kecil, atau callout.
+  - Hindari dua paragraf berturut-turut. Kalimat penutup/rujukan ditulis sebagai `p.note` dengan link.
+  - Build memberi WARNING untuk paragraf > ±45 kata.
+  - FAQ tetap memakai accordion `<details class="faq">` (pola yang dikenal pengunjung), dengan jawaban 1–2 kalimat.
+- **Jumlah kata:** karena isinya dipadatkan, halaman brief cukup **≥ 700 kata (ERROR di bawahnya)**, dengan target keyword plan 1.000–1.500 (WARNING di bawah 1.000). Tambah kedalaman lewat kartu, tabel, atau FAQ yang berguna, bukan paragraf pengisi.
 
 ## Layout: satu kolom, tepi kiri-kanan segaris
 
