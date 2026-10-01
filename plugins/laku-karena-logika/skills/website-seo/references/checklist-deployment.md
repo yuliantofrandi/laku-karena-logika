@@ -11,7 +11,7 @@
 - [x] Title 40–60 karakter, meta description 120–155, H1 ≠ title. Dicek otomatis oleh build.
 - [x] JSON-LD: `Organization`, `WebPage`, `BreadcrumbList`, `SoftwareApplication` + `Offer` (harga IDR), `FAQPage`; `AggregateRating` hanya dari ulasan asli.
 - [x] Halaman hukum (mis. panduan UU PDP) `noindex` sampai direview ahli hukum.
-- [x] Mobile: tanpa scroll horizontal di 375px. Tombol WA melayang: desktop versi penuh di kanan bawah, mobile hanya pill WA ringkas (<3% layar). SVG inline, tanpa skrip, warna dari token design system.
+- [x] Mobile: tanpa scroll horizontal di 375px. Tombol WA melayang minimalis (latar `--ink`): desktop di kanan bawah; mobile hanya tombol WA ringkas (<3% layar) dengan judul + subjudul. SVG inline, tanpa skrip.
 
 ## Wajib sebelum publish (isi manual)
 1. `site.json` → isi `site_url` (mis. `https://domain-anda.id`), **`checkout_url`** (link langganan/pembayaran, boleh memuat `{skema}` dan `{periode}`), **`whatsapp`** (nomor WA marketing untuk tombol melayang), opsional `email`. Build publish ditolak kalau `checkout_url` atau `whatsapp` kosong.
