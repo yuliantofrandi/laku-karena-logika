@@ -208,20 +208,15 @@ def initials(name):
     return "".join(w[0] for w in parts[:2]).upper()
 
 
-POTRET = {}   # nama → potret ilustrasi placeholder
-
-
 def testimonials(SP):
-    """Kartu testimoni dengan foto pemberi testimoni. Selalu ada gambar: foto asli (dengan izin) bila sudah ada,
-    sebelum itu potret ilustrasi flat-vector otomatis (ilustrasi.potret_svg) — bukan foto stok/wajah AI realistis."""
+    """Kartu testimoni dengan foto pemberi testimoni. Foto harus orang asli dengan izin;
+    sebelum ada, tampil avatar inisial (bukan foto stok/wajah AI)."""
     out = []
     for t in SP["testimonials"]:
         stars = "★" * t["rating"] + "☆" * (5 - t["rating"])
         if t.get("foto"):
-            avatar = (f'<img class="avatar" src="/{t["foto"]}" width="56" height="56" loading="lazy" decoding="async" '
+            avatar = (f'<img class="avatar" src="/{t["foto"]}" width="48" height="48" loading="lazy" decoding="async" '
                       f'alt="Foto {html.escape(t["name"])}">')
-        elif POTRET.get(t["name"]):
-            avatar = (f'<img class="avatar" src="/{POTRET[t["name"]]}" width="56" height="56" loading="lazy" decoding="async" alt="">')
         else:
             avatar = f'<span class="avatar" aria-hidden="true">{html.escape(initials(t["name"]))}</span>'
         out.append(f'<figure class="card quote"><div class="stars" aria-label="Rating {t["rating"]} dari 5">{stars}</div>'
@@ -712,10 +707,10 @@ def daftar_ilustrasi_md(S, pages, IL):
         rows.append(f'| `{g["halaman"]}` | {g["section"]} | `{g["id"]}` | {status} | {g.get("w", ILUS.W)}×{g.get("h", ILUS.H)} (16:10) | {g["brief"]} |')
     rows += ["", "## Foto testimoni", "",
              "Foto **asli** pemberi testimoni, dengan izin tertulis. Persegi ±160×160 px, wajah jelas, WebP ≤ 40 KB. "
-             "Jangan foto stok/wajah AI realistis. Sebelum ada: potret ilustrasi otomatis (`static/testimoni/*-ilustrasi.svg`).", "",
+             "Jangan foto stok/wajah AI. Sebelum ada: avatar inisial.", "",
              "| Nama | Jabatan & perusahaan | Status |", "|---|---|---|"]
     for t in SOCIAL.get("testimonials", []):
-        st = "foto asli" if t.get("foto") else ("potret ilustrasi · testimoni CONTOH (ganti dengan pelanggan asli + fotonya)" if t.get("contoh") else "potret ilustrasi · perlu foto asli")
+        st = "foto asli" if t.get("foto") else ("avatar inisial · testimoni CONTOH (ganti dengan pelanggan asli)" if t.get("contoh") else "avatar inisial · perlu foto")
         rows.append(f'| {t["name"]} | {t["role"]}, {t["company"]} | {st} |')
     return "\n".join(rows) + "\n"
 
@@ -729,7 +724,6 @@ def main():
     GAMBAR.update({g["id"]: g for g in IL["gambar"]})
     HERO.update(IL.get("hero", {}))
     ILUS.generate(ROOT, IL, S.get("ilustrasi_warna"))
-    POTRET.update(ILUS.generate_potret(ROOT, SP["testimonials"], S.get("ilustrasi_warna")))
     global SOCIAL
     SOCIAL = SP
     SITE.update(S)
@@ -815,7 +809,7 @@ def main():
             elif fp.suffix.lower() not in (".webp", ".avif") or fp.stat().st_size > 40 * 1024:
                 errors.append(f"data/social-proof.json: foto {t['foto']} harus WebP/AVIF ≤ 40 KB")
         elif not t.get("contoh"):
-            warnings.append(f"data/social-proof.json: testimoni asli '{t['name']}' belum ada fotonya (sementara potret ilustrasi)")
+            warnings.append(f"data/social-proof.json: testimoni asli '{t['name']}' belum ada fotonya (sementara avatar inisial)")
     n_contoh = sum(1 for k in ("metrics", "logos", "testimonials") for x in SP[k] if x.get("contoh"))
     if n_contoh:
         msg = f"data/social-proof.json: {n_contoh} entri masih data CONTOH"

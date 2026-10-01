@@ -407,60 +407,6 @@ def render_svg(item, colors=None):
             f'font-family="{FONT}" role="img" aria-label="{e(item["alt"])}">{inner}</svg>\n')
 
 
-# ---------- potret ilustrasi testimoni (placeholder sebelum foto asli) ----------
-KULIT = ["#f3cfb1", "#e3b08b", "#c98d66", "#a56b48"]
-RAMBUT = ["#2b2230", "#3e2a22", "#1f1b24"]
-
-
-def potret_svg(t, colors=None):
-    """Potret flat-vector 160×160 untuk kartu testimoni. Jelas ilustrasi (bukan foto/wajah realistis),
-    dipakai sampai user mengirim foto asli. Gaya diatur lewat t["potret"]:
-    {"rambut": "pendek|panjang|hijab", "kulit": 0-3, "kacamata": bool, "baju": "p|k|o"}; default dari hash nama."""
-    if colors:
-        C.update(colors)
-    h = sum(ord(ch) * (i + 1) for i, ch in enumerate(t["name"]))
-    g = t.get("potret", {})
-    rambut = g.get("rambut", ["pendek", "panjang", "hijab"][h % 3])
-    kulit = KULIT[g.get("kulit", h % len(KULIT)) % len(KULIT)]
-    hair = RAMBUT[h % len(RAMBUT)]
-    baju = C[g.get("baju", "pko"[h % 3])]
-    kain = C["k"] if baju != C["k"] else C["p"]
-    o = [f'<rect width="160" height="160" fill="{C["tint"]}"/>']
-    if rambut == "panjang":
-        o.append(f'<rect x="50" y="40" width="60" height="88" rx="28" fill="{hair}"/>')
-    o.append(f'<path d="M24 160 Q28 116 80 110 Q132 116 136 160 Z" fill="{baju}"/>')
-    if rambut == "hijab":
-        o.append(f'<path d="M46 74 Q46 34 80 34 Q114 34 114 74 L120 124 Q80 140 40 124 Z" fill="{kain}"/>')
-    else:
-        o.append(f'<rect x="70" y="88" width="20" height="26" rx="8" fill="{kulit}" opacity=".9"/>')
-    o.append(f'<ellipse cx="80" cy="70" rx="{22 if rambut == "hijab" else 25}" ry="{25 if rambut == "hijab" else 29}" fill="{kulit}"/>')
-    if rambut in ("pendek", "panjang"):
-        o.append(f'<path d="M54 68 Q50 38 80 37 Q110 38 106 68 Q100 50 80 51 Q62 51 54 68 Z" fill="{hair}"/>')
-    o.append(f'<circle cx="71" cy="72" r="2.8" fill="{C["ink"]}"/><circle cx="89" cy="72" r="2.8" fill="{C["ink"]}"/>'
-             f'<path d="M72 83 Q80 90 88 83" stroke="{C["ink"]}" stroke-width="2.4" fill="none" stroke-linecap="round"/>')
-    if g.get("kacamata"):
-        o.append(f'<g fill="none" stroke="{C["ink"]}" stroke-width="2"><circle cx="71" cy="72" r="7"/><circle cx="89" cy="72" r="7"/>'
-                 f'<path d="M78 72 h4"/></g>')
-    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" '
-            f'role="img" aria-label="Ilustrasi avatar (placeholder foto)">{"".join(o)}</svg>\n')
-
-
-def generate_potret(root: Path, testimonials, colors=None):
-    """Tulis static/testimoni/<slug>-ilustrasi.svg untuk testimoni yang belum punya foto asli. Return {nama: path}."""
-    import re
-    out_dir = root / "static" / "testimoni"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    paths = {}
-    for t in testimonials:
-        if t.get("foto"):
-            continue
-        slug = re.sub(r"[^a-z0-9]+", "-", t["name"].lower()).strip("-")
-        rel = f"static/testimoni/{slug}-ilustrasi.svg"
-        (root / rel).write_text(potret_svg(t, colors), encoding="utf-8")
-        paths[t["name"]] = rel
-    return paths
-
-
 def generate(root: Path, data: dict, colors=None):
     out_dir = root / "static" / "ilustrasi"
     out_dir.mkdir(parents=True, exist_ok=True)
