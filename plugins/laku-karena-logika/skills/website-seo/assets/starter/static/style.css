@@ -214,10 +214,9 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .wa-float span{display:flex;flex-direction:column;line-height:1.25}
 .wa-float strong{font-size:14px;font-weight:700}
 .wa-float small{font-size:11.5px;font-weight:500;color:#cfc8de}
-body{padding-bottom:96px}
 
 /* footer */
-.site-footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:44px 0 20px;font-size:15px}
+.site-footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:44px 0 92px;font-size:15px} /* ruang bawah untuk tombol WA melayang, di dalam latar footer */
 .site-footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
 .site-footer h2{font-size:14px;text-transform:uppercase;letter-spacing:.06em;margin:4px 0 10px}
 .site-footer ul{list-style:none;padding:0;margin:0}
@@ -243,7 +242,7 @@ body{padding-bottom:96px}
   .wa-float .wa-icon{width:26px;height:26px}
   .wa-float strong{font-size:12.5px}
   .wa-float small{font-size:10.5px}
-  body{padding-bottom:68px}
+  .site-footer{padding-bottom:76px}
 }
 @media (max-width:640px){
   .table-hint{display:block}

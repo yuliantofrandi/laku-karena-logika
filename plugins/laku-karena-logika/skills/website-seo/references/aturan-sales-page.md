@@ -108,7 +108,7 @@ Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan
 
 - CTA utama = link ke `checkout_url` (template `{skema}`, `{periode}`), `rel="nofollow"`. Kosong = ke `/harga#pilih-skema`.
 - **Tombol WA marketing melayang di bagian bawah SETIAP halaman, desktop & mobile** (aturan tetap user). Bentuk dari contoh user, **minimalis, warna dari design system produk** (bukan warna gambar contoh): latar solid `--ink`, tanpa bingkai gradasi, bayangan tipis, **padding lega dan teks kecil** (desktop: padding 12/22px, judul 14px, subjudul 11.5px; mobile: padding 10/16px, judul 12.5px, subjudul 10.5px), ikon WhatsApp hijau di kiri (SVG inline, boleh tetap hijau agar mudah dikenali), judul tebal putih `copy.wa_title` ("Hubungi Kami !!"), dan subjudul `copy.wa_subtitle` ("Konsultasi 100% Gratis"). Link `wa.me/<whatsapp>?text=<whatsapp_text>`, `target="_blank" rel="nofollow noopener"`.
-  - Desktop: pojok kanan bawah. `body` diberi `padding-bottom` agar footer tidak tertutup.
+  - Desktop: pojok kanan bawah. Ruang agar teks footer tidak tertutup diberikan sebagai **`padding-bottom` di `.site-footer`** (±92px desktop, ±76px mobile), **bukan di `body`**. Padding di `body` membuat area putih di bawah latar footer (dikoreksi user: "ada blank space").
   - Mobile (≤640px): **hanya tombol WA**, versi ringkas di kanan bawah (±181×49 px, <3% layar). **Judul + subjudul tetap tampil.** Jangan tambahkan tombol lain di bar bawah, dan jangan dibuat selebar layar.
   - Tanpa widget/skrip chat pihak ketiga. WA dipakai untuk konsultasi, bukan pengganti checkout dan bukan "jadwalkan demo".
 - Konversi Google Ads dipasang pada **pembayaran berhasil** (klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.
