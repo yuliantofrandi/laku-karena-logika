@@ -1,0 +1,75 @@
+{
+  "brand": "<Nama Produk>",
+  "tagline": "<Tagline dari BKB §2>",
+  "description": "<Category dari BKB §2, satu kalimat>",
+  "logo": "static/logo.svg",
+  "site_url": "",
+  "_site_url": "WAJIB diisi sebelum publish, mis. https://domain-anda.id (tanpa garis miring di akhir). Kosong = sitemap & canonical tidak dibuat.",
+  "whatsapp": "",
+  "_whatsapp": "Nomor WA tim sales format internasional tanpa +, mis. 62812xxxxxxx. Kosong = tombol CTA mengarah ke #kontak.",
+  "whatsapp_text": "Halo Timebase, saya ingin minta demo.",
+  "email": "",
+  "legal_reviewed": {
+    "/<slug-halaman-hukum>": false
+  },
+  "_legal_reviewed": "Halaman hukum tetap noindex & keluar dari sitemap sampai diubah jadi true setelah direview ahli hukum.",
+  "nav": [
+    [
+      "/<slug-prioritas-1>",
+      "<Label>"
+    ],
+    [
+      "/harga",
+      "Harga"
+    ]
+  ],
+  "extra_pages": [
+    {
+      "slug": "/",
+      "name": "Beranda",
+      "title": "<40–60 karakter, tanpa 'terbaik'/tahun>",
+      "meta": "<120–155 karakter>",
+      "h1": "<hasil terbesar untuk klien>",
+      "primary": "<Nama Produk>",
+      "links": [
+        "/<slug-prioritas-1>",
+        "/harga"
+      ],
+      "min_words": 900
+    },
+    {
+      "slug": "/harga",
+      "name": "Harga",
+      "title": "<40–60 karakter, tanpa 'terbaik'/tahun>",
+      "meta": "<120–155 karakter>",
+      "h1": "<H1 halaman harga>",
+      "primary": "Harga <Nama Produk>",
+      "links": [
+        "/<slug-prioritas-1>"
+      ],
+      "min_words": 300
+    }
+  ],
+  "product_pages": [
+    "/",
+    "/harga",
+    "/<slug-prioritas-1>"
+  ],
+  "footer_produk": [
+    "/<slug-prioritas-1>",
+    "/harga"
+  ],
+  "copy": {
+    "nav_cta": "Jadwalkan Demo",
+    "cta_primary": "Jadwalkan Demo untuk Tim Saya",
+    "cta_secondary": "Hitung Biaya Tim Saya",
+    "cta_secondary_href": "/harga",
+    "cta_title": "Lihat bukti kerja tim Anda sendiri dalam 30 menit",
+    "cta_text": "Demo lewat WhatsApp atau video call, dalam bahasa Indonesia. Kami tunjukkan apa yang dicatat, apa yang dilihat karyawan, dan berapa biayanya untuk tim Anda.",
+    "risk_label": "Tanpa risiko terkunci",
+    "risk_extra": [
+      "Karyawan bisa membuka datanya sendiri dan meminta datanya dihapus"
+    ],
+    "proof_caption": "Dipakai tim di berbagai industri"
+  }
+}
