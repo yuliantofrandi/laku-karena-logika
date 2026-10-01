@@ -97,7 +97,7 @@ Larangan: tidak menyebut harga, minimum lisensi, bagi hasil, atau persentase pen
 ## Tampilan: band dua kolom, teks sekunder dilipat
 
 Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan yang dibaca". `build.py` (fungsi `layout_sections`) menata isi secara otomatis, jadi konten cukup ditulis sebagai urutan H2 → 1–2 kalimat → poin/kartu → gambar → blok:
-- **Band per H2** dengan latar bergantian (`.band` / `.band.alt`). Blok sebelum H2 pertama menjadi **band intro**, dan `{{cta}}` menjadi band penutup.
+- **Band per H2** dengan latar bergantian, **dimulai dari abu muda (`.band.alt`)** tepat setelah band intro yang putih. Kalau dimulai dari putih, band intro dan section pertama terlihat menyatu (dikoreksi user: "2 section ini seperti gabung?"). Blok sebelum H2 pertama menjadi **band intro**, dan `{{cta}}` menjadi band penutup.
 - **Band intro** (dikoreksi user: "UI layout-nya masih kurang"): strip bukti sosial tampil **tepat di bawah hero** sebagai *logo cloud* tanpa kotak (label kecil + deretan nama/logo abu-abu, garis tipis pemisah), lalu paragraf pengantar 1–2 kalimat sebagai **pernyataan rata tengah** (maks ±820px; rata kiri di mobile).
 - **Ada gambar** (`{{gambar:…}}`) → dua kolom teks | gambar, bergantian kiri-kanan (`.split.media`, `.flip`). **Tanpa gambar** → judul kiri (sticky) | isi kanan (`.split.head`). Di mobile semuanya menumpuk.
 - **Blok lebar** (`grid`, `table-wrap`, `periode`, `plans`, `quotes`, `proof`) tampil selebar kontainer di bawah baris dua kolom.

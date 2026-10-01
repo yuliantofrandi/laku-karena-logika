@@ -393,7 +393,7 @@ def render_section(blocks, idx):
             text.append(b)
     # tanpa "Baca selengkapnya": user tidak suka teks disembunyikan; teks ditulis ringkas dalam poin/kartu
     body = "".join(text)
-    band = "band alt" if idx % 2 else "band"
+    band = "band" if idx % 2 else "band alt"   # section pertama setelah band intro (putih) berlatar abu → batas terlihat
     if fig:
         flip = " flip" if idx % 2 else ""
         row = (f'<div class="split media{flip}"><div class="col-text">{h2}{body}</div>'
