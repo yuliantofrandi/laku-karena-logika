@@ -15,7 +15,7 @@ Tujuan: konversi tinggi **tanpa** klaim yang tidak bisa dipertanggungjawabkan. F
 | 7 | Cara kerja | Desire | 3 langkah sampai aktif, sesuai model penjualan. Self-serve: Pilih skema → Bayar, akun aktif → Pasang/onboarding. Mengurangi kesan "ribet" |
 | 8 | Penanganan keberatan | Desire | Keberatan terbesar Persona 1/2 (mis. "dicap mata-mata") dijawab dengan checklist fakta |
 | 9 | `{{testimoni}}` | Desire | 3 kutipan: masalah → hasil, nama berinisial, jabatan, jenis perusahaan + kota |
-| 10 | Harga + `{{tanpa_risiko}}` | Desire → Action | Kartu skema, masing-masing dengan tombol beli (`Pilih <Skema>` → checkout `{skema}`/`{periode}`) + link bayar tahunan; satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
+| 10 | Harga + `{{tanpa_risiko}}` | Desire → Action | **Switch Bulanan/Tahunan** (wajib), lalu kartu skema masing-masing dengan tombol beli (`Pilih <Skema>` → checkout `{skema}` + `{periode}` sesuai switch); satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
 | 11 | Urgensi | Action | Alasan mulai sekarang |
 | 12 | Jujur soal batas | Kepercayaan | GAP utama BKB, 2–3 kalimat |
 | 13 | FAQ | Action | Keberatan terakhir: kontrak, reaksi tim, lama aktif, siapa yang tidak cocok |
@@ -39,6 +39,14 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 ## Teks CTA & copy global
 
 Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `wa_title`, `wa_subtitle`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
+
+## Switch harga Bulanan / Tahunan (wajib)
+
+Aturan tetap user: bagian harga **selalu** punya tombol switch Bulanan/Tahunan, baik di kartu (`{{pricing_cards}}`) maupun di tabel lengkap (`{{pricing_table}}`). Keduanya otomatis dari `build.py`.
+- **Tanpa JavaScript:** dua radio tersembunyi + label pil; isi `.bln` / `.thn` ditampilkan/disembunyikan lewat CSS sibling selector. Bisa dipakai dengan keyboard (panah kiri/kanan) dan punya fokus terlihat. Kedua harga tetap ada di HTML, jadi aman untuk SEO.
+- **Default Bulanan.** Label Tahunan menyebut penghematan dari data (`12 − annual_months_paid`, mis. "Hemat 2 bulan").
+- **Tahunan:** harga setara per bulan sebagai angka besar, total per tahun + aturan tahunan sebagai keterangan, tombol beli membawa `periode=tahunan`.
+- Radio tersembunyi diletakkan di posisi switch (`top:40px; left:50%`) supaya klik tidak menggeser halaman.
 
 ## Halaman White Label (wajib di setiap produk)
 

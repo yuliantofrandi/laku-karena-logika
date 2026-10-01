@@ -101,8 +101,18 @@ figure.hero-img img{box-shadow:0 24px 50px -30px rgba(123,44,255,.45)}
 .plan .price span{display:block;font-size:14px;font-weight:600;color:var(--muted)}
 .plan{display:flex;flex-direction:column}
 .plan > p:nth-of-type(3){flex:1}
-.plan .annual{font-size:13px;color:var(--muted);margin:8px 0 0!important;text-align:center}
 .plan .price-sub{font-size:14px;color:var(--muted);margin:2px 0 12px}
+
+/* switch periode Bulanan/Tahunan (tanpa JS) */
+.periode{position:relative}
+.periode > input{position:absolute;top:40px;left:50%;opacity:0;width:1px;height:1px;pointer-events:none}
+.periode-switch{display:flex;width:max-content;max-width:100%;margin:24px auto 4px;padding:4px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--line)}
+.periode-switch label{cursor:pointer;padding:8px 18px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink-2);white-space:nowrap;transition:background .15s,color .15s}
+.periode-switch label span{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f7ec;color:#13804a;font-size:12px}
+.p-bln:checked ~ .periode-switch label[for$="-bln"],.p-thn:checked ~ .periode-switch label[for$="-thn"]{background:var(--ink);color:#fff}
+.p-thn:checked ~ .periode-switch label[for$="-thn"] span{background:#2f6b47;color:#e5f7ec}
+.p-bln:focus-visible ~ .periode-switch label[for$="-bln"],.p-thn:focus-visible ~ .periode-switch label[for$="-thn"]{outline:3px solid var(--pink);outline-offset:2px}
+.p-bln:checked ~ * .thn,.p-thn:checked ~ * .bln{display:none!important}
 
 /* tables */
 .table-wrap{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:var(--radius);-webkit-overflow-scrolling:touch}

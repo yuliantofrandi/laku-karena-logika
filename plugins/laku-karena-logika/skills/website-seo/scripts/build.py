@@ -71,44 +71,63 @@ def out_file(slug):
 
 # ---------- komponen dari data ----------
 
+_SW = [0]   # penomoran switch periode: token harga dibuat sekali per build, jadi id unik di setiap halaman
+
+
+def periode_switch(P):
+    """Switch Bulanan/Tahunan tanpa JS: dua radio + label; konten .bln/.thn diatur CSS (sibling selector)."""
+    _SW[0] += 1
+    n = f"periode{_SW[0]}"
+    hemat = 12 - P["annual_months_paid"]
+    return (f'<input type="radio" class="p-bln" name="{n}" id="{n}-bln" checked>'
+            f'<input type="radio" class="p-thn" name="{n}" id="{n}-thn">'
+            f'<div class="periode-switch" role="group" aria-label="Periode tagihan">'
+            f'<label for="{n}-bln">Bulanan</label><label for="{n}-thn">Tahunan <span>Hemat {hemat} bulan</span></label></div>')
+
+
 def pricing_table(P):
     s = P["schemes"]
     FEAT = ' class="featured"'
     head = "".join(f'<th scope="col"{FEAT if x.get("featured") else ""}>{x["name"]}<span>{x["label"]}</span></th>' for x in s)
-    rows = []
-    rows.append(f'<tr class="group"><th scope="rowgroup" colspan="{len(s)+1}">Bulanan / karyawan</th></tr>')
-    for i, lab in enumerate(P["tier_labels"]):
-        cells = "".join(f'<td>{rupiah(x["monthly"][i])}</td>' for x in s)
-        rows.append(f"<tr><th scope=\"row\">{lab}</th>{cells}</tr>")
     m = P["annual_months_paid"]
-    rows.append(f'<tr class="group"><th scope="rowgroup" colspan="{len(s)+1}">Tahunan / karyawan — {P["annual_rule"].lower()}</th></tr>')
+    rows = []
+    rows.append(f'<tr class="group bln"><th scope="rowgroup" colspan="{len(s)+1}">Harga bulanan / karyawan</th></tr>')
+    for i, lab in enumerate(P["tier_labels"]):
+        cells = "".join(f'<td>{rupiah(x["monthly"][i])}<small>per bulan</small></td>' for x in s)
+        rows.append(f'<tr class="bln"><th scope="row">{lab}</th>{cells}</tr>')
+    rows.append(f'<tr class="group thn"><th scope="rowgroup" colspan="{len(s)+1}">Harga tahunan / karyawan — {P["annual_rule"].lower()}</th></tr>')
     for i, lab in enumerate(P["tier_labels"]):
         cells = "".join(
             f'<td>{rupiah(x["monthly"][i]*m)}<small>setara {rupiah(x["monthly"][i]*m/12)}/bln</small></td>' for x in s)
-        rows.append(f"<tr><th scope=\"row\">{lab}</th>{cells}</tr>")
+        rows.append(f'<tr class="thn"><th scope="row">{lab}</th>{cells}</tr>')
     rows.append(f'<tr class="group"><th scope="rowgroup" colspan="{len(s)+1}">Fitur</th></tr>')
     for f in P["features"]:
         cells = "".join(f"<td>{html.escape(c)}</td>" for c in f[1:])
         rows.append(f"<tr><th scope=\"row\">{html.escape(f[0])}</th>{cells}</tr>")
-    return (f'<div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody></table></div><p class="note">{P["note"]}</p>')
+    return (f'<div class="periode">{periode_switch(P)}<div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table></div></div><p class="note">{P["note"]}</p>')
 
 
 def pricing_cards(S, P):
+    m = P["annual_months_paid"]
     cards = []
     for x in P["schemes"]:
         lo, hi = min(x["monthly"]), max(x["monthly"])
         feat = ' featured' if x.get("featured") else ''
         badge = '<span class="badge">Disarankan</span>' if x.get("featured") else ''
+        btn = "btn-primary" if x.get("featured") else "btn-ghost"
+        label = S["copy"]["plan_button"].replace("{nama}", x["name"])
         cards.append(
             f'<div class="card plan{feat}">{badge}<h3>{x["name"]} · {x["label"]}</h3>'
-            f'<p class="price">{rupiah(hi)}<span>/karyawan/bln</span></p>'
-            f'<p class="price-sub">turun sampai {rupiah(lo)} untuk 100+ karyawan</p>'
+            f'<div class="bln"><p class="price">{rupiah(hi)}<span>/karyawan/bln</span></p>'
+            f'<p class="price-sub">turun sampai {rupiah(lo)} untuk 100+ karyawan</p></div>'
+            f'<div class="thn"><p class="price">{rupiah(hi*m/12)}<span>/karyawan/bln, dibayar tahunan</span></p>'
+            f'<p class="price-sub">{rupiah(hi*m)}/karyawan/tahun · {P["annual_rule"].lower()}</p></div>'
             f'<p>{html.escape(x["for"])}</p>'
-            f'<a class="btn {"btn-primary" if x.get("featured") else "btn-ghost"} btn-block" href="{checkout_link(S, x["id"])}" rel="nofollow">'
-            f'{S["copy"]["plan_button"].replace("{nama}", x["name"])}</a>'
-            f'<p class="annual"><a href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">Bayar tahunan</a> — {P["annual_rule"].lower()}</p></div>')
-    return f'<div class="plans" id="pilih-skema">{"".join(cards)}</div><p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p>'
+            f'<a class="btn {btn} btn-block bln" href="{checkout_link(S, x["id"])}" rel="nofollow">{label}</a>'
+            f'<a class="btn {btn} btn-block thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{label} · Tahunan</a></div>')
+    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<div class="plans">{"".join(cards)}</div></div>'
+            f'<p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p>')
 
 
 def addon_table(P):
