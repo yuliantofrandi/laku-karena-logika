@@ -8,7 +8,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 |---|---|---|---|
 | `/` | — | Sales page (AIDA+PAS), primary = brand | semua |
 | `/harga` | — | Tabel harga + add-on + risk reversal | `tanpa_risiko` |
-| `/whitelabel` | — | Copy global whitelabel (wajib di semua produk), CTA konsultasi WA | — |
+| `/white-label` | — | Copy global whitelabel (wajib di semua produk), CTA konsultasi WA | — |
 | `/aplikasi-monitoring-karyawan` | 1 | Landing Ads + SEO | bukti sosial, testimoni, risk reversal |
 | `/aplikasi-time-tracking` | 1 | Landing Ads + SEO (Skema 3, agensi) | bukti sosial, testimoni, risk reversal |
 | `/aplikasi-kerja-remote` | 2 | SEO + Ads kecil; definisi WFA/WFH/hybrid | CTA |
@@ -25,6 +25,8 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Navigasi:** "menu Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid mending dijadikan 1 menu group dengan submenu". Hasilnya: Solusi ▾ · Harga · Langganan.
 - **Tombol WA melayang:** "di bagian bawah selalu tambahkan CTA untuk klik ke WA marketing … baik di desktop/mobile", dengan contoh gambar tombol "Hubungi Kami !! / Konsultasi 100% Gratis". Koreksi lanjutan: "warnanya sesuaikan dengan design system" dan "di mobile cukup tombol WA saja, jangan mengganggu layar HP". Versi pertama memakai warna indigo dari gambar dan bar bawah berisi Langganan + WA, dan keduanya dikoreksi. Lalu: "di mobile tulisan Konsultasi 100% Gratis jangan dihilangkan" dan "button-nya minimalis saja", lalu "padding-nya lebih besar sehingga tulisannya lebih kecil".
 - **Whitelabel:** "selalu tambahkan menu Whitelabel, software SaaS yang saya buat selalu bisa dibeli dengan merek sendiri; buatkan copywriting global agar bisa dipakai di produk manapun", karena skill ini dipakai untuk banyak landing page produk SaaS/GaaS.
+- **Nama menu:** user bertanya apakah "Whitelabel" tepat. Rekomendasi yang disetujui: **"White Label"** (ejaan baku dua kata, istilah yang dicari calon mitra), slug `/white-label`.
+- **Layout:** "cek layout bagian kanan kiri semua page, terlihat tidak rapi". Penyebabnya: hero di kolom 1120px, isi di kolom 760px. Diperbaiki menjadi satu kolom 920px untuk semua bagian.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.

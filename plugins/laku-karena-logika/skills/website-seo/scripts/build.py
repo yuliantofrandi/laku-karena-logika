@@ -143,7 +143,7 @@ def risk_reversal(S, P):
 def social_proof(S, SP):
     m = "".join(f'<div class="metric"><strong>{html.escape(x["value"])}</strong><span>{html.escape(x["label"])}</span></div>' for x in SP["metrics"])
     l = "".join(f'<li>{html.escape(x["name"])}</li>' for x in SP["logos"])
-    return (f'<section class="proof wide" aria-label="Bukti sosial"><div class="metrics">{m}</div>'
+    return (f'<section class="proof" aria-label="Bukti sosial"><div class="metrics">{m}</div>'
             f'<p class="proof-cap">{S["copy"]["proof_caption"]}</p><ul class="logos">{l}</ul></section>')
 
 
@@ -154,7 +154,7 @@ def testimonials(SP):
         out.append(f'<figure class="card quote"><div class="stars" aria-label="Rating {t["rating"]} dari 5">{stars}</div>'
                    f'<blockquote><p>{html.escape(t["quote"])}</p></blockquote>'
                    f'<figcaption><strong>{html.escape(t["name"])}</strong> · {html.escape(t["role"])}, {html.escape(t["company"])}</figcaption></figure>')
-    return f'<div class="quotes wide">{"".join(out)}</div>' 
+    return f'<div class="quotes">{"".join(out)}</div>' 
 
 
 def checkout_link(S, skema=None, periode="bulanan"):
@@ -186,7 +186,7 @@ def wa_link(S, text=None):
     return "#kontak"
 
 
-# ---------- whitelabel (wajib di setiap produk) ----------
+# ---------- White Label (wajib di setiap produk; kunci config tetap 'whitelabel') ----------
 
 def fill_brand(S, txt):
     return txt.replace("{{brand}}", S["brand"]).replace("{{deskripsi}}", S["description"])
@@ -397,10 +397,10 @@ def main():
     slugs = {p["slug"] for p in pages}
 
     # aturan tetap: setiap produk bisa dibeli whitelabel -> halaman + menu utama wajib ada
-    if "/whitelabel" not in slugs:
-        err("/whitelabel", "halaman whitelabel wajib ada di site.json extra_pages (salin dari template skill)")
-    if not any(isinstance(it, list) and it[0] == "/whitelabel" for it in S["nav"]):
-        err("/whitelabel", "menu 'Whitelabel' wajib ada di menu utama (site.json nav)")
+    if "/white-label" not in slugs:
+        err("/white-label", "halaman White Label wajib ada di site.json extra_pages (salin dari template skill)")
+    if not any(isinstance(it, list) and it[0] == "/white-label" for it in S["nav"]):
+        err("/white-label", "menu 'White Label' wajib ada di menu utama (site.json nav)")
 
     for key in ("title", "meta", "h1"):
         seen = {}

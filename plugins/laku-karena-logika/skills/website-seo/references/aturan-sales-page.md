@@ -40,17 +40,17 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 
 Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `wa_title`, `wa_subtitle`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
 
-## Halaman Whitelabel (wajib di setiap produk)
+## Halaman White Label (wajib di setiap produk)
 
-Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/whitelabel` memakai **copy global** (`assets/starter/content/whitelabel.html`), jadi tidak ditulis ulang per produk. Bagian khusus produk masuk lewat token.
+Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-label` memakai **copy global** (`assets/starter/content/white-label.html`), jadi tidak ditulis ulang per produk. Bagian khusus produk masuk lewat token.
 
 | Blok | Isi |
 |---|---|
-| Hero | H1 memuat "Whitelabel" + hasil: jual software dengan merek sendiri tanpa membangun dari nol. CTA `Minta Penawaran Whitelabel` (WA, teks otomatis menyebut brand) + `Lihat Cara Kerjanya` |
+| Hero | H1 memuat "White Label" + hasil: jual software dengan merek sendiri tanpa membangun dari nol. CTA `Minta Penawaran White Label` (WA, teks otomatis menyebut brand) + `Lihat Cara Kerjanya` |
 | Paragraf entitas | "Program whitelabel <Brand> …" + `{{deskripsi_kecil}}` |
 | Untuk siapa | Konsultan & agensi · software house & integrator · reseller & distributor · grup & asosiasi |
 | Agitasi | Membangun sendiri: waktu, biaya tetap, pemeliharaan tanpa akhir, risiko produk. **Tanpa angka karangan** |
-| Perbandingan | Tabel "Whitelabel vs membangun sendiri" (perbandingan metode, aman) |
+| Perbandingan | Tabel "White label vs membangun sendiri" (perbandingan metode, aman) |
 | Yang dijual | `{{daftar_solusi}}` dari menu group Solusi + link ke harga |
 | Kustomisasi / ditangani | `{{wl_kustomisasi}}`, `{{wl_ditangani}}` dari `site.json → whitelabel` (dikonfirmasi per produk) |
 | Cara kerja | Konsultasi → Penawaran & kesepakatan → Penyiapan brand → Rilis ke klien |
@@ -60,9 +60,15 @@ Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/whitelab
 
 Larangan: tidak menyebut harga, minimum lisensi, bagi hasil, atau persentase penghematan yang belum diputuskan user. Halaman ini sengaja tidak memakai `{{bukti_sosial}}`/`{{testimoni}}` sampai ada mitra whitelabel asli.
 
+## Layout: satu kolom, tepi kiri-kanan segaris
+
+- Header, hero (breadcrumb, H1, lead), isi artikel, dan footer memakai **satu kolom yang sama** (`.wrap`, `--wrap: 920px`, padding 20px). Jangan memberi hero/header kolom lebar dan isi kolom sempit: tepi kiri judul dan isi jadi tidak segaris, dan user menilainya "tidak rapi".
+- Tidak ada blok yang "melebar" keluar kolom. Kartu, tabel, testimoni, dan CTA mengikuti lebar kolom.
+- Verifikasi di Langkah 4 dengan mengukur tepi kiri-kanan semua halaman di 1440/1280/768/375 px (lihat SKILL.md).
+
 ## Navigasi
 
-- Menu utama ringkas: **satu menu group** untuk halaman solusi/landing (mis. "Solusi ▾" → Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid, masing-masing dengan deskripsi 1 baris), lalu **Whitelabel** (wajib), lalu **Harga**, lalu tombol CTA. Halaman panduan/SEO cukup di footer.
+- Menu utama ringkas: **satu menu group** untuk halaman solusi/landing (mis. "Solusi ▾" → Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid, masing-masing dengan deskripsi 1 baris), lalu **White Label** (wajib), lalu **Harga**, lalu tombol CTA. Halaman panduan/SEO cukup di footer.
 - Dropdown memakai `<details>`/`<summary>` (tanpa JavaScript). Panel rata kanan agar tidak terpotong di layar sempit; di mobile tampil inline di dalam menu hamburger. Group diberi tanda aktif saat salah satu submenunya sedang dibuka.
 
 ## Konversi teknis
