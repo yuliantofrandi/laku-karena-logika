@@ -192,14 +192,27 @@ def social_proof(S, SP):
             f'<p class="proof-cap">{S["copy"]["proof_caption"]}</p><ul class="logos">{l}</ul></section>')
 
 
+def initials(name):
+    parts = [w for w in re.split(r"[\s.]+", name) if w]
+    return "".join(w[0] for w in parts[:2]).upper()
+
+
 def testimonials(SP):
+    """Kartu testimoni dengan foto pemberi testimoni. Foto harus orang asli dengan izin;
+    sebelum ada, tampil avatar inisial (bukan foto stok/wajah AI)."""
     out = []
     for t in SP["testimonials"]:
         stars = "★" * t["rating"] + "☆" * (5 - t["rating"])
+        if t.get("foto"):
+            avatar = (f'<img class="avatar" src="/{t["foto"]}" width="48" height="48" loading="lazy" decoding="async" '
+                      f'alt="Foto {html.escape(t["name"])}">')
+        else:
+            avatar = f'<span class="avatar" aria-hidden="true">{html.escape(initials(t["name"]))}</span>'
         out.append(f'<figure class="card quote"><div class="stars" aria-label="Rating {t["rating"]} dari 5">{stars}</div>'
                    f'<blockquote><p>{html.escape(t["quote"])}</p></blockquote>'
-                   f'<figcaption><strong>{html.escape(t["name"])}</strong> · {html.escape(t["role"])}, {html.escape(t["company"])}</figcaption></figure>')
-    return f'<div class="quotes">{"".join(out)}</div>' 
+                   f'<figcaption>{avatar}<span class="who"><strong>{html.escape(t["name"])}</strong>'
+                   f'<span>{html.escape(t["role"])}, {html.escape(t["company"])}</span></span></figcaption></figure>')
+    return f'<div class="quotes">{"".join(out)}</div>'
 
 
 def checkout_link(S, skema=None, periode="bulanan"):
@@ -663,6 +676,13 @@ def daftar_ilustrasi_md(S, pages, IL):
     for g in sorted(IL["gambar"], key=lambda g: (order.get(g["halaman"], 99), g["section"] != "Hero")):
         status = "placeholder SVG" if g.get("auto", True) else "gambar asli"
         rows.append(f'| `{g["halaman"]}` | {g["section"]} | `{g["id"]}` | {status} | {g.get("w", ILUS.W)}×{g.get("h", ILUS.H)} (16:10) | {g["brief"]} |')
+    rows += ["", "## Foto testimoni", "",
+             "Foto **asli** pemberi testimoni, dengan izin tertulis. Persegi ±160×160 px, wajah jelas, WebP ≤ 40 KB. "
+             "Jangan foto stok/wajah AI. Sebelum ada: avatar inisial.", "",
+             "| Nama | Jabatan & perusahaan | Status |", "|---|---|---|"]
+    for t in SOCIAL.get("testimonials", []):
+        st = "foto asli" if t.get("foto") else ("avatar inisial · testimoni CONTOH (ganti dengan pelanggan asli)" if t.get("contoh") else "avatar inisial · perlu foto")
+        rows.append(f'| {t["name"]} | {t["role"]}, {t["company"]} | {st} |')
     return "\n".join(rows) + "\n"
 
 
@@ -751,6 +771,15 @@ def main():
             warn(p["slug"], "belum direview ahli hukum → noindex & tidak masuk sitemap")
         built.append((p, raw, indexable))
 
+    for t in SP["testimonials"]:
+        if t.get("foto"):
+            fp = ROOT / t["foto"]
+            if not fp.exists():
+                errors.append(f"data/social-proof.json: foto {t['foto']} tidak ada")
+            elif fp.suffix.lower() not in (".webp", ".avif") or fp.stat().st_size > 40 * 1024:
+                errors.append(f"data/social-proof.json: foto {t['foto']} harus WebP/AVIF ≤ 40 KB")
+        elif not t.get("contoh"):
+            warnings.append(f"data/social-proof.json: testimoni asli '{t['name']}' belum ada fotonya (sementara avatar inisial)")
     n_contoh = sum(1 for k in ("metrics", "logos", "testimonials") for x in SP[k] if x.get("contoh"))
     if n_contoh:
         msg = f"data/social-proof.json: {n_contoh} entri masih data CONTOH"

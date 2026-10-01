@@ -27,6 +27,11 @@ Aturan tetap dari user: **setiap halaman selalu diberi gambar ilustrasi**, baik 
 - **og:image** 1200×630 PNG/JPG (SVG tidak didukung WhatsApp/sosmed): `python3 tools/og_image.py` membuatnya dari brand, tagline, dan deskripsi (macOS: qlmanage + sips). Isi `site.json → og_image`. Meta `og:image` + `twitter:card` muncul saat `site_url` terisi.
 - Jangan memasukkan logo merek pihak lain atau logo lembaga pemerintah di ilustrasi.
 
+## Foto testimoni
+- Setiap testimoni menampilkan foto bulat 48px. Sumbernya **hanya** foto asli pemberi testimoni dengan izin tertulis (persegi ±160×160, WebP/AVIF ≤40 KB, di `static/testimoni/`, diisi di `data/social-proof.json → foto`).
+- Sebelum ada foto asli, tampil avatar inisial (gradasi brand). Jangan memakai foto stok atau wajah buatan AI: itu membuat testimoni terlihat asli padahal tidak.
+- `build.py` menambahkan tabel "Foto testimoni" ke `docs/daftar-ilustrasi.md`, memberi ERROR bila file foto tidak ada atau bukan WebP/AVIF ≤40 KB, dan WARNING bila testimoni asli belum berfoto.
+
 ## Mengganti dengan gambar asli user
 
 1. Terima gambar, lalu kompres/konversi ke WebP atau AVIF dengan lebar ≤1600 px dan rasio sesuai brief (default 16:10). macOS tidak punya encoder WebP bawaan: pakai `cwebp` (`brew install webp`, minta izin user dulu) atau minta user mengekspor WebP dari tool desainnya.
