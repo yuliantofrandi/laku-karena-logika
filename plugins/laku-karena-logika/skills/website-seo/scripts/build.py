@@ -402,7 +402,7 @@ VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "met
 # blok visual: selalu terlihat dan dibuat selebar kontainer
 WIDE = ("grid", "table-wrap", "periode", "plans", "quotes", "proof", "cta", "guarantee")
 # blok yang tetap terlihat di kolom teks
-KEEP = ("callout", "agitate", "checks", "faq", "note")
+KEEP = ("callout", "agitate", "checks", "faq", "note", "stat")
 
 
 def top_blocks(src):
@@ -457,9 +457,9 @@ def render_section(blocks, idx, S=None):
             scan.append(b)
     band = "band" if idx % 2 else "band alt"   # section pertama setelah band intro (putih) berlatar abu → batas terlihat
     # keseimbangan kolom: teks pendek di samping gambar → kartu langkah/fitur pertama ikut ke kolom teks
-    if fig and not scan:
+    if fig and not scan:   # kartu (grid) atau tabel perbandingan ikut ke kolom teks, sejajar dengan gambar
         for i, b in enumerate(wide):
-            if "grid" in kind(b)[1]:
+            if "grid" in kind(b)[1] or ("table-wrap" in kind(b)[1] and len(strip_tags(b)) <= 460):   # tabel panjang tetap lebar
                 scan.append(wide.pop(i)); break
     # daftar panjang di panel → dua kolom supaya panel tidak terlalu tinggi
     scan = [re.sub(r'^<(ul|ol)( class="checks")?', lambda m: f'<{m.group(1)} class="{"checks " if m.group(2) else ""}two-col"', b, count=1)
@@ -499,7 +499,19 @@ def render_section(blocks, idx, S=None):
         row = f'<div class="faq-center">{h2}{intro}{nav}{"".join(body_parts)}</div>'
     elif scan:
         flip = " flip" if idx % 2 else ""
-        row = f'<div class="split panel-row{flip}"><div class="col-text">{lead}</div><div class="col-panel"><div class="panel">{"".join(scan)}</div></div></div>'
+        # angka besar (div.stat) mengisi kolom teks supaya tidak menyisakan ruang kosong di samping panel
+        stats = [b for b in scan if "stat" in kind(b)[1]]
+        scan = [b for b in scan if b not in stats]
+        lead += "".join(stats)
+        # isi panel jauh lebih panjang dari judul+pembuka → kolom teks akan menyisakan ruang kosong;
+        # susun judul di atas dan panel selebar kontainer (keluhan user: "atas bawahnya ada blank space")
+        lead_len = len(strip_tags(h2)) * 1.8 + sum(len(strip_tags(p)) for p in paras) + 160 * len(stats)
+        if len(strip_tags("".join(scan))) > 2.3 * lead_len:
+            scan = [re.sub(r'^<(ul|ol)( class="checks")?(?! class="[^"]*two-col)', lambda m: f'<{m.group(1)} class="{"checks " if m.group(2) else ""}two-col"', b, count=1)
+                    if kind(b)[0] in ("ul", "ol") and b.count("<li") > 2 and "two-col" not in b else b for b in scan]
+            row = f'<div class="split stack"><div class="col-text">{lead}</div></div><div class="panel panel-wide">{"".join(scan)}</div>'
+        else:
+            row = f'<div class="split panel-row{flip}"><div class="col-text">{lead}</div><div class="col-panel"><div class="panel">{"".join(scan)}</div></div></div>'
     else:
         row = f'<div class="split stack"><div class="col-text">{lead}</div></div>'
     return f'<section class="{band}"><div class="wrap">{row}{"".join(wide)}</div></section>'
@@ -607,7 +619,7 @@ def render(S, page, body, P, all_pages, indexable):
 # ---------- cek aturan ----------
 
 # standar minimum UI per section (disetujui user): H2 → 1–2 kalimat → minimal satu elemen visual/yang bisa dipindai
-VISUAL_CLASSES = {"grid", "table-wrap", "periode", "plans", "quotes", "proof", "callout", "agitate", "checks", "faq", "cta"}
+VISUAL_CLASSES = {"stat", "grid", "table-wrap", "periode", "plans", "quotes", "proof", "callout", "agitate", "checks", "faq", "cta"}
 
 
 def check_sections(sid, body):
