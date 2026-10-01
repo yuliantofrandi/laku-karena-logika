@@ -25,7 +25,7 @@ img,svg{max-width:100%}
 .nav-actions{justify-self:end;display:flex;align-items:center;gap:10px}
 .nav-actions .btn{white-space:nowrap}
 .brand{display:flex;line-height:0}
-.logo{height:28px;width:auto}
+.logo{height:26px;width:auto;display:block}
 .nav{display:flex;align-items:center;gap:22px}
 .nav a{color:var(--ink-2);text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
 .nav a[aria-current=page]{color:var(--purple)}

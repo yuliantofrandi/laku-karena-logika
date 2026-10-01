@@ -281,9 +281,18 @@ def cta_whitelabel(S):
 
 
 def logo(S):
-    """Logo inline dari static/logo.svg (wajib punya width & height agar tidak CLS)."""
-    svg = (ROOT / S.get("logo", "static/logo.svg")).read_text(encoding="utf-8").strip()
-    return re.sub(r'\s*xmlns="[^"]+"', "", svg, count=1)
+    """Logo: SVG di-inline; PNG/WebP (logo asli brand) dipasang sebagai <img> dengan width/height dari file
+    (tinggi tampil = site.json logo_tinggi, default 26px) agar tidak CLS."""
+    path = S.get("logo", "static/logo.svg")
+    f = ROOT / path
+    if f.suffix.lower() == ".svg":
+        return re.sub(r'\s*xmlns="[^"]+"', "", f.read_text(encoding="utf-8").strip(), count=1)
+    import struct
+    head = f.read_bytes()[:32]
+    pw, ph = struct.unpack(">II", head[16:24]) if head[:8] == b"\x89PNG\r\n\x1a\n" else (S.get("logo_w", 200), S.get("logo_h", 26))
+    th = S.get("logo_tinggi", 26)
+    tw = round(pw * th / ph)
+    return f'<img class="logo" src="{versi("/" + path)}" width="{tw}" height="{th}" alt="{html.escape(S["brand"])}" decoding="async">'
 
 
 # ---------- gambar & ilustrasi ----------

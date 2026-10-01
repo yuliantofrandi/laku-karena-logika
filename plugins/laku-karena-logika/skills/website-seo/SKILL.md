@@ -140,3 +140,6 @@ Singkat dan to the point. Sampaikan:
 - Data yang masih contoh, dan bahwa build publish akan menolaknya.
 - Yang wajib sebelum publish: domain, link checkout, link Sign In, nomor WA marketing, review hukum, data asli, dan konfirmasi bahwa semua fitur yang disebut sudah tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
 - Bagian permintaan user yang tidak diikuti dan alasannya (mis. "Terbaik" di title, rating dari data karangan, kuota palsu).
+
+## Logo asli brand
+Bila user memberi logo asli (PNG transparan, sering berisi tagline): unduh versi resolusi penuh, cari baris transparan pemisah dengan `scripts/baris_transparan.swift`, potong wordmark tanpa tagline dengan `scripts/potong_logo.swift` (tinggi keluar = 3× tinggi tampil, mis. 84px untuk 26–28px), simpan di `static/`, lalu isi `site.json` → `"logo": "static/<file>.png"`, `"logo_tinggi": 26`. `build.py` memasangnya sebagai `<img>` ber-width/height (anti-CLS) dengan `?v=hash`; SVG tetap didukung (di-inline). Kasus Timebase: user meminta logo dari situs resminya "tapi tanpa tagline".
