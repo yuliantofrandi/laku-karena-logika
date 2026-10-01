@@ -6,7 +6,7 @@ Tujuan: konversi tinggi **tanpa** klaim yang tidak bisa dipertanggungjawabkan. F
 
 | # | Blok | Tahap | Isi wajib |
 |---|---|---|---|
-| 1 | Hero | Attention | **Layout hero tetap (lihat "Hero" di bawah).** H1 = hasil terbesar untuk klien, bukan nama/fitur produk, dan sebaiknya ≤55 karakter (lebih panjang otomatis diperkecil) |
+| 1 | Hero | Attention | **Layout hero tetap (lihat "Hero" di bawah).** H1 = hasil terbesar untuk klien, bukan nama/fitur produk. **Singkat, satu ide, ≤55 karakter, tanpa anak kalimat setelah tanda pisah** (contoh yang disetujui user: "Tahu Pasti Apa yang Dikerjakan Tim Remote Anda"). Keberatan dijawab di subjudul atau section lain |
 | 2 | Paragraf entitas | — | "<Brand> adalah <category BKB> untuk <segmen>…" untuk Google & mesin AI. Primary = nama brand |
 | 3 | `{{bukti_sosial}}` | Interest | Metrik + logo/industri klien |
 | 4 | Problem | Interest (P) | Situasi pembeli dengan bahasanya sendiri (BKB Persona 1 Pain Points) |
