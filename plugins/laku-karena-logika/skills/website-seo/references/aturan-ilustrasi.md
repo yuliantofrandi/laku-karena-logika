@@ -64,3 +64,8 @@ User: "buatkan ilustrasi yang ada orangnya" (section privasi karyawan). Komponen
 ## Cache-busting aset
 Semua URL gambar, poster, dan video diberi `?v=<hash 8 karakter isi file>` (`versi()` di build.py). Tanpa ini, gambar yang diganti tetap tampil versi lama dari cache browser/CDN (kasus nyata saat ilustrasi diganti).
 
+## Motion graphic ringan di SVG (`"animasi": true`)
+User: "buat jadi motion graphic" (ilustrasi orang). Daripada video, animasi ditulis sebagai **CSS di dalam SVG** (tetap jalan lewat `<img>`, ±6,6 KB, tanpa JS, tanpa beban PageSpeed). Komponen `orang` mendukung `data.animasi: true`: kartu mengapung, kepala bergerak halus, tangan mengetik, daun bergoyang, garis putus-putus mengalir laptop → kartu, titik berdenyut, uap cangkir, poin kartu muncul satu per satu, tombol utama "ditekan". `@media (prefers-reduced-motion: reduce)` menghentikan semua animasi.
+- `transform-origin`/`transform-box` hanya untuk elemen beranimasi (`[class^="a-"]`); jangan dipasang global karena merusak elemen ber-atribut `transform="rotate(...)"`.
+- Cek di browser dengan URL ber-`?v=` (atau query lain) supaya tidak tertipu cache.
+

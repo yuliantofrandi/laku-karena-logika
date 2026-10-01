@@ -99,7 +99,8 @@
             "Minta hapus data",
             "Lihat data saya"
           ]
-        }
+        },
+        "animasi": true
       }
     },
     {

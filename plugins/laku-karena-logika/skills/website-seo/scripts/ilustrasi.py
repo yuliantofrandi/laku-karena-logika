@@ -392,7 +392,7 @@ def tiers(d):
 
 def orang(d):
     """Adegan orang bekerja di meja (tampak depan, gaya flat tanpa wajah) + kartu UI melayang di kanan.
-    data: kulit, rambut (pendek|panjang|hijab), baju (p|k|o), kartu {icon,title,lines,buttons}."""
+    data: kulit, rambut (pendek|panjang|hijab), baju (p|k|o), kartu {icon,title,lines,buttons}, animasi (true = motion graphic CSS)."""
     kulit = {"terang": "#f3cfb1", "sedang": "#e3b08b", "gelap": "#c98d66"}.get(d.get("kulit", "sedang"), d.get("kulit", "#e3b08b"))
     baju = C[d.get("baju", "p")]
     hair = "#2b2230"
@@ -409,12 +409,13 @@ def orang(d):
     out.append(f'<path d="M166 352 Q168 258 250 244 Q332 258 334 352 Z" fill="{baju}"/>')
     out.append(f'<path d="M176 300 Q168 336 214 340" stroke="{baju}" stroke-width="26" fill="none" stroke-linecap="round"/>'
                f'<path d="M324 300 Q332 336 286 340" stroke="{baju}" stroke-width="26" fill="none" stroke-linecap="round"/>')
-    if style == "hijab":
-        kain = C["k"] if d.get("baju", "p") != "k" else C["p"]
-        out.append(f'<path d="M206 176 Q206 126 250 124 Q294 126 294 176 L304 262 Q250 286 196 262 Z" fill="{kain}"/>')
-    else:
+    kain = C["k"] if d.get("baju", "p") != "k" else C["p"]
+    if style != "hijab":
         out.append(rect(236, 214, 28, 40, kulit, 12) + f'<path d="M236 246 L250 262 L264 246" fill="#ffffff" opacity=".85"/>')
-    # kepala
+    # kepala (bergerak halus saat animasi)
+    out.append('<g class="a-kepala">')
+    if style == "hijab":
+        out.append(f'<path d="M206 176 Q206 126 250 124 Q294 126 294 176 L304 262 Q250 286 196 262 Z" fill="{kain}"/>')
     out.append(f'<ellipse cx="250" cy="182" rx="{30 if style == "hijab" else 34}" ry="{36 if style == "hijab" else 40}" fill="{kulit}"/>')
     fitur = "#00000033"   # garis wajah halus (mata terpejam + senyum), bukan wajah realistis
     out.append(f'<path d="M234 184 q6 5 12 0 M254 184 q6 5 12 0" stroke="{fitur}" stroke-width="2.6" fill="none" stroke-linecap="round"/>'
@@ -423,40 +424,73 @@ def orang(d):
     if style != "hijab":
         out.append(f'<circle cx="216" cy="186" r="7" fill="{kulit}"/><circle cx="284" cy="186" r="7" fill="{kulit}"/>')
         out.append(f'<path d="M214 182 Q208 134 250 132 Q292 134 286 182 Q280 156 250 154 Q222 154 214 182 Z" fill="{hair}"/>')
+    out.append('</g>')
     # laptop (tampak belakang) & meja
-    out.append(rect(186, 252, 128, 86, "#2b2534", 8) + f'<circle cx="250" cy="295" r="9" fill="url(#lg)"/>')
+    out.append(rect(186, 252, 128, 86, "#2b2534", 8) + f'<circle class="a-logo" cx="250" cy="295" r="9" fill="url(#lg)"/>')
     out.append(f'<defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{C["p"]}"/><stop offset="1" stop-color="{C["o"]}"/></linearGradient></defs>')
-    out.append(f'<circle cx="208" cy="340" r="9" fill="{kulit}"/><circle cx="292" cy="340" r="9" fill="{kulit}"/>')
+    out.append(f'<circle class="a-tangan1" cx="208" cy="340" r="9" fill="{kulit}"/><circle class="a-tangan2" cx="292" cy="340" r="9" fill="{kulit}"/>')
     out.append(rect(176, 336, 148, 7, "#4a4358", 3))
     out.append(rect(64, 342, 352, 14, "#ffffff", 7, f' stroke="{C["line"]}"'))
     out.append(rect(84, 356, 10, 92, "#d9cff3", 4) + rect(386, 356, 10, 92, "#d9cff3", 4))
     # tanaman & cangkir
-    out.append(f'<ellipse cx="112" cy="282" rx="11" ry="26" fill="{C["ok"]}" transform="rotate(-24 112 282)"/>'
+    out.append('<g class="a-daun">' + f'<ellipse cx="112" cy="282" rx="11" ry="26" fill="{C["ok"]}" transform="rotate(-24 112 282)"/>'
                f'<ellipse cx="134" cy="276" rx="11" ry="28" fill="#1fb86a" transform="rotate(18 134 276)"/>'
-               f'<ellipse cx="123" cy="270" rx="9" ry="26" fill="{C["ok"]}"/>')
+               f'<ellipse cx="123" cy="270" rx="9" ry="26" fill="{C["ok"]}"/></g>')
     out.append(rect(104, 300, 40, 42, C["o"], 8))
-    out.append(rect(340, 314, 28, 28, C["k"], 6) + f'<path d="M368 320 q12 0 12 9 q0 9 -12 9" stroke="{C["k"]}" stroke-width="4" fill="none"/>')
+    out.append(rect(340, 314, 28, 28, C["k"], 6) + f'<path d="M368 320 q12 0 12 9 q0 9 -12 9" stroke="{C["k"]}" stroke-width="4" fill="none"/>'
+               + "".join(f'<path class="a-uap a-uap{i}" d="M{348 + i * 8} 306 q-5 -8 0 -16 q5 -8 0 -16" stroke="{C["mut"]}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0"/>' for i in range(2)))
     # garis penghubung laptop → kartu
-    out.append(f'<path d="M318 262 C 356 238, 376 216, 412 206" stroke="{C["p"]}" stroke-width="2.5" stroke-dasharray="6 6" fill="none" opacity=".6"/>'
-               f'<circle cx="318" cy="262" r="5" fill="{C["p"]}"/>')
+    out.append(f'<path d="M318 262 C 356 238, 376 216, 412 206" stroke="{C["p"]}" stroke-width="2.5" stroke-dasharray="6 6" fill="none" opacity=".6" class="a-alir"/>'
+               f'<circle class="a-denyut" cx="318" cy="262" r="5" fill="{C["p"]}"/>')
     # kartu UI
     k = d["kartu"]
     x0, y0, w = 418, 104, 336
-    out.append(rect(x0 + 6, y0 + 10, w, 300, "#1b162614", 18) + rect(x0, y0, w, 300, "#fff", 16, f' stroke="{C["line"]}"'))
+    out.append('<g class="a-kartu">' + rect(x0 + 6, y0 + 10, w, 300, "#1b162614", 18) + rect(x0, y0, w, 300, "#fff", 16, f' stroke="{C["line"]}"'))
     out.append(icon(k.get("icon", "eye"), x0 + 22, y0 + 24, 1.25, C["p"]) + t(x0 + 60, y0 + 46, k["title"], 16, C["ink"], 800))
     y = y0 + 90
-    for ln in k["lines"]:
-        out.append(f'<circle cx="{x0 + 28}" cy="{y - 5}" r="4" fill="{C["p"]}"/>' + t(x0 + 42, y, ln, 13.5, C["ink"]))
+    for i, ln in enumerate(k["lines"]):
+        out.append(f'<g class="a-baris a-baris{i}"><circle cx="{x0 + 28}" cy="{y - 5}" r="4" fill="{C["p"]}"/>' + t(x0 + 42, y, ln, 13.5, C["ink"]) + '</g>')
         y += 30
     bx = x0 + w - 22
     for i, b in enumerate(reversed(k.get("buttons", []))):
         bw = 22 + 7.4 * len(b)
         bx -= bw
         primary = i == 0
-        out.append(rect(round(bx, 1), y0 + 242, round(bw, 1), 36, C["p"] if primary else "#fff", 10, "" if primary else f' stroke="{C["line"]}"'))
-        out.append(t(round(bx + bw / 2, 1), y0 + 265, b, 13, "#fff" if primary else C["ink"], 700, "middle"))
+        out.append((f'<g class="a-tombol">' if primary else "") + rect(round(bx, 1), y0 + 242, round(bw, 1), 36, C["p"] if primary else "#fff", 10, "" if primary else f' stroke="{C["line"]}"'))
+        out.append(t(round(bx + bw / 2, 1), y0 + 265, b, 13, "#fff" if primary else C["ink"], 700, "middle") + ("</g>" if primary else ""))
         bx -= 10
+    out.append("</g>")
+    if d.get("animasi"):
+        out.insert(0, ANIMASI_ORANG)
     return "".join(out)
+
+
+# Motion graphic ringan di dalam SVG (CSS, jalan juga lewat <img>); diam bila pengunjung memilih "kurangi animasi".
+ANIMASI_ORANG = """<style>
+[class^="a-"]{transform-box:fill-box;transform-origin:center}
+.a-kartu{animation:apung 5s ease-in-out infinite}
+.a-kepala{transform-origin:50% 100%;animation:angguk 6s ease-in-out infinite}
+.a-tangan1{animation:ketik .5s ease-in-out infinite alternate}
+.a-tangan2{animation:ketik .5s ease-in-out .25s infinite alternate}
+.a-daun{transform-origin:50% 100%;animation:goyang 4s ease-in-out infinite}
+.a-alir{animation:alir 1.2s linear infinite}
+.a-denyut{animation:denyut 2s ease-in-out infinite}
+.a-logo{animation:denyut 3s ease-in-out infinite}
+.a-uap{animation:uap 3s ease-out infinite}.a-uap1{animation-delay:1.5s}
+.a-baris{animation:muncul 8s ease-out infinite}
+.a-baris1{animation-delay:.4s}.a-baris2{animation-delay:.8s}.a-baris3{animation-delay:1.2s}
+.a-tombol{animation:tekan 8s ease-in-out infinite}
+@keyframes apung{50%{transform:translateY(-8px)}}
+@keyframes angguk{0%,100%{transform:rotate(0)}30%{transform:rotate(-2deg)}60%{transform:rotate(1.5deg)}}
+@keyframes ketik{to{transform:translateY(-4px)}}
+@keyframes goyang{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes alir{to{stroke-dashoffset:-24}}
+@keyframes denyut{50%{transform:scale(1.35);opacity:.7}}
+@keyframes uap{0%{opacity:0;transform:translateY(6px)}30%{opacity:.6}100%{opacity:0;transform:translateY(-14px)}}
+@keyframes muncul{0%,4%{opacity:0;transform:translateX(-10px)}12%,92%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes tekan{0%,55%,70%,100%{transform:scale(1)}62%{transform:scale(.94)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.a-uap{opacity:0}}
+</style>"""
 
 
 JENIS = {"timeline": timeline, "bars": bars, "grouped": grouped, "gallery": gallery, "tasklist": tasklist,
