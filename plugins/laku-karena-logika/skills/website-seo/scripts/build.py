@@ -173,10 +173,9 @@ WA_ICON = ('<svg class="wa-icon" width="44" height="44" viewBox="0 0 32 32" aria
 
 
 def float_bar(S):
-    """Bar bawah di semua halaman: tombol WA marketing (desktop & mobile) + tombol langganan (mobile)."""
+    """Tombol WA marketing melayang di semua halaman. Mobile: versi ringkas (ikon + judul), tanpa tombol lain."""
     C = S["copy"]
     return (f'<div class="float-bar">'
-            f'<a class="sticky-cta btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["nav_cta"]}</a>'
             f'<a class="wa-float" href="{wa_link(S)}" target="_blank" rel="nofollow noopener" aria-label="{C["wa_title"]} — WhatsApp">'
             f'{WA_ICON}<span><strong>{C["wa_title"]}</strong><small>{C["wa_subtitle"]}</small></span></a></div>')
 

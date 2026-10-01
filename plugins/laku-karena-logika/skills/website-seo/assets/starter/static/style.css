@@ -3,6 +3,7 @@
   --grad:linear-gradient(90deg,var(--purple),var(--pink) 52%,var(--orange));
   --ink:#1b1626; --ink-2:#4a4458; --muted:#6f6880; --line:#e9e5f0;
   --bg:#ffffff; --bg-soft:#f8f6fc; --bg-tint:#f3edff;
+  --surface-dark:linear-gradient(135deg,#1d1330,#2b1840);
   --radius:14px; --wrap:1120px; --prose:760px;
 }
 *{box-sizing:border-box}
@@ -127,7 +128,7 @@ details.faq[open] summary:after{content:"–"}
 details.faq p{margin:0 0 15px}
 
 /* cta */
-.cta{margin:56px 0 0;padding:30px;border-radius:20px;background:linear-gradient(135deg,#1d1330,#2b1840);color:#fff}
+.cta{margin:56px 0 0;padding:30px;border-radius:20px;background:var(--surface-dark);color:#fff}
 .cta h2{margin:0 0 8px;color:#fff;font-size:26px}
 .cta p{color:#d9d1ea;margin:0 0 20px}
 .cta .btn{margin:4px 10px 4px 0}
@@ -156,15 +157,14 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .cta ul.terms li:before{content:"✓  ";color:#7be3a6}
 .hero .lead .btn{margin:8px 8px 0 0}
 .agitate{border-left:4px solid var(--orange);padding:4px 0 4px 18px;margin:20px 0}
-/* bar bawah: tombol WA melayang (semua layar) + langganan (mobile) */
-.float-bar{position:fixed;right:20px;bottom:20px;z-index:30;display:flex;gap:10px;align-items:stretch}
-.sticky-cta{display:none}
-.wa-float{display:flex;align-items:center;gap:12px;padding:10px 18px 10px 12px;border-radius:16px;text-decoration:none;color:#fff!important;background:linear-gradient(180deg,#4b50a6,#3b3f8f);box-shadow:0 10px 28px -10px rgba(40,44,120,.75);transition:transform .15s,box-shadow .15s}
-.wa-float:hover{transform:translateY(-2px);box-shadow:0 14px 32px -10px rgba(40,44,120,.85)}
-.wa-float .wa-icon{flex:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.25))}
+/* tombol WA marketing melayang — warna dari design system (permukaan gelap brand + bingkai gradasi) */
+.float-bar{position:fixed;right:20px;bottom:20px;z-index:30}
+.wa-float{display:flex;align-items:center;gap:12px;padding:10px 20px 10px 12px;border-radius:16px;text-decoration:none;color:#fff!important;border:2px solid transparent;background:var(--surface-dark) padding-box,var(--grad) border-box;box-shadow:0 12px 30px -12px rgba(123,44,255,.6);transition:transform .15s,box-shadow .15s}
+.wa-float:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(232,58,174,.6)}
+.wa-float .wa-icon{flex:none}
 .wa-float span{display:flex;flex-direction:column;line-height:1.2}
-.wa-float strong{font-size:20px;font-weight:800;letter-spacing:-.01em}
-.wa-float small{font-size:14px;font-weight:700;opacity:.95}
+.wa-float strong{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.wa-float small{font-size:13px;font-weight:600;color:#d9d1ea}
 body{padding-bottom:96px}
 
 /* footer */
@@ -189,13 +189,12 @@ body{padding-bottom:96px}
   .site-footer .wrap{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .float-bar{left:10px;right:10px;bottom:10px}
-  .sticky-cta{display:flex;align-items:center;justify-content:center;flex:1;font-size:15px;padding:10px 12px}
-  .wa-float{flex:none;padding:8px 14px 8px 10px;gap:9px}
-  .wa-float .wa-icon{width:36px;height:36px}
-  .wa-float strong{font-size:16px}
-  .wa-float small{font-size:12px}
-  body{padding-bottom:84px}
+  .float-bar{right:12px;bottom:12px}
+  .wa-float{padding:6px 14px 6px 6px;gap:8px;border-radius:999px}
+  .wa-float .wa-icon{width:34px;height:34px}
+  .wa-float strong{font-size:14px}
+  .wa-float small{display:none}
+  body{padding-bottom:64px}
 }
 @media (max-width:520px){
   body{font-size:16px}

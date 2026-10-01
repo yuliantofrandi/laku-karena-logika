@@ -48,8 +48,8 @@ Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_pr
 ## Konversi teknis
 
 - CTA utama = link ke `checkout_url` (template `{skema}`, `{periode}`), `rel="nofollow"`. Kosong = ke `/harga#pilih-skema`.
-- **Tombol WA marketing melayang di bagian bawah SETIAP halaman, desktop & mobile** (aturan tetap user). Bentuknya: kotak membulat indigo (`#4b50a6 → #3b3f8f`), ikon WhatsApp hijau di kiri (SVG inline), judul tebal putih `copy.wa_title` ("Hubungi Kami !!"), dan subjudul `copy.wa_subtitle` ("Konsultasi 100% Gratis"). Link `wa.me/<whatsapp>?text=<whatsapp_text>`, `target="_blank" rel="nofollow noopener"`.
+- **Tombol WA marketing melayang di bagian bawah SETIAP halaman, desktop & mobile** (aturan tetap user). Bentuk dari contoh user, **warna dari design system produk** (bukan warna gambar contoh): token `--surface-dark` + bingkai `--grad` di `style.css`, ikon WhatsApp hijau di kiri (SVG inline, boleh tetap hijau agar mudah dikenali), judul tebal putih `copy.wa_title` ("Hubungi Kami !!"), dan subjudul `copy.wa_subtitle` ("Konsultasi 100% Gratis"). Link `wa.me/<whatsapp>?text=<whatsapp_text>`, `target="_blank" rel="nofollow noopener"`.
   - Desktop: pojok kanan bawah. `body` diberi `padding-bottom` agar footer tidak tertutup.
-  - Mobile (≤640px): satu bar bawah berisi tombol langganan (`copy.nav_cta`, mengisi sisa lebar) dan tombol WA versi ringkas, berdampingan dan tidak menumpuk.
+  - Mobile (≤640px): **hanya tombol WA**, versi ringkas: pill kecil di kanan bawah, ikon + judul tanpa subjudul (±176×50 px, <3% layar). Jangan tambahkan tombol lain di bar bawah, dan jangan dibuat selebar layar.
   - Tanpa widget/skrip chat pihak ketiga. WA dipakai untuk konsultasi, bukan pengganti checkout dan bukan "jadwalkan demo".
 - Konversi Google Ads dipasang pada **pembayaran berhasil** (klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.
