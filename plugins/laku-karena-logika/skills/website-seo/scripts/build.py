@@ -296,8 +296,11 @@ def figure(g, hero=False):
     w, h = g.get("w", ILUS.W), g.get("h", ILUS.H)
     load = 'loading="eager" fetchpriority="high"' if hero else 'loading="lazy"'
     cap = f'<figcaption>{html.escape(g["caption"])}</figcaption>' if g.get("caption") else ""
-    return (f'<figure class="ilus{" hero-img" if hero else ""}"><img src="{img_src(g)}" width="{w}" height="{h}" '
-            f'alt="{html.escape(g["alt"])}" {load} decoding="async">{cap}</figure>')
+    media = (f'<img src="{img_src(g)}" width="{w}" height="{h}" '
+             f'alt="{html.escape(g["alt"])}" {load} decoding="async">')
+    if hero:   # bingkai: bentuk gradasi kecil & miring yang hanya mengintip di belakang media (pemanis)
+        media = f'<span class="hero-media">{media}</span>'
+    return f'<figure class="ilus{" hero-img" if hero else ""}">{media}{cap}</figure>'
 
 
 def video_figure(g, hero=False):
@@ -306,9 +309,11 @@ def video_figure(g, hero=False):
     w, h = g.get("w", 1080), g.get("h", 1920)
     cap = f'<figcaption>{html.escape(g["caption"])}</figcaption>' if g.get("caption") else ""
     portrait = " portrait" if h > w else ""
-    return (f'<figure class="ilus video{portrait}{" hero-img" if hero else ""}"><video muted loop playsinline preload="none" '
-            f'poster="{img_src(g)}" data-src="/{g["video"]}" width="{w}" height="{h}" '
-            f'aria-label="{html.escape(g["alt"])}"></video>{cap}</figure>')
+    media = (f'<video muted loop playsinline preload="none" poster="{img_src(g)}" data-src="/{g["video"]}" '
+             f'width="{w}" height="{h}" aria-label="{html.escape(g["alt"])}"></video>')
+    if hero:
+        media = f'<span class="hero-media">{media}</span>'
+    return f'<figure class="ilus video{portrait}{" hero-img" if hero else ""}">{media}{cap}</figure>'
 
 
 # Setelah halaman selesai dimuat (tidak bersaing dengan LCP), muat video saat mendekati layar;
