@@ -500,6 +500,32 @@ def render(S, page, body, P, all_pages, indexable):
 
 # ---------- cek aturan ----------
 
+# standar minimum UI per section (disetujui user): H2 → 1–2 kalimat → minimal satu elemen visual/yang bisa dipindai
+VISUAL_CLASSES = {"grid", "table-wrap", "periode", "plans", "quotes", "proof", "callout", "agitate", "checks", "faq", "cta"}
+
+
+def check_sections(sid, body):
+    blocks = top_blocks(body)
+    sections, cur = [], None
+    for b in blocks:
+        tag, cls = kind(b)
+        if tag == "h2":
+            cur = [b]; sections.append(cur)
+        elif cur is not None:
+            cur.append(b)
+    for sec in sections:
+        title = strip_tags(sec[0]).strip()
+        rest = sec[1:]
+        visual = any(kind(b)[0] in ("figure", "ul", "ol", "table", "blockquote", "details", "aside")
+                     or VISUAL_CLASSES & set(kind(b)[1]) for b in rest)
+        if not visual:
+            err(sid, f"section “{title[:50]}” hanya teks — tambah poin, kartu, tabel, callout, atau gambar (standar UI section)")
+        paras = [b for b in rest if kind(b)[0] == "p" and not kind(b)[1]]
+        if len(paras) > 2:
+            warn(sid, f"section “{title[:50]}” punya {len(paras)} paragraf — padatkan jadi 1–2 kalimat + poin/kartu")
+        if len(re.findall(r"\w+", title)) > 12:
+            warn(sid, f"judul section “{title[:50]}…” terlalu panjang (>12 kata)")
+
 def check_page(S, B, page, body, slugs):
     sid = page["slug"]
     t, m, h1, prim = page["title"], page["meta"], page["h1"], page["primary"].lower()
@@ -550,6 +576,7 @@ def check_page(S, B, page, body, slugs):
             warn(sid, f"secondary keyword '{s}' belum muncul di halaman")
     if "{{" in body:
         err(sid, "masih ada token {{...}} yang tidak dikenal")
+    check_sections(sid, body)
 
 
 def check_images(p, used, IL):

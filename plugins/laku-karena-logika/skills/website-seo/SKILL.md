@@ -21,6 +21,7 @@ Bundel skill ini:
 - `scripts/og_image.py` — og:image 1200×630 PNG dari brand/tagline/deskripsi. Salin ke `website/tools/`.
 - `assets/starter/` — `site.json`, `data/pricing.json`, `data/social-proof.json`, `static/` (CSS bertoken warna, logo, favicon), dan kerangka halaman. Isi `data/` adalah contoh nyata produk Timebase — **ganti**.
 - `references/aturan-konten.md` — aturan isi halaman SEO (wajib dibaca sebelum menulis).
+- `references/standar-ui-section.md` — **standar minimum UI setiap section** (disetujui user), dengan gambar acuan di `references/contoh-ui/`. Wajib dibaca sebelum menulis atau menata halaman.
 - `references/aturan-sales-page.md` — struktur & psikologi sales page, dan batas kejujurannya.
 - `references/aturan-ilustrasi.md` — aturan gambar ilustrasi per section, SEO gambar, og:image, dan cara mengganti dengan gambar asli user.
 - `references/checklist-deployment.md` — aturan performa + langkah publish.
@@ -71,7 +72,7 @@ website/
 
 ## Langkah 2 — Tulis isi
 
-Baca `references/aturan-konten.md` dan `references/aturan-sales-page.md` dulu. Ringkasnya:
+Baca `references/standar-ui-section.md`, `references/aturan-konten.md`, dan `references/aturan-sales-page.md` dulu. Setiap section minimal setara gambar acuan `contoh-ui/standar-section-disetujui.jpg`. Ringkasnya:
 
 - Beranda = **sales page** (AIDA, dengan PAS di blok Interest). Halaman Prioritas 1 (landing Ads) = halaman SEO + komponen jualan (`{{bukti_sosial}}`, `{{testimoni}}`, `{{tanpa_risiko}}`). Halaman Prioritas 2–3 = panduan edukatif + CTA lembut.
 - Setiap "Isi Wajib di Halaman" dari brief harus ada. Tulis ringkas: H2 → 1–2 kalimat → poin/kartu/tabel (aturan-sales-page.md). Target 1.000–1.500 kata, minimal 700.
@@ -96,12 +97,13 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 | Data social proof `contoh: true` saat `site_url` terisi (build publish) | ERROR |
 | `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
 | Halaman `/white-label` tidak ada, atau menu "White Label" tidak ada di menu utama | ERROR |
+| Section yang hanya berisi teks (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar) | ERROR |
 | Lebih dari satu tampilan harga (`{{pricing_cards}}` + `{{pricing_table}}`) di satu halaman | ERROR |
 | Gambar per halaman < `min_per_halaman` (3) · gambar tanpa alt · file gambar tidak ada · gambar asli bukan WebP/AVIF/SVG, tanpa w/h, atau > 200 KB | ERROR |
 | Halaman tanpa gambar hero · gambar tidak dipakai · alt > 125 karakter · `og_image` kosong saat publish | WARNING |
 | `whatsapp` kosong saat `site_url` terisi (tombol WA melayang mati) | ERROR |
 | `signin_url` kosong saat `site_url` terisi (tombol Sign In mati) | ERROR |
-| Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · 700–999 atau > 1.800 kata · paragraf > ±45 kata | WARNING |
+| Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · 700–999 atau > 1.800 kata · paragraf > ±45 kata · section > 2 paragraf · judul section > 12 kata | WARNING |
 | Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
 
 Target Python 3.9 (bawaan macOS): **jangan pakai backslash di dalam ekspresi f-string**. Simpan string berisi tanda kutip ke variabel dulu.
