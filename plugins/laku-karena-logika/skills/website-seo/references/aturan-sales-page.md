@@ -12,10 +12,10 @@ Tujuan: konversi tinggi **tanpa** klaim yang tidak bisa dipertanggungjawabkan. F
 | 4 | Problem | Interest (P) | Situasi pembeli dengan bahasanya sendiri (BKB Persona 1 Pain Points) |
 | 5 | Agitation | Interest (A) | Kerugian **waktu** dan **uang** dengan hitungan transparan (rumusnya ditulis), plus kerugian emosional (kepercayaan tim) |
 | 6 | Solution | Interest (S) → Desire | Kapabilitas inti BKB §4 dalam 3–4 kartu + link ke halaman Prioritas 1 |
-| 7 | Cara kerja | Desire | 3 langkah sampai aktif. Mengurangi kesan "ribet" |
+| 7 | Cara kerja | Desire | 3 langkah sampai aktif, sesuai model penjualan. Self-serve: Pilih skema → Bayar, akun aktif → Pasang/onboarding. Mengurangi kesan "ribet" |
 | 8 | Penanganan keberatan | Desire | Keberatan terbesar Persona 1/2 (mis. "dicap mata-mata") dijawab dengan checklist fakta |
 | 9 | `{{testimoni}}` | Desire | 3 kutipan: masalah → hasil, nama berinisial, jabatan, jenis perusahaan + kota |
-| 10 | Harga + `{{tanpa_risiko}}` | Desire → Action | Kartu skema, satu "Disarankan" (sesuai BKB §5), lalu risk reversal |
+| 10 | Harga + `{{tanpa_risiko}}` | Desire → Action | Kartu skema, masing-masing dengan tombol beli (`Pilih <Skema>` → checkout `{skema}`/`{periode}`) + link bayar tahunan; satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
 | 11 | Urgensi | Action | Alasan mulai sekarang |
 | 12 | Jujur soal batas | Kepercayaan | GAP utama BKB, 2–3 kalimat |
 | 13 | FAQ | Action | Keberatan terakhir: kontrak, reaksi tim, lama aktif, siapa yang tidak cocok |
@@ -33,15 +33,15 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 | **Rating bintang (schema)** | `AggregateRating` dibuat otomatis **hanya** dari testimoni `contoh: false` yang tampil di halaman | Rating karangan: melanggar kebijakan review snippet Google, berisiko manual action |
 | **Risk reversal** | Hanya yang benar berlaku (pilihan user): bulanan berhenti kapan saja, trial, garansi + syaratnya, bantuan pemasangan | Menjanjikan trial/garansi yang belum diputuskan |
 | **Scarcity/urgency** | Default **urgensi alami**: biaya per bulan menunda, data tidak bisa dibuat mundur, regulasi yang sudah berlaku. Promo hanya jika asli (kuota + tanggal berakhir nyata) | Kuota palsu, hitung mundur palsu |
-| **CTA** | Kata kerja + kepemilikan: "Jadwalkan Demo untuk Tim Saya", "Hitung Biaya Tim Saya" | "Kirim", "Submit", "Klik di sini" |
+| **CTA** | Kata kerja + kepemilikan, sesuai model penjualan. Self-serve: "Aktifkan <Produk> untuk Tim Saya", "Pilih Skema 2", "Bandingkan Skema" | "Kirim", "Submit", "Klik di sini"; CTA demo untuk produk yang dijual langsung langganan |
 | **Anchoring harga** | Skema termahal di kanan, skema yang disarankan di tengah dengan badge | Coret harga palsu |
 
 ## Teks CTA & copy global
 
-Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
+Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `chat_text`, `chat_link`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
 
 ## Konversi teknis
 
-- CTA utama = link `wa.me` dengan teks otomatis (`whatsapp_text`), `rel="nofollow"`. Tanpa widget chat pihak ketiga.
+- CTA utama = link ke `checkout_url` (template `{skema}`, `{periode}`), `rel="nofollow"`. Kosong = ke `/harga#pilih-skema`. WhatsApp hanya link opsional "Ada pertanyaan sebelum berlangganan?" di blok CTA. Tanpa widget chat pihak ketiga.
 - Sticky CTA bawah di mobile (≤640px).
-- Konversi Google Ads dipasang pada klik WA **sebelum** iklan jalan.
+- Konversi Google Ads dipasang pada **pembayaran berhasil** (klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.

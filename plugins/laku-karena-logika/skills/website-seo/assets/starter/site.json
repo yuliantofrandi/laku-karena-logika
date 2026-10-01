@@ -5,9 +5,11 @@
   "logo": "static/logo.svg",
   "site_url": "",
   "_site_url": "WAJIB diisi sebelum publish, mis. https://domain-anda.id (tanpa garis miring di akhir). Kosong = sitemap & canonical tidak dibuat.",
+  "checkout_url": "",
+  "_checkout_url": "Link halaman langganan/pembayaran. Boleh memuat {skema} (1/2/3) dan {periode} (bulanan/tahunan), mis. https://app.domain-anda.id/daftar?skema={skema}&periode={periode}. Kosong = tombol beli ke /harga#pilih-skema; build publish ditolak.",
   "whatsapp": "",
-  "_whatsapp": "Nomor WA tim sales format internasional tanpa +, mis. 62812xxxxxxx. Kosong = tombol CTA mengarah ke #kontak.",
-  "whatsapp_text": "Halo Timebase, saya ingin minta demo.",
+  "_whatsapp": "Opsional. Nomor WA untuk pertanyaan sebelum berlangganan (format 62812xxxxxxx). Kosong = link chat tidak ditampilkan.",
+  "whatsapp_text": "Halo, saya ada pertanyaan sebelum berlangganan.",
   "email": "",
   "legal_reviewed": {
     "/<slug-halaman-hukum>": false
@@ -60,16 +62,20 @@
     "/harga"
   ],
   "copy": {
-    "nav_cta": "Jadwalkan Demo",
-    "cta_primary": "Jadwalkan Demo untuk Tim Saya",
-    "cta_secondary": "Hitung Biaya Tim Saya",
+    "nav_cta": "Langganan",
+    "cta_primary": "Aktifkan Timebase untuk Tim Saya",
+    "cta_secondary": "Bandingkan Skema",
     "cta_secondary_href": "/harga",
-    "cta_title": "Lihat bukti kerja tim Anda sendiri dalam 30 menit",
-    "cta_text": "Demo lewat WhatsApp atau video call, dalam bahasa Indonesia. Kami tunjukkan apa yang dicatat, apa yang dilihat karyawan, dan berapa biayanya untuk tim Anda.",
+    "cta_title": "Mulai catat kerja tim Anda hari ini",
+    "cta_text": "Pilih skema dan jumlah karyawan, bayar, dan akun langsung aktif. Tim lokal kami membantu memasang agen di laptop tim sampai selesai.",
     "risk_label": "Tanpa risiko terkunci",
     "risk_extra": [
       "Karyawan bisa membuka datanya sendiri dan meminta datanya dihapus"
     ],
-    "proof_caption": "Dipakai tim di berbagai industri"
-  }
+    "proof_caption": "Dipakai tim di berbagai industri",
+    "plan_button": "Pilih {nama}",
+    "chat_text": "Ada pertanyaan sebelum berlangganan?",
+    "chat_link": "Chat tim kami"
+  },
+  "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan."
 }

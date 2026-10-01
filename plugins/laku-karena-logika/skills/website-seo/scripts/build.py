@@ -89,7 +89,7 @@ def pricing_table(P):
             f'<tbody>{"".join(rows)}</tbody></table></div><p class="note">{P["note"]}</p>')
 
 
-def pricing_cards(P):
+def pricing_cards(S, P):
     cards = []
     for x in P["schemes"]:
         lo, hi = min(x["monthly"]), max(x["monthly"])
@@ -99,8 +99,11 @@ def pricing_cards(P):
             f'<div class="card plan{feat}">{badge}<h3>{x["name"]} · {x["label"]}</h3>'
             f'<p class="price">{rupiah(hi)}<span>/karyawan/bln</span></p>'
             f'<p class="price-sub">turun sampai {rupiah(lo)} untuk 100+ karyawan</p>'
-            f'<p>{html.escape(x["for"])}</p></div>')
-    return f'<div class="plans">{"".join(cards)}</div><p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p>'
+            f'<p>{html.escape(x["for"])}</p>'
+            f'<a class="btn {"btn-primary" if x.get("featured") else "btn-ghost"} btn-block" href="{checkout_link(S, x["id"])}" rel="nofollow">'
+            f'{S["copy"]["plan_button"].replace("{nama}", x["name"])}</a>'
+            f'<p class="annual"><a href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">Bayar tahunan</a> — {P["annual_rule"].lower()}</p></div>')
+    return f'<div class="plans" id="pilih-skema">{"".join(cards)}</div><p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p>'
 
 
 def addon_table(P):
@@ -126,10 +129,12 @@ def cta(S, P):
     C = S["copy"]
     title, text = C["cta_title"], C["cta_text"]
     terms = "".join(f"<li>{html.escape(t)}</li>" for t in P.get("terms", []))
+    chat =(f'<p class="chat">{C["chat_text"]} <a href="{wa_link(S)}" rel="nofollow">{C["chat_link"]}</a></p>'
+            if S.get("whatsapp") else "")
     return (f'<aside class="cta" id="kontak"><h2>{title}</h2><p>{text}</p>'
-            f'<a class="btn btn-primary" href="{wa_link(S)}" rel="nofollow">{C["cta_primary"]}</a>'
+            f'<a class="btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["cta_primary"]}</a>'
             f'<a class="btn btn-ghost" href="{C["cta_secondary_href"]}">{C["cta_secondary"]}</a>'
-            f'<ul class="terms">{terms}</ul></aside>')
+            f'<ul class="terms">{terms}</ul>{chat}</aside>')
 
 
 def risk_reversal(S, P):
@@ -152,6 +157,14 @@ def testimonials(SP):
                    f'<blockquote><p>{html.escape(t["quote"])}</p></blockquote>'
                    f'<figcaption><strong>{html.escape(t["name"])}</strong> · {html.escape(t["role"])}, {html.escape(t["company"])}</figcaption></figure>')
     return f'<div class="quotes wide">{"".join(out)}</div>' 
+
+
+def checkout_link(S, skema=None, periode="bulanan"):
+    """Tombol beli. site.json checkout_url boleh memuat {skema} dan {periode}."""
+    url = S.get("checkout_url", "")
+    if not url:
+        return "/harga#pilih-skema"
+    return url.replace("{skema}", str(skema or "")).replace("{periode}", periode)
 
 
 def wa_link(S):
@@ -249,7 +262,7 @@ def render(S, page, body, P, all_pages, indexable):
 <header class="site-header"><div class="wrap">
 <a class="brand" href="/" aria-label="{S["brand"]} — beranda">{logo(S)}</a>
 <input type="checkbox" id="menu" class="menu-toggle" aria-label="Buka menu"><label for="menu" class="menu-btn" aria-hidden="true"><span></span></label>
-<nav class="nav" aria-label="Utama">{nav}<a class="btn btn-primary btn-sm" href="{wa_link(S)}" rel="nofollow">{S["copy"]["nav_cta"]}</a></nav>
+<nav class="nav" aria-label="Utama">{nav}<a class="btn btn-primary btn-sm" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["nav_cta"]}</a></nav>
 </div></header>
 <main>
 <section class="{hero_class}"><div class="wrap">
@@ -266,7 +279,7 @@ def render(S, page, body, P, all_pages, indexable):
 <div><h2>Produk</h2><ul>{flinks(produk)}</ul></div>
 <div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
 </div><div class="wrap foot-bottom">© {S["brand"]}{(' · <a href="mailto:' + S["email"] + '">' + S["email"] + '</a>') if S.get("email") else ''}</div></footer>
-<a class="sticky-cta btn btn-primary" href="{wa_link(S)}" rel="nofollow">{S["copy"]["cta_primary"]}</a>
+<a class="sticky-cta btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["cta_primary"]}</a>
 </body>
 </html>
 """
@@ -338,9 +351,9 @@ def main():
             seen[v] = p["slug"]
 
     tokens = {
-        "{{pricing_table}}": pricing_table(P), "{{pricing_cards}}": pricing_cards(P),
+        "{{pricing_table}}": pricing_table(P), "{{pricing_cards}}": pricing_cards(S, P),
         "{{addon_table}}": addon_table(P), "{{addon_total_table}}": addon_total_table(P),
-        "{{cta}}": cta(S, P), "{{wa_link}}": wa_link(S),
+        "{{cta}}": cta(S, P), "{{wa_link}}": wa_link(S), "{{checkout_link}}": checkout_link(S),
         "{{tanpa_risiko}}": risk_reversal(S, P), "{{bukti_sosial}}": social_proof(S, SP), "{{testimoni}}": testimonials(SP),
         "{{harga_mulai}}": rupiah(min(min(x["monthly"]) for x in P["schemes"])),
     }
@@ -374,8 +387,11 @@ def main():
             warnings.append(msg + " — boleh untuk preview, build publish akan ditolak")
     if not S.get("site_url"):
         warnings.append("site.json: site_url kosong → canonical, og:url, sitemap.xml tidak dibuat")
+    if not S.get("checkout_url"):
+        msg = "site.json: checkout_url kosong → tombol beli mengarah ke /harga#pilih-skema"
+        (errors if S.get("site_url") else warnings).append(msg + (" — wajib diisi sebelum publish" if S.get("site_url") else ""))
     if not S.get("whatsapp"):
-        warnings.append("site.json: whatsapp kosong → tombol demo mengarah ke #kontak")
+        warnings.append("site.json: whatsapp kosong → link chat pertanyaan tidak ditampilkan")
 
     if not check_only and not errors:
         if DIST.exists():

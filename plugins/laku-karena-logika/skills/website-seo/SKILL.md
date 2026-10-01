@@ -28,12 +28,13 @@ Lokasi folder produk tidak di-hardcode: pakai folder tempat BKB berada (biasanya
 Baca BKB dan keyword plan sampai tuntas. Jangan mencari-cari file di luar folder produk. Kalau salah satu tidak ada, minta user melampirkannya.
 
 Lalu satu ronde `AskUserQuestion` untuk hal yang **tidak boleh dikarang** (taruh rekomendasi di opsi pertama):
-1. **Social proof** — sudah ada data asli (klien, testimoni, metrik)? Kalau belum: slot tersembunyi, atau data contoh yang terlihat asli untuk preview (lihat aturan contoh di bawah).
-2. **Risk reversal** yang benar-benar berlaku — free trial / bulanan berhenti kapan saja / garansi uang kembali / belum ada.
-3. **Urgensi** — urgensi alami (disarankan) atau promo asli dengan kuota + tanggal berakhir.
-4. **Title & rating** — ikuti aturan keyword plan (tanpa "terbaik"/tahun; rating hanya dari ulasan asli) — disarankan.
+1. **Model penjualan** — langsung langganan (pilih skema → bayar → aktif) atau lewat demo/sales? Ini menentukan semua CTA. **Jangan mengandaikan demo.**
+2. **Social proof** — sudah ada data asli (klien, testimoni, metrik)? Kalau belum: slot tersembunyi, atau data contoh yang terlihat asli untuk preview (lihat aturan contoh di bawah).
+3. **Risk reversal** yang benar-benar berlaku — free trial / bulanan berhenti kapan saja / garansi uang kembali / belum ada.
+4. **Urgensi** — urgensi alami (disarankan) atau promo asli dengan kuota + tanggal berakhir.
+5. **Title & rating** — ikuti aturan keyword plan (tanpa "terbaik"/tahun; rating hanya dari ulasan asli) — disarankan.
 
-Domain dan nomor WhatsApp tidak perlu ditanyakan di awal: biarkan kosong di `site.json`, dan build akan memberi WARNING.
+Domain, `checkout_url`, dan nomor WhatsApp tidak perlu ditanyakan di awal: biarkan kosong di `site.json`. Build memberi WARNING saat preview, dan ERROR untuk `checkout_url` kosong saat publish.
 
 ## Langkah 1 — Siapkan folder
 
@@ -62,7 +63,7 @@ Baca `references/aturan-konten.md` dan `references/aturan-sales-page.md` dulu. R
 - Setiap "Isi Wajib di Halaman" dari brief harus ada. 1.000–1.500 kata untuk halaman brief.
 - Fakta hanya dari BKB. Tidak mengarang OS, integrasi, angka pelanggan, atau fitur.
 
-Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_table}}` `{{addon_total_table}}` `{{tanpa_risiko}}` `{{bukti_sosial}}` `{{testimoni}}` `{{cta}}` `{{wa_link}}` `{{harga_mulai}}`. Lead di bawah H1 ditulis sebagai komentar pertama: `<!-- lead: ... -->`. FAQ ditulis sebagai `<details class="faq"><summary>…</summary><p>…</p></details>` supaya otomatis jadi schema FAQPage.
+Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_table}}` `{{addon_total_table}}` `{{tanpa_risiko}}` `{{bukti_sosial}}` `{{testimoni}}` `{{cta}}` `{{checkout_link}}` `{{wa_link}}` `{{harga_mulai}}`. Lead di bawah H1 ditulis sebagai komentar pertama: `<!-- lead: ... -->`. FAQ ditulis sebagai `<details class="faq"><summary>…</summary><p>…</p></details>` supaya otomatis jadi schema FAQPage.
 
 ## Langkah 3 — Build sampai OK
 
@@ -77,8 +78,9 @@ Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_
 | Nama kompetitor (dari sheet Negative, kategori "Nama kompetitor") muncul di halaman | ERROR |
 | Klaim terlarang: satu-satunya, termurah, paling murah, pertama di…, nomor satu | ERROR |
 | Data social proof `contoh: true` saat `site_url` terisi (build publish) | ERROR |
+| `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
 | Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · > 1.800 kata | WARNING |
-| Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
+| Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
 
 Target Python 3.9 (bawaan macOS): **jangan pakai backslash di dalam ekspresi f-string**. Simpan string berisi tanda kutip ke variabel dulu.
 
@@ -103,5 +105,5 @@ Singkat dan to the point. Sampaikan:
 - Halaman yang jadi + jumlah kata, dan bahwa semua cek lolos.
 - **WARNING yang tersisa** apa adanya (mis. primary keyword tidak ada di H1 karena brief) dan usul perbaikannya di Excel.
 - Data yang masih contoh, dan bahwa build publish akan menolaknya.
-- Yang wajib sebelum publish: domain, WA, review hukum, data asli, dan konfirmasi bahwa semua fitur yang disebut sudah tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
+- Yang wajib sebelum publish: domain, link checkout, review hukum, data asli, dan konfirmasi bahwa semua fitur yang disebut sudah tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
 - Bagian permintaan user yang tidak diikuti dan alasannya (mis. "Terbaik" di title, rating dari data karangan, kuota palsu).

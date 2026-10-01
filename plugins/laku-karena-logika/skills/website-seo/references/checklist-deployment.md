@@ -5,7 +5,7 @@
 - [x] **Font sistem**, jadi tidak ada unduhan font, tidak ada FOIT/FOUT, dan tidak ada CLS dari font.
 - [x] **LCP = teks H1** (tanpa gambar hero). Satu request HTML ±30–40 KB.
 - [x] **CLS = 0** (terukur di preview). Logo SVG punya `width`/`height` eksplisit.
-- [x] **Tanpa widget pihak ketiga.** Tombol WhatsApp adalah link `wa.me` biasa, tanpa skrip.
+- [x] **Tanpa widget pihak ketiga.** Tombol beli adalah link biasa ke checkout; chat WA (opsional) link `wa.me` biasa, tanpa skrip.
 - [x] Semantic HTML5: `header`, `nav`, `main`, `article`, `section`, `aside`, `figure`, `footer`, `details`.
 - [x] Satu H1 per halaman, H2/H3 berurutan.
 - [x] Title 40–60 karakter, meta description 120–155, H1 ≠ title. Dicek otomatis oleh build.
@@ -14,7 +14,7 @@
 - [x] Mobile: tanpa scroll horizontal di 375px, sticky CTA bawah.
 
 ## Wajib sebelum publish (isi manual)
-1. `site.json` → isi `site_url` (mis. `https://domain-anda.id`), `whatsapp` (format `62812…`), `email`.
+1. `site.json` → isi `site_url` (mis. `https://domain-anda.id`), **`checkout_url`** (link langganan/pembayaran, boleh memuat `{skema}` dan `{periode}`), opsional `whatsapp` dan `email`. Build publish ditolak kalau `checkout_url` kosong.
 2. `data/social-proof.json` → ganti semua entri **contoh** dengan data asli, lalu `"contoh": false`. Build publish **ditolak** selama masih ada data contoh.
 3. Halaman hukum → review ahli hukum → ubah `legal_reviewed` jadi `true`.
 4. Pastikan setiap fitur yang disebut di website sudah benar-benar tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
@@ -45,5 +45,5 @@
 1. https://pagespeed.web.dev → uji `/` dan halaman Prioritas 1, **Mobile dan Desktop**, target ≥90 di keempat kategori.
 2. Google Search Console → submit `sitemap.xml`, minta indexing halaman Prioritas 1.
 3. https://search.google.com/test/rich-results → cek `SoftwareApplication`, `FAQPage`, `BreadcrumbList`.
-4. Uji tombol CTA di HP: terbuka ke WhatsApp dengan teks otomatis.
-5. Google Ads: pasang konversi pada klik WA **sebelum** iklan jalan (sesuai keyword plan).
+4. Uji semua tombol beli di HP: `Pilih Skema 1/2/3` dan `Bayar tahunan` membuka checkout dengan skema & periode yang benar, sampai akun aktif setelah bayar.
+5. Google Ads: pasang konversi pada **pembayaran berhasil** (dan klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.
