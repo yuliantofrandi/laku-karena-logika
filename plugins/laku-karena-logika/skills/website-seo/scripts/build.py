@@ -455,7 +455,8 @@ def render_section(blocks, idx, S=None):
         if topics:
             nav = ('<nav class="faq-topics" aria-label="Topik pertanyaan">'
                    + "".join(f'<a href="#{t}">{html.escape(l)}</a>' for t, l in topics) + "</nav>")
-        intro = "".join(paras)
+        # Subjudul wajib di bawah judul FAQ: paragraf pembuka section, atau copy.faq_lead bila tidak ada
+        intro = "".join(paras) or (f'<p>{S["copy"]["faq_lead"]}</p>' if S and S.get("copy", {}).get("faq_lead") else "")
         row = f'<div class="faq-center">{h2}{intro}{nav}{"".join(body_parts)}</div>'
     elif scan:
         flip = " flip" if idx % 2 else ""

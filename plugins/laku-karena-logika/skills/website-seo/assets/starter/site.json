@@ -112,7 +112,8 @@
       "<strong><alasan mendesak 1 — fakta dari BKB 'Kenapa sekarang'></strong> — <penjelasan singkat>.",
       "<strong><alasan mendesak 2></strong> — <penjelasan singkat>."
     ],
-    "_cta_points": "Urgensi alami (bukan kuota palsu) di CTA penutup. Boleh HTML. Jaminan diambil otomatis dari pricing.json terms + risk_extra."
+    "_cta_points": "Urgensi alami (bukan kuota palsu) di CTA penutup. Boleh HTML. Jaminan diambil otomatis dari pricing.json terms + risk_extra.",
+    "faq_lead": "Jawaban singkat untuk hal yang paling sering ditanyakan sebelum memutuskan berlangganan."
   },
   "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
   "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas.",
