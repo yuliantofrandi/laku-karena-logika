@@ -29,7 +29,7 @@ Aturan tetap dari user: **setiap halaman selalu diberi gambar ilustrasi**, baik 
 
 ## Foto testimoni
 - Setiap testimoni menampilkan foto bulat 48px. Sumbernya **hanya** foto asli pemberi testimoni dengan izin tertulis (persegi ±160×160, WebP/AVIF ≤40 KB, di `static/testimoni/`, diisi di `data/social-proof.json → foto`).
-- Sebelum ada foto asli, tampil avatar inisial (gradasi brand). Jangan memakai foto stok atau wajah buatan AI: itu membuat testimoni terlihat asli padahal tidak.
+- **Selalu ada gambar orang** (user: "selalu buatkan foto dulu, sebelum saya kasih yang asli"). Sebelum ada foto asli, build membuat **potret ilustrasi flat-vector** otomatis (`ilustrasi.potret_svg` → `static/testimoni/<nama>-ilustrasi.svg`, ±0,7 KB, `alt=""`). Gaya diatur lewat field `potret` di social-proof.json: `rambut` pendek|panjang|hijab, `kulit` 0–3, `kacamata`, `baju` p|k|o. Jangan memakai foto stok atau wajah AI realistis: itu membuat testimoni terlihat seperti pelanggan sungguhan padahal tidak. Foto asli mengganti potret begitu field `foto` diisi.
 - `build.py` menambahkan tabel "Foto testimoni" ke `docs/daftar-ilustrasi.md`, memberi ERROR bila file foto tidak ada atau bukan WebP/AVIF ≤40 KB, dan WARNING bila testimoni asli belum berfoto.
 
 ## Mengganti dengan gambar asli user

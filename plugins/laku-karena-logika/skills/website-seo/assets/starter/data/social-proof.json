@@ -47,7 +47,12 @@
       "company": "Agensi digital, Jakarta",
       "rating": 5,
       "contoh": true,
-      "foto": ""
+      "foto": "",
+      "potret": {
+        "rambut": "pendek",
+        "kulit": 1,
+        "baju": "p"
+      }
     },
     {
       "quote": "Yang membuat tim mau menerima justru karena mereka bisa melihat datanya sendiri. Tidak ada yang merasa dimata-matai, karena aturannya kami umumkan sejak awal.",
@@ -56,7 +61,12 @@
       "company": "Software house, Bandung",
       "rating": 5,
       "contoh": true,
-      "foto": ""
+      "foto": "",
+      "potret": {
+        "rambut": "hijab",
+        "kulit": 0,
+        "baju": "o"
+      }
     },
     {
       "quote": "Waktu per tugas membuat kami sadar fitur mana yang selalu molor. Estimasi proyek berikutnya jadi jauh lebih masuk akal.",
@@ -65,8 +75,15 @@
       "company": "Startup produk digital, Yogyakarta",
       "rating": 4,
       "contoh": true,
-      "foto": ""
+      "foto": "",
+      "potret": {
+        "rambut": "pendek",
+        "kulit": 2,
+        "kacamata": true,
+        "baju": "k"
+      }
     }
   ],
-  "_foto": "Foto ASLI pemberi testimoni (dengan izin): simpan di static/testimoni/<nama>.webp (persegi ±160×160, ≤40 KB) lalu isi field foto. Kosong = avatar inisial. Jangan pakai foto stok/wajah AI."
+  "_foto": "Foto ASLI pemberi testimoni (dengan izin): simpan di static/testimoni/<nama>.webp (persegi ±160×160, ≤40 KB) lalu isi field foto. Kosong = potret ilustrasi otomatis (atur lewat field potret). Jangan pakai foto stok/wajah AI realistis.",
+  "_potret": "Gaya potret ilustrasi placeholder (sebelum foto asli): rambut pendek|panjang|hijab, kulit 0-3, kacamata, baju p|k|o."
 }
