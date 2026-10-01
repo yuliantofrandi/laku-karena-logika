@@ -105,7 +105,7 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 | Halaman tanpa gambar hero · gambar tidak dipakai · alt > 125 karakter · `og_image` kosong saat publish | WARNING |
 | `whatsapp` kosong saat `site_url` terisi (tombol WA melayang mati) | ERROR |
 | `signin_url` kosong saat `site_url` terisi (tombol Sign In mati) | ERROR |
-| Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · 700–999 atau > 1.800 kata · paragraf > ±45 kata · section > 2 paragraf · judul section > 12 kata | WARNING |
+| Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · 700–999 atau > 1.800 kata · paragraf > ±45 kata · section > 2 paragraf · judul section > 12 kata · pesan dobel dalam satu section | WARNING |
 | Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
 
 Target Python 3.9 (bawaan macOS): **jangan pakai backslash di dalam ekspresi f-string**. Simpan string berisi tanda kutip ke variabel dulu.

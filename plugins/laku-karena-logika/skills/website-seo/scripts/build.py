@@ -554,6 +554,16 @@ def check_sections(sid, body):
         paras = [b for b in rest if kind(b)[0] == "p" and not kind(b)[1]]
         if len(paras) > 2:
             warn(sid, f"section “{title[:50]}” punya {len(paras)} paragraf — padatkan jadi 1–2 kalimat + poin/kartu")
+        # pesan dobel: kalimat di kolom teks mengulang isi panel/kartu dalam section yang sama
+        def grams(t, n=4):
+            w = re.findall(r"\w+", strip_tags(t).lower())
+            return {" ".join(w[i:i + n]) for i in range(len(w) - n + 1)}
+        lead_txt = "".join(b for b in rest if kind(b)[0] == "p")
+        other_txt = "".join(b for b in rest if kind(b)[0] != "p")
+        nums = lambda t: set(re.findall(r"\d+(?:[.,]\d+)?", strip_tags(t)))
+        dup = grams(lead_txt) & grams(other_txt)
+        if len(dup) >= 3 or len(nums(lead_txt) & nums(other_txt)) >= 2:
+            warn(sid, f"section “{title[:50]}”: pembuka/catatan mengulang isi poin/kartu ({', '.join(sorted(dup)[:2]) or 'angka sama'}) — sampaikan sekali saja")
         if len(re.findall(r"\w+", title)) > 12:
             warn(sid, f"judul section “{title[:50]}…” terlalu panjang (>12 kata)")
 

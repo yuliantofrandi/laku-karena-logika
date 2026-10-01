@@ -27,6 +27,7 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 | Gambar | Ilustrasi dalam kartu membulat (radius ±18px, latar tint lembut) + caption kecil abu di bawahnya |
 | Blok lebar | Kartu, tabel, harga, testimoni tampil selebar kontainer di bawah baris dua kolom |
 | Teks tersembunyi | **Tidak boleh.** Tidak ada "Baca selengkapnya". FAQ boleh accordion |
+| Pesan dobel | **Satu pesan sekali per section.** Pembuka, catatan, caption gambar, dan poin/kartu tidak boleh mengulang hal yang sama. Kasus nyata: catatan "Hitungan 110 jam = 20 × 15 × 22" mengulang poin di panel; asumsi hitungannya cukup ditulis di poin itu sendiri |
 
 ### Layout otomatis per jenis isi (hasil "standardkan semua section")
 | Isi section | Layout | Catatan |
@@ -46,7 +47,7 @@ Target keseimbangan: tinggi kolom terpanjang ≤ ±2,2× kolom terpendek di 1440
 
 ## Cek otomatis (`build.py`)
 - **ERROR** jika ada section yang **hanya berisi teks** (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau **tanpa kalimat pembuka** setelah judul (kecuali FAQ, yang diisi otomatis).
-- **WARNING** jika sebuah section punya > 2 paragraf, judul > 12 kata, atau ada paragraf > ±45 kata.
+- **WARNING** jika sebuah section punya > 2 paragraf, judul > 12 kata, ada paragraf > ±45 kata, atau **pembuka/catatan mengulang isi poin, kartu, atau caption** (≥3 frasa 4-kata yang sama, atau ≥2 angka yang sama).
 
 ## Warna & kontras
 - Semua teks ≥4,5:1 (teks besar 3:1). `--muted` = #5f5870; logo cloud #736c88 (19px tebal); bintang & label callout amber tua #b45309.
