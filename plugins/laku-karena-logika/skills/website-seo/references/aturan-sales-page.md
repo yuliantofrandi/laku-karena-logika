@@ -40,6 +40,11 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 
 Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `chat_text`, `chat_link`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
 
+## Navigasi
+
+- Menu utama ringkas: **satu menu group** untuk halaman solusi/landing (mis. "Solusi ▾" → Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid, masing-masing dengan deskripsi 1 baris), lalu **Harga**, lalu tombol CTA. Halaman panduan/SEO cukup di footer.
+- Dropdown memakai `<details>`/`<summary>` (tanpa JavaScript). Panel rata kanan agar tidak terpotong di layar sempit; di mobile tampil inline di dalam menu hamburger. Group diberi tanda aktif saat salah satu submenunya sedang dibuka.
+
 ## Konversi teknis
 
 - CTA utama = link ke `checkout_url` (template `{skema}`, `{periode}`), `rel="nofollow"`. Kosong = ke `/harga#pilih-skema`. WhatsApp hanya link opsional "Ada pertanyaan sebelum berlangganan?" di blok CTA. Tanpa widget chat pihak ketiga.

@@ -226,12 +226,26 @@ def jsonld(S, page, body, P, indexable):
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
 
 
+def nav_item(it, current, CUR):
+    """[slug, label] = link biasa; {label, items} = menu group (dropdown <details>, tanpa JS)."""
+    if isinstance(it, dict):
+        active = any(x[0] == current for x in it["items"])
+        subs = "".join(
+            f'<li><a href="{x[0]}"{CUR if x[0] == current else ""}><strong>{x[1]}</strong>'
+            + (f'<span>{html.escape(x[2])}</span>' if len(x) > 2 else "") + "</a></li>"
+            for x in it["items"])
+        return (f'<details class="nav-group{" active" if active else ""}"><summary>{it["label"]}</summary>'
+                f'<ul class="submenu">{subs}</ul></details>')
+    slug, label = it[0], it[1]
+    return f'<a href="{slug}"{CUR if slug == current else ""}>{label}</a>'
+
+
 def render(S, page, body, P, all_pages, indexable):
     base = S["site_url"]
     canonical = f'<link rel="canonical" href="{base}{page["slug"]}">' if base else ""
     robots = '<meta name="robots" content="index,follow">' if indexable else '<meta name="robots" content="noindex,follow">'
     CUR = ' aria-current="page"'
-    nav = "".join(f'<a href="{s}"{CUR if s == page["slug"] else ""}>{n}</a>' for s, n in S["nav"])
+    nav = "".join(nav_item(it, page["slug"], CUR) for it in S["nav"])
     crumbs = "" if page["slug"] == "/" else f'<nav class="crumbs" aria-label="Breadcrumb"><a href="/">{S["brand"]}</a> / <span>{page["name"]}</span></nav>'
     hero_class = "hero home" if page["slug"] == "/" else "hero"
     lead = page.get("lead", "")

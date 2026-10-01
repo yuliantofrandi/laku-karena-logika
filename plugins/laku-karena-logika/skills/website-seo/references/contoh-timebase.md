@@ -21,6 +21,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 
 - Social proof: "buatkan seperti asli, nanti diganti data asli", sehingga lahir mekanisme `contoh: true` + blokir publish.
 - **Model penjualan: langsung langganan, tanpa demo** ("tidak ada jadwalkan demo, langsung subscription, bayar aktif"). Versi pertama memakai CTA "Jadwalkan Demo" dan dikoreksi user, sehingga skill sekarang menanyakan model penjualan di Langkah 0.
+- **Navigasi:** "menu Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid mending dijadikan 1 menu group dengan submenu". Hasilnya: Solusi ▾ · Harga · Langganan.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.

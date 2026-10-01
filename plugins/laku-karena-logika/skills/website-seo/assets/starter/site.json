@@ -16,10 +16,21 @@
   },
   "_legal_reviewed": "Halaman hukum tetap noindex & keluar dari sitemap sampai diubah jadi true setelah direview ahli hukum.",
   "nav": [
-    [
-      "/<slug-prioritas-1>",
-      "<Label>"
-    ],
+    {
+      "label": "Solusi",
+      "items": [
+        [
+          "/<slug-prioritas-1>",
+          "<Label>",
+          "<deskripsi 1 baris>"
+        ],
+        [
+          "/<slug-lain>",
+          "<Label>",
+          "<deskripsi 1 baris>"
+        ]
+      ]
+    },
     [
       "/harga",
       "Harga"
@@ -77,5 +88,6 @@
     "chat_text": "Ada pertanyaan sebelum berlangganan?",
     "chat_link": "Chat tim kami"
   },
-  "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan."
+  "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
+  "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas."
 }

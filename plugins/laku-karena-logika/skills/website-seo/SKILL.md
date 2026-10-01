@@ -43,6 +43,9 @@ website/
   build.py              ← scripts/build.py
   tools/brief_to_json.py
   site.json             ← assets/starter/site.json (isi brand, tagline, description, nav, copy CTA)
+                          nav: halaman solusi/landing dikelompokkan dalam SATU menu group
+                          ("Solusi ▾" berisi submenu + deskripsi 1 baris), lalu Harga + tombol CTA.
+                          Jangan menjajarkan tiap halaman solusi di menu utama.
   data/brief.json       ← hasil brief_to_json.py
   data/pricing.json     ← dari BKB §3
   data/social-proof.json
