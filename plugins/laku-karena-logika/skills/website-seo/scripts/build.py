@@ -457,6 +457,13 @@ def layout_sections(body):
             cur.append(b)
     out = []
     if intro:
+        # paragraf pengantar: 2 kalimat pertama terlihat, sisanya dilipat (tetap di HTML untuk SEO)
+        for i, b in enumerate(intro):
+            if kind(b)[0] == "p":
+                head, tail = split_lead(b)
+                if tail:
+                    intro[i] = head + f'<details class="more"><summary>Baca selengkapnya</summary>{tail}</details>'
+                break
         out.append(f'<section class="band intro"><div class="wrap">{"".join(intro)}</div></section>')
     out += [render_section(s, i) for i, s in enumerate(sections)]
     if tail:

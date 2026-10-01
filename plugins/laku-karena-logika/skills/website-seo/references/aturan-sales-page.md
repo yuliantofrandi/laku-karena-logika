@@ -97,7 +97,8 @@ Larangan: tidak menyebut harga, minimum lisensi, bagi hasil, atau persentase pen
 ## Tampilan: band dua kolom, teks sekunder dilipat
 
 Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan yang dibaca". `build.py` (fungsi `layout_sections`) menata isi secara otomatis, jadi konten cukup ditulis sebagai urutan H2 → paragraf → daftar → gambar → blok:
-- **Band per H2** dengan latar bergantian (`.band` / `.band.alt`). Blok sebelum H2 pertama menjadi band intro, dan `{{cta}}` menjadi band penutup.
+- **Band per H2** dengan latar bergantian (`.band` / `.band.alt`). Blok sebelum H2 pertama menjadi **band intro**, dan `{{cta}}` menjadi band penutup.
+- **Band intro** (dikoreksi user: "UI layout-nya masih kurang"): strip bukti sosial tampil **tepat di bawah hero** sebagai *logo cloud* tanpa kotak (label kecil + deretan nama/logo abu-abu, garis tipis pemisah), lalu paragraf pengantar sebagai **pernyataan rata tengah** (maks ±820px; rata kiri di mobile). Paragraf pengantar juga hanya menampilkan 2 kalimat pertama, sisanya dilipat.
 - **Ada gambar** (`{{gambar:…}}`) → dua kolom teks | gambar, bergantian kiri-kanan (`.split.media`, `.flip`). **Tanpa gambar** → judul kiri (sticky) | isi kanan (`.split.head`). Di mobile semuanya menumpuk.
 - **Blok lebar** (`grid`, `table-wrap`, `periode`, `plans`, `quotes`, `proof`) tampil selebar kontainer di bawah baris dua kolom.
 - **Yang tetap terlihat:** H2, 2 kalimat pertama paragraf pembuka, satu daftar pendek (≤4 poin, ±≤14 kata per poin), callout, agitasi, daftar centang, FAQ, dan catatan. **Sisanya** masuk `<details class="more">` "Baca selengkapnya" (berubah jadi "Tutup" saat dibuka). Teks tetap di HTML, jadi aman untuk SEO dan aturan jumlah kata.
