@@ -34,7 +34,7 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 | Ada `{{gambar:…}}` | `split.media`: teks \| gambar, bergantian kiri-kanan | Kalau kolom teks hanya judul + pembuka, kartu (`grid`) pertama ikut ke kolom teks (2 kolom) supaya seimbang dengan gambar |
 | Ada poin/langkah/contoh/callout (tanpa gambar) | `split.panel-row`: teks (5) \| **panel kartu putih** (7) berisi poin, bergantian kiri-kanan | Panel = pengganti kartu gambar. Daftar > 4 poin otomatis 2 kolom di dalam panel |
 | FAQ | `split.faq-row`: judul + pembuka + **kartu bantuan WA** ("Masih ada pertanyaan?") \| accordion | Mobile: pertanyaan dulu, kartu bantuan di bawah. Pembuka otomatis dari `copy.faq_lead` |
-| Hanya kartu/tabel/harga/testimoni | `split.stack`: judul + pembuka (maks 760px) di atas, blok selebar kontainer di bawah | Blok jaminan (`guarantee`) selalu selebar kontainer |
+| Hanya kartu/tabel/testimoni (atau harga di /harga) | `split.stack`: judul + pembuka (maks 760px) di atas, blok selebar kontainer di bawah | Blok jaminan (`guarantee`) selalu selebar kontainer |
 
 Target keseimbangan: tinggi kolom terpanjang ≤ ±2,2× kolom terpendek di 1440px (kecuali FAQ). Ukur dengan skrip di SKILL.md Langkah 4.
 

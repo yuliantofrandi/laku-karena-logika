@@ -98,7 +98,8 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 | `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
 | Halaman `/white-label` tidak ada, atau menu "White Label" tidak ada di menu utama | ERROR |
 | Section yang hanya berisi teks (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau tanpa kalimat pembuka setelah H2 | ERROR |
-| Beranda memuat harga · halaman di `product_pages` (schema Offer) tanpa harga yang terlihat | ERROR |
+| Token harga di luar `pricing_page` (/harga) · halaman di `product_pages` (schema Offer) tanpa harga yang terlihat | ERROR |
+| Angka "Rp" di teks halaman selain /harga | WARNING |
 | Lebih dari satu tampilan harga (`{{pricing_cards}}` + `{{pricing_table}}`) di satu halaman | ERROR |
 | Gambar per halaman < `min_per_halaman` (3) · gambar tanpa alt · file gambar tidak ada · gambar asli bukan WebP/AVIF/SVG, tanpa w/h, atau > 200 KB | ERROR |
 | Halaman tanpa gambar hero · gambar tidak dipakai · alt > 125 karakter · `og_image` kosong saat publish | WARNING |

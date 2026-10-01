@@ -30,6 +30,8 @@ Dipakai saat MENULIS atau MEREVISI `content/*.html`. Sebagian besar dicek otomat
 
 ## 4. Harga
 
+- **Harga hanya di halaman `/harga`** (`site.json → pricing_page`). Halaman lain boleh menyebut nama paket dan pembedanya, tanpa angka, lalu menautkan ke menu Harga. Isi wajib brief seperti "tabel harga" diganti tautan.
+
 - Satu sumber: `data/pricing.json`, disalin dari BKB §3. Di halaman, harga hanya ditampilkan lewat token, tidak diketik manual (kecuali `{{harga_mulai}}`).
 - Tahunan = 10 × bulanan. Add-on tidak dijual terpisah, jadi tampilkan **harga total** skema + add-on (`{{addon_total_table}}`).
 

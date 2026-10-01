@@ -707,8 +707,12 @@ def main():
             continue
         raw = f.read_text(encoding="utf-8")
         n_harga = raw.count("{{pricing_cards}}") + raw.count("{{pricing_table}}")
-        if p["slug"] == "/" and n_harga:
-            err("/", "beranda tidak boleh memuat harga — arahkan ke menu Harga (aturan user)")
+        harga_page = S.get("pricing_page", "/harga")
+        harga_tokens = [t for t in ("{{pricing_cards}}", "{{pricing_table}}", "{{addon_table}}", "{{addon_total_table}}", "{{harga_mulai}}") if t in raw]
+        if p["slug"] != harga_page and harga_tokens:
+            err(p["slug"], f"harga hanya boleh tampil di {harga_page} (aturan user) — hapus {', '.join(harga_tokens)}, tautkan ke menu Harga")
+        if p["slug"] != harga_page and re.search(r"\bRp\s?\d", strip_tags(raw)):
+            warn(p["slug"], "ada angka rupiah di teks — harga hanya di halaman Harga (kecuali bukan harga produk)")
         if p["slug"] in S["product_pages"] and not n_harga:
             err(p["slug"], "ada di product_pages (schema Offer/harga) tapi halaman tidak menampilkan harga")
         if n_harga > 1:

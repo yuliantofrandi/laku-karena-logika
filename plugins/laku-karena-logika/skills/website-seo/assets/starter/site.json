@@ -84,8 +84,7 @@
     }
   ],
   "product_pages": [
-    "/harga",
-    "/<slug-prioritas-1>"
+    "/harga"
   ],
   "footer_produk": [
     "/<slug-prioritas-1>",
@@ -148,5 +147,7 @@
     "tint": "#f3edff"
   },
   "_ilustrasi_warna": "Warna design system produk untuk ilustrasi SVG & og:image (p=primer, k=aksen 2, o=aksen 3). Samakan dengan token di static/style.css.",
-  "_product_pages": "Halaman yang memuat schema SoftwareApplication + Offer (harga). Hanya halaman yang menampilkan harga — bukan beranda."
+  "_product_pages": "Halaman yang memuat schema SoftwareApplication + Offer (harga). Hanya halaman yang menampilkan harga — bukan beranda.",
+  "pricing_page": "/harga",
+  "_pricing_page": "Satu-satunya halaman yang boleh menampilkan harga (aturan user). Halaman lain hanya menautkan ke sini."
 }
