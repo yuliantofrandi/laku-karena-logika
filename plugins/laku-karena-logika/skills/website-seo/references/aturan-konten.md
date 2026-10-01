@@ -20,7 +20,7 @@ Dipakai saat MENULIS atau MEREVISI `content/*.html`. Sebagian besar dicek otomat
 3. **Uji kalimat:** kalau kalimat bisa diganti nama merek dan jadi tuduhan, jangan ditulis. Kalau tetap benar untuk semua produk sejenis, itu kategori dan aman.
 4. **Klaim terlarang:** satu-satunya, pertama, termurah, paling murah, nomor satu, dan "terbaik" untuk produk sendiri. Fitur standar kategori tidak boleh disajikan sebagai pembeda.
 5. **Fakta hanya dari BKB.** Jangan menambahkan OS yang didukung, integrasi, angka pelanggan, kecepatan, sertifikasi, atau perilaku fitur yang tidak tertulis. Kalau sebuah FAQ butuh fakta yang tidak ada, ganti pertanyaannya.
-6. **Jujur soal kekurangan.** Setiap `[GAP]` di BKB §4 yang relevan ditulis di halaman terkait dalam `callout honest`. Contoh: "Idle saat membaca/berpikir", "belum ada ekspor ke payroll/invoice — ada di roadmap".
+6. **Jujur soal kekurangan — di halaman fitur, bukan di beranda.** Setiap `[GAP]` di BKB §4 yang relevan ditulis di halaman terkait dalam `callout honest`. Contoh: "Idle saat membaca/berpikir", "belum ada ekspor ke payroll/invoice — ada di roadmap".
 7. **BKB = rancangan; website = janji.** BKB menulis semua fitur seolah sudah ada. Sebelum publish, user harus mengonfirmasi bahwa semua yang disebut di website sudah tersedia.
 
 ## 3. Segmen
