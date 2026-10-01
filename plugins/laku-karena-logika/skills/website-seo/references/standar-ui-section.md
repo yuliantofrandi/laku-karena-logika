@@ -22,7 +22,7 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 | Latar | Bergantian, **dimulai abu muda** setelah band intro (putih), supaya batas antar-section selalu terlihat. Padding atas-bawah ±64px (±44px mobile) |
 | Tata letak | **Selalu dua kolom yang seimbang**, dipilih otomatis oleh `render_section` dari isi section (tabel di bawah). Mobile: menumpuk |
 | Judul (H2) | Montserrat 800, ±32px, ≤12 kata, idealnya 2 baris. Pertanyaan atau pernyataan yang tajam |
-| Pembuka | **1–2 kalimat**, ≤ ±30 kata, warna abu tua. Tidak ada dua paragraf berturut-turut |
+| Pembuka | **1–2 kalimat**, ≤ ±30 kata, warna abu tua. Tidak ada dua paragraf berturut-turut. **Menempel ke judul**: jarak H2 → pembuka ±8–12px (`.prose h2{margin-bottom:10px}` + `.prose h2+p{margin-top:0}`; user: "cek semua sub heading, jarak atas jangan terlalu jauh dengan heading-nya") |
 | Isi yang dipindai | **Wajib minimal satu**: daftar centang (`ul.checks`, awalan tebal + sisa kalimat biasa), kartu (`div.grid` > `.card`, judul + 1 kalimat, `span.num` untuk langkah), tabel kecil, callout, atau gambar |
 | Gambar | Ilustrasi dalam kartu membulat (radius ±18px, latar tint lembut) + caption kecil abu di bawahnya |
 | Blok lebar | Kartu, tabel, harga, testimoni tampil selebar kontainer di bawah baris dua kolom |

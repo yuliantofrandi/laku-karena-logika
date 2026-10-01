@@ -275,9 +275,9 @@ def ul_checks(items):
 
 def cta_whitelabel(S):
     W = S["whitelabel"]
-    return (f'<aside class="cta" id="kontak"><h2>{fill_brand(S, W["cta_title"])}</h2><p>{fill_brand(S, W["cta_text"])}</p>'
-            f'<a class="btn btn-primary" href="{wa_link(S, fill_brand(S, W["wa_text"]))}" target="_blank" rel="nofollow noopener">{W["cta_button"]}</a>'
-            f'<a class="btn btn-ghost" href="/harga">Lihat harga versi langganan</a></aside>')
+    return (f'<aside class="cta solo" id="kontak"><div class="cta-main"><h2>{fill_brand(S, W["cta_title"])}</h2><p>{fill_brand(S, W["cta_text"])}</p>'
+            f'<div class="cta-btns"><a class="btn btn-primary" href="{wa_link(S, fill_brand(S, W["wa_text"]))}" target="_blank" rel="nofollow noopener">{W["cta_button"]}</a>'
+            f'<a class="btn btn-ghost" href="/harga">Lihat harga versi langganan</a></div></div></aside>')
 
 
 def logo(S):
