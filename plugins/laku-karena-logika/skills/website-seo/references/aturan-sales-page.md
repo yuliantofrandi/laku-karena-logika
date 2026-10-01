@@ -16,10 +16,10 @@ Tujuan: konversi tinggi **tanpa** klaim yang tidak bisa dipertanggungjawabkan. F
 | 8 | Penanganan keberatan | Desire | Keberatan terbesar Persona 1/2 (mis. "dicap mata-mata") dijawab dengan checklist fakta |
 | 9 | `{{testimoni}}` | Desire | 3 kutipan: masalah → hasil, nama berinisial, jabatan, jenis perusahaan + kota |
 | 10 | ~~Harga~~ → hanya `{{tanpa_risiko}}` | Desire → Action | **Harga hanya di halaman Harga** (aturan user: "tidak perlu harga di semua page, cukup di menu harga saja"). Beranda dan landing produk menjelaskan paket tanpa angka + tautan ke menu Harga; blok jaminan tetap ada. Build ERROR bila token harga (`pricing_*`, `addon_*`, `harga_mulai`) dipakai di luar `pricing_page`, dan WARNING untuk angka "Rp" di teks. Ketentuan di bawah ini hanya untuk halaman `/harga`: **Switch Bulanan/Tahunan** (wajib), lalu kartu skema masing-masing dengan tombol beli (`Pilih <Nama Paket>` → checkout `{paket}` + `{periode}` sesuai switch); satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
-| 11 | Urgensi | Action | Alasan mulai sekarang |
+| 11 | ~~Urgensi~~ → masuk CTA penutup | Action | Tidak jadi section sendiri (user: "dua section ini punya pesan yang sama, gabung jadi 1"). Alasan mulai sekarang ditulis di `copy.cta_points` |
 | 12 | ~~Jujur soal batas~~ | — | **Tidak di beranda** (user: "section ini sepertinya tidak perlu"). GAP BKB tetap wajib ditulis jujur di halaman fitur yang relevan (callout `honest`), bukan dihapus |
 | 13 | FAQ | Action | Keberatan terakhir: kontrak, reaksi tim, lama aktif, siapa yang tidak cocok |
-| 14 | `{{cta}}` | Action | Judul berorientasi hasil + 2 tombol + syarat |
+| 14 | `{{cta}}` | Action | **Satu-satunya tempat urgensi + jaminan.** Dua kolom di blok gelap: kiri judul + ajakan + 2 tombol; kanan panel "Kenapa mulai bulan ini" (`copy.cta_points`) + "Tanpa risiko terkunci" (`pricing.json terms` + `copy.risk_extra`). `{{tanpa_risiko}}` tidak dipakai lagi bersama `{{cta}}` (build WARNING) |
 
 Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipkan `{{bukti_sosial}}` setelah paragraf pertama, serta `{{tanpa_risiko}}` + `{{testimoni}}` sebelum blok penutup.
 

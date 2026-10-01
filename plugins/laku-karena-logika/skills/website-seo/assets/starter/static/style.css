@@ -204,7 +204,14 @@ details.faq[open] summary:after{content:"–"}
 details.faq p{margin:0 0 15px}
 
 /* cta */
-.cta{margin:56px 0 0;padding:30px;border-radius:20px;background:var(--surface-dark);color:#fff}
+.cta{margin:56px 0 0;padding:36px;border-radius:24px;background:var(--surface-dark);color:#fff;display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+@media (min-width:900px){.cta{grid-template-columns:1.1fr 1fr;gap:48px;padding:44px}}
+.cta-side{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:22px 24px}
+.prose .cta .cta-label,.cta .cta-label{margin:0 0 6px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#c9b8ff}
+.cta .cta-side ul.terms{margin:0 0 16px}
+.cta .cta-side ul.terms:last-child{margin-bottom:0}
+.prose .cta ul.terms li a,.cta ul.terms li a{color:#fff}
+.prose .cta ul.terms li strong,.cta ul.terms li strong{color:#fff}
 .prose .cta h2,.cta h2{margin:0 0 8px;color:#fff;font-size:26px;font-family:var(--font-head)}
 .prose .cta p,.cta p{color:#d9d1ea;margin:0 0 20px}
 .cta .btn{margin:4px 10px 4px 0}
@@ -230,7 +237,7 @@ details.faq p{margin:0 0 15px}
 ul.checks{list-style:none;padding-left:0!important;margin:6px 0 0}
 ul.checks li{position:relative;padding-left:28px}
 ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;font-weight:800}
-.cta ul.terms{list-style:none;padding:0;margin:18px 0 0;font-size:14px;color:#d9d1ea}
+.cta ul.terms{list-style:none;padding:0;margin:18px 0 0;font-size:15px;color:#d9d1ea}
 .prose .cta ul.terms li,.cta ul.terms li{color:#d9d1ea}
 .cta ul.terms li:before{content:"✓  ";color:#7be3a6}
 .hero .lead .btn{margin:8px 8px 0 0}

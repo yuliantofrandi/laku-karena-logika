@@ -42,6 +42,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Kontras:** "tulisannya tidak terlihat" (daftar syarat di blok CTA gelap tertimpa `.prose li`). Audit kontras semua halaman lalu memperbaiki 6 jenis elemen lain di bawah WCAG AA.
 - **Pesan dobel:** "ini sama pesannya seperti yang di kiri" (catatan hitungan 110 jam mengulang poin di panel). Ditambah cek otomatis, yang menemukan 2 kasus lain (Add-on di /harga, caption Cara kerja white label).
 - **Beranda tanpa section "Jujur soal batasnya":** "section ini sepertinya tidak perlu". Batasan (Idle, belum ada ekspor payroll/invoice) tetap ada di 6 halaman fitur.
+- **Urgensi + jaminan digabung ke CTA penutup:** "dua section ini sepertinya punya pesan yang sama, gabung jadi 1 section saja" (section "Kenapa sebaiknya mulai bulan ini" + blok jaminan vs CTA penutup). Blok jaminan terpisah juga dihapus dari Monitoring, Time Tracking, dan Harga.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.

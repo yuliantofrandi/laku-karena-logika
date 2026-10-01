@@ -39,6 +39,9 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 
 Target keseimbangan: tinggi kolom terpanjang ≤ ±2,2× kolom terpendek di 1440px (kecuali FAQ). Ukur dengan skrip di SKILL.md Langkah 4.
 
+## 3b. CTA penutup (blok gelap, satu per halaman)
+Dua kolom: kiri judul + ajakan + tombol utama/sekunder; kanan panel transparan berisi **alasan mulai sekarang** dan **jaminan**. Urgensi dan jaminan **tidak** diulang di section lain.
+
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
 - Tombol WA melayang minimalis di kanan bawah.

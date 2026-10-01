@@ -158,13 +158,17 @@ def addon_total_table(P):
 
 
 def cta(S, P):
+    """CTA penutup = satu-satunya tempat urgensi + jaminan (tidak diulang di section lain).
+    Kiri: judul, ajakan, tombol. Kanan: alasan mulai sekarang (copy.cta_points) + jaminan (pricing terms + risk_extra)."""
     C = S["copy"]
-    title, text = C["cta_title"], C["cta_text"]
-    terms = "".join(f"<li>{html.escape(t)}</li>" for t in P.get("terms", []))
-    return (f'<aside class="cta" id="kontak"><h2>{title}</h2><p>{text}</p>'
+    points = "".join(f"<li>{t}</li>" for t in C.get("cta_points", []))            # boleh berisi link
+    terms = "".join(f"<li>{html.escape(t)}</li>" for t in P.get("terms", []) + C.get("risk_extra", []))
+    side = (f'<div class="cta-side">'
+            + (f'<p class="cta-label">{C.get("cta_points_label", "Kenapa mulai sekarang")}</p><ul class="terms">{points}</ul>' if points else "")
+            + f'<p class="cta-label">{C["risk_label"]}</p><ul class="terms">{terms}</ul></div>')
+    return (f'<aside class="cta" id="kontak"><div class="cta-main"><h2>{C["cta_title"]}</h2><p>{C["cta_text"]}</p>'
             f'<a class="btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["cta_primary"]}</a>'
-            f'<a class="btn btn-ghost" href="{C["cta_secondary_href"]}">{C["cta_secondary"]}</a>'
-            f'<ul class="terms">{terms}</ul></aside>')
+            f'<a class="btn btn-ghost" href="{C["cta_secondary_href"]}">{C["cta_secondary"]}</a></div>{side}</aside>')
 
 
 def risk_reversal(S, P):
@@ -717,6 +721,8 @@ def main():
             continue
         raw = f.read_text(encoding="utf-8")
         n_harga = raw.count("{{pricing_cards}}") + raw.count("{{pricing_table}}")
+        if "{{tanpa_risiko}}" in raw and "{{cta}}" in raw:
+            warn(p["slug"], "{{tanpa_risiko}} + {{cta}} di halaman yang sama → jaminan tampil dua kali; CTA penutup sudah memuat jaminan")
         harga_page = S.get("pricing_page", "/harga")
         harga_tokens = [t for t in ("{{pricing_cards}}", "{{pricing_table}}", "{{addon_table}}", "{{addon_total_table}}", "{{harga_mulai}}") if t in raw]
         if p["slug"] != harga_page and harga_tokens:
