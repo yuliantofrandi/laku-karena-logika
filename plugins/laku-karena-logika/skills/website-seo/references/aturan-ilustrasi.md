@@ -47,9 +47,11 @@ User: "yang ini kurang bagus, ilustrasi dengan isi kontennya sama" (ilustrasi 3 
 
 ## Video / motion graphic dari user
 User bisa mengganti ilustrasi dengan motion graphic sendiri ("ganti dengan motion graphic saya"). Cara memasang:
-1. Salin video ke `static/video/<nama>.mp4` (MP4 H.264 atau WebM, tanpa suara, ≤5 MB; build WARNING bila lebih).
-2. Ambil satu frame yang informatif (bukan frame awal yang masih fade-in) sebagai poster JPG/WebP ±540 px lebar, ≤80 KB. Di macOS tanpa ffmpeg: skrip Swift `AVAssetImageGenerator` → JPEG, lalu `sips -Z 960 -s formatOptions 70`.
+1. Salin video ke `static/video/<nama>.mp4` (MP4 H.264 atau WebM, tanpa suara, ≤5 MB; build WARNING bila lebih). Bila lebih besar, kompres dengan `scripts/kompres_video.swift` (macOS, tanpa ffmpeg; preset `avconvert` justru memperbesar file). Hero 16:9 cukup 960×540 @ 500 kbps (demo 50 detik: 11,8 MB → 3,1 MB, teks UI tetap terbaca).
+2. Ambil satu frame yang informatif (bukan frame awal yang masih fade-in) sebagai poster dengan `scripts/poster_video.swift`, lalu `sips -Z 960 -s format jpeg -s formatOptions 70` (±70 KB).
 3. Di `data/ilustrasi.json` ubah entri gambarnya: `"auto": false, "video": "static/video/<nama>.mp4", "file": "<poster>", "w": <lebar asli>, "h": <tinggi asli>`; hapus `jenis`/`data`; perbarui `alt`, `caption`, `brief`.
 
-Render: `<video muted loop playsinline preload="none" poster data-src>`. Skrip kecil (`VIDEO_JS`, hanya disisipkan di halaman yang punya video) memasang `src` saat video mendekati layar (IntersectionObserver), lalu autoplay. Bila pengguna memilih *reduced motion*, video tidak autoplay dan diberi kontrol. Video potret (9:16) dibatasi lebar 340 px (280 px di mobile) dengan bayangan lembut. Kasus Timebase: motion graphic 1080×1920, 27 detik, 3,9 MB di section "data kerja yang bisa dibaca bersama"; re-encode dengan `avconvert` justru memperbesar file, jadi file asli dipakai.
+Render: `<video muted loop playsinline preload="none" poster data-src>`. Skrip kecil (`VIDEO_JS`, hanya disisipkan di halaman yang punya video) menunggu event `load` (tidak bersaing dengan LCP), lalu memasang `src` saat video mendekati layar (IntersectionObserver) dan autoplay.
+
+**Video di hero** (user: "ganti dengan ilustrasi saya" di hero): pasang di entri hero (`hero` map di ilustrasi.json) dengan cara yang sama. Poster hero otomatis di-`preload` dengan `fetchpriority="high"` karena menjadi kandidat LCP, dan video mendapat perlakuan visual yang sama dengan gambar hero (miring −3°, di atas bentuk gradasi). Bila pengguna memilih *reduced motion*, video tidak autoplay dan diberi kontrol. Video potret (9:16) dibatasi lebar 340 px (280 px di mobile) dengan bayangan lembut. Kasus Timebase: motion graphic 1080×1920, 27 detik, 3,9 MB di section "data kerja yang bisa dibaca bersama"; re-encode dengan `avconvert` justru memperbesar file, jadi file asli dipakai.
 

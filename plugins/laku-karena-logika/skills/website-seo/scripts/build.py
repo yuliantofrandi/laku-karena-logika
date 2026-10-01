@@ -300,25 +300,26 @@ def figure(g, hero=False):
             f'alt="{html.escape(g["alt"])}" {load} decoding="async">{cap}</figure>')
 
 
-def video_figure(g):
+def video_figure(g, hero=False):
     """Motion graphic milik user (field "video" di ilustrasi.json, "file" = poster JPG/WebP).
     Tanpa suara, loop; file video baru diunduh saat mendekati layar (VIDEO_JS) agar tidak membebani PageSpeed."""
     w, h = g.get("w", 1080), g.get("h", 1920)
     cap = f'<figcaption>{html.escape(g["caption"])}</figcaption>' if g.get("caption") else ""
     portrait = " portrait" if h > w else ""
-    return (f'<figure class="ilus video{portrait}"><video muted loop playsinline preload="none" '
+    return (f'<figure class="ilus video{portrait}{" hero-img" if hero else ""}"><video muted loop playsinline preload="none" '
             f'poster="{img_src(g)}" data-src="/{g["video"]}" width="{w}" height="{h}" '
             f'aria-label="{html.escape(g["alt"])}"></video>{cap}</figure>')
 
 
-# Muat video hanya saat mendekati layar; hormati prefers-reduced-motion (tampil poster + kontrol).
+# Setelah halaman selesai dimuat (tidak bersaing dengan LCP), muat video saat mendekati layar;
+# hormati prefers-reduced-motion (tampil poster + kontrol).
 VIDEO_JS = (
-    "<script>(function(){var v=document.querySelectorAll('video[data-src]');if(!v.length)return;"
+    "<script>addEventListener('load',function(){var v=document.querySelectorAll('video[data-src]');if(!v.length)return;"
     "var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;"
     "function go(x){x.src=x.dataset.src;x.removeAttribute('data-src');if(rm){x.controls=true}else{x.autoplay=true;x.play().catch(function(){x.controls=true})}}"
     "if(!('IntersectionObserver'in window)){v.forEach(go);return}"
     "var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go(e.target);o.unobserve(e.target)}})},{rootMargin:'200px'});"
-    "v.forEach(function(x){o.observe(x)})})()</script>")
+    "v.forEach(function(x){o.observe(x)})})</script>")
 
 
 def gambar_token(m):
@@ -538,7 +539,10 @@ def render(S, page, body, P, all_pages, indexable):
         hero_cta = f'<a class="btn btn-primary btn-lg hero-cta" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["cta_primary"]} <span aria-hidden="true">→</span></a>'
     hero_class = "hero home" if page["slug"] == "/" else "hero"
     lead = page.get("lead", "")
-    hero_img = figure(GAMBAR[HERO[page["slug"]]], hero=True) if HERO.get(page["slug"]) in GAMBAR else ""
+    hg = GAMBAR.get(HERO.get(page["slug"]))
+    hero_img = ((video_figure(hg, hero=True) if hg.get("video") else figure(hg, hero=True)) if hg else "")
+    # poster video hero = kandidat LCP → preload prioritas tinggi
+    hero_preload = (f'<link rel="preload" as="image" href="{img_src(hg)}" fetchpriority="high">\n' if hg and hg.get("video") else "")
     produk = [p for p in all_pages if p["slug"] in S["footer_produk"]]
     panduan = [p for p in all_pages if p not in produk and p["slug"] != "/"]
     flinks = lambda ps: "".join(f'<li><a href="{p["slug"]}">{p["name"]}</a></li>' for p in ps)
@@ -560,7 +564,7 @@ def render(S, page, body, P, all_pages, indexable):
 {f'<meta property="og:image" content="{base}/{S["og_image"]}"><meta name="twitter:card" content="summary_large_image">' if base and S.get("og_image") else ''}
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#7B2CFF">
-<link rel="preload" href="/static/fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+{hero_preload}<link rel="preload" href="/static/fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>{CSS}</style>
 <script type="application/ld+json">{jsonld(S, page, body, P, indexable)}</script>
 </head>
@@ -589,7 +593,7 @@ def render(S, page, body, P, all_pages, indexable):
 <div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
 </div><div class="wrap foot-bottom">© {S["brand"]}{(' · <a href="mailto:' + S["email"] + '">' + S["email"] + '</a>') if S.get("email") else ''}</div></footer>
 {float_bar(S)}
-{VIDEO_JS if 'video muted' in body else ''}
+{VIDEO_JS if 'video muted' in body + hero_img else ''}
 </body>
 </html>
 """
