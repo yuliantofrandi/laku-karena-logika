@@ -55,3 +55,12 @@ Render: `<video muted loop playsinline preload="none" poster data-src>`. Skrip k
 
 **Video di hero** (user: "ganti dengan ilustrasi saya" di hero): pasang di entri hero (`hero` map di ilustrasi.json) dengan cara yang sama. Poster hero otomatis di-`preload` dengan `fetchpriority="high"` karena menjadi kandidat LCP, dan video mendapat perlakuan visual yang sama dengan gambar hero (tegak, dengan bentuk gradasi tipis miring ±2,5° yang hanya mengintip di tepinya). Video **vertikal (9:16)** di hero otomatis dibatasi `min(300px, 64%)` dan ditengahkan di atas bentuk gradasi; kompres 540×960 @ 450 kbps (demo 50 detik: 9,5 MB → 2,8 MB). User akhirnya memilih versi vertikal daripada 16:9 untuk hero Timebase. Bila pengguna memilih *reduced motion*, video tidak autoplay dan diberi kontrol. Video potret (9:16) dibatasi lebar 340 px (280 px di mobile) dengan bayangan lembut. Kasus Timebase: motion graphic 1080×1920, 27 detik, 3,9 MB di section "data kerja yang bisa dibaca bersama"; re-encode dengan `avconvert` justru memperbesar file, jadi file asli dipakai.
 
+## Ilustrasi dengan orang (`jenis: "orang"`)
+User: "buatkan ilustrasi yang ada orangnya" (section privasi karyawan). Komponen `orang` menggambar **adegan** gaya flat: orang bekerja di meja di balik laptop (tampak depan), tanaman & cangkir, lingkaran latar, garis putus-putus ke **kartu UI melayang** di kanan.
+- `data`: `kulit` (terang|sedang|gelap atau hex), `rambut` (pendek|panjang|hijab), `baju` (p|k|o), `kartu` {icon, title, lines (≤4, ≤38 karakter), buttons (≤2)}.
+- Wajah hanya garis halus (mata terpejam, senyum, rona pipi) — bukan wajah realistis. Ini **adegan**, beda dengan potret avatar testimoni yang ditolak user (jangan pakai komponen ini untuk foto testimoni).
+- Cocok untuk section yang membahas sisi manusia (privasi, persetujuan, kenyamanan karyawan).
+
+## Cache-busting aset
+Semua URL gambar, poster, dan video diberi `?v=<hash 8 karakter isi file>` (`versi()` di build.py). Tanpa ini, gambar yang diganti tetap tampil versi lama dari cache browser/CDN (kasus nyata saat ilustrasi diganti).
+

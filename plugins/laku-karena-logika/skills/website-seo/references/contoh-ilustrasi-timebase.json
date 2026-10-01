@@ -19,88 +19,14 @@
       "id": "dashboard-rekap-tim",
       "halaman": "/",
       "section": "Hero",
-      "jenis": "timeline",
-      "judul": "Rekap tim · hari ini",
-      "alt": "Ilustrasi dashboard Timebase: rekap status kerja Active, Idle, dan Distraction per karyawan dalam satu hari",
-      "caption": "Ilustrasi dashboard rekap status kerja tim",
-      "brief": "FOTO HERO (gaya referensi user): orang Indonesia berpakaian kerja rapi, tersenyum, memegang laptop yang layarnya menampilkan screenshot dashboard Timebase asli; latar transparan (PNG→WebP) agar bisa diletakkan di atas bentuk gradasi brand. Minimal 1400×1000 px.",
-      "auto": true,
-      "data": {
-        "rows": [
-          {
-            "label": "Rina · Desain",
-            "segs": [
-              [
-                "a",
-                0.72
-              ],
-              [
-                "i",
-                0.18
-              ],
-              [
-                "d",
-                0.1
-              ]
-            ],
-            "total": "7j 12m"
-          },
-          {
-            "label": "Dimas · Developer",
-            "segs": [
-              [
-                "a",
-                0.8
-              ],
-              [
-                "i",
-                0.14
-              ],
-              [
-                "d",
-                0.06
-              ]
-            ],
-            "total": "7j 40m"
-          },
-          {
-            "label": "Sari · CS",
-            "segs": [
-              [
-                "a",
-                0.66
-              ],
-              [
-                "i",
-                0.24
-              ],
-              [
-                "d",
-                0.1
-              ]
-            ],
-            "total": "6j 55m"
-          },
-          {
-            "label": "Bayu · Marketing",
-            "segs": [
-              [
-                "a",
-                0.7
-              ],
-              [
-                "i",
-                0.2
-              ],
-              [
-                "d",
-                0.1
-              ]
-            ],
-            "total": "7j 05m"
-          }
-        ]
-      }
+      "alt": "Demo aplikasi Timebase: timeline aktivitas, screenshot sesi kerja, dan rekap karyawan di dashboard",
+      "caption": "Demo aplikasi Timebase",
+      "brief": "Rekaman demo aplikasi asli dari user (9:16, 50 detik, tanpa suara); dikompres ke 540×960 @450 kbps.",
+      "auto": false,
+      "video": "static/video/timebase-demo-aplikasi-9x16.mp4",
+      "file": "static/video/timebase-demo-aplikasi-9x16-poster.jpg",
+      "w": 540,
+      "h": 960
     },
     {
       "id": "laporan-manual-grup-chat",
@@ -138,80 +64,42 @@
       "id": "agen-desktop-empat-data",
       "halaman": "/",
       "section": "Timebase: data kerja yang bisa dibaca bersama",
-      "jenis": "table",
-      "judul": "Catatan kerja Dimas · hari ini",
-      "alt": "Contoh catatan kerja satu karyawan: jam, status kerja, aplikasi, dan tugas dalam satu tabel",
-      "caption": "Contoh catatan satu hari di dashboard",
-      "brief": "Screenshot asli dashboard Timebase: detail satu karyawan dalam satu hari (rentang jam, status Active/Idle/Distraction, aplikasi, tugas, total jam aktif). Data dummy.",
-      "auto": true,
-      "data": {
-        "headers": [
-          "Jam",
-          "Status",
-          "Aplikasi",
-          "Tugas"
-        ],
-        "rows": [
-          [
-            "09.00–10.30",
-            "Active",
-            "VS Code",
-            "Checkout UI"
-          ],
-          [
-            "10.30–10.50",
-            "Idle",
-            "—",
-            "Checkout UI"
-          ],
-          [
-            "10.50–12.00",
-            "Active",
-            "Figma",
-            "Review desain"
-          ],
-          [
-            "13.00–13.15",
-            "Distraction",
-            "YouTube",
-            "—"
-          ],
-          [
-            "13.15–15.00",
-            "Active",
-            "VS Code",
-            "Bug login"
-          ]
-        ],
-        "total": [
-          "Aktif hari ini",
-          "6j 40m"
-        ]
-      }
+      "alt": "Motion graphic Timebase: dashboard aktivitas seluruh tim dalam satu layar",
+      "caption": "Satu layar untuk aktivitas seluruh tim",
+      "brief": "Motion graphic asli dari user (9:16, 27 detik, tanpa suara).",
+      "auto": false,
+      "video": "static/video/timebase-motion-9x16.mp4",
+      "file": "static/video/timebase-motion-9x16-poster.jpg",
+      "w": 1080,
+      "h": 1920
     },
     {
       "id": "layar-data-karyawan",
       "halaman": "/",
       "section": "Akuntabilitas tanpa dicap \"bos mata-mata\"",
-      "jenis": "dialog",
-      "judul": "Data saya",
-      "alt": "Ilustrasi layar karyawan di Timebase: melihat data pemantauan miliknya sendiri dan meminta penghapusan data",
+      "jenis": "orang",
+      "alt": "Ilustrasi karyawan bekerja di laptop sambil membuka halaman data pemantauan miliknya sendiri",
       "caption": "Karyawan bisa melihat dan meminta hapus datanya sendiri",
       "brief": "Screenshot asli halaman 'Data saya' dari sisi karyawan: daftar apa yang dicatat, persetujuan, dan tombol minta hapus data.",
       "auto": true,
       "data": {
-        "icon": "eye",
-        "title": "Apa yang dicatat tentang saya",
-        "lines": [
-          "Status kerja selama sesi aktif",
-          "Aplikasi & situs yang dipakai",
-          "Screenshot tiap 30 menit (sesi aktif)",
-          "Disetujui: 3 Okt 2026"
-        ],
-        "buttons": [
-          "Minta hapus data",
-          "Lihat data saya"
-        ]
+        "kulit": "sedang",
+        "rambut": "hijab",
+        "baju": "p",
+        "kartu": {
+          "icon": "eye",
+          "title": "Apa yang dicatat tentang saya",
+          "lines": [
+            "Status kerja selama sesi aktif",
+            "Aplikasi & situs yang dipakai",
+            "Screenshot tiap 30 menit (sesi aktif)",
+            "Disetujui: 3 Okt 2026"
+          ],
+          "buttons": [
+            "Minta hapus data",
+            "Lihat data saya"
+          ]
+        }
       }
     },
     {

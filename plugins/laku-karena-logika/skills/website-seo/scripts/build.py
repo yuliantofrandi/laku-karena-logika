@@ -288,6 +288,15 @@ def logo(S):
 
 # ---------- gambar & ilustrasi ----------
 
+def versi(path):
+    """URL aset + ?v=<hash isi file> agar gambar/video yang diganti langsung terlihat (tidak tertahan cache browser/CDN)."""
+    f = ROOT / path.lstrip("/")
+    if not f.exists():
+        return path
+    import hashlib
+    return f"{path}?v={hashlib.md5(f.read_bytes()).hexdigest()[:8]}"
+
+
 def img_src(g):
     return "/" + (g.get("file") or f'static/ilustrasi/{g["id"]}.svg')
 
@@ -296,7 +305,7 @@ def figure(g, hero=False):
     w, h = g.get("w", ILUS.W), g.get("h", ILUS.H)
     load = 'loading="eager" fetchpriority="high"' if hero else 'loading="lazy"'
     cap = f'<figcaption>{html.escape(g["caption"])}</figcaption>' if g.get("caption") else ""
-    media = (f'<img src="{img_src(g)}" width="{w}" height="{h}" '
+    media = (f'<img src="{versi(img_src(g))}" width="{w}" height="{h}" '
              f'alt="{html.escape(g["alt"])}" {load} decoding="async">')
     if hero:   # bingkai: bentuk gradasi kecil & miring yang hanya mengintip di belakang media (pemanis)
         media = f'<span class="hero-media">{media}</span>'
@@ -309,7 +318,7 @@ def video_figure(g, hero=False):
     w, h = g.get("w", 1080), g.get("h", 1920)
     cap = f'<figcaption>{html.escape(g["caption"])}</figcaption>' if g.get("caption") else ""
     portrait = " portrait" if h > w else ""
-    media = (f'<video muted loop playsinline preload="none" poster="{img_src(g)}" data-src="/{g["video"]}" '
+    media = (f'<video muted loop playsinline preload="none" poster="{versi(img_src(g))}" data-src="{versi("/" + g["video"])}" '
              f'width="{w}" height="{h}" aria-label="{html.escape(g["alt"])}"></video>')
     if hero:
         media = f'<span class="hero-media">{media}</span>'
@@ -562,7 +571,7 @@ def render(S, page, body, P, all_pages, indexable):
     hg = GAMBAR.get(HERO.get(page["slug"]))
     hero_img = ((video_figure(hg, hero=True) if hg.get("video") else figure(hg, hero=True)) if hg else "")
     # poster video hero = kandidat LCP → preload prioritas tinggi
-    hero_preload = (f'<link rel="preload" as="image" href="{img_src(hg)}" fetchpriority="high">\n' if hg and hg.get("video") else "")
+    hero_preload = (f'<link rel="preload" as="image" href="{versi(img_src(hg))}" fetchpriority="high">\n' if hg and hg.get("video") else "")
     produk = [p for p in all_pages if p["slug"] in S["footer_produk"]]
     panduan = [p for p in all_pages if p not in produk and p["slug"] != "/"]
     flinks = lambda ps: "".join(f'<li><a href="{p["slug"]}">{p["name"]}</a></li>' for p in ps)
