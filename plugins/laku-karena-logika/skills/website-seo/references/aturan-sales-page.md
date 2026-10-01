@@ -48,7 +48,7 @@ Dirender otomatis oleh `build.py`, sama di semua halaman:
 3. **Subjudul** = `<!-- lead: … -->` di konten. Isinya teks saja, jangan memasukkan tombol.
 4. **Satu tombol CTA** gradasi besar + panah "→": `copy.cta_primary` ke checkout. Di `/white-label` tombolnya mengarah ke WA penawaran.
 5. **Baris 3 statistik** dari `data/social-proof.json → metrics` (3 pertama). Hanya fakta, atau data contoh yang memblokir publish. Jangan klaim yang bertentangan dengan produk (mis. "24/7 Monitoring" untuk produk yang hanya mencatat sesi kerja). Strip bukti sosial di isi halaman hanya berisi logo/industri agar angka tidak dobel.
-6. **Gambar kanan** di atas **bentuk gradasi brand** yang membulat (pseudo-element), dengan gambar sedikit miring dan keluar dari bentuknya. Gambar hero beranda idealnya **foto orang memegang laptop berisi dashboard, latar transparan**. Tulis ini di `brief`, karena Claude tidak bisa membuat foto.
+6. **Gambar kanan** di atas **bentuk gradasi brand** yang membulat (pseudo-element), dengan gambar sedikit keluar dari bentuknya. **Gambar/video tetap tegak; yang miring hanya bentuk gradasinya** (±6°; user: "videonya jangan miring, buat background belakangnya saja yang miring"). Gambar hero beranda idealnya **foto orang memegang laptop berisi dashboard, latar transparan**. Tulis ini di `brief`, karena Claude tidak bisa membuat foto.
 - Breadcrumb tidak tampil (badge menggantikannya); BreadcrumbList tetap ada di JSON-LD.
 
 ## Nama paket, bukan "Skema N" (wajib)
