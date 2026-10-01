@@ -335,7 +335,7 @@ def jsonld(S, page, body, P, indexable):
                               "reviewRating": {"@type": "Rating", "ratingValue": str(t["rating"]), "bestRating": "5"},
                               "reviewBody": t["quote"]} for t in real]
         graph.append(app)
-    faqs = re.findall(r'<details class="faq">\s*<summary>(.*?)</summary>(.*?)</details>', body, flags=re.S)
+    faqs = re.findall(r'<details class="faq"[^>]*>\s*<summary>(.*?)</summary>(.*?)</details>', body, flags=re.S)
     if faqs:
         graph.append({"@type": "FAQPage", "mainEntity": [
             {"@type": "Question", "name": strip_tags(q).strip(),
@@ -439,7 +439,26 @@ def render_section(blocks, idx, S=None):
             C = S["copy"]
             help_card = (f'<div class="help-card"><p class="help-title">{C["faq_help_title"]}</p><p>{C["faq_help_text"]}</p>'
                          f'<a class="btn btn-ghost btn-sm" href="{wa_link(S)}" target="_blank" rel="nofollow noopener">{C["faq_help_button"]}</a></div>')
-        row = f'<div class="split faq-row"><div class="col-text">{lead}{help_card}</div><div class="col-faq">{"".join(scan)}</div></div>'
+        # FAQ dinamis: siap untuk 20+ pertanyaan — grup topik (<h3>) jadi chip navigasi, kolom kiri sticky,
+        # dan accordion eksklusif (<details name>) supaya hanya satu jawaban terbuka. Tanpa JavaScript.
+        faq_html = "".join(scan)
+        n = faq_html.count('<details class="faq"')
+        faq_html = faq_html.replace('<details class="faq">', f'<details class="faq" name="faq-{idx}">')
+        topics = []
+        def _topic(m):
+            label = strip_tags(m.group(1)).strip()
+            tid = f"faq-{idx}-" + re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")
+            topics.append((tid, label))
+            return f'<h3 class="faq-group" id="{tid}">{m.group(1)}</h3>'
+        faq_html = re.sub(r"<h3[^>]*>(.*?)</h3>", _topic, faq_html, flags=re.S)
+        nav = ""
+        if topics:
+            nav = ('<nav class="faq-topics" aria-label="Topik pertanyaan">'
+                   + "".join(f'<a href="#{t}">{html.escape(l)}</a>' for t, l in topics) + "</nav>")
+        count = f'<p class="faq-count">{n} pertanyaan</p>' if n >= 6 else ""
+        long_cls = " long" if n > 6 else ""
+        row = (f'<div class="split faq-row{long_cls}"><div class="col-text">{count}{lead}{nav}{help_card}</div>'
+               f'<div class="col-faq">{faq_html}</div></div>')
     elif scan:
         flip = " flip" if idx % 2 else ""
         row = f'<div class="split panel-row{flip}"><div class="col-text">{lead}</div><div class="col-panel"><div class="panel">{"".join(scan)}</div></div></div>'
