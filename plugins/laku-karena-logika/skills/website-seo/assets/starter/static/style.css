@@ -159,12 +159,12 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .agitate{border-left:4px solid var(--orange);padding:4px 0 4px 18px;margin:20px 0}
 /* tombol WA marketing melayang — minimalis, warna dari design system */
 .float-bar{position:fixed;right:20px;bottom:20px;z-index:30}
-.wa-float{display:flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:14px;text-decoration:none;color:#fff!important;background:var(--ink);box-shadow:0 6px 18px -8px rgba(27,22,38,.5);transition:background .15s}
+.wa-float{display:flex;align-items:center;gap:10px;padding:12px 22px 12px 14px;border-radius:14px;text-decoration:none;color:#fff!important;background:var(--ink);box-shadow:0 6px 18px -8px rgba(27,22,38,.5);transition:background .15s}
 .wa-float:hover{background:#2b1840}
-.wa-float .wa-icon{flex:none;width:36px;height:36px}
+.wa-float .wa-icon{flex:none;width:30px;height:30px}
 .wa-float span{display:flex;flex-direction:column;line-height:1.25}
-.wa-float strong{font-size:16px;font-weight:700}
-.wa-float small{font-size:12.5px;font-weight:500;color:#cfc8de}
+.wa-float strong{font-size:14px;font-weight:700}
+.wa-float small{font-size:11.5px;font-weight:500;color:#cfc8de}
 body{padding-bottom:96px}
 
 /* footer */
@@ -190,10 +190,10 @@ body{padding-bottom:96px}
 }
 @media (max-width:640px){
   .float-bar{right:12px;bottom:12px}
-  .wa-float{padding:6px 12px 6px 6px;gap:8px;border-radius:12px}
-  .wa-float .wa-icon{width:30px;height:30px}
-  .wa-float strong{font-size:14px}
-  .wa-float small{font-size:11.5px}
+  .wa-float{padding:10px 16px 10px 12px;gap:8px;border-radius:12px}
+  .wa-float .wa-icon{width:26px;height:26px}
+  .wa-float strong{font-size:12.5px}
+  .wa-float small{font-size:10.5px}
   body{padding-bottom:68px}
 }
 @media (max-width:520px){
