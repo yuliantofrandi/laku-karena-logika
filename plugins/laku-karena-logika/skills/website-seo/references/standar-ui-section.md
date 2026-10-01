@@ -40,7 +40,7 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 Target keseimbangan: tinggi kolom terpanjang ≤ ±2,2× kolom terpendek di 1440px (kecuali FAQ). Ukur dengan skrip di SKILL.md Langkah 4.
 
 ## 3b. CTA penutup (blok gelap, satu per halaman)
-Dua kolom: kiri judul + ajakan + tombol utama/sekunder; kanan panel transparan berisi **alasan mulai sekarang** dan **jaminan**. Urgensi dan jaminan **tidak** diulang di section lain.
+Dua kolom: kiri judul + ajakan + tombol utama/sekunder; kanan panel transparan berisi **alasan mulai sekarang** dan **jaminan**. Urgensi dan jaminan **tidak** diulang di section lain. Band CTA memakai padding atas = bawah yang sama dengan band lain (64px / 44px mobile); jangan beri override padding khusus (kasus nyata: 8px atas vs 64px bawah, ditegur user "padding atas bawahnya tidak sama").
 
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
