@@ -86,7 +86,7 @@ figure.ilus figcaption{margin-top:8px;font-size:13px;color:var(--muted);text-ali
 figure.hero-img{margin:0;position:relative;padding:0 0 44px}
 .hero-media{position:relative;display:block;width:88%;margin:8% auto 0}
 .hero-img.portrait .hero-media{width:min(300px,64%);margin-top:4%}
-.hero-media:before{content:"";position:absolute;inset:-5px -6px;border-radius:22px;background:linear-gradient(135deg,var(--purple),var(--pink) 55%,var(--orange));transform:translate(26px,0) rotate(2.5deg)}
+.hero-media:before{content:"";position:absolute;inset:-5px -6px;border-radius:22px;background:linear-gradient(135deg,var(--purple),var(--pink) 55%,var(--orange));transform:translate(16px,0) rotate(2.5deg)}
 .hero-media img,.hero-media video{position:relative;display:block;width:100%;height:auto;border-radius:18px;background:#fff;box-shadow:0 30px 60px -28px rgba(27,22,38,.55)}
 figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
 
