@@ -2,7 +2,7 @@
 :root{
   --purple:#7B2CFF; --pink:#E83AAE; --orange:#FF8A00;
   --grad:linear-gradient(90deg,var(--purple),var(--pink) 52%,var(--orange));
-  --ink:#1b1626; --ink-2:#4a4458; --muted:#6f6880; --line:#e9e5f0;
+  --ink:#1b1626; --ink-2:#4a4458; --muted:#5f5870; --line:#e9e5f0;
   --bg:#ffffff; --bg-soft:#f8f6fc; --bg-tint:#f3edff;
   --surface-dark:linear-gradient(135deg,#1d1330,#2b1840);
   --radius:14px; --wrap:1160px;
@@ -137,7 +137,7 @@ figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
 .callout.honest{border-color:#ffd9ad;background:#fff8ef}
 .callout.legal{border-color:#e3d4ff;background:var(--bg-tint)}
 .callout p{margin:6px 0}
-.callout .label{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--orange)}
+.callout .label{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#b45309}
 .callout.legal .label{color:var(--purple)}
 
 /* grids & cards */
@@ -162,7 +162,7 @@ figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
 .periode > input{position:absolute;top:40px;left:50%;opacity:0;width:1px;height:1px;pointer-events:none}
 .periode-switch{display:flex;width:max-content;max-width:100%;margin:24px auto 4px;padding:4px;border-radius:999px;background:var(--bg-soft);border:1px solid var(--line)}
 .periode-switch label{cursor:pointer;padding:8px 18px;border-radius:999px;font-weight:700;font-size:15px;color:var(--ink-2);white-space:nowrap;transition:background .15s,color .15s}
-.periode-switch label span{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f7ec;color:#13804a;font-size:12px}
+.periode-switch label span{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#e5f7ec;color:#0f6b3d;font-size:12px}
 .p-bln:checked ~ .periode-switch label[for$="-bln"],.p-thn:checked ~ .periode-switch label[for$="-thn"]{background:var(--ink);color:#fff}
 .p-thn:checked ~ .periode-switch label[for$="-thn"] span{background:#2f6b47;color:#e5f7ec}
 .p-bln:focus-visible ~ .periode-switch label[for$="-bln"],.p-thn:focus-visible ~ .periode-switch label[for$="-thn"]{outline:3px solid var(--pink);outline-offset:2px}
@@ -205,8 +205,8 @@ details.faq p{margin:0 0 15px}
 
 /* cta */
 .cta{margin:56px 0 0;padding:30px;border-radius:20px;background:var(--surface-dark);color:#fff}
-.cta h2{margin:0 0 8px;color:#fff;font-size:26px;font-family:var(--font-head)}
-.cta p{color:#d9d1ea;margin:0 0 20px}
+.prose .cta h2,.cta h2{margin:0 0 8px;color:#fff;font-size:26px;font-family:var(--font-head)}
+.prose .cta p,.cta p{color:#d9d1ea;margin:0 0 20px}
 .cta .btn{margin:4px 10px 4px 0}
 .cta .btn-ghost{background:transparent;color:#fff!important;border-color:rgba(255,255,255,.35)}
 
@@ -217,20 +217,21 @@ details.faq p{margin:0 0 15px}
 .metric span{font-size:14px;color:var(--muted)}
 .proof-cap{text-align:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 16px!important;font-weight:700}
 .logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 44px;list-style:none;padding:0!important;margin:0}
-.logos li{margin:0;font-family:var(--font-head);font-weight:800;font-size:17px;letter-spacing:-.01em;color:#a39cb3;white-space:nowrap}
+.logos li{margin:0;font-family:var(--font-head);font-weight:800;font-size:19px;letter-spacing:-.01em;color:#736c88;white-space:nowrap}
 .logos img{display:block;height:28px;width:auto;filter:grayscale(1);opacity:.7}
 .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:24px 0}
 .quote{margin:0;display:flex;flex-direction:column;gap:10px}
 .quote blockquote{margin:0;padding:0;border:0;background:none}
 .quote blockquote p{font-size:16px;color:var(--ink)}
 .quote figcaption{font-size:14px;color:var(--muted)}
-.stars{color:var(--orange);letter-spacing:2px}
+.stars{color:#b45309;letter-spacing:2px}
 .callout.guarantee{border-color:#c9f0d8;background:#f2fbf5}
 .callout.guarantee .label{color:#13804a}
 ul.checks{list-style:none;padding-left:0!important;margin:6px 0 0}
 ul.checks li{position:relative;padding-left:28px}
 ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;font-weight:800}
 .cta ul.terms{list-style:none;padding:0;margin:18px 0 0;font-size:14px;color:#d9d1ea}
+.prose .cta ul.terms li,.cta ul.terms li{color:#d9d1ea}
 .cta ul.terms li:before{content:"✓  ";color:#7be3a6}
 .hero .lead .btn{margin:8px 8px 0 0}
 .agitate{border-left:4px solid var(--orange);padding:4px 0 4px 18px;margin:20px 0}

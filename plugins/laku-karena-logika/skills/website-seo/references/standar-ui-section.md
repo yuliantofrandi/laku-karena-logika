@@ -48,6 +48,10 @@ Target keseimbangan: tinggi kolom terpanjang ≤ ±2,2× kolom terpendek di 1440
 - **ERROR** jika ada section yang **hanya berisi teks** (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau **tanpa kalimat pembuka** setelah judul (kecuali FAQ, yang diisi otomatis).
 - **WARNING** jika sebuah section punya > 2 paragraf, judul > 12 kata, atau ada paragraf > ±45 kata.
 
+## Warna & kontras
+- Semua teks ≥4,5:1 (teks besar 3:1). `--muted` = #5f5870; logo cloud #736c88 (19px tebal); bintang & label callout amber tua #b45309.
+- Elemen di permukaan gelap (`.cta`) menulis selektornya dengan `.prose .cta …` supaya tidak tertimpa warna teks isi halaman (kasus nyata: daftar syarat di CTA nyaris tak terlihat).
+
 ## Cek manual sebelum melapor selesai
 1. Screenshot setiap halaman per band di 1440px dan 375px. Bandingkan dengan `contoh-ui/standar-section-disetujui.jpg`: kepadatan teks, ruang kosong, ukuran judul, dan dua kolom yang seimbang.
 2. Pastikan tidak ada dua band berurutan dengan latar sama (batas harus terlihat).

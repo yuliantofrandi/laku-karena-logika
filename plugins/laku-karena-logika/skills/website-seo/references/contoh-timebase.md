@@ -39,6 +39,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Standardisasi semua section:** "cek semua page, dan standardkan untuk desain semua section". Audit menemukan 66 dari 91 section memakai layout judul-kiri yang menyisakan ruang kosong. Diganti 4 layout otomatis (media / panel / FAQ / susun), 15 kalimat pembuka ditambahkan, dan sisa ketimpangan turun dari 66 ke 10 section dengan rasio ±2,2–2,6 yang secara visual masih rapi.
 - **Harga hanya di menu Harga:** "tidak perlu harga untuk di semua page, cukup di menu harga saja" (perluasan dari aturan beranda). Kartu harga di Monitoring & Time Tracking, tabel add-on di Absensi, dan "mulai Rp 6.000" di Kerja Remote diganti tautan ke /harga.
 - **Beranda tanpa harga (awal):** "tidak perlu harga di home, biarkan orang klik di menu harga saja". Kartu harga dihapus dari beranda, blok jaminan dipindah ke "Kenapa sebaiknya mulai bulan ini", schema Offer dicabut dari beranda.
+- **Kontras:** "tulisannya tidak terlihat" (daftar syarat di blok CTA gelap tertimpa `.prose li`). Audit kontras semua halaman lalu memperbaiki 6 jenis elemen lain di bawah WCAG AA.
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.
