@@ -31,6 +31,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Switch harga:** "untuk harga ada button switch antara ke tahunan dan bulanan". Diterapkan di kartu & tabel, tanpa JS, default Bulanan, label "Hemat 2 bulan".
 - **Satu tampilan harga:** "tabel harganya cukup 1 saja". `/harga` hanya tabel (tombol beli di header & footer), halaman lain hanya kartu. Tabel di mobile diberi kolom kiri sticky + petunjuk geser.
 - **Tampilan:** "kurang bagus, banyak blank space, terlalu banyak tulisan". Solusinya: kontainer 1160px, band dua kolom otomatis, dan teks sekunder dilipat. Paragraf yang terlihat turun ke 29–58% di halaman konten tanpa mengurangi jumlah kata.
+- **Nama paket:** "di bagian harga tidak perlu ada tulisan skema". Skema 1/2/3 → Aktivitas / Bukti Visual / Waktu Per Tugas di seluruh website (BKB tetap memakai Skema).
 - Risk reversal: "bulanan, berhenti kapan saja" (belum ada trial/garansi).
 - Urgensi alami, bukan kuota. Title tanpa "terbaik"/tahun. Rating hanya dari ulasan asli.
 - Meta description maks **155** (diperketat dari 160). Kolom Cek di Excel keyword plan ikut disesuaikan.

@@ -33,7 +33,7 @@ Lokasi folder produk tidak di-hardcode: pakai folder tempat BKB berada (biasanya
 Baca BKB dan keyword plan sampai tuntas. Jangan mencari-cari file di luar folder produk. Kalau salah satu tidak ada, minta user melampirkannya.
 
 Lalu satu ronde `AskUserQuestion` untuk hal yang **tidak boleh dikarang** (taruh rekomendasi di opsi pertama):
-1. **Model penjualan** — langsung langganan (pilih skema → bayar → aktif) atau lewat demo/sales? Ini menentukan semua CTA. **Jangan mengandaikan demo.**
+1. **Model penjualan** — langsung langganan (pilih paket → bayar → aktif) atau lewat demo/sales? Ini menentukan semua CTA. **Jangan mengandaikan demo.**
 2. **Social proof** — sudah ada data asli (klien, testimoni, metrik)? Kalau belum: slot tersembunyi, atau data contoh yang terlihat asli untuk preview (lihat aturan contoh di bawah).
 3. **Risk reversal** yang benar-benar berlaku — free trial / bulanan berhenti kapan saja / garansi uang kembali / belum ada.
 4. **Urgensi** — urgensi alami (disarankan) atau promo asli dengan kuota + tanggal berakhir.
@@ -64,7 +64,7 @@ website/
 ```
 
 - `brief_to_json.py <keyword-plan.xlsx> data/brief.json`. **Metadata tidak diketik ulang**: title/meta/H1/keyword/link wajib dibaca build dari brief. Kalau brief melanggar aturan (mis. meta > 155), perbaiki sel di Excel (`openpyxl` tanpa `data_only` agar rumus selamat), lalu jalankan ulang konverter.
-- `pricing.json` disalin dari BKB §3: harga tahunan = **10 × bulanan** (bayar 10 dapat 12), add-on selalu menempel ke skema. Syarat baru dari user yang belum ada di BKB (mis. "bulanan, berhenti kapan saja") masuk ke `terms` **dan** dilaporkan ke user untuk ditambahkan ke BKB. **Jangan mengedit BKB atas inisiatif sendiri.**
+- `pricing.json` disalin dari BKB §3: harga tahunan = **10 × bulanan** (bayar 10 dapat 12), add-on selalu menempel ke paket. Setiap skema BKB diberi **nama paket** di `schemes[].name` (tanpa kata "Skema"; lihat aturan-sales-page.md). Syarat baru dari user yang belum ada di BKB (mis. "bulanan, berhenti kapan saja") masuk ke `terms` **dan** dilaporkan ke user untuk ditambahkan ke BKB. **Jangan mengedit BKB atas inisiatif sendiri.**
 - **Halaman `/white-label` wajib di setiap produk**, karena semua produk user bisa dibeli dengan merek sendiri. Salin `assets/starter/content/white-label.html` (copy global, jangan ditulis ulang) dan blok `whitelabel` + entri `extra_pages` dari `assets/starter/site.json`. Bagian khusus produk terisi otomatis: `{{brand}}`, `{{deskripsi_kecil}}`, `{{daftar_solusi}}` (dari menu group), `{{wl_kustomisasi}}`, dan `{{wl_ditangani}}`. Konfirmasi ke user daftar `kustomisasi` & `ditangani` untuk produk itu: hapus yang tidak tersedia, jangan menambah klaim. Kalau nama brand panjang membuat title > 60 karakter, pendekkan template title-nya.
 - Halaman tambahan di luar brief (beranda `/`, `/harga`, `/white-label`) didefinisikan di `site.json → extra_pages`. `{{brand}}` di title/meta/H1 extra page diganti otomatis. Beranda **tidak** boleh memakai primary keyword halaman lain (kanibalisasi). Primary beranda = nama brand.
 

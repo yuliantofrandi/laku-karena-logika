@@ -6,7 +6,7 @@
   "site_url": "",
   "_site_url": "WAJIB diisi sebelum publish, mis. https://domain-anda.id (tanpa garis miring di akhir). Kosong = sitemap & canonical tidak dibuat.",
   "checkout_url": "",
-  "_checkout_url": "Link halaman langganan/pembayaran. Boleh memuat {skema} (1/2/3) dan {periode} (bulanan/tahunan), mis. https://app.domain-anda.id/daftar?skema={skema}&periode={periode}. Kosong = tombol beli ke /harga#pilih-skema; build publish ditolak.",
+  "_checkout_url": "Link halaman langganan/pembayaran. Boleh memuat {paket} (1/2/3) dan {periode} (bulanan/tahunan), mis. https://app.domain-anda.id/daftar?skema={paket}&periode={periode}. Kosong = tombol beli ke /harga#pilih-skema; build publish ditolak.",
   "whatsapp": "",
   "_whatsapp": "WAJIB sebelum publish. Nomor WA tim marketing (format 62812xxxxxxx) untuk tombol melayang 'Hubungi Kami' di setiap halaman.",
   "whatsapp_text": "Halo, saya ingin konsultasi.",
@@ -92,7 +92,7 @@
   "copy": {
     "nav_cta": "Langganan",
     "cta_primary": "Aktifkan Timebase untuk Tim Saya",
-    "cta_secondary": "Bandingkan Skema",
+    "cta_secondary": "Bandingkan Paket",
     "cta_secondary_href": "/harga",
     "cta_title": "Mulai catat kerja tim Anda hari ini",
     "cta_text": "Pilih skema dan jumlah karyawan, bayar, dan akun langsung aktif. Tim lokal kami membantu memasang agen di laptop tim sampai selesai.",

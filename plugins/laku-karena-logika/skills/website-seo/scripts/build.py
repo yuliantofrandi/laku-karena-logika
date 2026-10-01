@@ -88,7 +88,7 @@ def periode_switch(P):
 def pricing_table(S, P):
     s = P["schemes"]
     FEAT = ' class="featured"'
-    head = "".join(f'<th scope="col"{FEAT if x.get("featured") else ""}>{x["name"]}<span>{x["label"]}</span></th>' for x in s)
+    head = "".join(f'<th scope="col"{FEAT if x.get("featured") else ""}>{x["name"]}</th>' for x in s)
     m = P["annual_months_paid"]
     rows = []
     rows.append(f'<tr class="group bln"><th scope="rowgroup" colspan="{len(s)+1}"><span>Harga bulanan / karyawan</span></th></tr>')
@@ -111,7 +111,7 @@ def pricing_table(S, P):
                 f'<a class="btn {btn} btn-sm thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{lab}</a></td>')
     foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
     buy_head = f'<tr class="buy"><td></td>{"".join(beli(x) for x in s)}</tr>'
-    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua skema →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr>{buy_head}</thead>'
+    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua paket →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr>{buy_head}</thead>'
             f'<tbody>{"".join(rows)}</tbody>{foot}</table></div><p class="note">{P["note"]}</p></div>')
 
 
@@ -125,7 +125,7 @@ def pricing_cards(S, P):
         btn = "btn-primary" if x.get("featured") else "btn-ghost"
         label = S["copy"]["plan_button"].replace("{nama}", x["name"])
         cards.append(
-            f'<div class="card plan{feat}">{badge}<h3>{x["name"]} · {x["label"]}</h3>'
+            f'<div class="card plan{feat}">{badge}<h3>{x["name"]}</h3>'
             f'<div class="bln"><p class="price">{rupiah(hi)}<span>/karyawan/bln</span></p>'
             f'<p class="price-sub">turun sampai {rupiah(lo)} untuk 100+ karyawan</p></div>'
             f'<div class="thn"><p class="price">{rupiah(hi*m/12)}<span>/karyawan/bln, dibayar tahunan</span></p>'
@@ -189,11 +189,12 @@ def testimonials(SP):
 
 
 def checkout_link(S, skema=None, periode="bulanan"):
-    """Tombol beli. site.json checkout_url boleh memuat {skema} dan {periode}."""
+    """Tombol beli. site.json checkout_url boleh memuat {paket} (alias {skema}) dan {periode}."""
     url = S.get("checkout_url", "")
     if not url:
         return "/harga#pilih-skema"
-    return url.replace("{skema}", str(skema or "")).replace("{periode}", periode)
+    pid = str(skema or "")
+    return url.replace("{paket}", pid).replace("{skema}", pid).replace("{periode}", periode)
 
 
 WA_ICON = ('<svg class="wa-icon" width="44" height="44" viewBox="0 0 32 32" aria-hidden="true">'
@@ -293,7 +294,7 @@ def jsonld(S, page, body, P, indexable):
             {"@type": "ListItem", "position": 1, "name": S["brand"], **({"item": base + "/"} if base else {})},
             {"@type": "ListItem", "position": 2, "name": page["name"], **({"item": url} if base else {})}]})
     if page.get("product_schema"):
-        offers = [{"@type": "Offer", "name": f'{x["name"]} — {x["label"]}', "priceCurrency": "IDR",
+        offers = [{"@type": "Offer", "name": f'{S["brand"]} {x["name"]}', "priceCurrency": "IDR",
                    "price": str(max(x["monthly"])),
                    "priceSpecification": {"@type": "UnitPriceSpecification", "price": str(max(x["monthly"])),
                                           "priceCurrency": "IDR", "unitText": "karyawan per bulan"}} for x in P["schemes"]]

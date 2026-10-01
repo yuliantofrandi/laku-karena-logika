@@ -18,8 +18,7 @@
   "schemes": [
     {
       "id": 1,
-      "name": "Skema 1",
-      "label": "Aktivitas",
+      "name": "Aktivitas",
       "monthly": [
         12000,
         10000,
@@ -30,8 +29,7 @@
     },
     {
       "id": 2,
-      "name": "Skema 2",
-      "label": "Bukti Visual",
+      "name": "Bukti Visual",
       "monthly": [
         16000,
         14000,
@@ -43,8 +41,7 @@
     },
     {
       "id": 3,
-      "name": "Skema 3",
-      "label": "Waktu Per Tugas",
+      "name": "Waktu Per Tugas",
       "monthly": [
         18000,
         16000,
@@ -129,12 +126,13 @@
       "monthly": 2000,
       "unit": "karyawan/bln",
       "desc": "Cek lokasi karyawan saat bekerja dan lock lokasi saat WFO",
-      "applies_to": "Skema 1, Skema 2, atau Skema 3"
+      "applies_to": "paket Aktivitas, Bukti Visual, atau Waktu Per Tugas"
     }
   ],
   "terms": [
     "Bayar bulanan, berhenti kapan saja — tanpa kontrak tahunan wajib",
     "Tanpa biaya pemasangan terpisah — tim lokal membantu sampai agen terpasang di seluruh tim"
   ],
-  "_terms": "Keputusan user 1 Okt 2026 (bulanan, berhenti kapan saja). Belum tertulis di BKB §3 — tambahkan di BKB agar satu sumber."
+  "_terms": "Keputusan user 1 Okt 2026 (bulanan, berhenti kapan saja). Belum tertulis di BKB §3 — tambahkan di BKB agar satu sumber.",
+  "_schemes": "name = nama paket yang tampil di website (tanpa kata 'Skema'). id dipakai untuk checkout {skema}."
 }

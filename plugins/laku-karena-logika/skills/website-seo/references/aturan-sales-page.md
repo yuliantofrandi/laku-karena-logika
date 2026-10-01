@@ -15,7 +15,7 @@ Tujuan: konversi tinggi **tanpa** klaim yang tidak bisa dipertanggungjawabkan. F
 | 7 | Cara kerja | Desire | 3 langkah sampai aktif, sesuai model penjualan. Self-serve: Pilih skema → Bayar, akun aktif → Pasang/onboarding. Mengurangi kesan "ribet" |
 | 8 | Penanganan keberatan | Desire | Keberatan terbesar Persona 1/2 (mis. "dicap mata-mata") dijawab dengan checklist fakta |
 | 9 | `{{testimoni}}` | Desire | 3 kutipan: masalah → hasil, nama berinisial, jabatan, jenis perusahaan + kota |
-| 10 | Harga + `{{tanpa_risiko}}` | Desire → Action | **Switch Bulanan/Tahunan** (wajib), lalu kartu skema masing-masing dengan tombol beli (`Pilih <Skema>` → checkout `{skema}` + `{periode}` sesuai switch); satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
+| 10 | Harga + `{{tanpa_risiko}}` | Desire → Action | **Switch Bulanan/Tahunan** (wajib), lalu kartu skema masing-masing dengan tombol beli (`Pilih <Nama Paket>` → checkout `{paket}` + `{periode}` sesuai switch); satu "Disarankan" (sesuai BKB §5); lalu risk reversal |
 | 11 | Urgensi | Action | Alasan mulai sekarang |
 | 12 | Jujur soal batas | Kepercayaan | GAP utama BKB, 2–3 kalimat |
 | 13 | FAQ | Action | Keberatan terakhir: kontrak, reaksi tim, lama aktif, siapa yang tidak cocok |
@@ -33,12 +33,20 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 | **Rating bintang (schema)** | `AggregateRating` dibuat otomatis **hanya** dari testimoni `contoh: false` yang tampil di halaman | Rating karangan: melanggar kebijakan review snippet Google, berisiko manual action |
 | **Risk reversal** | Hanya yang benar berlaku (pilihan user): bulanan berhenti kapan saja, trial, garansi + syaratnya, bantuan pemasangan | Menjanjikan trial/garansi yang belum diputuskan |
 | **Scarcity/urgency** | Default **urgensi alami**: biaya per bulan menunda, data tidak bisa dibuat mundur, regulasi yang sudah berlaku. Promo hanya jika asli (kuota + tanggal berakhir nyata) | Kuota palsu, hitung mundur palsu |
-| **CTA** | Kata kerja + kepemilikan, sesuai model penjualan. Self-serve: "Aktifkan <Produk> untuk Tim Saya", "Pilih Skema 2", "Bandingkan Skema" | "Kirim", "Submit", "Klik di sini"; CTA demo untuk produk yang dijual langsung langganan |
+| **CTA** | Kata kerja + kepemilikan, sesuai model penjualan. Self-serve: "Aktifkan <Produk> untuk Tim Saya", "Pilih Bukti Visual", "Bandingkan Paket" | "Kirim", "Submit", "Klik di sini"; CTA demo untuk produk yang dijual langsung langganan |
 | **Anchoring harga** | Skema termahal di kanan, skema yang disarankan di tengah dengan badge | Coret harga palsu |
 
 ## Teks CTA & copy global
 
 Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `wa_title`, `wa_subtitle`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
+
+## Nama paket, bukan "Skema N" (wajib)
+
+Koreksi user: "di bagian harga tidak perlu ada tulisan skema, langsung jadikan teks di bawahnya jadi nama paketnya". Di website, setiap tingkatan harga tampil dengan **nama paketnya** (untuk Timebase: Aktivitas · Bukti Visual · Waktu Per Tugas), bukan "Skema 1/2/3".
+- `data/pricing.json → schemes[].name` = nama paket. `id` hanya untuk checkout (`{paket}`/`{skema}` di `checkout_url`).
+- Kartu, header tabel, tombol (`Pilih <Nama Paket>`), tabel add-on, dan schema Offer (`<Brand> <Nama Paket>`) memakai nama paket.
+- Di teks halaman, sebut "paket <Nama>" (awal kalimat: "Paket <Nama>"). Kata umum "skema" diganti "paket" (mis. "Bandingkan Paket", "Pilih paket").
+- BKB boleh tetap memakai istilah Skema. Pemetaannya dilakukan saat menyalin ke `pricing.json`, bukan dengan mengedit BKB.
 
 ## Satu tampilan harga per halaman (wajib)
 
