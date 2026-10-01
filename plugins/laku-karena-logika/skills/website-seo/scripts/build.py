@@ -300,11 +300,33 @@ def figure(g, hero=False):
             f'alt="{html.escape(g["alt"])}" {load} decoding="async">{cap}</figure>')
 
 
+def video_figure(g):
+    """Motion graphic milik user (field "video" di ilustrasi.json, "file" = poster JPG/WebP).
+    Tanpa suara, loop; file video baru diunduh saat mendekati layar (VIDEO_JS) agar tidak membebani PageSpeed."""
+    w, h = g.get("w", 1080), g.get("h", 1920)
+    cap = f'<figcaption>{html.escape(g["caption"])}</figcaption>' if g.get("caption") else ""
+    portrait = " portrait" if h > w else ""
+    return (f'<figure class="ilus video{portrait}"><video muted loop playsinline preload="none" '
+            f'poster="{img_src(g)}" data-src="/{g["video"]}" width="{w}" height="{h}" '
+            f'aria-label="{html.escape(g["alt"])}"></video>{cap}</figure>')
+
+
+# Muat video hanya saat mendekati layar; hormati prefers-reduced-motion (tampil poster + kontrol).
+VIDEO_JS = (
+    "<script>(function(){var v=document.querySelectorAll('video[data-src]');if(!v.length)return;"
+    "var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;"
+    "function go(x){x.src=x.dataset.src;x.removeAttribute('data-src');if(rm){x.controls=true}else{x.autoplay=true;x.play().catch(function(){x.controls=true})}}"
+    "if(!('IntersectionObserver'in window)){v.forEach(go);return}"
+    "var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go(e.target);o.unobserve(e.target)}})},{rootMargin:'200px'});"
+    "v.forEach(function(x){o.observe(x)})})()</script>")
+
+
 def gambar_token(m):
     gid = m.group(1)
     if gid not in GAMBAR:
         return f"{{{{gambar:{gid}}}}}"   # dibiarkan -> tertangkap cek token tak dikenal
-    return figure(GAMBAR[gid])
+    g = GAMBAR[gid]
+    return video_figure(g) if g.get("video") else figure(g)
 
 
 # ---------- layout ----------
@@ -567,6 +589,7 @@ def render(S, page, body, P, all_pages, indexable):
 <div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
 </div><div class="wrap foot-bottom">© {S["brand"]}{(' · <a href="mailto:' + S["email"] + '">' + S["email"] + '</a>') if S.get("email") else ''}</div></footer>
 {float_bar(S)}
+{VIDEO_JS if 'video muted' in body else ''}
 </body>
 </html>
 """
@@ -694,6 +717,9 @@ def check_ilustrasi_duplikat(sid, raw):
                           "ganti dengan visual yang menambah info (hasil/layar produk) atau hapus gambarnya")
 
 
+MAX_VIDEO_MB = 5
+
+
 def check_images(p, used, IL):
     sid = p["slug"]
     for gid in used + ([HERO[sid]] if sid in HERO else []):
@@ -709,7 +735,19 @@ def check_images(p, used, IL):
         if not f.exists():
             err(sid, f"file gambar {f.relative_to(ROOT)} tidak ada")
             continue
-        if not g.get("auto", True):
+        if g.get("video"):
+            vf = ROOT / g["video"]
+            if not vf.exists():
+                err(sid, f"video {g['video']} tidak ada")
+            elif vf.suffix.lower() not in (".mp4", ".webm"):
+                err(sid, f"video '{gid}' harus MP4 (H.264) atau WebM")
+            elif vf.stat().st_size > MAX_VIDEO_MB * 1024 * 1024:
+                warn(sid, f"video '{gid}' {vf.stat().st_size / 1048576:.1f} MB (sebaiknya ≤{MAX_VIDEO_MB} MB) — kompres")
+            if f.suffix.lower() not in (".webp", ".avif", ".jpg", ".jpeg"):
+                err(sid, f"poster video '{gid}' harus WebP/AVIF/JPG")
+            if not (g.get("w") and g.get("h")):
+                err(sid, f"video '{gid}' wajib punya w & h (ukuran asli) agar tidak CLS")
+        elif not g.get("auto", True):
             if f.suffix.lower() not in (".webp", ".avif", ".svg"):
                 err(sid, f"gambar '{gid}' harus WebP/AVIF (atau SVG), bukan {f.suffix}")
             if not (g.get("w") and g.get("h")):

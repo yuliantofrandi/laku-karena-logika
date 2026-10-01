@@ -45,3 +45,11 @@ User: "yang ini kurang bagus, ilustrasi dengan isi kontennya sama" (ilustrasi 3 
 - Build memberi WARNING `ilustrasi '<id>' … mengulang N/M poin isi section` bila ≥2 label ilustrasi (dan ≥ separuhnya) tumpang tindih ≥60% kata dengan judul kartu/poin section.
 - Kasus Timebase yang diperbaiki: langkah aktivasi (gambar dihapus), 4 data agen (→ tabel catatan kerja satu hari), alur white label (→ chat konsultasi), fitur HRIS (→ tabel profil karyawan).
 
+## Video / motion graphic dari user
+User bisa mengganti ilustrasi dengan motion graphic sendiri ("ganti dengan motion graphic saya"). Cara memasang:
+1. Salin video ke `static/video/<nama>.mp4` (MP4 H.264 atau WebM, tanpa suara, ≤5 MB; build WARNING bila lebih).
+2. Ambil satu frame yang informatif (bukan frame awal yang masih fade-in) sebagai poster JPG/WebP ±540 px lebar, ≤80 KB. Di macOS tanpa ffmpeg: skrip Swift `AVAssetImageGenerator` → JPEG, lalu `sips -Z 960 -s formatOptions 70`.
+3. Di `data/ilustrasi.json` ubah entri gambarnya: `"auto": false, "video": "static/video/<nama>.mp4", "file": "<poster>", "w": <lebar asli>, "h": <tinggi asli>`; hapus `jenis`/`data`; perbarui `alt`, `caption`, `brief`.
+
+Render: `<video muted loop playsinline preload="none" poster data-src>`. Skrip kecil (`VIDEO_JS`, hanya disisipkan di halaman yang punya video) memasang `src` saat video mendekati layar (IntersectionObserver), lalu autoplay. Bila pengguna memilih *reduced motion*, video tidak autoplay dan diberi kontrol. Video potret (9:16) dibatasi lebar 340 px (280 px di mobile) dengan bayangan lembut. Kasus Timebase: motion graphic 1080×1920, 27 detik, 3,9 MB di section "data kerja yang bisa dibaca bersama"; re-encode dengan `avconvert` justru memperbesar file, jadi file asli dipakai.
+
