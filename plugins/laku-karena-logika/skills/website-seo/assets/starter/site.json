@@ -7,6 +7,8 @@
   "_site_url": "WAJIB diisi sebelum publish, mis. https://domain-anda.id (tanpa garis miring di akhir). Kosong = sitemap & canonical tidak dibuat.",
   "checkout_url": "",
   "_checkout_url": "Link halaman langganan/pembayaran. Boleh memuat {paket} (1/2/3) dan {periode} (bulanan/tahunan), mis. https://app.domain-anda.id/daftar?skema={paket}&periode={periode}. Kosong = tombol beli ke /harga#pilih-skema; build publish ditolak.",
+  "signin_url": "",
+  "_signin_url": "Link halaman login aplikasi (tombol 'Sign In' di header, kiri tombol Langganan). Wajib diisi sebelum publish.",
   "whatsapp": "",
   "_whatsapp": "WAJIB sebelum publish. Nomor WA tim marketing (format 62812xxxxxxx) untuk tombol melayang 'Hubungi Kami' di setiap halaman.",
   "whatsapp_text": "Halo, saya ingin konsultasi.",
@@ -103,7 +105,8 @@
     "proof_caption": "Dipakai tim di berbagai industri",
     "plan_button": "Pilih {nama}",
     "wa_title": "Hubungi Kami !!",
-    "wa_subtitle": "Konsultasi 100% Gratis"
+    "wa_subtitle": "Konsultasi 100% Gratis",
+    "signin": "Sign In"
   },
   "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
   "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas.",

@@ -101,6 +101,7 @@ Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan
 
 ## Navigasi
 
+- **Tata letak header (aturan tetap user):** Logo di kiri · **semua menu di tengah** (tepat di tengah header) · di kanan tombol **"Sign In"** (sekunder/outline, ke `signin_url`) lalu tombol **Langganan** (utama, ke checkout). Grid 3 kolom `1fr auto 1fr`; `.nav-panel` memakai `display:contents` di desktop dan menjadi panel hamburger di mobile (menu, lalu Sign In + Langganan berdampingan). Dropdown Solusi muncul tepat di bawah tengah item-nya.
 - Menu utama ringkas: **satu menu group** untuk halaman solusi/landing (mis. "Solusi ▾" → Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid, masing-masing dengan deskripsi 1 baris), lalu **White Label** (wajib), lalu **Harga**, lalu tombol CTA. Halaman panduan/SEO cukup di footer.
 - Dropdown memakai `<details>`/`<summary>` (tanpa JavaScript). Panel rata kanan agar tidak terpotong di layar sempit; di mobile tampil inline di dalam menu hamburger. Group diberi tanda aktif saat salah satu submenunya sedang dibuka.
 

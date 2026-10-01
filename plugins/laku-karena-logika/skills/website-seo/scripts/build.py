@@ -493,7 +493,8 @@ def render(S, page, body, P, all_pages, indexable):
 <header class="site-header"><div class="wrap">
 <a class="brand" href="/" aria-label="{S["brand"]} — beranda">{logo(S)}</a>
 <input type="checkbox" id="menu" class="menu-toggle" aria-label="Buka menu"><label for="menu" class="menu-btn" aria-hidden="true"><span></span></label>
-<nav class="nav" aria-label="Utama">{nav}<a class="btn btn-primary btn-sm" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["nav_cta"]}</a></nav>
+<div class="nav-panel"><nav class="nav" aria-label="Utama">{nav}</nav>
+<div class="nav-actions"><a class="btn btn-ghost btn-sm" href="{S.get("signin_url") or "#"}" rel="nofollow">{S["copy"]["signin"]}</a><a class="btn btn-primary btn-sm" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["nav_cta"]}</a></div></div>
 </div></header>
 <main>
 <section class="{hero_class}"><div class="wrap{' hero-grid' if hero_img else ''}"><div class="hero-text">
@@ -698,6 +699,9 @@ def main():
         warnings.append("site.json: site_url kosong → canonical, og:url, sitemap.xml tidak dibuat")
     if not S.get("checkout_url"):
         msg = "site.json: checkout_url kosong → tombol beli mengarah ke /harga#pilih-skema"
+        (errors if S.get("site_url") else warnings).append(msg + (" — wajib diisi sebelum publish" if S.get("site_url") else ""))
+    if not S.get("signin_url"):
+        msg = "site.json: signin_url kosong → tombol Sign In belum mengarah ke halaman login"
         (errors if S.get("site_url") else warnings).append(msg + (" — wajib diisi sebelum publish" if S.get("site_url") else ""))
     if not S.get("whatsapp"):
         msg = "site.json: whatsapp kosong → tombol WA melayang mengarah ke #kontak"

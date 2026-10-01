@@ -99,6 +99,7 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 | Gambar per halaman < `min_per_halaman` (3) · gambar tanpa alt · file gambar tidak ada · gambar asli bukan WebP/AVIF/SVG, tanpa w/h, atau > 200 KB | ERROR |
 | Halaman tanpa gambar hero · gambar tidak dipakai · alt > 125 karakter · `og_image` kosong saat publish | WARNING |
 | `whatsapp` kosong saat `site_url` terisi (tombol WA melayang mati) | ERROR |
+| `signin_url` kosong saat `site_url` terisi (tombol Sign In mati) | ERROR |
 | Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · > 1.800 kata | WARNING |
 | Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |
 
@@ -130,5 +131,5 @@ Singkat dan to the point. Sampaikan:
 - Halaman yang jadi + jumlah kata, dan bahwa semua cek lolos.
 - **WARNING yang tersisa** apa adanya (mis. primary keyword tidak ada di H1 karena brief) dan usul perbaikannya di Excel.
 - Data yang masih contoh, dan bahwa build publish akan menolaknya.
-- Yang wajib sebelum publish: domain, link checkout, nomor WA marketing, review hukum, data asli, dan konfirmasi bahwa semua fitur yang disebut sudah tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
+- Yang wajib sebelum publish: domain, link checkout, link Sign In, nomor WA marketing, review hukum, data asli, dan konfirmasi bahwa semua fitur yang disebut sudah tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
 - Bagian permintaan user yang tidak diikuti dan alasannya (mis. "Terbaik" di title, rating dari data karangan, kuota palsu).
