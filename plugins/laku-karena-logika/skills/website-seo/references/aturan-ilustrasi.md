@@ -38,3 +38,10 @@ Aturan tetap dari user: **setiap halaman selalu diberi gambar ilustrasi**, baik 
 2. Simpan ke `static/ilustrasi/<id>.webp`, lalu di entri isi `"file": "static/ilustrasi/<id>.webp"`, `"w"`, `"h"` (ukuran asli), dan `"auto": false`.
 3. Perbarui `alt` dan `caption` bila isi gambar berubah (mis. kata "Ilustrasi" dihapus kalau gambarnya screenshot asli).
 4. `python3 build.py`, lalu cek tampilan.
+
+## Ilustrasi tidak boleh mengulang isi section
+User: "yang ini kurang bagus, ilustrasi dengan isi kontennya sama" (ilustrasi 3 langkah di samping 3 kartu langkah yang sama). Ilustrasi harus **menambah informasi**: contoh data/layar produk (tabel catatan kerja, profil HRIS), percakapan, atau hasil — bukan daftar label yang sama dengan kartu/poin di sebelahnya.
+- Section langkah/kartu yang sudah jelas → **tanpa gambar**; kartu tampil sebaris selebar kontainer (`split.stack`). Pastikan halaman tetap punya ≥3 gambar.
+- Build memberi WARNING `ilustrasi '<id>' … mengulang N/M poin isi section` bila ≥2 label ilustrasi (dan ≥ separuhnya) tumpang tindih ≥60% kata dengan judul kartu/poin section.
+- Kasus Timebase yang diperbaiki: langkah aktivasi (gambar dihapus), 4 data agen (→ tabel catatan kerja satu hari), alur white label (→ chat konsultasi), fitur HRIS (→ tabel profil karyawan).
+

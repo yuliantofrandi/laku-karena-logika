@@ -666,6 +666,34 @@ def check_page(S, B, page, body, slugs):
     check_sections(sid, body)
 
 
+def ilus_teks(x):
+    """Semua teks label di data ilustrasi (rekursif)."""
+    if isinstance(x, str):
+        return [x]
+    if isinstance(x, dict):
+        return [t for k, v in x.items() if k not in ("icon", "warna", "color") for t in ilus_teks(v)]
+    if isinstance(x, list):
+        return [t for v in x for t in ilus_teks(v)]
+    return []
+
+
+def check_ilustrasi_duplikat(sid, raw):
+    """WARNING bila ilustrasi sebuah section hanya mengulang poin/kartu di section itu
+    (kasus nyata: ilustrasi 3 langkah di samping 3 kartu langkah yang sama). Ilustrasi harus menambah
+    informasi — hasil/layar produk, bukan salinan teks section."""
+    kata = lambda t: {w for w in re.findall(r"[a-z0-9]+", strip_tags(t).lower()) if len(w) > 2}
+    for chunk in re.split(r"<h2[^>]*>", raw)[1:]:
+        h2 = strip_tags(chunk.split("</h2>")[0])
+        items = [kata(m) for m in re.findall(r"<(?:h3|li)[^>]*>(.*?)</(?:h3|li)>", chunk, flags=re.S)]
+        for gid in re.findall(r"\{\{gambar:([a-z0-9-]+)\}\}", chunk):
+            labels = [kata(t) for t in ilus_teks(GAMBAR.get(gid, {}).get("data", {}))]
+            labels = [l for l in labels if len(l) >= 2]
+            sama = sum(1 for l in labels if any(len(l & it) >= 0.6 * len(l) for it in items))
+            if labels and sama >= 2 and sama >= len(labels) / 2:
+                warn(sid, f"ilustrasi '{gid}' di section '{h2}' mengulang {sama}/{len(labels)} poin isi section — "
+                          "ganti dengan visual yang menambah info (hasil/layar produk) atau hapus gambarnya")
+
+
 def check_images(p, used, IL):
     sid = p["slug"]
     for gid in used + ([HERO[sid]] if sid in HERO else []):
@@ -792,6 +820,7 @@ def main():
             if p.get("lead"):
                 p["lead"] = p["lead"].replace(k, v)
         used = re.findall(r"\{\{gambar:([a-z0-9-]+)\}\}", raw)
+        check_ilustrasi_duplikat(p["slug"], raw)
         raw = re.sub(r"\{\{gambar:([a-z0-9-]+)\}\}", gambar_token, raw)
         p["_gambar"] = used + ([HERO[p["slug"]]] if p["slug"] in HERO else [])
         check_images(p, used, IL)

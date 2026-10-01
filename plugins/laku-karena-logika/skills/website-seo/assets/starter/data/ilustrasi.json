@@ -61,31 +61,32 @@
       "id": "alur-kerja-white-label",
       "halaman": "/white-label",
       "section": "Cara kerja white label",
-      "jenis": "steps",
-      "judul": "Cara kerja white label",
-      "alt": "Alur kerja sama white label: konsultasi, penawaran, penyiapan brand, dan rilis ke klien",
-      "caption": "Empat langkah sampai Anda menjual dengan merek sendiri",
-      "brief": "Ilustrasi 4 langkah kerja sama white label bergaya brand.",
+      "jenis": "chat",
+      "judul": "Konsultasi White Label",
+      "alt": "Ilustrasi percakapan konsultasi white label lewat WhatsApp",
+      "caption": "Semua dimulai dari satu percakapan",
+      "brief": "Ilustrasi/screenshot percakapan WhatsApp konsultasi white label: calon mitra menyebut rencana menjual dengan merek sendiri, tim menanyakan skala, lalu menyiapkan penawaran.",
       "auto": true,
       "data": {
-        "items": [
+        "messages": [
           {
-            "label": "Konsultasi kebutuhan",
-            "icon": "chat"
+            "who": "Anda",
+            "text": "Mau jual software ini dengan merek kami"
           },
           {
-            "label": "Penawaran & kesepakatan",
-            "icon": "doc"
+            "text": "Bisa. Kira-kira untuk berapa klien?",
+            "me": true
           },
           {
-            "label": "Penyiapan brand Anda",
-            "icon": "palette"
+            "who": "Anda",
+            "text": "Sekitar 20 klien, ±500 pengguna"
           },
           {
-            "label": "Rilis ke klien Anda",
-            "icon": "users"
+            "text": "Siap, kami siapkan penawarannya",
+            "me": true
           }
-        ]
+        ],
+        "note": "Konsultasi gratis lewat WhatsApp"
       }
     }
   ],
