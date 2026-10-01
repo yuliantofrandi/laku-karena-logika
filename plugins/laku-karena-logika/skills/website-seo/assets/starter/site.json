@@ -108,7 +108,11 @@
     "plan_button": "Pilih {nama}",
     "wa_title": "Hubungi Kami !!",
     "wa_subtitle": "Konsultasi 100% Gratis",
-    "signin": "Sign In"
+    "signin": "Sign In",
+    "faq_lead": "Jawaban singkat untuk hal yang biasanya ditanyakan sebelum memutuskan.",
+    "faq_help_title": "Masih ada pertanyaan?",
+    "faq_help_text": "Tim kami siap menjawab lewat WhatsApp — konsultasi gratis.",
+    "faq_help_button": "Chat tim kami"
   },
   "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
   "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas.",

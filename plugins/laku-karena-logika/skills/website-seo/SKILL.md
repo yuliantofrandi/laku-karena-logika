@@ -97,7 +97,7 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 | Data social proof `contoh: true` saat `site_url` terisi (build publish) | ERROR |
 | `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
 | Halaman `/white-label` tidak ada, atau menu "White Label" tidak ada di menu utama | ERROR |
-| Section yang hanya berisi teks (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar) | ERROR |
+| Section yang hanya berisi teks (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau tanpa kalimat pembuka setelah H2 | ERROR |
 | Lebih dari satu tampilan harga (`{{pricing_cards}}` + `{{pricing_table}}`) di satu halaman | ERROR |
 | Gambar per halaman < `min_per_halaman` (3) · gambar tanpa alt · file gambar tidak ada · gambar asli bukan WebP/AVIF/SVG, tanpa w/h, atau > 200 KB | ERROR |
 | Halaman tanpa gambar hero · gambar tidak dipakai · alt > 125 karakter · `og_image` kosong saat publish | WARNING |
@@ -114,6 +114,7 @@ Sajikan `dist/` (`python3 -m http.server <port> --directory dist`, lewat `.claud
 - Screenshot desktop dan mobile (375px): nav tidak terbungkus dua baris, harga tidak meluber, logo rapat.
 - Lewat `javascript_tool`: `performance.getEntriesByType('resource')` harus **kosong** (nol request eksternal), CLS = 0, `scrollWidth <= innerWidth` di mobile, urutan heading, tipe JSON-LD.
 - **Ilustrasi:** buat lembar kontak semua SVG (satu halaman HTML berisi grid `<img>`) dan periksa satu per satu: teks tidak terpotong, tidak menumpuk, dan warna sesuai brand. Lalu di mobile: CLS 0, elemen LCP = gambar hero atau H1, dan gambar di bawah lipatan `loading="lazy"`.
+- **Keseimbangan dua kolom:** muat tiap halaman di iframe 1440px, lalu untuk setiap `section.band .split` bandingkan tinggi kolom pertama dan kedua. Rasio > ±2,2 (selain FAQ) berarti ada ruang kosong; perbaiki isinya atau layoutnya.
 - **Kepadatan teks:** tidak ada paragraf > ±45 kata (lihat WARNING build), setiap section punya poin/kartu/tabel, dan tidak ada teks tersembunyi ("Baca selengkapnya"). Cek per band di desktop & mobile: dua kolom seimbang, tanpa ruang kosong besar.
 - **Kerapian tepi kiri-kanan semua halaman** di lebar 1440, 1280, 768, dan 375 px: muat tiap halaman di iframe selebar itu, lalu bandingkan `getBoundingClientRect()` dari `.brand`, `.hero h1`, dan setiap `article.prose > *`. Tepi kiri harus satu nilai, dan tepi kanan blok (kartu, tabel, CTA) juga satu nilai. Selisih ±4px yang sama di semua elemen biasanya berasal dari scrollbar iframe, jadi bandingkan dengan `clientWidth`.
 - Skor PageSpeed asli hanya bisa diukur setelah live. Katakan itu ke user, jangan mengklaim skornya.

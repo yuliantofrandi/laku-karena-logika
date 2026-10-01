@@ -21,6 +21,7 @@ import ilustrasi as ILUS
 
 ROOT = Path(__file__).resolve().parent
 SOCIAL = {"testimonials": [], "metrics": []}
+SITE = {}
 DIST = ROOT / "dist"
 
 # Klaim yang tidak boleh muncul (BKB: penelusuran jam→tugas→aplikasi→layar adalah standar kategori)
@@ -343,7 +344,7 @@ def nav_item(it, current, CUR):
 
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 # blok visual: selalu terlihat dan dibuat selebar kontainer
-WIDE = ("grid", "table-wrap", "periode", "plans", "quotes", "proof", "cta")
+WIDE = ("grid", "table-wrap", "periode", "plans", "quotes", "proof", "cta", "guarantee")
 # blok yang tetap terlihat di kolom teks
 KEEP = ("callout", "agitate", "checks", "faq", "note")
 
@@ -379,27 +380,54 @@ def words(b):
     return len(re.findall(r"\w+", strip_tags(b)))
 
 
-def render_section(blocks, idx):
-    """Satu H2 + isinya → band. Ada gambar: teks | gambar (bergantian). Tanpa gambar: judul | isi. Semua teks terlihat."""
+def render_section(blocks, idx, S=None):
+    """Satu H2 + isinya → band, mengikuti standar UI section (acuan disetujui user):
+    - ada gambar      → teks | gambar (posisi gambar bergantian)
+    - ada poin/daftar → teks | panel kartu berisi poin (panel = pengganti kartu gambar)
+    - FAQ             → judul + kartu bantuan WA | daftar pertanyaan
+    - hanya blok lebar → judul + pembuka di atas, kartu/tabel selebar kontainer di bawah
+    Semua teks terlihat (tanpa lipatan)."""
     h2, rest = blocks[0], blocks[1:]
-    fig, wide, text = None, [], []
+    fig, wide, paras, scan = None, [], [], []
     for b in rest:
         tag, cls = kind(b)
         if tag == "figure" and fig is None:
             fig = b
         elif tag == "aside" or any(c in WIDE for c in cls):
             wide.append(b)
+        elif tag == "p" and "label" not in cls:
+            paras.append(b)
         else:
-            text.append(b)
-    # tanpa "Baca selengkapnya": user tidak suka teks disembunyikan; teks ditulis ringkas dalam poin/kartu
-    body = "".join(text)
+            scan.append(b)
     band = "band" if idx % 2 else "band alt"   # section pertama setelah band intro (putih) berlatar abu → batas terlihat
+    # keseimbangan kolom: teks pendek di samping gambar → kartu langkah/fitur pertama ikut ke kolom teks
+    if fig and not scan:
+        for i, b in enumerate(wide):
+            if "grid" in kind(b)[1]:
+                scan.append(wide.pop(i)); break
+    # daftar panjang di panel → dua kolom supaya panel tidak terlalu tinggi
+    scan = [re.sub(r'^<(ul|ol)( class="checks")?', lambda m: f'<{m.group(1)} class="{"checks " if m.group(2) else ""}two-col"', b, count=1)
+            if kind(b)[0] in ("ul", "ol") and b.count("<li") > 4 and not fig else b for b in scan]
+    faq = any("faq" in kind(b)[1] for b in scan)
+    if faq and not paras and S and S.get("copy", {}).get("faq_lead"):
+        paras = [f'<p>{S["copy"]["faq_lead"]}</p>']
+    lead = h2 + "".join(paras)
     if fig:
         flip = " flip" if idx % 2 else ""
-        row = (f'<div class="split media{flip}"><div class="col-text">{h2}{body}</div>'
+        row = (f'<div class="split media{flip}"><div class="col-text">{lead}{"".join(scan)}</div>'
                f'<div class="col-media">{fig}</div></div>')
+    elif faq:
+        help_card = ""
+        if S and S.get("copy", {}).get("faq_help_title"):
+            C = S["copy"]
+            help_card = (f'<div class="help-card"><p class="help-title">{C["faq_help_title"]}</p><p>{C["faq_help_text"]}</p>'
+                         f'<a class="btn btn-ghost btn-sm" href="{wa_link(S)}" target="_blank" rel="nofollow noopener">{C["faq_help_button"]}</a></div>')
+        row = f'<div class="split faq-row"><div class="col-text">{lead}{help_card}</div><div class="col-faq">{"".join(scan)}</div></div>'
+    elif scan:
+        flip = " flip" if idx % 2 else ""
+        row = f'<div class="split panel-row{flip}"><div class="col-text">{lead}</div><div class="col-panel"><div class="panel">{"".join(scan)}</div></div></div>'
     else:
-        row = f'<div class="split head"><div class="col-head">{h2}</div><div class="col-text">{body}</div></div>'
+        row = f'<div class="split stack"><div class="col-text">{lead}</div></div>'
     return f'<section class="{band}"><div class="wrap">{row}{"".join(wide)}</div></section>'
 
 
@@ -419,7 +447,7 @@ def layout_sections(body):
     out = []
     if intro:
         out.append(f'<section class="band intro"><div class="wrap">{"".join(intro)}</div></section>')
-    out += [render_section(s, i) for i, s in enumerate(sections)]
+    out += [render_section(s, i, SITE) for i, s in enumerate(sections)]
     if tail:
         out.append(f'<section class="band end"><div class="wrap">{"".join(tail)}</div></section>')
     return "\n".join(out)
@@ -520,6 +548,9 @@ def check_sections(sid, body):
                      or VISUAL_CLASSES & set(kind(b)[1]) for b in rest)
         if not visual:
             err(sid, f"section “{title[:50]}” hanya teks — tambah poin, kartu, tabel, callout, atau gambar (standar UI section)")
+        is_faq = any("faq" in kind(b)[1] for b in rest)
+        if not is_faq and (not rest or kind(rest[0])[0] != "p"):
+            err(sid, f"section “{title[:50]}” tidak punya kalimat pembuka setelah judul (standar UI section)")
         paras = [b for b in rest if kind(b)[0] == "p" and not kind(b)[1]]
         if len(paras) > 2:
             warn(sid, f"section “{title[:50]}” punya {len(paras)} paragraf — padatkan jadi 1–2 kalimat + poin/kartu")
@@ -631,6 +662,7 @@ def main():
     ILUS.generate(ROOT, IL, S.get("ilustrasi_warna"))
     global SOCIAL
     SOCIAL = SP
+    SITE.update(S)
     pages = S["extra_pages"] + B["pages"]
     for p in S["extra_pages"]:
         for k in ("name", "title", "meta", "h1", "primary"):

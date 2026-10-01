@@ -20,13 +20,23 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 | Elemen | Standar |
 |---|---|
 | Latar | Bergantian, **dimulai abu muda** setelah band intro (putih), supaya batas antar-section selalu terlihat. Padding atas-bawah ±64px (±44px mobile) |
-| Tata letak | Ada gambar → **dua kolom** teks \| gambar, posisi gambar bergantian kiri-kanan. Tanpa gambar → judul kiri (sticky) \| isi kanan. Mobile: menumpuk |
+| Tata letak | **Selalu dua kolom yang seimbang**, dipilih otomatis oleh `render_section` dari isi section (tabel di bawah). Mobile: menumpuk |
 | Judul (H2) | Montserrat 800, ±32px, ≤12 kata, idealnya 2 baris. Pertanyaan atau pernyataan yang tajam |
 | Pembuka | **1–2 kalimat**, ≤ ±30 kata, warna abu tua. Tidak ada dua paragraf berturut-turut |
 | Isi yang dipindai | **Wajib minimal satu**: daftar centang (`ul.checks`, awalan tebal + sisa kalimat biasa), kartu (`div.grid` > `.card`, judul + 1 kalimat, `span.num` untuk langkah), tabel kecil, callout, atau gambar |
 | Gambar | Ilustrasi dalam kartu membulat (radius ±18px, latar tint lembut) + caption kecil abu di bawahnya |
 | Blok lebar | Kartu, tabel, harga, testimoni tampil selebar kontainer di bawah baris dua kolom |
 | Teks tersembunyi | **Tidak boleh.** Tidak ada "Baca selengkapnya". FAQ boleh accordion |
+
+### Layout otomatis per jenis isi (hasil "standardkan semua section")
+| Isi section | Layout | Catatan |
+|---|---|---|
+| Ada `{{gambar:…}}` | `split.media`: teks \| gambar, bergantian kiri-kanan | Kalau kolom teks hanya judul + pembuka, kartu (`grid`) pertama ikut ke kolom teks (2 kolom) supaya seimbang dengan gambar |
+| Ada poin/langkah/contoh/callout (tanpa gambar) | `split.panel-row`: teks (5) \| **panel kartu putih** (7) berisi poin, bergantian kiri-kanan | Panel = pengganti kartu gambar. Daftar > 4 poin otomatis 2 kolom di dalam panel |
+| FAQ | `split.faq-row`: judul + pembuka + **kartu bantuan WA** ("Masih ada pertanyaan?") \| accordion | Mobile: pertanyaan dulu, kartu bantuan di bawah. Pembuka otomatis dari `copy.faq_lead` |
+| Hanya kartu/tabel/harga/testimoni | `split.stack`: judul + pembuka (maks 760px) di atas, blok selebar kontainer di bawah | Blok jaminan (`guarantee`) selalu selebar kontainer |
+
+Target keseimbangan: tinggi kolom terpanjang ≤ ±2,2× kolom terpendek di 1440px (kecuali FAQ). Ukur dengan skrip di SKILL.md Langkah 4.
 
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
@@ -35,7 +45,7 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 - Satu kontainer (`--wrap`) untuk semua bagian, sehingga tepi kiri-kanan selalu segaris.
 
 ## Cek otomatis (`build.py`)
-- **ERROR** jika ada section yang **hanya berisi teks** (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar).
+- **ERROR** jika ada section yang **hanya berisi teks** (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau **tanpa kalimat pembuka** setelah judul (kecuali FAQ, yang diisi otomatis).
 - **WARNING** jika sebuah section punya > 2 paragraf, judul > 12 kata, atau ada paragraf > ±45 kata.
 
 ## Cek manual sebelum melapor selesai
