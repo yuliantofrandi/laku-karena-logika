@@ -32,6 +32,10 @@
       ]
     },
     [
+      "/whitelabel",
+      "Whitelabel"
+    ],
+    [
       "/harga",
       "Harga"
     ]
@@ -61,6 +65,18 @@
         "/<slug-prioritas-1>"
       ],
       "min_words": 300
+    },
+    {
+      "slug": "/whitelabel",
+      "name": "Whitelabel",
+      "title": "{{brand}} Whitelabel: Software Siap Jual dengan Merek Anda",
+      "meta": "Jual {{brand}} dengan nama, logo, dan domain Anda sendiri. Software siap pakai — kami urus server dan pembaruan, Anda fokus menjual ke klien.",
+      "h1": "Whitelabel: Jual Software dengan Merek Anda Sendiri, Tanpa Membangun dari Nol",
+      "primary": "whitelabel",
+      "links": [
+        "/harga"
+      ],
+      "min_words": 700
     }
   ],
   "product_pages": [
@@ -70,6 +86,7 @@
   ],
   "footer_produk": [
     "/<slug-prioritas-1>",
+    "/whitelabel",
     "/harga"
   ],
   "copy": {
@@ -89,5 +106,25 @@
     "wa_subtitle": "Konsultasi 100% Gratis"
   },
   "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
-  "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas."
+  "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas.",
+  "whitelabel": {
+    "_catatan": "Copy global halaman /whitelabel (content/whitelabel.html) membaca daftar ini. Sesuaikan per produk: hapus yang tidak tersedia, jangan menambah klaim yang belum pasti.",
+    "kustomisasi": [
+      "Nama aplikasi dan logo Anda di seluruh tampilan",
+      "Warna yang mengikuti identitas brand Anda",
+      "Domain atau subdomain milik Anda sendiri",
+      "Halaman login dan email notifikasi atas nama brand Anda",
+      "Materi panduan pengguna dengan merek Anda"
+    ],
+    "ditangani": [
+      "Server, keamanan, dan pencadangan data",
+      "Pemeliharaan sistem dan pembaruan fitur",
+      "Dukungan teknis untuk tim Anda",
+      "Pendampingan saat peluncuran ke klien pertama"
+    ],
+    "wa_text": "Halo, saya tertarik dengan whitelabel {{brand}}. Boleh minta penawarannya?",
+    "cta_title": "Siap meluncurkan software dengan merek Anda?",
+    "cta_text": "Ceritakan rencana Anda — target klien, perkiraan jumlah pengguna, dan kebutuhan kustomisasi. Tim kami menyiapkan penawaran whitelabel {{brand}} untuk bisnis Anda.",
+    "cta_button": "Minta Penawaran Whitelabel"
+  }
 }

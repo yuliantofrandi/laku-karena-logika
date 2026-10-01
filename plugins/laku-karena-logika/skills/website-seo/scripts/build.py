@@ -180,10 +180,34 @@ def float_bar(S):
             f'{WA_ICON}<span><strong>{C["wa_title"]}</strong><small>{C["wa_subtitle"]}</small></span></a></div>')
 
 
-def wa_link(S):
+def wa_link(S, text=None):
     if S.get("whatsapp"):
-        return f'https://wa.me/{S["whatsapp"]}?text={quote(S["whatsapp_text"])}'
+        return f'https://wa.me/{S["whatsapp"]}?text={quote(text or S["whatsapp_text"])}'
     return "#kontak"
+
+
+# ---------- whitelabel (wajib di setiap produk) ----------
+
+def fill_brand(S, txt):
+    return txt.replace("{{brand}}", S["brand"]).replace("{{deskripsi}}", S["description"])
+
+
+def daftar_solusi(S):
+    items = [x for it in S["nav"] if isinstance(it, dict) for x in it["items"]]
+    li = "".join(f'<li><a href="{x[0]}"><strong>{x[1]}</strong></a>' + (f" — {html.escape(x[2])}" if len(x) > 2 else "") + "</li>"
+                 for x in items)
+    return f'<ul class="checks">{li}</ul>'
+
+
+def ul_checks(items):
+    return '<ul class="checks">' + "".join(f"<li>{html.escape(t)}</li>" for t in items) + "</ul>"
+
+
+def cta_whitelabel(S):
+    W = S["whitelabel"]
+    return (f'<aside class="cta" id="kontak"><h2>{fill_brand(S, W["cta_title"])}</h2><p>{fill_brand(S, W["cta_text"])}</p>'
+            f'<a class="btn btn-primary" href="{wa_link(S, fill_brand(S, W["wa_text"]))}" target="_blank" rel="nofollow noopener">{W["cta_button"]}</a>'
+            f'<a class="btn btn-ghost" href="/harga">Lihat harga versi langganan</a></aside>')
 
 
 def logo(S):
@@ -365,9 +389,18 @@ def main():
     global SOCIAL
     SOCIAL = SP
     pages = S["extra_pages"] + B["pages"]
+    for p in S["extra_pages"]:
+        for k in ("name", "title", "meta", "h1", "primary"):
+            p[k] = fill_brand(S, p[k])
     for p in pages:
         p["product_schema"] = p["slug"] in S["product_pages"]
     slugs = {p["slug"] for p in pages}
+
+    # aturan tetap: setiap produk bisa dibeli whitelabel -> halaman + menu utama wajib ada
+    if "/whitelabel" not in slugs:
+        err("/whitelabel", "halaman whitelabel wajib ada di site.json extra_pages (salin dari template skill)")
+    if not any(isinstance(it, list) and it[0] == "/whitelabel" for it in S["nav"]):
+        err("/whitelabel", "menu 'Whitelabel' wajib ada di menu utama (site.json nav)")
 
     for key in ("title", "meta", "h1"):
         seen = {}
@@ -383,7 +416,14 @@ def main():
         "{{cta}}": cta(S, P), "{{wa_link}}": wa_link(S), "{{checkout_link}}": checkout_link(S),
         "{{tanpa_risiko}}": risk_reversal(S, P), "{{bukti_sosial}}": social_proof(S, SP), "{{testimoni}}": testimonials(SP),
         "{{harga_mulai}}": rupiah(min(min(x["monthly"]) for x in P["schemes"])),
+        "{{brand}}": S["brand"], "{{deskripsi}}": S["description"],
+        "{{deskripsi_kecil}}": S["description"][:1].lower() + S["description"][1:].rstrip("."), "{{daftar_solusi}}": daftar_solusi(S),
     }
+    if S.get("whitelabel"):
+        tokens.update({"{{wl_kustomisasi}}": ul_checks(S["whitelabel"]["kustomisasi"]),
+                       "{{wl_ditangani}}": ul_checks(S["whitelabel"]["ditangani"]),
+                       "{{cta_whitelabel}}": cta_whitelabel(S),
+                       "{{wa_whitelabel}}": wa_link(S, fill_brand(S, S["whitelabel"]["wa_text"]))})
     built = []
     for p in pages:
         f = content_file(p["slug"])

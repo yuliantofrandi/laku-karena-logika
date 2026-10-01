@@ -1,9 +1,11 @@
 ---
 name: website-seo
-description: Membangun website marketing statis (sales page + landing page SEO/Ads) untuk satu produk SaaS dari Business Knowledge Base (BKB) dan keyword plan Excel hasil keyword-research — copywriting AIDA/PAS yang jujur, SEO on-page, schema JSON-LD, dan target hijau PageSpeed (CSS inline, tanpa JS). Pakai skill ini setiap kali user ingin "buat website dari BKB", "buat landing page/sales page", "website dari keyword plan/page brief", "halaman SEO", "landing page Google Ads", menulis isi halaman per slug, atau merevisi website yang sudah dibangun skill ini — bahkan tanpa menyebut kata "website-seo". Skill hilir dari business-knowledge dan keyword-research dalam AI Marketing OS.
+description: Membangun website marketing statis (sales page + landing page SEO/Ads + halaman Whitelabel) untuk produk SaaS/GaaS mana pun dari Business Knowledge Base (BKB) dan keyword plan Excel hasil keyword-research — copywriting AIDA/PAS yang jujur, SEO on-page, schema JSON-LD, dan target hijau PageSpeed (CSS inline, tanpa JS). Pakai skill ini setiap kali user ingin "buat website dari BKB", "buat landing page/sales page", "website dari keyword plan/page brief", "halaman SEO", "landing page Google Ads", menulis isi halaman per slug, atau merevisi website yang sudah dibangun skill ini — bahkan tanpa menyebut kata "website-seo". Skill hilir dari business-knowledge dan keyword-research dalam AI Marketing OS.
 ---
 
 # Website SEO dari BKB + Keyword Plan
+
+Dipakai berulang untuk **banyak produk SaaS/GaaS** milik user, jadi semua aturan dan template harus tetap generik. Data khusus produk hanya masuk lewat BKB, keyword plan, `site.json`, dan `data/`.
 
 Mengubah dua dokumen hulu menjadi website statis siap deploy:
 
@@ -46,6 +48,7 @@ website/
                           nav: halaman solusi/landing dikelompokkan dalam SATU menu group
                           ("Solusi ▾" berisi submenu + deskripsi 1 baris), lalu Harga + tombol CTA.
                           Jangan menjajarkan tiap halaman solusi di menu utama.
+                          Menu "Whitelabel" WAJIB ada di menu utama (Solusi ▾ · Whitelabel · Harga · CTA).
   data/brief.json       ← hasil brief_to_json.py
   data/pricing.json     ← dari BKB §3
   data/social-proof.json
@@ -56,7 +59,8 @@ website/
 
 - `brief_to_json.py <keyword-plan.xlsx> data/brief.json`. **Metadata tidak diketik ulang**: title/meta/H1/keyword/link wajib dibaca build dari brief. Kalau brief melanggar aturan (mis. meta > 155), perbaiki sel di Excel (`openpyxl` tanpa `data_only` agar rumus selamat), lalu jalankan ulang konverter.
 - `pricing.json` disalin dari BKB §3: harga tahunan = **10 × bulanan** (bayar 10 dapat 12), add-on selalu menempel ke skema. Syarat baru dari user yang belum ada di BKB (mis. "bulanan, berhenti kapan saja") masuk ke `terms` **dan** dilaporkan ke user untuk ditambahkan ke BKB. **Jangan mengedit BKB atas inisiatif sendiri.**
-- Halaman tambahan di luar brief (beranda `/` dan `/harga`) didefinisikan di `site.json → extra_pages`. Beranda **tidak** boleh memakai primary keyword halaman lain (kanibalisasi). Primary beranda = nama brand.
+- **Halaman `/whitelabel` wajib di setiap produk**, karena semua produk user bisa dibeli dengan merek sendiri. Salin `assets/starter/content/whitelabel.html` (copy global, jangan ditulis ulang) dan blok `whitelabel` + entri `extra_pages` dari `assets/starter/site.json`. Bagian khusus produk terisi otomatis: `{{brand}}`, `{{deskripsi_kecil}}`, `{{daftar_solusi}}` (dari menu group), `{{wl_kustomisasi}}`, dan `{{wl_ditangani}}`. Konfirmasi ke user daftar `kustomisasi` & `ditangani` untuk produk itu: hapus yang tidak tersedia, jangan menambah klaim. Kalau nama brand panjang membuat title > 60 karakter, pendekkan template title-nya.
+- Halaman tambahan di luar brief (beranda `/`, `/harga`, `/whitelabel`) didefinisikan di `site.json → extra_pages`. `{{brand}}` di title/meta/H1 extra page diganti otomatis. Beranda **tidak** boleh memakai primary keyword halaman lain (kanibalisasi). Primary beranda = nama brand.
 
 ## Langkah 2 — Tulis isi
 
@@ -66,7 +70,7 @@ Baca `references/aturan-konten.md` dan `references/aturan-sales-page.md` dulu. R
 - Setiap "Isi Wajib di Halaman" dari brief harus ada. 1.000–1.500 kata untuk halaman brief.
 - Fakta hanya dari BKB. Tidak mengarang OS, integrasi, angka pelanggan, atau fitur.
 
-Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_table}}` `{{addon_total_table}}` `{{tanpa_risiko}}` `{{bukti_sosial}}` `{{testimoni}}` `{{cta}}` `{{checkout_link}}` `{{wa_link}}` `{{harga_mulai}}`. Lead di bawah H1 ditulis sebagai komentar pertama: `<!-- lead: ... -->`. FAQ ditulis sebagai `<details class="faq"><summary>…</summary><p>…</p></details>` supaya otomatis jadi schema FAQPage.
+Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_table}}` `{{addon_total_table}}` `{{tanpa_risiko}}` `{{bukti_sosial}}` `{{testimoni}}` `{{cta}}` `{{checkout_link}}` `{{wa_link}}` `{{harga_mulai}}` `{{brand}}` `{{deskripsi}}` `{{deskripsi_kecil}}` `{{daftar_solusi}}` · khusus whitelabel: `{{wl_kustomisasi}}` `{{wl_ditangani}}` `{{wa_whitelabel}}` `{{cta_whitelabel}}`. Lead di bawah H1 ditulis sebagai komentar pertama: `<!-- lead: ... -->`. FAQ ditulis sebagai `<details class="faq"><summary>…</summary><p>…</p></details>` supaya otomatis jadi schema FAQPage.
 
 ## Langkah 3 — Build sampai OK
 
@@ -82,6 +86,7 @@ Token yang tersedia di konten: `{{pricing_table}}` `{{pricing_cards}}` `{{addon_
 | Klaim terlarang: satu-satunya, termurah, paling murah, pertama di…, nomor satu | ERROR |
 | Data social proof `contoh: true` saat `site_url` terisi (build publish) | ERROR |
 | `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
+| Halaman `/whitelabel` tidak ada, atau menu "Whitelabel" tidak ada di menu utama | ERROR |
 | `whatsapp` kosong saat `site_url` terisi (tombol WA melayang mati) | ERROR |
 | Primary keyword tidak ada di title/H1 (berasal dari brief) · secondary keyword belum muncul · > 1.800 kata | WARNING |
 | Halaman hukum belum direview (otomatis `noindex` + keluar sitemap) · `site_url`/`checkout_url`/`whatsapp` kosong · data contoh (preview) | WARNING |

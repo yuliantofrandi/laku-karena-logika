@@ -40,9 +40,29 @@ Landing Ads (Prioritas 1): pakai format halaman SEO (aturan-konten), lalu sisipk
 
 Semua teks yang dipakai berulang ada di `site.json → copy` (`nav_cta`, `cta_primary`, `cta_secondary`, `cta_title`, `cta_text`, `plan_button`, `wa_title`, `wa_subtitle`, `risk_label`, `risk_extra`, `proof_caption`). Ubah di sana, jangan di `build.py`.
 
+## Halaman Whitelabel (wajib di setiap produk)
+
+Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/whitelabel` memakai **copy global** (`assets/starter/content/whitelabel.html`), jadi tidak ditulis ulang per produk. Bagian khusus produk masuk lewat token.
+
+| Blok | Isi |
+|---|---|
+| Hero | H1 memuat "Whitelabel" + hasil: jual software dengan merek sendiri tanpa membangun dari nol. CTA `Minta Penawaran Whitelabel` (WA, teks otomatis menyebut brand) + `Lihat Cara Kerjanya` |
+| Paragraf entitas | "Program whitelabel <Brand> …" + `{{deskripsi_kecil}}` |
+| Untuk siapa | Konsultan & agensi · software house & integrator · reseller & distributor · grup & asosiasi |
+| Agitasi | Membangun sendiri: waktu, biaya tetap, pemeliharaan tanpa akhir, risiko produk. **Tanpa angka karangan** |
+| Perbandingan | Tabel "Whitelabel vs membangun sendiri" (perbandingan metode, aman) |
+| Yang dijual | `{{daftar_solusi}}` dari menu group Solusi + link ke harga |
+| Kustomisasi / ditangani | `{{wl_kustomisasi}}`, `{{wl_ditangani}}` dari `site.json → whitelabel` (dikonfirmasi per produk) |
+| Cara kerja | Konsultasi → Penawaran & kesepakatan → Penyiapan brand → Rilis ke klien |
+| Keuntungan | Produk sendiri tanpa tim dev · pendapatan berulang · klien tetap milik Anda · cepat ke pasar · ikut pembaruan |
+| FAQ | Apa itu whitelabel · apakah klien melihat merek kami · harga (per penawaran) · perlu tim IT? · beda dengan langganan biasa |
+| CTA | `{{cta_whitelabel}}`: konsultasi WA, **bukan checkout**, karena whitelabel adalah penawaran per klien |
+
+Larangan: tidak menyebut harga, minimum lisensi, bagi hasil, atau persentase penghematan yang belum diputuskan user. Halaman ini sengaja tidak memakai `{{bukti_sosial}}`/`{{testimoni}}` sampai ada mitra whitelabel asli.
+
 ## Navigasi
 
-- Menu utama ringkas: **satu menu group** untuk halaman solusi/landing (mis. "Solusi ▾" → Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid, masing-masing dengan deskripsi 1 baris), lalu **Harga**, lalu tombol CTA. Halaman panduan/SEO cukup di footer.
+- Menu utama ringkas: **satu menu group** untuk halaman solusi/landing (mis. "Solusi ▾" → Monitoring, Time Tracking, Kerja Remote, Absensi Hybrid, masing-masing dengan deskripsi 1 baris), lalu **Whitelabel** (wajib), lalu **Harga**, lalu tombol CTA. Halaman panduan/SEO cukup di footer.
 - Dropdown memakai `<details>`/`<summary>` (tanpa JavaScript). Panel rata kanan agar tidak terpotong di layar sempit; di mobile tampil inline di dalam menu hamburger. Group diberi tanda aktif saat salah satu submenunya sedang dibuka.
 
 ## Konversi teknis
