@@ -113,8 +113,9 @@ def pricing_table(S, P):
                 f'<a class="btn {btn} btn-sm thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{lab}</a></td>')
     foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
     strip = addon_strip(P)
+    catatan = f'<p class="note">{P["note"]}</p>' if P.get("note") else ""
     return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua paket →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col"><span class="sr-only">Jumlah karyawan</span></th>{head}</tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody>{foot}</table></div>{strip}<p class="note">{P["note"]}</p></div>')
+            f'<tbody>{"".join(rows)}</tbody>{foot}</table></div>{strip}{catatan}</div>')
 
 
 def pricing_cards(S, P):
@@ -431,7 +432,7 @@ def nav_item(it, current, CUR):
 
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 # blok visual: selalu terlihat dan dibuat selebar kontainer
-WIDE = ("grid", "table-wrap", "periode", "plans", "quotes", "proof", "cta", "guarantee")
+WIDE = ("grid", "table-wrap", "periode", "plans", "quotes", "proof", "cta", "guarantee", "penutup")   # penutup: paragraf rata tengah di bawah blok lebar
 # blok yang tetap terlihat di kolom teks
 KEEP = ("callout", "agitate", "checks", "faq", "note", "stat")
 
