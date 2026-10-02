@@ -45,7 +45,7 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
    bertahan di pasar adalah tugas `business-reviewer`.
 10. **Pilihkan rekomendasi terbaik.** Tujuan BKB adalah membuat produk
     laris. Setiap keputusan strategis yang belum diputuskan user — segmen,
-    DNA, positioning, skema, harga, add-on, tagline — diisi dengan pilihan
+    DNA, positioning, paket & nama paket, harga, add-on, tagline — diisi dengan pilihan
     yang paling mungkin menang di pasar, bukan dibiarkan `[INPUT-NEEDED]`
     atau diisi opsi tengah yang aman. Pertanggungjawabannya diuji
     `business-reviewer`.
@@ -123,25 +123,33 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 
 ## §3 Pricing Plan
 
-- Diisi PALING TERAKHIR, setelah §4 dan §5. Tetapkan skema dan harga
+- Diisi PALING TERAKHIR, setelah §4 dan §5. Tetapkan paket (dengan namanya) dan harga
   rekomendasi terbaikmu — harga yang paling mungkin membuat produk laris
   dan menguntungkan di segmen §5 — jangan dibiarkan `[INPUT-NEEDED]`.
-- Tier dibedakan oleh kapabilitas (Skema 1 vs Skema 2), bukan oleh ukuran
-  perusahaan. Ukuran perusahaan → diskon volume di dalam tier.
-- Tahunan: bayar 10 dapat 12, tulis harga efektif per bulan
+- **Nama paket langsung direkomendasikan.** Header kolom tabel harga
+  berisi nama paket terbaik pilihanmu — pendek, mudah diingat, menjual
+  kapabilitasnya. Jangan menulis label generik "Skema 1/2", "Paket 1",
+  "Tier A", atau kata "skema" di bagian harga.
+- Paket dibedakan oleh kapabilitas, bukan oleh ukuran perusahaan. Ukuran
+  perusahaan → diskon volume di dalam paket.
+- Tahunan **selalu** bayar 10 bulan, dapat 12 — harga tahunan = 10 ×
+  harga bulanan, untuk semua paket dan add-on. Ini ketetapan user: jangan
+  diganti pola diskon tahunan lain walau sedang memilihkan rekomendasi terbaik.
+  Tulis harga efektif per bulan
   ("Rp 60.000 (Rp 5.000/bln)") supaya bisa dibandingkan langsung dengan
   harga bulanan.
 - Blok **Fitur** di bawah harga: satu baris per kapabilitas §4, ✓ atau
   kosong. "Dukungan" selalu baris terakhir.
 - Add-on di sub-section `### Add-on (...)` dengan tabel sendiri — kolom
   `Add-on | Harga | Fitur yang didapat` — diletakkan setelah tabel harga
-  skema. **Jangan** jadikan baris di dalam tabel harga skema: tabel skema
+  paket. **Jangan** jadikan baris di dalam tabel harga paket: tabel paket
   hanya berisi harga, blok Fitur, dan Dukungan.
-- Judul sub-section menyebut skema yang bisa memasang add-on, sesuai
-  jumlah skema produk ("bisa dipasang ke Skema 1, Skema 2, atau Skema 3";
-  kalau hanya untuk skema tertentu, sebut itu).
+- Judul sub-section menyebut nama paket yang bisa memasang add-on ("bisa
+  dipasang ke [Nama Paket] atau [Nama Paket]"; kalau hanya untuk paket
+  tertentu, sebut itu).
 - Harga add-on ditulis per karyawan per bulan (`+Rp .../karyawan/bln`);
-  harga tahunan boleh ditambahkan di bawahnya (`<br>(Rp .../thn)`).
+  harga tahunan boleh ditambahkan di bawahnya (`<br>(Rp .../thn)`),
+  tetap 10 × harga bulanan.
   Keterangan umum (tidak ikut diskon volume, status `[?]`) ditulis sekali
   di bawah tabel, bukan diulang per baris.
 - Harga **tidak wajib** disertai alasan ("kenapa harga ini"). Apakah harga
@@ -161,7 +169,7 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 - **Benefit** untuk end-user (yang memakai), **Business Outcome** untuk
   decision-maker (yang membayar). Kalau dua kolom ini berisi hal yang sama,
   salah satunya belum dipikirkan.
-- Kapabilitas yang terikat tier/skema/add-on diberi keterangan dalam kurung
+- Kapabilitas yang terikat paket/add-on diberi keterangan (nama paket) dalam kurung
   di kolom Capability, supaya §3 bisa memetakan ✓ per baris.
 - Harga boleh jadi satu baris — "bayar hanya modul yang dipakai" adalah value.
 - Problem tanpa fitur → Capability `[GAP]`. Jangan dihapus.
@@ -172,13 +180,13 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 ## §5 Target Customer Profile
 
 - Primary Market: Industry, Company size, Geography, Business type,
-  Kematangan teknologi, Skema yang ditawarkan. Sebut juga **Bukan target**
+  Kematangan teknologi, Paket yang ditawarkan. Sebut juga **Bukan target**
   dan kenapa ("usaha yang sudah pakai HRIS lengkap — bukan kandidat migrasi,
   kita menang di setup minimal, bukan kelengkapan fitur").
 - Business type = ciri operasional yang membuat problem §4 paling terasa
   (tersebar di banyak lokasi, sudah terbiasa koordinasi via grup WA).
-- Skema yang ditawarkan menghubungkan segmen ke §3 dan memberi alasan:
-  "langsung Skema 2 — anti-kecurangan visual jadi kebutuhan inti segmen
+- Paket yang ditawarkan menghubungkan segmen ke §3 (sebut nama paketnya)
+  dan memberi alasan: "langsung paket [Nama Paket] — anti-kecurangan visual jadi kebutuhan inti segmen
   ini, bukan upsell".
 - Persona 1 (Decision Maker): Role boleh berbeda per market ("HR/Ops
   Manager (Primary) — atau Owner langsung (Secondary)").
