@@ -720,36 +720,11 @@
         ],
         "note": "Konsultasi gratis lewat WhatsApp"
       }
-    },
-    {
-      "id": "langganan-bulanan-fleksibel",
-      "halaman": "/harga",
-      "section": "Paket mana yang cocok?",
-      "jenis": "dialog",
-      "judul": "Langganan",
-      "alt": "Ilustrasi langganan Timebase bulanan: contoh tagihan paket Bukti Visual untuk 20 karyawan, bisa berhenti kapan saja",
-      "caption": "Contoh: paket Bukti Visual untuk 20 karyawan, ditagih bulanan",
-      "brief": "Screenshot asli halaman langganan/checkout: pilihan paket, jumlah karyawan, total tagihan bulanan.",
-      "auto": true,
-      "data": {
-        "icon": "card",
-        "title": "Langganan Anda",
-        "lines": [
-          "Bukti Visual",
-          "20 karyawan × Rp 14.000",
-          "Total Rp 280.000 / bulan",
-          "Berhenti kapan saja"
-        ],
-        "buttons": [
-          "Ubah paket",
-          "Bayar & aktifkan"
-        ]
-      }
     }
   ],
   "min_per_halaman_khusus": {
-    "/harga": 2
+    "/harga": 1
   },
-  "_min_per_halaman_khusus": "Pengecualian minimal gambar per halaman. /harga: isi utamanya tabel harga; add-on digabung ke section harga (permintaan user) sehingga ilustrasinya dihapus.",
+  "_min_per_halaman_khusus": "/harga: isi utamanya tabel harga + kartu persona paket (permintaan user), cukup gambar hero.",
   "_hero": "Semua halaman memakai video demo aplikasi yang sama di hero (permintaan user: 'hero gambar di sebelah kanan samakan dengan yang ada di sini')."
 }
