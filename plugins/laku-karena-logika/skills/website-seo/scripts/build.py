@@ -140,6 +140,11 @@ def pricing_cards(S, P):
             f'<p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p></div>')
 
 
+def nama_addon(a):
+    nama = html.escape(a["name"])
+    return f'<a href="{a["link"]}">{nama}</a>' if a.get("link") else nama
+
+
 def addon_strip(P):
     """Add-on ringkas di bawah tabel harga (user: "add-on gabung di bawah section harga, jangan terlalu banyak
     informasi"). Satu kotak: label "Add-on" sekali di kiri, tiap add-on satu baris (nama · deskripsi 1 kalimat ·
@@ -149,7 +154,7 @@ def addon_strip(P):
     if not adds:
         return ""
     rows = "".join(
-        f'<li><strong>{html.escape(a["name"])}</strong><span class="addon-desc">{html.escape(a["desc"])}</span>'
+        f'<li><strong>{nama_addon(a)}</strong><span class="addon-desc">{html.escape(a["desc"])}</span>'
         f'<span class="addon-price"><span class="bln">+{rupiah(a["monthly"])}/karyawan/bln</span>'
         f'<span class="thn">+{rupiah(a["monthly"] * m)}/karyawan/thn</span></span></li>'
         for a in adds)
