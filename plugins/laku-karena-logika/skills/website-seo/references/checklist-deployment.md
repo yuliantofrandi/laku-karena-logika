@@ -46,5 +46,5 @@
 1. https://pagespeed.web.dev → uji `/` dan halaman Prioritas 1, **Mobile dan Desktop**, target ≥90 di keempat kategori.
 2. Google Search Console → submit `sitemap.xml`, minta indexing halaman Prioritas 1.
 3. https://search.google.com/test/rich-results → cek `SoftwareApplication`, `FAQPage`, `BreadcrumbList`.
-4. Uji semua tombol beli di HP: `Pilih Skema 1/2/3` dan `Bayar tahunan` membuka checkout dengan skema & periode yang benar, sampai akun aktif setelah bayar.
+4. Uji semua tombol beli di HP: `Pilih <Nama Paket>` dan `Bayar tahunan` membuka checkout dengan skema & periode yang benar, sampai akun aktif setelah bayar.
 5. Google Ads: pasang konversi pada **pembayaran berhasil** (dan klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.

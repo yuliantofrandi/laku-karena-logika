@@ -29,7 +29,7 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - **Layout:** "cek layout bagian kanan kiri semua page, terlihat tidak rapi". Penyebabnya: hero di kolom 1120px, isi di kolom 760px. Diperbaiki menjadi satu kolom 920px untuk semua bagian.
 - **Ilustrasi:** "cek semua page selalu tambah gambar-gambar ilustrasi aplikasi / ilustrasi yang dibutuhkan … sehingga website tidak monoton … perhatikan SEO dan PageSpeed karena akan lanjut ke audit SEO". Hasilnya: 35 SVG (≤7 KB) di 11 halaman (3–5 per halaman), hero dua kolom, `docs/daftar-ilustrasi.md` berisi brief, dan og:image PNG.
 - **Switch harga:** "untuk harga ada button switch antara ke tahunan dan bulanan". Diterapkan di kartu & tabel, tanpa JS, default Bulanan, label "Hemat 2 bulan".
-- **Satu tampilan harga:** "tabel harganya cukup 1 saja". `/harga` hanya tabel (tombol beli di header & footer), halaman lain hanya kartu. Tabel di mobile diberi kolom kiri sticky + petunjuk geser.
+- **Satu tampilan harga:** "tabel harganya cukup 1 saja". `/harga` hanya tabel (tombol beli hanya di footer; tombol di header dihapus atas permintaan user), halaman lain hanya kartu. Tabel di mobile diberi kolom kiri sticky + petunjuk geser.
 - **Tampilan:** "kurang bagus, banyak blank space, terlalu banyak tulisan". Solusinya: kontainer 1160px, band dua kolom otomatis, dan teks sekunder dilipat. Paragraf yang terlihat turun ke 29–58% di halaman konten tanpa mengurangi jumlah kata.
 - **Nama paket:** "di bagian harga tidak perlu ada tulisan skema". Skema 1/2/3 → Aktivitas / Bukti Visual / Waktu Per Tugas di seluruh website (BKB tetap memakai Skema).
 - **Header:** "semua menu taruh tengah, kecuali menu Langganan; di sebelah kiri Langganan ada tombol Sign In".

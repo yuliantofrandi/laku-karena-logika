@@ -62,7 +62,7 @@ Koreksi user: "di bagian harga tidak perlu ada tulisan skema, langsung jadikan t
 ## Satu tampilan harga per halaman (wajib)
 
 Aturan tetap user: "tabel harganya cukup 1 saja". Setiap halaman memuat **paling banyak satu** dari `{{pricing_cards}}` / `{{pricing_table}}` (build ERROR bila lebih).
-- `/harga` → `{{pricing_table}}` saja: satu tabel lengkap (switch, harga per jumlah karyawan, fitur) dengan tombol beli di **header dan footer** tabel.
+- `/harga` → `{{pricing_table}}` saja: satu tabel lengkap (switch, harga per jumlah karyawan, fitur) dengan tombol beli **hanya di bawah tabel** (footer). User: "tidak perlu tombol di bagian atas".
 - Halaman lain (beranda, landing Prioritas 1) → `{{pricing_cards}}` saja (ringkas + link ke `/harga`).
 - Mobile: tabel bisa digeser dengan kolom kiri dan judul grup tetap di tempat (sticky), teks panjang dipatahkan, dan ada petunjuk "Geser ke kanan untuk melihat semua skema →". Skema yang disarankan harus tetap mudah ditemukan.
 

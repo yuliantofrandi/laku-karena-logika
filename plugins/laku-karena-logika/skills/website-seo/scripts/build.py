@@ -111,8 +111,7 @@ def pricing_table(S, P):
         return (f'<td><a class="btn {btn} btn-sm bln" href="{checkout_link(S, x["id"])}" rel="nofollow">{lab}</a>'
                 f'<a class="btn {btn} btn-sm thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{lab}</a></td>')
     foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
-    buy_head = f'<tr class="buy"><td></td>{"".join(beli(x) for x in s)}</tr>'
-    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua paket →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr>{buy_head}</thead>'
+    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua paket →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col">Jumlah karyawan</th>{head}</tr></thead>'
             f'<tbody>{"".join(rows)}</tbody>{foot}</table></div><p class="note">{P["note"]}</p></div>')
 
 
