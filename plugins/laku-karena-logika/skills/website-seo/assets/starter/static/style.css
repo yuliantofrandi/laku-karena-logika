@@ -184,8 +184,7 @@ tr:last-child th,tr:last-child td{border-bottom:0}
 .pricing thead th span:not(.tag):not(.sr-only){display:block;font-weight:600;color:var(--muted);font-size:13px}
 /* header tabel harga: jelas tapi minimalis (user: "lebih kelihatan", lalu "terlalu kelihatan, minimaliskan") */
 .pricing thead th{background:#fff;color:var(--ink);font-family:var(--font-head);font-size:17px;letter-spacing:-.01em;padding:18px 16px 14px;vertical-align:bottom;border-bottom:2px solid var(--ink)}
-.pricing thead th.featured{background:var(--bg-tint);color:var(--purple);box-shadow:inset 0 3px 0 var(--purple)}
-.pricing thead th .tag{display:block;margin:0 0 4px;font-family:var(--font-body,inherit);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--purple)}
+.pricing thead th .tag{display:block;width:max-content;margin:0 0 6px;padding:3px 10px;border-radius:999px;background:var(--bg-tint);font-family:var(--font-body,inherit);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--purple)}
 .pricing tr.group th{background:#fff;color:var(--purple);font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding-top:18px}
 .pricing td small{display:block;color:var(--muted);font-size:12.5px}
 .pricing tfoot td,.pricing tfoot th{border-top:1px solid var(--line);border-bottom:0;padding-top:14px;padding-bottom:16px}
@@ -334,7 +333,7 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
   .pricing td,.pricing th{padding:10px 10px}
   .pricing .btn-sm{padding:8px 10px;font-size:13px}
   .pricing thead th{font-size:15px;padding:14px 10px 10px}
-  .pricing thead th .tag{font-size:9.5px}
+  .pricing thead th .tag{font-size:9.5px;padding:2px 7px}
 }
 @media (max-width:640px){
   .panel{padding:20px 18px;border-radius:16px}
