@@ -181,8 +181,11 @@ thead th{background:var(--bg-soft);font-weight:800;color:var(--ink)}
 tbody th{font-weight:600;color:var(--ink)}
 td{color:var(--ink-2)}
 tr:last-child th,tr:last-child td{border-bottom:0}
-.pricing thead th span{display:block;font-weight:600;color:var(--muted);font-size:13px}
-.pricing thead th.featured{background:var(--bg-tint);color:var(--purple)}
+.pricing thead th span:not(.tag):not(.sr-only){display:block;font-weight:600;color:var(--muted);font-size:13px}
+/* header tabel harga menonjol (user: "buat headernya lebih kelihatan") */
+.pricing thead th{background:var(--ink);color:#fff;font-family:var(--font-head);font-size:19px;letter-spacing:-.01em;padding:20px 16px;vertical-align:bottom;border-bottom:0}
+.pricing thead th.featured{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+.pricing thead th .tag{display:block;width:max-content;margin:0 0 6px;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.22);font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff}
 .pricing tr.group th{background:#fff;color:var(--purple);font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding-top:18px}
 .pricing td small{display:block;color:var(--muted);font-size:12.5px}
 .pricing tfoot td,.pricing tfoot th{border-top:1px solid var(--line);border-bottom:0;padding-top:14px;padding-bottom:16px}
@@ -324,12 +327,14 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
   .table-hint{display:block}
   .pricing{font-size:14px;min-width:500px}
   .pricing th:first-child,.pricing td:first-child{position:sticky;left:0;z-index:1;background:#fff;width:112px;min-width:112px;max-width:112px;box-shadow:1px 0 0 var(--line)}
-  .pricing thead th:first-child,.pricing thead tr.buy td:first-child{background:var(--bg-soft)}
+  .pricing thead th:first-child{background:var(--ink)}
   .pricing tr.group th{position:static;max-width:none;box-shadow:none}
   .pricing tr.group th span{position:sticky;left:10px}
   .pricing th:first-child,.pricing td:first-child{overflow-wrap:anywhere}
   .pricing td,.pricing th{padding:10px 10px}
   .pricing .btn-sm{padding:8px 10px;font-size:13px}
+  .pricing thead th{font-size:15px;padding:14px 10px}
+  .pricing thead th .tag{font-size:9.5px;padding:2px 7px;margin-bottom:4px}
 }
 @media (max-width:640px){
   .panel{padding:20px 18px;border-radius:16px}
