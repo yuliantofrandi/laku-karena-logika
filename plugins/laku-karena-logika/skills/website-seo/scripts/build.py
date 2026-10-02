@@ -89,8 +89,8 @@ def periode_switch(P):
 def pricing_table(S, P):
     s = P["schemes"]
     FEAT = ' class="featured"'
-    head = "".join(f'<th scope="col"{FEAT if x.get("featured") else ""}>'
-                   + ('<span class="tag">Disarankan</span>' if x.get("featured") else "") + f'{x["name"]}</th>' for x in s)
+    # tanpa badge "Disarankan" di header tabel (user: "hilangkan"); rekomendasi cukup di kartu persona & tombol utama
+    head = "".join(f'<th scope="col"{FEAT if x.get("featured") else ""}>{x["name"]}</th>' for x in s)
     m = P["annual_months_paid"]
     rows = []
     rows.append(f'<tr class="group bln"><th scope="rowgroup" colspan="{len(s)+1}"><span>Harga bulanan / karyawan</span></th></tr>')
