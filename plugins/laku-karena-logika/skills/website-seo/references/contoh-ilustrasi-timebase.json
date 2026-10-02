@@ -986,37 +986,6 @@
       }
     },
     {
-      "id": "ilustrasi-addon-presensi",
-      "halaman": "/harga",
-      "section": "Add-on",
-      "jenis": "cards",
-      "judul": "Add-on untuk tim hybrid",
-      "alt": "Add-on presensi dan lokasi Timebase untuk tim hybrid",
-      "caption": "Add-on Presensi & lokasi menempel ke paket mana pun",
-      "brief": "Ilustrasi add-on presensi (ikon lokasi + jam) bergaya brand.",
-      "auto": true,
-      "data": {
-        "items": [
-          {
-            "label": "Presensi otomatis",
-            "sub": "Saat mulai kerja",
-            "icon": "clock"
-          },
-          {
-            "label": "Cek lokasi",
-            "sub": "Saat sesi dimulai",
-            "icon": "pin",
-            "highlight": true
-          },
-          {
-            "label": "Kunci lokasi WFO",
-            "sub": "Hari kerja di kantor",
-            "icon": "lock"
-          }
-        ]
-      }
-    },
-    {
       "id": "white-label-merek-anda",
       "halaman": "/white-label",
       "section": "Hero",
@@ -1125,5 +1094,9 @@
         ]
       }
     }
-  ]
+  ],
+  "min_per_halaman_khusus": {
+    "/harga": 2
+  },
+  "_min_per_halaman_khusus": "Pengecualian minimal gambar per halaman. /harga: isi utamanya tabel harga; add-on digabung ke section harga (permintaan user) sehingga ilustrasinya dihapus."
 }

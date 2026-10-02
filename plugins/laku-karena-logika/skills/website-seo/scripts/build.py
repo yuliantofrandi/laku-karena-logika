@@ -112,8 +112,9 @@ def pricing_table(S, P):
         return (f'<td><a class="btn {btn} btn-sm bln" href="{checkout_link(S, x["id"])}" rel="nofollow">{lab}</a>'
                 f'<a class="btn {btn} btn-sm thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{lab}</a></td>')
     foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
+    strip = addon_strip(P)
     return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua paket →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col"><span class="sr-only">Jumlah karyawan</span></th>{head}</tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody>{foot}</table></div><p class="note">{P["note"]}</p></div>')
+            f'<tbody>{"".join(rows)}</tbody>{foot}</table></div>{strip}<p class="note">{P["note"]}</p></div>')
 
 
 def pricing_cards(S, P):
@@ -136,6 +137,18 @@ def pricing_cards(S, P):
             f'<a class="btn {btn} btn-block thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{label} · Tahunan</a></div>')
     return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<div class="plans">{"".join(cards)}</div>'
             f'<p class="note">Detail lengkap di <a href="/harga">halaman harga</a>.</p></div>')
+
+
+def addon_strip(P):
+    """Add-on ringkas di bawah tabel harga, satu baris per add-on (user: "add-on gabung di bawah section harga,
+    jangan terlalu banyak informasi"). Harga ikut switch bulanan/tahunan."""
+    m = P["annual_months_paid"]
+    return "".join(
+        f'<div class="addon-strip"><span class="badge-addon">Add-on</span><strong>{html.escape(a["name"])}</strong>'
+        f'<span class="addon-desc">{html.escape(a["desc"])}</span>'
+        f'<span class="addon-price"><span class="bln">+{rupiah(a["monthly"])}/karyawan/bln</span>'
+        f'<span class="thn">+{rupiah(a["monthly"] * m)}/karyawan/thn</span></span></div>'
+        for a in P.get("addons", []))
 
 
 def addon_table(P):
@@ -798,8 +811,9 @@ def check_images(p, used, IL):
         if kb > MAX_KB:
             err(sid, f"gambar '{gid}' {kb:.0f} KB (maks {MAX_KB} KB) — kompres dulu")
     n = len(set(used + ([HERO[sid]] if sid in HERO else [])))
-    if n < IL.get("min_per_halaman", 3):
-        err(sid, f"hanya {n} gambar (minimal {IL.get('min_per_halaman', 3)} per halaman)")
+    minimal = IL.get("min_per_halaman_khusus", {}).get(sid, IL.get("min_per_halaman", 3))
+    if n < minimal:
+        err(sid, f"hanya {n} gambar (minimal {minimal} per halaman)")
     if sid not in HERO:
         warn(sid, "belum ada gambar hero")
 
