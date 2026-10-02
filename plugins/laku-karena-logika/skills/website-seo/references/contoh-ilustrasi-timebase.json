@@ -3,21 +3,21 @@
   "min_per_halaman": 3,
   "hero": {
     "/": "dashboard-rekap-tim",
-    "/aplikasi-monitoring-karyawan": "dashboard-status-kerja",
-    "/aplikasi-time-tracking": "tracker-per-issue",
-    "/aplikasi-kerja-remote": "tim-remote-hybrid",
-    "/monitoring-karyawan-uu-pdp": "perlindungan-data-karyawan",
-    "/laporan-kerja-harian": "laporan-harian-otomatis",
-    "/produktivitas-karyawan": "output-dan-aktivitas",
-    "/hris-vs-monitoring-aktivitas": "hris-vs-monitoring",
-    "/absensi-karyawan-hybrid": "presensi-dan-lokasi",
-    "/harga": "tiga-paket-bukti",
-    "/white-label": "white-label-merek-anda"
+    "/aplikasi-monitoring-karyawan": "dashboard-rekap-tim",
+    "/aplikasi-time-tracking": "dashboard-rekap-tim",
+    "/aplikasi-kerja-remote": "dashboard-rekap-tim",
+    "/monitoring-karyawan-uu-pdp": "dashboard-rekap-tim",
+    "/laporan-kerja-harian": "dashboard-rekap-tim",
+    "/produktivitas-karyawan": "dashboard-rekap-tim",
+    "/hris-vs-monitoring-aktivitas": "dashboard-rekap-tim",
+    "/absensi-karyawan-hybrid": "dashboard-rekap-tim",
+    "/harga": "dashboard-rekap-tim",
+    "/white-label": "dashboard-rekap-tim"
   },
   "gambar": [
     {
       "id": "dashboard-rekap-tim",
-      "halaman": "/",
+      "halaman": "semua (hero)",
       "section": "Hero",
       "alt": "Demo aplikasi Timebase: timeline aktivitas, screenshot sesi kerja, dan rekap karyawan di dashboard",
       "caption": "Demo aplikasi Timebase",
@@ -101,75 +101,6 @@
           ]
         },
         "animasi": true
-      }
-    },
-    {
-      "id": "dashboard-status-kerja",
-      "halaman": "/aplikasi-monitoring-karyawan",
-      "section": "Hero",
-      "jenis": "timeline",
-      "judul": "Status kerja real-time",
-      "alt": "Ilustrasi aplikasi monitoring karyawan: timeline status kerja Active, Idle, dan Distraction tim remote",
-      "caption": "Ilustrasi status kerja real-time per karyawan",
-      "brief": "Screenshot asli halaman status real-time: daftar karyawan dengan timeline Active/Idle/Distraction. 16:10, minimal 1600×1000 px. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "rows": [
-          {
-            "label": "Rina · Desain",
-            "segs": [
-              [
-                "a",
-                0.72
-              ],
-              [
-                "i",
-                0.18
-              ],
-              [
-                "d",
-                0.1
-              ]
-            ],
-            "total": "7j 12m"
-          },
-          {
-            "label": "Dimas · Developer",
-            "segs": [
-              [
-                "a",
-                0.8
-              ],
-              [
-                "i",
-                0.14
-              ],
-              [
-                "d",
-                0.06
-              ]
-            ],
-            "total": "7j 40m"
-          },
-          {
-            "label": "Sari · CS",
-            "segs": [
-              [
-                "a",
-                0.66
-              ],
-              [
-                "i",
-                0.24
-              ],
-              [
-                "d",
-                0.1
-              ]
-            ],
-            "total": "6j 55m"
-          }
-        ]
       }
     },
     {
@@ -266,43 +197,6 @@
       }
     },
     {
-      "id": "tracker-per-issue",
-      "halaman": "/aplikasi-time-tracking",
-      "section": "Hero",
-      "jenis": "tasklist",
-      "judul": "Tracker per issue · Dimas",
-      "alt": "Ilustrasi time tracker Timebase: start dan stop waktu per tugas untuk timesheet otomatis",
-      "caption": "Ilustrasi tracker waktu per tugas (paket Waktu Per Tugas)",
-      "brief": "Screenshot asli daftar issue dengan tombol start/stop dan waktu berjalan. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "head": "Issue",
-        "rows": [
-          {
-            "title": "Halaman checkout · revisi UI",
-            "time": "01:24:10",
-            "status": "run",
-            "tag": "Klien A"
-          },
-          {
-            "title": "Integrasi pembayaran",
-            "time": "03:05:00",
-            "tag": "Klien A"
-          },
-          {
-            "title": "Perbaikan bug login",
-            "time": "00:48:30",
-            "tag": "Internal"
-          },
-          {
-            "title": "Rapat sprint",
-            "time": "01:00:00",
-            "tag": "Internal"
-          }
-        ]
-      }
-    },
-    {
       "id": "timesheet-otomatis",
       "halaman": "/aplikasi-time-tracking",
       "section": "Timesheet manual vs time tracking otomatis",
@@ -394,43 +288,6 @@
       }
     },
     {
-      "id": "tim-remote-hybrid",
-      "halaman": "/aplikasi-kerja-remote",
-      "section": "Hero",
-      "jenis": "map",
-      "judul": "Tim hari ini",
-      "alt": "Ilustrasi tim kerja remote dan hybrid yang bekerja dari kantor, rumah, dan kota lain",
-      "caption": "Ilustrasi tim WFA & hybrid dalam satu catatan",
-      "brief": "Ilustrasi tim terdistribusi (kantor, rumah, kafe, kota lain) bergaya brand, atau foto tim asli bekerja hybrid. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "pins": [
-          {
-            "x": 200,
-            "y": 300,
-            "label": "Kantor · 4 orang"
-          },
-          {
-            "x": 380,
-            "y": 200,
-            "label": "Rumah · 6 orang"
-          },
-          {
-            "x": 620,
-            "y": 330,
-            "label": "Kota lain · 3 orang"
-          }
-        ],
-        "card": {
-          "title": "Tim aktif: 13 orang",
-          "lines": [
-            "✓ Semua sesi tercatat",
-            "Rata-rata Active 74%"
-          ]
-        }
-      }
-    },
-    {
       "id": "tiga-kategori-alat",
       "halaman": "/aplikasi-kerja-remote",
       "section": "Tiga kategori aplikasi untuk kerja remote",
@@ -482,26 +339,6 @@
           "Data untuk evaluasi bersama"
         ],
         "footer": "Disetujui seluruh tim · 1 Okt 2026"
-      }
-    },
-    {
-      "id": "perlindungan-data-karyawan",
-      "halaman": "/monitoring-karyawan-uu-pdp",
-      "section": "Hero",
-      "jenis": "shield",
-      "judul": "Pemantauan yang patuh UU PDP",
-      "alt": "Ilustrasi kepatuhan UU PDP untuk monitoring karyawan: persetujuan, hak akses, hapus data, dan retensi",
-      "caption": "Empat pilar pemantauan yang patuh UU PDP",
-      "brief": "Ilustrasi perisai/keamanan data bergaya brand, tanpa logo lembaga pemerintah. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "lines": [
-          "Persetujuan karyawan tercatat",
-          "Karyawan bisa melihat datanya",
-          "Prosedur hapus data",
-          "Retensi data ditetapkan",
-          "Notifikasi kebocoran 3×24 jam"
-        ]
       }
     },
     {
@@ -558,28 +395,6 @@
       }
     },
     {
-      "id": "laporan-harian-otomatis",
-      "halaman": "/laporan-kerja-harian",
-      "section": "Hero",
-      "jenis": "doc",
-      "judul": "",
-      "alt": "Contoh format laporan kerja harian yang tersusun otomatis dari data aktivitas",
-      "caption": "Laporan harian: durasi terisi otomatis, karyawan menambah catatan",
-      "brief": "Contoh laporan harian asli yang diekspor/ditampilkan dari dashboard. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "title": "Laporan Senin · Rina (Desain)",
-        "lines": [
-          "Desain halaman checkout — 3j 05m",
-          "Revisi banner promo — 1j 32m",
-          "Rapat mingguan — 1j 00m",
-          "Kendala: menunggu teks final",
-          "Besok: banner final, ikon kategori"
-        ],
-        "footer": "Durasi dari catatan aktivitas"
-      }
-    },
-    {
       "id": "laporan-dari-data-aktivitas",
       "halaman": "/laporan-kerja-harian",
       "section": "Laporan dari data aktivitas",
@@ -606,39 +421,6 @@
           "Laporan manual",
           "Dari data aktivitas"
         ]
-      }
-    },
-    {
-      "id": "output-dan-aktivitas",
-      "halaman": "/produktivitas-karyawan",
-      "section": "Hero",
-      "jenis": "compare",
-      "judul": "Output vs aktivitas",
-      "alt": "Perbandingan output dan aktivitas dalam mengukur produktivitas karyawan remote",
-      "caption": "Output menjawab apa yang dihasilkan; aktivitas menjelaskan kenapa",
-      "brief": "Ilustrasi dua sisi timbangan/kolom output vs aktivitas bergaya brand. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "left": {
-          "title": "Output",
-          "icon": "check",
-          "items": [
-            "+Tiket selesai",
-            "+Fitur rilis",
-            "+Desain disetujui",
-            "+Prospek jadi pelanggan"
-          ]
-        },
-        "right": {
-          "title": "Aktivitas",
-          "icon": "chart",
-          "items": [
-            "+Jam kerja",
-            "+Waktu per tugas",
-            "+Aplikasi yang dipakai",
-            "-Bukan nilai kinerja"
-          ]
-        }
       }
     },
     {
@@ -734,39 +516,6 @@
       }
     },
     {
-      "id": "hris-vs-monitoring",
-      "halaman": "/hris-vs-monitoring-aktivitas",
-      "section": "Hero",
-      "jenis": "compare",
-      "judul": "HRIS vs monitoring aktivitas",
-      "alt": "Perbandingan kategori HRIS dan software monitoring aktivitas untuk tim remote",
-      "caption": "Dua kategori, dua pertanyaan berbeda",
-      "brief": "Ilustrasi dua panel kategori (administrasi HR vs aktivitas kerja) tanpa logo merek. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "left": {
-          "title": "HRIS",
-          "icon": "users",
-          "items": [
-            "+Data karyawan",
-            "+Presensi & cuti",
-            "+Penggajian",
-            "-Aktivitas jam kerja"
-          ]
-        },
-        "right": {
-          "title": "Monitoring aktivitas",
-          "icon": "eye",
-          "items": [
-            "+Status kerja",
-            "+Aplikasi & situs",
-            "+Screenshot sesi aktif",
-            "+Waktu per tugas"
-          ]
-        }
-      }
-    },
-    {
       "id": "fitur-umum-hris",
       "halaman": "/hris-vs-monitoring-aktivitas",
       "section": "Fitur HRIS yang umum",
@@ -830,49 +579,6 @@
         ],
         "mid": "Tim remote",
         "mid2": "dipakai bersama"
-      }
-    },
-    {
-      "id": "presensi-dan-lokasi",
-      "halaman": "/absensi-karyawan-hybrid",
-      "section": "Hero",
-      "jenis": "map",
-      "judul": "Presensi hari ini",
-      "alt": "Ilustrasi aplikasi absensi karyawan hybrid: kehadiran tercatat saat mulai kerja di laptop dengan cek lokasi",
-      "caption": "Ilustrasi add-on Presensi & lokasi",
-      "brief": "Screenshot asli peta/daftar presensi tim (lokasi disamarkan) dengan jam mulai kerja. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "fence": {
-          "x": 250,
-          "y": 290,
-          "r": 110,
-          "label": "Kantor (WFO)"
-        },
-        "pins": [
-          {
-            "x": 230,
-            "y": 300,
-            "label": "Rina 08:52"
-          },
-          {
-            "x": 290,
-            "y": 250,
-            "label": "Bayu 08:57"
-          },
-          {
-            "x": 600,
-            "y": 360,
-            "label": "Sari (remote) 09:01"
-          }
-        ],
-        "card": {
-          "title": "Kehadiran: 12/13",
-          "lines": [
-            "✓ Tercatat saat mulai kerja",
-            "1 belum mulai sesi"
-          ]
-        }
       }
     },
     {
@@ -948,60 +654,6 @@
             "Radius 200 m"
           ]
         }
-      }
-    },
-    {
-      "id": "tiga-paket-bukti",
-      "halaman": "/harga",
-      "section": "Hero",
-      "jenis": "tiers",
-      "judul": "Makin tinggi paket, makin rapat buktinya",
-      "alt": "Tiga paket harga Timebase: Aktivitas, Bukti Visual, dan Waktu Per Tugas",
-      "caption": "Tiga paket berdasarkan seberapa rapat bukti kerja",
-      "brief": "Ilustrasi tangga/level 3 paket bergaya brand. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "items": [
-          {
-            "name": "Paket Aktivitas",
-            "lines": [
-              "Status & aplikasi"
-            ]
-          },
-          {
-            "name": "Paket Bukti Visual",
-            "lines": [
-              "+ Screenshot",
-              "tiap 30 menit"
-            ]
-          },
-          {
-            "name": "Paket Waktu Per Tugas",
-            "lines": [
-              "+ Screenshot 10 menit",
-              "+ Waktu per tugas"
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "white-label-merek-anda",
-      "halaman": "/white-label",
-      "section": "Hero",
-      "jenis": "brand",
-      "judul": "Software dengan merek Anda",
-      "alt": "Ilustrasi software white label dengan logo, warna, dan domain merek Anda sendiri",
-      "caption": "Ilustrasi: nama, logo, warna, dan domain Anda",
-      "brief": "Mockup aplikasi dengan logo & warna contoh mitra (fiktif), menunjukkan perbedaan sebelum/sesudah rebranding. Untuk hero: boleh juga foto orang/tim memegang laptop berisi tampilan ini (latar transparan), sesuai gaya hero beranda.",
-      "auto": true,
-      "data": {
-        "items": [
-          "Logo",
-          "Warna",
-          "Domain",
-          "Email notifikasi"
-        ]
       }
     },
     {
@@ -1098,5 +750,6 @@
   "min_per_halaman_khusus": {
     "/harga": 2
   },
-  "_min_per_halaman_khusus": "Pengecualian minimal gambar per halaman. /harga: isi utamanya tabel harga; add-on digabung ke section harga (permintaan user) sehingga ilustrasinya dihapus."
+  "_min_per_halaman_khusus": "Pengecualian minimal gambar per halaman. /harga: isi utamanya tabel harga; add-on digabung ke section harga (permintaan user) sehingga ilustrasinya dihapus.",
+  "_hero": "Semua halaman memakai video demo aplikasi yang sama di hero (permintaan user: 'hero gambar di sebelah kanan samakan dengan yang ada di sini')."
 }

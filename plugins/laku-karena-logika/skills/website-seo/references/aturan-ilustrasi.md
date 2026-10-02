@@ -53,6 +53,8 @@ User bisa mengganti ilustrasi dengan motion graphic sendiri ("ganti dengan motio
 
 Render: `<video muted loop playsinline preload="none" poster data-src>`. Skrip kecil (`VIDEO_JS`, hanya disisipkan di halaman yang punya video) menunggu event `load` (tidak bersaing dengan LCP), lalu memasang `src` saat video mendekati layar (IntersectionObserver) dan autoplay.
 
+**Satu media hero untuk semua halaman** (user: "untuk di semua page, hero gambar di sebelah kanannya samakan dengan yang ada di sini"): bila user punya video/visual hero yang disukai, arahkan semua slug di peta `hero` ke id yang sama, lalu hapus entri & file hero lama yang tidak dipakai. Ilustrasi per section tetap berbeda per halaman.
+
 **Video di hero** (user: "ganti dengan ilustrasi saya" di hero): pasang di entri hero (`hero` map di ilustrasi.json) dengan cara yang sama. Poster hero otomatis di-`preload` dengan `fetchpriority="high"` karena menjadi kandidat LCP, dan video mendapat perlakuan visual yang sama dengan gambar hero (tegak, dengan bentuk gradasi tipis miring ±2,5° yang hanya mengintip di tepinya). Video **vertikal (9:16)** di hero otomatis dibatasi `min(300px, 64%)` dan ditengahkan di atas bentuk gradasi; kompres 540×960 @ 450 kbps (demo 50 detik: 9,5 MB → 2,8 MB). User akhirnya memilih versi vertikal daripada 16:9 untuk hero Timebase. Bila pengguna memilih *reduced motion*, video tidak autoplay dan diberi kontrol. Video potret (9:16) dibatasi lebar 340 px (280 px di mobile) dengan bayangan lembut. Kasus Timebase: motion graphic 1080×1920, 27 detik, 3,9 MB di section "data kerja yang bisa dibaca bersama"; re-encode dengan `avconvert` justru memperbesar file, jadi file asli dipakai.
 
 ## Ilustrasi dengan orang (`jenis: "orang"`)
