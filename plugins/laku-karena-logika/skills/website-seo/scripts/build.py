@@ -547,7 +547,9 @@ def render_section(blocks, idx, S=None):
         else:
             row = f'<div class="split panel-row{flip}"><div class="col-text">{lead}</div><div class="col-panel"><div class="panel">{"".join(scan)}</div></div></div>'
     else:
-        row = f'<div class="split stack"><div class="col-text">{lead}</div></div>'
+        # section tabel harga: judul + pembuka rata tengah di atas tabel (permintaan user)
+        tengah = " center" if any("periode" in kind(b)[1] for b in wide) else ""
+        row = f'<div class="split stack{tengah}"><div class="col-text">{lead}</div></div>'
     return f'<section class="{band}"><div class="wrap">{row}{"".join(wide)}</div></section>'
 
 
