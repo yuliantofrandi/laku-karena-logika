@@ -42,6 +42,11 @@ Menulis judul + dua versi caption dari desain final: ber-enter untuk Instagram &
 ### `sosmed-posting`
 Satu konfirmasi di awal, lalu: `scripts/render.py` merender frame terpilih jadi JPEG 9:16 (`9x16-tiktok-threads/`) dan crop 4:5 (`4x5-instagram/`) dalam hitungan detik (font & logo/latar Venturo dibundel di `assets/`), simpan ke `Sosmed/<judul>/` di Google Drive, lalu jadwalkan tiga posting di Metricool: TikTok (9:16, musik otomatis), Threads (9:16), Instagram (carousel/gambar 4:5). Selesai begitu terjadwal, dengan estimasi waktu tayang dan durasi tiap langkah. Batasan platform yang sudah terbukti ada di `references/teknis.md`.
 
+### `motion-graphic`
+Mengubah aplikasi SaaS pengguna jadi **video motion graphic MP4**. Aplikasinya dijelajahi lewat Claude-in-Chrome, tampilannya direkreasi dalam HTML dengan **data dummy**, lalu dirender frame-per-frame — tajam, bisa direvisi, dan aman dibagikan. Tiga gaya: **Style 1 – promo fitur 9:16**, **Style 2 – walkthrough 16:9**, **Style 3 – walkthrough 9:16** (detail di `references/gaya.md`). Hasil: master 1080p untuk sosmed/YouTube dan MP4 web 720p + snippet embed yang lolos PageSpeed (Performance ≥ 90, CLS 0, 0 byte video sebelum diklik).
+
+> **Catatan lingkungan:** butuh **Claude-in-Chrome**, serta `ffmpeg`, Python `playwright` + Chromium, Pillow, dan `lighthouse` di komputer — skill mengecek dan menawarkan pemasangannya di langkah awal. Hasil disimpan di folder pilihan pengguna (default `motion-graphic/<produk>/` di working directory).
+
 > **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
 
 ## Pakai
@@ -53,9 +58,10 @@ Satu konfirmasi di awal, lalu: `scripts/render.py` merender frame terpilih jadi 
 /sosmed-desain
 /sosmed-caption
 /sosmed-posting
+/motion-graphic
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 

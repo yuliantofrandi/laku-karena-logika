@@ -1,0 +1,225 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+:root{--g:#00A76F;--gd:#007867;--gl:rgba(0,167,111,.14);--ink:#1C252E;--mut:#637381;--line:#E9EEF2;--idle:#919EAB;--red:#FF5630;--org:#FFAB00;--pur:#8E33FF;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Inter,"Public Sans",sans-serif;color:var(--ink);background:#F3FAF7}
+#stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(1200px 900px at 85% 5%,#DDF5EC 0,transparent 60%),radial-gradient(900px 900px at 0% 100%,#F1E8FF 0,transparent 55%),#F6FBF9}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.scene{position:absolute;inset:0;opacity:0}
+.logo{font-weight:900;font-style:italic;letter-spacing:-2px;background:linear-gradient(90deg,#7A2CF5 0%,#C026D3 45%,#F97316 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase}
+.tag{letter-spacing:10px;font-weight:600;background:linear-gradient(90deg,#7A2CF5,#F97316);-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase}
+.head{position:absolute;left:80px;right:80px;top:170px}
+.kicker{display:inline-flex;align-items:center;gap:14px;font-size:28px;font-weight:700;color:var(--g);background:var(--gl);padding:12px 26px;border-radius:999px;letter-spacing:1px}
+.h1{font-size:76px;font-weight:800;line-height:1.08;letter-spacing:-2px;margin-top:34px}
+.h1 em{font-style:normal;color:var(--g)}
+.sub{font-size:34px;color:var(--mut);margin-top:24px;line-height:1.35;font-weight:500}
+.card{position:absolute;background:#fff;border-radius:40px;box-shadow:0 30px 80px rgba(28,37,46,.10),0 2px 6px rgba(28,37,46,.05);border:1px solid #EEF2F5}
+.av{border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;flex:none}
+.bar{height:14px;border-radius:7px;background:#EEF2F5;position:relative;overflow:hidden}
+.pill{display:inline-block;font-size:20px;font-weight:700;padding:6px 14px;border-radius:10px}
+.word{display:inline-block}
+</style></head>
+<body><div id="stage">
+<div class="blob" id="b1" style="width:520px;height:520px;background:#BFF0DC;left:-120px;top:300px"></div>
+<div class="blob" id="b2" style="width:460px;height:460px;background:#E6D6FF;right:-120px;top:1300px"></div>
+
+<!-- S1 INTRO -->
+<div class="scene" id="s1">
+  <div id="s1q" style="position:absolute;left:80px;right:80px;top:560px;font-size:84px;font-weight:800;line-height:1.1;letter-spacing:-2px">
+    <div class="word" data-w>Tim&nbsp;</div><div class="word" data-w>kerja&nbsp;</div><div class="word" data-w>dari&nbsp;</div><div class="word" data-w>mana&nbsp;</div><div class="word" data-w>saja.</div><br>
+    <div style="margin-top:30px;color:var(--mut);font-size:64px;font-weight:700">
+      <div class="word" data-w>Tapi&nbsp;</div><div class="word" data-w>jam&nbsp;</div><div class="word" data-w>kerjanya&nbsp;</div><div class="word" data-w style="color:var(--g)">terukur?</div></div>
+  </div>
+  <div id="s1logo" style="position:absolute;left:0;right:0;top:1180px;text-align:center">
+    <div class="logo" style="font-size:150px">Timebase</div>
+    <div class="tag" style="font-size:26px;margin-top:6px">Accountability in every hour</div>
+  </div>
+</div>
+
+<!-- S2 MONITORING -->
+<div class="scene" id="s2">
+  <div class="head"><span class="kicker">01 · MONITORING</span>
+    <div class="h1">Pantau aktivitas <em>seluruh tim</em> dalam satu layar</div></div>
+  <div class="card" id="s2card" style="left:60px;right:60px;top:680px;height:1010px;padding:40px">
+    <div style="display:flex;align-items:center;gap:22px">
+      <div style="width:76px;height:76px;border-radius:22px;background:var(--g);display:flex;align-items:center;justify-content:center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="9" cy="8" r="4"/><path d="M1 20c0-4 4-6 8-6s8 2 8 6z"/><circle cx="17.5" cy="9" r="3"/><path d="M15 14.2c4 .1 8 1.8 8 5.8h-4.5c0-2.4-1.3-4.3-3.5-5.8z"/></svg></div>
+      <div style="font-size:38px;font-weight:800">Aktivitas Karyawan</div>
+      <div style="margin-left:auto;font-size:24px;font-weight:700;background:#F4F6F8;padding:10px 18px;border-radius:12px" id="s2count">0 karyawan</div>
+    </div>
+    <div id="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px"></div>
+  </div>
+</div>
+
+<!-- S3 DETAIL -->
+<div class="scene" id="s3">
+  <div class="head"><span class="kicker">02 · DETAIL KARYAWAN</span>
+    <div class="h1">Lihat <em>apa yang dikerjakan</em>, jam demi jam</div></div>
+  <div class="card" id="s3prof" style="left:60px;right:60px;top:620px;height:330px;padding:40px;display:flex;gap:36px;align-items:center;border-top:10px solid var(--gd)">
+    <div class="av" style="width:150px;height:150px;font-size:56px;background:linear-gradient(135deg,#00A76F,#007867)">RA</div>
+    <div style="flex:1">
+      <div style="font-size:40px;font-weight:800">Rizky Aditya</div>
+      <div style="font-size:26px;color:var(--mut);margin-top:6px">Frontend Developer</div>
+      <div style="font-size:22px;font-weight:700;color:var(--mut);letter-spacing:3px;margin-top:22px">TRACKED TIME</div>
+      <div id="s3tt" style="font-size:72px;font-weight:800;color:var(--gd);line-height:1">0j 0m</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;width:250px">
+      <div style="background:#F1FBF6;border-radius:18px;padding:14px 20px"><div style="font-size:22px;color:var(--g);font-weight:700">● Active</div><div id="s3a" style="font-size:34px;font-weight:800">0j 0m</div></div>
+      <div style="background:#FFF4F1;border-radius:18px;padding:14px 20px"><div style="font-size:22px;color:var(--red);font-weight:700">● Distraction</div><div id="s3d" style="font-size:34px;font-weight:800">0m</div></div>
+    </div>
+  </div>
+  <div class="card" id="s3tl" style="left:60px;right:60px;top:990px;height:260px;padding:36px 40px">
+    <div style="font-size:32px;font-weight:800">Timeline Aktivitas</div>
+    <div style="display:flex;gap:26px;font-size:22px;font-weight:600;color:var(--mut);margin-top:14px">
+      <span><b style="color:var(--g)">■</b> Active</span><span><b style="color:var(--idle)">■</b> Idle</span><span><b style="color:var(--pur)">■</b> Non-Layar</span><span><b style="color:var(--org)">■</b> Cek sendiri</span><span><b style="color:var(--red)">■</b> Distraction</span></div>
+    <div style="position:relative;height:46px;margin-top:26px;border-radius:14px;background:#F4F6F8;overflow:hidden"><div id="tlwrap" style="position:absolute;left:0;top:0;bottom:0;width:0;overflow:hidden"><div id="tl" style="position:absolute;left:0;top:0;bottom:0;width:920px;display:flex"></div></div></div>
+    <div style="display:flex;justify-content:space-between;font-size:20px;color:var(--mut);margin-top:10px"><span>09:00</span><span>11:00</span><span>13:00</span><span>15:00</span><span>17:00</span><span>18:00</span></div>
+  </div>
+  <div class="card" id="s3ss" style="left:60px;right:60px;top:1290px;height:520px;padding:36px 40px">
+    <div style="display:flex;gap:40px;font-size:28px;font-weight:700;color:var(--mut)"><span style="color:var(--ink);border-bottom:4px solid var(--ink);padding-bottom:10px">📷 Screenshots</span><span>Per Jam</span><span>Aplikasi</span><span>URL</span></div>
+    <div id="shots" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px"></div>
+  </div>
+</div>
+
+<!-- S4 APPS & URL -->
+<div class="scene" id="s4">
+  <div class="head"><span class="kicker">03 · APLIKASI & SITUS</span>
+    <div class="h1">Tahu waktu habis di <em>aplikasi & situs</em> mana</div></div>
+  <div class="card" id="s4a" style="left:60px;right:60px;top:640px;height:560px;padding:40px">
+    <div style="font-size:34px;font-weight:800;margin-bottom:20px">Pemakaian Aplikasi</div>
+    <div id="apps"></div>
+  </div>
+  <div class="card" id="s4u" style="left:60px;right:60px;top:1240px;height:560px;padding:40px">
+    <div style="font-size:34px;font-weight:800;margin-bottom:20px">Pemakaian Situs</div>
+    <div id="urls"></div>
+  </div>
+</div>
+
+<!-- S5 PRESENSI -->
+<div class="scene" id="s5">
+  <div class="head"><span class="kicker">04 · PRESENSI & LAPORAN</span>
+    <div class="h1">Rekap kehadiran, <em>export sekali klik</em></div></div>
+  <div class="card" id="s5c" style="left:60px;right:60px;top:640px;height:1060px;padding:40px">
+    <div style="display:flex;align-items:center">
+      <div style="font-size:34px;font-weight:800">Presensi · September</div>
+      <div id="expbtn" style="margin-left:auto;font-size:26px;font-weight:800;border:2px solid var(--line);padding:14px 24px;border-radius:16px;display:flex;gap:12px;align-items:center;background:#fff">⬇ Export CSV</div>
+    </div>
+    <div style="display:grid;grid-template-columns:2.4fr .8fr .8fr .8fr 1.1fr;font-size:22px;font-weight:800;color:var(--mut);margin-top:34px;padding:0 6px 16px;border-bottom:2px solid var(--line)">
+      <span>KARYAWAN</span><span style="color:var(--g)">Tepat</span><span style="color:var(--org)">Telat</span><span style="color:var(--red)">Alpa</span><span>% Tracked</span></div>
+    <div id="rows"></div>
+  </div>
+  <div id="cursor" style="position:absolute;left:0;top:0;width:60px;height:60px">
+    <svg width="60" height="60" viewBox="0 0 24 24"><path d="M4 2l16 10-7 1.5L9.5 21z" fill="#1C252E" stroke="#fff" stroke-width="1.5"/></svg></div>
+  <div id="toast" style="position:absolute;left:140px;right:140px;top:1760px;background:var(--ink);color:#fff;border-radius:24px;padding:26px 34px;font-size:30px;font-weight:700;display:flex;gap:18px;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.25)">
+    <span style="background:var(--g);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center">✓</span> presensi_september.csv diunduh</div>
+</div>
+
+<!-- S6 OUTRO -->
+<div class="scene" id="s6">
+  <div id="s6in" style="position:absolute;left:0;right:0;top:620px;text-align:center">
+    <div class="logo" style="font-size:170px">Timebase</div>
+    <div class="tag" style="font-size:28px;margin-top:8px">Accountability in every hour</div>
+    <div style="font-size:44px;font-weight:700;margin:80px 120px 0;line-height:1.3">Monitoring kerja tim WFA yang <span style="color:var(--g)">transparan & adil</span></div>
+    <div id="feat" style="display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin:60px 100px 0"></div>
+    <div id="cta" style="display:inline-block;margin-top:90px;background:var(--g);color:#fff;font-size:44px;font-weight:800;padding:30px 70px;border-radius:999px;box-shadow:0 20px 50px rgba(0,167,111,.35)">timebase.id</div>
+  </div>
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eb=x=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const fmt=m=>{m=Math.round(m);return Math.floor(m/60)+'j '+(m%60)+'m'};
+const COLORS=['#00A76F','#8E33FF','#FF5630','#00B8D9','#FFAB00','#007867','#C026D3','#3366FF'];
+
+// ---- data (dummy) ----
+const EMP=[['Rizky Aditya','Frontend Developer',492],['Salsa Putri','UI/UX Designer',468],['Bima Prakoso','Backend Developer',515],['Nadia Ramadhani','Quality Assurance',455],['Fajar Nugroho','Lead Engineer',538],['Dewi Lestari','Project Manager',481],['Galih Saputra','Mobile Programmer',430],['Intan Maharani','Human Resources',476]];
+const grid=$('grid');
+EMP.forEach((e,i)=>{const ini=e[0].split(' ').map(s=>s[0]).join('');
+ let segs='';let x=0;const r=(i*37)%11;
+ [[0,22+r],[1,6],[0,30-r],[1,4],[0,26],[2,3],[0,9]].forEach(([k,w])=>{segs+=`<div style="position:absolute;left:${x}%;width:${w-.6}%;top:0;bottom:0;background:${k==0?'#22C55E':k==1?'#919EAB':'#FF5630'}"></div>`;x+=w});
+ grid.insertAdjacentHTML('beforeend',`<div class="gc" style="border:1px solid var(--line);border-radius:28px;padding:26px;background:#fff">
+ <div style="display:flex;gap:18px;align-items:center"><div class="av" style="width:78px;height:78px;font-size:28px;background:${COLORS[i]}">${ini}</div>
+ <div style="flex:1;min-width:0"><div style="font-size:27px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${e[0]}</div><div style="font-size:21px;color:var(--mut);margin-top:4px">${e[1]}</div></div></div>
+ <div style="display:flex;align-items:center;gap:16px;margin-top:22px"><div class="bar" style="flex:1"><div class="gb" style="position:absolute;left:0;top:0;bottom:0;width:0;overflow:hidden"><div style="position:absolute;left:0;top:0;bottom:0;width:340px">${segs}</div></div></div>
+ <div class="gt" style="font-size:26px;font-weight:800;width:110px;text-align:right">0j 0m</div></div></div>`)});
+
+const tl=$('tl');
+[['#22C55E',8],['#919EAB',3],['#22C55E',14],['#8E33FF',4],['#22C55E',10],['#FF5630',3],['#919EAB',8],['#22C55E',16],['#FFAB00',3],['#22C55E',12],['#919EAB',4],['#22C55E',15]].forEach(([c,w])=>tl.insertAdjacentHTML('beforeend',`<div style="width:${w}%;background:${c}"></div>`));
+
+const shots=$('shots');
+[['16.40',92],['16.30',100],['16.20',78],['16.10',35],['16.00',100],['15.50',86]].forEach(([tm,pc],i)=>{
+ const dark=i%2==0;const col=pc>=60?'#22C55E':'#FFAB00';
+ shots.insertAdjacentHTML('beforeend',`<div class="sh" style="position:relative;height:170px;border-radius:18px;overflow:hidden;background:${dark?'#1E2530':'#F4F6F8'};border:1px solid var(--line)">
+ <div style="position:absolute;left:0;right:0;top:0;height:22px;background:${dark?'#2B3442':'#E3E8EE'}"></div>
+ <div style="position:absolute;left:14px;top:34px;width:44px;bottom:12px;background:${dark?'#2B3442':'#E3E8EE'};border-radius:6px"></div>
+ ${[0,1,2,3].map(k=>`<div style="position:absolute;left:72px;top:${40+k*22}px;height:10px;width:${60+((i*13+k*29)%80)}px;border-radius:5px;background:${k%2?'#00A76F':dark?'#5B6B80':'#C4CDD5'}"></div>`).join('')}
+ <div style="position:absolute;left:10px;bottom:10px;display:flex;gap:6px"><span class="pill" style="background:#1C252Ecc;color:#fff;font-size:17px;padding:4px 10px">${tm}</span><span class="pill" style="background:${col};color:#fff;font-size:17px;padding:4px 10px">${pc}% aktif</span></div></div>`)});
+
+function list(el,data){data.forEach(([ic,bg,name,sub,m,col])=>$(el).insertAdjacentHTML('beforeend',`<div style="display:flex;align-items:center;gap:22px;padding:15px 0">
+ <div style="width:60px;height:60px;border-radius:16px;background:${bg};color:#fff;font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center">${ic}</div>
+ <div style="flex:1"><div style="display:flex;align-items:center;gap:12px;font-size:28px;font-weight:800">${name}${col=='#FF5630'?'<span class="pill" style="background:#FFE9E3;color:#FF5630;font-size:18px">Distraction</span>':'<span class="pill" style="background:#E3F7EF;color:#00A76F;font-size:18px">Productive</span>'}</div>
+ <div class="bar" style="margin-top:12px;height:12px"><div class="lb" data-m="${m}" style="position:absolute;left:0;top:0;bottom:0;width:0;background:${col};border-radius:6px"></div></div></div>
+ <div class="lt" data-m="${m}" style="font-size:30px;font-weight:800;width:130px;text-align:right">0m</div></div>`))}
+list('apps',[['VS','#3366FF','VS Code','',221,'#22C55E'],['F','#8E33FF','Figma','',132,'#22C55E'],['C','#00B8D9','Chrome','',96,'#22C55E'],['S','#C026D3','Slack','',41,'#22C55E']]);
+list('urls',[['G','#1C252E','github.com','',148,'#22C55E'],['T','#0079BF','trello.com','',87,'#22C55E'],['▶','#FF0000','youtube.com','',34,'#FF5630'],['in','#0A66C2','linkedin.com','',18,'#FF5630']]);
+
+const rows=$('rows');
+[['Rizky Aditya',21,1,0,96],['Salsa Putri',22,0,0,94],['Bima Prakoso',19,2,1,89],['Nadia Ramadhani',20,2,0,91],['Fajar Nugroho',22,0,0,97],['Dewi Lestari',18,3,1,86],['Galih Saputra',21,1,0,93],['Intan Maharani',22,0,0,95]].forEach((r,i)=>{
+ const ini=r[0].split(' ').map(s=>s[0]).join('');
+ rows.insertAdjacentHTML('beforeend',`<div class="rw" style="display:grid;grid-template-columns:2.4fr .8fr .8fr .8fr 1.1fr;align-items:center;padding:20px 6px;border-bottom:1px solid var(--line);font-size:28px;font-weight:800">
+ <div style="display:flex;align-items:center;gap:16px"><div class="av" style="width:56px;height:56px;font-size:20px;background:${COLORS[i]}">${ini}</div><span style="font-size:26px">${r[0]}</span></div>
+ <span>${r[1]}</span><span style="color:${r[2]?'#B76E00':'#C4CDD5'}">${r[2]||'–'}</span><span style="color:${r[3]?'#FF5630':'#C4CDD5'}">${r[3]||'–'}</span>
+ <span><span class="pill" style="background:#E3F7EF;color:#007867;font-size:24px">${r[4]}%</span></span></div>`)});
+
+['📊 Monitoring real-time','📷 Screenshot berkala','🧩 Aplikasi & URL','🗓 Presensi WFO/WFA','📁 Export CSV','🇮🇩 Server di Indonesia'].forEach(f=>$('feat').insertAdjacentHTML('beforeend',`<span class="ft" style="font-size:28px;font-weight:700;background:#fff;border:1px solid var(--line);padding:16px 26px;border-radius:999px;box-shadow:0 8px 20px rgba(0,0,0,.05)">${f}</span>`));
+
+const SC={s1:[0,3.4],s2:[3.4,8.4],s3:[8.4,13.8],s4:[13.8,18.2],s5:[18.2,23.2],s6:[23.2,27]};
+const DUR=27;
+function sceneAlpha(t,[a,b]){const fi=a==0?1:eo(p(t,a,a+.45));const fo=b>=DUR?1:1-p(t,b-.35,b);return Math.min(fi,fo)}
+function pop(el,t,a,d=.5,dy=60){const k=p(t,a,a+d);el.style.opacity=cl(k*1.6);el.style.transform=`translateY(${(1-eo(k))*dy}px) scale(${.94+.06*eb(k)})`}
+
+function render(t){
+ $('b1').style.transform=`translate(${Math.sin(t*.5)*60}px,${Math.cos(t*.4)*80}px)`;
+ $('b2').style.transform=`translate(${Math.cos(t*.45)*70}px,${Math.sin(t*.35)*60}px)`;
+ for(const k in SC){const a=sceneAlpha(t,SC[k]);const el=$(k);el.style.opacity=(t>=SC[k][0]&&t<=SC[k][1])?a:0;
+  const hd=el.querySelector('.head'); if(hd){const q=p(t,SC[k][0]+.05,SC[k][0]+.7);hd.style.opacity=q;hd.style.transform=`translateY(${(1-eo(q))*40}px)`}}
+ // S1
+ document.querySelectorAll('[data-w]').forEach((w,i)=>{const q=p(t,.15+i*.14,.55+i*.14);w.style.opacity=q;w.style.transform=`translateY(${(1-eo(q))*50}px)`});
+ const lq=p(t,1.9,2.6);const lg=$('s1logo');lg.style.opacity=lq;lg.style.transform=`scale(${.8+.2*eb(lq)})`;
+ // S2
+ const s2=SC.s2[0];pop($('s2card'),t,s2+.2,.6,120);
+ $('s2count').textContent=Math.round(34*eo(p(t,s2+.5,s2+2)))+' karyawan';
+ document.querySelectorAll('.gc').forEach((c,i)=>{const a=s2+.6+i*.12;pop(c,t,a,.45,40);
+  const q=eo(p(t,a+.3,a+2.6));c.querySelector('.gb').style.width=(q*100)+'%';c.querySelector('.gt').textContent=fmt(EMP[i][2]*q)});
+ // S3
+ const s3=SC.s3[0];pop($('s3prof'),t,s3+.2,.5,100);pop($('s3tl'),t,s3+.45,.5,100);pop($('s3ss'),t,s3+.7,.5,100);
+ const q3=eo(p(t,s3+.5,s3+2.6));$('s3tt').textContent=fmt(492*q3);$('s3a').textContent=fmt(431*q3);$('s3d').textContent=Math.round(14*q3)+'m';
+ $('tlwrap').style.width=(920*eo(p(t,s3+.8,s3+3)))+'px';
+ document.querySelectorAll('.sh').forEach((s,i)=>pop(s,t,s3+1.4+i*.16,.4,30));
+ // S4
+ const s4=SC.s4[0];pop($('s4a'),t,s4+.2,.5,100);pop($('s4u'),t,s4+.5,.5,100);
+ [['#apps',s4+.6,221],['#urls',s4+1,148]].forEach(([sel,a,max])=>{const q=eo(p(t,a,a+1.8));
+  document.querySelectorAll(sel+' .lb').forEach(b=>b.style.width=(b.dataset.m/max*100*q)+'%');
+  document.querySelectorAll(sel+' .lt').forEach(b=>{const m=b.dataset.m*q;b.textContent=m>=60?fmt(m):Math.round(m)+'m'})});
+ // S5
+ const s5=SC.s5[0];pop($('s5c'),t,s5+.2,.5,100);
+ document.querySelectorAll('.rw').forEach((r,i)=>{const q=p(t,s5+.5+i*.1,s5+.9+i*.1);r.style.opacity=q;r.style.transform=`translateX(${(1-eo(q))*60}px)`});
+ const cq=eo(p(t,s5+2,s5+3));const cx=760+(860-760)*cq, cy=1500+(705-1500)*cq;
+ const cur=$('cursor');cur.style.opacity=p(t,s5+1.9,s5+2.1);cur.style.transform=`translate(${cx}px,${cy}px)`;
+ const press=p(t,s5+3.05,s5+3.2)-p(t,s5+3.2,s5+3.4);const btn=$('expbtn');btn.style.transform=`scale(${1-.08*press})`;
+ const on=t>s5+3.1;btn.style.background=on?'#00A76F':'#fff';btn.style.color=on?'#fff':'';btn.style.borderColor=on?'#00A76F':'';
+ const tq=p(t,s5+3.3,s5+3.8);const to=$('toast');to.style.opacity=tq;to.style.transform=`translateY(${(1-eb(tq))*80}px)`;
+ // S6
+ const s6=SC.s6[0];const oq=p(t,s6+.1,s6+.8);$('s6in').style.transform=`scale(${.9+.1*eb(oq)})`;$('s6in').style.opacity=oq;
+ document.querySelectorAll('.ft').forEach((f,i)=>pop(f,t,s6+.6+i*.1,.4,30));
+ const cta=p(t,s6+1.4,s6+1.9);$('cta').style.opacity=cta;$('cta').style.transform=`scale(${(.7+.3*eb(cta))*(1+.03*Math.sin(Math.max(0,t-s6-2)*5))})`;
+}
+window.render=render;window.DUR=DUR;
+let st=null;function loop(ts){if(st===null)st=ts;render(((ts-st)/1000)%DUR);if(!window.__rec)requestAnimationFrame(loop)}
+if(!location.search.includes('rec'))requestAnimationFrame(loop);else render(0);
+</script></body></html>
