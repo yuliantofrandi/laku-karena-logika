@@ -698,43 +698,12 @@
         ],
         "animasi": true
       }
-    },
-    {
-      "id": "alur-kerja-white-label",
-      "halaman": "/white-label",
-      "section": "Cara kerja white label",
-      "jenis": "chat",
-      "judul": "Konsultasi White Label",
-      "alt": "Ilustrasi percakapan konsultasi white label lewat WhatsApp",
-      "caption": "Semua dimulai dari satu percakapan",
-      "brief": "Ilustrasi/screenshot percakapan WhatsApp konsultasi white label: perusahaan dengan banyak karyawan ingin beli putus dan memasang di server sendiri, tim menyiapkan penawaran.",
-      "auto": true,
-      "data": {
-        "messages": [
-          {
-            "who": "Anda",
-            "text": "Karyawan kami 400, mau beli putus saja"
-          },
-          {
-            "text": "Bisa. Mau dipasang di server sendiri?",
-            "me": true
-          },
-          {
-            "who": "Anda",
-            "text": "Ya, di server kantor kami"
-          },
-          {
-            "text": "Siap, kami siapkan penawarannya",
-            "me": true
-          }
-        ],
-        "note": "Konsultasi gratis lewat WhatsApp"
-      }
     }
   ],
   "min_per_halaman_khusus": {
-    "/harga": 1
+    "/harga": 1,
+    "/white-label": 2
   },
-  "_min_per_halaman_khusus": "/harga: isi utamanya tabel harga + kartu persona paket (permintaan user), cukup gambar hero.",
+  "_min_per_halaman_khusus": "/harga: isi utamanya tabel harga + kartu persona paket (permintaan user), cukup gambar hero. /white-label: section 'Cara kerja' dihapus atas permintaan user, cukup hero + grafik tagihan.",
   "_hero": "Semua halaman memakai video demo aplikasi yang sama di hero (permintaan user: 'hero gambar di sebelah kanan samakan dengan yang ada di sini')."
 }
