@@ -23,7 +23,7 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 | Tata letak | **Selalu dua kolom yang seimbang**, dipilih otomatis oleh `render_section` dari isi section (tabel di bawah). Mobile: menumpuk |
 | Judul (H2) | Montserrat 800, ±32px, ≤12 kata, idealnya 2 baris. Pertanyaan atau pernyataan yang tajam |
 | Pembuka | **1–2 kalimat**, ≤ ±30 kata, warna abu tua. Tidak ada dua paragraf berturut-turut. **Menempel ke judul**: jarak kotak H2 → pembuka ±4px (`.prose h2{margin-bottom:4px;line-height:1.15}` + `.prose h2+p{margin-top:0}`; FAQ 6px). User: "jarak atas jangan terlalu jauh dengan heading-nya", lalu 8–12px pun masih "terlalu tinggi" |
-| Isi yang dipindai | **Wajib minimal satu**: daftar centang (`ul.checks`, awalan tebal + sisa kalimat biasa), kartu (`div.grid` > `.card`, judul + 1 kalimat, `span.num` untuk langkah), tabel kecil, callout, atau gambar |
+| Isi yang dipindai | **Wajib minimal satu**: daftar centang (`ul.checks`, awalan tebal + sisa kalimat biasa), kartu (`div.grid` > `.card`, judul + 1 kalimat, `span.num` untuk langkah), tabel kecil, callout, atau gambar  Kartu tanpa nomor langkah (mis. "Untuk siapa") diberi **ikon ilustrasi** `<span class="ikon">` + SVG garis 22px di kotak tint ungu 42px di atas judul (user: "tambahkan icon ilustrasi di setiap card"); kartu langkah tetap memakai `span.num`. |
 | Gambar | Ilustrasi dalam kartu membulat (radius ±18px, latar tint lembut) + caption kecil abu di bawahnya |
 | Blok lebar | Kartu, tabel, harga, testimoni tampil selebar kontainer di bawah baris dua kolom |
 | Teks tersembunyi | **Tidak boleh.** Tidak ada "Baca selengkapnya". FAQ boleh accordion |
