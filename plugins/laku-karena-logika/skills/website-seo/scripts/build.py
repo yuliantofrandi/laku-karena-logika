@@ -310,6 +310,15 @@ IKON_TRUST = {
 }
 
 
+TAHUN = __import__("datetime").date.today().year
+
+
+def foot_legal(S):
+    """Link legal di footer bawah (site.json legal). Email tidak ditampilkan bila user memilih kontak lewat WA saja."""
+    items = S.get("legal", [])
+    return ('<nav class="foot-legal" aria-label="Legal">' + "".join(f'<a href="{x["slug"]}">{html.escape(x["name"])}</a>' for x in items) + "</nav>") if items else ""
+
+
 def foot_trust(S):
     """Baris kepercayaan di kolom logo footer (mengisi ruang kosong di bawah deskripsi). site.json footer_trust:
     [{"ikon": "server|shield|support", "teks": "..."}] — hanya fakta yang sudah tertulis di website/BKB."""
@@ -613,7 +622,9 @@ def render(S, page, body, P, all_pages, indexable):
     nav = "".join(nav_item(it, page["slug"], CUR) for it in S["nav"])
     # hero mengikuti layout referensi user: badge pill · H1 · subjudul · 1 CTA → · 3 statistik · gambar di atas bentuk gradasi
     eyebrow = page.get("eyebrow") or (S.get("eyebrow") if page["slug"] == "/" else page["name"])
-    if page["slug"] == "/404":
+    if page.get("sederhana"):   # halaman legal: hero polos (judul + lead), tanpa CTA & statistik
+        hero_cta = ""
+    elif page["slug"] == "/404":
         hero_cta = f'<a class="btn btn-primary btn-lg hero-cta" href="/">Kembali ke beranda <span aria-hidden="true">→</span></a>'
     elif page["slug"] == "/white-label" and S.get("whitelabel"):
         hero_cta = (f'<a class="btn btn-primary btn-lg hero-cta" href="{wa_link(S, fill_brand(S, S["whitelabel"]["wa_text"]))}" '
@@ -668,7 +679,7 @@ def render(S, page, body, P, all_pages, indexable):
 <h1{' class="long"' if len(page["h1"]) > 55 else ''}>{html.escape(page["h1"])}</h1>
 {f'<p class="lead">{lead}</p>' if lead else ''}
 {hero_cta}
-{hero_stats(S) if page["slug"] != "/404" else ""}
+{hero_stats(S) if page["slug"] != "/404" and not page.get("sederhana") else ""}
 </div>{hero_img}</div></section>
 <article class="content prose">
 {layout_sections(body)}
@@ -678,7 +689,7 @@ def render(S, page, body, P, all_pages, indexable):
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
 <div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
-</div><div class="wrap foot-bottom">© {S["brand"]}{(' · <a href="mailto:' + S["email"] + '">' + S["email"] + '</a>') if S.get("email") else ''}</div></footer>
+</div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
 {VIDEO_JS if 'video muted' in body + hero_img else ''}
 </body>
@@ -1033,6 +1044,20 @@ def main():
         nf = {"slug": "/404", "name": "Halaman tidak ditemukan", "title": "Halaman tidak ditemukan", "meta": "",
               "h1": "Halaman tidak ditemukan", "lead": "Alamat ini tidak ada. Coba mulai dari beranda."}
         (DIST / "404.html").write_text(render(S, nf, '<p><a href="/">Kembali ke beranda</a></p>', P, pages, False), encoding="utf-8")
+        # halaman legal: pakai content/<slug>.html bila sudah ada; bila belum, placeholder noindex
+        for lg in S.get("legal", []):
+            src = ROOT / "content" / (lg["slug"].strip("/") + ".html")
+            if src.exists():
+                body_lg = src.read_text(encoding="utf-8")
+            else:
+                warnings.append(f'{lg["slug"]}: dokumen "{lg["name"]}" belum ada → halaman placeholder noindex (isi content{lg["slug"]}.html sebelum iklan jalan)')
+                body_lg = (f'<p>Dokumen {html.escape(lg["name"])} {S["brand"]} sedang disiapkan dan akan segera tersedia di halaman ini.</p>'
+                           f'<p>Ada pertanyaan? <a href="{wa_link(S, "Halo, saya ingin bertanya tentang " + lg["name"] + " " + S["brand"])}" rel="nofollow noopener" target="_blank">Hubungi kami lewat WhatsApp</a>.</p>')
+            pg = {"slug": lg["slug"], "name": lg["name"], "title": f'{lg["name"]} {S["brand"]}', "meta": "",
+                  "h1": lg["name"], "lead": f'{lg["name"]} untuk pengguna {S["brand"]}.', "sederhana": True}
+            out = DIST / lg["slug"].strip("/") / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(render(S, pg, body_lg, P, pages, False), encoding="utf-8")
         robots = "User-agent: *\nAllow: /\n"
         if S.get("site_url"):
             urls = "".join(f"<url><loc>{S['site_url']}{p['slug']}</loc></url>" for p, _, ok in built if ok)

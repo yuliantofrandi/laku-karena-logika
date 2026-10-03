@@ -48,3 +48,4 @@
 3. https://search.google.com/test/rich-results → cek `SoftwareApplication`, `FAQPage`, `BreadcrumbList`.
 4. Uji semua tombol beli di HP: `Pilih <Nama Paket>` dan `Bayar tahunan` membuka checkout dengan skema & periode yang benar, sampai akun aktif setelah bayar.
 5. Google Ads: pasang konversi pada **pembayaran berhasil** (dan klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.
+- [ ] **Dokumen legal**: isi `content/kebijakan-privasi.html` dan `content/syarat-layanan.html` (dari user/ahli hukum) sebelum iklan Google Ads jalan; selama kosong, halamannya placeholder noindex.
