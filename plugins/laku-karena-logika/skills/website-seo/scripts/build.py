@@ -768,6 +768,16 @@ def ilus_teks(x):
     return []
 
 
+def check_stat(sid, raw):
+    """WARNING bila angka besar (strong) dan keterangannya (span) di div.stat mengulang angka/kata yang sama
+    (kasus nyata: "300 karyawan" + "berarti 300 biaya lisensi")."""
+    kata = lambda t: {w for w in re.findall(r"[a-z0-9]+", strip_tags(t).lower()) if len(w) > 2 or w.isdigit()}
+    for big, cap in re.findall(r'<div class="stat"><strong>(.*?)</strong><span>(.*?)</span>', raw, flags=re.S):
+        sama = kata(big) & kata(cap)
+        if sama:
+            warn(sid, f"kartu angka '{strip_tags(big)}': keterangan mengulang '{', '.join(sorted(sama))}' — pakai kata lain")
+
+
 def check_ilustrasi_duplikat(sid, raw):
     """WARNING bila ilustrasi sebuah section hanya mengulang poin/kartu di section itu
     (kasus nyata: ilustrasi 3 langkah di samping 3 kartu langkah yang sama). Ilustrasi harus menambah
@@ -942,6 +952,7 @@ def main():
                 p["lead"] = p["lead"].replace(k, v)
         used = re.findall(r"\{\{gambar:([a-z0-9-]+)\}\}", raw)
         check_ilustrasi_duplikat(p["slug"], raw)
+        check_stat(p["slug"], raw)
         raw = re.sub(r"\{\{gambar:([a-z0-9-]+)\}\}", gambar_token, raw)
         p["_gambar"] = used + ([HERO[p["slug"]]] if p["slug"] in HERO else [])
         check_images(p, used, IL)
