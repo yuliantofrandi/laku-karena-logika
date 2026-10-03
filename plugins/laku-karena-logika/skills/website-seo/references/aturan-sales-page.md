@@ -80,6 +80,8 @@ Aturan tetap user: bagian harga **selalu** punya tombol switch Bulanan/Tahunan, 
 
 ## Halaman White Label (wajib di setiap produk)
 
+> Standar lengkap & terbaru: `references/standar-halaman-white-label.md` (dokumen ini ringkasannya).
+
 Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-label` memakai **copy global** (`assets/starter/content/white-label.html`), jadi tidak ditulis ulang per produk. Bagian khusus produk diisi otomatis (`{{brand}}`, `{{deskripsi_kecil}}`, `{{daftar_solusi}}`, `site.json → whitelabel`).
 
 **Positioning (user, 3 Okt 2026):** pain point utama pembeli adalah **tidak mau bayar bulanan per karyawan karena karyawannya banyak**. Skema **beli putus (sekali bayar)**, karyawan tidak terbatas, **dipasang di server milik pembeli**, merek pembeli. Sudut "dijual lagi ke klien" sudah tidak relevan (membuat produk sendiri kini cepat dengan AI) — hanya **satu jawaban FAQ**. Jangan menulis halaman ini sebagai program reseller.

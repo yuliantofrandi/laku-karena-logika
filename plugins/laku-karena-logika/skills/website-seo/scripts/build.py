@@ -927,6 +927,9 @@ def main():
     # aturan tetap: setiap produk bisa dibeli whitelabel -> halaman + menu utama wajib ada
     if "/white-label" not in slugs:
         err("/white-label", "halaman White Label wajib ada di site.json extra_pages (salin dari template skill)")
+    wlf = ROOT / "content" / "white-label.html"
+    if wlf.exists() and "{{cta_whitelabel}}" not in wlf.read_text(encoding="utf-8"):
+        err("/white-label", "halaman White Label wajib memakai {{cta_whitelabel}} (konsultasi WA, bukan checkout) — lihat references/standar-halaman-white-label.md")
     # White Label = item terakhir di grup Solusi, bukan menu utama (user: "90% pembeli tidak ingin whitelabel")
     nav_slugs = [it[0] for it in S["nav"] if isinstance(it, list)] + [x[0] for it in S["nav"] if isinstance(it, dict) for x in it["items"]]
     if "/white-label" not in nav_slugs:
