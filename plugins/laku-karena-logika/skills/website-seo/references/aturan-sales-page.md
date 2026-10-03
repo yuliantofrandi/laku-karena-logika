@@ -132,3 +132,4 @@ Koreksi user: "tampilan kurang bagus, banyak blank space, terlalu banyak tulisan
   - Mobile (≤640px): **hanya tombol WA**, versi ringkas di kanan bawah (±181×49 px, <3% layar). **Judul + subjudul tetap tampil.** Jangan tambahkan tombol lain di bar bawah, dan jangan dibuat selebar layar.
   - Tanpa widget/skrip chat pihak ketiga. WA dipakai untuk konsultasi, bukan pengganti checkout dan bukan "jadwalkan demo".
 - Konversi Google Ads dipasang pada **pembayaran berhasil** (klik tombol beli sebagai konversi sekunder) **sebelum** iklan jalan.
+

@@ -73,9 +73,9 @@
     {
       "slug": "/white-label",
       "name": "White Label",
-      "title": "{{brand}} White Label: Software Siap Jual dengan Merek Anda",
-      "meta": "Jual {{brand}} dengan nama, logo, dan domain Anda sendiri. Software siap pakai — kami urus server dan pembaruan, Anda fokus menjual ke klien.",
-      "h1": "White Label: Jual Software dengan Merek Anda Sendiri, Tanpa Membangun dari Nol",
+      "title": "{{brand}} White Label: Sekali Bayar, Tanpa Biaya Bulanan",
+      "meta": "Beli putus {{brand}} dengan merek perusahaan Anda dan pasang di server sendiri. Sekali bayar, tanpa tagihan bulanan per karyawan, data tetap di tangan Anda.",
+      "h1": "White Label: Sekali Bayar, Tanpa Biaya per Karyawan",
       "primary": "white label",
       "links": [
         "/harga"
@@ -119,7 +119,7 @@
   "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
   "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas.",
   "whitelabel": {
-    "_catatan": "Copy global halaman /white-label (content/white-label.html) membaca daftar ini. Sesuaikan per produk: hapus yang tidak tersedia, jangan menambah klaim yang belum pasti.",
+    "_catatan": "Copy global halaman /white-label (content/white-label.html). Positioning (user 3 Okt 2026): untuk perusahaan dengan banyak karyawan yang tidak mau bayar bulanan per karyawan — beli putus, dipasang di server pembeli, merek sendiri. Sudut 'dijual lagi' hanya 1 jawaban FAQ. Jangan menambah klaim yang belum pasti.",
     "kustomisasi": [
       "Nama aplikasi dan logo Anda di seluruh tampilan",
       "Warna yang mengikuti identitas brand Anda",
@@ -128,14 +128,14 @@
       "Materi panduan pengguna dengan merek Anda"
     ],
     "ditangani": [
-      "Server, keamanan, dan pencadangan data",
-      "Pemeliharaan sistem dan pembaruan fitur",
-      "Dukungan teknis untuk tim Anda",
-      "Pendampingan saat peluncuran ke klien pertama"
+      "Lisensi sekali bayar, tanpa tagihan bulanan per karyawan",
+      "Software berjalan di server atau cloud milik Anda",
+      "Data karyawan tersimpan di infrastruktur Anda sendiri",
+      "Merek, domain, dan tampilan atas nama perusahaan Anda"
     ],
-    "wa_text": "Halo, saya tertarik dengan white label {{brand}}. Boleh minta penawarannya?",
-    "cta_title": "Siap meluncurkan software dengan merek Anda?",
-    "cta_text": "Ceritakan rencana Anda — target klien, perkiraan jumlah pengguna, dan kebutuhan kustomisasi. Tim kami menyiapkan penawaran white label {{brand}} untuk bisnis Anda.",
+    "wa_text": "Halo, saya tertarik dengan white label {{brand}} (beli putus) untuk perusahaan kami. Boleh minta penawarannya?",
+    "cta_title": "Siap lepas dari tagihan bulanan per karyawan?",
+    "cta_text": "Ceritakan jumlah karyawan, server yang Anda pakai, dan kebutuhan merek. Tim kami menyiapkan penawaran beli putus {{brand}} untuk perusahaan Anda.",
     "cta_button": "Minta Penawaran White Label"
   },
   "og_image": "static/og-image.png",
