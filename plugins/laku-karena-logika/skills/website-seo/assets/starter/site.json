@@ -88,11 +88,6 @@
   "product_pages": [
     "/harga"
   ],
-  "footer_produk": [
-    "/<slug-prioritas-1>",
-    "/white-label",
-    "/harga"
-  ],
   "copy": {
     "nav_cta": "Langganan",
     "cta_primary": "Aktifkan Timebase untuk Tim Saya",

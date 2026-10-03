@@ -607,7 +607,11 @@ def render(S, page, body, P, all_pages, indexable):
     hero_img = ((video_figure(hg, hero=True) if hg.get("video") else figure(hg, hero=True)) if hg else "")
     # poster video hero = kandidat LCP → preload prioritas tinggi
     hero_preload = (f'<link rel="preload" as="image" href="{versi(img_src(hg))}" fetchpriority="high">\n' if hg and hg.get("video") else "")
-    produk = [p for p in all_pages if p["slug"] in S["footer_produk"]]
+    # kolom footer pertama = nama & urutan menu atas (grup Solusi lalu menu utama lain), supaya konsisten dengan header
+    urut = [x[0] for it in S["nav"] if isinstance(it, dict) for x in it["items"]] + [it[0] for it in S["nav"] if isinstance(it, list)]
+    by_slug = {p["slug"]: p for p in all_pages}
+    produk = [by_slug[u] for u in urut if u in by_slug]
+    label_menu = next((it["label"] for it in S["nav"] if isinstance(it, dict)), "Produk")
     panduan = [p for p in all_pages if p not in produk and p["slug"] != "/"]
     flinks = lambda ps: "".join(f'<li><a href="{p["slug"]}">{p["name"]}</a></li>' for p in ps)
     return f"""<!doctype html>
@@ -653,7 +657,7 @@ def render(S, page, body, P, all_pages, indexable):
 </main>
 <footer class="site-footer"><div class="wrap">
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p></div>
-<div><h2>Produk</h2><ul>{flinks(produk)}</ul></div>
+<div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
 <div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
 </div><div class="wrap foot-bottom">© {S["brand"]}{(' · <a href="mailto:' + S["email"] + '">' + S["email"] + '</a>') if S.get("email") else ''}</div></footer>
 {float_bar(S)}
