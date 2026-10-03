@@ -59,7 +59,7 @@ Target keseimbangan: tinggi kolom terpanjang ≤ ±1,8× kolom terpendek di 1440
 - **WARNING** jika sebuah section punya > 2 paragraf, judul > 12 kata, ada paragraf > ±45 kata, atau **pembuka/catatan mengulang isi poin, kartu, atau caption** (≥3 frasa 4-kata yang sama, atau ≥2 angka yang sama).
 
 ## Warna & kontras
-- **Semua tabel** (bukan hanya tabel harga): kotak tabel berlatar putih, header putih dengan font heading tebal dan garis bawah 2px warna tinta. Header bertint abu (`--bg-soft`) tidak terlihat di band abu (user: "bagian tabel aspek, langganan, white label kurang terlihat").
+- **Semua tabel** (bukan hanya tabel harga): kotak tabel berlatar putih, header putih dengan font heading tebal dan garis bawah 2px warna tinta. Header bertint abu (`--bg-soft`) tidak terlihat di band abu (user: "bagian tabel aspek, langganan, white label kurang terlihat"). Baris isi **belang (striped)**: baris genap bertint `#f3effa` (user: "buat tabelnya jadi striped"); tabel harga dikecualikan karena barisnya ikut switch bulanan/tahunan dan punya baris grup.
 - Semua teks ≥4,5:1 (teks besar 3:1). `--muted` = #5f5870; logo cloud #736c88 (19px tebal); bintang & label callout amber tua #b45309.
 - Elemen di permukaan gelap (`.cta`) menulis selektornya dengan `.prose .cta …` supaya tidak tertimpa warna teks isi halaman (kasus nyata: daftar syarat di CTA nyaris tak terlihat).
 
