@@ -362,7 +362,8 @@ def video_figure(g, hero=False):
 VIDEO_JS = (
     "<script>addEventListener('load',function(){var v=document.querySelectorAll('video[data-src]');if(!v.length)return;"
     "var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;"
-    "function go(x){x.src=x.dataset.src;x.removeAttribute('data-src');if(rm){x.controls=true}else{x.autoplay=true;x.play().catch(function(){x.controls=true})}}"
+    "function main(x){x.play().catch(function(){if(document.hidden){document.addEventListener('visibilitychange',function f(){if(!document.hidden){document.removeEventListener('visibilitychange',f);main(x)}})}else{x.controls=true}})}"
+    "function go(x){x.src=x.dataset.src;x.removeAttribute('data-src');if(rm){x.controls=true}else{x.autoplay=true;main(x)}}"
     "if(!('IntersectionObserver'in window)){v.forEach(go);return}"
     "var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){go(e.target);o.unobserve(e.target)}})},{rootMargin:'200px'});"
     "v.forEach(function(x){o.observe(x)})})</script>")
