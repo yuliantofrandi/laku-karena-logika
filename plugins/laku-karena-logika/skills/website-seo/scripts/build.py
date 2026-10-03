@@ -303,6 +303,25 @@ def cta_whitelabel(S):
             f'<a class="btn btn-ghost" href="/harga">Lihat harga versi langganan</a></div></div></aside>')
 
 
+IKON_TRUST = {
+    "server": '<rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/>',
+    "shield": '<path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M8 12l3 3 5-6"/>',
+    "support": '<path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2" y="13" width="5" height="7" rx="2"/><rect x="17" y="13" width="5" height="7" rx="2"/>',
+}
+
+
+def foot_trust(S):
+    """Baris kepercayaan di kolom logo footer (mengisi ruang kosong di bawah deskripsi). site.json footer_trust:
+    [{"ikon": "server|shield|support", "teks": "..."}] — hanya fakta yang sudah tertulis di website/BKB."""
+    items = S.get("footer_trust", [])
+    if not items:
+        return ""
+    li = "".join(f'<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+                 f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{IKON_TRUST.get(x.get("ikon"), IKON_TRUST["shield"])}</svg>'
+                 f'{html.escape(x["teks"])}</li>' for x in items)
+    return f'<ul class="foot-trust">{li}</ul>'
+
+
 def logo(S):
     """Logo: SVG di-inline; PNG/WebP (logo asli brand) dipasang sebagai <img> dengan width/height dari file
     (tinggi tampil = site.json logo_tinggi, default 26px) agar tidak CLS."""
@@ -656,7 +675,7 @@ def render(S, page, body, P, all_pages, indexable):
 </article>
 </main>
 <footer class="site-footer"><div class="wrap">
-<div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p></div>
+<div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
 <div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
 </div><div class="wrap foot-bottom">© {S["brand"]}{(' · <a href="mailto:' + S["email"] + '">' + S["email"] + '</a>') if S.get("email") else ''}</div></footer>

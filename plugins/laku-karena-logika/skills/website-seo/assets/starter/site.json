@@ -150,5 +150,20 @@
   "_ilustrasi_warna": "Warna design system produk untuk ilustrasi SVG & og:image (p=primer, k=aksen 2, o=aksen 3). Samakan dengan token di static/style.css.",
   "_product_pages": "Halaman yang memuat schema SoftwareApplication + Offer (harga). Hanya halaman yang menampilkan harga — bukan beranda.",
   "pricing_page": "/harga",
-  "_pricing_page": "Satu-satunya halaman yang boleh menampilkan harga (aturan user). Halaman lain hanya menautkan ke sini."
+  "_pricing_page": "Satu-satunya halaman yang boleh menampilkan harga (aturan user). Halaman lain hanya menautkan ke sini.",
+  "footer_trust": [
+    {
+      "ikon": "server",
+      "teks": "Server di Indonesia"
+    },
+    {
+      "ikon": "shield",
+      "teks": "Dirancang patuh UU PDP"
+    },
+    {
+      "ikon": "support",
+      "teks": "Pemasangan dibantu tim lokal"
+    }
+  ],
+  "_footer_trust": "Baris kepercayaan di footer (maks 3). Hanya fakta yang sudah tertulis di BKB/website; ikon: server | shield | support."
 }
