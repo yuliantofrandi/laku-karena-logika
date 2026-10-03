@@ -107,20 +107,36 @@ def timeline(d):
 
 
 def bars(d):
+    """Grafik batang. data: items[{label,value,text,color}], note, animasi (true = batang tumbuh bergantian, loop)."""
     items, out = d["items"], []
     mx = max(i["value"] for i in items)
     y = 104
     step = min(56, 320 // len(items))
+    anim = d.get("animasi")
     for i, it in enumerate(items):
         w = 380 * it["value"] / mx
         col = it.get("color") or [C["p"], C["k"], C["o"], C["p"], C["k"], C["o"]][i % 6]
+        cls_b = f' class="a-bar" style="animation-delay:{i * .6:.1f}s"' if anim else ""
+        cls_t = f' class="a-nilai" style="animation-delay:{i * .6 + .4:.1f}s"' if anim else ""
         out.append(t(64, y + 22, it["label"], 16, C["ink"], 600))
-        out.append(rect(250, y + 6, 400, 22, C["soft"], 11) + rect(250, y + 6, round(w, 1), 22, col, 11))
-        out.append(t(736, y + 23, it.get("text", it["value"]), 15, C["mut"], 600, "end"))
+        out.append(rect(250, y + 6, 380, 22, C["soft"], 11) + rect(250, y + 6, round(w * 380 / 400, 1), 22, col, 11, cls_b))
+        out.append(f'<g{cls_t}>' + t(736, y + 23, it.get("text", it["value"]), 15, C["mut"], 600, "end") + "</g>")
         y += step
     if d.get("note"):
         out.append(t(64, 445, d["note"], 14, C["mut"]))
+    if anim:
+        out.insert(0, ANIMASI_BARS)
     return "".join(out)
+
+
+# Batang tumbuh bergantian dari kiri lalu menghilang bersama (loop 8 detik); diam bila "kurangi animasi".
+ANIMASI_BARS = """<style>
+.a-bar{transform-box:fill-box;transform-origin:0 50%;animation:tumbuh 8s cubic-bezier(.2,.7,.2,1) infinite both}
+.a-nilai{animation:muncul 8s ease-out infinite both}
+@keyframes tumbuh{0%{transform:scaleX(0)}10%,85%{transform:scaleX(1)}95%,100%{transform:scaleX(0)}}
+@keyframes muncul{0%,4%{opacity:0}12%,85%{opacity:1}95%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.a-bar,.a-nilai{animation:none}}
+</style>"""
 
 
 def grouped(d):

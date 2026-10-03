@@ -659,34 +659,44 @@
     {
       "id": "white-label-vs-bangun-sendiri",
       "halaman": "/white-label",
-      "section": "White label vs membangun sendiri",
-      "jenis": "compare",
-      "judul": "",
-      "alt": "Perbandingan white label dan membangun software sendiri dari nol",
-      "caption": "Mulai dari software yang sudah berjalan",
-      "brief": "Ilustrasi dua jalur: membangun dari nol (panjang) vs white label (langsung jual).",
+      "section": "Langganan vs White Label",
+      "jenis": "bars",
+      "judul": "Tagihan langganan vs beli putus",
+      "alt": "Ilustrasi tagihan langganan yang naik seiring jumlah karyawan dibanding white label sekali bayar",
+      "caption": "Langganan naik mengikuti jumlah karyawan; beli putus tidak",
+      "brief": "Grafik batang: tagihan langganan per bulan untuk 50, 100, 200, 400 karyawan (naik lurus) dibanding White Label sekali bayar. Tanpa angka rupiah.",
       "auto": true,
       "data": {
-        "left": {
-          "title": "Bangun sendiri",
-          "icon": "server",
-          "items": [
-            "-Tim developer",
-            "-Server & keamanan",
-            "-Pemeliharaan sendiri",
-            "+Merek milik Anda"
-          ]
-        },
-        "right": {
-          "title": "White label",
-          "icon": "palette",
-          "items": [
-            "+Langsung jual",
-            "+Server kami urus",
-            "+Ikut pembaruan",
-            "+Merek milik Anda"
-          ]
-        }
+        "items": [
+          {
+            "label": "50 karyawan",
+            "value": 50,
+            "text": "50× / bln"
+          },
+          {
+            "label": "100 karyawan",
+            "value": 100,
+            "text": "100× / bln"
+          },
+          {
+            "label": "200 karyawan",
+            "value": 200,
+            "text": "200× / bln"
+          },
+          {
+            "label": "400 karyawan",
+            "value": 400,
+            "text": "400× / bln",
+            "color": "#FF8A00"
+          },
+          {
+            "label": "White Label",
+            "value": 60,
+            "text": "sekali bayar",
+            "color": "#13a35a"
+          }
+        ],
+        "animasi": true
       }
     },
     {
@@ -697,21 +707,21 @@
       "judul": "Konsultasi White Label",
       "alt": "Ilustrasi percakapan konsultasi white label lewat WhatsApp",
       "caption": "Semua dimulai dari satu percakapan",
-      "brief": "Ilustrasi/screenshot percakapan WhatsApp konsultasi white label: calon mitra menyebut rencana menjual dengan merek sendiri, tim menanyakan skala, lalu menyiapkan penawaran.",
+      "brief": "Ilustrasi/screenshot percakapan WhatsApp konsultasi white label: perusahaan dengan banyak karyawan ingin beli putus dan memasang di server sendiri, tim menyiapkan penawaran.",
       "auto": true,
       "data": {
         "messages": [
           {
             "who": "Anda",
-            "text": "Mau jual software ini dengan merek kami"
+            "text": "Karyawan kami 400, mau beli putus saja"
           },
           {
-            "text": "Bisa. Kira-kira untuk berapa klien?",
+            "text": "Bisa. Mau dipasang di server sendiri?",
             "me": true
           },
           {
             "who": "Anda",
-            "text": "Sekitar 20 klien, ±500 pengguna"
+            "text": "Ya, di server kantor kami"
           },
           {
             "text": "Siap, kami siapkan penawarannya",
