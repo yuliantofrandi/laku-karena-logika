@@ -52,7 +52,7 @@ website/
                           nav: halaman solusi/landing dikelompokkan dalam SATU menu group
                           ("Solusi ▾" berisi submenu + deskripsi 1 baris), lalu Harga + tombol CTA.
                           Jangan menjajarkan tiap halaman solusi di menu utama.
-                          Menu "White Label" WAJIB ada di menu utama (Solusi ▾ · White Label · Harga · CTA).
+                          Menu "White Label" WAJIB ada sebagai **item terakhir grup Solusi** (menu utama: Solusi ▾ · Harga · Sign In · CTA); user: "90% pembeli tidak ingin white label".
   data/brief.json       ← hasil brief_to_json.py
   data/pricing.json     ← dari BKB §3
   data/social-proof.json
@@ -96,7 +96,7 @@ Token yang tersedia di konten: `{{gambar:<id>}}` · `{{pricing_table}}` `{{prici
 | Klaim terlarang: satu-satunya, termurah, paling murah, pertama di…, nomor satu | ERROR |
 | Data social proof `contoh: true` saat `site_url` terisi (build publish) | ERROR |
 | `checkout_url` kosong saat `site_url` terisi (tombol beli mati) | ERROR |
-| Halaman `/white-label` tidak ada, atau menu "White Label" tidak ada di menu utama | ERROR |
+| Halaman `/white-label` tidak ada, atau menu "White Label" tidak ada di nav (WARNING bila di menu utama, bukan di grup Solusi) | ERROR |
 | Section yang hanya berisi teks (tanpa poin, kartu, tabel, callout, blockquote, FAQ, atau gambar), atau tanpa kalimat pembuka setelah H2 | ERROR |
 | Token harga di luar `pricing_page` (/harga) · halaman di `product_pages` (schema Offer) tanpa harga yang terlihat | ERROR |
 | Angka "Rp" di teks halaman selain /harga | WARNING |

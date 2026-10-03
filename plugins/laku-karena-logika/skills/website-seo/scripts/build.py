@@ -286,7 +286,7 @@ def fill_brand(S, txt):
 
 
 def daftar_solusi(S):
-    items = [x for it in S["nav"] if isinstance(it, dict) for x in it["items"]]
+    items = [x for it in S["nav"] if isinstance(it, dict) for x in it["items"] if x[0] != "/white-label"]
     li = "".join(f'<li><a href="{x[0]}"><strong>{x[1]}</strong></a>' + (f" — {html.escape(x[2])}" if len(x) > 2 else "") + "</li>"
                  for x in items)
     return f'<ul class="checks">{li}</ul>'
@@ -883,8 +883,12 @@ def main():
     # aturan tetap: setiap produk bisa dibeli whitelabel -> halaman + menu utama wajib ada
     if "/white-label" not in slugs:
         err("/white-label", "halaman White Label wajib ada di site.json extra_pages (salin dari template skill)")
-    if not any(isinstance(it, list) and it[0] == "/white-label" for it in S["nav"]):
-        err("/white-label", "menu 'White Label' wajib ada di menu utama (site.json nav)")
+    # White Label = item terakhir di grup Solusi, bukan menu utama (user: "90% pembeli tidak ingin whitelabel")
+    nav_slugs = [it[0] for it in S["nav"] if isinstance(it, list)] + [x[0] for it in S["nav"] if isinstance(it, dict) for x in it["items"]]
+    if "/white-label" not in nav_slugs:
+        err("/white-label", "menu 'White Label' wajib ada di menu (item terakhir grup Solusi di site.json nav)")
+    elif "/white-label" in [it[0] for it in S["nav"] if isinstance(it, list)]:
+        warn("/white-label", "White Label sebaiknya di dalam grup Solusi (item terakhir), bukan menu utama")
 
     for key in ("title", "meta", "h1"):
         seen = {}
