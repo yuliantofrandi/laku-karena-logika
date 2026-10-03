@@ -509,16 +509,67 @@ ANIMASI_ORANG = """<style>
 </style>"""
 
 
+def _bungkus(teks, maks=27):
+    baris, cur = [], ""
+    for w in teks.split():
+        if len(cur) + len(w) + (1 if cur else 0) > maks and cur:
+            baris.append(cur); cur = w
+        else:
+            cur = f"{cur} {w}" if cur else w
+    return baris + ([cur] if cur else [])
+
+
+def wa(d):
+    """Percakapan bergaya aplikasi chat populer (header hijau tua, latar krem, gelembung putih/hijau muda, centang biru)
+    di dalam ponsel. Tanpa logo/nama merek aplikasi chat. data: kontak, status, messages[{text, me, jam}]."""
+    G, KREM, HIJAU_MUDA = "#008069", "#efeae2", "#d9fdd3"
+    out = [f'<circle cx="400" cy="250" r="210" fill="#ffffff" opacity=".5"/><circle cx="400" cy="250" r="150" fill="{C["tint"]}"/>',
+           '<defs><clipPath id="layar"><rect x="262" y="26" width="276" height="452" rx="26"/></clipPath></defs>',
+           rect(250, 14, 300, 476, "#1b1626", 38), f'<g clip-path="url(#layar)">', rect(262, 26, 276, 452, KREM, 0)]
+    # pola latar halus
+    out.append("".join(f'<circle cx="{280 + (i % 7) * 40}" cy="{110 + (i // 7) * 46}" r="2" fill="#d6cfc4"/>' for i in range(56)))
+    # header
+    out.append(rect(262, 26, 276, 64, G, 0) + f'<path d="M282 58l8-8M282 58l8 8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>'
+               + f'<circle cx="318" cy="58" r="16" fill="#dff5ec"/>' + t(318, 64, d.get("kontak", "Tim")[0], 15, G, 800, "middle")
+               + t(342, 54, d.get("kontak", "Tim"), 14, "#fff", 700) + t(342, 72, d.get("status", "online"), 11, "#d1f0e6", 500))
+    y = 110
+    for m in d["messages"]:
+        lines = _bungkus(m["text"])
+        w = max(len(l) for l in lines) * 7.1 + 64
+        h = 16 * len(lines) + 24
+        me = m.get("me")
+        x = 526 - w if me else 274
+        out.append(rect(round(x, 1), y, round(w, 1), h, HIJAU_MUDA if me else "#ffffff", 10, ' filter="url(#bayang)"'))
+        tail = (f'<path d="M{526} {y} l10 0 l-10 10z" fill="{HIJAU_MUDA}"/>' if me else f'<path d="M274 {y} l-10 0 l10 10z" fill="#fff"/>')
+        out.append(tail)
+        for k, l in enumerate(lines):
+            out.append(t(round(x + 10, 1), y + 18 + k * 16, l, 12.5, "#111b21", 500))
+        jam = m.get("jam", "09.1" + str(len(out) % 10))
+        tx = x + w - 10
+        if me:
+            out.append(t(round(tx - 18, 1), y + h - 6, jam, 9.5, "#667781", 500, "end")
+                       + f'<path d="M{tx - 15:.1f} {y + h - 10} l3 3 6-6 M{tx - 10:.1f} {y + h - 10} l3 3 6-6" stroke="#53bdeb" stroke-width="1.6" fill="none" stroke-linecap="round"/>')
+        else:
+            out.append(t(round(tx, 1), y + h - 6, jam, 9.5, "#667781", 500, "end"))
+        y += h + 10
+    # bilah ketik
+    out.append(rect(272, 432, 210, 36, "#fff", 18) + t(290, 455, "Ketik pesan", 12.5, "#8696a0", 500)
+               + f'<circle cx="510" cy="450" r="18" fill="{G}"/><path d="M510 442v10 M505 448a5 5 0 0 0 10 0 M510 453v4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>')
+    out.append("</g>")
+    out.insert(0, '<defs><filter id="bayang" x="-5%" y="-5%" width="110%" height="130%"><feDropShadow dx="0" dy="1" stdDeviation=".6" flood-color="#0b141a" flood-opacity=".13"/></filter></defs>')
+    return "".join(out)
+
+
 JENIS = {"timeline": timeline, "bars": bars, "grouped": grouped, "gallery": gallery, "tasklist": tasklist,
          "table": table, "chat": chat, "doc": doc, "dialog": dialog, "steps": steps, "cards": cards,
-         "map": map_, "compare": compare, "venn": venn, "shield": shield, "brand": brand, "tiers": tiers, "orang": orang}
+         "map": map_, "compare": compare, "venn": venn, "shield": shield, "brand": brand, "tiers": tiers, "orang": orang, "wa": wa}
 
 
 def render_svg(item, colors=None):
     if colors:
         C.update(colors)
     body = JENIS[item["jenis"]](item.get("data", {}))
-    window = item["jenis"] not in ("venn", "shield", "tiers", "steps", "cards", "compare", "orang")
+    window = item["jenis"] not in ("venn", "shield", "tiers", "steps", "cards", "compare", "orang", "wa")
     inner = frame(item.get("judul", ""), body, window)
     if not window and item.get("judul"):
         inner += t(400, 60, item["judul"], 18, C["mut"], 700, "middle")

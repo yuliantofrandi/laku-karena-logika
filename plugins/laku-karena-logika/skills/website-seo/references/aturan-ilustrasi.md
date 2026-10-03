@@ -72,3 +72,8 @@ User: "buat jadi motion graphic" (ilustrasi orang). Daripada video, animasi ditu
 - `transform-origin`/`transform-box` hanya untuk elemen beranimasi (`[class^="a-"]`); jangan dipasang global karena merusak elemen ber-atribut `transform="rotate(...)"`.
 - Cek di browser dengan URL ber-`?v=` (atau query lain) supaya tidak tertipu cache.
 
+## Percakapan bergaya aplikasi chat di ponsel (`jenis: "wa"`)
+User: "buat jadi ilustrasi, tampilannya seperti percakapan WhatsApp" (section bantuan pemasangan). Komponen `wa` menggambar ponsel berisi chat: header hijau tua (avatar inisial, nama kontak, "online"), latar krem berpola, gelembung masuk putih & keluar hijau muda dengan ekor, jam, centang biru ganda, dan bilah "Ketik pesan". **Tanpa logo atau nama WhatsApp** (hanya gaya visual), teks pesan dibungkus otomatis ±27 karakter per baris.
+- `data`: `kontak`, `status`, `messages[{text, me, jam}]` (`me: true` = gelembung hijau di kanan). Maks 4 pesan pendek agar muat di layar ponsel.
+- Lebih disukai daripada jendela chat generik (`jenis: "chat"`) untuk section yang menonjolkan bantuan/konsultasi lewat WhatsApp.
+
