@@ -698,34 +698,11 @@
         ],
         "animasi": true
       }
-    },
-    {
-      "id": "tampilan-merek-anda",
-      "halaman": "/white-label",
-      "section": "Yang bisa disesuaikan dengan brand Anda",
-      "jenis": "brand",
-      "judul": "Contoh: PT Maju Bersama",
-      "alt": "Ilustrasi aplikasi dengan logo, warna, domain, dan email notifikasi atas nama perusahaan pembeli white label",
-      "caption": "Contoh tampilan: logo, warna, dan domain perusahaan Anda",
-      "brief": "Mockup aplikasi white label dengan logo, warna, domain, dan email notifikasi atas nama perusahaan pembeli (merek contoh, bukan merek nyata).",
-      "auto": true,
-      "data": {
-        "logo": "MAJU",
-        "domain": "kerja.majubersama.co.id",
-        "app": "Maju Kerja",
-        "email": "noreply@majubersama.co.id",
-        "email_judul": "Rekap mingguan tim",
-        "swatches": [
-          "#0f766e",
-          "#2563eb",
-          "#b45309",
-          "#7B2CFF"
-        ]
-      }
     }
   ],
   "min_per_halaman_khusus": {
-    "/harga": 1
+    "/harga": 1,
+    "/white-label": 2
   },
   "_min_per_halaman_khusus": "/harga: isi utamanya tabel harga + kartu persona paket (permintaan user), cukup gambar hero. /white-label: section 'Cara kerja' dihapus atas permintaan user, cukup hero + grafik tagihan.",
   "_hero": "Semua halaman memakai video demo aplikasi yang sama di hero (permintaan user: 'hero gambar di sebelah kanan samakan dengan yang ada di sini')."

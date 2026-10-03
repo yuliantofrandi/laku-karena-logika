@@ -99,7 +99,7 @@ Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-la
 | FAQ | Apa itu white label · masih ada biaya bulanan? · di mana data disimpan · harga (per penawaran) · bisa dijual lagi? (satu jawaban) · beda dengan langganan |
 | CTA | `{{cta_whitelabel}}` "Siap lepas dari tagihan bulanan per karyawan?" → konsultasi WA, **bukan checkout** |
 
-**Tidak ada section "Cara kerja"** (dihapus user). `/white-label` punya 3 gambar (hero, grafik tagihan beranimasi, mockup tampilan merek di section kustomisasi), `min_words` 600.
+**Tidak ada section "Cara kerja"** (dihapus user). `/white-label` cukup 2 gambar (hero + grafik), `min_words` 600.
 
 Larangan: tanpa angka rupiah (harga hanya di /harga), tanpa harga/minimum lisensi/persentase penghematan yang belum diputuskan user, dan jangan menjanjikan siapa yang memasang atau dukungan/pembaruan pasca-beli sebelum dikonfirmasi. Halaman ini tidak memakai `{{bukti_sosial}}`/`{{testimoni}}` sampai ada pembeli white label asli.
 

@@ -66,34 +66,11 @@
         ],
         "animasi": true
       }
-    },
-    {
-      "id": "tampilan-merek-anda",
-      "halaman": "/white-label",
-      "section": "Yang bisa disesuaikan dengan brand Anda",
-      "jenis": "brand",
-      "judul": "Contoh: PT Maju Bersama",
-      "alt": "Ilustrasi aplikasi dengan logo, warna, domain, dan email notifikasi atas nama perusahaan pembeli white label",
-      "caption": "Contoh tampilan: logo, warna, dan domain perusahaan Anda",
-      "brief": "Mockup aplikasi white label dengan logo, warna, domain, dan email notifikasi atas nama perusahaan pembeli (merek contoh, bukan merek nyata).",
-      "auto": true,
-      "data": {
-        "logo": "MAJU",
-        "domain": "kerja.majubersama.co.id",
-        "app": "Maju Kerja",
-        "email": "noreply@majubersama.co.id",
-        "email_judul": "Rekap mingguan tim",
-        "swatches": [
-          "#0f766e",
-          "#2563eb",
-          "#b45309",
-          "#7B2CFF"
-        ]
-      }
     }
   ],
   "_contoh": "Contoh lengkap 35 gambar (semua jenis komponen) ada di references/contoh-ilustrasi-timebase.json di skill. Entri white label di sini adalah bagian copy global, jadi tetap pakai.",
   "min_per_halaman_khusus": {
+    "/white-label": 2,
     "/harga": 1
   }
 }
