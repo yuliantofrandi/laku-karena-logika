@@ -94,8 +94,8 @@ Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-la
 | Untuk siapa | 3 kartu **berikon**: perusahaan dengan ratusan karyawan · grup usaha & holding · organisasi dengan aturan data ketat |
 | Perbandingan | "Langganan vs White Label": grafik batang beranimasi (tagihan 50→400 karyawan naik vs "sekali bayar") + tabel cara bayar · saat tim bertambah · tempat data · merek |
 | Yang ikut dalam lisensi | `{{daftar_solusi}}` + link ke harga |
-| Kustomisasi / milik Anda | `{{wl_kustomisasi}}` · `{{wl_ditangani}}` berjudul "Yang menjadi milik Anda" (lisensi sekali bayar, server sendiri, data di infrastruktur sendiri, merek sendiri) |
-| Keuntungan | Sekali bayar · tim bertambah, biaya tidak · data di server sendiri · merek perusahaan Anda |
+| Kustomisasi | `{{wl_kustomisasi}}` — layout polos judul | panel (jangan diberi gambar/ikon hiasan; dua kali ditolak user) |
+| Keuntungan beli putus | **4 kartu berikon** (gabungan "Yang menjadi milik Anda" + "Keuntungan" yang pesannya dobel; user: "4 section ini terlihat plain"): Sekali bayar · Tim bertambah, biaya tidak · Data di server sendiri · Merek perusahaan Anda. `{{wl_ditangani}}` tidak dipakai lagi |
 | FAQ | Apa itu white label · masih ada biaya bulanan? · di mana data disimpan · harga (per penawaran) · bisa dijual lagi? (satu jawaban) · beda dengan langganan |
 | CTA | `{{cta_whitelabel}}` "Siap lepas dari tagihan bulanan per karyawan?" → konsultasi WA, **bukan checkout** |
 
