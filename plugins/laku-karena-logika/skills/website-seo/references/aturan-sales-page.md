@@ -80,23 +80,28 @@ Aturan tetap user: bagian harga **selalu** punya tombol switch Bulanan/Tahunan, 
 
 ## Halaman White Label (wajib di setiap produk)
 
-Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-label` memakai **copy global** (`assets/starter/content/white-label.html`), jadi tidak ditulis ulang per produk. Bagian khusus produk masuk lewat token.
+Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-label` memakai **copy global** (`assets/starter/content/white-label.html`), jadi tidak ditulis ulang per produk. Bagian khusus produk diisi otomatis (`{{brand}}`, `{{deskripsi_kecil}}`, `{{daftar_solusi}}`, `site.json → whitelabel`).
+
+**Positioning (user, 3 Okt 2026):** pain point utama pembeli adalah **tidak mau bayar bulanan per karyawan karena karyawannya banyak**. Skema **beli putus (sekali bayar)**, karyawan tidak terbatas, **dipasang di server milik pembeli**, merek pembeli. Sudut "dijual lagi ke klien" sudah tidak relevan (membuat produk sendiri kini cepat dengan AI) — hanya **satu jawaban FAQ**. Jangan menulis halaman ini sebagai program reseller.
+
+**Letak menu:** item terakhir dropdown "Solusi" ("Beli putus dengan merek & server sendiri"), bukan menu utama — ±90% pembeli tidak mencari white label. `{{daftar_solusi}}` otomatis mengecualikan `/white-label`.
 
 | Blok | Isi |
 |---|---|
-| Hero | H1 memuat "White Label" + hasil: jual software dengan merek sendiri tanpa membangun dari nol. CTA `Minta Penawaran White Label` (WA, teks otomatis menyebut brand) + `Lihat Cara Kerjanya` |
-| Paragraf entitas | "Program whitelabel <Brand> …" + `{{deskripsi_kecil}}` |
-| Untuk siapa | Konsultan & agensi · software house & integrator · reseller & distributor · grup & asosiasi |
-| Agitasi | Membangun sendiri: waktu, biaya tetap, pemeliharaan tanpa akhir, risiko produk. **Tanpa angka karangan** |
-| Perbandingan | Tabel "White label vs membangun sendiri" (perbandingan metode, aman) |
-| Yang dijual | `{{daftar_solusi}}` dari menu group Solusi + link ke harga |
-| Kustomisasi / ditangani | `{{wl_kustomisasi}}`, `{{wl_ditangani}}` dari `site.json → whitelabel` (dikonfirmasi per produk) |
-| Cara kerja | Konsultasi → Penawaran & kesepakatan → Penyiapan brand → Rilis ke klien |
-| Keuntungan | Produk sendiri tanpa tim dev · pendapatan berulang · klien tetap milik Anda · cepat ke pasar · ikut pembaruan |
-| FAQ | Apa itu whitelabel · apakah klien melihat merek kami · harga (per penawaran) · perlu tim IT? · beda dengan langganan biasa |
-| CTA | `{{cta_whitelabel}}`: konsultasi WA, **bukan checkout**, karena whitelabel adalah penawaran per klien |
+| Hero | Badge ajakan "Miliki software-nya, bukan sekadar menyewa" · H1 "White Label: Sekali Bayar, Tanpa Biaya per Karyawan" · lead untuk perusahaan dengan banyak karyawan · CTA `Minta Penawaran White Label` (WA) |
+| Paragraf entitas | "Program **white label** <Brand> untuk perusahaan dengan tim besar: beli lisensinya sekali, pasang di server sendiri …" + `{{deskripsi_kecil}}` (≤45 kata) |
+| Pain point | "Tagihan bulanan yang ikut membengkak": kartu angka `300×` + "biaya lisensi yang ditagih setiap bulan" (ditandai ilustrasi) · panel: tidak pernah berhenti, naik saat tim tumbuh, data di server pihak lain |
+| Untuk siapa | 3 kartu **berikon**: perusahaan dengan ratusan karyawan · grup usaha & holding · organisasi dengan aturan data ketat |
+| Perbandingan | "Langganan vs White Label": grafik batang beranimasi (tagihan 50→400 karyawan naik vs "sekali bayar") + tabel cara bayar · saat tim bertambah · tempat data · merek |
+| Yang ikut dalam lisensi | `{{daftar_solusi}}` + link ke harga |
+| Kustomisasi / milik Anda | `{{wl_kustomisasi}}` · `{{wl_ditangani}}` berjudul "Yang menjadi milik Anda" (lisensi sekali bayar, server sendiri, data di infrastruktur sendiri, merek sendiri) |
+| Keuntungan | Sekali bayar · tim bertambah, biaya tidak · data di server sendiri · merek perusahaan Anda |
+| FAQ | Apa itu white label · masih ada biaya bulanan? · di mana data disimpan · harga (per penawaran) · bisa dijual lagi? (satu jawaban) · beda dengan langganan |
+| CTA | `{{cta_whitelabel}}` "Siap lepas dari tagihan bulanan per karyawan?" → konsultasi WA, **bukan checkout** |
 
-Larangan: tidak menyebut harga, minimum lisensi, bagi hasil, atau persentase penghematan yang belum diputuskan user. Halaman ini sengaja tidak memakai `{{bukti_sosial}}`/`{{testimoni}}` sampai ada mitra whitelabel asli.
+**Tidak ada section "Cara kerja"** (dihapus user). `/white-label` cukup 2 gambar (hero + grafik), `min_words` 600.
+
+Larangan: tanpa angka rupiah (harga hanya di /harga), tanpa harga/minimum lisensi/persentase penghematan yang belum diputuskan user, dan jangan menjanjikan siapa yang memasang atau dukungan/pembaruan pasca-beli sebelum dikonfirmasi. Halaman ini tidak memakai `{{bukti_sosial}}`/`{{testimoni}}` sampai ada pembeli white label asli.
 
 ## Tampilan: band dua kolom, teks sekunder dilipat
 
