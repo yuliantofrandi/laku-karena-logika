@@ -29,8 +29,6 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 | Teks tersembunyi | **Tidak boleh.** Tidak ada "Baca selengkapnya". FAQ boleh accordion |
 | Pesan dobel | **Satu pesan sekali per section.** Pembuka, catatan, caption gambar, dan poin/kartu tidak boleh mengulang hal yang sama. Kasus nyata: catatan "Hitungan 110 jam = 20 × 15 × 22" mengulang poin di panel; asumsi hitungannya cukup ditulis di poin itu sendiri |
 
-**Ikon section (opsional):** `<h2 data-ikon="<nama>">` menampilkan ikon garis di kotak tint ungu 52px di atas judul (kolom teks), untuk section daftar tanpa gambar agar tidak polos (user: "tambahkan icon di sebelah kiri"). Nama ikon dari `ilustrasi.ICONS` (palette, shield, server, lock, users, chart, clock, dll.).
-
 ### Layout otomatis per jenis isi (hasil "standardkan semua section")
 | Isi section | Layout | Catatan |
 |---|---|---|
