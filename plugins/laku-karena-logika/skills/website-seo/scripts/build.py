@@ -514,6 +514,12 @@ def render_section(blocks, idx, S=None):
     - hanya blok lebar → judul + pembuka di atas, kartu/tabel selebar kontainer di bawah
     Semua teks terlihat (tanpa lipatan)."""
     h2, rest = blocks[0], blocks[1:]
+    # ikon section opsional: <h2 data-ikon="palette"> → ikon di kotak tint di atas judul (kolom kiri)
+    m_ik = re.match(r'<h2([^>]*)\sdata-ikon="([a-z]+)"([^>]*)>', h2)
+    if m_ik:
+        body_ik = ILUS.ICONS.get(m_ik.group(2), ILUS.ICONS["check"]).replace("{c}", "currentColor")
+        h2 = (f'<span class="ikon ikon-section" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24">{body_ik}</svg></span>'
+              + f'<h2{m_ik.group(1)}{m_ik.group(3)}>' + h2[m_ik.end():])
     fig, wide, paras, scan = None, [], [], []
     for b in rest:
         tag, cls = kind(b)
