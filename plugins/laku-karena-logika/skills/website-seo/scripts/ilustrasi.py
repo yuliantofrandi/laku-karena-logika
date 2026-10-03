@@ -388,8 +388,13 @@ def brand(d):
     for i in range(3):
         out.append(rect(320, 236 + i * 60, 396, 44, C["soft"], 8) + rect(334, 250 + i * 60, 140 - i * 30, 14, C["line"], 6)
                    + rect(640, 248 + i * 60, 60, 18, sw[0] + "33", 9))
-    for i, lab in enumerate(d.get("items", ["Logo", "Warna", "Domain", "Email"])):
-        out.append(icon("check", 64, 266 + i * 40, 0.9, C["ok"]) + t(94, 284 + i * 40, lab, 15, C["ink"], 600))
+    if d.get("email"):   # kartu email notifikasi atas nama merek (pengganti daftar centang agar tidak mengulang teks section)
+        out.append(rect(64, 262, 214, 116, "#fff", 12, f' stroke="{C["line"]}"') + icon("mail", 80, 278, 0.9, sw[0])
+                   + t(108, 296, d.get("email_judul", "Notifikasi"), 13, C["ink"], 800) + t(80, 324, "Dari:", 12, C["mut"], 600)
+                   + t(80, 344, d["email"], 12, C["ink"], 600) + rect(80, 356, 120, 8, C["line"], 4))
+    else:
+        for i, lab in enumerate(d.get("items", ["Logo", "Warna", "Domain", "Email"])):
+            out.append(icon("check", 64, 266 + i * 40, 0.9, C["ok"]) + t(94, 284 + i * 40, lab, 15, C["ink"], 600))
     return "".join(out)
 
 
