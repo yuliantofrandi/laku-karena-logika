@@ -182,7 +182,9 @@ table{border-collapse:collapse;width:100%;font-size:15px;min-width:560px}
 th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
 thead th{background:#fff;font-family:var(--font-head);font-weight:800;color:var(--ink);border-bottom:2px solid var(--ink)}   /* header tabel jelas tapi minimalis (sama dengan tabel harga) */
 /* baris belang (striped) untuk tabel biasa; tabel harga tidak (baris ikut switch & ada baris grup) */
-table:not(.pricing) tbody tr:nth-child(even) th,table:not(.pricing) tbody tr:nth-child(even) td{background:#f3effa}
+table:not(.pricing) tbody tr:nth-child(even) th,table:not(.pricing) tbody tr:nth-child(even) td{background:#f7f6f9}
+/* header tabel biasa berwarna beda dari isi (user: "header tabelnya berikan warna yang berbeda"); tabel harga tetap putih */
+table:not(.pricing) thead th{background:#ece4ff;color:var(--ink);border-bottom:2px solid var(--purple)}
 table:not(.pricing) tbody tr:last-child th,table:not(.pricing) tbody tr:last-child td{border-bottom:0}
 tbody th{font-weight:600;color:var(--ink)}
 td{color:var(--ink-2)}
