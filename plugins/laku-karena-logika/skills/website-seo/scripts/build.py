@@ -870,6 +870,16 @@ def main():
         p["product_schema"] = p["slug"] in S["product_pages"]
     slugs = {p["slug"] for p in pages}
 
+    # aturan tetap: setiap website produk punya halaman Harga standar (references/standar-halaman-harga.md)
+    hp = S.get("pricing_page", "/harga")
+    if hp not in slugs:
+        err(hp, "halaman Harga wajib ada di site.json extra_pages (salin template assets/starter/content/harga.html)")
+    if not any(isinstance(it, list) and it[0] == hp for it in S["nav"]):
+        err(hp, "menu 'Harga' wajib ada di menu utama (site.json nav)")
+    hf = ROOT / "content" / (hp.strip("/") + ".html")
+    if hf.exists() and "{{pricing_table}}" not in hf.read_text(encoding="utf-8"):
+        err(hp, "halaman Harga wajib memakai {{pricing_table}} (satu tabel harga + switch + add-on)")
+
     # aturan tetap: setiap produk bisa dibeli whitelabel -> halaman + menu utama wajib ada
     if "/white-label" not in slugs:
         err("/white-label", "halaman White Label wajib ada di site.json extra_pages (salin dari template skill)")
