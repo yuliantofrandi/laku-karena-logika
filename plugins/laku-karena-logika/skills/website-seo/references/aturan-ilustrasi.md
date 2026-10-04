@@ -77,5 +77,6 @@ User: "buat jadi ilustrasi, tampilannya seperti percakapan WhatsApp" (section ba
 - `data`: `kontak`, `status`, `messages[{text, me, jam}]` (`me: true` = gelembung hijau di kanan). Maks 4 pesan pendek agar muat di layar ponsel.
 - SVG-nya otomatis dipotong ke **kanvas potret 340×500** (selebar ponsel) dan entrinya diberi `"w": 340, "h": 500`, sehingga tampil sebagai media potret di kolom 340px — tidak ada area kosong lebar di kiri-kanan ponsel (user: "areanya terlalu lebar juga, karena ilustrasinya hanya chat WhatsApp"). Gambar dengan tinggi > lebar otomatis mendapat kelas `portrait`.
 - Lebih disukai daripada jendela chat generik (`jenis: "chat"`) untuk section yang menonjolkan bantuan/konsultasi lewat WhatsApp.
-- `animasi: true` (user: "buatkan motion graphic-nya"): gelembung "sedang mengetik" (3 titik memantul) muncul ±1 detik sebelum tiap pesan dari tim, pesan muncul bergantian dari bawah (jeda 1,8 detik), lalu menghilang dan berulang tiap 10 detik. Diam bila "kurangi animasi".
+- Default **statis**. Pada Timebase animasinya sempat dipasang lalu user minta "kembalikan seperti semula saja, tanpa ada motion graphic" — jangan aktifkan animasi chat kecuali diminta.
+- `animasi: true` (opsional, user pernah meminta "buatkan motion graphic-nya"): gelembung "sedang mengetik" (3 titik memantul) muncul ±1 detik sebelum tiap pesan dari tim, pesan muncul bergantian dari bawah (jeda 1,8 detik), lalu menghilang dan berulang tiap 10 detik. Diam bila "kurangi animasi".
 
