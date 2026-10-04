@@ -133,37 +133,32 @@
       "id": "pemasangan-dibantu",
       "halaman": "/aplikasi-monitoring-karyawan",
       "section": "Dipasang dan didampingi tim lokal",
-      "jenis": "wa",
-      "alt": "Ilustrasi percakapan chat dengan tim lokal Timebase yang memandu pemasangan agen desktop",
+      "jenis": "chat",
+      "alt": "Ilustrasi tim lokal Timebase membantu pemasangan agen desktop lewat chat berbahasa Indonesia",
       "caption": "Pemasangan dibantu tim lokal berbahasa Indonesia",
       "brief": "Foto tim support asli atau screenshot percakapan bantuan pemasangan (nama pelanggan disamarkan).",
       "auto": true,
       "data": {
-        "kontak": "Tim Timebase",
-        "status": "online",
         "messages": [
           {
-            "text": "Halo! Kita mulai pasang agen di 12 laptop ya",
-            "jam": "09.02"
+            "who": "Tim Timebase",
+            "text": "Halo! Kita mulai pasang agen di 12 laptop ya"
           },
           {
             "text": "Ada 2 laptop ditandai antivirus",
-            "me": true,
-            "jam": "09.15"
+            "me": true
           },
           {
-            "text": "Siap, saya pandu langkah pengecualiannya",
-            "jam": "09.16"
+            "who": "Tim Timebase",
+            "text": "Siap, saya pandu langkah pengecualiannya"
           },
           {
             "text": "Sudah aman semua, terima kasih!",
-            "me": true,
-            "jam": "09.31"
+            "me": true
           }
         ]
       },
-      "w": 340,
-      "h": 500
+      "judul": "Tim Pendamping Timebase"
     },
     {
       "id": "timesheet-otomatis",
