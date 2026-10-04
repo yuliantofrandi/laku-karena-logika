@@ -1,7 +1,7 @@
 {
   "name": "laku-karena-logika",
   "version": "1.8.0",
-  "description": "AI Marketing OS — rangkaian skill yang mengubah pengetahuan produk jadi output marketing untuk SaaS. business-knowledge menulis strategi; business-reviewer menilainya & menganalisis kompetitor; keyword-research menyusun rencana keyword Google Ads/SEO; sosmed-desain, sosmed-caption, dan sosmed-posting memproduksi dan memposting konten sosial media; motion-graphic membuat video demo aplikasi MP4 untuk website dan sosmed; docs-article mengubah dokumentasi aplikasi jadi artikel tutorial di CMS Lakukan (screenshot disamarkan) untuk menu Panduan website.",
+  "description": "AI Marketing OS — rangkaian skill yang mengubah pengetahuan produk jadi output marketing untuk SaaS. business-knowledge menulis strategi; business-reviewer menilainya & menganalisis kompetitor; keyword-research menyusun rencana keyword Google Ads/SEO; sosmed-desain, sosmed-caption, dan sosmed-posting memproduksi dan memposting konten sosial media; motion-graphic membuat video demo aplikasi MP4 untuk website dan sosmed; docs-article mengubah dokumentasi aplikasi jadi artikel tutorial di CMS Lakukan (screenshot disamarkan) untuk menu Panduan website; article-blog menulis artikel blog edukatif berinfografis bermerek dan menerbitkannya ke Blog CMS Lakukan.",
   "keywords": [
     "marketing",
     "business-strategy",
@@ -25,7 +25,9 @@
     "video",
     "documentation",
     "cms",
-    "tutorial"
+    "tutorial",
+    "blog",
+    "infographic"
   ],
   "author": {
     "name": "Laku Karena Logika"

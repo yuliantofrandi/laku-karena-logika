@@ -1,0 +1,22 @@
+/* Gaya dasar infografis blog (kanvas 1600x900, 16:9).
+   Ganti token :root dengan warna merek produk (ambil dari static/style.css website produk
+   atau BKB). Font judul: taruh file woff2 merek di folder ini dan ubah @font-face.
+   Default di bawah = TimeBase (ungu-pink-oranye, Montserrat 800). */
+@font-face{font-family:"Montserrat";font-weight:800;src:url(montserrat-latin-800-normal.woff2) format("woff2")}
+:root{--purple:#7B2CFF;--pink:#E83AAE;--orange:#FF8A00;--ink:#1b1626;--ink-2:#4a4458;--muted:#5f5870;--line:#e9e5f0;--bg-soft:#f8f6fc;--bg-tint:#f3edff;--green:#16a34a;--red:#dc2626;
+--grad:linear-gradient(90deg,var(--purple),var(--pink) 52%,var(--orange))}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1600px;height:900px;overflow:hidden}
+body{font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff;position:relative}
+.bg{position:absolute;inset:0;background:radial-gradient(900px 500px at 100% 0%,#f3edff 0%,transparent 60%),radial-gradient(700px 420px at 0% 100%,#fff1e2 0%,transparent 60%),#fff}
+.wrap{position:relative;height:100%;padding:72px 88px 64px;display:flex;flex-direction:column}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple)}
+.eyebrow:before{content:"";width:36px;height:4px;border-radius:4px;background:var(--grad)}
+h1{font-family:"Montserrat";font-weight:800;font-size:58px;line-height:1.08;letter-spacing:-.02em;margin-top:18px}
+h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:24px;color:var(--ink-2);margin-top:14px;max-width:1100px;line-height:1.4}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:19px;color:var(--muted)}
+.brand{font-family:"Montserrat";font-weight:800;font-size:28px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.01em}
+.brand small{font-family:-apple-system,Arial;font-weight:600;font-size:15px;letter-spacing:.18em;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-left:12px;text-transform:uppercase}
+.ico{width:64px;height:64px;border-radius:50%;background:var(--grad);display:grid;place-items:center;flex:none;box-shadow:0 10px 24px rgba(123,44,255,.25)}
+.ico svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}

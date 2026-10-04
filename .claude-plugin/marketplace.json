@@ -12,7 +12,7 @@
     {
       "name": "laku-karena-logika",
       "source": "./plugins/laku-karena-logika",
-      "description": "AI Marketing OS: Business Knowledge Base, Business Reviewer, Keyword Research, alur konten sosial media (desain → caption → posting), video motion graphic demo aplikasi, dan artikel panduan/dokumentasi ke CMS Lakukan untuk produk SaaS.",
+      "description": "AI Marketing OS: Business Knowledge Base, Business Reviewer, Keyword Research, alur konten sosial media (desain → caption → posting), video motion graphic demo aplikasi, serta artikel panduan & blog berinfografis ke CMS Lakukan untuk produk SaaS.",
       "version": "1.8.0",
       "category": "productivity",
       "keywords": [
@@ -34,7 +34,9 @@
         "video",
         "documentation",
         "cms",
-        "tutorial"
+        "tutorial",
+        "blog",
+        "infographic"
       ],
       "author": {
         "name": "Laku Karena Logika"

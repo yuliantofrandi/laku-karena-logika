@@ -180,13 +180,15 @@ def cmd_cek(a):
     err, warn = validasi(d, a.gambar)
     nodes = {n["slug"]: (n, p) for n, p in flat(tree())}
     ind = d["kategori_induk"]
-    print(f"Kategori induk '{ind}': {'ada' if ind in nodes else 'BELUM ADA (akan dibuat)'}")
+    if any("nama" in k for k in d["kelompok"]):
+        print(f"Kategori induk '{ind}': {'ada' if ind in nodes else 'BELUM ADA (akan dibuat)'}")
     for k in d["kelompok"]:
         n = nodes.get(k["slug"])
         if "nama" not in k:
             if not n:
                 err.append(f"kategori rujukan '{k['slug']}' tidak ada di CMS (tambahkan 'nama' untuk membuatnya)")
-            print(f"  L1 {(n[0]['name'] if n else '?')} [{k['slug']}] — rujukan, tidak diubah")
+            jalur = f"{n[1]['name']} › {n[0]['name']}" if n and n[1] else (n[0]["name"] if n else "?")
+            print(f"  kategori {jalur} [{k['slug']}] — rujukan, tidak diubah")
             continue
         st = "baru" if not n else ("ada, diperbarui" if n[1] and n[1]["slug"] == ind else f"ada, dipindah ke '{ind}'")
         print(f"  L1 {k['nama']} [{k['slug']}] — {st}")
