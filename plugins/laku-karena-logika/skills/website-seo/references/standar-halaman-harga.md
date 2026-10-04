@@ -68,3 +68,20 @@ User (4 Okt 2026): "saat pilih paket, munculkan modal untuk subscription dan dil
 - **Data formulir hanya dikirim ke `langganan.api` milik produk** (POST /orders). Pada mode sementara, data hanya masuk ke pesan WhatsApp yang dikirim pengunjung.
 - Bila blok `langganan` ada, `checkout_url` tidak wajib lagi.
 - **Mobile:** modal tampil sebagai bottom sheet selebar layar. Elemen `[hidden]` di dalam modal wajib `display:none!important`, karena aturan flex bisa menimpanya.
+
+
+## Tabel harga di HP: tab per paket
+User (4 Okt 2026) menilai tabel geser-samping "untuk experience di mobile view kurang", lalu memilih opsi **tab per paket** dari tiga rekomendasi (tab, kartu bertumpuk, tabel kolom beku).
+
+- **Di bawah 720px**, `.table-wrap` dan petunjuk "geser" disembunyikan, lalu `harga_hp()` menampilkan:
+  - switch Bulanan/Tahunan (tetap yang sama);
+  - 3 tombol tab paket (grid 3 kolom);
+  - satu kartu paket.
+- **Isi kartu:**
+  - nama paket + badge "Disarankan" (paket `featured`, yang juga terbuka pertama);
+  - daftar harga per jumlah karyawan (tahunan dengan "setara …/bln");
+  - satuan harga;
+  - daftar fitur dari `pricing.json features`: ✓ hijau, "—" abu untuk yang tidak termasuk, nilai teks sebagai keterangan kecil;
+  - tombol "Pilih <paket>" lebar penuh yang membuka modal langganan.
+- **Tanpa JS:** tab memakai radio + CSS (`nth-of-type` → `nth-child`), sama seperti switch periode. Paket yang didukung maksimal 4.
+- **Desktop** tetap memakai tabel perbandingan.

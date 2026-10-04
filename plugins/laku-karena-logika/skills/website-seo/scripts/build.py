@@ -118,10 +118,42 @@ def pricing_table(S, P):
         return (f'<td><a class="btn {btn} btn-sm bln" href="{checkout_link(S, x["id"])}" rel="nofollow">{lab}</a>'
                 f'<a class="btn {btn} btn-sm thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{lab}</a></td>')
     foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
+    hp = harga_hp(S, P, beli)
     strip = addon_strip(P)
     catatan = f'<p class="note">{P["note"]}</p>' if P.get("note") else ""
-    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}<p class="table-hint">Geser ke kanan untuk melihat semua paket →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col"><span class="sr-only">Jumlah karyawan</span></th>{head}</tr></thead>'
+    return (f'<div class="periode" id="pilih-skema">{periode_switch(P)}{hp}<p class="table-hint">Geser ke kanan untuk melihat semua paket →</p><div class="table-wrap"><table class="pricing"><thead><tr><th scope="col"><span class="sr-only">Jumlah karyawan</span></th>{head}</tr></thead>'
             f'<tbody>{"".join(rows)}</tbody>{foot}</table></div>{strip}{catatan}</div>')
+
+
+def harga_hp(S, P, beli):
+    """Mobile: tab per paket (tanpa JS), satu kartu tampil — harga per jumlah karyawan, fitur, tombol pilih.
+    Tabel tetap dipakai di desktop. Dipilih user (4 Okt 2026) karena tabel geser-samping kurang nyaman di HP."""
+    s, m = P["schemes"], P["annual_months_paid"]
+    n = f"hp{_SW[0]}"
+    awal = next((i for i, x in enumerate(s) if x.get("featured")), 0)
+    radios = "".join(f'<input type="radio" name="{n}" id="{n}-{i}"{" checked" if i == awal else ""}>' for i in range(len(s)))
+    tabs = "".join(f'<label for="{n}-{i}">{html.escape(x["name"])}</label>' for i, x in enumerate(s))
+    def kartu(i, x):
+        bln = "".join(f'<li><span>{lab}</span><strong>{rupiah(x["monthly"][k])}</strong></li>' for k, lab in enumerate(P["tier_labels"]))
+        thn = "".join(f'<li><span>{lab}</span><strong>{rupiah(x["monthly"][k] * m)}<small>setara {rupiah(x["monthly"][k] * m / 12)}/bln</small></strong></li>'
+                      for k, lab in enumerate(P["tier_labels"]))
+        fitur = []
+        for f in P["features"]:
+            v = f[1 + i]
+            if v == "✓":
+                fitur.append(f'<li class="ya">{html.escape(f[0])}</li>')
+            elif v in ("—", "-", ""):
+                fitur.append(f'<li class="tidak">{html.escape(f[0])}</li>')
+            else:
+                fitur.append(f'<li class="ya">{html.escape(f[0])}<small>{html.escape(v)}</small></li>')
+        badge = '<span class="hp-badge">Disarankan</span>' if x.get("featured") else ""
+        tombol = re.sub(r"^<td>|</td>$", "", beli(x)).replace("btn-sm", "btn-hp")
+        return (f'<div class="hp-kartu{" featured" if x.get("featured") else ""}"><div class="hp-head"><h3>{html.escape(x["name"])}</h3>{badge}</div>'
+                f'<ul class="hp-harga bln">{bln}</ul><ul class="hp-harga thn">{thn}</ul>'
+                f'<p class="hp-satuan bln">per karyawan / bulan</p><p class="hp-satuan thn">per karyawan / tahun — {P["annual_rule"].lower()}</p>'
+                f'<ul class="hp-fitur">{"".join(fitur)}</ul><div class="hp-btn">{tombol}</div></div>')
+    return (f'<div class="harga-hp">{radios}<div class="hp-tab" role="group" aria-label="Pilih paket">{tabs}</div>'
+            f'<div class="hp-isi">{"".join(kartu(i, x) for i, x in enumerate(s))}</div></div>')
 
 
 def pricing_cards(S, P):
