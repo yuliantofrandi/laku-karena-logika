@@ -542,7 +542,8 @@ def render_section(blocks, idx, S=None):
     lead = h2 + "".join(paras)
     if fig:
         flip = " flip" if idx % 2 else ""
-        row = (f'<div class="split media{flip}"><div class="col-text">{lead}{"".join(scan)}</div>'
+        potret = " potret" if "portrait" in fig else ""   # media potret → kolom media selebar media saja
+        row = (f'<div class="split media{flip}{potret}"><div class="col-text">{lead}{"".join(scan)}</div>'
                f'<div class="col-media">{fig}</div></div>')
     elif faq:
         # FAQ (layout referensi user): judul besar rata tengah + satu kotak daftar bergaris dengan chevron.

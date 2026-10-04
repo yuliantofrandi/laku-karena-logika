@@ -120,6 +120,8 @@ figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
 @media (min-width:900px){
   .split.media{grid-template-columns:1fr 1fr;gap:56px}
   .split.media.flip .col-media{order:-1}
+  .split.media.potret{grid-template-columns:1fr 340px}
+  .split.media.potret.flip{grid-template-columns:340px 1fr}
   .split.panel-row{grid-template-columns:5fr 7fr;gap:56px}
   .split.panel-row.flip{grid-template-columns:7fr 5fr}
   .split.panel-row.flip .col-panel{order:-1}
