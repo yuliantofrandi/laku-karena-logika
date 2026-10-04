@@ -65,6 +65,9 @@ User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil arti
   - Judul ditampilkan **ringkas dan selalu 1 baris**: bagian sebelum ":" (`judul_pendek`). Sisanya dipotong "…" oleh CSS (`white-space: nowrap; text-overflow: ellipsis`, dan kolom grid `min-width: 0` supaya kolom tidak melebar). Judul lengkap tersedia di atribut `title`.
   - User (4 Okt 2026): "title blog terlalu panjang untuk diletakkan di footer", lalu memilih opsi ini.
 
+## Tabel dari CMS (Panduan & Blog)
+`bersihkan()` membungkus setiap `<table>` dari CMS dengan `<div class="table-wrap">` (overflow-x: auto). Tanpa pembungkus ini, tabel lebar membuat **seluruh halaman bisa digeser ke kanan di HP**. Bug ini dilaporkan user pada 5 Okt 2026 di `/blog/laporan-kerja-harian`. Saat verifikasi, muat setiap halaman artikel CMS di iframe selebar 375px dan pastikan `scrollWidth` ≤ 375. Yang boleh digeser hanya isi `.table-wrap`.
+
 ## Baris info artikel (Panduan & Blog)
 Hanya **"Terakhir diperbarui <tanggal>"** (dari `updated_at`, dalam `<time datetime>`), kecil dan abu. Nama penulis tidak ditampilkan. User (4 Okt 2026): "tidak perlu ada nama penulisnya, cukup informasikan last update-nya kapan". Penulis tetap ada di JSON-LD `author` untuk mesin pencari.
 

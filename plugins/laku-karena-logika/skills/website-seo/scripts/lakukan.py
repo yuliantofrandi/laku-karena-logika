@@ -64,6 +64,8 @@ def bersihkan(isi):
     isi = re.sub(r'\s+on\w+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)', "", isi, flags=re.I)
     isi = re.sub(r'(href|src)\s*=\s*"\s*javascript:[^"]*"', r'\1="#"', isi, flags=re.I)
     isi = re.sub(r"<img(?![^>]*\bloading=)", '<img loading="lazy" decoding="async"', isi)
+    # tabel dari CMS dibungkus wadah geser-samping: di HP hanya tabelnya yang bisa digeser, bukan seluruh halaman
+    isi = re.sub(r"(?<!<div class=\"table-wrap\">)(<table\b.*?</table>)", r'<div class="table-wrap">\1</div>', isi, flags=re.S | re.I)
     return isi
 
 
