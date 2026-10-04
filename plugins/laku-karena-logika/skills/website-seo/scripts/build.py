@@ -809,6 +809,9 @@ def check_badge(page):
     kata = {w for w in re.findall(r"\w+", eb.lower()) if len(w) > 2 and w not in ("dan", "untuk", "yang")}
     if kata and kata <= set(re.findall(r"\w+", page["h1"].lower())):
         warn(page["slug"], f'badge "{eb}" mengulang kata di H1 → ganti dengan kalimat ajakan (field "eyebrow"), lihat standar-ui-section.md §3d')
+    # badge harus 1 baris di HP 375px (keluhan user: "lebih singkat, agar tidak jadi dua baris untuk mobile view")
+    if len(eb) > 38:
+        warn(page["slug"], f'badge "{eb}" {len(eb)} karakter (maks ±38) → jadi 2 baris di HP, ringkas')
 
 
 def check_page(S, B, page, body, slugs):

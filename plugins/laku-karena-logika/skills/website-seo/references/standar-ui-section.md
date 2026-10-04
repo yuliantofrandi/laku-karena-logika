@@ -64,7 +64,7 @@ Disetujui user (4 Okt 2026): "jika butuh point, kasih icon saja jangan pakai ang
 - `p.note` yang dulu ada di bawah pembuka digabung ke kalimat pembuka. Tautan internalnya tetap dipertahankan.
 
 ## 3d. Badge hero tidak mengulang H1
-Badge (eyebrow) di atas H1 harus menambah makna, misalnya kalimat ajakan atau sudut pandang, bukan kata yang sudah ada di H1. Contoh yang ditolak user (4 Okt 2026): badge "Blog" + H1 "Blog Timebase". Contoh yang disetujui: "Pilih paket yang pas untuk tim Anda" (Harga), "Miliki software-nya, bukan sekadar menyewa" (White Label), "Pusat edukasi" (Blog).
+Badge (eyebrow) di atas H1 harus menambah makna, misalnya kalimat ajakan atau sudut pandang, bukan kata yang sudah ada di H1. Contoh yang ditolak user (4 Okt 2026): badge "Blog" + H1 "Blog Timebase". Contoh yang disetujui: "Pilih paket yang pas untuk tim Anda" (Harga), "Miliki software-nya, bukan menyewa" (White Label), "Pusat edukasi" (Blog).
 Halaman SEO juga diberi field `eyebrow` di `data/brief.json` (contoh: "Ukur hasil, bukan jam duduk"), jangan dibiarkan memakai nama halaman. `build.py` (`check_badge`) memberi WARNING bila semua kata badge sudah ada di H1.
 
 ## 3e. Jarak H1 hero ke subjudul
@@ -78,6 +78,9 @@ Halaman dokumen (legal, artikel Panduan, artikel Blog) memakai band `dok-band` d
 
 ## 3h. Teks tombol utama muat 1 baris di HP
 Tombol CTA utama (hero, CTA penutup, White Label) maksimal ±20 karakter, supaya tidak menjadi 2 baris di HP 375px. Contoh: "Aktifkan Timebase" (sebelumnya "Aktifkan Timebase untuk Tim Saya") dan "Minta Penawaran" (sebelumnya "Minta Penawaran White Label"). `check_cta_copy` memberi WARNING bila lebih panjang. User (4 Okt 2026): "lebih singkat katanya, agar di mobile tidak jadi 2 baris".
+
+## 3i. Badge hero muat 1 baris di HP
+Badge (eyebrow) maksimal ±38 karakter, supaya tetap satu baris di HP 375px. Contoh: "Miliki software-nya, bukan sekadar menyewa" (42 karakter, jadi 2 baris) diringkas menjadi "Miliki software-nya, bukan menyewa". `check_badge` memberi WARNING bila lebih panjang. User (4 Okt 2026): "lebih singkat, agar tidak jadi dua baris untuk mobile view".
 
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).

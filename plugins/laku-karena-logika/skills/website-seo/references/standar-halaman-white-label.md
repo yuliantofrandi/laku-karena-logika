@@ -16,7 +16,7 @@ Item **terakhir** di dropdown "Solusi" dengan deskripsi "Beli putus dengan merek
 ## Struktur halaman (urutan tetap)
 | # | Section | Isi & layout |
 |---|---|---|
-| Hero | — | Badge **ajakan** "Miliki software-nya, bukan sekadar menyewa" · H1 "White Label: Sekali Bayar, Tanpa Biaya per Karyawan" · lead untuk perusahaan dengan banyak karyawan · CTA `Minta Penawaran White Label` (WA) · media hero sama dengan semua halaman |
+| Hero | — | Badge **ajakan** "Miliki software-nya, bukan menyewa" · H1 "White Label: Sekali Bayar, Tanpa Biaya per Karyawan" · lead untuk perusahaan dengan banyak karyawan · CTA `Minta Penawaran White Label` (WA) · media hero sama dengan semua halaman |
 | Intro | Paragraf entitas | "Program **white label** <Brand> untuk perusahaan dengan tim besar: beli lisensinya sekali, pasang di server sendiri, dan pakai dengan nama, logo, serta domain perusahaan Anda. <Brand> adalah `{{deskripsi_kecil}}`." (≤45 kata) |
 | 1 | Tagihan bulanan yang ikut membengkak | Header rata tengah + kartu angka `300×` / "biaya lisensi yang ditagih setiap bulan" / "Ilustrasi tim 300 karyawan…" + panel 3 poin (tidak pernah berhenti · naik saat tim tumbuh · data di server pihak lain) |
 | 2 | Untuk siapa White Label ini? | 3 kartu **berikon**: perusahaan dengan ratusan karyawan · grup usaha & holding · organisasi dengan aturan data ketat |

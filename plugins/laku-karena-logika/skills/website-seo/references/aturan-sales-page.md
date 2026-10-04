@@ -90,7 +90,7 @@ Semua produk SaaS/GaaS user bisa dibeli dengan merek sendiri. Halaman `/white-la
 
 | Blok | Isi |
 |---|---|
-| Hero | Badge ajakan "Miliki software-nya, bukan sekadar menyewa" · H1 "White Label: Sekali Bayar, Tanpa Biaya per Karyawan" · lead untuk perusahaan dengan banyak karyawan · CTA `Minta Penawaran White Label` (WA) |
+| Hero | Badge ajakan "Miliki software-nya, bukan menyewa" · H1 "White Label: Sekali Bayar, Tanpa Biaya per Karyawan" · lead untuk perusahaan dengan banyak karyawan · CTA `Minta Penawaran White Label` (WA) |
 | Paragraf entitas | "Program **white label** <Brand> untuk perusahaan dengan tim besar: beli lisensinya sekali, pasang di server sendiri …" + `{{deskripsi_kecil}}` (≤45 kata) |
 | Pain point | "Tagihan bulanan yang ikut membengkak": kartu angka `300×` + "biaya lisensi yang ditagih setiap bulan" (ditandai ilustrasi) · panel: tidak pernah berhenti, naik saat tim tumbuh, data di server pihak lain |
 | Untuk siapa | 3 kartu **berikon**: perusahaan dengan ratusan karyawan · grup usaha & holding · organisasi dengan aturan data ketat |
