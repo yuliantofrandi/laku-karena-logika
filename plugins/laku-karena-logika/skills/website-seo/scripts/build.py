@@ -369,7 +369,8 @@ def figure(g, hero=False):
              f'alt="{html.escape(g["alt"])}" {load} decoding="async">')
     if hero:   # bingkai: bentuk gradasi kecil & miring yang hanya mengintip di belakang media (pemanis)
         media = f'<span class="hero-media">{media}</span>'
-    return f'<figure class="ilus{" hero-img" if hero else ""}">{media}{cap}</figure>'
+    portrait = " portrait" if h > w else ""
+    return f'<figure class="ilus{portrait}{" hero-img" if hero else ""}">{media}{cap}</figure>'
 
 
 def video_figure(g, hero=False):

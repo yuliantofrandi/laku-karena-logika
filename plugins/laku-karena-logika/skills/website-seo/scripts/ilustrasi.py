@@ -598,7 +598,9 @@ def render_svg(item, colors=None):
     inner = frame(item.get("judul", ""), body, window)
     if not window and item.get("judul"):
         inner += t(400, 60, item["judul"], 18, C["mut"], 700, "middle")
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" '
+    # komponen berbentuk ponsel dipotong ke kanvas potret selebar ponselnya (user: "areanya terlalu lebar")
+    vb, vw, vh = (("230 0 340 500", 340, 500) if item["jenis"] == "wa" else (f"0 0 {W} {H}", W, H))
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{vw}" height="{vh}" '
             f'font-family="{FONT}" role="img" aria-label="{e(item["alt"])}">{inner}</svg>\n')
 
 

@@ -170,7 +170,9 @@
           }
         ],
         "animasi": true
-      }
+      },
+      "w": 340,
+      "h": 500
     },
     {
       "id": "timesheet-otomatis",
