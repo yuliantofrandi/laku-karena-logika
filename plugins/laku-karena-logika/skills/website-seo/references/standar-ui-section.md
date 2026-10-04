@@ -57,6 +57,9 @@ Disetujui user (4 Okt 2026): "jika butuh point, kasih icon saja jangan pakai ang
 - Judul section dan pembuka otomatis rata tengah (`split stack center`).
 - Cukup **satu paragraf pembuka**. Jangan menambah `p.note` di bawahnya; gabungkan pesannya ke pembuka ("2 p ini jadikan 1 saja").
 - `span.num` hanya untuk urutan langkah yang memang berurutan, bukan untuk daftar poin.
+- Berlaku di **semua halaman** (user, 4 Okt 2026: "ya, terapkan ke semua halaman"): masalah, fitur, metrik, kesalahan, dan kartu berikon White Label. Kartu di samping video juga memakai gaya ini, dengan susunan 2×2.
+- 5 kartu disusun 3 + 2 di desktop (otomatis lewat CSS), supaya tidak ada satu kartu sendirian di baris kedua.
+- `p.note` yang dulu ada di bawah pembuka digabung ke kalimat pembuka. Tautan internalnya tetap dipertahankan.
 
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).

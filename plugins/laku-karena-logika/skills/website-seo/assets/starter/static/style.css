@@ -436,3 +436,10 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .grid.ikon-tengah .card p{color:var(--muted);font-size:15.5px}
 .ikon-bulat{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--grad);color:#fff;margin:0 auto 18px;box-shadow:0 10px 22px -12px rgba(123,44,255,.55)}
 .band.alt .grid.ikon-tengah .card{background:#fff;border-color:#ebe7f3}
+/* 5 kartu: susun 3 + 2 (tidak ada kartu sendirian di baris kedua) */
+@media (min-width:900px){
+  .grid.ikon-tengah:has(>.card:nth-child(5):last-child){grid-template-columns:repeat(6,minmax(0,1fr))}
+  .grid.ikon-tengah:has(>.card:nth-child(5):last-child)>.card{grid-column:span 2}
+  .grid.ikon-tengah:has(>.card:nth-child(5):last-child)>.card:nth-child(n+4){grid-column:span 3}
+}
+@media (max-width:640px){.grid.ikon-tengah .card{padding:24px 20px}.ikon-bulat{width:52px;height:52px;margin-bottom:14px}}
