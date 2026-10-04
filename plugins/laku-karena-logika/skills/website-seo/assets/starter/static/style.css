@@ -522,3 +522,5 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 /* halaman dokumen (legal, artikel Panduan & Blog): isi langsung di bawah hero, tanpa jarak atas lebar */
 .band.dok-band{padding-top:32px}
 @media (max-width:640px){.band.dok-band{padding-top:24px}}
+/* band CTA penutup: gradasi yang sama dengan hero (permintaan user), selalu beda dari section di atasnya */
+.band.end{background:radial-gradient(900px 460px at 0% -10%,#eee2ff,transparent 62%),radial-gradient(900px 460px at 100% -10%,#ffe8d4,transparent 62%),#fbfafe}
