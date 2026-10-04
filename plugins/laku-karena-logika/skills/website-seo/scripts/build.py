@@ -383,7 +383,8 @@ def video_figure(g, hero=False):
              f'width="{w}" height="{h}" aria-label="{html.escape(g["alt"])}"></video>')
     if hero:
         media = f'<span class="hero-media">{media}</span>'
-    return f'<figure class="ilus video{portrait}{" hero-img" if hero else ""}">{media}{cap}</figure>'
+    sama = " kolom-sama" if g.get("kolom") == "sama" else ""
+    return f'<figure class="ilus video{portrait}{sama}{" hero-img" if hero else ""}">{media}{cap}</figure>'
 
 
 # Setelah halaman selesai dimuat (tidak bersaing dengan LCP), muat video saat mendekati layar;
@@ -543,7 +544,8 @@ def render_section(blocks, idx, S=None):
     lead = h2 + "".join(paras)
     if fig:
         flip = " flip" if idx % 2 else ""
-        potret = " potret" if "portrait" in fig else ""   # media potret → kolom media selebar media saja
+        # media potret → kolom media selebar media saja, kecuali entri meminta kolom 50:50 ("kolom": "sama")
+        potret = " potret" if "portrait" in fig and "kolom-sama" not in fig else ""
         row = (f'<div class="split media{flip}{potret}"><div class="col-text">{lead}{"".join(scan)}</div>'
                f'<div class="col-media">{fig}</div></div>')
     elif faq:

@@ -225,7 +225,8 @@
       "video": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas.mp4",
       "file": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas-poster.jpg",
       "w": 720,
-      "h": 1280
+      "h": 1280,
+      "kolom": "sama"
     },
     {
       "id": "tiga-kategori-alat",
