@@ -29,6 +29,31 @@ Bundel skill ini:
 
 Lokasi folder produk tidak di-hardcode: pakai folder tempat BKB berada (biasanya working directory). Website dibuat di `<folder-produk>/website/`.
 
+## Ceklis wajib setiap landing page (ringkas)
+Detailnya ada di reference masing-masing. Build memberi ERROR/WARNING untuk sebagian besar poin ini.
+- **Menu utama:** Solusi ▾ (+ White Label sebagai item terakhir) · Harga · Blog · Panduan. Jarak antar menu 40px, posisi di tengah. Sign In + Langganan di kanan.
+- **Halaman wajib:**
+  - Harga (tabel di desktop, tab per paket di HP, modal langganan → QRIS);
+  - White Label;
+  - Syarat Layanan + Kebijakan Privasi (isi nyata);
+  - Blog (API Lakukan).
+- **Hero:**
+  - badge = kalimat ajakan, tidak mengulang H1, maks ±38 karakter (1 baris di HP);
+  - jarak H1 ke subjudul 4px, subjudul maks 620px;
+  - tombol utama maks ±20 karakter.
+- **Section:**
+  - poin memakai ikon bulat gradasi (`grid.ikon-tengah`), angka hanya untuk langkah berurutan;
+  - satu paragraf pembuka per section;
+  - 5 kartu disusun 3 + 2.
+- **CTA penutup:** blok gelap di atas band bergradasi hero.
+- **Tombol WA melayang** di semua jenis halaman, termasuk HP.
+- **Footer:** Solusi | Blog (5 artikel terbaru, judul ringkas 1 baris) | Panduan. Link legal + hak cipta di bawahnya. Di HP: 2 kolom ringkas.
+- **Konten "(SEO saja)" dari keyword plan** menjadi artikel Blog di CMS dengan pola artikel acuan dan 3 infografis per artikel, bukan halaman statis.
+- **Verifikasi** di 1440 dan 375px, termasuk setiap halaman artikel CMS:
+  - tanpa scroll samping;
+  - kolom seimbang;
+  - pratinjau memakai `scripts/serve.py` (tanpa cache).
+
 ## Langkah 0 — Baca input, lalu tanya SEKALI
 
 Baca BKB dan keyword plan sampai tuntas. Jangan mencari-cari file di luar folder produk. Kalau salah satu tidak ada, minta user melampirkannya.

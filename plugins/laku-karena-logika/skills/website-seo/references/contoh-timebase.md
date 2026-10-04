@@ -57,3 +57,23 @@ Software monitoring aktivitas & akuntabilitas kerja untuk tim WFA di Indonesia. 
 - Regex klaim terlarang harus spesifik ("pertama di Indonesia", "aplikasi pertama"), karena "yang pertama" juga muncul dalam kalimat biasa.
 - Logo SVG berbasis `<text>` perlu `textLength` agar jarak ke ikon konsisten di semua font.
 - Hasil: tiap halaman 1 request HTML ±30–40 KB, nol request eksternal, CLS 0.
+
+
+## Sesi 4–5 Okt 2026: keputusan penting
+- **Kartu poin berikon, bukan angka** (gambar referensi user). Diterapkan di semua halaman, dengan satu paragraf pembuka per section.
+- **Konten dari API Lakukan:** menu Panduan (hub kartu per kategori) dan **Blog wajib** (draf dilewati, "segera terbit" + noindex bila kosong). Badge Blog: "Pusat edukasi".
+- **Halaman "(SEO saja)" dipindah ke Blog CMS.** Diunggah lewat admin API (`X-API-Key`), URL lama dialihkan, artikel UU PDP tetap noindex. Lalu ditulis ulang mengikuti pola `/blog/kerja-wfa-profesional` dengan infografis 1600×900.
+- **Halaman artikel:**
+  - hanya "Terakhir diperbarui <tanggal>", tanpa nama penulis;
+  - daftar isi sticky di kanan, tanpa "Artikel terbaru" (sudah ada di footer);
+  - padding atas 32px;
+  - tabel dibungkus `table-wrap`.
+- **Harga:**
+  - modal langganan: jumlah karyawan maks 999, tanpa email, WA hanya angka;
+  - QRIS payment gateway dengan cek status lalu "Pembayaran diterima" + tombol masuk (kontrak API di `kontrak-api-langganan.md`);
+  - tab per paket di HP.
+- **Ringkas di HP:**
+  - tombol "Aktifkan Timebase" / "Minta Penawaran" dan badge maks 1 baris;
+  - footer 2 kolom.
+- **Dicoba lalu dibatalkan user (jangan diusulkan lagi):** subjudul hero selebar heading.
+- **Menu:** Solusi · Harga · Blog · Panduan (alur pembeli).
