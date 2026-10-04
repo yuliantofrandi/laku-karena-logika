@@ -63,7 +63,7 @@ def modal(S, P):
   <fieldset class="lg-data"><legend>Data untuk aktivasi akun</legend>
     <label class="lg-field"><span>Nama lengkap</span><input name="nama" autocomplete="name" required></label>
     <label class="lg-field"><span>Nama perusahaan</span><input name="perusahaan" autocomplete="organization" required></label>
-    <label class="lg-field lg-penuh"><span>No. WhatsApp</span><input name="wa" type="tel" autocomplete="tel" inputmode="tel" placeholder="08…" required></label>
+    <label class="lg-field lg-penuh"><span>No. WhatsApp</span><input name="wa" type="tel" autocomplete="tel" inputmode="numeric" placeholder="08…" pattern="\\+?[0-9]{{9,15}}" maxlength="16" required></label>
   </fieldset>
   <p class="lg-kecil">Dengan melanjutkan, Anda menyetujui {syarat} dan {privasi} {html.escape(S["brand"])}.</p>
   <p class="lg-galat" data-galat hidden></p>
@@ -122,7 +122,10 @@ function buka(id,periode){
 function langkah(n){[].forEach.call(dlg.querySelectorAll('[data-langkah]'),function(el){el.hidden=el.getAttribute('data-langkah')!=String(n)})}
 function lanjut(){
   var g=q('[data-galat]'),kosong=[].filter.call(f.querySelectorAll('[required]'),function(i){return !i.checkValidity()});
-  if(kosong.length){g.textContent='Lengkapi data yang ditandai: '+kosong.map(function(i){return i.closest('label').querySelector('span').textContent}).join(', ')+'.';g.hidden=false;kosong[0].focus();return}
+  if(kosong.length){var nama=function(i){return i.closest('label').querySelector('span').textContent},
+      belum=kosong.filter(function(i){return !i.value.trim()}),salah=kosong.filter(function(i){return i.value.trim()});
+    g.textContent=(belum.length?'Lengkapi: '+belum.map(nama).join(', ')+'. ':'')+(salah.indexOf(f.wa)>-1?'No. WhatsApp harus 9–15 angka.':'');
+    g.hidden=false;kosong[0].focus();return}
   g.hidden=true;var h=hitung(),d=new Date();
   order='TB-'+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
   var per=h.thn?'tahunan':'bulanan',addNama=[].map.call(f.querySelectorAll('[name=addon]:checked'),function(c){return D.addon[c.value].nama});
@@ -145,6 +148,7 @@ document.addEventListener('click',function(e){
   if(buka(b.getAttribute('data-paket'),thn?'tahunan':b.getAttribute('data-periode')))e.preventDefault()
 });
 f.addEventListener('input',function(e){
+  if(e.target===f.wa){var w=f.wa.value,p=w.trim().charAt(0)==='+'?'+':'',d=w.replace(/\D/g,'').slice(0,15);if(p+d!==w)f.wa.value=p+d}
   if(e.target===f.karyawan){var v=f.karyawan.value.replace(/\D/g,'').slice(0,String(D.max).length);if(+v>D.max)v=String(D.max);if(v!==f.karyawan.value)f.karyawan.value=v}
   if(paket)hitung()});
 q('[data-lanjut]').addEventListener('click',lanjut);
