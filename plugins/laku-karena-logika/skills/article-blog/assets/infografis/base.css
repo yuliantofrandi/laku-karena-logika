@@ -4,7 +4,7 @@
    Default di bawah = TimeBase (ungu-pink-oranye, Montserrat 800). */
 @font-face{font-family:"Montserrat";font-weight:800;src:url(montserrat-latin-800-normal.woff2) format("woff2")}
 :root{--purple:#7B2CFF;--pink:#E83AAE;--orange:#FF8A00;--ink:#1b1626;--ink-2:#4a4458;--muted:#5f5870;--line:#e9e5f0;--bg-soft:#f8f6fc;--bg-tint:#f3edff;--green:#16a34a;--red:#dc2626;
---grad:linear-gradient(90deg,var(--purple),var(--pink) 52%,var(--orange))}
+--grad:linear-gradient(90deg,var(--purple),var(--pink) 52%,var(--orange));--card:#fff;--shadow:0 18px 40px rgba(27,22,38,.07)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:1600px;height:900px;overflow:hidden}
 body{font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff;position:relative}
@@ -20,3 +20,19 @@ h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;c
 .brand small{font-family:-apple-system,Arial;font-weight:600;font-size:15px;letter-spacing:.18em;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-left:12px;text-transform:uppercase}
 .ico{width:64px;height:64px;border-radius:50%;background:var(--grad);display:grid;place-items:center;flex:none;box-shadow:0 10px 24px rgba(123,44,255,.25)}
 .ico svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ===== Tema latar (pasang di <body class="...">) — variasikan antar-infografis =====
+   (tanpa kelas) terang   : putih + cahaya lembut ungu/oranye (default)
+   tema-lembut            : latar tint ungu muda, kartu putih
+   tema-gelap             : latar gelap tinta, teks putih, kartu transparan
+   tema-gradasi           : latar gradasi merek penuh, teks putih — paling mencolok, cocok untuk sampul */
+.tema-lembut .bg{background:radial-gradient(800px 500px at 0% 0%,#ffe9f6 0%,transparent 60%),var(--bg-tint)}
+.tema-gelap{--ink:#fff;--ink-2:rgba(255,255,255,.78);--muted:rgba(255,255,255,.6);--line:rgba(255,255,255,.14);--card:rgba(255,255,255,.06);--bg-tint:rgba(255,255,255,.1);--shadow:none;color:#fff}
+.tema-gelap .bg{background:radial-gradient(900px 600px at 100% 0%,rgba(123,44,255,.45) 0%,transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(255,138,0,.28) 0%,transparent 60%),#15111f}
+.tema-gelap .eyebrow{color:#fff}
+.tema-gradasi{--ink:#fff;--ink-2:rgba(255,255,255,.9);--muted:rgba(255,255,255,.8);--line:rgba(255,255,255,.3);--card:rgba(255,255,255,.14);--bg-tint:rgba(255,255,255,.2);--shadow:none;color:#fff}
+.tema-gradasi .bg{background:linear-gradient(120deg,var(--purple),var(--pink) 55%,var(--orange))}
+.tema-gradasi .eyebrow{color:#fff}.tema-gradasi .eyebrow:before{background:#fff}
+.tema-gradasi h1 .g{background:none;color:#fff;-webkit-text-fill-color:#fff;text-decoration:underline;text-decoration-thickness:6px;text-underline-offset:10px}
+.tema-gradasi .brand{background:none;color:#fff;-webkit-text-fill-color:#fff}
+.tema-gradasi .ico{background:rgba(255,255,255,.22);box-shadow:none}

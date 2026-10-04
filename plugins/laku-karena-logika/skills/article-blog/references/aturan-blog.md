@@ -33,13 +33,39 @@ Contoh yang sudah disetujui user: `contoh-blog-timebase.json` ("Kerja WFA Profes
 ## Gambar
 - **3 infografis bermerek + 1–2 screenshot produk tersamar** per artikel. Letakkan satu gambar setelah paragraf pengantar bagian yang dijelaskannya.
 - Infografis: kanvas 1600×900 (16:9), memakai template `assets/infografis/` (lihat bawah), dirender dengan `scripts/render_infografis.py`. Ukuran hasil ±120–140 KB.
-- Pola yang sudah disetujui:
-  - `contoh-kartu-pilar.html`: 3–4 kartu pilar/prinsip berikon. Cocok untuk ringkasan utama dan **sampul**.
-  - `contoh-timeline.html`: 4–6 langkah berurutan/ritme waktu.
-  - `contoh-hindari-vs-lakukan.html`: dua kolom ✕ hindari vs ✓ lakukan (aturan/kesalahan umum).
+- Pola & tema: lihat "Variasi infografis" di bawah. Tiga infografis dalam satu artikel tidak boleh terlihat seragam.
 - Teks infografis singkat: judul ≤ 1 baris dengan bagian penting diberi gradasi (`<span class="g">`), eyebrow, maksimal ±12 kata per kartu, dan footer berisi logo teks + tagline.
 - Warna & font mengikuti merek produk: ambil token dari `static/style.css` website produk (`--purple`, `--pink`, `--orange`, `--grad`, `--ink`) dan font judul dari `static/fonts/`. Default template = TimeBase.
 - Nama file gambar memakai kata kunci, misalnya `infografis-ritme-harian-kerja-wfa.jpg` atau `screenshot-detail-aktivitas-karyawan.jpg`.
 - Keterangan gambar berupa satu kalimat tentang isinya. Screenshot ditandai "Data pribadi pada gambar disamarkan" bila ada data yang disamarkan.
 - Screenshot produk wajib disamarkan dengan aturan yang sama seperti `article-docs`: nama → dummy, 4 digit akhir telepon di-blur, foto profil tetap. Hasil `img-anonim/` dari `article-docs` boleh dipakai ulang.
 - **Lihat setiap gambar** setelah dirender: tidak ada teks terpotong atau tumpang tindih, dan judul tidak memakan dua baris kecuali disengaja.
+
+## Variasi infografis (agar pembaca tidak bosan)
+
+Satu artikel = 3 infografis dengan **3 pola berbeda dari kelompok berbeda** dan **minimal 2 tema latar**. Antar-artikel, rotasi pola sampul dan hindari mengulang kombinasi pola artikel blog terakhir.
+
+### Katalog pola (`assets/infografis/`)
+| Kelompok | Pola | Cocok untuk | Tema bawaan contoh |
+|---|---|---|---|
+| Ringkasan | `contoh-kartu-pilar.html` | 3–4 prinsip/pilar berikon | terang |
+| Ringkasan | `contoh-pernyataan.html` | satu pesan utama besar + 3 poin pendukung — sampul yang mencolok | `tema-gradasi` |
+| Ringkasan | `contoh-siklus.html` | 4 kebiasaan yang berulang mengelilingi satu tujuan | `tema-lembut` |
+| Proses | `contoh-timeline.html` | 4–6 langkah berurutan / ritme jam | terang |
+| Proses | `contoh-tangga-level.html` | 3–4 tingkat kematangan / tahapan naik | terang |
+| Perbandingan & keputusan | `contoh-hindari-vs-lakukan.html` | ✕ kesalahan vs ✓ kebiasaan baik | terang |
+| Perbandingan & keputusan | `contoh-alur-keputusan.html` | 2 pertanyaan ya/tidak → hasil | terang |
+| Data & praktik | `contoh-angka-besar.html` | 3–4 angka kunci (jam, batas, target) | `tema-gelap` |
+| Data & praktik | `contoh-checklist.html` | checklist yang bisa langsung dipakai pembaca | terang |
+
+### Tema latar (kelas di `<body>`, didefinisikan di `base.css`)
+- *(tanpa kelas)* terang — putih dengan cahaya lembut warna merek.
+- `tema-lembut` — latar tint warna merek, kartu putih.
+- `tema-gelap` — latar gelap, teks putih, angka/aksen gradasi. Paling kuat untuk angka besar.
+- `tema-gradasi` — latar gradasi merek penuh, teks putih. Maksimal satu per artikel, paling cocok untuk sampul.
+- Pola dengan warna isi tetap (`contoh-hindari-vs-lakukan`, `contoh-alur-keputusan`, `contoh-tangga-level`) dipakai di tema terang atau `tema-lembut`.
+
+### Contoh kombinasi yang baik
+- Sampul `pernyataan` (gradasi) + `timeline` (terang) + `checklist` (lembut).
+- Sampul `angka-besar` (gelap) + `siklus` (lembut) + `hindari-vs-lakukan` (terang).
+- Sampul `kartu-pilar` (lembut) + `alur-keputusan` (terang) + `tangga-level` (terang).

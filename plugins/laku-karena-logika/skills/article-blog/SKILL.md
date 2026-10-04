@@ -31,9 +31,13 @@ Urutan WAJIB: input → kerangka & sudut pandang → tulis isi → infografis �
 - Produk tampil di satu bagian sebagai bukti nyata, misalnya data Active/Idle/Distraction di TimeBase. Tanpa harga, tanpa klaim superlatif, tanpa nama kompetitor.
 - Tandai posisi gambar dengan `{{img:nama-file.jpg|Keterangan satu kalimat.}}`.
 
-## 3. Infografis (3 buah)
+## 3. Infografis (3 buah, WAJIB bervariasi)
 1. Salin `assets/infografis/*` ke folder kerja. Ganti token warna dan font di `base.css` sesuai merek produk; bila produknya TimeBase, biarkan default.
-2. Buat 3 HTML dari pola contoh: `contoh-kartu-pilar.html` (ringkasan utama, sekaligus **sampul**), `contoh-timeline.html` (langkah/ritme), dan `contoh-hindari-vs-lakukan.html` (aturan/kesalahan vs kebiasaan baik). Ganti isinya sesuai artikel dengan teks singkat dan footer logo teks + tagline merek.
+2. **Pilih 3 pola yang berbeda** dari katalog 9 pola di `references/aturan-blog.md` (bagian "Variasi infografis"), sesuai isi tiap bagian artikel — bukan selalu kartu pilar + timeline + hindari/lakukan. Aturannya:
+   - 3 pola dari **kelompok yang berbeda** (ringkasan, proses, perbandingan/keputusan, data/checklist).
+   - Minimal **2 tema latar berbeda** (terang, `tema-lembut`, `tema-gelap`, `tema-gradasi`) lewat kelas di `<body>`.
+   - **Sampul dirotasi**: jangan selalu kartu pilar. Bila artikel blog sebelumnya diketahui (folder kerja lama, `posting.py ambil`, atau halaman /blog), hindari pola sampul dan kombinasi 3 pola yang sama dengan artikel terakhir.
+   Ganti isinya sesuai artikel dengan teks singkat dan footer logo teks + tagline merek.
 3. `python3 scripts/render_infografis.py --src <kerja> --out <folder gambar> --nama a.html=infografis-<kata-kunci>.jpg …`
 4. **Lihat setiap JPG**. Perbaiki HTML lalu render ulang bila ada teks terpotong, judul dua baris yang mendesak isi, atau ruang kosong janggal.
 
@@ -58,6 +62,6 @@ Urutan WAJIB: input → kerangka & sudut pandang → tulis isi → infografis �
 
 ## 6. Laporan
 - Judul, slug, kategori, panjang (kata), dan status terbit beserta hasil verifikasi publik.
-- Alur bagian (`h2`) dan daftar gambar (3 infografis + screenshot) beserta isinya.
+- Alur bagian (`h2`) dan daftar gambar (3 infografis + screenshot) beserta isinya, termasuk **pola + tema** tiap infografis.
 - Penyesuaian dari materi user, misalnya nama internal yang disamarkan menjadi "contoh kebijakan", dan tawarkan opsi menyebut nama perusahaan bila user mau.
 - Pengingat bahwa artikel tampil di /blog setelah website dibuild ulang dan dideploy.
