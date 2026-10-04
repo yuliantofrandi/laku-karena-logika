@@ -18,10 +18,12 @@ from pathlib import Path
 from urllib.parse import quote
 
 import ilustrasi as ILUS
+import panduan as PANDUAN
 
 ROOT = Path(__file__).resolve().parent
 SOCIAL = {"testimonials": [], "metrics": []}
 SITE = {}
+PANDUAN_FOOT = []   # [(nama kategori, url)] untuk kolom footer Panduan
 DIST = ROOT / "dist"
 
 # Klaim yang tidak boleh muncul (BKB: penelusuran jam→tugas→aplikasi→layar adalah standar kategori)
@@ -428,9 +430,16 @@ def jsonld(S, page, body, P, indexable):
         **({"url": url} if base else {}), "publisher": {"@id": f"{base}/#org"},
     }]
     if page["slug"] != "/":
+        crumbs = [(S["brand"], "/")] + page.get("crumbs", [(page["name"], page["slug"])])
         graph.append({"@type": "BreadcrumbList", "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": S["brand"], **({"item": base + "/"} if base else {})},
-            {"@type": "ListItem", "position": 2, "name": page["name"], **({"item": url} if base else {})}]})
+            {"@type": "ListItem", "position": i, "name": n, **({"item": base + u} if base else {})}
+            for i, (n, u) in enumerate(crumbs, 1)]})
+    if page.get("artikel"):
+        a = page["artikel"]
+        graph.append({"@type": "Article", "headline": page["h1"], "description": page["meta"], "inLanguage": "id-ID",
+                      "datePublished": a["published"], "dateModified": a["updated"],
+                      "author": {"@type": "Organization", "name": a["author"]}, "publisher": {"@id": f"{base}/#org"},
+                      **({"image": a["image"]} if a.get("image") else {}), **({"mainEntityOfPage": url} if base else {})})
     if page.get("product_schema"):
         offers = [{"@type": "Offer", "name": f'{S["brand"]} {x["name"]}', "priceCurrency": "IDR",
                    "price": str(max(x["monthly"])),
@@ -465,7 +474,9 @@ def nav_item(it, current, CUR):
         return (f'<details class="nav-group{" active" if active else ""}"><summary>{it["label"]}</summary>'
                 f'<ul class="submenu">{subs}</ul></details>')
     slug, label = it[0], it[1]
-    return f'<a href="{slug}"{CUR if slug == current else ""}>{label}</a>'
+    # menu tetap aktif di sub-halaman (mis. /panduan/<kategori>/<artikel>)
+    aktif = slug == current or (slug != "/" and current.startswith(slug + "/"))
+    return f'<a href="{slug}"{CUR if aktif else ""}>{label}</a>'
 
 
 # ---------- tata letak section (band dua kolom + teks dilipat) ----------
@@ -692,13 +703,14 @@ def render(S, page, body, P, all_pages, indexable):
 {hero_stats(S) if page["slug"] != "/404" and not page.get("sederhana") else ""}
 </div>{hero_img}</div></section>
 <article class="content prose">
-{('<section class="band dok-band"><div class="wrap">' + body + '</div></section>') if page.get("dokumen") else layout_sections(body)}
+{body if page.get("mentah") else ('<section class="band dok-band"><div class="wrap">' + body + '</div></section>') if page.get("dokumen") else layout_sections(body)}
 </article>
 </main>
-<footer class="site-footer"><div class="wrap">
+<footer class="site-footer"><div class="wrap{' kolom-4' if PANDUAN_FOOT else ''}">
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
-<div><h2>Panduan</h2><ul>{flinks(panduan)}</ul></div>
+<div><h2>{"Artikel" if PANDUAN_FOOT else "Panduan"}</h2><ul>{flinks(panduan)}</ul></div>
+{('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan</a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
 {VIDEO_JS if 'video muted' in body + hero_img else ''}
@@ -924,6 +936,17 @@ def main():
         p["product_schema"] = p["slug"] in S["product_pages"]
     slugs = {p["slug"] for p in pages}
 
+    # menu Panduan: artikel bantuan dari API (site.json panduan) → /panduan, /panduan/<kategori>, /panduan/<kategori>/<artikel>
+    pd_pages = []
+    if S.get("panduan", {}).get("company_slug"):
+        pd_data = PANDUAN.ambil(S["panduan"], ROOT / "data" / "panduan-cache.json", lambda m: warn("/panduan", m))
+        if pd_data:
+            pd_pages, foot = PANDUAN.halaman(S, S["panduan"], pd_data)
+            PANDUAN_FOOT[:] = foot
+            slugs |= {pg["slug"] for pg, _ in pd_pages}
+    if any(isinstance(it, list) and it[0] == "/panduan" for it in S["nav"]) and not pd_pages:
+        err("/panduan", "menu Panduan ada di site.json nav tapi tidak ada artikel (cek site.json panduan / API)")
+
     # aturan tetap: setiap landing page wajib punya Syarat Layanan & Kebijakan Privasi (isi nyata, tautan di footer)
     legal_slugs = [x["slug"] for x in S.get("legal", [])]
     for wajib, nama in (("/syarat-layanan", "Syarat Layanan"), ("/kebijakan-privasi", "Kebijakan Privasi")):
@@ -1100,16 +1123,21 @@ def main():
             out = DIST / lg["slug"].strip("/") / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(render(S, pg, body_lg, P, pages, False), encoding="utf-8")
+        for pg, body_pd in pd_pages:
+            out = DIST / pg["slug"].strip("/") / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(render(S, pg, body_pd, P, pages, True), encoding="utf-8")
         robots = "User-agent: *\nAllow: /\n"
         if S.get("site_url"):
             urls = "".join(f"<url><loc>{S['site_url']}{p['slug']}</loc></url>" for p, _, ok in built if ok)
+            urls += "".join(f"<url><loc>{S['site_url']}{pg['slug']}</loc></url>" for pg, _ in pd_pages)
             (DIST / "sitemap.xml").write_text(
                 f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>',
                 encoding="utf-8")
             robots += f"Sitemap: {S['site_url']}/sitemap.xml\n"
         (DIST / "robots.txt").write_text(robots, encoding="utf-8")
 
-    print(f"{len(built)} halaman diperiksa")
+    print(f"{len(built)} halaman diperiksa" + (f" + {len(pd_pages)} halaman panduan dari API" if pd_pages else ""))
     for p, _, ok in built:
         print(f"  {p['slug']:<34} {p.get('_words', 0):>5} kata  {'index' if ok else 'NOINDEX'}")
     for w in warnings:
