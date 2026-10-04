@@ -672,3 +672,7 @@ dialog.lg [hidden]{display:none!important}
 /* footer Blog: judul artikel ringkas, selalu 1 baris (permintaan user: judul blog terlalu panjang) */
 .foot-blog li a{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .site-footer .wrap>div{min-width:0} /* kolom grid boleh menyempit → judul Blog terpotong "…", bukan melebarkan kolom */
+/* daftar Blog/Panduan: jarak atas sama dengan halaman dokumen (32px), kartu pertama tanpa margin tambahan */
+.band.pd-band{padding-top:32px}
+@media (max-width:640px){.band.pd-band{padding-top:24px}}
+.pd-band .wrap>:first-child{margin-top:0!important}

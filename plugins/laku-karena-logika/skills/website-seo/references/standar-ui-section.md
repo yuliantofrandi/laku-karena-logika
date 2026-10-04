@@ -74,7 +74,7 @@ H1 hero memakai `margin-bottom: 4px` di semua halaman, sama dengan H2 section (1
 Subjudul hero (`.lead`) dibatasi `max-width: 620px` di semua hero, termasuk hero tanpa gambar (legal, Panduan, Blog). Versi yang selebar heading sudah dicoba lalu dibatalkan user (4 Okt 2026): "kembalikan seperti semula, ternyata bagus yang lama". Jangan mengusulkannya lagi.
 
 ## 3f. Jarak atas halaman dokumen
-Halaman dokumen (legal, artikel Panduan, artikel Blog) memakai band `dok-band` dengan `padding-top: 32px` (24px di mobile), bukan 64px seperti band biasa. Isinya langsung tampil di bawah hero. User (4 Okt 2026) pada artikel blog: "margin atasnya terlalu tinggi".
+Halaman dokumen (legal, artikel Panduan, artikel Blog) **dan halaman daftar Blog/Panduan/kategori** (`pd-band`) memakai `padding-top: 32px` (24px di mobile), bukan 64px seperti band biasa. Elemen pertama di daftar tidak boleh menambah margin atas (sebelumnya kartu utama Blog menambah 24px). User (5 Okt 2026) pada `/blog`: "padding atas terlalu tinggi". Isinya langsung tampil di bawah hero. User (4 Okt 2026) pada artikel blog: "margin atasnya terlalu tinggi".
 
 ## 3h. Teks tombol utama muat 1 baris di HP
 Tombol CTA utama (hero, CTA penutup, White Label) maksimal ±20 karakter, supaya tidak menjadi 2 baris di HP 375px. Contoh: "Aktifkan Timebase" (sebelumnya "Aktifkan Timebase untuk Tim Saya") dan "Minta Penawaran" (sebelumnya "Minta Penawaran White Label"). `check_cta_copy` memberi WARNING bila lebih panjang. User (4 Okt 2026): "lebih singkat katanya, agar di mobile tidak jadi 2 baris".
