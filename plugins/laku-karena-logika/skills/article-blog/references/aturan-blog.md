@@ -3,7 +3,7 @@
 Contoh yang sudah disetujui user: `contoh-blog-timebase.json` ("Kerja WFA Profesional: Panduan agar Hak WFA Tetap Terjaga", 4 Okt 2026). Artikel ini dibuat dari aturan WFA internal perusahaan user dan terbit di kategori Blog TimeBase.
 
 ## Pembaca & tujuan
-- Pembaca blog: karyawan, atasan/HR, dan calon pelanggan yang mencari wawasan, bukan petunjuk klik menu (petunjuk klik adalah wilayah `docs-article`).
+- Pembaca blog: karyawan, atasan/HR, dan calon pelanggan yang mencari wawasan, bukan petunjuk klik menu (petunjuk klik adalah wilayah `article-docs`).
 - Tujuan: mengedukasi dan membangun kepercayaan, lalu mengarahkan pembaca dengan lembut ke produk. Produk muncul sebagai solusi alami di satu bagian, bukan iklan di setiap paragraf.
 
 ## Kategori
@@ -41,5 +41,5 @@ Contoh yang sudah disetujui user: `contoh-blog-timebase.json` ("Kerja WFA Profes
 - Warna & font mengikuti merek produk: ambil token dari `static/style.css` website produk (`--purple`, `--pink`, `--orange`, `--grad`, `--ink`) dan font judul dari `static/fonts/`. Default template = TimeBase.
 - Nama file gambar memakai kata kunci, misalnya `infografis-ritme-harian-kerja-wfa.jpg` atau `screenshot-detail-aktivitas-karyawan.jpg`.
 - Keterangan gambar berupa satu kalimat tentang isinya. Screenshot ditandai "Data pribadi pada gambar disamarkan" bila ada data yang disamarkan.
-- Screenshot produk wajib disamarkan dengan aturan yang sama seperti `docs-article`: nama → dummy, 4 digit akhir telepon di-blur, foto profil tetap. Hasil `img-anonim/` dari `docs-article` boleh dipakai ulang.
+- Screenshot produk wajib disamarkan dengan aturan yang sama seperti `article-docs`: nama → dummy, 4 digit akhir telepon di-blur, foto profil tetap. Hasil `img-anonim/` dari `article-docs` boleh dipakai ulang.
 - **Lihat setiap gambar** setelah dirender: tidak ada teks terpotong atau tumpang tindih, dan judul tidak memakan dua baris kecuali disengaja.

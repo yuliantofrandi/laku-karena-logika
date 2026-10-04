@@ -47,7 +47,7 @@ import argparse, html, json, mimetypes, os, re, sys, time, urllib.error, urllib.
 
 API = os.environ.get("LAKUKAN_API", "https://api.lakukan.id").rstrip("/")
 ADMIN = API + "/core/v1/admin"
-UA = "laku-karena-logika-docs-article/1.0 (+https://github.com/yuliantofrandi/laku-karena-logika)"
+UA = "laku-karena-logika-article-docs/1.0 (+https://github.com/yuliantofrandi/laku-karena-logika)"
 IMG = re.compile(r"\{\{img:([^|}]+)\|([^}]*)\}\}")
 
 def key():

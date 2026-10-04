@@ -1,9 +1,9 @@
 ---
-name: docs-article
+name: article-docs
 description: Mengubah folder dokumentasi/panduan aplikasi SaaS (halaman HTML/Markdown + screenshot) menjadi seri artikel tutorial yang mudah dipahami tamu website, menyamarkan data pribadi di screenshot (nama → nama dummy, 4 digit akhir nomor telepon di-blur, foto profil tetap), lalu memposting otomatis ke CMS api.lakukan.id — kategori Docs › kelompok tutorial, gambar isi, sampul, dan status terbit — sehingga langsung tampil di menu Panduan website. Bisa untuk satu seri panduan, SATU artikel saja, atau MENGUPDATE artikel yang sudah terbit (ambil dari CMS → edit → simpan, tanpa duplikat). Gunakan saat pengguna berkata "pelajari folder panduan ini lalu posting", "posting panduan ke CMS", "upload dokumentasi ke lakukan", "buat artikel tutorial dari dokumentasi", "jadikan panduan ini artikel di website", "posting satu artikel tentang X", "update/revisi artikel X", "ganti gambar/judul artikel X di CMS", atau memberi folder panduan + API key Lakukan.
 ---
 
-# Docs Article – Dokumentasi ke CMS Lakukan
+# Article Docs – Dokumentasi ke CMS Lakukan
 
 Ubah dokumentasi aplikasi menjadi artikel tutorial di CMS `api.lakukan.id`. Artikel ini menjadi sumber menu **Panduan** yang dibangun skill `website-seo`, sehingga tamu website bisa memahami cara aplikasi SaaS bekerja.
 

@@ -7,9 +7,9 @@ description: Menulis satu artikel BLOG edukatif untuk produk SaaS (mis. TimeBase
 
 Tulis satu artikel blog yang mengedukasi pembaca, misalnya "agar karyawan profesional bekerja WFA", lengkapi dengan infografis bermerek yang informatif, lalu terbitkan ke kategori **Blog** di CMS `api.lakukan.id`. Website produk (`website-seo`) menampilkannya di /blog setelah dibuild ulang.
 
-Skill ini **memakai ulang skrip dari skill `docs-article`** di plugin yang sama:
-- `../docs-article/scripts/posting.py` untuk `cek`, `posting`, `ambil`, dan `publik`
-- `../docs-article/scripts/samarkan.py` untuk menyamarkan screenshot
+Skill ini **memakai ulang skrip dari skill `article-docs`** di plugin yang sama:
+- `../article-docs/scripts/posting.py` untuk `cek`, `posting`, `ambil`, dan `publik`
+- `../article-docs/scripts/samarkan.py` untuk menyamarkan screenshot
 
 Skrip milik skill ini sendiri: `scripts/render_infografis.py` dan template `assets/infografis/`. Aturan lengkap ada di `references/aturan-blog.md`, dan contoh yang sudah disetujui di `references/contoh-blog-timebase.json`.
 
@@ -38,8 +38,8 @@ Urutan WAJIB: input → kerangka & sudut pandang → tulis isi → infografis �
 4. **Lihat setiap JPG**. Perbaiki HTML lalu render ulang bila ada teks terpotong, judul dua baris yang mendesak isi, atau ruang kosong janggal.
 
 ## 4. Screenshot produk (1–2 buah)
-- Pakai screenshot yang relevan dengan bagian produk. Bila sudah ada versi tersamar (mis. `assets/img-anonim/` dari `docs-article`), salin dan beri nama berkata kunci.
-- Screenshot baru wajib disamarkan dengan `../docs-article/scripts/samarkan.py` (nama → dummy, 4 digit akhir telepon di-blur, foto profil tetap), lalu diperiksa visual.
+- Pakai screenshot yang relevan dengan bagian produk. Bila sudah ada versi tersamar (mis. `assets/img-anonim/` dari `article-docs`), salin dan beri nama berkata kunci.
+- Screenshot baru wajib disamarkan dengan `../article-docs/scripts/samarkan.py` (nama → dummy, 4 digit akhir telepon di-blur, foto profil tetap), lalu diperiksa visual.
 
 ## 5. `artikel.json`, cek, posting
 ```json
@@ -48,10 +48,10 @@ Urutan WAJIB: input → kerangka & sudut pandang → tulis isi → infografis �
    "sampul": "infografis-....jpg", "status": "published", "isi": "<p>…</p>{{img:…|…}}"}]}
 ```
 - `{"slug": "blog"}` tanpa `nama` berarti rujukan, sehingga kategori Blog tidak diubah.
-- `python3 ../docs-article/scripts/posting.py cek --data artikel.json --gambar <folder gambar>`
+- `python3 ../article-docs/scripts/posting.py cek --data artikel.json --gambar <folder gambar>`
 - Bila user meminta "buatkan/input/posting blog", langsung terbitkan (`status: published`). Bila user hanya minta draf atau masih ragu, pakai `--draft` atau tanyakan sekali.
-- `python3 ../docs-article/scripts/posting.py posting --data artikel.json --gambar <folder gambar>`
-- `python3 ../docs-article/scripts/posting.py publik --data artikel.json --company-slug <slug>`
+- `python3 ../article-docs/scripts/posting.py posting --data artikel.json --gambar <folder gambar>`
+- `python3 ../article-docs/scripts/posting.py publik --data artikel.json --company-slug <slug>`
 
 ### Update artikel blog
 `posting.py ambil --slug <slug> --out artikel.json` → edit bagian yang diminta (gambar baru via `{{img:…}}`, `sampul` hanya bila diganti) → `cek` → `posting`. Artikel diperbarui tanpa duplikat, dan field yang tidak ditulis tetap.
