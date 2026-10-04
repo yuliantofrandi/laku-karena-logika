@@ -655,3 +655,19 @@ dialog.lg [hidden]{display:none!important}
 .hp-fitur li.tidak:before{content:"—";color:var(--muted)}
 .hp-fitur li small{display:block;font-size:13px;color:var(--muted)}
 .hp-btn .btn{display:flex;width:100%;justify-content:center;padding:13px 18px;font-size:16px}
+/* ---------- Footer di HP: ringkas, 2 kolom untuk menu pendek ---------- */
+@media (max-width:640px){
+  .site-footer{padding:36px 0 84px;font-size:14.5px}
+  .site-footer .wrap:not(.foot-bottom){grid-template-columns:1fr 1fr;gap:26px 18px}
+  .site-footer .wrap>.foot-brand{grid-column:1/-1;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .site-footer .wrap:not(.foot-bottom)>div:nth-child(2){order:1}            /* Solusi  | Panduan */
+  .site-footer .wrap.kolom-4>div:nth-child(4){order:2}
+  .site-footer .wrap:not(.foot-bottom)>div:nth-child(3){order:3;grid-column:1/-1}  /* Artikel: judul panjang, baris penuh */
+  .site-footer h2{font-size:12.5px;margin:0 0 8px;color:var(--muted)}
+  .site-footer li{margin:0}
+  .site-footer li a{display:block;padding:6px 0;line-height:1.35}
+  .foot-brand .foot-trust{margin-top:14px!important}
+  .foot-bottom{flex-direction:column-reverse;align-items:flex-start;gap:6px!important;margin-top:24px;padding-top:18px}
+  .foot-legal{gap:4px 18px}
+  .foot-legal a{display:inline-block;padding:4px 0;font-size:14px;color:var(--ink-2)}
+}

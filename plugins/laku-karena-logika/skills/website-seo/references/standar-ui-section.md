@@ -82,6 +82,15 @@ Tombol CTA utama (hero, CTA penutup, White Label) maksimal ±20 karakter, supaya
 ## 3i. Badge hero muat 1 baris di HP
 Badge (eyebrow) maksimal ±38 karakter, supaya tetap satu baris di HP 375px. Contoh: "Miliki software-nya, bukan sekadar menyewa" (42 karakter, jadi 2 baris) diringkas menjadi "Miliki software-nya, bukan menyewa". `check_badge` memberi WARNING bila lebih panjang. User (4 Okt 2026): "lebih singkat, agar tidak jadi dua baris untuk mobile view".
 
+## 3j. Footer di HP
+User (4 Okt 2026): "perbaiki footernya agar UI/UX-nya bagus di mobile layout". Di ≤640px:
+- **Blok brand** (logo, tagline, deskripsi, baris kepercayaan) selebar penuh, dengan garis bawah.
+- **Menu pendek dua kolom:** Solusi | Panduan berdampingan. Menu dengan judul panjang (Artikel) mendapat baris penuh di bawahnya.
+- Judul kolom kecil abu. Tiap link punya area sentuh ±32px (padding 6px), tanpa jarak antar-`li` tambahan.
+- **Footer bawah:** link legal di atas, hak cipta di bawahnya (rapat, `gap: 6px`), rata kiri.
+- `padding-bottom` 84px supaya tombol WA melayang tidak menutupi link legal dan hak cipta. Ini dicek otomatis dengan bounding box.
+- Hasilnya, tinggi footer turun dari ±1.180px menjadi ±930px.
+
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
 - Tombol WA melayang minimalis di kanan bawah.
