@@ -65,6 +65,9 @@ Disetujui user (4 Okt 2026): "jika butuh point, kasih icon saja jangan pakai ang
 Badge (eyebrow) di atas H1 harus menambah makna, misalnya kalimat ajakan atau sudut pandang, bukan kata yang sudah ada di H1. Contoh yang ditolak user (4 Okt 2026): badge "Blog" + H1 "Blog Timebase". Contoh yang disetujui: "Pilih paket yang pas untuk tim Anda" (Harga), "Miliki software-nya, bukan sekadar menyewa" (White Label), "Pusat edukasi" (Blog).
 Halaman SEO juga diberi field `eyebrow` di `data/brief.json` (contoh: "Ukur hasil, bukan jam duduk"), jangan dibiarkan memakai nama halaman. `build.py` (`check_badge`) memberi WARNING bila semua kata badge sudah ada di H1.
 
+## 3e. Jarak H1 hero ke subjudul
+H1 hero memakai `margin-bottom: 10px` di semua halaman (beranda, halaman SEO, Harga, legal, Panduan, Blog). Instruksi user (4 Okt 2026): "margin bawahnya kurangi, berlaku juga untuk semua halaman". Jangan memberi H1 hero jarak bawah yang lebih besar per halaman.
+
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
 - Tombol WA melayang minimalis di kanan bawah.
