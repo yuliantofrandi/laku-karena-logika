@@ -96,6 +96,32 @@ def ikon_kat(k, cfg):
             f'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{path}</svg></span>')
 
 
+def daftar_isi(isi):
+    """Beri id pada setiap <h2> artikel; return (isi, [(id, judul)]) untuk daftar isi di kolom kanan."""
+    toc, dipakai = [], set()
+
+    def ganti(m):
+        judul = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+        dasar = re.sub(r"[^a-z0-9]+", "-", judul.lower()).strip("-") or "bagian"
+        id_, n = dasar, 2
+        while id_ in dipakai:
+            id_, n = f"{dasar}-{n}", n + 1
+        dipakai.add(id_)
+        toc.append((id_, html.unescape(judul)))
+        return f'<h2{m.group(1)} id="{id_}">{m.group(2)}</h2>'
+
+    isi = re.sub(r"<h2((?:(?!\bid=)[^>])*)>(.*?)</h2>", ganti, isi, flags=re.S)
+    return isi, toc
+
+
+# sorot judul daftar isi sesuai bagian yang sedang dibaca
+TOC_JS = """<script>(function(){var l=[].slice.call(document.querySelectorAll('.bl-toc a'));if(!l.length)return;
+var h=l.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))}),t=0;
+function u(){t=0;var k=0;for(var i=0;i<h.length;i++){if(h[i]&&h[i].getBoundingClientRect().top<130)k=i}
+l.forEach(function(a,i){a.classList.toggle('aktif',i===k)})}
+addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(u)},{passive:true});u()})()</script>"""
+
+
 def diperbarui(a):
     """Baris info di atas artikel: hanya tanggal pembaruan terakhir, tanpa nama penulis (permintaan user)."""
     iso = a.get("updated_at") or a.get("published_at") or a["created_at"]
@@ -282,17 +308,22 @@ def blog(S, cfg, data, warn, cta_html=""):
                            "sederhana": True, "mentah": True,
                            "crumbs": [("Blog", "/blog"), (k["name"], url_sub[k["slug"]])]}, body, ada))
     for a in arts:
-        # kolom kanan: artikel terbaru lain (tepi kiri-kanan sejajar header; tanpa ruang kosong di samping artikel)
+        # kolom kanan (sticky): daftar isi artikel + artikel terbaru lain.
+        # Artikel tidak dilebarkan (baris > 90 karakter melelahkan dibaca); kolom kanan selalu terisi oleh daftar isi.
+        isi, toc = daftar_isi(bersihkan(a["content"]))
         lain = [x for x in arts if x is not a][:5]
-        samping = ('<aside class="bl-samping"><p class="bl-samping-judul">Artikel terbaru</p><ol>'
-                   + "".join(f'<li><a href="{url(x)}"><span>{html.escape(x["title"])}</span>'
-                             f'<small>{tanggal(x.get("published_at") or x["created_at"])}</small></a></li>' for x in lain)
-                   + '</ol><a class="bl-semua" href="/blog">Semua artikel <span aria-hidden="true">→</span></a></aside>') if lain else ""
+        blok_toc = ('<nav class="bl-toc" aria-label="Di artikel ini"><p class="bl-samping-judul">Di artikel ini</p><ol>'
+                    + "".join(f'<li><a href="#{i_}">{html.escape(t)}</a></li>' for i_, t in toc) + "</ol></nav>") if len(toc) >= 2 else ""
+        blok_lain = ('<div class="bl-terbaru"><p class="bl-samping-judul">Artikel terbaru</p><ol>'
+                     + "".join(f'<li><a href="{url(x)}"><span>{html.escape(x["title"])}</span>'
+                               f'<small>{tanggal(x.get("published_at") or x["created_at"])}</small></a></li>' for x in lain)
+                     + '</ol><a class="bl-semua" href="/blog">Semua artikel <span aria-hidden="true">→</span></a></div>') if lain else ""
+        samping = f'<aside class="bl-samping">{blok_toc}{blok_lain}</aside>' if (blok_toc or blok_lain) else ""
         cover = (f'<img class="pd-hero-img" src="{html.escape(a["cover_url"])}" alt="" decoding="async" fetchpriority="high">'
                  if a.get("cover_url") else "")
         body = (f'<section class="band dok-band"><div class="wrap"><div class="bl-grid{" tunggal" if not samping else ""}"><div class="bl-artikel dokumen">'
                 f'{diperbarui(a)}'
-                f'{cover}{bersihkan(a["content"])}</div>{samping}</div></div></section>{cta_html}')
+                f'{cover}{isi}</div>{samping}</div></div></section>{TOC_JS if blok_toc else ""}{cta_html}')
         kat = nama_kat.get(a["category"]["slug"], "Blog")
         crumbs = [("Blog", "/blog")] + ([(kat, url_sub[a["category"]["slug"]])] if a["category"]["slug"] in url_sub else []) + [(a["title"], url(a))]
         pages.append(({"slug": url(a), "name": a["title"], "title": f'{a["title"]} — Blog {brand}',

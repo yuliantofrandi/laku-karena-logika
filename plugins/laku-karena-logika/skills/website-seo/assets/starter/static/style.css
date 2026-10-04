@@ -524,3 +524,15 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 @media (max-width:640px){.band.dok-band{padding-top:24px}}
 /* band CTA penutup: gradasi yang sama dengan hero (permintaan user), selalu beda dari section di atasnya */
 .band.end{background:radial-gradient(900px 460px at 0% -10%,#eee2ff,transparent 62%),radial-gradient(900px 460px at 100% -10%,#ffe8d4,transparent 62%),#fbfafe}
+.bl-samping{max-height:calc(100vh - 120px);overflow:auto}
+.bl-terbaru{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.bl-toc+.bl-terbaru{margin-top:16px}
+.bl-samping>:first-child{margin-top:0;padding-top:0;border-top:0}
+.prose .bl-toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+.prose .bl-toc li{margin:0}
+.prose .bl-toc a{display:block;padding:7px 10px;border-radius:9px;color:var(--ink-2);font-size:14.5px;line-height:1.4;text-decoration:none;border-left:2px solid transparent}
+.prose .bl-toc a:hover{background:#fff;color:var(--purple)}
+.prose .bl-toc a.aktif{background:#fff;color:var(--purple);font-weight:700;border-left-color:var(--purple);border-radius:0 9px 9px 0}
+.bl-artikel h2[id]{scroll-margin-top:90px}
+@media (max-width:899px){.bl-samping{max-height:none}.bl-toc{display:none}}
+@media (max-width:899px){.bl-samping:not(:has(.bl-terbaru)){display:none}.bl-terbaru{margin-top:0;padding-top:0;border-top:0}}
