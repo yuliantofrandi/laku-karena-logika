@@ -61,7 +61,7 @@ User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil arti
   - Daftar isi hanya muncul bila artikel punya ≥ 2 H2. Di mobile daftar isi disembunyikan, dan kotak samping yang kosong ikut disembunyikan.
   - Di bawahnya ada CTA penutup (`cta`) di band `end`.
   - JSON-LD memakai `BlogPosting` dan BreadcrumbList Blog → (kategori) → artikel.
-- **Footer:** kolom **"Blog"** berisi **4 artikel terbaru** dari API + "Semua artikel →". Isinya ikut berubah setiap build.
+- **Footer:** kolom **"Blog"** berisi **5 artikel terbaru** dari API + "Semua artikel →". Isinya ikut berubah setiap build.
   - Judul ditampilkan **ringkas dan selalu 1 baris**: bagian sebelum ":" (`judul_pendek`). Sisanya dipotong "…" oleh CSS (`white-space: nowrap; text-overflow: ellipsis`, dan kolom grid `min-width: 0` supaya kolom tidak melebar). Judul lengkap tersedia di atribut `title`.
   - User (4 Okt 2026): "title blog terlalu panjang untuk diletakkan di footer", lalu memilih opsi ini.
 
