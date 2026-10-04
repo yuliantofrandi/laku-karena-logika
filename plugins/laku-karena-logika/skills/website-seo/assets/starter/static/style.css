@@ -525,8 +525,6 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 /* band CTA penutup: gradasi yang sama dengan hero (permintaan user), selalu beda dari section di atasnya */
 .band.end{background:radial-gradient(900px 460px at 0% -10%,#eee2ff,transparent 62%),radial-gradient(900px 460px at 100% -10%,#ffe8d4,transparent 62%),#fbfafe}
 .bl-samping{max-height:calc(100vh - 120px);overflow:auto}
-.bl-terbaru{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
-.bl-toc+.bl-terbaru{margin-top:16px}
 .bl-samping>:first-child{margin-top:0;padding-top:0;border-top:0}
 .prose .bl-toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
 .prose .bl-toc li{margin:0}
@@ -535,7 +533,7 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .prose .bl-toc a.aktif{background:#fff;color:var(--purple);font-weight:700;border-left-color:var(--purple);border-radius:0 9px 9px 0}
 .bl-artikel h2[id]{scroll-margin-top:90px}
 @media (max-width:899px){.bl-samping{max-height:none}.bl-toc{display:none}}
-@media (max-width:899px){.bl-samping:not(:has(.bl-terbaru)){display:none}.bl-terbaru{margin-top:0;padding-top:0;border-top:0}}
+@media (max-width:899px){.bl-samping{display:none}} /* HP: tanpa kolom samping (daftar isi hanya desktop) */
 /* ---------- Modal langganan → QRIS (halaman Harga) ---------- */
 dialog.lg{width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 40px);padding:0;border:0;border-radius:22px;background:#fff;color:var(--ink);box-shadow:0 40px 80px -30px rgba(40,10,90,.45);overflow:auto}
 dialog.lg::backdrop{background:rgba(27,22,38,.55);backdrop-filter:blur(3px)}

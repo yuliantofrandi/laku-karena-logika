@@ -316,17 +316,13 @@ def blog(S, cfg, data, warn, cta_html=""):
                            "sederhana": True, "mentah": True,
                            "crumbs": [("Blog", "/blog"), (k["name"], url_sub[k["slug"]])]}, body, ada))
     for a in arts:
-        # kolom kanan (sticky): daftar isi artikel + artikel terbaru lain.
+        # kolom kanan (sticky): daftar isi artikel.
         # Artikel tidak dilebarkan (baris > 90 karakter melelahkan dibaca); kolom kanan selalu terisi oleh daftar isi.
         isi, toc = daftar_isi(bersihkan(a["content"]))
-        lain = [x for x in arts if x is not a][:5]
         blok_toc = ('<nav class="bl-toc" aria-label="Di artikel ini"><p class="bl-samping-judul">Di artikel ini</p><ol>'
                     + "".join(f'<li><a href="#{i_}">{html.escape(t)}</a></li>' for i_, t in toc) + "</ol></nav>") if len(toc) >= 2 else ""
-        blok_lain = ('<div class="bl-terbaru"><p class="bl-samping-judul">Artikel terbaru</p><ol>'
-                     + "".join(f'<li><a href="{url(x)}"><span>{html.escape(x["title"])}</span>'
-                               f'<small>{tanggal(x.get("published_at") or x["created_at"])}</small></a></li>' for x in lain)
-                     + '</ol><a class="bl-semua" href="/blog">Semua artikel <span aria-hidden="true">→</span></a></div>') if lain else ""
-        samping = f'<aside class="bl-samping">{blok_toc}{blok_lain}</aside>' if (blok_toc or blok_lain) else ""
+        # tanpa "Artikel terbaru" di samping: daftar artikel terbaru sudah ada di footer (permintaan user)
+        samping = f'<aside class="bl-samping">{blok_toc}</aside>' if blok_toc else ""
         cover = (f'<img class="pd-hero-img" src="{html.escape(a["cover_url"])}" alt="" decoding="async" fetchpriority="high">'
                  if a.get("cover_url") else "")
         body = (f'<section class="band dok-band"><div class="wrap"><div class="bl-grid{" tunggal" if not samping else ""}"><div class="bl-artikel dokumen">'

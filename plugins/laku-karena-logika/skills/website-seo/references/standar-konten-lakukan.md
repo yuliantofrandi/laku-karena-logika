@@ -56,9 +56,9 @@ User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil arti
 - **`/blog/<artikel>`:**
   - Dua kolom, dengan tepi kiri-kanan sejajar header (artikel tidak di-center, karena hero rata kiri).
   - Kolom kiri: "Terakhir diperbarui <tanggal>", sampul, isi (maks. 780px).
-  - Kolom kanan: kotak sticky berisi **"Di artikel ini"** (daftar isi dari semua H2 artikel, dengan sorotan bagian yang sedang dibaca), lalu "Artikel terbaru" (5 judul + tanggal, "Semua artikel →") bila ada artikel lain.
+  - Kolom kanan: kotak sticky **"Di artikel ini"** saja (daftar isi dari semua H2 artikel, dengan sorotan bagian yang sedang dibaca). **Tanpa "Artikel terbaru"**, karena daftar artikel terbaru sudah ada di kolom Blog footer. User (5 Okt 2026): "hapus, tidak perlu ada artikel terbaru, karena sudah ada di footer".
   - **Artikel tidak dilebarkan memenuhi layar.** Baris > 90 karakter melelahkan dibaca, jadi kolom kanan diisi daftar isi. Ini rekomendasi yang dipakai saat user (4 Okt 2026) bertanya "artikelnya kenapa tidak penuh di layar? kolom kanan diberikan apa, atau dilebarkan saja?".
-  - Daftar isi hanya muncul bila artikel punya ≥ 2 H2. Di mobile daftar isi disembunyikan, dan kotak samping yang kosong ikut disembunyikan.
+  - Daftar isi hanya muncul bila artikel punya ≥ 2 H2. Kolom samping disembunyikan di mobile.
   - Di bawahnya ada CTA penutup (`cta`) di band `end`.
   - JSON-LD memakai `BlogPosting` dan BreadcrumbList Blog → (kategori) → artikel.
 - **Footer:** kolom **"Blog"** berisi **5 artikel terbaru** dari API + "Semua artikel →". Isinya ikut berubah setiap build.
