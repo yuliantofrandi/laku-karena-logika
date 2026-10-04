@@ -758,7 +758,7 @@ def render(S, page, body, P, all_pages, indexable):
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
 <div class="foot-blog"><h2>Blog</h2><ul>{"".join(f'<li><a href="{u}" title="{html.escape(t)}">{html.escape(judul_pendek(t))}</a></li>' for t, u in BLOG_FOOT)}<li><a href="/blog">Semua artikel <span aria-hidden="true">→</span></a></li></ul></div>
-{('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan</a></li></ul></div>') if PANDUAN_FOOT else ""}
+{('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan <span aria-hidden="true">→</span></a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
 {LANGGANAN.modal(S, P) if 'js-langganan' in body else ''}
