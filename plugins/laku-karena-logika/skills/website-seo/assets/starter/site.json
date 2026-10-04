@@ -43,6 +43,14 @@
     [
       "/harga",
       "Harga"
+    ],
+    [
+      "/panduan",
+      "Panduan"
+    ],
+    [
+      "/blog",
+      "Blog"
     ]
   ],
   "extra_pages": [
@@ -166,7 +174,7 @@
     }
   ],
   "_footer_trust": "Baris kepercayaan di footer (maks 3). Hanya fakta yang sudah tertulis di BKB/website; ikon: server | shield | support.",
-  "panduan": {"api": "https://api.lakukan.id/api", "company_slug": "", "kategori_induk": "docs"},
+  "lakukan": {"api": "https://api.lakukan.id/api", "company_slug": "", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "Artikel dan wawasan terbaru dari {brand}."},
   "legal": [
     {
       "slug": "/syarat-layanan",

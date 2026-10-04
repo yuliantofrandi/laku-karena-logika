@@ -1,4 +1,4 @@
-# Standar menu Panduan (artikel dari API Lakukan)
+# Standar konten dari API Lakukan: menu Panduan & Blog
 
 Disetujui user pada 4 Okt 2026 untuk website Timebase. Instruksi user: "tambahkan menu panduan, artikelnya diambil dari api.lakukan.id … ada kategorinya juga, pastikan tampilannya memuat per kategori juga".
 
@@ -9,11 +9,11 @@ Disetujui user pada 4 Okt 2026 untuk website Timebase. Instruksi user: "tambahka
   - `GET /articles?limit=100&page=N` → daftar artikel (`meta.pagination`).
   - `GET /articles/<slug>` → isi HTML lengkap (`content`, `cover_url`, `author`, `updated_at`).
 - Hanya **kategori anak dari `kategori_induk`** (default `docs`) yang ditampilkan. Artikel di kategori induk itu sendiri atau di kategori lain (mis. Blog, artikel uji "aaa"/"ccc") dilewati.
-- Konfigurasi di `site.json`: `"panduan": {"api": …, "company_slug": "<slug>", "kategori_induk": "docs"}`. Bila `company_slug` kosong, fitur dilewati. Tambahkan `["/panduan", "Panduan"]` sebagai menu utama terakhir di `nav`.
-- Build menyimpan data ke `data/panduan-cache.json`. Bila API gagal, build memakai cache (WARNING).
+- Konfigurasi di `site.json`: `"lakukan": {"api": …, "company_slug": "<slug>", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "…"}`. Menu utama: `… Harga, ["/panduan", "Panduan"], ["/blog", "Blog"]`. Menu Panduan opsional (hanya bila produk punya artikel bantuan).
+- Build menyimpan data ke `data/lakukan-cache.json`. Bila API gagal, build memakai cache (WARNING).
 - Artikel baru di CMS baru tampil setelah build ulang dan deploy.
 
-## Struktur halaman (`scripts/panduan.py`)
+## Struktur halaman (`scripts/lakukan.py`)
 - **`/panduan` (hub):**
   - Hero ringkas: badge "Pusat bantuan", H1 "Panduan <Brand>", dan satu kalimat pembuka.
   - Chip kategori dengan jumlah artikel.
@@ -39,3 +39,24 @@ Disetujui user pada 4 Okt 2026 untuk website Timebase. Instruksi user: "tambahka
 ## Tidak boleh
 - Mengedit isi artikel dari CMS di build. Penulisan merek seperti "TimeBase" diikuti apa adanya; perbaikan dilakukan di CMS.
 - Menjalankan cek kata minimum atau ilustrasi wajib halaman SEO pada halaman panduan.
+
+## Blog (WAJIB di setiap landing page)
+User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil artikel di kategori Blog. Di semua website landing page saya nantinya harus selalu ada ini."
+- **Build ERROR** bila `lakukan.company_slug` kosong, atau bila `["/blog", "Blog"]` tidak ada di menu utama.
+- Sumber: kategori `kategori_blog` (default `blog`) beserta sub-kategorinya. Artikel diurutkan dari yang terbaru (`published_at`).
+- **Artikel draf/uji coba tidak diterbitkan.** Artikel tanpa ringkasan dengan isi < 60 kata (mis. "aaa" berisi "bbbb") memicu WARNING dan dilewati. Perbaikannya di CMS, bukan di build.
+- **Blog belum punya artikel:**
+  - `/blog` menampilkan kartu "Artikel pertama segera terbit" (ikon bulat, plus tautan ke Panduan bila ada).
+  - Halaman ini **noindex** dan tidak masuk sitemap. Build memberi WARNING.
+- **`/blog`:**
+  - Hero ringkas (badge "Blog", H1 "Blog <Brand>", `blog_lead`).
+  - Artikel terbaru tampil sebagai kartu besar horizontal (sampul 58% | kategori · tanggal, judul, ringkasan), lalu grid kartu di bawahnya.
+  - Paginasi 12 artikel per halaman (`/blog/halaman/N`).
+  - Chip kategori dan `/blog/kategori/<k>` hanya muncul bila Blog punya sub-kategori yang berisi artikel.
+- **`/blog/<artikel>`:**
+  - Dua kolom, dengan tepi kiri-kanan sejajar header (artikel tidak di-center, karena hero rata kiri).
+  - Kolom kiri: penulis · tanggal, sampul, isi (maks. 780px).
+  - Kolom kanan: kotak sticky "Artikel terbaru" (5 judul + tanggal, "Semua artikel →").
+  - Di bawahnya ada CTA penutup (`cta`) di band `end`.
+  - JSON-LD memakai `BlogPosting` dan BreadcrumbList Blog → (kategori) → artikel.
+- **Footer:** "Blog" tampil sebagai link pertama di kolom "Artikel".

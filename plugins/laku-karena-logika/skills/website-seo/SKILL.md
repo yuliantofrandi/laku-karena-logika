@@ -154,8 +154,10 @@ Setiap website produk wajib punya halaman `/white-label` (menu: item terakhir gr
 ## Kebijakan Privasi & Syarat Layanan (wajib, isi lengkap)
 **Wajib di setiap landing page (build ERROR bila tidak ada).** Selalu tulis `content/syarat-layanan.html` dan `content/kebijakan-privasi.html` dengan isi nyata dari BKB — bukan placeholder — mengikuti `references/standar-dokumen-legal.md` dan contoh `references/contoh-legal/`. Sebutkan ke user default yang dipakai untuk hal yang tidak diatur BKB (refund, batas tanggung jawab, yurisdiksi).
 
-## Menu Panduan (artikel dari API Lakukan)
-Bila produk punya pusat bantuan di api.lakukan.id, isi `site.json` `panduan.company_slug` (header `X-Company-Slug`) dan tambahkan menu `["/panduan", "Panduan"]`. `scripts/panduan.py` membangun hub per kategori, halaman kategori, dan halaman artikel dengan navigasi kiri, lalu menyimpan cache untuk build offline. Standar lengkapnya ada di `references/standar-menu-panduan.md`.
+## Blog (wajib) & Panduan dari API Lakukan
+**Setiap landing page wajib punya menu Blog** (aturan tetap user). Isi `site.json` `lakukan.company_slug` (header `X-Company-Slug` di api.lakukan.id) dan tambahkan menu utama `["/blog", "Blog"]`. Build memberi ERROR bila salah satunya tidak ada. Blog mengambil artikel kategori `blog`; artikel draf/uji coba dilewati, dan selama belum ada artikel, `/blog` tampil "segera terbit" + noindex.
+
+Menu `["/panduan", "Panduan"]` bersifat opsional, untuk artikel bantuan di kategori `docs`. `scripts/lakukan.py` membangun keduanya dan menyimpan cache untuk build offline. Standar lengkapnya ada di `references/standar-konten-lakukan.md`.
 
 ## Halaman SEO dari keyword plan
 Struktur section, keputusan visual (video demo user, media potret 340px, ilustrasi chat generik), dan sikap terhadap jumlah kata untuk halaman yang lahir dari `brief.json`: `references/standar-halaman-seo.md` (contoh: `references/contoh-halaman-seo-monitoring.html`). Jangan menambah section "Cara memulai".

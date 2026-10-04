@@ -490,3 +490,33 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .prose .pd-katkartu li a:hover{color:var(--purple)}
 .prose .pd-katkartu .pd-lihat{margin-top:auto;font-size:14.5px}
 @media (max-width:640px){.pd-chips{flex-wrap:nowrap;overflow-x:auto;margin:0 -20px 8px;padding:2px 20px 6px;scrollbar-width:none}.pd-chips::-webkit-scrollbar{display:none}.prose .pd-chips a{flex:none}}
+/* ---------- Blog (artikel dari API Lakukan, kategori Blog) ---------- */
+.bl-meta{font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--purple)}
+@media (min-width:900px){
+  .prose a.pd-kartu.bl-utama{flex-direction:row;margin-top:24px}
+  .bl-utama .pd-cover{width:58%;flex:none;aspect-ratio:16/9;border-bottom:0;border-right:1px solid var(--line)}
+  .bl-utama .pd-isi{justify-content:center;padding:32px 36px;gap:10px}
+  .bl-utama .pd-judul{font-family:var(--font-head);font-size:28px;line-height:1.25}
+  .bl-utama .pd-ringkas{font-size:16px;-webkit-line-clamp:4}
+}
+.prose a.pd-kartu.bl-utama{margin-top:24px}
+.bl-kosong{max-width:560px;margin:32px auto 0;padding:40px 28px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px}
+.bl-kosong .ikon-bulat{margin:0 auto 16px}
+.prose .bl-kosong h2{margin:0 0 6px;font-size:22px}
+.prose .bl-kosong p{margin:0;color:var(--muted)}
+.bl-pag{display:flex;justify-content:center;gap:8px;margin-top:36px}
+.prose .bl-pag a{display:grid;place-items:center;min-width:40px;height:40px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink-2);font-weight:700;text-decoration:none}
+.prose .bl-pag a[aria-current]{background:var(--ink);border-color:var(--ink);color:#fff}
+.bl-artikel img:not(.pd-hero-img){max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:8px 0 4px}
+.bl-artikel blockquote{margin:24px 0;padding:14px 18px;border-left:4px solid var(--purple);border-radius:0 12px 12px 0;background:var(--bg-tint);color:var(--ink-2)}
+.bl-grid{display:grid;gap:40px;align-items:start}
+@media (min-width:900px){.bl-grid{grid-template-columns:minmax(0,1fr) 320px;gap:56px}.bl-samping{position:sticky;top:92px}}
+.bl-artikel{max-width:780px}
+.bl-samping{background:var(--bg-soft);border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px}
+.prose .bl-samping p.bl-samping-judul{margin:0 0 8px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.prose .bl-samping ol{list-style:none;margin:0 0 12px;padding:0}
+.prose .bl-samping li{margin:0;border-bottom:1px solid var(--line)}
+.prose .bl-samping li a{display:flex;flex-direction:column;gap:2px;padding:10px 4px;text-decoration:none;color:var(--ink-2);font-weight:600;font-size:15px;line-height:1.4}
+.bl-samping li small{font-weight:500;font-size:12.5px;color:var(--muted)}
+.prose .bl-samping li a:hover span{color:var(--purple)}
+.prose .bl-semua{font-weight:700;font-size:14.5px;text-decoration:none}

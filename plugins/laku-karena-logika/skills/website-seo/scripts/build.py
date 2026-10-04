@@ -18,7 +18,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 import ilustrasi as ILUS
-import panduan as PANDUAN
+import lakukan as LAKUKAN
 
 ROOT = Path(__file__).resolve().parent
 SOCIAL = {"testimonials": [], "metrics": []}
@@ -436,7 +436,7 @@ def jsonld(S, page, body, P, indexable):
             for i, (n, u) in enumerate(crumbs, 1)]})
     if page.get("artikel"):
         a = page["artikel"]
-        graph.append({"@type": "Article", "headline": page["h1"], "description": page["meta"], "inLanguage": "id-ID",
+        graph.append({"@type": a.get("tipe", "Article"), "headline": page["h1"], "description": page["meta"], "inLanguage": "id-ID",
                       "datePublished": a["published"], "dateModified": a["updated"],
                       "author": {"@type": "Organization", "name": a["author"]}, "publisher": {"@id": f"{base}/#org"},
                       **({"image": a["image"]} if a.get("image") else {}), **({"mainEntityOfPage": url} if base else {})})
@@ -709,7 +709,7 @@ def render(S, page, body, P, all_pages, indexable):
 <footer class="site-footer"><div class="wrap{' kolom-4' if PANDUAN_FOOT else ''}">
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
-<div><h2>{"Artikel" if PANDUAN_FOOT else "Panduan"}</h2><ul>{flinks(panduan)}</ul></div>
+<div><h2>{"Artikel" if PANDUAN_FOOT else "Panduan"}</h2><ul>{'<li><a href="/blog">Blog</a></li>' if any(isinstance(it, list) and it[0] == "/blog" for it in S["nav"]) else ""}{flinks(panduan)}</ul></div>
 {('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan</a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
@@ -936,16 +936,31 @@ def main():
         p["product_schema"] = p["slug"] in S["product_pages"]
     slugs = {p["slug"] for p in pages}
 
-    # menu Panduan: artikel bantuan dari API (site.json panduan) → /panduan, /panduan/<kategori>, /panduan/<kategori>/<artikel>
-    pd_pages = []
-    if S.get("panduan", {}).get("company_slug"):
-        pd_data = PANDUAN.ambil(S["panduan"], ROOT / "data" / "panduan-cache.json", lambda m: warn("/panduan", m))
-        if pd_data:
-            pd_pages, foot = PANDUAN.halaman(S, S["panduan"], pd_data)
-            PANDUAN_FOOT[:] = foot
-            slugs |= {pg["slug"] for pg, _ in pd_pages}
-    if any(isinstance(it, list) and it[0] == "/panduan" for it in S["nav"]) and not pd_pages:
-        err("/panduan", "menu Panduan ada di site.json nav tapi tidak ada artikel (cek site.json panduan / API)")
+    # konten dari API Lakukan (site.json lakukan):
+    #   Panduan → /panduan, /panduan/<kategori>, /panduan/<kategori>/<artikel>
+    #   Blog (WAJIB di setiap landing page) → /blog, /blog/kategori/<k>, /blog/<artikel>
+    pd_pages, bl_pages = [], []
+    LK = S.get("lakukan", {})
+    top_nav = [it[0] for it in S["nav"] if isinstance(it, list)]
+    if not LK.get("company_slug"):
+        err("/blog", "Blog wajib di setiap landing page: isi site.json lakukan.company_slug (header X-Company-Slug API Lakukan)")
+    else:
+        lk_data = LAKUKAN.ambil(LK, ROOT / "data" / "lakukan-cache.json", lambda m: warn("/blog", m))
+        if lk_data:
+            if "/panduan" in top_nav:
+                pd_pages, foot = LAKUKAN.halaman(S, LK, lk_data)
+                PANDUAN_FOOT[:] = foot
+            if not pd_pages and lk_data.get("kategori") and "/panduan" not in top_nav:
+                warn("/panduan", "API punya artikel panduan tapi menu Panduan tidak ada di site.json nav")
+            bl_pages = LAKUKAN.blog(S, LK, lk_data, lambda m: warn("/blog", m),
+                                    f'<section class="band end"><div class="wrap">{cta(S, P)}</div></section>')
+            if not any(ok for pg, _, ok in bl_pages if pg["slug"] == "/blog"):
+                warn("/blog", "belum ada artikel blog yang terbit → /blog tampil 'segera terbit' dan noindex")
+            slugs |= {pg["slug"] for pg, _ in pd_pages} | {pg["slug"] for pg, _, _ in bl_pages}
+    if "/blog" not in top_nav:
+        err("/blog", 'menu "Blog" wajib ada di menu utama (site.json nav: ["/blog", "Blog"])')
+    if "/panduan" in top_nav and not pd_pages:
+        err("/panduan", "menu Panduan ada di site.json nav tapi tidak ada artikel (cek site.json lakukan / API)")
 
     # aturan tetap: setiap landing page wajib punya Syarat Layanan & Kebijakan Privasi (isi nyata, tautan di footer)
     legal_slugs = [x["slug"] for x in S.get("legal", [])]
@@ -1123,21 +1138,22 @@ def main():
             out = DIST / lg["slug"].strip("/") / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(render(S, pg, body_lg, P, pages, False), encoding="utf-8")
-        for pg, body_pd in pd_pages:
+        for pg, body_pd, ok in [(a, b, True) for a, b in pd_pages] + bl_pages:
             out = DIST / pg["slug"].strip("/") / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(render(S, pg, body_pd, P, pages, True), encoding="utf-8")
+            out.write_text(render(S, pg, body_pd, P, pages, ok), encoding="utf-8")
         robots = "User-agent: *\nAllow: /\n"
         if S.get("site_url"):
             urls = "".join(f"<url><loc>{S['site_url']}{p['slug']}</loc></url>" for p, _, ok in built if ok)
             urls += "".join(f"<url><loc>{S['site_url']}{pg['slug']}</loc></url>" for pg, _ in pd_pages)
+            urls += "".join(f"<url><loc>{S['site_url']}{pg['slug']}</loc></url>" for pg, _, ok in bl_pages if ok)
             (DIST / "sitemap.xml").write_text(
                 f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>',
                 encoding="utf-8")
             robots += f"Sitemap: {S['site_url']}/sitemap.xml\n"
         (DIST / "robots.txt").write_text(robots, encoding="utf-8")
 
-    print(f"{len(built)} halaman diperiksa" + (f" + {len(pd_pages)} halaman panduan dari API" if pd_pages else ""))
+    print(f"{len(built)} halaman diperiksa" + (f" + {len(pd_pages)} halaman panduan" if pd_pages else "") + (f" + {sum(ok for _, _, ok in bl_pages)} halaman blog" if bl_pages else ""))
     for p, _, ok in built:
         print(f"  {p['slug']:<34} {p.get('_words', 0):>5} kata  {'index' if ok else 'NOINDEX'}")
     for w in warnings:
