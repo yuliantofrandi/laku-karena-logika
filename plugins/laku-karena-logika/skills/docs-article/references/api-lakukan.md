@@ -30,6 +30,7 @@ Struktur wajib: **level 0 = `docs` (Docs), level 1 = kelompok tutorial.** Skill 
 | Sampul | `POST /core/v1/admin/articles/:slug/cover` | Multipart `file` (jpeg/png/webp). Sampul baru menggantikan yang lama. |
 
 - Daftar publik `GET /api/articles` diurutkan **`published_at` menurun**. Karena itu artikel diterbitkan dari urutan terakhir ke pertama, dengan jeda sekitar 1 detik.
+- `PUT` dengan `status: published` pada artikel yang sudah published tidak perlu dikirim. `posting.py` hanya mengirim `status` bila nilainya berubah, sehingga `published_at` dan urutan publik tetap.
 - Mengganti slug berarti membuat artikel baru lalu menghapus yang lama.
 - Mengunggah ulang gambar saat update membuat aset lama tetap tersimpan, karena tidak ada endpoint hapus per media isi. Aset itu tidak berbahaya, tapi hindari update berulang tanpa perlu.
 - `author` diisi server ("Tim Redaksi").

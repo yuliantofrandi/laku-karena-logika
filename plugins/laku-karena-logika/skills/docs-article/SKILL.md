@@ -1,13 +1,21 @@
 ---
 name: docs-article
-description: Mengubah folder dokumentasi/panduan aplikasi SaaS (halaman HTML/Markdown + screenshot) menjadi seri artikel tutorial yang mudah dipahami tamu website, menyamarkan data pribadi di screenshot (nama → nama dummy, 4 digit akhir nomor telepon di-blur, foto profil tetap), lalu memposting otomatis ke CMS api.lakukan.id — kategori Docs › kelompok tutorial, gambar isi, sampul, dan status terbit — sehingga langsung tampil di menu Panduan website. Gunakan saat pengguna berkata "pelajari folder panduan ini lalu posting", "posting panduan ke CMS", "upload dokumentasi ke lakukan", "buat artikel tutorial dari dokumentasi", "jadikan panduan ini artikel di website", atau memberi folder panduan + API key Lakukan.
+description: Mengubah folder dokumentasi/panduan aplikasi SaaS (halaman HTML/Markdown + screenshot) menjadi seri artikel tutorial yang mudah dipahami tamu website, menyamarkan data pribadi di screenshot (nama → nama dummy, 4 digit akhir nomor telepon di-blur, foto profil tetap), lalu memposting otomatis ke CMS api.lakukan.id — kategori Docs › kelompok tutorial, gambar isi, sampul, dan status terbit — sehingga langsung tampil di menu Panduan website. Bisa untuk satu seri panduan, SATU artikel saja, atau MENGUPDATE artikel yang sudah terbit (ambil dari CMS → edit → simpan, tanpa duplikat). Gunakan saat pengguna berkata "pelajari folder panduan ini lalu posting", "posting panduan ke CMS", "upload dokumentasi ke lakukan", "buat artikel tutorial dari dokumentasi", "jadikan panduan ini artikel di website", "posting satu artikel tentang X", "update/revisi artikel X", "ganti gambar/judul artikel X di CMS", atau memberi folder panduan + API key Lakukan.
 ---
 
 # Docs Article – Dokumentasi ke CMS Lakukan
 
 Ubah dokumentasi aplikasi menjadi artikel tutorial di CMS `api.lakukan.id`. Artikel ini menjadi sumber menu **Panduan** yang dibangun skill `website-seo`, sehingga tamu website bisa memahami cara aplikasi SaaS bekerja.
 
-Urutan WAJIB: input → pelajari sumber → samarkan screenshot → periksa visual → susun `artikel.json` → `cek` → posting → verifikasi publik → laporan.
+Tiga mode (tentukan dari permintaan user):
+
+| Mode | Kapan | Alur |
+|---|---|---|
+| **Seri panduan** | Folder dokumentasi utuh | Semua langkah 0–5 di bawah |
+| **Satu artikel** | "posting satu artikel tentang X" | Langkah 0, samarkan hanya gambar yang dipakai, `artikel.json` berisi satu artikel, lalu 4–5. Kelompok yang sudah ada cukup dirujuk (`{"slug": "timebase-monitoring"}` tanpa `nama`). Kelompok baru tetap ditaruh di bawah Docs. |
+| **Update artikel** | "update/revisi artikel X" | `posting.py ambil --slug X --out artikel.json`, edit field yang diminta, jalankan `cek`, lalu `posting`. Lihat bagian *Update artikel*. |
+
+Urutan WAJIB untuk seri: input → pelajari sumber → samarkan screenshot → periksa visual → susun `artikel.json` → `cek` → posting → verifikasi publik → laporan.
 
 Skrip ada di `scripts/`, sedangkan aturan dan detail API ada di `references/`:
 - `aturan-konten.md`: judul, kategori, HTML, gambar.
@@ -56,10 +64,16 @@ Ikuti `references/aturan-konten.md`. Ringkasnya:
 1. `python3 scripts/posting.py cek --data artikel.json --gambar <folder hasil>`. Perintah ini memvalidasi aturan (judul bernomor, slug, panjang, gambar hilang, script) dan menampilkan rencana: kategori baru/ada/dipindah, artikel baru/update.
 2. Posting menerbitkan konten publik. Bila user **sudah** meminta posting otomatis, lanjutkan. Bila belum, tampilkan ringkasan rencana dan minta satu konfirmasi.
 3. `python3 scripts/posting.py posting --data artikel.json --gambar <folder hasil>` (tambahkan `--draft` bila user minta draft). Perintah ini membuat atau memperbarui kategori di bawah Docs, lalu memproses artikel dari belakang ke depan: buat draft, unggah gambar isi, unggah sampul, lalu terbitkan. Menjalankan ulang aman, karena artikel yang sudah ada diperbarui, bukan diduplikasi.
-4. `python3 scripts/posting.py publik --data artikel.json --company-slug <slug>`. Perintah ini memastikan setiap kelompok tampil di API publik dengan jumlah artikel yang benar dan gambarnya HTTP 200.
+4. `python3 scripts/posting.py publik --data artikel.json --company-slug <slug>`. Perintah ini memastikan setiap artikel berstatus published tampil di API publik dalam kategori yang benar, dan gambar isi serta sampulnya HTTP 200.
+
+### Update artikel
+1. `python3 scripts/posting.py ambil --slug <slug> [--slug <slug2>] --out <kerja>/artikel.json`. Isi diambil apa adanya dari CMS, termasuk `<img src>` yang sudah ada, dan kategorinya ditulis sebagai rujukan sehingga tidak ikut diubah.
+2. Edit hanya yang diminta. Untuk gambar baru, tulis `{{img:file|keterangan}}` dengan file tersamar di `--gambar`; gambar lama tetap memakai URL-nya dan tidak diunggah ulang. Hapus field yang tidak ingin diubah: tanpa `ringkasan` berarti ringkasan tetap, tanpa `sampul` berarti sampul tetap, tanpa `kelompok` berarti kategori tetap. Jika ada `sampul`, sampul diganti.
+3. Jalankan `cek`, lalu `posting`. Status artikel tetap seperti sebelumnya kecuali `status` diubah. Bila status tidak berubah, `published_at` juga tidak berubah, sehingga posisi artikel di daftar publik tidak bergeser.
+4. Untuk memperbarui satu artikel dari file seri (mis. `contoh-timebase.json`), tambahkan `--slug <slug>`. Hanya artikel itu dan kelompoknya yang diproses.
 
 ### Revisi setelah terbit
-- Isi, judul, ringkasan, atau kelompok berubah: ubah `artikel.json`, lalu jalankan `posting` lagi.
+- Isi, judul, ringkasan, atau kelompok satu seri berubah: ubah `artikel.json`, lalu jalankan `posting` lagi.
 - Slug harus berubah (mis. dulu bernomor): buat artikel dengan slug baru, lalu `DELETE /core/v1/admin/articles/<slug lama>`. Hapus hanya artikel yang dibuat untuk seri ini.
 - Struktur kategori salah: `PUT …/article-categories/<slug>` dengan `parent_id` untuk memindahkan, lalu hapus kategori perantara yang sudah kosong.
 
