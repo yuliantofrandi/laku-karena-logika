@@ -66,7 +66,7 @@ Badge (eyebrow) di atas H1 harus menambah makna, misalnya kalimat ajakan atau su
 Halaman SEO juga diberi field `eyebrow` di `data/brief.json` (contoh: "Ukur hasil, bukan jam duduk"), jangan dibiarkan memakai nama halaman. `build.py` (`check_badge`) memberi WARNING bila semua kata badge sudah ada di H1.
 
 ## 3e. Jarak H1 hero ke subjudul
-H1 hero memakai `margin-bottom: 10px` di semua halaman (beranda, halaman SEO, Harga, legal, Panduan, Blog). Instruksi user (4 Okt 2026): "margin bawahnya kurangi, berlaku juga untuk semua halaman". Jangan memberi H1 hero jarak bawah yang lebih besar per halaman.
+H1 hero memakai `margin-bottom: 4px` di semua halaman, sama dengan H2 section (10px masih dinilai user "terlalu tinggi") (beranda, halaman SEO, Harga, legal, Panduan, Blog). Instruksi user (4 Okt 2026): "margin bawahnya kurangi, berlaku juga untuk semua halaman". Jangan memberi H1 hero jarak bawah yang lebih besar per halaman.
 
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
