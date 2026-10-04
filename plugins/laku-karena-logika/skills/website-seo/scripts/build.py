@@ -629,7 +629,9 @@ def layout_sections(body):
         out.append(f'<section class="band intro"><div class="wrap">{"".join(intro)}</div></section>')
     out += [render_section(s, i, SITE) for i, s in enumerate(sections)]
     if tail:
-        out.append(f'<section class="band end"><div class="wrap">{"".join(tail)}</div></section>')
+        # latar band CTA selalu berbeda dari section di atasnya (permintaan user)
+        atas_putih = (len(sections) - 1) % 2 == 1 if sections else True
+        out.append(f'<section class="band{" alt" if atas_putih else ""} end"><div class="wrap">{"".join(tail)}</div></section>')
     return "\n".join(out)
 
 
@@ -961,7 +963,7 @@ def main():
             if not pd_pages and lk_data.get("kategori") and "/panduan" not in top_nav:
                 warn("/panduan", "API punya artikel panduan tapi menu Panduan tidak ada di site.json nav")
             bl_pages = LAKUKAN.blog(S, LK, lk_data, lambda m: warn("/blog", m),
-                                    f'<section class="band end"><div class="wrap">{cta(S, P)}</div></section>')
+                                    f'<section class="band alt end"><div class="wrap">{cta(S, P)}</div></section>')
             if not any(ok for pg, _, ok in bl_pages if pg["slug"] == "/blog"):
                 warn("/blog", "belum ada artikel blog yang terbit → /blog tampil 'segera terbit' dan noindex")
             slugs |= {pg["slug"] for pg, _ in pd_pages} | {pg["slug"] for pg, _, _ in bl_pages}

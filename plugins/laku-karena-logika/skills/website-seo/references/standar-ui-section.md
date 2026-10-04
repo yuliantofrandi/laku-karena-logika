@@ -48,6 +48,8 @@ Lihat "Hero" di `aturan-sales-page.md`. Ringkasnya: badge pill gradasi · H1 Mon
 Target keseimbangan: tinggi kolom terpanjang ≤ ±1,8× kolom terpendek di 1440px (kecuali FAQ). Ukur dengan skrip di SKILL.md Langkah 4. Hasil Timebase setelah perbaikan: semua section ≤1,8× (sebelumnya sampai 2,96×), tanpa overflow di 1440/1280/768/375.
 
 ## 3b. CTA penutup (blok gelap, satu per halaman)
+Latar band CTA (`band end`) selalu **berbeda dari section tepat di atasnya**: abu (`alt`) bila section terakhir putih, dan putih bila section terakhir abu. Ini diatur otomatis di `layout_sections`, dan artikel blog selalu memakai `alt` karena artikelnya berlatar putih. User (4 Okt 2026): "buat background-nya warna berbeda daripada section yang atasnya".
+
 **Ringkas** (keluhan user: "terlalu banyak teks"). Dua kolom: kiri judul + **satu kalimat pendek** (`copy.cta_text` ≤16 kata) + dua tombol berdampingan; kanan panel transparan berisi **satu daftar centang** `copy.cta_poin`: maks 4 frasa ≤6 kata (urgensi + jaminan), tanpa label, tanpa penjelasan panjang. Jaminan lengkap tetap di /harga. Build memberi WARNING bila melebihi. Urgensi dan jaminan **tidak** diulang di section lain. Band CTA memakai padding atas = bawah yang sama dengan band lain (64px / 44px mobile); jangan beri override padding khusus (kasus nyata: 8px atas vs 64px bawah, ditegur user "padding atas bawahnya tidak sama").
 
 ## 3c. Kartu poin berikon (bukan angka)
