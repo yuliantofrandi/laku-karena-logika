@@ -25,7 +25,7 @@ Disetujui user pada 4 Okt 2026 untuk website Timebase. Instruksi user: "tambahka
   - Grid kartu artikel: sampul 16:9, judul, ringkasan maksimal 3 baris.
 - **`/panduan/<kategori>/<artikel>`:**
   - Layout dokumen seperti halaman legal: navigasi kiri per kategori (grup aktif terbuka, artikel aktif disorot) dan "Daftar panduan" tertutup di mobile.
-  - Isi artikel: penulis · tanggal diperbarui → sampul → isi HTML (dibersihkan dari script/iframe/on*).
+  - Isi artikel: "Terakhir diperbarui <tanggal>" → sampul → isi HTML (dibersihkan dari script/iframe/on*).
   - Gambar isi memakai lazy load. Blockquote tampil sebagai kotak tips.
   - Di bawah artikel ada tombol Sebelumnya/Berikutnya dalam kategori yang sama.
 - **URL kategori** membuang awalan slug produk: `timebase-memulai` → `/panduan/memulai`.
@@ -55,8 +55,11 @@ User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil arti
   - Chip kategori dan `/blog/kategori/<k>` hanya muncul bila Blog punya sub-kategori yang berisi artikel.
 - **`/blog/<artikel>`:**
   - Dua kolom, dengan tepi kiri-kanan sejajar header (artikel tidak di-center, karena hero rata kiri).
-  - Kolom kiri: penulis · tanggal, sampul, isi (maks. 780px).
+  - Kolom kiri: "Terakhir diperbarui <tanggal>", sampul, isi (maks. 780px).
   - Kolom kanan: kotak sticky "Artikel terbaru" (5 judul + tanggal, "Semua artikel →").
   - Di bawahnya ada CTA penutup (`cta`) di band `end`.
   - JSON-LD memakai `BlogPosting` dan BreadcrumbList Blog → (kategori) → artikel.
 - **Footer:** "Blog" tampil sebagai link pertama di kolom "Artikel".
+
+## Baris info artikel (Panduan & Blog)
+Hanya **"Terakhir diperbarui <tanggal>"** (dari `updated_at`, dalam `<time datetime>`), kecil dan abu. Nama penulis tidak ditampilkan. User (4 Okt 2026): "tidak perlu ada nama penulisnya, cukup informasikan last update-nya kapan". Penulis tetap ada di JSON-LD `author` untuk mesin pencari.

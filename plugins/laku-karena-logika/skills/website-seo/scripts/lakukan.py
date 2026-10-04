@@ -96,6 +96,12 @@ def ikon_kat(k, cfg):
             f'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{path}</svg></span>')
 
 
+def diperbarui(a):
+    """Baris info di atas artikel: hanya tanggal pembaruan terakhir, tanpa nama penulis (permintaan user)."""
+    iso = a.get("updated_at") or a.get("published_at") or a["created_at"]
+    return f'<p class="pd-meta">Terakhir diperbarui <time datetime="{iso[:10]}">{tanggal(iso)}</time></p>'
+
+
 def kartu(a, url):
     cover = (f'<img class="pd-cover" src="{html.escape(a["cover_url"])}" alt="" loading="lazy" decoding="async">'
              if a.get("cover_url") else '<span class="pd-cover pd-cover-kosong" aria-hidden="true"></span>')
@@ -172,7 +178,7 @@ def halaman(S, cfg, data):
                 f'<a class="pd-pn {cls}" href="{url_art[x["slug"]]}"><span>{lab}</span>{html.escape(x["title"])}</a>'
                 for x, cls, lab in ((prev_, "prev", "← Sebelumnya"), (next_, "next", "Berikutnya →")) if x)
             pn_nav = f'<nav class="pd-pn-wrap" aria-label="Panduan lain">{pn}</nav>' if pn else ""
-            meta = f'<p class="pd-meta">{html.escape(a.get("author") or "")} · Diperbarui {tanggal(a.get("updated_at") or a["published_at"])}</p>'
+            meta = diperbarui(a)
             cover = (f'<img class="pd-hero-img" src="{html.escape(a["cover_url"])}" alt="" decoding="async" fetchpriority="high">'
                      if a.get("cover_url") else "")
             body = (f'<section class="band dok-band"><div class="wrap"><div class="dok-grid">{nav(k["slug"], a["slug"])}'
@@ -285,7 +291,7 @@ def blog(S, cfg, data, warn, cta_html=""):
         cover = (f'<img class="pd-hero-img" src="{html.escape(a["cover_url"])}" alt="" decoding="async" fetchpriority="high">'
                  if a.get("cover_url") else "")
         body = (f'<section class="band dok-band"><div class="wrap"><div class="bl-grid{" tunggal" if not samping else ""}"><div class="bl-artikel dokumen">'
-                f'<p class="pd-meta">{html.escape(a.get("author") or brand)} · {tanggal(a.get("published_at") or a["created_at"])}</p>'
+                f'{diperbarui(a)}'
                 f'{cover}{bersihkan(a["content"])}</div>{samping}</div></div></section>{cta_html}')
         kat = nama_kat.get(a["category"]["slug"], "Blog")
         crumbs = [("Blog", "/blog")] + ([(kat, url_sub[a["category"]["slug"]])] if a["category"]["slug"] in url_sub else []) + [(a["title"], url(a))]

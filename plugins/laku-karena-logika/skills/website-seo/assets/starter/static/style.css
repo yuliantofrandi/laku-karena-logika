@@ -459,7 +459,7 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .pd-judul{font-weight:800;font-size:17px;line-height:1.35}
 .pd-ringkas{color:var(--muted);font-size:14.5px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .prose .dok-grup a[aria-current]{background:#fff;color:var(--purple);font-weight:700}
-.prose .pd-artikel p.pd-meta{margin:0 0 16px;font-size:14px;color:var(--muted)}
+.prose .dokumen p.pd-meta{margin:0 0 16px;font-size:14px;color:var(--muted)}
 .pd-hero-img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;border:1px solid var(--line);margin:0 0 28px;background:var(--bg-tint)}
 .pd-artikel img:not(.pd-hero-img){max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:8px 0 4px}
 .pd-artikel blockquote{margin:24px 0;padding:14px 18px;border-left:4px solid var(--purple);border-radius:0 12px 12px 0;background:var(--bg-tint);color:var(--ink-2)}
