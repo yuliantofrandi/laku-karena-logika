@@ -168,12 +168,12 @@
   "_footer_trust": "Baris kepercayaan di footer (maks 3). Hanya fakta yang sudah tertulis di BKB/website; ikon: server | shield | support.",
   "legal": [
     {
-      "slug": "/kebijakan-privasi",
-      "name": "Kebijakan Privasi"
-    },
-    {
       "slug": "/syarat-layanan",
       "name": "Syarat Layanan"
+    },
+    {
+      "slug": "/kebijakan-privasi",
+      "name": "Kebijakan Privasi"
     }
   ],
   "_legal": "Link legal di footer bawah. Bila content/<slug>.html belum ada, build membuat halaman placeholder noindex ('dokumen sedang disiapkan' + link WA). Isi dokumennya dari user/ahli hukum; jangan mengarang isi legal.",
