@@ -107,42 +107,14 @@
       "id": "pemakaian-aplikasi-situs",
       "halaman": "/aplikasi-monitoring-karyawan",
       "section": "Apa yang dicatat Timebase",
-      "jenis": "bars",
-      "judul": "Pemakaian aplikasi & situs · minggu ini",
-      "alt": "Grafik pemakaian aplikasi dan situs tim selama jam kerja di Timebase",
-      "caption": "Ilustrasi rekap pemakaian aplikasi & situs",
-      "brief": "Screenshot asli laporan pemakaian aplikasi/URL tim (nama perusahaan klien disamarkan).",
-      "auto": true,
-      "data": {
-        "items": [
-          {
-            "label": "Figma",
-            "value": 62,
-            "text": "62 jam"
-          },
-          {
-            "label": "VS Code",
-            "value": 55,
-            "text": "55 jam"
-          },
-          {
-            "label": "Google Docs",
-            "value": 31,
-            "text": "31 jam"
-          },
-          {
-            "label": "Rapat video",
-            "value": 24,
-            "text": "24 jam"
-          },
-          {
-            "label": "Media sosial",
-            "value": 9,
-            "text": "9 jam",
-            "color": "#FF8A00"
-          }
-        ]
-      }
+      "alt": "Demo aplikasi Timebase: detail aktivitas satu karyawan — tracked time, status kerja, tugas, dan screenshot",
+      "caption": "Detail aktivitas satu karyawan di dashboard",
+      "brief": "Motion graphic asli dari user (9:16, 40 detik, tanpa suara): detail aktivitas karyawan.",
+      "auto": false,
+      "video": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas.mp4",
+      "file": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas-poster.jpg",
+      "w": 720,
+      "h": 1280
     },
     {
       "id": "galeri-screenshot-sesi",

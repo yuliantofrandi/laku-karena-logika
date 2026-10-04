@@ -527,6 +527,10 @@ def render_section(blocks, idx, S=None):
             scan.append(b)
     band = "band" if idx % 2 else "band alt"   # section pertama setelah band intro (putih) berlatar abu → batas terlihat
     # keseimbangan kolom: teks pendek di samping gambar → kartu langkah/fitur pertama ikut ke kolom teks
+    if fig and scan and "portrait" in fig:   # video/gambar potret tinggi → kartu ikut ke kolom teks agar tidak ada ruang kosong
+        for i, b in enumerate(wide):
+            if "grid" in kind(b)[1]:
+                scan.append(wide.pop(i)); break
     if fig and not scan:   # kartu (grid) atau tabel perbandingan ikut ke kolom teks, sejajar dengan gambar
         for i, b in enumerate(wide):
             if "grid" in kind(b)[1] or ("table-wrap" in kind(b)[1] and len(strip_tags(b)) <= 460):   # tabel panjang tetap lebar
