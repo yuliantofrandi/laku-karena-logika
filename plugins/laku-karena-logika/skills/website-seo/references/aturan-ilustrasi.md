@@ -84,3 +84,8 @@ User: "buat jadi ilustrasi, tampilannya seperti percakapan WhatsApp" (section ba
 - Ilustrasi tanpa jendela (`cards`, `compare`, `steps`, `venn`, `shield`, `tiers`, `orang`, `wa`) **tidak diberi judul di dalam gambar** (user: "tidak perlu ada title di gambarnya"). Konteks cukup dari judul section + caption. Ilustrasi berjendela tetap punya judul di bilah jendela.
 - `cards` satu baris mengisi kanvas: kartu 280px tinggi selebar ±712px, ikon besar dalam lingkaran tint, label 21px (user: "gambarnya terlalu banyak blank space"). Kartu multi-baris tetap ringkas.
 
+## Gambar dari user (foto/mockup)
+User sering memberi gambar sendiri ("ganti dengan gambar saya ini"), mis. orang memegang laptop berisi dashboard dengan latar transparan. Pasang apa adanya, hanya dikecilkan:
+- `scripts/kecilkan_gambar.py <masuk> static/ilustrasi/<id>.webp` → WebP lebar 1100 px (2× tampil), transparansi tetap, ≤ ±180 KB (batas build 200 KB). Butuh Pillow di venv sementara (lihat docstring skrip); Mac tanpa `cwebp` tidak bisa menulis WebP dengan `sips`.
+- Entri `ilustrasi.json`: `auto: false`, `file`, `w`/`h` hasil, alt yang menggambarkan isi gambar, caption sesuai pesan section (bukan deskripsi gambar).
+

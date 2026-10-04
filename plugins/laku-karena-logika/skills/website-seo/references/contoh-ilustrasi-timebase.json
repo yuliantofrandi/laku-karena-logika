@@ -263,24 +263,13 @@
       "id": "pengumuman-aturan-pemantauan",
       "halaman": "/aplikasi-kerja-remote",
       "section": "Cara memperkenalkan pemantauan ke tim tanpa resistensi",
-      "jenis": "doc",
-      "judul": "",
-      "alt": "Contoh pengumuman aturan pemantauan yang transparan untuk tim kerja remote",
-      "caption": "Aturan pemantauan diumumkan sebelum agen dipasang",
-      "brief": "Template pengumuman aturan pemantauan asli (versi desain) yang bisa diunduh pelanggan.",
-      "auto": true,
-      "data": {
-        "title": "Aturan Pemantauan Tim",
-        "checks": true,
-        "lines": [
-          "Dicatat hanya selama sesi kerja",
-          "Status, aplikasi, situs, screenshot",
-          "Karyawan bisa melihat datanya",
-          "Bisa minta hapus data",
-          "Data untuk evaluasi bersama"
-        ],
-        "footer": "Disetujui seluruh tim · 1 Okt 2026"
-      }
+      "alt": "Karyawan tersenyum memegang laptop yang menampilkan dashboard aktivitas tim Timebase",
+      "caption": "Karyawan ikut melihat dashboard, bukan hanya atasan",
+      "brief": "Gambar asli dari user: orang memegang laptop berisi dashboard Timebase (WebP transparan, dikecilkan ke 1100px).",
+      "auto": false,
+      "file": "static/ilustrasi/pengumuman-aturan-pemantauan.webp",
+      "w": 1100,
+      "h": 1006
     },
     {
       "id": "pengendali-dan-prosesor-data",
