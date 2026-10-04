@@ -26,7 +26,7 @@ img,svg{max-width:100%}
 .nav-actions .btn{white-space:nowrap}
 .brand{display:flex;line-height:0}
 .logo{height:22px;width:auto;display:block}
-.nav{display:flex;align-items:center;gap:22px}
+.nav{display:flex;align-items:center;gap:40px}
 .nav a{color:var(--ink-2);text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
 .nav a[aria-current=page]{color:var(--purple)}
 .nav a:hover{color:var(--pink)}
