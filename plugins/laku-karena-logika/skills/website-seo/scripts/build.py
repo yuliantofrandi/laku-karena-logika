@@ -19,6 +19,7 @@ from urllib.parse import quote
 
 import ilustrasi as ILUS
 import lakukan as LAKUKAN
+import langganan as LANGGANAN
 
 ROOT = Path(__file__).resolve().parent
 SOCIAL = {"testimonials": [], "metrics": []}
@@ -111,6 +112,9 @@ def pricing_table(S, P):
     def beli(x):
         btn = "btn-primary" if x.get("featured") else "btn-ghost"
         lab = S["copy"]["plan_button"].replace("{nama}", x["name"])
+        if S.get("langganan") is not None:   # modal langganan → QRIS (langganan.py); tanpa JS tetap link biasa
+            return (f'<td>{LANGGANAN.tombol(S, x, "bulanan", btn + " bln", lab, checkout_link(S, x["id"]))}'
+                    f'{LANGGANAN.tombol(S, x, "tahunan", btn + " thn", lab, checkout_link(S, x["id"], "tahunan"))}</td>')
         return (f'<td><a class="btn {btn} btn-sm bln" href="{checkout_link(S, x["id"])}" rel="nofollow">{lab}</a>'
                 f'<a class="btn {btn} btn-sm thn" href="{checkout_link(S, x["id"], "tahunan")}" rel="nofollow">{lab}</a></td>')
     foot = f'<tfoot><tr><th scope="row"></th>{"".join(beli(x) for x in s)}</tr></tfoot>'
@@ -715,6 +719,7 @@ def render(S, page, body, P, all_pages, indexable):
 {('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan</a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
+{LANGGANAN.modal(S, P) if 'js-langganan' in body else ''}
 {VIDEO_JS if 'video muted' in body + hero_img else ''}
 </body>
 </html>
@@ -1092,7 +1097,10 @@ def main():
         warnings.append("site.json: og_image kosong → pratinjau link di WhatsApp/sosmed tanpa gambar")
     if not S.get("site_url"):
         warnings.append("site.json: site_url kosong → canonical, og:url, sitemap.xml tidak dibuat")
-    if not S.get("checkout_url"):
+    if S.get("langganan") is not None:
+        if not S["langganan"].get("qris_url"):
+            warnings.append("site.json: langganan.qris_url kosong → modal langganan menampilkan 'QRIS sedang disiapkan' + kirim pesanan via WhatsApp")
+    elif not S.get("checkout_url"):
         msg = "site.json: checkout_url kosong → tombol beli mengarah ke /harga#pilih-skema"
         (errors if S.get("site_url") else warnings).append(msg + (" — wajib diisi sebelum publish" if S.get("site_url") else ""))
     if not S.get("signin_url"):

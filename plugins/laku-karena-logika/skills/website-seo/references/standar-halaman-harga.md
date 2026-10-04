@@ -46,3 +46,26 @@ Cukup media hero (`min_per_halaman_khusus: {"/harga": 1}` di `data/ilustrasi.jso
 - `data/pricing.json`: `schemes` (nama paket, harga per tier, `featured`, `for`), `tier_labels`, `annual_months_paid`, `features`, `addons[]` (`name`, `monthly`, `desc`, `applies_to`, `link`), `terms`, `note` (boleh kosong).
 - `content/harga.html`: salin template, isi pembuka, 3 kartu persona, jawaban FAQ dari BKB.
 - `site.json extra_pages[/harga]`: `title`, `meta`, `h1`, `primary` ("Harga <Brand>"), `eyebrow` (ajakan), `links` (halaman produk + halaman detail add-on), `min_words` 300.
+
+
+## Modal langganan → QRIS (tombol "Pilih <paket>")
+User (4 Okt 2026): "saat pilih paket, munculkan modal untuk subscription dan dilanjutkan nanti akan memunculkan QRIS pembayaran. Untuk link QRIS-nya menyusul". Modul: `scripts/langganan.py`, aktif bila `site.json` punya blok `"langganan"`.
+
+- **Tombol paket** di tabel harga diberi class `js-langganan` + `data-paket`. Tanpa JS, tombol tetap link biasa (`checkout_url` / `#pilih-skema`).
+- **Langkah 1 – Langganan <paket>:**
+  - Pilihan Bulanan/Tahunan (mengikuti switch tabel) dan jumlah karyawan.
+  - Add-on dari `pricing.json` sebagai kotak centang.
+  - Ringkasan harga langsung dihitung: tier dari jumlah karyawan, tahunan = bulanan × `annual_months_paid`, add-on per karyawan.
+  - Data aktivasi: nama, perusahaan, email kerja, WhatsApp, dengan validasi wajib isi.
+  - Kalimat persetujuan yang menautkan Syarat Layanan & Kebijakan Privasi.
+- **Langkah 2 – Bayar dengan QRIS:**
+  - Total, no. pesanan (`TB-YYYYMMDD-XXXX`), ringkasan paket, dan 3 langkah bayar.
+  - Area QRIS:
+    - `qris_url` berakhiran gambar → gambar QR ditampilkan.
+    - URL lain → tombol "Tampilkan QRIS".
+    - Kosong → kotak "QRIS sedang disiapkan" (build memberi WARNING).
+  - `qris_url` boleh memuat `{order} {total} {paket} {periode} {karyawan}`.
+  - Tombol konfirmasi membuka WhatsApp dengan ringkasan pesanan lengkap (butuh `site.json whatsapp`).
+- **Data formulir tidak dikirim ke server mana pun** dari halaman statis ini. Data hanya masuk ke pesan WhatsApp yang dikirim sendiri oleh pengunjung. Bila nanti ada API pesanan, sambungkan di langkah 2.
+- Bila blok `langganan` ada, `checkout_url` tidak wajib lagi.
+- **Mobile:** modal tampil sebagai bottom sheet selebar layar. Elemen `[hidden]` di dalam modal wajib `display:none!important`, karena aturan flex bisa menimpanya.

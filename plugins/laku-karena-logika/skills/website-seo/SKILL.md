@@ -148,6 +148,9 @@ Bila user memberi logo asli (PNG transparan, sering berisi tagline): unduh versi
 ## Halaman Harga (wajib)
 Setiap website produk wajib punya halaman `/harga` dengan struktur yang sudah disetujui user: hero ber-badge ajakan → tabel harga (judul ajakan, ringkasan harga, switch, header minimalis, tombol di bawah, kotak add-on) → 3 kartu persona "Paket mana yang cocok?" → FAQ harga → CTA. Baca `references/standar-halaman-harga.md` dan salin `assets/starter/content/harga.html`. Build ERROR bila halaman, menu, atau `{{pricing_table}}` tidak ada.
 
+## Modal langganan → QRIS
+Tombol "Pilih <paket>" di halaman Harga membuka modal dua langkah (data + jumlah karyawan → bayar QRIS) lewat `scripts/langganan.py`, aktif dengan blok `site.json "langganan": {"qris_url": ""}`. Detailnya ada di `references/standar-halaman-harga.md` § Modal langganan.
+
 ## Halaman White Label (wajib)
 Setiap website produk wajib punya halaman `/white-label` (menu: item terakhir grup Solusi) dengan positioning **beli putus, server milik pembeli, merek sendiri, untuk perusahaan dengan banyak karyawan** — bukan program reseller. Baca `references/standar-halaman-white-label.md` dan pakai template global `assets/starter/content/white-label.html` apa adanya. Build ERROR bila halaman, menu, atau `{{cta_whitelabel}}` tidak ada.
 
