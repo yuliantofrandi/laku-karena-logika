@@ -760,6 +760,14 @@ def check_sections(sid, body):
         if len(re.findall(r"\w+", title)) > 12:
             warn(sid, f"judul section “{title[:50]}…” terlalu panjang (>12 kata)")
 
+def check_badge(page):
+    """Badge hero tidak boleh mengulang H1 (keluhan user: badge "Blog" + H1 "Blog Timebase" "masih memiliki makna yang sama")."""
+    eb = page.get("eyebrow") or page["name"]
+    kata = {w for w in re.findall(r"\w+", eb.lower()) if len(w) > 2 and w not in ("dan", "untuk", "yang")}
+    if kata and kata <= set(re.findall(r"\w+", page["h1"].lower())):
+        warn(page["slug"], f'badge "{eb}" mengulang kata di H1 → ganti dengan kalimat ajakan (field "eyebrow"), lihat standar-ui-section.md §3d')
+
+
 def check_page(S, B, page, body, slugs):
     sid = page["slug"]
     t, m, h1, prim = page["title"], page["meta"], page["h1"], page["primary"].lower()
@@ -1048,6 +1056,8 @@ def main():
         p["_gambar"] = used + ([HERO[p["slug"]]] if p["slug"] in HERO else [])
         check_images(p, used, IL)
         check_page(S, B, p, raw, slugs)
+        if p["slug"] != "/":
+            check_badge(p)
         indexable = S.get("legal_reviewed", {}).get(p["slug"], True)
         if not indexable:
             warn(p["slug"], "belum direview ahli hukum → noindex & tidak masuk sitemap")
