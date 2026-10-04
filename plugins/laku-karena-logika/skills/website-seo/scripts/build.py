@@ -688,7 +688,7 @@ def render(S, page, body, P, all_pages, indexable):
 {hero_stats(S) if page["slug"] != "/404" and not page.get("sederhana") else ""}
 </div>{hero_img}</div></section>
 <article class="content prose">
-{('<section class="band"><div class="wrap dokumen">' + body + '</div></section>') if page.get("dokumen") else layout_sections(body)}
+{('<section class="band dok-band"><div class="wrap">' + body + '</div></section>') if page.get("dokumen") else layout_sections(body)}
 </article>
 </main>
 <footer class="site-footer"><div class="wrap">
@@ -1054,6 +1054,21 @@ def main():
               "h1": "Halaman tidak ditemukan", "lead": "Alamat ini tidak ada. Coba mulai dari beranda."}
         (DIST / "404.html").write_text(render(S, nf, '<p><a href="/">Kembali ke beranda</a></p>', P, pages, False), encoding="utf-8")
         # halaman legal: pakai content/<slug>.html bila sudah ada; bila belum, placeholder noindex
+        def pasal_legal(lg):
+            f = ROOT / "content" / (lg["slug"].strip("/") + ".html")
+            if not f.exists():
+                return []
+            return [(m.group(1), m.group(2).strip().replace("{{brand}}", S["brand"])) for m in re.finditer(r"<h2>(\d+)\.\s*(.*?)</h2>", f.read_text(encoding="utf-8"))]
+        def nav_legal(aktif):
+            grup = []
+            for lg in S.get("legal", []):
+                cur = lg["slug"] == aktif
+                items = "".join(f'<li><a href="{"" if cur else lg["slug"]}#pasal-{n}">{n}. {html.escape(strip_tags(t))}</a></li>' for n, t in pasal_legal(lg))
+                grup.append(f'<details class="dok-grup{" aktif" if cur else ""}"{" open" if cur else ""}><summary>{html.escape(lg["name"])}</summary><ol>{items}</ol></details>')
+            isi = "".join(grup)
+            # desktop: sidebar kiri selalu terbuka; mobile: "Daftar isi" tertutup agar tidak mendorong isi dokumen ke bawah
+            return (f'<aside class="dok-nav" aria-label="Daftar isi dokumen">{isi}</aside>'
+                    f'<details class="dok-toc-hp"><summary>Daftar isi</summary>{isi}</details>')
         for lg in S.get("legal", []):
             src = ROOT / "content" / (lg["slug"].strip("/") + ".html")
             if src.exists():
@@ -1061,6 +1076,9 @@ def main():
                 tgl = S.get("legal_berlaku", "")
                 body_lg = (body_lg.replace("{{brand}}", S["brand"]).replace("{{tanggal_berlaku}}", tgl)
                            .replace("{{wa_link}}", wa_link(S, f'Halo, saya ingin bertanya tentang {lg["name"]} {S["brand"]}')))
+                body_lg = re.sub(r"<h2>(\d+)\.\s*(.*?)</h2>", r'<h2 id="pasal-\1"><span class="no">\1</span>\2</h2>', body_lg)
+                body_lg = (f'<div class="dok-grid">{nav_legal(lg["slug"])}<div class="dokumen">'
+                           f'<p class="dok-label">Dokumen legal</p>{body_lg}</div></div>')
             else:
                 warnings.append(f'{lg["slug"]}: dokumen "{lg["name"]}" belum ada → halaman placeholder noindex (isi content{lg["slug"]}.html sebelum iklan jalan)')
                 body_lg = (f'<p>Dokumen {html.escape(lg["name"])} {S["brand"]} sedang disiapkan dan akan segera tersedia di halaman ini.</p>'

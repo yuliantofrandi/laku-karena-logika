@@ -8,7 +8,10 @@ User (4 Okt 2026): *"selalu buatkan kebijakan privasi dan syarat layanan, buatka
 - **Sumber fakta hanya BKB + isi website** (data yang dikumpulkan, paket, retensi, lokasi server, peran data, cara bayar, dukungan). Jangan mengarang fitur, sertifikasi, enkripsi, atau angka yang tidak tertulis.
 - Bahasa Indonesia baku, lugas, kalimat pendek; poin bernomor per pasal. Rujuk **UU 27/2022 (UU PDP)**.
 - Token yang diisi build: `{{brand}}`, `{{tanggal_berlaku}}` (`site.json legal_berlaku`), `{{wa_link}}` (kontak lewat WhatsApp — user tidak memakai email).
-- Halaman dirender sebagai **dokumen satu kolom** (`.dokumen`, 760px, rata tengah), hero polos tanpa CTA/statistik, `noindex`.
+- Halaman dirender sebagai **dokumen dengan navigasi kiri** (user: "buat jadi ada navigasi di sebelah kiri, seperti contoh ini"): hero polos tanpa CTA/statistik, `noindex`.
+  - Desktop: sidebar 280px **sticky** berlatar abu muda berisi grup per dokumen legal (`<details>`; dokumen aktif terbuka & berwarna ungu, lainnya tertutup), item = pasal ("1. …") yang menaut ke `#pasal-N`.
+  - Isi: label "DOKUMEN LEGAL", kotak info biru muda "Berlaku sejak …", judul pasal dengan **lingkaran nomor bergradasi**. Tulis judul pasal sebagai `<h2>N. Judul</h2>` — build menambah id & lingkaran nomor.
+  - Mobile: sidebar disembunyikan, diganti "Daftar isi" yang tertutup (tidak mendorong isi ke bawah). Tanpa JavaScript.
 
 ## Kebijakan Privasi — pasal wajib
 1. Tentang kebijakan ini (cakupan: situs, akun, agen/produk; acuan UU PDP)
