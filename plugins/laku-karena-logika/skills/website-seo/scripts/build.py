@@ -594,8 +594,8 @@ def render_section(blocks, idx, S=None):
         else:
             row = f'<div class="split panel-row{flip}"><div class="col-text">{lead}</div><div class="col-panel"><div class="panel">{"".join(scan)}</div></div></div>'
     else:
-        # section tabel harga: judul + pembuka rata tengah di atas tabel (permintaan user)
-        tengah = " center" if any(c in kind(b)[1] for b in wide for c in ("periode", "persona")) else ""
+        # section tabel harga & kartu ikon rata tengah: judul + pembuka rata tengah di atas (permintaan user)
+        tengah = " center" if any(c in kind(b)[1] for b in wide for c in ("periode", "persona", "ikon-tengah")) else ""
         row = f'<div class="split stack{tengah}"><div class="col-text">{lead}</div></div>'
     return f'<section class="{band}"><div class="wrap">{row}{"".join(wide)}</div></section>'
 

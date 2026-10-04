@@ -430,3 +430,9 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
   .mock .row{grid-template-columns:80px 1fr 44px}
   .cta{padding:22px}
 }
+/* kartu poin berikon bulat gradasi, rata tengah (poin pakai ikon, bukan angka) */
+.grid.ikon-tengah .card{background:#f8f9fb;border-color:#eceef2;border-radius:18px;padding:32px 26px;text-align:center}
+.grid.ikon-tengah .card h3{font-size:19px;margin:0 0 8px}
+.grid.ikon-tengah .card p{color:var(--muted);font-size:15.5px}
+.ikon-bulat{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--grad);color:#fff;margin:0 auto 18px;box-shadow:0 10px 22px -12px rgba(123,44,255,.55)}
+.band.alt .grid.ikon-tengah .card{background:#fff;border-color:#ebe7f3}

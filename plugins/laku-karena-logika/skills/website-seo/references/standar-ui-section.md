@@ -50,6 +50,14 @@ Target keseimbangan: tinggi kolom terpanjang ≤ ±1,8× kolom terpendek di 1440
 ## 3b. CTA penutup (blok gelap, satu per halaman)
 **Ringkas** (keluhan user: "terlalu banyak teks"). Dua kolom: kiri judul + **satu kalimat pendek** (`copy.cta_text` ≤16 kata) + dua tombol berdampingan; kanan panel transparan berisi **satu daftar centang** `copy.cta_poin`: maks 4 frasa ≤6 kata (urgensi + jaminan), tanpa label, tanpa penjelasan panjang. Jaminan lengkap tetap di /harga. Build memberi WARNING bila melebihi. Urgensi dan jaminan **tidak** diulang di section lain. Band CTA memakai padding atas = bawah yang sama dengan band lain (64px / 44px mobile); jangan beri override padding khusus (kasus nyata: 8px atas vs 64px bawah, ditegur user "padding atas bawahnya tidak sama").
 
+## 3c. Kartu poin berikon (bukan angka)
+Disetujui user (4 Okt 2026): "jika butuh point, kasih icon saja jangan pakai angka".
+- Markup: `<div class="grid ikon-tengah">`, dan tiap kartu diawali `<span class="ikon-bulat" aria-hidden="true"><svg …stroke="currentColor"…></svg></span>`, lalu `h3` dan `p`. Pakai ikon garis (24×24, stroke 2) yang sesuai maknanya.
+- Tampilan: lingkaran gradasi `--grad` 58px dengan ikon putih di tengah atas, judul tebal rata tengah, deskripsi abu rata tengah. Kartu abu muda di band putih dan putih di band `alt`.
+- Judul section dan pembuka otomatis rata tengah (`split stack center`).
+- Cukup **satu paragraf pembuka**. Jangan menambah `p.note` di bawahnya; gabungkan pesannya ke pembuka ("2 p ini jadikan 1 saja").
+- `span.num` hanya untuk urutan langkah yang memang berurutan, bukan untuk daftar poin.
+
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
 - Tombol WA melayang minimalis di kanan bawah.
