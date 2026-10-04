@@ -1,13 +1,13 @@
 ---
 name: motion-graphic
-description: Membuat video motion graphic MP4 dari aplikasi/software SaaS pengguna — menjelajahi aplikasi aslinya lewat browser, lalu merekreasi tampilannya dengan data dummy dan merender SATU video MP4 kecil bernama berkata kunci yang siap dipasang di website dan lolos PageSpeed. Tiga gaya — Style 1 promo fitur 9:16 (headline per fitur), Style 2 walkthrough layar 16:9 (klik antar menu, tanpa teks promosi), Style 3 walkthrough layar 9:16 (kamera pan mengikuti klik). Gunakan saat pengguna berkata "buat motion graphic", "video demo aplikasi", "video fitur software saya", "walkthrough aplikasi", "video untuk landing page/website", "video yang lolos PageSpeed", "video produk untuk calon pembeli", atau "motion graphic style 1/2/3".
+description: Membuat video motion graphic MP4 dari aplikasi/software SaaS pengguna — memakai SCREENSHOT ASLI dari layar browser pengguna (nama & jabatan diganti dummy, 4 digit akhir nomor telepon di-blur, foto profil tetap), lalu menganimasikannya dengan kursor, klik, dan zoom kamera, dan merender SATU video MP4 kecil bernama berkata kunci yang siap dipasang di website dan lolos PageSpeed. Tiga gaya — Style 1 promo fitur 9:16 (headline per fitur), Style 2 walkthrough layar 16:9 (klik antar menu, tanpa teks promosi), Style 3 walkthrough layar 9:16 (kamera pan mengikuti klik). Gunakan saat pengguna berkata "buat motion graphic", "video demo aplikasi", "video fitur software saya", "walkthrough aplikasi", "video untuk landing page/website", "video yang lolos PageSpeed", "video produk untuk calon pembeli", atau "motion graphic style 1/2/3".
 ---
 
 # Motion Graphic – Video Produk SaaS
 
-Ubah aplikasi web milik pengguna menjadi **satu** video MP4 untuk dipasang di website: file kecil (≤ 3 MB) agar lolos PageSpeed, dengan nama file berkata kunci untuk SEO. Tidak ada file ekspor lain. Video TIDAK merekam layar asli: tampilan direkreasi dalam HTML yang dianimasikan secara deterministik, lalu dirender frame-per-frame. Hasilnya tajam, bisa direvisi, dan aman dibagikan.
+Ubah aplikasi web milik pengguna menjadi **satu** video MP4 untuk dipasang di website: file kecil (≤ 3 MB) agar lolos PageSpeed, dengan nama file berkata kunci untuk SEO. Tidak ada file ekspor lain. Bahan video adalah **screenshot asli** dari layar browser pengguna — setelah data pribadi disamarkan sesuai aturan privasi di bawah — yang lalu dianimasikan (kursor, klik, zoom/pan kamera, headline) dalam HTML deterministik dan dirender frame-per-frame. Hasilnya tajam, bisa direvisi, dan aman dibagikan.
 
-Urutan WAJIB: cek alat → pilih gaya → jelajahi aplikasi → storyboard (setujui) → bangun HTML → cek snapshot → render bahan → MP4 web berkata kunci + uji PageSpeed → serahkan satu MP4.
+Urutan WAJIB: cek alat → pilih gaya → jelajahi aplikasi → storyboard (setujui) → samarkan + tangkap screenshot asli → susun HTML → cek snapshot → render bahan → MP4 web berkata kunci + uji PageSpeed → serahkan satu MP4.
 
 Video utamanya dipakai di website SEO: hasil akhir HARUS lolos PageSpeed (Performance ≥ 90 mobile & desktop, CLS 0). Jangan pernah menyerahkan embed `<video autoplay src=...>` mentah.
 
@@ -31,6 +31,10 @@ python3 -m playwright install chromium
 npm i -g lighthouse@12
 ```
 
+Screenshot ditangkap dengan `screencapture` bawaan **macOS**: aplikasi Claude/terminal perlu izin
+*System Settings → Privacy & Security → Screen Recording*. Kalau belum diizinkan, minta pengguna
+mengaktifkannya (Claude tidak boleh mengubah setelan ini sendiri).
+
 **Folder output** tidak di-hardcode: pakai folder yang disebut pengguna;
 kalau belum disebut, pakai `motion-graphic/<produk>/` di working directory
 sesi ini. Di bawah, folder ini ditulis `<output>`. Skrip dipanggil dari
@@ -42,46 +46,64 @@ Tanyakan dengan AskUserQuestion, sekalian tanyakan produk/URL aplikasinya bila b
 
 | Style | Format | Isi | Cocok untuk |
 |---|---|---|---|
-| **Style 1 – Promo fitur** | 9:16, 1080×1920, ±25–30 dtk | Hook pembuka → 3–5 scene fitur (kicker "01 · FITUR" + headline besar + mockup UI beranimasi) → outro logo + chip fitur + CTA domain | Reels/TikTok, hero section mobile, iklan |
-| **Style 2 – Walkthrough 16:9** | 1920×1080, ±45–60 dtk | Hanya layar aplikasi (sidebar, topbar, halaman) + kursor yang mengklik antar menu + kamera zoom ke area penting; tanpa teks promosi; kartu penutup logo + domain | Landing page, halaman fitur, YouTube, demo ke calon pembeli |
-| **Style 3 – Walkthrough 9:16** | 1080×1920, ±45–60 dtk | Alur klik sama dengan Style 2, layar dalam jendela berbingkai yang di-zoom ±1,3× dan di-pan mengikuti kursor; header logo + pill nama menu, indikator progres + domain di bawah | Reels/TikTok/Shorts, versi mobile landing page |
+| **Style 1 – Promo fitur** | 9:16, 1080×1920, ±25–30 dtk | Hook pembuka → 3–5 scene fitur (kicker "01 · FITUR" + headline besar + screenshot asli di kartu, di-zoom ke bagian yang dibahas) → outro logo + tagline + CTA domain | Hero section mobile, section fitur |
+| **Style 2 – Walkthrough 16:9** | 1920×1080, ±45–60 dtk | Screenshot asli layar demi layar + kursor yang mengklik antar menu + kamera zoom ke area penting; tanpa teks promosi; kartu penutup logo + domain | Landing page, halaman fitur, demo ke calon pembeli |
+| **Style 3 – Walkthrough 9:16** | 1080×1920, ±45–60 dtk | Alur klik sama dengan Style 2, screenshot dalam jendela berbingkai yang di-zoom ±1,3× dan di-pan mengikuti kursor; header logo + pill nama menu, indikator progres + domain di bawah | Versi mobile landing page |
 
-Style 2 dan 3 bisa dibuat sekaligus dari satu rekreasi (Style 3 = Style 2 + kamera vertikal).
+Ketiga gaya memakai satu template (`assets/video-screenshot.html`, ganti `GAYA`) dan bisa memakai set screenshot yang sama.
 
 Detail visual, struktur scene, dan parameter kamera tiap gaya ada di `references/gaya.md`.
 
 ## 2. Jelajahi aplikasi
 
-- Pakai Claude in Chrome di tab aplikasi pengguna: screenshot setiap menu, tab, dan detail penting (klik kartu → halaman detail, tab di dalamnya, pengaturan). Klik hanya untuk melihat — jangan menyimpan, menghapus, atau mengubah data.
-- Ambil token visual dengan `javascript_tool`: font (`getComputedStyle(document.body).fontFamily`), warna primer menu aktif, warna teks. Logo: unduh bila bisa; bila diblokir (proxy/CORS), rekreasi sebagai teks bergradasi/warna sesuai logo asli dan beri tahu pengguna.
-- Catat daftar menu + 1 hal paling menjual di tiap layar. Kembalikan tab pengguna ke halaman awal setelah selesai.
+- Pakai Claude in Chrome di tab aplikasi pengguna: lihat setiap menu, tab, dan detail penting (klik kartu → halaman detail, tab di dalamnya, pengaturan). Klik hanya untuk melihat — jangan menyimpan, menghapus, atau mengubah data.
+- Ambil warna primer menu aktif dengan `javascript_tool` (untuk aksen headline, kursor, kartu penutup).
+- Catat daftar layar yang akan masuk video + 1 hal paling menjual di tiap layar, dan kumpulkan **semua nama orang dan nama jabatan** yang terlihat (pakai `get_page_text`) untuk peta penyamaran.
 
 ## 3. Storyboard (tampilkan di chat, tunggu persetujuan)
 
 Tabel per scene/halaman: detik mulai–selesai, layar, aksi kursor/animasi, fokus kamera (Style 2/3) atau headline (Style 1). Untuk Style 1 tulis headline dalam bahasa manfaat ("Pantau aktivitas seluruh tim dalam satu layar"), bukan nama menu.
 
-Aturan konten (jelaskan di storyboard):
-- **Data dummy**: nama karyawan/pelanggan, foto, isi screenshot, nama perusahaan tenant, dan akun login diganti fiktif (inisial berwarna sebagai avatar). Jangan pernah menampilkan data asli tanpa izin eksplisit.
-- Label yang menyebut sistem internal/klien (mis. nama HRIS internal) diganti istilah umum; sebutkan perubahan ini ke pengguna.
-- Tanpa klaim angka karangan di teks promosi; angka di dalam UI dummy boleh.
-- Klaim fitur hanya yang benar-benar terlihat di aplikasi atau dinyatakan pengguna.
+Sertakan di storyboard **peta penyamaran**: tiap nama orang → nama dummy, tiap jabatan → jabatan dummy (dummy yang wajar dan konsisten — nama yang sama selalu jadi dummy yang sama di semua layar).
 
-## 4. Bangun HTML
+Aturan privasi (WAJIB, ketetapan pengguna):
 
-Mulai dari template di `assets/` (contoh nyata dari produk Timebase) — salin, lalu ganti isi:
-- `assets/style1-promo-fitur-9x16.html`
-- `assets/style2-walkthrough-16x9.html`
-- `assets/style3-walkthrough-9x16.html`
+| Data di layar | Perlakuan |
+|---|---|
+| Foto profil | **Tetap** — tidak diubah, tidak di-blur |
+| Nama jabatan | Diganti **jabatan dummy** |
+| Data berisi nama (orang) | Diganti **nama dummy** |
+| Nomor telepon | **4 digit terakhir di-blur** |
 
-Kontrak mesin animasi, cara menambah halaman/klik/kamera, dan jebakan yang sudah ditemui ada di `references/mesin-animasi.md`. Wajib baca sebelum mengedit template.
+Data sensitif lain yang tidak diatur tabel ini (mis. email, alamat, NIK, nama perusahaan klien) — tanyakan ke pengguna sebelum screenshot diambil. Teks promosi tanpa klaim angka karangan; klaim fitur hanya yang benar-benar terlihat di aplikasi atau dinyatakan pengguna.
+
+## 4. Samarkan lalu tangkap screenshot asli
+
+Untuk tiap layar di storyboard, di tab aplikasi pengguna:
+1. Siapkan tampilan: zoom browser 100%, tidak ada popup/devtools, lebar jendela sama untuk semua layar (pakai `resize_window` Claude in Chrome bila perlu, mis. 1440×900 untuk 16:9).
+2. Samarkan: jalankan isi `scripts/privasi.js` lalu `samarkan({...peta penyamaran...})` lewat `javascript_tool`. Fungsi ini mengganti nama & jabatan sesuai peta, mem-blur 4 digit terakhir semua nomor telepon, dan tidak menyentuh gambar (foto profil tetap). Perubahan hanya di DOM tab — tidak tersimpan ke server.
+3. Catat posisi target klik untuk animasi kursor: `getBoundingClientRect()` elemen yang akan diklik (tengah elemen, px CSS halaman).
+4. Ambil posisi area halaman di layar, lalu tangkap:
+   `({x: screenX, y: screenY + (outerHeight - innerHeight), w: innerWidth, h: innerHeight})` →
+   `bash <folder skill ini>/scripts/tangkap_layar.sh <output>/sumber/shots/01.png <x> <y> <w> <h>`
+5. **Periksa PNG-nya** (baca gambarnya): tidak boleh ada nama/jabatan asli yang tertinggal (mis. di dalam gambar, grafik canvas, atau inisial avatar) dan 4 digit akhir semua nomor harus ter-blur. Kalau ada yang lolos, tambahkan ke peta dan ulangi.
+6. Pindah layar lewat klik menu biasa (bukan menyimpan data), ulangi 2–5 — navigasi memuat ulang DOM, jadi penyamaran harus dijalankan lagi di tiap layar.
+
+Selesai: muat ulang tab agar tampilan asli kembali dan kembalikan ke halaman awal. Peta penyamaran berisi nama asli — simpan hanya di percakapan, jangan ditulis ke file.
+
+## 4b. Susun HTML
+
+Salin `assets/video-screenshot.html` ke `<output>/sumber/video.html` (screenshot di `<output>/sumber/shots/`), lalu isi blok "ISI VIDEO": `GAYA`, `CFG` (`shotW` = `innerWidth` saat screenshot), `SHOTS`, `MOVES` (koordinat dari langkah 4.3), `CLICKS`, `CAM`, dan untuk Style 1 `CAPS` + `INTRO`.
+
+Kontrak template, pola kamera tiap gaya, dan jebakan yang sudah ditemui ada di `references/mesin-animasi.md` dan `references/gaya.md`. Wajib baca sebelum mengisi.
 
 ## 5. Cek lalu render
 
 1. Ambil snapshot beberapa detik kunci (tiap scene) dan lihat sebagai contact sheet:
-   `python3 <folder skill ini>/scripts/render.py video.html <output>/.kerja/cek --size 1080x1920 --snap 2,6.5,12,17`
-   Periksa: elemen terpotong/overflow, kartu kosong, kamera keluar area, kursor di target saat klik, teks terbaca di ukuran HP.
+   `python3 <folder skill ini>/scripts/render.py <output>/sumber/video.html <output>/.kerja/cek --size 1080x1920 --snap 2,6.5,12,17`
+   Periksa: kamera keluar area/menampilkan ruang kosong, kursor tepat di target saat klik, teks screenshot terbaca di ukuran HP, tidak ada data asli yang lolos penyamaran.
 2. Perbaiki, lalu render **bahan** resolusi penuh (≈2 dtk proses per 1 dtk video) ke folder kerja sementara — ini bukan hasil ekspor:
-   `python3 <folder skill ini>/scripts/render.py video.html <output>/.kerja/bahan --size 1920x1080`
+   `python3 <folder skill ini>/scripts/render.py <output>/sumber/video.html <output>/.kerja/bahan --size 1920x1080` (Style 1/3: `--size 1080x1920`)
 3. Ekstrak 3–4 frame dari MP4 bahan dengan ffmpeg untuk verifikasi visual.
 
 ## 5b. Satu MP4 web berkata kunci + uji PageSpeed
@@ -99,6 +121,6 @@ Butuh: Python Playwright + Chromium, ffmpeg (libx264), Pillow, Node + `lighthous
 ## 6. Serahkan
 
 - Serahkan **satu** file: `<output>/<slug>.mp4`. Hapus folder `<output>/.kerja/` (bahan render & snapshot) setelah lolos uji. Tempel snippet embed sebagai blok kode di chat (bukan file). HTML sumber disimpan di `<output>/sumber/` untuk revisi — bukan hasil ekspor.
-- Ringkas: durasi & format, urutan scene/klik, data apa yang di-dummy-kan, label yang diubah, batasan (tanpa audio, logo rekreasi bila ada).
+- Ringkas: durasi & format, urutan layar/klik, peta penyamaran yang dipakai (nama & jabatan → dummy, jumlah nomor yang di-blur), batasan (tanpa audio).
 - Laporkan hasil Lighthouse (skor mobile & desktop, LCP, CLS, TBT, berat awal halaman) dan hal yang menjadi tanggung jawab server (cache, kompresi) dari `references/website-seo.md`, plus usulan penempatan video di halaman.
-- Revisi = edit HTML lalu render ulang; jangan bangun dari nol.
+- Revisi = edit HTML (atau ganti screenshot tertentu) lalu render ulang; jangan bangun dari nol.
