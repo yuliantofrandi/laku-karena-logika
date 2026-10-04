@@ -1,6 +1,6 @@
 # Video untuk website SEO — hanya MP4, wajib lolos PageSpeed
 
-Hasil ekspor HANYA file MP4 (tanpa WebM, teaser, atau file gambar). Target: Lighthouse/PageSpeed **Performance ≥ 90 (mobile & desktop), SEO 100, CLS 0, TBT < 200 ms**.
+Hasil ekspor HANYA **satu** file MP4 kecil bernama berkata kunci (tanpa master 1080p, WebM, teaser, atau file gambar). Target: Lighthouse/PageSpeed **Performance ≥ 90 (mobile & desktop), SEO 100, CLS 0, TBT < 200 ms**.
 
 ## Cara kerjanya (otomatis oleh `scripts/web_optimize.py`)
 1. **MP4 web**: 1280×720 (16:9) atau 720×1280 (9:16), 24 fps, H.264 High, tanpa audio, `+faststart`, ≤ 3 MB (CRF dinaikkan otomatis bila lewat). H.264 dipilih karena didecode hardware di semua browser/HP.
@@ -14,7 +14,7 @@ Catatan teruji: `preload="metadata"` + `#t=` (ambil frame dari MP4) TIDAK dipaka
 ## Perintah
 ```bash
 python3 <folder skill ini>/scripts/web_optimize.py \
-  <output>/<produk>-style2.mp4 <output>/web <slug-berkata-kunci> \
+  <output>/.kerja/bahan.mp4 <output> <slug-berkata-kunci> \
   --poster 6.8 --title "Demo aplikasi <Produk>: <manfaat utama>" \
   --desc "<1–2 kalimat berisi keyword utama dan fitur yang tampil>" --domain https://<domain> --path /media/
 ```

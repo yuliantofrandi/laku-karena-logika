@@ -5,7 +5,7 @@ Pakai:
   python3 render.py <file.html> <output_basename> --size 1080x1920 [--fps 30] [--snap 2,6.5,12]
 
 Hasil:
-  <output_basename>.mp4          master H.264 1080p, faststart (sosmed/YouTube; untuk website pakai web_optimize.py)
+  <output_basename>.mp4          bahan H.264 resolusi penuh (sementara — hasil ekspor dibuat web_optimize.py)
   <output_basename>-snap-<t>.png (opsional --snap) frame cek kualitas sementara, bukan hasil ekspor
 
 Syarat HTML: memanggil render(0) bila URL berisi '?rec', dan mengekspos window.render & window.DUR.
@@ -21,6 +21,7 @@ ap.add_argument("--snap", default=None, help="hanya ambil frame PNG di detik-det
 a = ap.parse_args()
 W, H = map(int, a.size.lower().split("x"))
 url = "file://" + os.path.abspath(a.html) + "?rec"
+os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
 
 with sync_playwright() as p:
     b = p.chromium.launch()
