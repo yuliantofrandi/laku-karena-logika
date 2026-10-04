@@ -23,6 +23,7 @@ Berlaku untuk setiap halaman yang lahir dari `data/brief.json` (title, meta, H1,
 
 ## Keputusan visual yang disetujui (halaman ini)
 - **Video demo milik user menggantikan ilustrasi** bila user memberikannya ("ganti dengan ilustrasi saya ini"). Prosedur: salin ke `static/video/`, poster dari frame **setelah animasi pembuka** (±3 detik; frame awal sering masih kosong/0), entri `ilustrasi.json` `auto:false` + `video` + `file` + `w/h` asli. Kompres hanya bila >5 MB (`scripts/kompres_video.swift`).
+- **Video demo boleh dipakai ulang di halaman lain** bila isinya relevan (user: "pasang salah satu video motion graphic yang sudah ada sebelumnya pada page lain"): buat entri ilustrasi baru yang menunjuk file `static/video/…` yang sama (alt & caption disesuaikan konteks section). Contoh: video detail aktivitas dipakai di Monitoring dan di section "bukti jam tertagih" Time Tracking.
 - **Media potret (9:16)**: kolom media 340px (`split media potret`), kartu section ikut ke kolom teks 2×2 — tidak ada area kosong lebar di sisi video ("areanya terlalu lebar").
 - **Ilustrasi chat dukungan**: jendela chat generik. Versi ponsel ala WhatsApp dan versi beranimasi sudah dicoba lalu **dibatalkan** user — jangan dipakai otomatis.
 - Ilustrasi grafik (`bars`) boleh dianimasikan bila diminta; ilustrasi lain statis secara default.

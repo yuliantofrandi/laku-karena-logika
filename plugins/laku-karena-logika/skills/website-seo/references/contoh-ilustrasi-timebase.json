@@ -218,38 +218,14 @@
       "id": "laporan-jam-klien",
       "halaman": "/aplikasi-time-tracking",
       "section": "Untuk agensi dan software house: bukti jam tertagih",
-      "jenis": "bars",
-      "judul": "Jam tertagih per klien · Oktober",
-      "alt": "Ilustrasi laporan jam kerja tertagih per klien untuk agensi dan software house",
-      "caption": "Bukti jam tertagih per klien",
-      "brief": "Screenshot asli rekap jam per klien/proyek (nama klien disamarkan).",
-      "auto": true,
-      "data": {
-        "items": [
-          {
-            "label": "Klien A",
-            "value": 86,
-            "text": "86 jam"
-          },
-          {
-            "label": "Klien B",
-            "value": 54,
-            "text": "54 jam"
-          },
-          {
-            "label": "Klien C",
-            "value": 31,
-            "text": "31 jam"
-          },
-          {
-            "label": "Internal",
-            "value": 22,
-            "text": "22 jam",
-            "color": "#d9d3e6"
-          }
-        ],
-        "note": "Setiap jam bisa ditelusuri ke tugas, aplikasi, dan screenshot sesi aktif"
-      }
+      "alt": "Demo aplikasi Timebase: tracked time, tugas, dan screenshot satu karyawan sebagai bukti jam tertagih",
+      "caption": "Tracked time, tugas, dan screenshot sebagai bukti jam ke klien",
+      "brief": "Memakai ulang motion graphic user 'detail aktivitas' (9:16) dari halaman monitoring.",
+      "auto": false,
+      "video": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas.mp4",
+      "file": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas-poster.jpg",
+      "w": 720,
+      "h": 1280
     },
     {
       "id": "tiga-kategori-alat",
