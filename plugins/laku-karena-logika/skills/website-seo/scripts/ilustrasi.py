@@ -509,6 +509,20 @@ ANIMASI_ORANG = """<style>
 </style>"""
 
 
+# Chat "hidup": pesan muncul bergantian, gelembung mengetik sebelum pesan tim, lalu berulang (siklus 10 detik).
+ANIMASI_WA = """<style>
+.a-pesan,.a-ketik{transform-box:fill-box;transform-origin:0 100%}
+.a-pesan.a-kanan{transform-origin:100% 100%}
+.a-pesan{animation:pesan 10s cubic-bezier(.2,.8,.2,1) infinite both}
+.a-ketik{animation:ketik 10s linear infinite both}
+.a-titik{animation:titik .9s ease-in-out infinite}
+@keyframes pesan{0%{opacity:0;transform:translateY(10px) scale(.94)}4%,88%{opacity:1;transform:none}94%,100%{opacity:0;transform:none}}
+@keyframes ketik{0%{opacity:0}1%,9%{opacity:1}10%,100%{opacity:0}}
+@keyframes titik{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.a-pesan,.a-ketik,.a-titik{animation:none}.a-ketik{display:none}}
+</style>"""
+
+
 def _bungkus(teks, maks=27):
     baris, cur = [], ""
     for w in teks.split():
@@ -521,7 +535,7 @@ def _bungkus(teks, maks=27):
 
 def wa(d):
     """Percakapan bergaya aplikasi chat populer (header hijau tua, latar krem, gelembung putih/hijau muda, centang biru)
-    di dalam ponsel. Tanpa logo/nama merek aplikasi chat. data: kontak, status, messages[{text, me, jam}]."""
+    di dalam ponsel. Tanpa logo/nama merek aplikasi chat. data: kontak, status, messages[{text, me, jam}], animasi."""
     G, KREM, HIJAU_MUDA = "#008069", "#efeae2", "#d9fdd3"
     out = [f'<circle cx="400" cy="250" r="210" fill="#ffffff" opacity=".5"/><circle cx="400" cy="250" r="150" fill="{C["tint"]}"/>',
            '<defs><clipPath id="layar"><rect x="262" y="26" width="276" height="452" rx="26"/></clipPath></defs>',
@@ -533,12 +547,19 @@ def wa(d):
                + f'<circle cx="318" cy="58" r="16" fill="#dff5ec"/>' + t(318, 64, d.get("kontak", "Tim")[0], 15, G, 800, "middle")
                + t(342, 54, d.get("kontak", "Tim"), 14, "#fff", 700) + t(342, 72, d.get("status", "online"), 11, "#d1f0e6", 500))
     y = 110
-    for m in d["messages"]:
+    anim = d.get("animasi")
+    for idx, m in enumerate(d["messages"]):
         lines = _bungkus(m["text"])
+        tunda = .6 + idx * 1.8
         w = max(len(l) for l in lines) * 7.1 + 64
         h = 16 * len(lines) + 24
         me = m.get("me")
         x = 526 - w if me else 274
+        if anim and not me:   # gelembung "sedang mengetik" sebelum pesan dari tim
+            out.append(f'<g class="a-ketik" style="animation-delay:{tunda - 1:.1f}s">' + rect(274, y, 58, 30, "#fff", 10, ' filter="url(#bayang)"')
+                       + "".join(f'<circle class="a-titik" style="animation-delay:{k * .15:.2f}s" cx="{291 + k * 12}" cy="{y + 15}" r="3.2" fill="#8696a0"/>' for k in range(3)) + "</g>")
+        if anim:
+            out.append(f'<g class="a-pesan{" a-kanan" if me else ""}" style="animation-delay:{tunda:.1f}s">')
         out.append(rect(round(x, 1), y, round(w, 1), h, HIJAU_MUDA if me else "#ffffff", 10, ' filter="url(#bayang)"'))
         tail = (f'<path d="M{526} {y} l10 0 l-10 10z" fill="{HIJAU_MUDA}"/>' if me else f'<path d="M274 {y} l-10 0 l10 10z" fill="#fff"/>')
         out.append(tail)
@@ -551,11 +572,15 @@ def wa(d):
                        + f'<path d="M{tx - 15:.1f} {y + h - 10} l3 3 6-6 M{tx - 10:.1f} {y + h - 10} l3 3 6-6" stroke="#53bdeb" stroke-width="1.6" fill="none" stroke-linecap="round"/>')
         else:
             out.append(t(round(tx, 1), y + h - 6, jam, 9.5, "#667781", 500, "end"))
+        if anim:
+            out.append("</g>")
         y += h + 10
     # bilah ketik
     out.append(rect(272, 432, 210, 36, "#fff", 18) + t(290, 455, "Ketik pesan", 12.5, "#8696a0", 500)
                + f'<circle cx="510" cy="450" r="18" fill="{G}"/><path d="M510 442v10 M505 448a5 5 0 0 0 10 0 M510 453v4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>')
     out.append("</g>")
+    if anim:
+        out.insert(0, ANIMASI_WA)
     out.insert(0, '<defs><filter id="bayang" x="-5%" y="-5%" width="110%" height="130%"><feDropShadow dx="0" dy="1" stdDeviation=".6" flood-color="#0b141a" flood-opacity=".13"/></filter></defs>')
     return "".join(out)
 
