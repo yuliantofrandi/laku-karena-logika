@@ -98,7 +98,7 @@
   ],
   "copy": {
     "nav_cta": "Langganan",
-    "cta_primary": "Aktifkan Timebase untuk Tim Saya",
+    "cta_primary": "Aktifkan Timebase",
     "cta_secondary": "Bandingkan Paket",
     "cta_secondary_href": "/harga",
     "cta_title": "Mulai catat kerja tim Anda hari ini",
@@ -141,7 +141,7 @@
     "wa_text": "Halo, saya tertarik dengan white label {{brand}} (beli putus) untuk perusahaan kami. Boleh minta penawarannya?",
     "cta_title": "Siap lepas dari tagihan bulanan per karyawan?",
     "cta_text": "Ceritakan jumlah karyawan, server yang Anda pakai, dan kebutuhan merek. Tim kami menyiapkan penawaran beli putus {{brand}} untuk perusahaan Anda.",
-    "cta_button": "Minta Penawaran White Label"
+    "cta_button": "Minta Penawaran"
   },
   "og_image": "static/og-image.png",
   "_og_image": "Gambar pratinjau link 1200×630 (PNG/JPG). Buat: python3 tools/og_image.py (macOS), atau desain sendiri.",

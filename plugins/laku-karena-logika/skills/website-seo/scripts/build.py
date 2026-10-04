@@ -241,6 +241,10 @@ def check_cta_copy(S):
     for t in pts:
         if len(strip_tags(t).split()) > 6:
             warnings.append(f"site.json: copy.cta_poin '{strip_tags(t)}' > 6 kata — ringkas jadi frasa pendek")
+    # tombol utama harus muat 1 baris di HP 375px (keluhan user: "lebih singkat katanya, agar di mobile tidak jadi 2 baris")
+    for kunci, teks in (("copy.cta_primary", C.get("cta_primary", "")), ("whitelabel.cta_button", S.get("whitelabel", {}).get("cta_button", ""))):
+        if len(teks) > 20:
+            warnings.append(f"site.json: {kunci} '{teks}' {len(teks)} karakter (maks ±20) — tombol jadi 2 baris di HP")
 
 
 def risk_reversal(S, P):

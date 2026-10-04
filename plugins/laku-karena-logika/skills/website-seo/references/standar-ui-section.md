@@ -76,6 +76,9 @@ Subjudul hero (`.lead`) dibatasi `max-width: 620px` di semua hero, termasuk hero
 ## 3f. Jarak atas halaman dokumen
 Halaman dokumen (legal, artikel Panduan, artikel Blog) memakai band `dok-band` dengan `padding-top: 32px` (24px di mobile), bukan 64px seperti band biasa. Isinya langsung tampil di bawah hero. User (4 Okt 2026) pada artikel blog: "margin atasnya terlalu tinggi".
 
+## 3h. Teks tombol utama muat 1 baris di HP
+Tombol CTA utama (hero, CTA penutup, White Label) maksimal ±20 karakter, supaya tidak menjadi 2 baris di HP 375px. Contoh: "Aktifkan Timebase" (sebelumnya "Aktifkan Timebase untuk Tim Saya") dan "Minta Penawaran" (sebelumnya "Minta Penawaran White Label"). `check_cta_copy` memberi WARNING bila lebih panjang. User (4 Okt 2026): "lebih singkat katanya, agar di mobile tidak jadi 2 baris".
+
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
 - Tombol WA melayang minimalis di kanan bawah.
