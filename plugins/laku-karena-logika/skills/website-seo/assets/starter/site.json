@@ -176,5 +176,6 @@
       "name": "Syarat Layanan"
     }
   ],
-  "_legal": "Link legal di footer bawah. Bila content/<slug>.html belum ada, build membuat halaman placeholder noindex ('dokumen sedang disiapkan' + link WA). Isi dokumennya dari user/ahli hukum; jangan mengarang isi legal."
+  "_legal": "Link legal di footer bawah. Bila content/<slug>.html belum ada, build membuat halaman placeholder noindex ('dokumen sedang disiapkan' + link WA). Isi dokumennya dari user/ahli hukum; jangan mengarang isi legal.",
+  "legal_berlaku": "4 Oktober 2026"
 }

@@ -149,3 +149,6 @@ Setiap website produk wajib punya halaman `/harga` dengan struktur yang sudah di
 
 ## Halaman White Label (wajib)
 Setiap website produk wajib punya halaman `/white-label` (menu: item terakhir grup Solusi) dengan positioning **beli putus, server milik pembeli, merek sendiri, untuk perusahaan dengan banyak karyawan** — bukan program reseller. Baca `references/standar-halaman-white-label.md` dan pakai template global `assets/starter/content/white-label.html` apa adanya. Build ERROR bila halaman, menu, atau `{{cta_whitelabel}}` tidak ada.
+
+## Kebijakan Privasi & Syarat Layanan (wajib, isi lengkap)
+Selalu tulis `content/kebijakan-privasi.html` dan `content/syarat-layanan.html` dengan isi nyata dari BKB — bukan placeholder — mengikuti `references/standar-dokumen-legal.md` dan contoh `references/contoh-legal/`. Sebutkan ke user default yang dipakai untuk hal yang tidak diatur BKB (refund, batas tanggung jawab, yurisdiksi).

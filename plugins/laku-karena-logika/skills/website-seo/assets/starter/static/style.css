@@ -108,6 +108,15 @@ figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
 .col-media figure.ilus{margin:0}
 /* panel kartu: pengganti kartu gambar untuk section berisi poin/langkah/contoh */
 .split>*{min-width:0}
+/* halaman dokumen legal: satu kolom, nyaman dibaca */
+.dokumen{max-width:760px;margin:0 auto}
+.prose .dokumen h2{font-size:22px;margin:36px 0 8px}
+.prose .dokumen h2:first-child{margin-top:0}
+.prose .dokumen h3{font-size:17px;margin:20px 0 6px}
+.dokumen p,.dokumen li{color:var(--ink-2);line-height:1.75}
+.dokumen ul,.dokumen ol{padding-left:22px;margin:8px 0 14px}
+.dokumen li{margin:4px 0}
+.dokumen .berlaku{color:var(--muted);font-size:14px}
 .prose p.penutup{max-width:820px;margin:28px auto 0;text-align:center;font-size:18px;line-height:1.65;color:var(--ink-2)}
 .prose p.penutup strong{color:var(--purple)}
 .split.stack.center .col-text{margin:0 auto;text-align:center}

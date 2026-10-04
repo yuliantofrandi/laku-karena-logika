@@ -688,7 +688,7 @@ def render(S, page, body, P, all_pages, indexable):
 {hero_stats(S) if page["slug"] != "/404" and not page.get("sederhana") else ""}
 </div>{hero_img}</div></section>
 <article class="content prose">
-{layout_sections(body)}
+{('<section class="band"><div class="wrap dokumen">' + body + '</div></section>') if page.get("dokumen") else layout_sections(body)}
 </article>
 </main>
 <footer class="site-footer"><div class="wrap">
@@ -1058,12 +1058,15 @@ def main():
             src = ROOT / "content" / (lg["slug"].strip("/") + ".html")
             if src.exists():
                 body_lg = src.read_text(encoding="utf-8")
+                tgl = S.get("legal_berlaku", "")
+                body_lg = (body_lg.replace("{{brand}}", S["brand"]).replace("{{tanggal_berlaku}}", tgl)
+                           .replace("{{wa_link}}", wa_link(S, f'Halo, saya ingin bertanya tentang {lg["name"]} {S["brand"]}')))
             else:
                 warnings.append(f'{lg["slug"]}: dokumen "{lg["name"]}" belum ada → halaman placeholder noindex (isi content{lg["slug"]}.html sebelum iklan jalan)')
                 body_lg = (f'<p>Dokumen {html.escape(lg["name"])} {S["brand"]} sedang disiapkan dan akan segera tersedia di halaman ini.</p>'
                            f'<p>Ada pertanyaan? <a href="{wa_link(S, "Halo, saya ingin bertanya tentang " + lg["name"] + " " + S["brand"])}" rel="nofollow noopener" target="_blank">Hubungi kami lewat WhatsApp</a>.</p>')
             pg = {"slug": lg["slug"], "name": lg["name"], "title": f'{lg["name"]} {S["brand"]}', "meta": "",
-                  "h1": lg["name"], "lead": f'{lg["name"]} untuk pengguna {S["brand"]}.', "sederhana": True}
+                  "h1": lg["name"], "lead": f'{lg["name"]} untuk pengguna {S["brand"]}.', "sederhana": True, "dokumen": src.exists()}
             out = DIST / lg["slug"].strip("/") / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(render(S, pg, body_lg, P, pages, False), encoding="utf-8")
