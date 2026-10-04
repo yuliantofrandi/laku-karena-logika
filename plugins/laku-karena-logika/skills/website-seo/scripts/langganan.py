@@ -63,8 +63,7 @@ def modal(S, P):
   <fieldset class="lg-data"><legend>Data untuk aktivasi akun</legend>
     <label class="lg-field"><span>Nama lengkap</span><input name="nama" autocomplete="name" required></label>
     <label class="lg-field"><span>Nama perusahaan</span><input name="perusahaan" autocomplete="organization" required></label>
-    <label class="lg-field"><span>Email kerja</span><input name="email" type="email" autocomplete="email" required></label>
-    <label class="lg-field"><span>No. WhatsApp</span><input name="wa" type="tel" autocomplete="tel" inputmode="tel" placeholder="08…" required></label>
+    <label class="lg-field lg-penuh"><span>No. WhatsApp</span><input name="wa" type="tel" autocomplete="tel" inputmode="tel" placeholder="08…" required></label>
   </fieldset>
   <p class="lg-kecil">Dengan melanjutkan, Anda menyetujui {syarat} dan {privasi} {html.escape(S["brand"])}.</p>
   <p class="lg-galat" data-galat hidden></p>
@@ -135,7 +134,7 @@ function lanjut(){
     box.innerHTML=/\.(png|jpe?g|svg|webp)(\?|$)/i.test(u)?'<img src="'+u+'" alt="Kode QRIS pembayaran" width="220" height="220">':'<a class="btn btn-primary" href="'+u+'" target="_blank" rel="noopener">Tampilkan QRIS</a>'}
   else box.innerHTML='<div class="lg-qris-kosong"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg><strong>QRIS sedang disiapkan</strong><span>Kirim pesanan lewat WhatsApp, tim kami mengirimkan QRIS pembayaran.</span></div>';
   var pesan='Halo '+D.brand+', saya ingin berlangganan.\n\nNo. pesanan: '+order+'\nPaket: '+paket.nama+' ('+per+')'+(addNama.length?'\nAdd-on: '+addNama.join(', '):'')+
-    '\nJumlah karyawan: '+h.n+'\nTotal: '+rp(h.total)+'\n\nNama: '+f.nama.value+'\nPerusahaan: '+f.perusahaan.value+'\nEmail: '+f.email.value+'\nWhatsApp: '+f.wa.value;
+    '\nJumlah karyawan: '+h.n+'\nTotal: '+rp(h.total)+'\n\nNama: '+f.nama.value+'\nPerusahaan: '+f.perusahaan.value+'\nWhatsApp: '+f.wa.value;
   var k=q('[data-konfirmasi]');k.href=D.wa?'https://wa.me/'+D.wa+'?text='+encodeURIComponent(pesan):'#kontak';
   k.textContent=D.qris?'Saya sudah bayar — konfirmasi':'Kirim pesanan via WhatsApp';
   langkah(2);dlg.querySelector('[data-langkah="2"] h2').focus&&q('[data-kembali]').focus()

@@ -56,7 +56,7 @@ User (4 Okt 2026): "saat pilih paket, munculkan modal untuk subscription dan dil
   - Pilihan Bulanan/Tahunan (mengikuti switch tabel) dan jumlah karyawan. Jumlah karyawan **dibatasi ratusan** (`max_karyawan`, default 999): input dipotong ke 3 digit. User (4 Okt 2026): "batasi ratusan saja".
   - Add-on dari `pricing.json` sebagai kotak centang.
   - Ringkasan harga langsung dihitung: tier dari jumlah karyawan, tahunan = bulanan × `annual_months_paid`, add-on per karyawan.
-  - Data aktivasi: nama, perusahaan, email kerja, WhatsApp, dengan validasi wajib isi.
+  - Data aktivasi: nama, perusahaan, dan No. WhatsApp (baris penuh), dengan validasi wajib isi. **Tanpa email**. User (4 Okt 2026): "tidak perlu email", karena kontak lewat WhatsApp.
   - Kalimat persetujuan yang menautkan Syarat Layanan & Kebijakan Privasi.
 - **Langkah 2 – Bayar dengan QRIS:**
   - Total, no. pesanan (`TB-YYYYMMDD-XXXX`), ringkasan paket, dan 3 langkah bayar.
