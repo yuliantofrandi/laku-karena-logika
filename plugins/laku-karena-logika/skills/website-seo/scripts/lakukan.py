@@ -224,7 +224,7 @@ def halaman(S, cfg, data):
 # ---------- Blog ----------
 
 
-def blog_terbaru(cfg, data, n=5):
+def blog_terbaru(cfg, data, n=4):
     """[(judul, url)] artikel Blog terbaru yang terbit (bukan draf) — untuk kolom footer."""
     slugs = {k["slug"] for k in data.get("blog_kategori", [])}
     arts = [a for a in data["artikel"] if a["category"]["slug"] in slugs and not draf(a)]

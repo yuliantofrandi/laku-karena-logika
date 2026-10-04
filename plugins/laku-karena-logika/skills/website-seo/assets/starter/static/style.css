@@ -671,3 +671,6 @@ dialog.lg [hidden]{display:none!important}
   .foot-legal{gap:4px 18px}
   .foot-legal a{display:inline-block;padding:4px 0;font-size:14px;color:var(--ink-2)}
 }
+/* footer Blog: judul artikel ringkas, selalu 1 baris (permintaan user: judul blog terlalu panjang) */
+.foot-blog li a{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site-footer .wrap>div{min-width:0} /* kolom grid boleh menyempit → judul Blog terpotong "…", bukan melebarkan kolom */

@@ -61,7 +61,9 @@ User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil arti
   - Daftar isi hanya muncul bila artikel punya ≥ 2 H2. Di mobile daftar isi disembunyikan, dan kotak samping yang kosong ikut disembunyikan.
   - Di bawahnya ada CTA penutup (`cta`) di band `end`.
   - JSON-LD memakai `BlogPosting` dan BreadcrumbList Blog → (kategori) → artikel.
-- **Footer:** kolom **"Blog"** berisi 5 artikel Blog terbaru dari API (judul → `/blog/<slug>`) + "Semua artikel". Isinya ikut berubah setiap build. Sebelumnya kolom ini bernama "Artikel" dan berisi halaman SEO statis.
+- **Footer:** kolom **"Blog"** berisi **4 artikel terbaru** dari API + "Semua artikel →". Isinya ikut berubah setiap build.
+  - Judul ditampilkan **ringkas dan selalu 1 baris**: bagian sebelum ":" (`judul_pendek`). Sisanya dipotong "…" oleh CSS (`white-space: nowrap; text-overflow: ellipsis`, dan kolom grid `min-width: 0` supaya kolom tidak melebar). Judul lengkap tersedia di atribut `title`.
+  - User (4 Okt 2026): "title blog terlalu panjang untuk diletakkan di footer", lalu memilih opsi ini.
 
 ## Baris info artikel (Panduan & Blog)
 Hanya **"Terakhir diperbarui <tanggal>"** (dari `updated_at`, dalam `<time datetime>`), kecil dan abu. Nama penulis tidak ditampilkan. User (4 Okt 2026): "tidak perlu ada nama penulisnya, cukup informasikan last update-nya kapan". Penulis tetap ada di JSON-LD `author` untuk mesin pencari.

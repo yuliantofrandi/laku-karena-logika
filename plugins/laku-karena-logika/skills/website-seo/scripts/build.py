@@ -356,6 +356,11 @@ IKON_TRUST = {
 TAHUN = __import__("datetime").date.today().year
 
 
+def judul_pendek(t):
+    """Judul artikel untuk footer: bagian sebelum ":" (judul utama); sisanya dipotong 1 baris lewat CSS."""
+    return t.split(":")[0].strip() if ":" in t else t
+
+
 def foot_legal(S):
     """Link legal di footer bawah (site.json legal). Email tidak ditampilkan bila user memilih kontak lewat WA saja."""
     items = S.get("legal", [])
@@ -752,7 +757,7 @@ def render(S, page, body, P, all_pages, indexable):
 <footer class="site-footer"><div class="wrap{' kolom-4' if PANDUAN_FOOT else ''}">
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
-<div><h2>Blog</h2><ul>{"".join(f'<li><a href="{u}">{html.escape(t)}</a></li>' for t, u in BLOG_FOOT)}<li><a href="/blog">Semua artikel</a></li></ul></div>
+<div class="foot-blog"><h2>Blog</h2><ul>{"".join(f'<li><a href="{u}" title="{html.escape(t)}">{html.escape(judul_pendek(t))}</a></li>' for t, u in BLOG_FOOT)}<li><a href="/blog">Semua artikel <span aria-hidden="true">→</span></a></li></ul></div>
 {('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan</a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
