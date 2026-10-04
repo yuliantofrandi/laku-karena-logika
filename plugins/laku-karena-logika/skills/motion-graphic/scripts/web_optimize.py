@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ubah video master (hasil render.py) jadi SATU file MP4 ringan untuk website yang lolos PageSpeed.
+"""Ubah video bahan (hasil render.py) jadi SATU file MP4 ringan untuk website yang lolos PageSpeed.
 
 Pakai:
   python3 web_optimize.py master.mp4 <folder_output> <slug> [--poster 6.8]
@@ -12,7 +12,7 @@ faststart. Snippet embed dicetak ke layar (bukan file): <video preload="none"> d
 yang DITANAM di HTML (data URI WebP kecil) -> tidak ada file gambar tambahan dan tidak ada byte video yang
 diunduh sebelum pengunjung klik putar.
 """
-import argparse, base64, io, json, os, subprocess, sys
+import argparse, base64, io, json, os, re, subprocess, sys
 from PIL import Image
 
 BUDGET = 3_000_000  # byte
@@ -24,6 +24,8 @@ ap.add_argument("--title", default="Demo aplikasi"); ap.add_argument("--desc", d
 ap.add_argument("--domain", default="https://[domain]"); ap.add_argument("--path", default="/media/")
 ap.add_argument("--fps", type=int, default=24)
 a = ap.parse_args()
+if not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)+", a.slug):
+    sys.exit("slug harus berkata kunci: huruf kecil/angka dipisah tanda hubung, mis. aplikasi-absensi-karyawan-demo")
 os.makedirs(a.outdir, exist_ok=True)
 out = os.path.join(a.outdir, a.slug + ".mp4")
 

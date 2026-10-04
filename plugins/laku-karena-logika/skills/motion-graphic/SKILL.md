@@ -1,13 +1,13 @@
 ---
 name: motion-graphic
-description: Membuat video motion graphic MP4 dari aplikasi/software SaaS pengguna — menjelajahi aplikasi aslinya lewat browser, lalu merekreasi tampilannya dengan data dummy dan merender video siap pakai untuk website SEO dan sosmed. Tiga gaya — Style 1 promo fitur 9:16 (headline per fitur), Style 2 walkthrough layar 16:9 (klik antar menu, tanpa teks promosi), Style 3 walkthrough layar 9:16 (kamera pan mengikuti klik). Gunakan saat pengguna berkata "buat motion graphic", "video demo aplikasi", "video fitur software saya", "walkthrough aplikasi", "video untuk landing page/website", "video yang lolos PageSpeed", "video produk untuk calon pembeli", atau "motion graphic style 1/2/3".
+description: Membuat video motion graphic MP4 dari aplikasi/software SaaS pengguna — menjelajahi aplikasi aslinya lewat browser, lalu merekreasi tampilannya dengan data dummy dan merender SATU video MP4 kecil bernama berkata kunci yang siap dipasang di website dan lolos PageSpeed. Tiga gaya — Style 1 promo fitur 9:16 (headline per fitur), Style 2 walkthrough layar 16:9 (klik antar menu, tanpa teks promosi), Style 3 walkthrough layar 9:16 (kamera pan mengikuti klik). Gunakan saat pengguna berkata "buat motion graphic", "video demo aplikasi", "video fitur software saya", "walkthrough aplikasi", "video untuk landing page/website", "video yang lolos PageSpeed", "video produk untuk calon pembeli", atau "motion graphic style 1/2/3".
 ---
 
 # Motion Graphic – Video Produk SaaS
 
-Ubah aplikasi web milik pengguna menjadi video MP4 (hasil ekspor hanya MP4: master 1080p + versi web 720p). Video TIDAK merekam layar asli: tampilan direkreasi dalam HTML yang dianimasikan secara deterministik, lalu dirender frame-per-frame. Hasilnya tajam, bisa direvisi, dan aman dibagikan.
+Ubah aplikasi web milik pengguna menjadi **satu** video MP4 untuk dipasang di website: file kecil (≤ 3 MB) agar lolos PageSpeed, dengan nama file berkata kunci untuk SEO. Tidak ada file ekspor lain. Video TIDAK merekam layar asli: tampilan direkreasi dalam HTML yang dianimasikan secara deterministik, lalu dirender frame-per-frame. Hasilnya tajam, bisa direvisi, dan aman dibagikan.
 
-Urutan WAJIB: cek alat → pilih gaya → jelajahi aplikasi → storyboard (setujui) → bangun HTML → cek snapshot → render master → paket web + uji PageSpeed → serahkan.
+Urutan WAJIB: cek alat → pilih gaya → jelajahi aplikasi → storyboard (setujui) → bangun HTML → cek snapshot → render bahan → MP4 web berkata kunci + uji PageSpeed → serahkan satu MP4.
 
 Video utamanya dipakai di website SEO: hasil akhir HARUS lolos PageSpeed (Performance ≥ 90 mobile & desktop, CLS 0). Jangan pernah menyerahkan embed `<video autoplay src=...>` mentah.
 
@@ -78,27 +78,27 @@ Kontrak mesin animasi, cara menambah halaman/klik/kamera, dan jebakan yang sudah
 ## 5. Cek lalu render
 
 1. Ambil snapshot beberapa detik kunci (tiap scene) dan lihat sebagai contact sheet:
-   `python3 <folder skill ini>/scripts/render.py video.html <output>/cek/nama --size 1080x1920 --snap 2,6.5,12,17`
+   `python3 <folder skill ini>/scripts/render.py video.html <output>/.kerja/cek --size 1080x1920 --snap 2,6.5,12,17`
    Periksa: elemen terpotong/overflow, kartu kosong, kamera keluar area, kursor di target saat klik, teks terbaca di ukuran HP.
-2. Perbaiki, lalu render master (≈2 dtk proses per 1 dtk video):
-   `python3 <folder skill ini>/scripts/render.py video.html <output>/<produk>-<style> --size 1920x1080`
-   Master 1080p dipakai untuk sosmed/YouTube; JANGAN dipasang langsung di website.
-3. Ekstrak 3–4 frame dari MP4 dengan ffmpeg untuk verifikasi visual.
+2. Perbaiki, lalu render **bahan** resolusi penuh (≈2 dtk proses per 1 dtk video) ke folder kerja sementara — ini bukan hasil ekspor:
+   `python3 <folder skill ini>/scripts/render.py video.html <output>/.kerja/bahan --size 1920x1080`
+3. Ekstrak 3–4 frame dari MP4 bahan dengan ffmpeg untuk verifikasi visual.
 
-## 5b. Paket web + uji PageSpeed (wajib untuk website)
+## 5b. Satu MP4 web berkata kunci + uji PageSpeed
 
-Ekspor HANYA file MP4 — pengguna tidak mau WebM, teaser, atau file gambar terpisah.
+Ekspor HANYA **satu** file MP4 untuk website — tanpa master 1080p, WebM, teaser, atau file gambar terpisah.
 
-1. Buat MP4 web dari master dengan nama file berkata kunci (ambil dari keyword/page brief skill `keyword-research` bila ada):
-   `python3 <folder skill ini>/scripts/web_optimize.py <master.mp4> <output>/web <slug> --poster <detik> --title "..." --desc "..." --domain https://<domain>`
+1. **Nama file berkata kunci (wajib).** Slug = keyword utama halaman tempat video dipasang + kata "demo"/"video", huruf kecil, dipisah tanda hubung, tanpa nama style/versi, maks ±6 kata — mis. `aplikasi-absensi-karyawan-whatsapp-demo`. Ambil keyword dari keyword plan/page brief skill `keyword-research` bila ada; kalau tidak ada, pilih keyword beli paling relevan dari produk dan sebutkan ke pengguna.
+2. Buat MP4 web dari bahan:
+   `python3 <folder skill ini>/scripts/web_optimize.py <output>/.kerja/bahan.mp4 <output> <slug> --poster <detik> --title "..." --desc "..." --domain https://<domain>`
    Hasil: satu `<slug>.mp4` 720p/24 fps/H.264/tanpa audio (≤ 3 MB, kompresi dinaikkan otomatis bila lewat). Snippet embed dicetak ke layar: `<video preload="none">` + tombol putar + poster frame pratinjau yang ditanam sebagai data URI (±35 KB, tanpa file gambar) + JSON-LD VideoObject. Pilih detik poster yang menampilkan layar paling informatif (bukan saat transisi/zoom).
-2. Uji di halaman contoh dengan Lighthouse mobile & desktop sesuai `references/website-seo.md`. Harus: Performance ≥ 90, SEO 100, CLS 0, TBT < 200 ms, dan 0 byte video terunduh sebelum klik.
+3. Uji di halaman contoh dengan Lighthouse mobile & desktop sesuai `references/website-seo.md`. Harus: Performance ≥ 90, SEO 100, CLS 0, TBT < 200 ms, dan 0 byte video terunduh sebelum klik.
 
 Butuh: Python Playwright + Chromium, ffmpeg (libx264), Pillow, Node + `lighthouse` untuk uji (lihat langkah 0). Font fallback: Inter.
 
 ## 6. Serahkan
 
-- Kirim hanya MP4: master 1080p (sosmed/YouTube) dan MP4 web 720p. Tempel snippet embed sebagai blok kode di chat (bukan file). HTML sumber disimpan di folder output untuk revisi.
+- Serahkan **satu** file: `<output>/<slug>.mp4`. Hapus folder `<output>/.kerja/` (bahan render & snapshot) setelah lolos uji. Tempel snippet embed sebagai blok kode di chat (bukan file). HTML sumber disimpan di `<output>/sumber/` untuk revisi — bukan hasil ekspor.
 - Ringkas: durasi & format, urutan scene/klik, data apa yang di-dummy-kan, label yang diubah, batasan (tanpa audio, logo rekreasi bila ada).
 - Laporkan hasil Lighthouse (skor mobile & desktop, LCP, CLS, TBT, berat awal halaman) dan hal yang menjadi tanggung jawab server (cache, kompresi) dari `references/website-seo.md`, plus usulan penempatan video di halaman.
 - Revisi = edit HTML lalu render ulang; jangan bangun dari nol.
