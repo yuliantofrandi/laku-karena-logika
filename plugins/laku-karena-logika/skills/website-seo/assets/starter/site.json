@@ -179,5 +179,6 @@
     }
   ],
   "_legal": "Link legal di footer bawah. Bila content/<slug>.html belum ada, build membuat halaman placeholder noindex ('dokumen sedang disiapkan' + link WA). Isi dokumennya dari user/ahli hukum; jangan mengarang isi legal. Tiap entri punya 'lead' (ringkasan isi dokumen, {brand} diganti otomatis); badge hero = 'Dokumen legal' agar badge, judul, dan subjudul tidak mengulang pesan yang sama.",
-  "legal_berlaku": "4 Oktober 2026"
+  "legal_berlaku": "4 Oktober 2026",
+  "logo_tinggi": 22
 }
