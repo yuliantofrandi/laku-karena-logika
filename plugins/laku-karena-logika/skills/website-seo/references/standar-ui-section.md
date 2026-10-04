@@ -61,6 +61,9 @@ Disetujui user (4 Okt 2026): "jika butuh point, kasih icon saja jangan pakai ang
 - 5 kartu disusun 3 + 2 di desktop (otomatis lewat CSS), supaya tidak ada satu kartu sendirian di baris kedua.
 - `p.note` yang dulu ada di bawah pembuka digabung ke kalimat pembuka. Tautan internalnya tetap dipertahankan.
 
+## 3d. Badge hero tidak mengulang H1
+Badge (eyebrow) di atas H1 harus menambah makna, misalnya kalimat ajakan atau sudut pandang, bukan kata yang sudah ada di H1. Contoh yang ditolak user (4 Okt 2026): badge "Blog" + H1 "Blog Timebase". Contoh yang disetujui: "Pilih paket yang pas untuk tim Anda" (Harga), "Miliki software-nya, bukan sekadar menyewa" (White Label), "Bacaan ringan, manfaat nyata" (Blog).
+
 ## 4. Elemen global yang selalu ada
 - Header: logo kiri · menu tengah · Sign In + Langganan kanan (sticky, latar putih transparan + blur).
 - Tombol WA melayang minimalis di kanan bawah.

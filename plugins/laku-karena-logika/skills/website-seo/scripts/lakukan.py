@@ -262,7 +262,9 @@ def blog(S, cfg, data, warn, cta_html=""):
     for n, body, ada in daftar(arts, None, "/blog"):
         slug = "/blog" if n == 1 else f"/blog/halaman/{n}"
         pages.append(({"slug": slug, "name": "Blog", "title": f"Blog {brand}" + (f" — Halaman {n}" if n > 1 else ""),
-                       "meta": lead, "h1": f"Blog {brand}", "eyebrow": "Blog", "lead": html.escape(lead),
+                       "meta": lead, "h1": f"Blog {brand}",
+                       # badge = kalimat ajakan, bukan pengulangan H1 "Blog <Brand>" (keluhan user: "masih memiliki makna yang sama")
+                       "eyebrow": cfg.get("blog_eyebrow") or "Bacaan ringan, manfaat nyata", "lead": html.escape(lead),
                        "sederhana": True, "mentah": True, "crumbs": [("Blog", "/blog")]}, body, ada))
     for k in sub:
         ka = [a for a in arts if a["category"]["slug"] == k["slug"]]

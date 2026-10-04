@@ -174,7 +174,7 @@
     }
   ],
   "_footer_trust": "Baris kepercayaan di footer (maks 3). Hanya fakta yang sudah tertulis di BKB/website; ikon: server | shield | support.",
-  "lakukan": {"api": "https://api.lakukan.id/api", "company_slug": "", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "Artikel dan wawasan terbaru dari {brand}."},
+  "lakukan": {"api": "https://api.lakukan.id/api", "company_slug": "", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "Artikel dan wawasan terbaru dari {brand}.", "blog_eyebrow": "Bacaan ringan, manfaat nyata"},
   "legal": [
     {
       "slug": "/syarat-layanan",
