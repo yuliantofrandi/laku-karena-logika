@@ -49,7 +49,7 @@ User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil arti
   - `/blog` menampilkan kartu "Artikel pertama segera terbit" (ikon bulat, plus tautan ke Panduan bila ada).
   - Halaman ini **noindex** dan tidak masuk sitemap. Build memberi WARNING.
 - **`/blog`:**
-  - Hero ringkas: badge berupa kalimat ajakan (`blog_eyebrow`, default "Bacaan ringan, manfaat nyata"), H1 "Blog <Brand>", dan `blog_lead`. **Badge tidak boleh mengulang H1.** User (4 Okt 2026) menolak badge "Blog" di atas "Blog Timebase": "masih memiliki makna yang sama".
+  - Hero ringkas: badge berupa kalimat ajakan (`blog_eyebrow`, default "Pusat edukasi", pilihan user), H1 "Blog <Brand>", dan `blog_lead`. **Badge tidak boleh mengulang H1.** User (4 Okt 2026) menolak badge "Blog" di atas "Blog Timebase": "masih memiliki makna yang sama".
   - Artikel terbaru tampil sebagai kartu besar horizontal (sampul 58% | kategori · tanggal, judul, ringkasan), lalu grid kartu di bawahnya.
   - Paginasi 12 artikel per halaman (`/blog/halaman/N`).
   - Chip kategori dan `/blog/kategori/<k>` hanya muncul bila Blog punya sub-kategori yang berisi artikel.
