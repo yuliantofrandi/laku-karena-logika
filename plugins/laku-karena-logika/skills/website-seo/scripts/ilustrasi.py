@@ -288,10 +288,24 @@ def cards(d):
     n = len(items)
     cols = n if n <= 4 else 3
     rows = (n + cols - 1) // cols
+    if rows == 1:   # satu baris: kartu mengisi tinggi kanvas (tanpa ruang kosong besar atas-bawah)
+        x0, lebar, gap = 44, 712, 18
+        cw, ch = (lebar - (cols - 1) * gap) / cols, 280
+        for i, it in enumerate(items):
+            x, y = x0 + i * (cw + gap), (500 - ch) / 2
+            hi = it.get("highlight")
+            out.append(rect(round(x, 1), round(y, 1), round(cw, 1), ch, C["tint"] if hi else "#fff", 18,
+                            f' stroke="{C["p"] if hi else C["line"]}"' + (' stroke-width="2.5"' if hi else "")))
+            out.append(f'<circle cx="{x + cw / 2:.1f}" cy="{y + 92:.1f}" r="46" fill="{"#fff" if hi else C["tint"]}"/>')
+            out.append(icon(it.get("icon", "check"), round(x + cw / 2 - 26, 1), round(y + 66, 1), 2.2, C["p"] if hi else C["mut"]))
+            out.append(t(round(x + cw / 2, 1), round(y + 190, 1), it["label"], 21, C["ink"], 800, "middle"))
+            if it.get("sub"):
+                out.append(t(round(x + cw / 2, 1), round(y + 220, 1), it["sub"], 15, C["mut"], 500, "middle"))
+        return "".join(out)
     cw, ch = (640 - (cols - 1) * 20) / cols, min(150, (330 - (rows - 1) * 20) / rows)
     for i, it in enumerate(items):
         x = 80 + (i % cols) * (cw + 20)
-        y = 100 + (i // cols) * (ch + 20) + (0 if rows > 1 else 60)
+        y = 100 + (i // cols) * (ch + 20)
         hi = it.get("highlight")
         out.append(rect(round(x, 1), round(y, 1), round(cw, 1), round(ch, 1), C["tint"] if hi else "#fff", 14,
                         f' stroke="{C["p"] if hi else C["line"]}"' + (' stroke-width="2"' if hi else "")))
@@ -596,8 +610,8 @@ def render_svg(item, colors=None):
     body = JENIS[item["jenis"]](item.get("data", {}))
     window = item["jenis"] not in ("venn", "shield", "tiers", "steps", "cards", "compare", "orang", "wa")
     inner = frame(item.get("judul", ""), body, window)
-    if not window and item.get("judul"):
-        inner += t(400, 60, item["judul"], 18, C["mut"], 700, "middle")
+    # ilustrasi tanpa jendela tidak diberi judul melayang (user: "tidak perlu ada title di gambarnya");
+    # konteks cukup dari judul section + caption. Ilustrasi berjendela tetap punya judul di bilah jendela.
     # komponen berbentuk ponsel dipotong ke kanvas potret selebar ponselnya (user: "areanya terlalu lebar")
     vb, vw, vh = (("230 0 340 500", 340, 500) if item["jenis"] == "wa" else (f"0 0 {W} {H}", W, H))
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" width="{vw}" height="{vh}" '

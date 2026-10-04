@@ -19,7 +19,7 @@ Berlaku untuk setiap halaman yang lahir dari `data/brief.json` (title, meta, H1,
 | 8 | FAQ | 4–6 pertanyaan penting (judul ajakan, subjudul otomatis) |
 | 9 | CTA | `{{cta}}` ringkas |
 
-**Tidak dipakai:** section "Cara memulai"/langkah-langkah di halaman SEO (dihapus user dari halaman ini; "Cara kerja" juga dihapus di White Label). Alur mulai cukup dijelaskan di FAQ ("Berapa lama sampai bisa dipakai?").
+**Tidak dipakai:** section "Cara memulai"/"Langkah menerapkan …" (langkah onboarding bernomor) di halaman SEO — dihapus user di halaman Monitoring dan Absensi Hybrid, "Cara kerja" juga dihapus di White Label. Section yang menjelaskan **cara kerja fitur** (mis. "Cara kerja start/stop per issue") boleh tetap ada. Alur mulai cukup dijelaskan di FAQ ("Berapa lama sampai bisa dipakai?", "Bagaimana cara mulai memakai …?") — isi langkah yang dihapus dipindah ke satu jawaban FAQ bila jumlah kata perlu dijaga.
 
 ## Keputusan visual yang disetujui (halaman ini)
 - **Video demo milik user menggantikan ilustrasi** bila user memberikannya ("ganti dengan ilustrasi saya ini"). Prosedur: salin ke `static/video/`, poster dari frame **setelah animasi pembuka** (±3 detik; frame awal sering masih kosong/0), entri `ilustrasi.json` `auto:false` + `video` + `file` + `w/h` asli. Kompres hanya bila >5 MB (`scripts/kompres_video.swift`).

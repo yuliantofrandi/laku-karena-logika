@@ -80,3 +80,7 @@ User: "buat jadi ilustrasi, tampilannya seperti percakapan WhatsApp" (section ba
 - Default **statis**. Pada Timebase animasinya sempat dipasang lalu user minta "kembalikan seperti semula saja, tanpa ada motion graphic" — jangan aktifkan animasi chat kecuali diminta.
 - `animasi: true` (opsional, user pernah meminta "buatkan motion graphic-nya"): gelembung "sedang mengetik" (3 titik memantul) muncul ±1 detik sebelum tiap pesan dari tim, pesan muncul bergantian dari bawah (jeda 1,8 detik), lalu menghilang dan berulang tiap 10 detik. Diam bila "kurangi animasi".
 
+## Tanpa judul melayang & tanpa ruang kosong di dalam gambar
+- Ilustrasi tanpa jendela (`cards`, `compare`, `steps`, `venn`, `shield`, `tiers`, `orang`, `wa`) **tidak diberi judul di dalam gambar** (user: "tidak perlu ada title di gambarnya"). Konteks cukup dari judul section + caption. Ilustrasi berjendela tetap punya judul di bilah jendela.
+- `cards` satu baris mengisi kanvas: kartu 280px tinggi selebar ±712px, ikon besar dalam lingkaran tint, label 21px (user: "gambarnya terlalu banyak blank space"). Kartu multi-baris tetap ringkas.
+
