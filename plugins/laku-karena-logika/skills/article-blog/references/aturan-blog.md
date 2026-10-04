@@ -1,0 +1,45 @@
+# Aturan artikel blog
+
+Contoh yang sudah disetujui user: `contoh-blog-timebase.json` ("Kerja WFA Profesional: Panduan agar Hak WFA Tetap Terjaga", 4 Okt 2026). Artikel ini dibuat dari aturan WFA internal perusahaan user dan terbit di kategori Blog TimeBase.
+
+## Pembaca & tujuan
+- Pembaca blog: karyawan, atasan/HR, dan calon pelanggan yang mencari wawasan, bukan petunjuk klik menu (petunjuk klik adalah wilayah `article-docs`).
+- Tujuan: mengedukasi dan membangun kepercayaan, lalu mengarahkan pembaca dengan lembut ke produk. Produk muncul sebagai solusi alami di satu bagian, bukan iklan di setiap paragraf.
+
+## Kategori
+- Artikel masuk ke kategori **Blog** (slug `blog`, level 0) atau anak kategorinya bila sudah ada dan cocok. Website `website-seo` membangun /blog dari `blog` beserta anak-anaknya.
+- **Jangan** memasukkan artikel blog ke `docs`.
+- Jangan membuat kategori anak Blog baru kecuali diminta user.
+
+## Judul, slug, ringkasan
+- **Judul** 40–60 karakter dan memuat kata kunci utama. Pola yang efektif: *"Topik: manfaat yang dijanjikan"*. Contoh: "Kerja WFA Profesional: Panduan agar Hak WFA Tetap Terjaga".
+- **Slug** berupa kata kunci, huruf kecil dan tanda hubung, tanpa tanggal atau nomor. Contoh: `kerja-wfa-profesional`.
+- **Ringkasan** 120–160 karakter: masalah pembaca + apa yang akan mereka dapat.
+
+## Struktur isi (±900–1.500 kata)
+1. **Pembuka** 2 paragraf: konteks yang dekat dengan pembaca, lalu janji isi artikel. Kata kunci utama muncul di paragraf pertama.
+2. **4–6 bagian `<h2>`** yang masing-masing menjawab satu pertanyaan. Pakai `<ol>` untuk langkah, `<ul>` untuk poin, `<table>` untuk checklist/perbandingan, dan `<blockquote>` dengan ikon (💡 Tips, ℹ️ Catatan, ⚠️ Hati-hati) maksimal 2–3 kali.
+3. **Satu bagian produk** ("Buktikan … dengan data"): fitur nyata yang relevan, dengan 1–2 screenshot produk tersamar.
+4. **Checklist/ringkasan praktis** (tabel) yang bisa langsung dipakai pembaca.
+5. **Kesimpulan** + CTA lembut ke menu Panduan atau konsultasi. **Tanpa harga** (aturan website: harga hanya di /harga), tanpa klaim "satu-satunya/termurah", dan tanpa nama kompetitor.
+- HTML yang dipakai: `h2 h3 p ul ol li strong em blockquote table tr th td img`. Tanpa `h1`, `script`, `iframe`, `style`, atau `on*`.
+
+## Materi dari user (kebijakan internal, SOP, data)
+- Sajikan sebagai **"contoh kebijakan dari sebuah perusahaan …"**. Jangan sebut nama perusahaan user atau nama sistem internalnya kecuali user memintanya. Contohnya, "Venturo Hub" ditulis menjadi "aplikasi monitoring" atau nama produk.
+- Pertahankan angka dan syaratnya persis (09.00, 8 jam, NPS 8,5, dst.). Rapikan kalimatnya tanpa mengubah maknanya.
+- Tambahkan catatan bahwa contoh ini bisa disesuaikan dengan budaya perusahaan pembaca.
+- Lengkapi dengan sisi lain yang adil, misalnya peran atasan di samping kewajiban karyawan.
+
+## Gambar
+- **3 infografis bermerek + 1–2 screenshot produk tersamar** per artikel. Letakkan satu gambar setelah paragraf pengantar bagian yang dijelaskannya.
+- Infografis: kanvas 1600×900 (16:9), memakai template `assets/infografis/` (lihat bawah), dirender dengan `scripts/render_infografis.py`. Ukuran hasil ±120–140 KB.
+- Pola yang sudah disetujui:
+  - `contoh-kartu-pilar.html`: 3–4 kartu pilar/prinsip berikon. Cocok untuk ringkasan utama dan **sampul**.
+  - `contoh-timeline.html`: 4–6 langkah berurutan/ritme waktu.
+  - `contoh-hindari-vs-lakukan.html`: dua kolom ✕ hindari vs ✓ lakukan (aturan/kesalahan umum).
+- Teks infografis singkat: judul ≤ 1 baris dengan bagian penting diberi gradasi (`<span class="g">`), eyebrow, maksimal ±12 kata per kartu, dan footer berisi logo teks + tagline.
+- Warna & font mengikuti merek produk: ambil token dari `static/style.css` website produk (`--purple`, `--pink`, `--orange`, `--grad`, `--ink`) dan font judul dari `static/fonts/`. Default template = TimeBase.
+- Nama file gambar memakai kata kunci, misalnya `infografis-ritme-harian-kerja-wfa.jpg` atau `screenshot-detail-aktivitas-karyawan.jpg`.
+- Keterangan gambar berupa satu kalimat tentang isinya. Screenshot ditandai "Data pribadi pada gambar disamarkan" bila ada data yang disamarkan.
+- Screenshot produk wajib disamarkan dengan aturan yang sama seperti `article-docs`: nama → dummy, 4 digit akhir telepon di-blur, foto profil tetap. Hasil `img-anonim/` dari `article-docs` boleh dipakai ulang.
+- **Lihat setiap gambar** setelah dirender: tidak ada teks terpotong atau tumpang tindih, dan judul tidak memakan dua baris kecuali disengaja.

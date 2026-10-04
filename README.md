@@ -13,6 +13,6 @@ Marketplace plugin pribadi untuk **AI Marketing OS**: rangkaian skill Claude yan
 
 | Plugin | Fungsi |
 |---|---|
-| `laku-karena-logika` | Kumpulan skill AI Marketing OS: `business-knowledge`, `business-reviewer`, `keyword-research`, `sosmed-desain`, `sosmed-caption`, `sosmed-posting`. |
+| `laku-karena-logika` | Kumpulan skill AI Marketing OS: `business-knowledge`, `business-reviewer`, `keyword-research`, `sosmed-desain`, `sosmed-caption`, `sosmed-posting`, `motion-graphic`, `article-docs`, `article-blog`. |
 
 Detail tiap plugin ada di `plugins/<nama>/README.md`.

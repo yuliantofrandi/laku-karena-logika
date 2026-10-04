@@ -47,6 +47,16 @@ Mengubah aplikasi SaaS pengguna jadi **video motion graphic MP4**. Bahannya **sc
 
 > **Catatan lingkungan:** butuh **Claude-in-Chrome**, **macOS** (screenshot ditangkap dengan `screencapture`, perlu izin Screen Recording), serta `ffmpeg`, Python `playwright` + Chromium, Pillow, dan `lighthouse` di komputer — skill mengecek dan menawarkan pemasangannya di langkah awal. Hasil disimpan di folder pilihan pengguna (default `motion-graphic/<produk>/` di working directory).
 
+### `article-docs`
+Mengubah folder **dokumentasi/panduan aplikasi** (halaman HTML/Markdown + screenshot) jadi **seri artikel tutorial** untuk tamu website, lalu memposting otomatis ke CMS **api.lakukan.id**. Screenshot disamarkan dulu dengan OCR Vision (`scripts/samarkan.py`): nama orang → nama dummy yang konsisten, email → dummy, 4 digit terakhir nomor telepon di-blur, foto profil tetap; gambar placeholder dilewati. Kategori selalu dua level — **Docs › kelompok tutorial** — dan judul cukup nama tutorialnya (tanpa nomor seri; urutan diatur frontend). `scripts/posting.py` (Python standar) memvalidasi, membuat/memperbarui kategori & artikel, mengunggah gambar isi + sampul, menerbitkan berurutan, dan memverifikasi API publik. Bisa juga untuk **satu artikel** saja atau **mengupdate artikel** yang sudah terbit (`posting.py ambil` → edit → `posting`). Field yang tidak diubah tetap seperti semula, tanpa duplikat, dan posisi artikel di daftar tidak bergeser. Hasilnya langsung menjadi isi menu **Panduan** yang dibangun `website-seo`.
+
+> **Catatan lingkungan (article-docs):** butuh **macOS** (`swiftc` untuk OCR Vision), Python **Pillow** untuk penyamaran, dan **API key Lakukan** dari user (dipakai lewat env `LAKUKAN_API_KEY`, tidak pernah disimpan ke file).
+
+### `article-blog`
+Menulis **satu artikel blog edukatif** untuk produk SaaS dari topik atau materi user (kebijakan internal, SOP, data), misalnya "agar karyawan profesional bekerja WFA" dari aturan WFA perusahaan. Artikel dilengkapi **3 infografis bermerek** yang dirender dari template HTML 16:9 (`assets/infografis/`: kartu pilar, timeline, hindari vs lakukan) lewat Chrome headless (`scripts/render_infografis.py`), serta 1–2 screenshot produk yang disamarkan. Artikel langsung terbit di kategori **Blog** CMS Lakukan dan tampil di /blog website. Materi internal disajikan sebagai "contoh kebijakan" tanpa nama perusahaan, tanpa harga, dan tanpa nama kompetitor. Untuk posting, update, dan penyamaran, skill ini memakai skrip `article-docs`.
+
+> **Catatan lingkungan (article-blog):** butuh **Google Chrome/Chromium**, Python (Pillow opsional; `sips` di macOS sebagai cadangan), dan **API key Lakukan** lewat env `LAKUKAN_API_KEY`.
+
 > **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
 
 ## Pakai
@@ -59,9 +69,11 @@ Mengubah aplikasi SaaS pengguna jadi **video motion graphic MP4**. Bahannya **sc
 /sosmed-caption
 /sosmed-posting
 /motion-graphic
+/article-docs
+/article-blog
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 

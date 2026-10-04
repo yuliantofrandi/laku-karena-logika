@@ -1,0 +1,29 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+.line{position:relative;margin-top:70px;display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.line:before{content:"";position:absolute;left:4%;right:4%;top:31px;height:6px;border-radius:6px;background:var(--grad);opacity:.9}
+.step{position:relative;text-align:center}
+.dot{width:68px;height:68px;margin:0 auto;border-radius:50%;background:#fff;border:6px solid var(--purple);display:grid;place-items:center;font-family:"Montserrat";font-weight:800;font-size:22px;color:var(--purple);box-shadow:0 10px 24px rgba(123,44,255,.2)}
+.step:nth-child(3) .dot,.step:nth-child(4) .dot{border-color:var(--pink);color:var(--pink)}
+.step:nth-child(5) .dot,.step:nth-child(6) .dot{border-color:var(--orange);color:var(--orange)}
+.time{font-family:"Montserrat";font-weight:800;font-size:24px;margin-top:22px}
+.box{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 18px;min-height:270px;box-shadow:0 14px 30px rgba(27,22,38,.06);text-align:left}
+.box h3{font-size:22px;line-height:1.25}
+.box ul{list-style:none;margin-top:12px}
+.box li{font-size:18px;line-height:1.4;color:var(--ink-2);padding-left:22px;position:relative;margin-top:8px}
+.box li:before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--purple)}
+.hl{border:2px solid var(--purple);background:linear-gradient(180deg,#faf6ff,#fff)}
+.badge{display:inline-block;font-size:14px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--purple);border-radius:999px;padding:4px 10px;margin-bottom:10px}
+</style></head><body><div class="bg"></div><div class="wrap">
+<div class="eyebrow">Ritme harian</div>
+<h1>Satu hari kerja WFA <span class="g">yang profesional</span></h1>
+<div class="line">
+ <div class="step"><div class="dot">1</div><div class="time">08.30</div><div class="box"><h3>Siapkan diri &amp; perangkat</h3><ul><li>Agen TimeBase aktif</li><li>Internet utama + cadangan</li><li>Ruang kerja tenang</li></ul></div></div>
+ <div class="step"><div class="dot">2</div><div class="time">≤ 09.00</div><div class="box hl"><span class="badge">WAJIB</span><h3>Check point ke atasan</h3><ul><li>Task/issue yang berdampak</li><li>Estimasi story point</li><li>Rencana pakai AI</li></ul></div></div>
+ <div class="step"><div class="dot">3</div><div class="time">09.00–12.00</div><div class="box"><h3>Blok fokus pertama</h3><ul><li>Kerjakan task prioritas</li><li>Notifikasi kerja tetap aktif</li><li>Tanpa tab hiburan</li></ul></div></div>
+ <div class="step"><div class="dot">4</div><div class="time">12.00–13.00</div><div class="box"><h3>Istirahat terjadwal</h3><ul><li>Kabari tim sebelum jeda</li><li>Pasang status "istirahat"</li><li>Kembali tepat waktu</li></ul></div></div>
+ <div class="step"><div class="dot">5</div><div class="time">13.00–16.30</div><div class="box"><h3>Blok fokus kedua</h3><ul><li>Balas pesan sesuai SLA</li><li>Prioritaskan isu client</li><li>Dokumentasikan progres</li></ul></div></div>
+ <div class="step"><div class="dot">6</div><div class="time">16.30–17.00</div><div class="box"><h3>Tutup hari dengan data</h3><ul><li>Update progres ke atasan</li><li>Cek 8 jam di TimeBase</li><li>Rencana besok</li></ul></div></div>
+</div>
+<div class="foot"><span class="brand">TimeBase<small>Accountability Everywhere</small></span><span>Sesuaikan jam dengan kebijakan kantor Anda</span></div>
+</div></body></html>
