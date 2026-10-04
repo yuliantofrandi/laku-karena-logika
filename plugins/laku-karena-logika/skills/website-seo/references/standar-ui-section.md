@@ -70,6 +70,9 @@ Halaman SEO juga diberi field `eyebrow` di `data/brief.json` (contoh: "Ukur hasi
 ## 3e. Jarak H1 hero ke subjudul
 H1 hero memakai `margin-bottom: 4px` di semua halaman, sama dengan H2 section (10px masih dinilai user "terlalu tinggi") (beranda, halaman SEO, Harga, legal, Panduan, Blog). Instruksi user (4 Okt 2026): "margin bawahnya kurangi, berlaku juga untuk semua halaman". Jangan memberi H1 hero jarak bawah yang lebih besar per halaman.
 
+## 3g. Subjudul hero tanpa gambar selebar heading
+Pada hero tanpa gambar (`hero-sederhana`: legal, Panduan, Blog), subjudul (`.lead`) tidak dibatasi 620px; lebarnya mengikuti heading. Batas 620px hanya berlaku untuk hero yang punya gambar di kanan. User (4 Okt 2026): "buat jadi lebar seperti heading-nya".
+
 ## 3f. Jarak atas halaman dokumen
 Halaman dokumen (legal, artikel Panduan, artikel Blog) memakai band `dok-band` dengan `padding-top: 32px` (24px di mobile), bukan 64px seperti band biasa. Isinya langsung tampil di bawah hero. User (4 Okt 2026) pada artikel blog: "margin atasnya terlalu tinggi".
 
