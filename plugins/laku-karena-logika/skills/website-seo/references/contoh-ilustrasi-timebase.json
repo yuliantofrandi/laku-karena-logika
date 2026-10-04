@@ -120,22 +120,14 @@
       "id": "galeri-screenshot-sesi",
       "halaman": "/aplikasi-monitoring-karyawan",
       "section": "Employee monitoring yang transparan, bukan pengawasan diam-diam",
-      "jenis": "gallery",
-      "judul": "Screenshot sesi aktif · Rina",
-      "alt": "Ilustrasi galeri screenshot otomatis yang diambil hanya selama sesi kerja aktif",
+      "alt": "Demo aplikasi Timebase: galeri screenshot sesi kerja per karyawan dan pratinjau layar penuh",
       "caption": "Screenshot hanya diambil selama sesi kerja aktif",
-      "brief": "Screenshot asli galeri screenshot per karyawan (isi layar diburamkan) dengan label jam pengambilan.",
-      "auto": true,
-      "data": {
-        "times": [
-          "09:00",
-          "09:30",
-          "10:00",
-          "10:30",
-          "11:00",
-          "11:30"
-        ]
-      }
+      "brief": "Motion graphic asli dari user (9:16, 36 detik, tanpa suara): screenshot per karyawan.",
+      "auto": false,
+      "video": "static/video/aplikasi-screenshot-karyawan-wfa-demo.mp4",
+      "file": "static/video/aplikasi-screenshot-karyawan-wfa-demo-poster.jpg",
+      "w": 720,
+      "h": 1280
     },
     {
       "id": "pemasangan-dibantu",
