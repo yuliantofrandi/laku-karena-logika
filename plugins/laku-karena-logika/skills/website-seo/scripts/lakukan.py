@@ -223,6 +223,14 @@ def halaman(S, cfg, data):
 
 # ---------- Blog ----------
 
+
+def blog_terbaru(cfg, data, n=5):
+    """[(judul, url)] artikel Blog terbaru yang terbit (bukan draf) — untuk kolom footer."""
+    slugs = {k["slug"] for k in data.get("blog_kategori", [])}
+    arts = [a for a in data["artikel"] if a["category"]["slug"] in slugs and not draf(a)]
+    arts.sort(key=lambda a: a.get("published_at") or "", reverse=True)
+    return [(a["title"], f'/blog/{a["slug"]}') for a in arts[:n]]
+
 PER_HALAMAN = 12
 
 

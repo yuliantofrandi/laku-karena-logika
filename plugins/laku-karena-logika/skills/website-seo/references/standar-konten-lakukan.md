@@ -61,7 +61,17 @@ User (4 Okt 2026): "tambahkan menu Blog, connect ke API Lakukan juga, ambil arti
   - Daftar isi hanya muncul bila artikel punya ≥ 2 H2. Di mobile daftar isi disembunyikan, dan kotak samping yang kosong ikut disembunyikan.
   - Di bawahnya ada CTA penutup (`cta`) di band `end`.
   - JSON-LD memakai `BlogPosting` dan BreadcrumbList Blog → (kategori) → artikel.
-- **Footer:** "Blog" tampil sebagai link pertama di kolom "Artikel".
+- **Footer:** kolom **"Blog"** berisi 5 artikel Blog terbaru dari API (judul → `/blog/<slug>`) + "Semua artikel". Isinya ikut berubah setiap build. Sebelumnya kolom ini bernama "Artikel" dan berisi halaman SEO statis.
 
 ## Baris info artikel (Panduan & Blog)
 Hanya **"Terakhir diperbarui <tanggal>"** (dari `updated_at`, dalam `<time datetime>`), kecil dan abu. Nama penulis tidak ditampilkan. User (4 Okt 2026): "tidak perlu ada nama penulisnya, cukup informasikan last update-nya kapan". Penulis tetap ada di JSON-LD `author` untuk mesin pencari.
+
+
+## Halaman "(SEO saja)" → artikel Blog di CMS
+User (4 Okt 2026): halaman keyword plan berlabel **"(SEO saja)"** tidak dibuat sebagai halaman statis. Isinya masuk Blog dinamis di CMS Lakukan.
+1. `python3 tools/ekspor_blog.py` → `export/blog/<slug>.json` + `.html` (pratinjau) + `gambar/*.png`. Hasil ekspor:
+   - kartu → H3 + paragraf, callout → blockquote, FAQ → H3 + jawaban;
+   - SVG ilustrasi dirender ke PNG 1600×1000 (Quick Look macOS);
+   - token `{{cta}}` dibuang, dan link antar halaman "(SEO saja)" diarahkan ke `/blog/<slug>`.
+2. Masukkan ke kategori Blog di CMS dengan **slug yang sama**, lewat API (token di env, jangan ditempel di chat) atau manual.
+3. Setelah terbit, hapus halaman statisnya, buat redirect URL lama → `/blog/<slug>`, dan arahkan link internal ke `/blog/<slug>`. `check_page` memastikan link tujuan ada.

@@ -25,6 +25,7 @@ ROOT = Path(__file__).resolve().parent
 SOCIAL = {"testimonials": [], "metrics": []}
 SITE = {}
 PANDUAN_FOOT = []   # [(nama kategori, url)] untuk kolom footer Panduan
+BLOG_FOOT = []      # [(judul, url)] artikel Blog terbaru dari API untuk kolom footer Blog
 DIST = ROOT / "dist"
 
 # Klaim yang tidak boleh muncul (BKB: penelusuran jam→tugas→aplikasi→layar adalah standar kategori)
@@ -751,7 +752,7 @@ def render(S, page, body, P, all_pages, indexable):
 <footer class="site-footer"><div class="wrap{' kolom-4' if PANDUAN_FOOT else ''}">
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
-<div><h2>{"Artikel" if PANDUAN_FOOT else "Panduan"}</h2><ul>{'<li><a href="/blog">Blog</a></li>' if any(isinstance(it, list) and it[0] == "/blog" for it in S["nav"]) else ""}{flinks(panduan)}</ul></div>
+<div><h2>Blog</h2><ul>{"".join(f'<li><a href="{u}">{html.escape(t)}</a></li>' for t, u in BLOG_FOOT)}<li><a href="/blog">Semua artikel</a></li></ul></div>
 {('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan</a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
@@ -1006,6 +1007,7 @@ def main():
                 PANDUAN_FOOT[:] = foot
             if not pd_pages and lk_data.get("kategori") and "/panduan" not in top_nav:
                 warn("/panduan", "API punya artikel panduan tapi menu Panduan tidak ada di site.json nav")
+            BLOG_FOOT[:] = LAKUKAN.blog_terbaru(LK, lk_data)
             bl_pages = LAKUKAN.blog(S, LK, lk_data, lambda m: warn("/blog", m),
                                     f'<section class="band alt end"><div class="wrap">{cta(S, P)}</div></section>')
             if not any(ok for pg, _, ok in bl_pages if pg["slug"] == "/blog"):
