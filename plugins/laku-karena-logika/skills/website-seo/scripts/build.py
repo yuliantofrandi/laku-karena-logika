@@ -1078,13 +1078,15 @@ def main():
                            .replace("{{wa_link}}", wa_link(S, f'Halo, saya ingin bertanya tentang {lg["name"]} {S["brand"]}')))
                 body_lg = re.sub(r"<h2>(\d+)\.\s*(.*?)</h2>", r'<h2 id="pasal-\1"><span class="no">\1</span>\2</h2>', body_lg)
                 body_lg = (f'<div class="dok-grid">{nav_legal(lg["slug"])}<div class="dokumen">'
-                           f'<p class="dok-label">Dokumen legal</p>{body_lg}</div></div>')
+                           f'{body_lg}</div></div>')
             else:
                 warnings.append(f'{lg["slug"]}: dokumen "{lg["name"]}" belum ada → halaman placeholder noindex (isi content{lg["slug"]}.html sebelum iklan jalan)')
                 body_lg = (f'<p>Dokumen {html.escape(lg["name"])} {S["brand"]} sedang disiapkan dan akan segera tersedia di halaman ini.</p>'
                            f'<p>Ada pertanyaan? <a href="{wa_link(S, "Halo, saya ingin bertanya tentang " + lg["name"] + " " + S["brand"])}" rel="nofollow noopener" target="_blank">Hubungi kami lewat WhatsApp</a>.</p>')
             pg = {"slug": lg["slug"], "name": lg["name"], "title": f'{lg["name"]} {S["brand"]}', "meta": "",
-                  "h1": lg["name"], "lead": f'{lg["name"]} untuk pengguna {S["brand"]}.', "sederhana": True, "dokumen": src.exists()}
+                  "h1": lg["name"], "eyebrow": "Dokumen legal",
+                  "lead": lg.get("lead", "Ketentuan yang berlaku untuk pengguna {brand}.").replace("{brand}", S["brand"]),
+                  "sederhana": True, "dokumen": src.exists()}
             out = DIST / lg["slug"].strip("/") / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(render(S, pg, body_lg, P, pages, False), encoding="utf-8")

@@ -169,13 +169,15 @@
   "legal": [
     {
       "slug": "/syarat-layanan",
-      "name": "Syarat Layanan"
+      "name": "Syarat Layanan",
+      "lead": "Aturan berlangganan {brand}: pembayaran, berhenti kapan saja, dan kewajiban perusahaan sebelum memantau karyawan."
     },
     {
       "slug": "/kebijakan-privasi",
-      "name": "Kebijakan Privasi"
+      "name": "Kebijakan Privasi",
+      "lead": "Data apa yang dicatat {brand}, berapa lama disimpan, siapa yang bisa melihatnya, dan hak Anda atas data tersebut."
     }
   ],
-  "_legal": "Link legal di footer bawah. Bila content/<slug>.html belum ada, build membuat halaman placeholder noindex ('dokumen sedang disiapkan' + link WA). Isi dokumennya dari user/ahli hukum; jangan mengarang isi legal.",
+  "_legal": "Link legal di footer bawah. Bila content/<slug>.html belum ada, build membuat halaman placeholder noindex ('dokumen sedang disiapkan' + link WA). Isi dokumennya dari user/ahli hukum; jangan mengarang isi legal. Tiap entri punya 'lead' (ringkasan isi dokumen, {brand} diganti otomatis); badge hero = 'Dokumen legal' agar badge, judul, dan subjudul tidak mengulang pesan yang sama.",
   "legal_berlaku": "4 Oktober 2026"
 }
