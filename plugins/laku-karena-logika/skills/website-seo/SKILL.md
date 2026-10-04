@@ -77,6 +77,7 @@ Baca `references/standar-ui-section.md`, `references/aturan-konten.md`, dan `ref
 - Beranda = **sales page** (AIDA, dengan PAS di blok Interest). Halaman Prioritas 1 (landing Ads) = halaman SEO + komponen jualan (`{{bukti_sosial}}`, `{{testimoni}}`, `{{tanpa_risiko}}`). Halaman Prioritas 2–3 = panduan edukatif + CTA lembut.
 - Setiap "Isi Wajib di Halaman" dari brief harus ada. Tulis ringkas: H2 → 1–2 kalimat → poin/kartu/tabel (aturan-sales-page.md). Target 1.000–1.500 kata, minimal 700.
 - Fakta hanya dari BKB. Tidak mengarang OS, integrasi, angka pelanggan, atau fitur.
+- **Poin pakai ikon, bukan angka.** Kartu poin ditulis sebagai `div.grid.ikon-tengah` + `span.ikon-bulat` (ikon garis SVG yang sesuai makna), dengan judul section rata tengah. `span.num` hanya untuk langkah yang memang berurutan. Satu paragraf pembuka per section, tanpa `p.note` tambahan (standar-ui-section.md §3c).
 
 **Ilustrasi wajib di setiap halaman** (aturan tetap user): baca `references/aturan-ilustrasi.md`. Rencanakan satu gambar hero per halaman, plus gambar untuk section-section utama (minimal 3 per halaman). Tulis entri di `data/ilustrasi.json` dengan `brief` gambar pengganti, lalu letakkan `{{gambar:<id>}}` setelah paragraf pertama di bawah H2 section-nya.
 
