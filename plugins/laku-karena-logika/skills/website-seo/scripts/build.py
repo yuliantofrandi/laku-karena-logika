@@ -922,6 +922,12 @@ def main():
         p["product_schema"] = p["slug"] in S["product_pages"]
     slugs = {p["slug"] for p in pages}
 
+    # aturan tetap: setiap landing page wajib punya Syarat Layanan & Kebijakan Privasi (isi nyata, tautan di footer)
+    legal_slugs = [x["slug"] for x in S.get("legal", [])]
+    for wajib, nama in (("/syarat-layanan", "Syarat Layanan"), ("/kebijakan-privasi", "Kebijakan Privasi")):
+        if wajib not in legal_slugs:
+            err(wajib, f'"{nama}" wajib ada di site.json legal (tautan footer) — lihat references/standar-dokumen-legal.md')
+
     # aturan tetap: setiap website produk punya halaman Harga standar (references/standar-halaman-harga.md)
     hp = S.get("pricing_page", "/harga")
     if hp not in slugs:
@@ -1082,7 +1088,7 @@ def main():
                 body_lg = (f'<div class="dok-grid">{nav_legal(lg["slug"])}<div class="dokumen">'
                            f'{body_lg}</div></div>')
             else:
-                warnings.append(f'{lg["slug"]}: dokumen "{lg["name"]}" belum ada → halaman placeholder noindex (isi content{lg["slug"]}.html sebelum iklan jalan)')
+                err(lg["slug"], f'dokumen "{lg["name"]}" belum ditulis — wajib di setiap landing page; tulis content{lg["slug"]}.html dengan isi nyata (references/standar-dokumen-legal.md)')
                 body_lg = (f'<p>Dokumen {html.escape(lg["name"])} {S["brand"]} sedang disiapkan dan akan segera tersedia di halaman ini.</p>'
                            f'<p>Ada pertanyaan? <a href="{wa_link(S, "Halo, saya ingin bertanya tentang " + lg["name"] + " " + S["brand"])}" rel="nofollow noopener" target="_blank">Hubungi kami lewat WhatsApp</a>.</p>')
             pg = {"slug": lg["slug"], "name": lg["name"], "title": f'{lg["name"]} {S["brand"]}', "meta": "",

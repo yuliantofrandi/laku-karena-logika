@@ -4,6 +4,8 @@ User (4 Okt 2026): *"selalu buatkan kebijakan privasi dan syarat layanan, buatka
 
 **Urutan:** Syarat Layanan dulu, lalu Kebijakan Privasi — di footer dan di navigasi kiri (urutan `site.json legal`; user: "syarat layanan naikkan ke atas, lebih penting").
 
+**Dijaga build (ERROR):** `site.json legal` wajib berisi `/syarat-layanan` dan `/kebijakan-privasi`, dan kedua file `content/…html` wajib sudah ditulis (tidak ada lagi halaman placeholder). User: "di semua landing page nanti harus ada syarat layanan & kebijakan privasi".
+
 **Wajib di setiap website produk:** `content/kebijakan-privasi.html` dan `content/syarat-layanan.html`, ditautkan di footer bawah (`site.json legal`). Tulis isinya lengkap saat membuat website — jangan biarkan placeholder. Contoh lengkap yang sudah dipakai: `references/contoh-legal/` (Timebase).
 
 ## Cara menulis
