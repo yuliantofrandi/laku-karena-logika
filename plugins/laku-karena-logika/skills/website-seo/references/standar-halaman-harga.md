@@ -53,7 +53,7 @@ User (4 Okt 2026): "saat pilih paket, munculkan modal untuk subscription dan dil
 
 - **Tombol paket** di tabel harga diberi class `js-langganan` + `data-paket`. Tanpa JS, tombol tetap link biasa (`checkout_url` / `#pilih-skema`).
 - **Langkah 1 – Langganan <paket>:**
-  - Pilihan Bulanan/Tahunan (mengikuti switch tabel) dan jumlah karyawan.
+  - Pilihan Bulanan/Tahunan (mengikuti switch tabel) dan jumlah karyawan. Jumlah karyawan **dibatasi ratusan** (`max_karyawan`, default 999): input dipotong ke 3 digit. User (4 Okt 2026): "batasi ratusan saja".
   - Add-on dari `pricing.json` sebagai kotak centang.
   - Ringkasan harga langsung dihitung: tier dari jumlah karyawan, tahunan = bulanan × `annual_months_paid`, add-on per karyawan.
   - Data aktivasi: nama, perusahaan, email kerja, WhatsApp, dengan validasi wajib isi.

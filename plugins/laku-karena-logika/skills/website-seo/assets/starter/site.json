@@ -174,7 +174,7 @@
     }
   ],
   "_footer_trust": "Baris kepercayaan di footer (maks 3). Hanya fakta yang sudah tertulis di BKB/website; ikon: server | shield | support.",
-  "langganan": {"qris_url": "", "min_karyawan": 1},
+  "langganan": {"qris_url": "", "min_karyawan": 1, "max_karyawan": 999},
   "lakukan": {"api": "https://api.lakukan.id/api", "company_slug": "", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "Artikel dan wawasan terbaru dari {brand}.", "blog_eyebrow": "Pusat edukasi"},
   "legal": [
     {

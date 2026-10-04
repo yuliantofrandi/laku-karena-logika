@@ -34,6 +34,7 @@ def modal(S, P):
         "paket": [{"id": x["id"], "nama": x["name"], "bulanan": x["monthly"]} for x in P["schemes"]],
         "addon": [{"nama": a["name"], "bulanan": a["monthly"], "desc": a.get("desc", "")} for a in P.get("addons", [])],
         "min": cfg.get("min_karyawan", 1),
+        "max": cfg.get("max_karyawan", 999),   # dibatasi ratusan (permintaan user)
     }
     addon = "".join(
         f'<label class="lg-cek"><input type="checkbox" name="addon" value="{i}"><span><strong>{html.escape(a["name"])}</strong>'
@@ -52,7 +53,7 @@ def modal(S, P):
     <label><input type="radio" name="periode" value="tahunan"><span>Tahunan <em>Hemat {12 - P["annual_months_paid"]} bulan</em></span></label>
   </div>
   <label class="lg-field"><span>Jumlah karyawan</span>
-    <input type="number" name="karyawan" min="{data["min"]}" step="1" value="10" inputmode="numeric" required></label>
+    <input type="number" name="karyawan" min="{data["min"]}" max="{data["max"]}" step="1" value="10" inputmode="numeric" required></label>
   {f'<div class="lg-addon">{addon}</div>' if addon else ''}
   <div class="lg-ringkas" aria-live="polite">
     <div><span>Harga per karyawan</span><strong data-harga></strong></div>
@@ -103,7 +104,7 @@ var f=dlg.querySelector('form'),q=function(s){return dlg.querySelector(s)},paket
 function rp(n){return 'Rp'+Math.round(n).toLocaleString('id-ID')}
 function tier(n){for(var i=0;i<D.batas.length;i++)if(n<D.batas[i])return i;return D.batas.length}
 function hitung(){
-  var n=Math.max(D.min,parseInt(f.karyawan.value,10)||0),thn=f.periode.value==='tahunan',t=tier(n),
+  var n=Math.min(D.max,Math.max(D.min,parseInt(f.karyawan.value,10)||0)),thn=f.periode.value==='tahunan',t=tier(n),
       bln=thn?D.bulanBayar:1,harga=paket.bulanan[t],add=0;
   [].forEach.call(f.querySelectorAll('[name=addon]:checked'),function(c){add+=D.addon[c.value].bulanan});
   var total=(harga+add)*n*bln;
@@ -144,7 +145,9 @@ document.addEventListener('click',function(e){
   var thn=document.querySelector('.periode .p-thn:checked');
   if(buka(b.getAttribute('data-paket'),thn?'tahunan':b.getAttribute('data-periode')))e.preventDefault()
 });
-f.addEventListener('input',function(){if(paket)hitung()});
+f.addEventListener('input',function(e){
+  if(e.target===f.karyawan){var v=f.karyawan.value.replace(/\D/g,'').slice(0,String(D.max).length);if(+v>D.max)v=String(D.max);if(v!==f.karyawan.value)f.karyawan.value=v}
+  if(paket)hitung()});
 q('[data-lanjut]').addEventListener('click',lanjut);
 q('[data-kembali]').addEventListener('click',function(){langkah(1)});
 q('[data-tutup]').addEventListener('click',function(){dlg.close()});
