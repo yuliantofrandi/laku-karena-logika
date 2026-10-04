@@ -9,7 +9,7 @@ Disetujui user pada 4 Okt 2026 untuk website Timebase. Instruksi user: "tambahka
   - `GET /articles?limit=100&page=N` → daftar artikel (`meta.pagination`).
   - `GET /articles/<slug>` → isi HTML lengkap (`content`, `cover_url`, `author`, `updated_at`).
 - Hanya **kategori anak dari `kategori_induk`** (default `docs`) yang ditampilkan. Artikel di kategori induk itu sendiri atau di kategori lain (mis. Blog, artikel uji "aaa"/"ccc") dilewati.
-- Konfigurasi di `site.json`: `"lakukan": {"api": …, "company_slug": "<slug>", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "…"}`. Menu utama: `… Harga, ["/panduan", "Panduan"], ["/blog", "Blog"]`. Menu Panduan opsional (hanya bila produk punya artikel bantuan).
+- Konfigurasi di `site.json`: `"lakukan": {"api": …, "company_slug": "<slug>", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "…"}`. Menu utama berurutan **Solusi · Harga · Blog · Panduan** (`… ["/harga","Harga"], ["/blog","Blog"], ["/panduan","Panduan"]`), mengikuti alur pembeli: kenali → harga → belajar & yakin (Blog) → Panduan untuk pelanggan. Urutan ini dipilih user pada 5 Okt 2026. Menu Panduan opsional (hanya bila produk punya artikel bantuan).
 - Build menyimpan data ke `data/lakukan-cache.json`. Bila API gagal, build memakai cache (WARNING).
 - Artikel baru di CMS baru tampil setelah build ulang dan deploy.
 

@@ -45,12 +45,12 @@
       "Harga"
     ],
     [
-      "/panduan",
-      "Panduan"
-    ],
-    [
       "/blog",
       "Blog"
+    ],
+    [
+      "/panduan",
+      "Panduan"
     ]
   ],
   "extra_pages": [
