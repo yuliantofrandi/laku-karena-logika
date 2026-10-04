@@ -162,5 +162,8 @@ Setiap website produk wajib punya halaman `/white-label` (menu: item terakhir gr
 
 Menu `["/panduan", "Panduan"]` bersifat opsional, untuk artikel bantuan di kategori `docs`. `scripts/lakukan.py` membangun keduanya dan menyimpan cache untuk build offline. Standar lengkapnya ada di `references/standar-konten-lakukan.md`.
 
+## Artikel Blog: pola & infografis
+Setiap artikel Blog (termasuk ekspor halaman "(SEO saja)") mengikuti pola artikel acuan user: pembuka "Artikel ini membahas…", section dengan infografis + keterangan miring + daftar berlead tebal, kotak 💡 Tips / ℹ️ Catatan, tabel checklist, dan Kesimpulan. Ada 3 infografis 1600×900 per artikel yang dibuat dengan `scripts/infografis.py`. Standar lengkapnya ada di `references/standar-artikel-blog.md`.
+
 ## Halaman SEO dari keyword plan
 Struktur section, keputusan visual (video demo user, media potret 340px, ilustrasi chat generik), dan sikap terhadap jumlah kata untuk halaman yang lahir dari `brief.json`: `references/standar-halaman-seo.md` (contoh: `references/contoh-halaman-seo-monitoring.html`). Jangan menambah section "Cara memulai".

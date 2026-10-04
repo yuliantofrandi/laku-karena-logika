@@ -25,6 +25,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EXPORT = ROOT / "export" / "blog"
+for i, a in enumerate(sys.argv):
+    if a.startswith("--sumber="):   # mis. --sumber=export/blog-v2 (artikel versi baru)
+        EXPORT = ROOT / a.split("=", 1)[1]
 BASE = "https://api.lakukan.id/core/v1/admin"
 
 
@@ -75,7 +78,7 @@ def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     status = "draft" if "--draf" in sys.argv else "published"
     perbarui = "--perbarui" in sys.argv
-    files = sorted(EXPORT.glob("*.json"))
+    files = sorted(f for f in EXPORT.glob("*.json") if f.name != "infografis.json")
     if args:
         files = [f for f in files if f.stem in args]
     if not files:
@@ -101,7 +104,8 @@ def main():
             if st != 200:
                 print(f"  {slug}: GAGAL unggah sampul ({st}) {d.get('message')}")
                 continue
-            isi = re.sub(rf'<img src="{re.escape(a["cover"])}"[^>]*>\s*', "", isi, count=1)
+            if not a.get("sampul_di_isi"):   # pola artikel acuan: infografis sampul juga tampil di section-nya
+                isi = re.sub(rf'<img src="{re.escape(a["cover"])}"[^>]*>\s*', "", isi, count=1)
         for g in a["images"]:
             if f'src="{g["file"]}"' not in isi:
                 continue
