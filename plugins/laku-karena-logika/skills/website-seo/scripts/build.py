@@ -226,7 +226,7 @@ def cta(S, P):
     points = "".join(f"<li>{t}</li>" for t in C.get("cta_poin", []))            # boleh berisi link
     side = f'<div class="cta-side"><ul class="terms">{points}</ul></div>' if points else ""
     return (f'<aside class="cta" id="kontak"><div class="cta-main"><h2>{C["cta_title"]}</h2><p>{C["cta_text"]}</p>'
-            f'<div class="cta-btns"><a class="btn btn-primary" href="{checkout_link(S)}" rel="nofollow">{C["cta_primary"]}</a>'
+            f'<div class="cta-btns"><a class="btn btn-primary" href="{checkout_link(S)}" rel="nofollow"{beli_js(S)}>{C["cta_primary"]}</a>'
             f'<a class="btn btn-ghost" href="{C["cta_secondary_href"]}">{C["cta_secondary"]}</a></div></div>{side}</aside>')
 
 
@@ -290,6 +290,11 @@ def testimonials(SP):
                    f'<figcaption>{avatar}<span class="who"><strong>{html.escape(t["name"])}</strong>'
                    f'<span>{html.escape(t["role"])}, {html.escape(t["company"])}</span></span></figcaption></figure>')
     return f'<div class="quotes">{"".join(out)}</div>'
+
+
+def beli_js(S):
+    """Atribut tombol beli umum (header, hero, CTA penutup): membuka modal langganan bila aktif."""
+    return ' data-beli' if S.get("langganan") is not None else ""
 
 
 def checkout_link(S, skema=None, periode="bulanan"):
@@ -697,7 +702,7 @@ def render(S, page, body, P, all_pages, indexable):
         hero_cta = (f'<a class="btn btn-primary btn-lg hero-cta" href="{wa_link(S, fill_brand(S, S["whitelabel"]["wa_text"]))}" '
                     f'target="_blank" rel="nofollow noopener">{S["whitelabel"]["cta_button"]} <span aria-hidden="true">→</span></a>')
     else:
-        hero_cta = f'<a class="btn btn-primary btn-lg hero-cta" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["cta_primary"]} <span aria-hidden="true">→</span></a>'
+        hero_cta = f'<a class="btn btn-primary btn-lg hero-cta" href="{checkout_link(S)}" rel="nofollow"{beli_js(S)}>{S["copy"]["cta_primary"]} <span aria-hidden="true">→</span></a>'
     hero_class = "hero home" if page["slug"] == "/" else "hero"
     if page.get("sederhana"):   # hero polos halaman legal: padding lebih rapat
         hero_class += " hero-sederhana"
@@ -740,7 +745,7 @@ def render(S, page, body, P, all_pages, indexable):
 <a class="brand" href="/" aria-label="{S["brand"]} — beranda">{logo(S)}</a>
 <input type="checkbox" id="menu" class="menu-toggle" aria-label="Buka menu"><label for="menu" class="menu-btn" aria-hidden="true"><span></span></label>
 <div class="nav-panel"><nav class="nav" aria-label="Utama">{nav}</nav>
-<div class="nav-actions"><a class="btn btn-ghost btn-sm" href="{S.get("signin_url") or "#"}" rel="nofollow">{S["copy"]["signin"]}</a><a class="btn btn-primary btn-sm" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["nav_cta"]}</a></div></div>
+<div class="nav-actions"><a class="btn btn-ghost btn-sm" href="{S.get("signin_url") or "#"}" rel="nofollow">{S["copy"]["signin"]}</a><a class="btn btn-primary btn-sm" href="{checkout_link(S)}" rel="nofollow"{beli_js(S)}>{S["copy"]["nav_cta"]}</a></div></div>
 </div></header>
 <main>
 <section class="{hero_class}"><div class="wrap{' hero-grid' if hero_img else ''}"><div class="hero-text">
@@ -761,7 +766,7 @@ def render(S, page, body, P, all_pages, indexable):
 {('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan <span aria-hidden="true">→</span></a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
-{LANGGANAN.modal(S, P) if 'js-langganan' in body else ''}
+{LANGGANAN.modal(S, P) if S.get("langganan") is not None else ''}
 {VIDEO_JS if 'video muted' in body + hero_img else ''}
 </body>
 </html>

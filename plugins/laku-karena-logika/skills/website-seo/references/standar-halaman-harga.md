@@ -52,6 +52,8 @@ Cukup media hero (`min_per_halaman_khusus: {"/harga": 1}` di `data/ilustrasi.jso
 User (4 Okt 2026): "saat pilih paket, munculkan modal untuk subscription dan dilanjutkan nanti akan memunculkan QRIS pembayaran. Untuk link QRIS-nya menyusul". Modul: `scripts/langganan.py`, aktif bila `site.json` punya blok `"langganan"`.
 
 - **Tombol paket** di tabel harga diberi class `js-langganan` + `data-paket`. Tanpa JS, tombol tetap link biasa (`checkout_url` / `#pilih-skema`).
+- **Semua tombol beli umum ikut membuka modal di setiap halaman:** "Langganan" di header, tombol hero, dan "Aktifkan …" di CTA penutup (atribut `data-beli`). Modal dipasang di semua halaman bila blok `langganan` ada. User (5 Okt 2026): "saat klik tombol ini, munculkan pop-up-nya juga untuk langsung bisa membeli".
+- **Pilihan paket di dalam modal** (3 kotak: nama + "mulai Rp…/bln"). Tombol umum membuka **paket unggulan** (`featured`, mis. Bukti Visual). Tombol dari tabel atau tab HP membuka paketnya sendiri. Mengganti paket langsung memperbarui judul dan harga.
 - **Langkah 1 – Langganan <paket>:**
   - Pilihan Bulanan/Tahunan (mengikuti switch tabel) dan jumlah karyawan. Jumlah karyawan **dibatasi ratusan** (`max_karyawan`, default 999): input dipotong ke 3 digit. User (4 Okt 2026): "batasi ratusan saja".
   - Add-on dari `pricing.json` sebagai kotak centang.

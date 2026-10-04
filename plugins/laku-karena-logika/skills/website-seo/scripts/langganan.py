@@ -47,6 +47,11 @@ def modal(S, P):
         f'<label class="lg-cek"><input type="checkbox" name="addon" value="{i}"><span><strong>{html.escape(a["name"])}</strong>'
         f' <em>+Rp{a["monthly"]:,}'.replace(",", ".") + f'/karyawan/bln</em><small>{html.escape(a.get("desc", ""))}</small></span></label>'
         for i, a in enumerate(P.get("addons", [])))
+    # pilihan paket di dalam modal: tombol beli umum (header/hero/CTA) membuka paket unggulan, bisa diganti di sini
+    pilih_paket = "".join(
+        f'<label><input type="radio" name="paket" value="{x["id"]}"><span><strong>{html.escape(x["name"])}</strong>'
+        f'<small>mulai Rp{min(x["monthly"]):,}/bln'.replace(",", ".") + '</small></span></label>' for x in P["schemes"])
+    data["unggulan"] = next((x["id"] for x in P["schemes"] if x.get("featured")), P["schemes"][0]["id"])
     privasi = '<a href="/kebijakan-privasi" target="_blank">Kebijakan Privasi</a>'
     syarat = '<a href="/syarat-layanan" target="_blank">Syarat Layanan</a>'
     return f"""<dialog class="lg" id="langganan" aria-labelledby="lg-judul">
@@ -55,6 +60,7 @@ def modal(S, P):
 <div class="lg-langkah" data-langkah="1">
   <p class="lg-step">Langkah 1 dari 2</p>
   <h2 id="lg-judul">Langganan <span data-nama-paket></span></h2>
+  <div class="lg-paket" role="radiogroup" aria-label="Pilih paket">{pilih_paket}</div>
   <div class="lg-periode" role="radiogroup" aria-label="Periode tagihan">
     <label><input type="radio" name="periode" value="bulanan" checked><span>Bulanan</span></label>
     <label><input type="radio" name="periode" value="tahunan"><span>Tahunan <em>Hemat {12 - P["annual_months_paid"]} bulan</em></span></label>
@@ -134,7 +140,7 @@ function hitung(){
 function berhenti(){clearTimeout(timer);clearInterval(detik);timer=detik=null}
 function buka(id,periode){
   paket=D.paket.filter(function(p){return String(p.id)===String(id)})[0];if(!paket)return false;
-  q('[data-nama-paket]').textContent=paket.nama;
+  q('[data-nama-paket]').textContent=paket.nama;f.paket.value=String(paket.id);
   f.periode.value=periode==='tahunan'?'tahunan':'bulanan';
   langkah(1);hitung();dlg.showModal();setTimeout(function(){f.karyawan.focus()},50);return true
 }
@@ -216,13 +222,14 @@ function lanjut(){
   g.hidden=true;langkah(2);bayar();q('[data-kembali]').focus()
 }
 document.addEventListener('click',function(e){
-  var b=e.target.closest&&e.target.closest('.js-langganan');if(!b)return;
+  var b=e.target.closest&&e.target.closest('.js-langganan,[data-beli]');if(!b)return;
   var thn=document.querySelector('.periode .p-thn:checked');
-  if(buka(b.getAttribute('data-paket'),thn?'tahunan':b.getAttribute('data-periode')))e.preventDefault()
+  if(buka(b.getAttribute('data-paket')||D.unggulan,thn?'tahunan':(b.getAttribute('data-periode')||'bulanan')))e.preventDefault()
 });
 f.addEventListener('input',function(e){
   if(e.target===f.wa){var w=f.wa.value,p=w.trim().charAt(0)==='+'?'+':'',d=w.replace(/\D/g,'').slice(0,15);if(p+d!==w)f.wa.value=p+d}
   if(e.target===f.karyawan){var v=f.karyawan.value.replace(/\D/g,'').slice(0,String(D.max).length);if(+v>D.max)v=String(D.max);if(v!==f.karyawan.value)f.karyawan.value=v}
+  if(e.target.name==='paket'){paket=D.paket.filter(function(p){return String(p.id)===e.target.value})[0];q('[data-nama-paket]').textContent=paket.nama}
   if(paket)hitung()});
 q('[data-lanjut]').addEventListener('click',lanjut);
 q('[data-kembali]').addEventListener('click',function(){berhenti();langkah(1)});

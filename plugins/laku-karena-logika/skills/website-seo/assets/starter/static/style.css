@@ -676,3 +676,12 @@ dialog.lg [hidden]{display:none!important}
 .band.pd-band{padding-top:32px}
 @media (max-width:640px){.band.pd-band{padding-top:24px}}
 .pd-band .wrap>:first-child{margin-top:0!important}
+.lg-paket{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:-6px 0 14px}
+.lg-paket label{position:relative;cursor:pointer}
+.lg-paket input{position:absolute;opacity:0;pointer-events:none}
+.lg-paket span{display:flex;flex-direction:column;justify-content:center;min-height:58px;padding:8px 10px;border:1.5px solid var(--line);border-radius:12px;text-align:center;line-height:1.25}
+.lg-paket strong{font-size:14px;color:var(--ink)}
+.lg-paket small{margin-top:3px;font-size:11.5px;color:var(--muted)}
+.lg-paket input:checked+span{border-color:var(--purple);background:var(--bg-tint)}
+.lg-paket input:checked+span strong{color:var(--purple)}
+.lg-paket input:focus-visible+span{outline:3px solid var(--pink);outline-offset:2px}
