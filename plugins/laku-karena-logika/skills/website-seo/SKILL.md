@@ -152,3 +152,6 @@ Setiap website produk wajib punya halaman `/white-label` (menu: item terakhir gr
 
 ## Kebijakan Privasi & Syarat Layanan (wajib, isi lengkap)
 **Wajib di setiap landing page (build ERROR bila tidak ada).** Selalu tulis `content/syarat-layanan.html` dan `content/kebijakan-privasi.html` dengan isi nyata dari BKB — bukan placeholder — mengikuti `references/standar-dokumen-legal.md` dan contoh `references/contoh-legal/`. Sebutkan ke user default yang dipakai untuk hal yang tidak diatur BKB (refund, batas tanggung jawab, yurisdiksi).
+
+## Halaman SEO dari keyword plan
+Struktur section, keputusan visual (video demo user, media potret 340px, ilustrasi chat generik), dan sikap terhadap jumlah kata untuk halaman yang lahir dari `brief.json`: `references/standar-halaman-seo.md` (contoh: `references/contoh-halaman-seo-monitoring.html`). Jangan menambah section "Cara memulai".
