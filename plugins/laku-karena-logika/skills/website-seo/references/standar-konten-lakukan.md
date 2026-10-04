@@ -73,5 +73,20 @@ User (4 Okt 2026): halaman keyword plan berlabel **"(SEO saja)"** tidak dibuat s
    - kartu → H3 + paragraf, callout → blockquote, FAQ → H3 + jawaban;
    - SVG ilustrasi dirender ke PNG 1600×1000 (Quick Look macOS);
    - token `{{cta}}` dibuang, dan link antar halaman "(SEO saja)" diarahkan ke `/blog/<slug>`.
-2. Masukkan ke kategori Blog di CMS dengan **slug yang sama**, lewat API (token di env, jangan ditempel di chat) atau manual.
-3. Setelah terbit, hapus halaman statisnya, buat redirect URL lama → `/blog/<slug>`, dan arahkan link internal ke `/blog/<slug>`. `check_page` memastikan link tujuan ada.
+2. Masukkan ke kategori Blog di CMS dengan **slug yang sama**:
+   ```bash
+   LAKUKAN_API_KEY=… python3 tools/unggah_blog.py      # --draf untuk menyimpan sebagai draf
+   ```
+   - Autentikasinya admin API `https://api.lakukan.id/core/v1/admin` dengan header **`X-API-Key`** (bukan Bearer). Kunci terikat ke satu company, jadi `X-Company-Slug` tidak diperlukan.
+   - Urutannya: buat **draf** → unggah sampul (`/articles/{slug}/cover`) dan gambar isi (`/content-media`, mengembalikan URL publik) → `PUT` isi dengan URL CMS + status. Artikel tidak pernah tampil setengah jadi.
+   - Gambar pertama dipakai sebagai sampul dan tidak diulang di isi.
+   - Slug yang sudah ada dilewati, kecuali memakai `--perbarui`.
+   - **Kunci API hanya lewat env.** Jangan disimpan di file proyek, skill, atau memori. Sarankan user merotasi kunci yang pernah ditempel di chat.
+3. `build.py` mengurus sisanya secara otomatis:
+   - halaman `ad_group: "(SEO saja)"` **tidak dibangun statis**;
+   - URL lamanya menjadi halaman pengalihan (meta refresh + canonical ke `/blog/<slug>`, noindex);
+   - link wajib dari keyword plan diterima sebagai `/blog/<slug>`;
+   - gambar halaman itu tidak dianggap "tidak dipakai";
+   - `legal_reviewed: false` untuk URL lama ikut membuat artikel blognya noindex (mis. UU PDP yang belum direview ahli hukum).
+
+   Link internal di `content/*.html` diarahkan ke `/blog/<slug>`. WARNING muncul bila artikelnya belum ada di CMS.

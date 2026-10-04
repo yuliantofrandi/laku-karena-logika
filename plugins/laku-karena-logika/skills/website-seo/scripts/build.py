@@ -846,7 +846,10 @@ def check_page(S, B, page, body, slugs):
         if n > 45:
             warn(sid, f"paragraf {n} kata — pecah jadi poin/kartu (maks ±45 kata): “{strip_tags(para).strip()[:50]}…”")
     page["_words"] = wc
+    seo_saja = {p["slug"] for p in B["pages"] if p.get("ad_group") == "(SEO saja)"}
     for link in page.get("links", []):
+        if link in seo_saja:   # halaman "(SEO saja)" kini artikel Blog → link wajib ke /blog/<slug>
+            link = "/blog" + link
         if f'href="{link}"' not in body:
             err(sid, f"link internal wajib ke {link} belum ada")
     for href in re.findall(r'href="(/[^"#?]*)', body):
@@ -983,7 +986,10 @@ def main():
     global SOCIAL
     SOCIAL = SP
     SITE.update(S)
-    pages = S["extra_pages"] + B["pages"]
+    # halaman "(SEO saja)" di keyword plan bukan halaman statis: isinya artikel Blog di CMS (tools/ekspor_blog.py
+    # + tools/unggah_blog.py). URL lamanya dialihkan ke /blog/<slug> (keputusan user 4 Okt 2026).
+    seo_saja = [p for p in B["pages"] if p.get("ad_group") == "(SEO saja)"]
+    pages = S["extra_pages"] + [p for p in B["pages"] if p not in seo_saja]
     for p in S["extra_pages"]:
         for k in ("name", "title", "meta", "h1", "primary"):
             p[k] = fill_brand(S, p[k])
@@ -1010,6 +1016,10 @@ def main():
             BLOG_FOOT[:] = LAKUKAN.blog_terbaru(LK, lk_data)
             bl_pages = LAKUKAN.blog(S, LK, lk_data, lambda m: warn("/blog", m),
                                     f'<section class="band alt end"><div class="wrap">{cta(S, P)}</div></section>')
+            # artikel blog asal halaman yang belum direview ahli hukum tetap noindex (legal_reviewed pakai URL lama)
+            rv = S.get("legal_reviewed", {})
+            bl_pages = [(pg, b, ok and rv.get(pg["slug"].removeprefix("/blog"), True) and rv.get(pg["slug"], True))
+                        for pg, b, ok in bl_pages]
             if not any(ok for pg, _, ok in bl_pages if pg["slug"] == "/blog"):
                 warn("/blog", "belum ada artikel blog yang terbit → /blog tampil 'segera terbit' dan noindex")
             slugs |= {pg["slug"] for pg, _ in pd_pages} | {pg["slug"] for pg, _, _ in bl_pages}
@@ -1128,8 +1138,9 @@ def main():
         else:
             warnings.append(msg + " — boleh untuk preview, build publish akan ditolak")
     used_all = {gid for p, _, _ in built for gid in p.get("_gambar", [])}
+    pindah = {p["slug"] for p in seo_saja}   # gambar halaman "(SEO saja)" sudah diunggah ke CMS bersama artikelnya
     for gid in GAMBAR:
-        if gid not in used_all:
+        if gid not in used_all and GAMBAR[gid].get("halaman") not in pindah:
             warnings.append(f"data/ilustrasi.json: gambar '{gid}' tidak dipakai di halaman mana pun")
     if not check_only:
         (ROOT / "docs").mkdir(exist_ok=True)
@@ -1203,6 +1214,20 @@ def main():
             out = DIST / pg["slug"].strip("/") / "index.html"
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(render(S, pg, body_pd, P, pages, ok), encoding="utf-8")
+        # pengalihan URL lama halaman "(SEO saja)" → artikel blog (host statis: meta refresh + canonical)
+        ada_blog = {pg["slug"] for pg, _, _ in bl_pages}
+        for p in seo_saja:
+            baru = "/blog" + p["slug"]
+            if baru not in ada_blog:
+                warn(p["slug"], f'halaman "(SEO saja)" belum ada di Blog CMS ({baru}) → jalankan tools/ekspor_blog.py + tools/unggah_blog.py')
+                continue
+            tujuan = (S["site_url"] + baru) if S.get("site_url") else baru
+            out = DIST / p["slug"].strip("/") / "index.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(f'<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Dipindahkan ke {html.escape(p["h1"])}</title>'
+                           f'<meta name="robots" content="noindex"><link rel="canonical" href="{tujuan}">'
+                           f'<meta http-equiv="refresh" content="0; url={baru}"></head><body><p>Halaman ini pindah ke '
+                           f'<a href="{baru}">{html.escape(p["h1"])}</a>.</p></body></html>', encoding="utf-8")
         robots = "User-agent: *\nAllow: /\n"
         if S.get("site_url"):
             urls = "".join(f"<url><loc>{S['site_url']}{p['slug']}</loc></url>" for p, _, ok in built if ok)
