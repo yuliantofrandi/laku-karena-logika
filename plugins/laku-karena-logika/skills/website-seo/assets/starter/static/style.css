@@ -519,3 +519,6 @@ ul.checks li:before{content:"✓";position:absolute;left:0;top:0;color:#13804a;f
 .bl-samping li small{font-weight:500;font-size:12.5px;color:var(--muted)}
 .prose .bl-samping li a:hover span{color:var(--purple)}
 .prose .bl-semua{font-weight:700;font-size:14.5px;text-decoration:none}
+/* halaman dokumen (legal, artikel Panduan & Blog): isi langsung di bawah hero, tanpa jarak atas lebar */
+.band.dok-band{padding-top:32px}
+@media (max-width:640px){.band.dok-band{padding-top:24px}}
