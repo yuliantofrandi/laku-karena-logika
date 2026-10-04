@@ -110,7 +110,7 @@ figure.hero-img figcaption{position:absolute;left:0;right:0;bottom:0;margin:0}
 .split>*{min-width:0}
 .hero.hero-sederhana{padding:36px 0 32px}
 .hero-sederhana .eyebrow{margin-bottom:14px}
-.hero-sederhana .lead{margin-bottom:0;max-width:none} /* hero tanpa gambar: subjudul selebar heading */
+.hero-sederhana .lead{margin-bottom:0}
 /* halaman dokumen legal: satu kolom, nyaman dibaca */
 .dokumen{max-width:820px;min-width:0}
 .dok-grid{display:grid;gap:40px;align-items:start}
