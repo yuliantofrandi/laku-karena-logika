@@ -12,7 +12,7 @@ User (4 Okt 2026): *"selalu buatkan kebijakan privasi dan syarat layanan, buatka
 - Token yang diisi build: `{{brand}}`, `{{tanggal_berlaku}}` (`site.json legal_berlaku`), `{{wa_link}}` (kontak lewat WhatsApp — user tidak memakai email).
 - Halaman dirender sebagai **dokumen dengan navigasi kiri** (user: "buat jadi ada navigasi di sebelah kiri, seperti contoh ini"): hero polos tanpa CTA/statistik, `noindex`.
   - Desktop: sidebar 280px **sticky** berlatar abu muda berisi grup per dokumen legal (`<details>`; dokumen aktif terbuka & berwarna ungu, lainnya tertutup), item = pasal ("1. …") yang menaut ke `#pasal-N`.
-  - Hero: badge **"Dokumen legal"** · H1 nama dokumen · subjudul **ringkasan isi** dari `site.json legal[].lead` (mis. "Data apa yang dicatat <Brand>, berapa lama disimpan, siapa yang bisa melihatnya, dan hak Anda atas data tersebut."). Badge, judul, dan subjudul tidak boleh mengulang pesan yang sama (user: "3 hal ini memiliki makna pesan yang sama").
+  - Hero ringkas (`hero-sederhana`: padding 36/32px, user: "padding atas bawahnya terlalu tinggi"): badge **"Dokumen legal"** · H1 nama dokumen · subjudul **ringkasan isi** dari `site.json legal[].lead` (mis. "Data apa yang dicatat <Brand>, berapa lama disimpan, siapa yang bisa melihatnya, dan hak Anda atas data tersebut."). Badge, judul, dan subjudul tidak boleh mengulang pesan yang sama (user: "3 hal ini memiliki makna pesan yang sama").
   - Isi: kotak info biru muda "Berlaku sejak …", judul pasal dengan **lingkaran nomor bergradasi**. Tulis judul pasal sebagai `<h2>N. Judul</h2>` — build menambah id & lingkaran nomor.
   - Mobile: sidebar disembunyikan, diganti "Daftar isi" yang tertutup (tidak mendorong isi ke bawah). Tanpa JavaScript.
 

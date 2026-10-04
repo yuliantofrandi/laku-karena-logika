@@ -638,6 +638,8 @@ def render(S, page, body, P, all_pages, indexable):
     else:
         hero_cta = f'<a class="btn btn-primary btn-lg hero-cta" href="{checkout_link(S)}" rel="nofollow">{S["copy"]["cta_primary"]} <span aria-hidden="true">→</span></a>'
     hero_class = "hero home" if page["slug"] == "/" else "hero"
+    if page.get("sederhana"):   # hero polos halaman legal: padding lebih rapat
+        hero_class += " hero-sederhana"
     lead = page.get("lead", "")
     hg = GAMBAR.get(HERO.get(page["slug"]))
     hero_img = ((video_figure(hg, hero=True) if hg.get("video") else figure(hg, hero=True)) if hg else "")
