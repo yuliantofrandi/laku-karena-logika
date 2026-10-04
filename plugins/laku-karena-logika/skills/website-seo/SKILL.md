@@ -112,7 +112,7 @@ Target Python 3.9 (bawaan macOS): **jangan pakai backslash di dalam ekspresi f-s
 
 ## Langkah 4 — Verifikasi di browser
 
-Sajikan `dist/` (`python3 -m http.server <port> --directory dist`, lewat `.claude/launch.json` + `preview_start`), lalu periksa:
+Sajikan `dist/` dengan `python3 scripts/serve.py <port> dist` (server tanpa cache, supaya pane tidak menampilkan HTML lama setelah build ulang), lewat `.claude/launch.json` + `preview_start`, lalu periksa:
 - Screenshot desktop dan mobile (375px): nav tidak terbungkus dua baris, harga tidak meluber, logo rapat.
 - Lewat `javascript_tool`: `performance.getEntriesByType('resource')` harus **kosong** (nol request eksternal), CLS = 0, `scrollWidth <= innerWidth` di mobile, urutan heading, tipe JSON-LD.
 - **Ilustrasi:** buat lembar kontak semua SVG (satu halaman HTML berisi grid `<img>`) dan periksa satu per satu: teks tidak terpotong, tidak menumpuk, dan warna sesuai brand. Lalu di mobile: CLS 0, elemen LCP = gambar hero atau H1, dan gambar di bawah lipatan `loading="lazy"`.
