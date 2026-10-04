@@ -8,7 +8,8 @@ Hasil:
   <output_basename>.mp4          bahan H.264 resolusi penuh (sementara — hasil ekspor dibuat web_optimize.py)
   <output_basename>-snap-<t>.png (opsional --snap) frame cek kualitas sementara, bukan hasil ekspor
 
-Syarat HTML: memanggil render(0) bila URL berisi '?rec', dan mengekspos window.render & window.DUR.
+Syarat HTML: mengekspos window.render & window.DUR, tidak memutar animasi bila URL berisi '?rec',
+serta (opsional) window.READY = true setelah semua gambar dimuat.
 """
 import argparse, subprocess, sys, os
 from playwright.sync_api import sync_playwright
@@ -27,6 +28,8 @@ with sync_playwright() as p:
     b = p.chromium.launch()
     pg = b.new_page(viewport={"width": W, "height": H})
     pg.goto(url); pg.wait_for_timeout(400)
+    # template screenshot menandai window.READY = true setelah semua gambar dimuat
+    pg.wait_for_function("window.READY === undefined || window.READY === true", timeout=30000)
     dur = pg.evaluate("window.DUR")
     if a.snap:
         for t in [float(x) for x in a.snap.split(",")]:

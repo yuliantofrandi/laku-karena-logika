@@ -1,32 +1,35 @@
-# Mesin animasi (kontrak template)
+# Mesin animasi — kontrak `assets/video-screenshot.html`
 
 ## Kontrak dasar
 - Seluruh animasi adalah fungsi murni `render(t)` (t = detik). Dilarang memakai CSS animation/transition atau `setTimeout` — render frame-per-frame membutuhkan hasil yang sama untuk t yang sama.
-- Ekspos `window.render` dan `window.DUR`. Bila URL berisi `?rec`, panggil `render(0)` saja; selain itu jalankan loop `requestAnimationFrame` untuk pratinjau di browser.
-- Helper: `p(t,a,b)` progres 0..1, `eo` ease-out cubic, `eio` ease-in-out, `eb` ease-back (pop), `fmt(menit)` → "8j 12m".
-- Ukuran `html,body` = ukuran video (1080×1920 atau 1920×1080), `overflow:hidden`.
+- Template mengekspos `window.render`, `window.DUR`, dan `window.READY` (true setelah semua screenshot dimuat; `render.py` menunggunya). Bila URL berisi `?rec`, animasi tidak diputar sendiri; selain itu ada loop pratinjau `requestAnimationFrame`.
+- Helper: `p(t,a,b)` progres 0..1, `eo` ease-out cubic, `eio` ease-in-out.
+- Yang diedit hanya blok **ISI VIDEO**. Ukuran video, posisi jendela, dan ukuran huruf diatur oleh `PRESET` per `GAYA`.
 
-## Style 1
-- Scene = `.scene` absolut dengan rentang `SC={id:[mulai,selesai]}`; alpha scene = fade-in 0,45 dtk / fade-out 0,35 dtk; `.head` (kicker + headline) masuk otomatis.
-- `pop(el,t,mulai,durasi,dy)` untuk kartu/thumbnail. Data karyawan dummy di array `EMP` (nama, jabatan, menit).
-- Mengganti produk: ubah teks hook, kicker/headline tiap scene, isi kartu mockup, chip outro, domain CTA, gradien logo.
+## Blok ISI VIDEO
+| Nama | Isi |
+|---|---|
+| `GAYA` | 1 = promo fitur 9:16, 2 = walkthrough 16:9, 3 = walkthrough 9:16 |
+| `CFG.shotW` | `window.innerWidth` tab saat screenshot diambil (px CSS). Semua screenshot satu video harus diambil dengan lebar jendela yang sama |
+| `CFG.dur` | durasi total (detik) |
+| `CFG.produk / tagline / domain / pri` | teks logo, tagline, domain CTA, warna primer (warna menu aktif aplikasi) |
+| `SHOTS` | `[file, detikMulai, labelMenu]`. Tiap screenshot tampil sampai screenshot berikutnya; pergantian crossfade 0,35 dtk. `labelMenu` dipakai pill Style 3 |
+| `MOVES` | `[detikTiba, [x,y], lamaGerak]` — kursor bergerak ease-in-out dan tiba di `[x,y]` pada `detikTiba` |
+| `CLICKS` | detik klik → riak warna primer + kursor mengecil. Taruh ±0,1 dtk setelah kursor tiba; screenshot berikutnya mulai ±0,3 dtk setelah klik |
+| `CAM` | `[detik, zoom, cx, cy]` — titik fokus kamera, diinterpolasi ease-in-out. Zoom 1 = lebar screenshot pas selebar jendela |
+| `CAPS` | Style 1: `[mulai, selesai, 'KICKER', 'Headline <b>kata kunci</b>']` (kata di `<b>` diwarnai primer) |
+| `INTRO` | Style 1: `[detikSelesai, 'Hook baris 1<br>Hook baris 2']`, `null` = tanpa |
+| `OUTRO` | detik mulai kartu penutup (logo + tagline + domain), `null` = tanpa |
 
-## Style 2 & 3 (walkthrough)
-- **Halaman**: `<div class="page" id="p-...">` di dalam `#main`. Jadwal di `PAGES=[[idHalaman, detikMulai, idMenuAktif], ...]`. Elemen `.in` otomatis masuk bertahap; `.fill[data-w][data-d][data-dur]` bar terisi; `.cntm[data-m][data-d]` angka menit menghitung; `.cnt[data-n]` angka biasa.
-- **Kursor**: `MOVES=[[detikTiba, '#selector' | [x,y], durasiGerak], ...]`. Selector di-resolve sekali ke koordinat logis aplikasi (tengah elemen; menu sidebar digeser ke x+80). `CLICKS=[detik,...]` memicu riak + kursor mengecil — taruh ±0,1 dtk setelah kursor tiba, dan halaman berikutnya mulai ±0,3 dtk setelah klik.
-- **Kamera**: `CAM=[[detik, zoom, cx, cy], ...]` dalam koordinat logis 1600×900, diinterpolasi ease-in-out; `setCam` meng-clamp agar tidak keluar tepi aplikasi (zoom minimum 1).
-  - Style 2: `S=1.2`, pusat layar 960×540.
-  - Style 3: `S=1.3`, jendela 1000×1170 → pusat 500×585.
-- **State khusus** (tab di halaman detail, modal, ketik di input, chip baru, toast) diatur di `render(t)` berdasarkan rentang waktu.
-- Konversi Style 2 → Style 3: bungkus `#app` dengan `#win`, ganti ukuran body, `S`, `setCam`, dan susun ulang `CAM` dengan pola pan sidebar → kiri → kanan (lihat `gaya.md`). `PAGES`, `MOVES`, `CLICKS` tetap.
+## Koordinat
+- `MOVES` dan `CAM` memakai **piksel CSS halaman aplikasi** — persis `getBoundingClientRect()` di tab pengguna saat screenshot diambil (x dari kiri viewport, y dari atas viewport). Bukan piksel video, bukan piksel PNG (PNG Retina = 2× lebih besar).
+- Untuk target klik pakai tengah elemen: `x = left + width/2`, `y = top + height/2`.
+- `setCam` meng-clamp fokus agar kamera tidak keluar tepi screenshot; kalau screenshot lebih pendek dari jendela, gambar diletakkan di tengah vertikal (naikkan zoom supaya ruang kosong tidak terlihat).
 
-## Thumbnail screenshot palsu
-Fungsi `scr(jenis, big)` menggambar layar mini dengan CSS: 0 = code editor gelap, 1 = tool desain, 2 = dashboard grafik, 3 = spreadsheet. Untuk pratinjau besar di modal pakai faktor skala ±5,4.
-
-## Jebakan yang pernah terjadi
-- `camAt` mengembalikan elemen waktu di indeks 0 → harus `slice(1)` sebelum dipakai sebagai `[z,cx,cy]` (gejala: seluruh layar bergeser/terpotong).
-- Kartu grid dengan tinggi tetap memotong baris terakhir → hitung tinggi isi atau longgarkan.
-- Daftar dalam tab setinggi tetap: thumbnail 2 baris butuh tinggi ±128 px per baris.
-- `range(FPS*DUR)` dengan DUR desimal → bulatkan ke int (sudah ditangani `render.py`).
-- Unduh logo/font dari domain aplikasi bisa diblokir proxy/CORS; `toDataURL` besar dari browser bisa diblokir juga → rekreasi logo sebagai teks.
-- Emoji dipakai sebagai ikon kecil di template; ganti dengan SVG bila hasil render emoji kurang rapi.
+## Jebakan
+- Screenshot dengan lebar jendela berbeda membuat koordinat dan skala meleset — ambil semua screenshot dengan ukuran jendela yang sama.
+- Zoom browser selain 100% membuat `innerWidth` (px CSS) tidak cocok dengan ukuran tangkapan layar.
+- Animasi/loading di aplikasi (skeleton, spinner, toast) bisa ikut tertangkap — tunggu halaman tenang sebelum menangkap.
+- Penyamaran (`privasi.js`) hilang setiap kali halaman dinavigasi/dirender ulang — jalankan lagi tepat sebelum tiap tangkapan.
+- Teks di dalam gambar/canvas (grafik, foto dokumen) tidak bisa disamarkan lewat DOM — pilih layar lain atau minta keputusan pengguna.
+- `range(FPS*DUR)` dengan DUR desimal → dibulatkan oleh `render.py`.

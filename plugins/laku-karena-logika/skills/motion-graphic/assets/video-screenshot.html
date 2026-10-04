@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!--
+Template video dari SCREENSHOT ASLI aplikasi pengguna (satu file untuk Style 1/2/3).
+Yang diedit hanya blok "ISI VIDEO" di <script> paling bawah:
+  CFG   — ukuran video, jendela tempat screenshot tampil, warna, logo, domain
+  SHOTS — daftar screenshot (file PNG di folder shots/ di samping HTML ini) + detik mulai
+  MOVES — gerak kursor, CLICKS — detik klik, CAM — zoom/pan kamera
+  CAPS  — kicker + headline per scene (Style 1), INTRO/OUTRO — kartu pembuka & penutup
+Koordinat MOVES & CAM = piksel CSS halaman aplikasi (sama dengan getBoundingClientRect
+di tab pengguna saat screenshot diambil), BUKAN piksel video.
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow:hidden;font-family:Inter,system-ui,-apple-system,sans-serif;color:#1C252E}
+body{background:radial-gradient(1200px 900px at 15% 10%,var(--bg1),transparent 60%),radial-gradient(1000px 800px at 90% 95%,var(--bg2),transparent 60%),#F4F6F8}
+#win{position:absolute;overflow:hidden;background:#fff;border-radius:var(--rad);box-shadow:0 30px 80px -20px rgba(28,37,46,.35),0 0 0 1px rgba(28,37,46,.06)}
+#cam{position:absolute;left:0;top:0;transform-origin:0 0}
+.shot{position:absolute;left:0;top:0;opacity:0}
+.shot img{display:block;width:100%;height:auto}
+#cursor{position:absolute;left:0;top:0;width:28px;height:28px;transform-origin:6px 3px;z-index:5}
+#ripple{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--pri);opacity:0;z-index:4}
+#cap{position:absolute;opacity:0}
+#cap .kick{display:inline-block;font-weight:700;letter-spacing:1px;color:var(--pri);background:var(--pril);border-radius:999px}
+#cap .hl{font-weight:800;letter-spacing:-1px;line-height:1.08;margin-top:.5em}
+#cap .hl b{color:var(--pri)}
+#hdr{position:absolute;display:flex;align-items:center;justify-content:space-between}
+#pill{font-weight:700;color:var(--pri);background:var(--pril);border-radius:999px}
+#dots{position:absolute;display:flex;gap:10px;justify-content:center}
+#dots i{display:block;height:10px;width:10px;border-radius:5px;background:rgba(28,37,46,.18)}
+#dots i.on{width:34px;background:var(--pri)}
+#dom{position:absolute;left:0;right:0;text-align:center;font-weight:800}
+.card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;background:#fff;z-index:20;padding:0 8%}
+.logo{font-weight:900;letter-spacing:-1px;color:var(--pri)}
+.cta{margin-top:1.2em;background:var(--pri);color:#fff;font-weight:800;border-radius:999px;padding:.55em 1.6em}
+</style></head><body>
+<div id="win"><div id="cam"><div id="shots"></div><div id="ripple"></div>
+<svg id="cursor" viewBox="0 0 24 24"><path d="M5 2.5v17l4.3-4.1 2.8 6.3 2.7-1.2-2.8-6.2H18z" fill="#1C252E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+</div></div>
+<div id="cap"><span class="kick"></span><div class="hl"></div></div>
+<div id="hdr"><div class="logo" id="hlogo"></div><div id="pill"></div></div>
+<div id="dots"></div><div id="dom"></div>
+<div class="card" id="intro"><div class="hl" id="ih" style="font-weight:800;letter-spacing:-1px;line-height:1.1"></div><div class="logo" id="il" style="margin-top:.6em"></div></div>
+<div class="card" id="outro"><div class="logo" id="ol"></div><div id="ot" style="color:#637381;font-weight:600;margin-top:.4em"></div><div class="cta" id="oc"></div></div>
+<script>
+/* ===================== ISI VIDEO (edit bagian ini saja) ===================== */
+const GAYA = 2;                 // 1 = promo fitur 9:16, 2 = walkthrough 16:9, 3 = walkthrough 9:16
+const CFG = {
+  produk: 'Nama Produk', domain: 'contoh.id', tagline: 'Tagline produk',
+  pri: '#00A76F',               // warna primer = warna menu aktif aplikasi
+  shotW: 1440,                  // lebar viewport tab saat screenshot (window.innerWidth), px CSS
+  dur: 24,                      // durasi total video (detik)
+};
+const SHOTS = [                 // [file, detik mulai, label menu untuk pill Style 3]
+  ['shots/01.png', 0,  'Dashboard'],
+  ['shots/02.png', 8,  'Laporan'],
+  ['shots/03.png', 15, 'Pengaturan'],
+];
+const MOVES  = [[0,[720,450],0], [2.5,[180,320],1.0], [7.6,[180,380],0.9]];   // [tiba, [x,y], lama gerak]
+const CLICKS = [7.7, 14.7];
+const CAM    = [[0,1,720,450], [2,1,720,450], [3.5,1.4,900,300], [6.5,1.4,900,300], [7.5,1,720,450]]; // [detik, zoom, cx, cy]
+const CAPS   = [];              // Style 1: [mulai, selesai, 'KICKER', 'Headline <b>kata kunci</b>']
+const INTRO  = null;            // Style 1: [selesai, 'Hook baris 1<br>Hook baris 2']
+const OUTRO  = 21;              // detik mulai kartu penutup (logo + tagline + domain), null = tanpa
+/* =========================================================================== */
+
+const PRESET = {
+  1: {W:1080,H:1920, win:[60,620,960,1180], rad:36, cap:[80,170,920], fs:{kick:28,hl:76,logo:150,cta:44,ih:84}},
+  2: {W:1920,H:1080, win:[0,0,1920,1080],  rad:0,  fs:{logo:150,cta:38,ih:84}},
+  3: {W:1080,H:1920, win:[40,330,1000,1170],rad:32, hdr:[60,190,960], dots:1600, dom:1690, fs:{logo:64,pill:30,dom:32,cta:38,ih:84}},
+}[GAYA];
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), p=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3), eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const {W,H}=PRESET, [WX,WY,WW,WH]=PRESET.win, BASE=WW/CFG.shotW;
+const DUR=CFG.dur;
+
+document.documentElement.style.cssText=`width:${W}px;height:${H}px;--pri:${CFG.pri};--pril:${CFG.pri}1f;--bg1:${CFG.pri}22;--bg2:${CFG.pri}14;--rad:${PRESET.rad}px`;
+document.body.style.cssText=`width:${W}px;height:${H}px`;
+Object.assign($('win').style,{left:WX+'px',top:WY+'px',width:WW+'px',height:WH+'px'});
+$('shots').innerHTML=SHOTS.map(([f],i)=>`<div class="shot" id="s${i}" style="width:${CFG.shotW}px"><img src="${f}"></div>`).join('');
+const fs=PRESET.fs;
+if(PRESET.cap){const [x,y,w]=PRESET.cap;Object.assign($('cap').style,{left:x+'px',top:y+'px',width:w+'px'});
+  $('cap').querySelector('.kick').style.cssText+=`font-size:${fs.kick}px;padding:12px 26px`;$('cap').querySelector('.hl').style.fontSize=fs.hl+'px'}
+if(PRESET.hdr){const [x,y,w]=PRESET.hdr;Object.assign($('hdr').style,{left:x+'px',top:(y-40)+'px',width:w+'px'});
+  $('hlogo').textContent=CFG.produk;$('hlogo').style.fontSize=fs.logo+'px';$('pill').style.cssText=`font-size:${fs.pill}px;padding:12px 26px`;
+  $('dots').style.cssText+=`left:0;right:0;top:${PRESET.dots}px`;$('dots').innerHTML=SHOTS.map(()=>'<i></i>').join('');
+  $('dom').style.cssText+=`top:${PRESET.dom}px;font-size:${fs.dom}px`;$('dom').textContent=CFG.domain}
+else{$('hdr').style.display='none'}
+$('ih').style.fontSize=fs.ih+'px';$('ih').innerHTML=INTRO?INTRO[1]:'';$('il').textContent=CFG.produk;$('il').style.fontSize=(fs.logo*.8)+'px';
+$('ol').textContent=CFG.produk;$('ol').style.fontSize=fs.logo+'px';$('ot').textContent=CFG.tagline;$('ot').style.fontSize=(fs.cta*.75)+'px';
+$('oc').textContent=CFG.domain;$('oc').style.fontSize=fs.cta+'px';
+
+// tinggi tiap screenshot (px CSS) diketahui setelah gambar dimuat
+let SH=SHOTS.map(()=>900);
+window.READY=false;
+Promise.all([...document.images].map(im=>im.decode().catch(()=>{}))).then(()=>{
+  SH=[...document.querySelectorAll('.shot img')].map(im=>im.naturalWidth?im.naturalHeight*CFG.shotW/im.naturalWidth:900);
+  window.READY=true; render(0);
+});
+
+function idxAt(t){let k=0;SHOTS.forEach(([, st],i)=>{if(t>=st)k=i});return k}
+function at(list,t){let a=list[0];for(let i=1;i<list.length;i++){const b=list[i];if(t<b[0]){const k=eio(p(t,a[0],b[0]));return a.map((v,j)=>v+(b[j]-v)*k).slice(1)}a=b}return a.slice(1)}
+function cursorAt(t){let pos=MOVES[0][1];for(let i=1;i<MOVES.length;i++){const [ta,xy,d]=MOVES[i];if(t>=ta){pos=xy;continue}const k=eio(p(t,ta-d,ta));return [pos[0]+(xy[0]-pos[0])*k,pos[1]+(xy[1]-pos[1])*k]}return pos}
+function setCam(z,cx,cy,sh){const s=BASE*z,hw=WW/2/s,hh=WH/2/s;
+  cx=CFG.shotW<=2*hw?CFG.shotW/2:cl(cx,hw,CFG.shotW-hw);
+  cy=sh<=2*hh?sh/2:cl(cy,hh,sh-hh);
+  $('cam').style.transform=`translate(${WW/2-cx*s}px,${WH/2-cy*s}px) scale(${s})`;return s}
+
+function render(t){
+  const k=idxAt(t);
+  SHOTS.forEach(([, st],i)=>{const nx=SHOTS[i+1]?SHOTS[i+1][1]:1e9;
+    $('s'+i).style.opacity=(t<st||t>=nx+.35)?0:(i==0?1:eo(p(t,st,st+.35)))});
+  const [z,cx,cy]=at(CAM,t);setCam(z,cx,cy,SH[k]);
+  const [x,y]=cursorAt(t);let rp=0;CLICKS.forEach(c=>{if(t>=c&&t<c+.45)rp=(t-c)/.45});
+  $('cursor').style.transform=`translate(${x-6}px,${y-3}px) scale(${(rp&&rp<.4?.85:1)/z})`;
+  Object.assign($('ripple').style,{left:x+'px',top:y+'px',opacity:rp?(1-rp)*.45:0,transform:`scale(${(.3+rp*1.2)/z})`});
+  // headline (Style 1)
+  let cap=null;CAPS.forEach(c=>{if(t>=c[0]&&t<c[1])cap=c});
+  if(cap){$('cap').querySelector('.kick').textContent=cap[2];$('cap').querySelector('.hl').innerHTML=cap[3];
+    const q=Math.min(p(t,cap[0]+.05,cap[0]+.6),1-p(t,cap[1]-.35,cap[1]));$('cap').style.opacity=q;$('cap').style.transform=`translateY(${(1-eo(q))*40}px)`}
+  else $('cap').style.opacity=0;
+  // header Style 3
+  if(PRESET.hdr){$('pill').textContent=SHOTS[k][2]||'';[...$('dots').children].forEach((d,i)=>d.classList.toggle('on',i==k))}
+  // intro & outro
+  if(INTRO){const a=1-p(t,INTRO[0]-.4,INTRO[0]);$('intro').style.opacity=a;$('ih').style.transform=`translateY(${(1-eo(p(t,0,.6)))*30}px)`}
+  if(OUTRO!=null){const e=eo(p(t,OUTRO,OUTRO+.7));$('outro').style.opacity=e;$('outro').style.transform=`scale(${1.06-.06*e})`}
+}
+window.render=render;window.DUR=DUR;
+if(!location.search.includes('rec')){let st=null;const lp=ts=>{if(window.READY){if(st===null)st=ts;render(((ts-st)/1000)%DUR)}requestAnimationFrame(lp)};requestAnimationFrame(lp)}
+</script></body></html>
