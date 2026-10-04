@@ -1098,8 +1098,8 @@ def main():
     if not S.get("site_url"):
         warnings.append("site.json: site_url kosong → canonical, og:url, sitemap.xml tidak dibuat")
     if S.get("langganan") is not None:
-        if not S["langganan"].get("qris_url"):
-            warnings.append("site.json: langganan.qris_url kosong → modal langganan menampilkan 'QRIS sedang disiapkan' + kirim pesanan via WhatsApp")
+        if not S["langganan"].get("api"):
+            warnings.append("site.json: langganan.api kosong → modal langganan belum tersambung payment gateway (QRIS belum aktif, pesanan dikirim via WhatsApp) — lihat kontrak API di langganan.py")
     elif not S.get("checkout_url"):
         msg = "site.json: checkout_url kosong → tombol beli mengarah ke /harga#pilih-skema"
         (errors if S.get("site_url") else warnings).append(msg + (" — wajib diisi sebelum publish" if S.get("site_url") else ""))

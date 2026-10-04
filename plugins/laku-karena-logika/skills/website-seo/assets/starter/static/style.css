@@ -595,3 +595,25 @@ dialog.lg::backdrop{background:rgba(27,22,38,.55);backdrop-filter:blur(3px)}
 dialog.lg [hidden]{display:none!important}
 @media (max-width:559px){.lg-periode em{display:block;width:max-content;margin:3px auto 0}.lg-periode span{padding:8px 10px}}
 @media (min-width:560px){.lg-data .lg-penuh{grid-column:1/-1}}
+.lg-status{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:14px;color:var(--ink-2)}
+.lg-status:empty{display:none}
+.lg-status.galat{color:#a3142f}
+.lg-titik{width:9px;height:9px;border-radius:50%;background:#f0a020;box-shadow:0 0 0 0 rgba(240,160,32,.5);animation:lg-denyut 1.6s infinite}
+@keyframes lg-denyut{70%{box-shadow:0 0 0 8px rgba(240,160,32,0)}100%{box-shadow:0 0 0 0 rgba(240,160,32,0)}}
+.lg-putar{width:34px;height:34px;border-radius:50%;border:3px solid var(--bg-tint);border-top-color:var(--purple);animation:lg-putar .8s linear infinite}
+@keyframes lg-putar{to{transform:rotate(360deg)}}
+.lg-qr{background:#fff;padding:8px;border-radius:8px;line-height:0}
+.lg-qr img,.lg-qr canvas{display:block;width:100%!important;max-width:204px;height:auto!important}
+.lg-qris-habis img,.lg-qris-habis .lg-qr{opacity:.15;filter:grayscale(1)}
+.lg-sukses{text-align:center;padding:6px 4px 0}
+.lg-centang{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 16px;border-radius:50%;background:var(--grad);color:#fff;box-shadow:0 14px 30px -14px rgba(123,44,255,.6)}
+.lg-sukses h2{margin-bottom:8px}
+.lg-sukses>p{margin:0 auto 16px;max-width:420px;color:var(--ink-2);font-size:15.5px;line-height:1.6}
+.lg-sukses-dl{margin:0 0 20px;padding:12px 16px;border-radius:14px;background:var(--bg-soft);border:1px solid var(--line);text-align:left}
+.lg-sukses-dl div{display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:14px}
+.lg-sukses-dl dt{color:var(--muted)}
+.lg-sukses-dl dd{margin:0;font-weight:700;text-align:right}
+.lg-sukses .lg-kecil{margin-top:12px}
+@media (prefers-reduced-motion:reduce){.lg-titik,.lg-putar{animation:none}}
+.lg-status{display:block}.lg-status:empty{display:none}
+.lg-titik{display:inline-block;vertical-align:middle;margin:-2px 8px 0 0}

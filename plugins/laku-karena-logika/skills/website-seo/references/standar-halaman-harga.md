@@ -58,14 +58,13 @@ User (4 Okt 2026): "saat pilih paket, munculkan modal untuk subscription dan dil
   - Ringkasan harga langsung dihitung: tier dari jumlah karyawan, tahunan = bulanan × `annual_months_paid`, add-on per karyawan.
   - Data aktivasi: nama, perusahaan, dan No. WhatsApp (baris penuh), dengan validasi wajib isi. **Tanpa email**. User (4 Okt 2026): "tidak perlu email", karena kontak lewat WhatsApp. **No. WhatsApp hanya menerima angka.** Huruf dan simbol dibuang saat diketik, kecuali `+` di depan. Panjangnya 9–15 digit, dan bila salah muncul pesan "No. WhatsApp harus 9–15 angka". User: "tidak boleh input teks".
   - Kalimat persetujuan yang menautkan Syarat Layanan & Kebijakan Privasi.
-- **Langkah 2 – Bayar dengan QRIS:**
-  - Total, no. pesanan (`TB-YYYYMMDD-XXXX`), ringkasan paket, dan 3 langkah bayar.
-  - Area QRIS:
-    - `qris_url` berakhiran gambar → gambar QR ditampilkan.
-    - URL lain → tombol "Tampilkan QRIS".
-    - Kosong → kotak "QRIS sedang disiapkan" (build memberi WARNING).
-  - `qris_url` boleh memuat `{order} {total} {paket} {periode} {karyawan}`.
-  - Tombol konfirmasi membuka WhatsApp dengan ringkasan pesanan lengkap (butuh `site.json whatsapp`).
-- **Data formulir tidak dikirim ke server mana pun** dari halaman statis ini. Data hanya masuk ke pesan WhatsApp yang dikirim sendiri oleh pengunjung. Bila nanti ada API pesanan, sambungkan di langkah 2.
+- **Langkah 2 – Bayar dengan QRIS (payment gateway).** User (4 Okt 2026): "langkah kedua ini seperti payment gateway, jadi ada webhook-nya nanti. Jika sudah bayar maka akan langsung aktif dan bisa segera login."
+  - Modal memanggil `POST {langganan.api}/orders` → menampilkan QR (`qris_image` atau `qris_string`, dirender dengan qrcodejs dari cdnjs), no. pesanan, dan nominal dari server.
+  - Hitung mundur `expires_at` dan status "Menunggu pembayaran".
+  - Cek `GET /orders/{id}` tiap 3 detik (langsung saat tab aktif lagi). Status `expired`/`failed` → QR diredupkan + tombol "Buat QRIS baru".
+  - **Webhook gateway diterima backend, bukan situs statis.** Kontrak lengkapnya ada di `references/kontrak-api-langganan.md` (salin ke `docs/api-langganan.md` untuk tim backend).
+- **Langkah 3 – Pembayaran diterima** (saat status `paid`): ikon centang gradasi, "Akun <Brand> untuk <perusahaan> sudah aktif", no. pesanan & paket, tombol **"Masuk ke <Brand>"** (`login_url` dari API atau `signin_url`), dan link bantuan pemasangan via WhatsApp.
+- **Mode sementara** (`langganan.api` kosong, build memberi WARNING): kotak "QRIS belum aktif" + tombol "Kirim pesanan via WhatsApp" berisi ringkasan pesanan.
+- **Data formulir hanya dikirim ke `langganan.api` milik produk** (POST /orders). Pada mode sementara, data hanya masuk ke pesan WhatsApp yang dikirim pengunjung.
 - Bila blok `langganan` ada, `checkout_url` tidak wajib lagi.
 - **Mobile:** modal tampil sebagai bottom sheet selebar layar. Elemen `[hidden]` di dalam modal wajib `display:none!important`, karena aturan flex bisa menimpanya.
