@@ -57,6 +57,11 @@ Menulis **satu artikel blog edukatif** untuk produk SaaS dari topik atau materi 
 
 > **Catatan lingkungan (article-blog):** butuh **Google Chrome/Chromium**, Python (Pillow opsional; `sips` di macOS sebagai cadangan), dan **API key Lakukan** lewat env `LAKUKAN_API_KEY`.
 
+### `article-portfolio`
+Menulis **artikel studi kasus portfolio** untuk satu proyek software Venturo, apa pun jenisnya (website, web app/sistem internal, mobile app, dashboard, chatbot/AI, integrasi/API, desktop/POS). Struktur tetap: ringkasan proyek, **tantangan**, **solusi per aktor/platform**, **keunggulan**, hasil, dan CTA ke layanan. Screenshot disusun **per aktor** (1 aktor = 1–2 layar utama) dan disamarkan; proyek tanpa UI memakai diagram. Ada cover mockup laptop + HP, mode klien anonim (NDA), SEO (keyword "jasa pembuatan [jenis]", judul, slug, alt text, internal link), dan mode update. Terbit ke kategori **Portfolio** CMS Lakukan. Memakai skrip `article-docs` (posting & penyamaran) dan `article-blog` (render cover/diagram).
+
+> **Catatan lingkungan (article-portfolio):** sama dengan `article-docs` + `article-blog`: Chrome/Chromium, Python Pillow, dan **API key Lakukan** lewat env `LAKUKAN_API_KEY`. Admin area proyek di-login sendiri oleh user.
+
 > **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
 
 ## Pakai
@@ -71,9 +76,10 @@ Menulis **satu artikel blog edukatif** untuk produk SaaS dari topik atau materi 
 /motion-graphic
 /article-docs
 /article-blog
+/article-portfolio
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 
