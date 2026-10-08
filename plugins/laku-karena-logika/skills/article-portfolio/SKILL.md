@@ -12,6 +12,8 @@ Skill ini **memakai ulang skrip skill lain di plugin yang sama**:
 - `../article-docs/scripts/samarkan.py` untuk menyamarkan screenshot
 - `../article-blog/scripts/render_infografis.py` + `../article-blog/assets/infografis/` (base.css + font) untuk merender cover mockup dan diagram
 
+Aset milik skill ini: `assets/logo-venturo.png` — **logo resmi Venturo** (PNG transparan, sudah dipotong rapat).
+
 Dua mode:
 
 | Mode | Kapan | Alur |
@@ -64,8 +66,15 @@ Ikuti aturan privasi `article-docs` langkah 2 (`samarkan.py ocr` → `peta.json`
 - Simpan hasil ke `<kerja>/tersamar/`.
 
 ## 4. Cover mockup & diagram
-1. Salin `../article-blog/assets/infografis/*` ke `<kerja>/render/`, lalu ganti token warna/font di `base.css` sesuai **design system Venturo**.
-2. **Cover (1600×900)**: buat `cover.html` berisi frame laptop (CSS) memuat screenshot desktop tersamar + frame HP di depannya memuat screenshot mobile, judul proyek singkat, chip jenis proyek, dan logo teks Venturo. Proyek tanpa UI: cover = diagram alur yang paling mewakili.
+1. Salin `../article-blog/assets/infografis/*` **dan `assets/logo-venturo.png`** ke `<kerja>/render/`, lalu ganti token warna/font di `base.css` sesuai **design system Venturo** (warna logo: teal ±`#26A0AF` dan hijau ±`#93CD7A`).
+2. **Cover (1600×900)**: buat `cover.html` berisi frame laptop (CSS) memuat screenshot desktop tersamar + frame HP di depannya memuat screenshot mobile, judul proyek singkat, chip jenis proyek, dan **logo Venturo** (`<img src="logo-venturo.png" alt="Venturo">`, lebar ±220–320 px). Proyek tanpa UI: cover = diagram alur yang paling mewakili.
+
+**Aturan logo (WAJIB, semua cover & diagram):**
+- Selalu pakai `assets/logo-venturo.png`. Jangan menulis "Venturo" sebagai logo teks (`.brand`), jangan menggambar ulang, dan jangan memakai logo Venturo dari sumber lain.
+- Jangan mengubah warna, rasio, atau memotong bagian "EXPERT PROGRAMMERS"; ubah ukurannya hanya lewat `width`.
+- Taruh di latar terang. Di latar gelap atau gradasi, letakkan logo di atas chip putih (`background:#fff;border-radius:16px;padding:14px 20px`) agar tulisan abu-abunya tetap terbaca.
+- Footer infografis bawaan `article-blog` (`<span class="brand">…</span>`) diganti dengan `<img>` logo ini.
+- Logo klien (bila klien boleh disebut) tampil terpisah dan lebih kecil dari logo Venturo; di mode anonim, logo klien tidak dipakai.
 3. **Diagram** (bila perlu): alur sistem/integrasi atau alur bot, memakai pola `contoh-alur-keputusan.html` / `contoh-siklus.html` sebagai titik awal.
 4. `python3 ../article-blog/scripts/render_infografis.py --src <kerja>/render --out <kerja>/tersamar --nama cover.html=<proyek>-cover.jpg …`
 5. **Lihat setiap JPG.** Perbaiki bila screenshot terpotong janggal, teks bertumpuk, atau frame tidak proporsional.
