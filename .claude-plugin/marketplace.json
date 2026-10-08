@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Marketplace pribadi untuk AI Marketing OS — rangkaian skill yang mengubah pengetahuan produk jadi output marketing untuk SaaS.",
-    "version": "1.9.0",
+    "version": "1.9.1",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "laku-karena-logika",
       "source": "./plugins/laku-karena-logika",
       "description": "AI Marketing OS: Business Knowledge Base, Business Reviewer, Keyword Research, alur konten sosial media (desain → caption → posting), video motion graphic demo aplikasi, serta artikel panduan, blog berinfografis, dan portfolio studi kasus ke CMS Lakukan untuk produk SaaS.",
-      "version": "1.9.0",
+      "version": "1.9.1",
       "category": "productivity",
       "keywords": [
         "marketing",
