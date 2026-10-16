@@ -62,6 +62,9 @@ Menulis **artikel studi kasus portfolio** untuk satu proyek software Venturo, ap
 
 > **Catatan lingkungan (article-portfolio):** sama dengan `article-docs` + `article-blog`: Chrome/Chromium, Python Pillow, dan **API key Lakukan** lewat env `LAKUKAN_API_KEY`. Admin area proyek di-login sendiri oleh user.
 
+### `ba-uiux`
+Mode kerja **Business Analyst + UI/UX Designer** berprinsip **MVP dulu**, dipanggil di awal sesi UI/UX sebagai pengganti "resume this project". Menyiapkan repo (pindah ke branch utama → pull → branch baru `uiux/<fitur>`), melanjutkan konteks dari file rules `.md` yang sudah ada, lalu bekerja dengan aturan tetap: pisahkan must-have vs nice-to-have, tanpa menyentuh backend/API/database, tandai titik integrasi untuk programmer, dan catat semua rules + acceptance criteria + field/record default ke `docs/ux-rules.md` (template di `template-rules.md`). Setiap prototype UI wajib punya tombol **Rules** melayang di kanan atas untuk membaca isi `.md` tersebut (`rules-button.html`).
+
 > **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
 
 ## Pakai

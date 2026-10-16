@@ -1,0 +1,50 @@
+<!--
+  Tombol "Rules" melayang (kanan atas) — menampilkan isi file rules .md di panel samping.
+  KHUSUS PROTOTYPE: programmer boleh menghapus seluruh blok ini (cari data-prototype-only).
+  Ganti RULES_MD_PATH sesuai lokasi file rules proyek.
+  Catatan: fetch .md butuh dibuka lewat server lokal (bukan file://).
+-->
+<div data-prototype-only id="ux-rules">
+  <button id="ux-rules-btn" type="button" aria-label="Lihat rules">&#128196; Rules</button>
+  <div id="ux-rules-overlay" hidden></div>
+  <aside id="ux-rules-panel" hidden aria-label="Rules & Acceptance Criteria">
+    <header>
+      <strong>Rules &amp; Acceptance Criteria</strong>
+      <button id="ux-rules-close" type="button" aria-label="Tutup">&#10005;</button>
+    </header>
+    <div id="ux-rules-body">Memuat&hellip;</div>
+  </aside>
+</div>
+<style>
+  #ux-rules-btn{position:fixed;top:16px;right:16px;z-index:9999;padding:8px 14px;border:0;border-radius:999px;
+    background:#111827;color:#fff;font:600 13px/1 system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer}
+  #ux-rules-btn:hover{background:#374151}
+  #ux-rules-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.3)}
+  #ux-rules-panel{position:fixed;top:0;right:0;z-index:10000;width:min(560px,100vw);height:100vh;display:flex;flex-direction:column;
+    background:#fff;color:#111827;box-shadow:-8px 0 24px rgba(0,0,0,.15);font:14px/1.6 system-ui,sans-serif}
+  #ux-rules-panel header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid #e5e7eb}
+  #ux-rules-close{border:0;background:none;font-size:18px;cursor:pointer}
+  #ux-rules-body{flex:1;overflow:auto;padding:16px 20px}
+  #ux-rules-body table{border-collapse:collapse;width:100%;margin:8px 0}
+  #ux-rules-body th,#ux-rules-body td{border:1px solid #e5e7eb;padding:6px 8px;text-align:left;vertical-align:top}
+  #ux-rules-body code{background:#f3f4f6;padding:1px 4px;border-radius:4px}
+  #ux-rules [hidden]{display:none!important}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+(function(){
+  var RULES_MD_PATH = 'docs/ux-rules.md';
+  var btn=document.getElementById('ux-rules-btn'), panel=document.getElementById('ux-rules-panel'),
+      overlay=document.getElementById('ux-rules-overlay'), body=document.getElementById('ux-rules-body');
+  function open(){
+    panel.hidden=overlay.hidden=false;
+    // Selalu ambil ulang agar isi .md terbaru langsung terlihat.
+    fetch(RULES_MD_PATH+'?t='+Date.now()).then(function(r){ if(!r.ok) throw r.status; return r.text(); })
+      .then(function(md){ body.innerHTML=marked.parse(md); })
+      .catch(function(){ body.textContent='File '+RULES_MD_PATH+' tidak bisa dimuat. Buka prototype lewat server lokal.'; });
+  }
+  function close(){ panel.hidden=overlay.hidden=true; }
+  btn.onclick=open; overlay.onclick=close; document.getElementById('ux-rules-close').onclick=close;
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
