@@ -62,6 +62,11 @@ Menulis **artikel studi kasus portfolio** untuk satu proyek software Venturo, ap
 
 > **Catatan lingkungan (article-portfolio):** sama dengan `article-docs` + `article-blog`: Chrome/Chromium, Python Pillow, dan **API key Lakukan** lewat env `LAKUKAN_API_KEY`. Admin area proyek di-login sendiri oleh user.
 
+### `proposal-pdf`
+Membuat **PDF penawaran sekaligus form agreement** Venturo (Managed Service / Dedicated Team) dari tab klien di Google Sheet penawaran: header, lingkup layanan, rincian biaya, pembayaran, batasan, dan blok persetujuan, lengkap dengan tanda tangan + stempel CEO dan paraf di footer setiap halaman. Mengikuti konvensi nomor dokumen `VEN/Project/Tahun/Revisi` dan design system Venturo; dirender A4 lewat Playwright Chromium.
+
+> **Catatan lingkungan (proposal-pdf):** butuh **Claude-in-Chrome** (membaca Google Sheet), Python **Playwright** + Chromium, dan `pdftoppm` (poppler) untuk verifikasi.
+
 > **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
 
 ## Pakai
@@ -77,9 +82,10 @@ Menulis **artikel studi kasus portfolio** untuk satu proyek software Venturo, ap
 /article-docs
 /article-blog
 /article-portfolio
+/proposal-pdf
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`); *"buat PDF penawaran"*, *"penawaran baru untuk klien X"* (→ `proposal-pdf`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 

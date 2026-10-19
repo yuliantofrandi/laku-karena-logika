@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Penawaran Layanan Managed Service - Alldila Seats</title>
+<style>
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+:root{--teal:#259ead;--t7:#1b7a86;--t8:#176a74;--t50:#eaf6f7;--ink:#1f2a2e;--muted:#58585a;--subtle:#6b7072;--border:#d5dfe0;--s2:#f4f7f6;--green:#93cc7c}
+@page{size:A4;margin:16mm 16mm 18mm 16mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:M,sans-serif;color:var(--ink);font-size:9pt;line-height:1.5}
+.hero{position:relative;margin:-16mm -16mm 0;padding:12mm 16mm 4mm;overflow:hidden}
+.hero{background:#fff url(bg_flat.jpg) right top/120mm auto no-repeat}
+
+.hero>*{position:relative;z-index:1}
+.logo{height:19mm;display:block;margin-left:-2mm}
+.eyebrow{margin-top:6mm;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:8.5pt}
+h1{margin:1mm 0 0;font-size:24pt;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h1 span{color:var(--teal)}
+.meta{display:grid;grid-template-columns:1.1fr 1fr;gap:5mm;margin-top:5mm}
+.card{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm;background:#fff}
+.card.soft{background:var(--t50);border-color:var(--t50)}
+.kv{display:grid;grid-template-columns:24mm 1fr;row-gap:1mm}
+.kv b{font-weight:600;color:var(--subtle);font-size:8.5pt}
+.lbl{font-size:8pt;font-weight:600;color:var(--t7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1mm}
+.to{font-weight:700;font-size:10.5pt}
+.intro{margin:5mm 0 0;color:var(--muted);font-size:10pt}
+h2{font-size:12pt;font-weight:700;margin:6mm 0 2.5mm;display:flex;align-items:center;gap:3mm;break-after:avoid}
+h2 i{font-style:normal;display:inline-grid;place-items:center;width:7.5mm;height:7.5mm;border-radius:2mm;background:var(--teal);color:#fff;font-size:10pt}
+.svc{border:1px solid var(--border);border-radius:4mm;padding:3mm 5mm;margin-bottom:3mm;break-inside:avoid}
+.svc h3{margin:0 0 1.5mm;font-size:10.5pt;font-weight:700}
+.svc h3 small{font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm}
+ul{margin:0;padding-left:4.5mm}
+li{margin:.3mm 0}
+li::marker{color:var(--teal)}
+li b{font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:9.2pt;break-inside:avoid}
+th{background:var(--t7);color:#fff;font-weight:600;text-align:left;padding:2.4mm 3mm;font-size:8.6pt}
+th:first-child{border-top-left-radius:2.5mm}th:last-child{border-top-right-radius:2.5mm}
+td{padding:2mm 3mm;border-bottom:1px solid var(--border);vertical-align:top}
+.r{text-align:right;white-space:nowrap}.c{text-align:center}
+td .d{display:block;color:var(--subtle);font-size:8.3pt;margin-top:.8mm}
+tr.sub td{border:0;padding:1.6mm 3mm;font-weight:600}
+tr.sub td:first-child{text-align:right;color:var(--muted)}
+tr.disc td{color:#3c7a2a}
+tr.grand td{background:var(--t50);font-weight:800;font-size:10.5pt;padding:3mm;border:0}
+tr.grand td:first-child{text-align:right;border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{color:var(--t8);border-bottom-right-radius:2.5mm}
+.note{margin-top:3mm}
+.bank{display:flex;gap:4mm;align-items:center;background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0 4mm}
+.bank b{font-weight:700}
+.closing{margin-top:8mm;padding:4mm 5mm;border-left:1.2mm solid var(--green);background:var(--s2);border-radius:0 3mm 3mm 0;color:var(--muted);break-inside:avoid}
+.sign{break-inside:avoid}
+.sign .agree{margin:0 0 3mm}
+.sign .place{margin:0 0 4mm;color:var(--muted)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.sbox{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm}
+.party{font-size:7.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t7)}
+.co{font-weight:700;font-size:10.5pt;margin-top:.5mm}
+.area{position:relative;height:30mm;margin:3mm 0;border-bottom:1px solid var(--ink)}
+.ttd{position:absolute;left:50%;bottom:1mm;transform:translateX(-50%);height:27mm;max-width:95%;object-fit:contain}
+.stamp{position:absolute;right:0;bottom:1mm;font-size:7pt;color:#9aa5a8}
+.meterai{position:absolute;left:2mm;top:3mm;width:20mm;height:22mm;border:1px dashed #9aa5a8;border-radius:1.5mm;display:grid;place-items:center;text-align:center;font-size:6.8pt;color:#9aa5a8;line-height:1.3}
+table.f{font-size:8.8pt;break-inside:auto}
+table.f td{border:0;padding:.8mm 0}
+table.f td:first-child{width:18mm;color:var(--subtle)}
+table.f td.blank{border-bottom:1px dotted #9aa5a8}
+.keep{break-inside:avoid}
+</style></head><body>
+
+<section class="hero">
+  <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
+  <div class="eyebrow">Penawaran Layanan &amp; Persetujuan Kerja Sama</div>
+  <h1>Managed Service<br><span>Presentasi Kursi 3D Interaktif</span></h1>
+
+  <div class="meta">
+    <div class="card">
+      <div class="kv">
+        <b>No.</b><span>VEN/Kursi3D/2026/001</span>
+        <b>Project</b><span>Presentasi Kursi 3D Interaktif</span>
+        <b>Tanggal</b><span>19 Oktober 2026</span>
+      </div>
+    </div>
+    <div class="card soft">
+      <div class="lbl">Kepada Yth.</div>
+      <div class="to">Bapak Candra</div>
+      <div>Owner, Alldila Seats</div>
+      <div style="color:var(--muted)">Jl. Industri Wendit Barat 59-61, Malang</div>
+    </div>
+  </div>
+
+  <p class="intro">Melalui penawaran ini, kami menegaskan kesiapan tim IT profesional kami yang berjumlah lebih dari 100 orang untuk membangun, mengembangkan, dan memelihara aplikasi Klien secara berkelanjutan. Dokumen ini memuat ruang lingkup layanan, output, dan rincian biaya sebagai acuan kesepakatan bersama kedua belah pihak.</p>
+</section>
+
+<h2><i>1</i>Lingkup Layanan</h2>
+<div class="svc">
+  <h3>Setup Awal <small>Sekali bayar, tidak memotong poin</small></h3>
+  <ul>
+    <li><b>Kickoff &amp; Roadmap:</b> menyamakan tujuan dan menyusun roadmap pertama</li>
+    <li><b>Audit Sistem:</b> peninjauan kode, database, dan server</li>
+    <li><b>Backup &amp; Keamanan:</b> backup, monitoring, dan pengamanan dasar</li>
+    <li><b>Akses &amp; Deployment:</b> penataan repository, staging, dan alur deployment</li>
+    <li><b>Dokumentasi &amp; Transfer Ilmu:</b> sistem didokumentasikan dan dipelajari tim</li>
+  </ul>
+</div>
+<div class="svc">
+  <h3>Managed Service <small>Point-Based Development</small></h3>
+  <ul>
+    <li>Respons isu kritis maksimal 1 hari kerja</li>
+    <li>Garansi perbaikan bug tanpa biaya tambahan hingga 30 hari setelah rilis</li>
+    <li>Sistem poin berdasarkan bobot dan kompleksitas pekerjaan</li>
+    <li>Kategori pekerjaan: ringan (0,25 poin), kecil (0,5 poin), menengah (0,75 poin), dan besar (1 poin)</li>
+    <li>Cakupan pekerjaan meliputi pengembangan fitur, penyesuaian aplikasi, rancangan aplikasi, pengelolaan data, meeting review, dan pelatihan pengguna</li>
+    <li>Estimasi dan bobot poin setiap permintaan disepakati di awal</li>
+    <li>Perhitungan poin dapat terdiri dari beberapa pekerjaan dalam satu fitur</li>
+    <li>Meeting review dan pelatihan: 1 poin setara dengan 1 jam sesi, terlepas dari jumlah anggota tim Venturo yang hadir</li>
+    <li>Sisa poin yang tidak terpakai hangus di akhir periode</li>
+  </ul>
+</div>
+
+<h2><i>2</i>Rincian Biaya</h2>
+<table>
+  <thead><tr><th>Layanan</th><th>Periode</th><th class="c">Poin</th><th class="r">Harga</th></tr></thead>
+  <tbody>
+    <tr><td><b>Setup Awal</b></td><td>Sekali bayar</td><td class="c">–</td><td class="r">Rp10.000.000</td></tr>
+    <tr><td><b>Managed Service – Presentasi Kursi 3D Interaktif</b> (1 produk kursi)
+      <span class="d">Kustomisasi kursi secara real-time untuk pelanggan: ubah warna komponen, putar 360 derajat, presentasikan ke pelanggan, dan ekspor detailnya ke PDF. File model 3D kursi disediakan oleh Klien.</span></td>
+      <td style="white-space:nowrap">1–30 Nov 2026</td><td class="c">50</td><td class="r">Rp7.500.000</td></tr>
+    <tr class="sub"><td colspan="3">Total</td><td class="r">Rp17.500.000</td></tr>
+    <tr class="sub disc"><td colspan="3">Diskon Setup Awal 50%</td><td class="r">– Rp5.000.000</td></tr>
+    <tr class="grand"><td colspan="3">Total Investasi</td><td class="r">Rp12.500.000</td></tr>
+  </tbody>
+</table>
+
+<div class="keep">
+<h2><i>3</i>Pembayaran</h2>
+<ul>
+  <li>Harga yang tertulis adalah harga bersih (nett) yang diterima Venturo. PPh 23 (bila ada) ditanggung oleh Klien. PPN tidak ditagihkan.</li>
+  <li>Tagihan dikirim sesuai tanggal invoice dan wajib dibayarkan paling lambat H+14 (empat belas) dari tanggal invoice.</li>
+  <li>Pekerjaan Setup Awal dimulai setelah pembayaran pertama diterima.</li>
+  <li>Apabila Klien tidak melakukan pembayaran sesuai jadwal, maka seluruh aktivitas layanan berhak dihentikan sementara.</li>
+</ul>
+<div class="bank"><span>Rekening pembayaran</span><span><b>BCA 3680332222</b> a.n. PT Venturo Pro Indonesia</span></div>
+<table>
+  <thead><tr><th>Periode Kerja</th><th>Termin</th><th>Tgl Invoice</th><th class="r">Nominal</th></tr></thead>
+  <tbody>
+    <tr><td>Penandatanganan</td><td>Setup Awal</td><td>Saat tanda tangan</td><td class="r">Rp5.000.000</td></tr>
+    <tr><td>Managed Service – 50 Poin</td><td>Termin 1</td><td>30 Nov 2026</td><td class="r">Rp7.500.000</td></tr>
+    <tr class="grand"><td colspan="3">Total Pembayaran</td><td class="r">Rp12.500.000</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="keep" style="break-before:page">
+<h2 style="margin-top:2mm"><i>4</i>Batasan dan Pengecualian</h2>
+<p style="margin:0 0 2mm">Harga yang tercantum belum termasuk biaya-biaya tambahan yang akan diajukan terlebih dahulu dan hanya berlaku setelah mendapatkan persetujuan dari Klien, yang meliputi antara lain:</p>
+<ul>
+  <li>Pembuatan atau modifikasi file model 3D kursi (file model 3D disediakan oleh Klien)</li>
+  <li>Out-of-pocket (seperti transportasi dan akomodasi) untuk pekerjaan di lokasi yang dilakukan atas permintaan Klien</li>
+  <li>Penggunaan layanan pihak ketiga, layanan AI, API berbayar, payment gateway, SMS/WhatsApp gateway, serta layanan eksternal lainnya</li>
+  <li>Permintaan pengerjaan mendesak di luar hari dan jam kerja normal (Sabtu, Minggu, dan hari libur nasional) dihitung 2× dari bobot poin normal</li>
+  <li>Permintaan pekerjaan di luar alokasi poin dalam dokumen ini akan dituangkan dalam penawaran atau kontrak baru setelah disetujui kedua belah pihak</li>
+</ul>
+</div>
+
+
+<div class="sign">
+  <h2 style="margin-top:8mm"><i>5</i>Persetujuan</h2>
+  <p class="agree">Dengan menandatangani dokumen ini, kedua belah pihak menyatakan bahwa mereka telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang tercantum dalam dokumen ini, yang merupakan bagian tidak terpisahkan dari dokumen Service Agreement Venturo.</p>
+  <p class="place">Ditandatangani di Malang, pada tanggal ____________________ 2026.</p>
+  <div class="sg">
+    <div class="sbox">
+      <div class="party">Penyedia Layanan</div>
+      <div class="co">PT Venturo Pro Indonesia</div>
+      <div class="area"><img class="ttd" src="ttd.png" alt=""></div>
+      <table class="f"><tr><td>Nama</td><td><b>Yulianto Frandi</b></td></tr><tr><td>Jabatan</td><td>CEO</td></tr><tr><td>Tanggal</td><td>19 Oktober 2026</td></tr></table>
+    </div>
+    <div class="sbox">
+      <div class="party">Klien</div>
+      <div class="co">Alldila Seats</div>
+      <div class="area"><span class="stamp">Tanda tangan &amp; stempel</span></div>
+      <table class="f"><tr><td>Nama</td><td><b>Candra</b></td></tr><tr><td>Jabatan</td><td>Owner</td></tr><tr><td>Tanggal</td><td class="blank"></td></tr></table>
+    </div>
+  </div>
+</div>
+</body></html>
