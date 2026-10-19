@@ -7,6 +7,11 @@ description: Menulis artikel studi kasus PORTFOLIO Venturo untuk satu proyek sof
 
 Satu proyek = satu artikel studi kasus di kategori **Portfolio** website Venturo (CMS `api.lakukan.id`). Tujuannya meyakinkan calon klien bahwa Venturo paham masalah bisnis mereka, bukan sekadar pamer tampilan.
 
+**Fakta website Venturo (venturo.id)** yang dipakai skill ini:
+- Company slug publik CMS: **`venturo-web`**. Kategori: **`portfolio`** (tanpa sub-kategori).
+- Artikel tampil di `https://venturo.id/portfolio/<slug>/`, dirender otomatis oleh website dari API publik. Tidak perlu build ulang: artikel baru/ubahan muncul dalam **≤ 10 menit** (cache edge).
+- Yang dipakai website: **judul** (H1 + `<title>`), **ringkasan** (meta description + teks kartu), **sampul** (gambar kartu, header artikel, gambar share/OG), **isi** (HTML). Hanya artikel `published` yang punya kategori **Portfolio** yang tampil; artikel tanpa kategori dianggap belum selesai dan tidak tampil di mana pun.
+
 Skill ini **memakai ulang skrip skill lain di plugin yang sama**:
 - `../article-docs/scripts/posting.py` untuk `cek`, `posting`, `ambil`, dan `publik` (detail API: `../article-docs/references/api-lakukan.md`)
 - `../article-docs/scripts/samarkan.py` untuk menyamarkan screenshot
@@ -27,10 +32,10 @@ Urutan WAJIB: brief → aktor & daftar visual → ambil screenshot → samarkan 
 - **Nama proyek** dan **jenis proyek** (lihat tabel di langkah 1; boleh lebih dari satu, mis. Website + CMS + Mobile).
 - **Klien boleh disebut?** Ya → nama & logo klien. Tidak (NDA) → mode anonim: "sebuah media berita nasional", logo dan nama di screenshot disamarkan. Default: anonim bila user tidak menjawab.
 - **Sumber visual**: URL frontend, URL admin (user login SENDIRI di browser; Claude tidak pernah mengetik password), link/folder screenshot mobile app, atau folder screenshot yang sudah ada.
-- **Cerita proyek**: masalah awal klien, apa yang dibangun, fitur andalan, tech stack, durasi, peran Venturo (Dedicated Team / Managed Services / project).
+- **Cerita proyek**: masalah awal klien, apa yang dibangun, fitur andalan, tech stack, durasi, model kerja sama Venturo (**Dedicated Team** atau **Managed Services**).
 - **Hasil nyata** bila ada: angka trafik, kecepatan, efisiensi proses, jumlah pengguna, skor PageSpeed.
 - **Keyword target** (opsional; bila kosong, skill mengusulkan dari pola di langkah 6).
-- **API key Lakukan**: minta bila belum ada. Pakai hanya lewat env `LAKUKAN_API_KEY`. Jangan tulis ke file atau memori, dan jangan ulangi di chat. **Company slug publik** website Venturo untuk verifikasi.
+- **API key Lakukan**: minta bila belum ada. Pakai hanya lewat env `LAKUKAN_API_KEY`. Jangan tulis ke file atau memori, dan jangan ulangi di chat. Company slug publik untuk verifikasi sudah diketahui (`venturo-web`), tidak perlu ditanyakan.
 
 ## 1. Aktor & daftar visual
 Susun daftar screenshot **per aktor**: siapa saja pengguna sistem ini dan di perangkat apa. 1 aktor = 1–2 layar utamanya, sehingga gambar menceritakan alur kerja bisnis (mis. portal berita: pembaca di web publik → redaksi di CMS; HRIS: karyawan absen di HP → HRD rekap → manajer approval).
@@ -87,7 +92,7 @@ Struktur tetap untuk semua jenis proyek:
 4. `<h2>Solusi</h2>`: dibagi `<h3>` per aktor/platform (mis. "Website untuk pembaca", "CMS untuk redaksi", "Aplikasi mobile"), masing-masing dengan screenshot-nya.
 5. `<h2>Keunggulan</h2>`: 3–5 fitur pembeda, tiap poin = manfaat bagi klien + bukti visual.
 6. `<h2>Hasil</h2>`: angka nyata dari user. **Jangan mengarang angka dan jangan menerbitkan placeholder**: bila angka tidak ada, tulis hasil kualitatif yang dikonfirmasi user (mis. "redaksi kini menerbitkan artikel tanpa bantuan programmer").
-7. **Penutup + CTA lembut** ke halaman layanan (Dedicated Team / Managed Services) atau konsultasi. Tanpa harga, tanpa klaim superlatif, tanpa nama kompetitor.
+7. **Penutup + CTA lembut** ke halaman layanan yang sesuai (lihat daftar URL di langkah 6) atau konsultasi. Tanpa harga, tanpa klaim superlatif, tanpa nama kompetitor. Untuk proyek Managed Services, sebut satuan kerjanya **Delivery Point** (bukan "poin").
 
 - Gambar: `{{img:nama-file.jpg|Keterangan satu kalimat.}}` setelah paragraf yang menjelaskannya; tambahkan "Data pribadi pada gambar disamarkan" bila relevan.
 - Tag yang dipakai: `h2 h3 p ul ol li strong em blockquote table tr th td img`. Tanpa `h1`, `script`, `iframe`, `style`, `on*`.
@@ -99,11 +104,22 @@ Struktur tetap untuk semua jenis proyek:
 - **Slug** = nama proyek + jenis, huruf kecil, tanpa tanggal (mis. `portal-berita-bolong-cms`). Slug tidak bisa diubah setelah terbit.
 - **Ringkasan** 120–160 karakter: masalah klien + hasil.
 - Nama file dan keterangan gambar berkata kunci (keterangan = alt text).
-- **Internal link**: 1 ke halaman layanan terkait, 1–2 ke portfolio sejenis (rujuk dengan judulnya; ambil URL dari user atau API publik).
+- **Internal link**: 1 ke halaman layanan terkait + 1–2 ke portfolio sejenis (`/portfolio/<slug>/`, cari slug lewat API publik `GET /api/articles?category=portfolio&search=<kata>` dengan header `X-Company-Slug: venturo-web`). Halaman layanan website:
+
+| Proyek / model | URL |
+|---|---|
+| Model Dedicated Team (outsourcing programmer) | `/outsourcing-programmer/` |
+| Model Managed Services (bangun & rawat, Delivery Point bulanan) | `/jasa-maintenance-aplikasi/` |
+| Aplikasi/software custom, sistem informasi | `/jasa-pembuatan-aplikasi/` |
+| Aplikasi web, dashboard, portal, e-commerce custom | `/jasa-pembuatan-aplikasi-web/` |
+| Aplikasi mobile Android & iOS | `/jasa-pembuatan-aplikasi-android/` |
+| Website perusahaan | `/jasa-pembuatan-website/` |
+| Chatbot, ML, computer vision, otomasi AI | `/jasa-pembuatan-ai/` |
+| AI lintas divisi perusahaan | `/enterprise-ai-transformation/` |
 - JSON-LD tidak ditulis di isi (CMS menolak `script`); schema `Article` + `BreadcrumbList` dibuat oleh website saat build.
 
 ## 7. `artikel.json`, cek, posting
-1. Cek pohon kategori: `cek` menampilkan kategori yang ada. Rujuk kategori Portfolio yang sudah ada **tanpa mengubahnya**. Bila Portfolio punya anak kategori per jenis proyek, rujuk anak yang cocok. Jangan membuat kategori baru kecuali diminta user.
+1. Cek pohon kategori: `cek` menampilkan kategori yang ada. Rujuk kategori Portfolio yang sudah ada **tanpa mengubahnya**. Bila Portfolio punya anak kategori per jenis proyek, rujuk anak yang cocok. Jangan membuat kategori baru kecuali diminta user. **Setiap artikel WAJIB punya `"kelompok": "portfolio"`**; `posting.py` mengirimnya sebagai `category_ids` dan berhenti dengan error bila kategori tidak tersimpan.
 ```json
 {"kelompok": [{"slug": "portfolio"}],
  "artikel": [{"slug": "...", "judul": "...", "ringkasan": "...", "kelompok": "portfolio",
@@ -112,10 +128,20 @@ Struktur tetap untuk semua jenis proyek:
 2. `python3 ../article-docs/scripts/posting.py cek --data artikel.json --gambar <kerja>/tersamar`
 3. Bila user meminta "posting portfolio", langsung terbitkan. Bila user hanya minta draf atau masih ragu, pakai `--draft` atau tanyakan sekali.
 4. `python3 ../article-docs/scripts/posting.py posting --data artikel.json --gambar <kerja>/tersamar`
-5. `python3 ../article-docs/scripts/posting.py publik --data artikel.json --company-slug <slug>`
+5. `python3 ../article-docs/scripts/posting.py publik --data artikel.json --company-slug venturo-web` — harus menampilkan kategori **Portfolio** dan diakhiri `Publik OK.` Bila muncul `KATEGORI SALAH` atau `BELUM TAMPIL`, perbaiki lalu ulangi; jangan melaporkan selesai.
 
 ## 8. Laporan
-- Judul, slug, kategori, panjang (kata), keyword utama, dan status terbit beserta hasil verifikasi publik.
+- Judul, slug, kategori, panjang (kata), keyword utama, dan status terbit beserta hasil verifikasi publik (termasuk kategori Portfolio terbaca di API publik).
 - Daftar aktor dan gambar (nama file + isinya), termasuk apa saja yang disamarkan dan mode klien (disebut/anonim).
 - Bagian yang masih lemah, mis. "Hasil" tanpa angka, dan saran data apa yang bisa ditambahkan nanti lewat mode update.
-- Pengingat bahwa portfolio tampil di website setelah dibuild ulang dan dideploy.
+- Link `https://venturo.id/portfolio/<slug>/` dan catatan bahwa artikel tampil di website dalam ≤ 10 menit setelah terbit (tanpa build ulang).
+
+## Bila artikel diinput manual di dashboard CMS
+Karyawan yang mengetik langsung di dashboard harus memilih kategori **Portfolio** sebelum menerbitkan. Artikel tanpa kategori tidak tampil di website. Untuk mengecek semuanya sekaligus, jalankan (API publik, tanpa key):
+
+```bash
+curl -s -A "Mozilla/5.0" -H "X-Company-Slug: venturo-web" "https://api.lakukan.id/api/articles?limit=100" \
+ | python3 -c "import json,sys; [print(a['slug']) for a in json.load(sys.stdin)['data'] if not a.get('categories')]"
+```
+
+Setiap slug yang muncul belum berkategori. Perbaiki lewat mode update (`ambil` → pastikan `"kelompok": "portfolio"` → `posting`) atau di dashboard.

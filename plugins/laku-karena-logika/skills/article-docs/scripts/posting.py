@@ -121,6 +121,16 @@ def load(path, only=None):
 
 SLUG = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
 
+def kategori(x):
+    """Daftar kategori artikel. API sekarang mengirim `categories` (array, bisa kosong);
+    respons lama memakai `category` (objek tunggal)."""
+    if isinstance(x.get("categories"), list):
+        return [c for c in x["categories"] if c]
+    return [x["category"]] if x.get("category") else []
+
+def nama_kategori(x):
+    return ", ".join(c.get("name") or c.get("slug", "?") for c in kategori(x)) or "-"
+
 # ---------- ambil (untuk update) ----------
 def cmd_ambil(a):
     out = {"kategori_induk": "docs", "kelompok": [], "artikel": []}
@@ -128,12 +138,15 @@ def cmd_ambil(a):
         x = must(req("GET", f"{ADMIN}/articles/{s}"), (200,), f"ambil {s}")
         art = {"slug": x["slug"], "judul": x["title"], "ringkasan": x.get("excerpt", ""),
                "status": x["status"], "isi": x.get("content", "")}
-        if x.get("category"):
-            art["kelompok"] = x["category"]["slug"]
+        kats = kategori(x)
+        if kats:
+            art["kelompok"] = kats[0]["slug"]
             if all(k["slug"] != art["kelompok"] for k in out["kelompok"]):
                 out["kelompok"].append({"slug": art["kelompok"]})   # rujukan, tidak diubah
         out["artikel"].append(art)
-        print(f"ambil  {x['status']:<9} {(x.get('category') or {}).get('name', '-'):<18} {x['title']}")
+        print(f"ambil  {x['status']:<9} {nama_kategori(x):<18} {x['title']}")
+        if len(kats) > 1:
+            print(f"       catatan: artikel punya {len(kats)} kategori; 'posting' akan menyisakan hanya '{art['kelompok']}'")
     json.dump(out, open(a.out, "w"), indent=1, ensure_ascii=False)
     print(f"Tersimpan di {a.out}. Edit isinya, lalu jalankan 'cek' dan 'posting'.")
 
@@ -239,7 +252,9 @@ def cmd_posting(a):
         if "ringkasan" in x:
             meta["excerpt"] = x["ringkasan"] or ""
         if x.get("kelompok"):
-            meta["category_id"] = ids[x["kelompok"]]
+            # API memakai `category_ids` (array). Field lama `category_id` diabaikan server
+            # tanpa error, sehingga artikel tersimpan TANPA kategori.
+            meta["category_ids"] = [ids[x["kelompok"]]]
         code, js = req("GET", f"{ADMIN}/articles/{s}")
         if code == 200:
             lama = js["data"]
@@ -266,7 +281,12 @@ def cmd_posting(a):
         if not lama or lama["status"] != status:
             body["status"] = status       # status sama tidak dikirim ulang -> published_at tetap
         dat = must(req("PUT", f"{ADMIN}/articles/{s}", body), (200,), f"simpan {s}")
-        print(f"{aksi:<7} {dat['status']:<9} {(dat.get('category') or {}).get('name', '-'):<18} {dat['title']}  ({len(url)} gambar diunggah)")
+        print(f"{aksi:<7} {dat['status']:<9} {nama_kategori(dat):<18} {dat['title']}  ({len(url)} gambar diunggah)")
+        if x.get("kelompok"):
+            cek = must(req("GET", f"{ADMIN}/articles/{s}"), (200,), f"verifikasi kategori {s}")
+            if x["kelompok"] not in {c.get("slug") for c in kategori(cek)}:
+                sys.exit(f"GAGAL kategori {s}: artikel tersimpan dengan kategori [{nama_kategori(cek)}], "
+                         f"bukan '{x['kelompok']}'. Artikel tidak akan tampil di menu kategori website.")
         if banyak:
             time.sleep(1.2)   # published_at berbeda -> urutan baca terjaga
     print("Selesai.")
@@ -286,7 +306,11 @@ def cmd_publik(a):
             print(f"{'BELUM TAMPIL' if terbit else 'draft (wajar tidak tampil)'}  {x['slug']}")
             continue
         art = js["data"]
-        print(f"tampil  {(art.get('category') or {}).get('name', '-'):<18} {art['title']}")
+        print(f"tampil  {nama_kategori(art):<18} {art['title']}")
+        if x.get("kelompok") and x["kelompok"] not in {c.get("slug") for c in kategori(art)}:
+            ok = False
+            print(f"   KATEGORI SALAH: harusnya '{x['kelompok']}', di publik [{nama_kategori(art)}]. "
+                  f"Artikel tidak akan muncul di halaman kategori website.")
         for u in re.findall(r'src="([^"]+)"', art.get("content", ""))[:3] + ([art["cover_url"]] if art.get("cover_url") else []):
             try:
                 st = urllib.request.urlopen(urllib.request.Request(u, method="HEAD", headers={"User-Agent": UA}), timeout=30).status
