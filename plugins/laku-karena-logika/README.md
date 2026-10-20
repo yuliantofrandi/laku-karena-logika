@@ -67,6 +67,11 @@ Membuat **PDF penawaran sekaligus form agreement** Venturo (Managed Service / De
 
 > **Catatan lingkungan (proposal-pdf):** butuh **Claude-in-Chrome** (membaca Google Sheet), Python **Playwright** + Chromium, dan `pdftoppm` (poppler) untuk verifikasi.
 
+### `website-service`
+Membangun dan merawat **website lini bisnis jasa software** (software house, IT outsourcing, Dedicated Team, Managed Services, jasa pembuatan aplikasi/website/AI) seperti **venturo.id**: HTML statis + **Cloudflare Pages Functions**, portfolio & blog dari CMS Lakukan (termasuk filter Portfolio AI), **tanpa harga**, CTA WhatsApp berkonteks dengan event `generate_lead`, 1 keyword = 1 halaman, klaim sekali per halaman, GA4/Ads tertunda, dan PageSpeed mobile 90+. Berisi kode starter, standar UI, aturan konten jasa, checklist prapublish & pasca-launch, script audit, serta log keputusan venturo.id. Untuk website **produk SaaS** pakai `website-seo`.
+
+> **Catatan lingkungan (website-service):** Node.js (`npx wrangler@4`, `npx lighthouse@12`), Python 3, Chrome untuk screenshot, dan akun **Cloudflare** (login wrangler) untuk deploy. CMS dibaca lewat API publik, tanpa API key.
+
 > **Catatan lingkungan:** tiga skill sosmed butuh Claude desktop yang terhubung ke komputer (folder Google Drive lokal), konektor **Google Drive** dan **Metricool**, serta tipe artifact **Design** di claude.ai.
 
 ## Pakai
@@ -83,9 +88,10 @@ Membuat **PDF penawaran sekaligus form agreement** Venturo (Managed Service / De
 /article-blog
 /article-portfolio
 /proposal-pdf
+/website-service
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`); *"buat PDF penawaran"*, *"penawaran baru untuk klien X"* (→ `proposal-pdf`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`); *"buat PDF penawaran"*, *"penawaran baru untuk klien X"* (→ `proposal-pdf`); *"buat website jasa"*, *"tambah halaman layanan"*, *"audit website venturo"*, *"deploy website ke Cloudflare"* (→ `website-service`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 
