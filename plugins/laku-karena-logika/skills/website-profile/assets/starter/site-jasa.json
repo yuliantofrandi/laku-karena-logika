@@ -1,0 +1,143 @@
+{
+  "preset": "jasa",
+  "_preset": "\"jasa\" = website bisnis jasa: tanpa harga (angka Rp/juta = ERROR), semua tombol ke WhatsApp, tanpa Harga/White Label wajib, menu Portfolio dari CMS. \"produk\" = website produk SaaS (lihat site.json).",
+  "brand": "<Nama Brand>",
+  "tagline": "<Tagline singkat>",
+  "description": "<1 kalimat: jasa apa, untuk siapa, di kota mana>",
+  "eyebrow": "<slogan brand singkat, mis. dari brand guide>",
+  "_eyebrow": "Teks badge pill di hero beranda (slogan brand). Halaman lain memakai nama halamannya, atau 'eyebrow' di extra_pages.",
+  "logo": "static/logo.svg",
+  "site_url": "",
+  "_site_url": "WAJIB diisi sebelum publish, mis. https://domain-anda.id (tanpa garis miring di akhir). Kosong = sitemap & canonical tidak dibuat.",
+  "whatsapp": "",
+  "_whatsapp": "Nomor WA sales tanpa + (mis. 6285128043814). Wajib sebelum publish: semua tombol utama membuka WA.",
+  "whatsapp_text": "Halo, saya ingin konsultasi kebutuhan proyek software.",
+  "email": "",
+  "legal_reviewed": {
+    "/<slug-halaman-hukum>": false
+  },
+  "_legal_reviewed": "Halaman hukum tetap noindex & keluar dari sitemap sampai diubah jadi true setelah direview ahli hukum.",
+  "nav": [
+    {
+      "label": "Layanan",
+      "items": [
+        [
+          "/<slug-layanan-1>",
+          "<Label>",
+          "<deskripsi 1 baris>"
+        ],
+        [
+          "/<slug-layanan-2>",
+          "<Label>",
+          "<deskripsi 1 baris>"
+        ]
+      ]
+    },
+    [
+      "/portfolio",
+      "Portfolio"
+    ],
+    [
+      "/blog",
+      "Blog"
+    ]
+  ],
+  "extra_pages": [
+    {
+      "slug": "/",
+      "name": "Beranda",
+      "title": "<40–60 karakter, tanpa 'terbaik'/tahun>",
+      "meta": "<120–155 karakter>",
+      "h1": "<hasil terbesar untuk klien>",
+      "primary": "<Nama Produk>",
+      "links": [
+        "/<slug-prioritas-1>",
+        "/harga"
+      ],
+      "min_words": 700
+    }
+  ],
+  "copy": {
+    "nav_cta": "Konsultasi",
+    "cta_primary": "Konsultasi Gratis",
+    "cta_secondary": "Lihat Portfolio",
+    "cta_secondary_href": "/portfolio",
+    "cta_title": "Ceritakan kebutuhan proyek Anda",
+    "cta_text": "Konsultasi gratis via WhatsApp, dibalas di jam kerja.",
+    "risk_label": "Tanpa risiko",
+    "risk_extra": [
+      "<jaminan nyata, mis. garansi perbaikan setelah serah terima>"
+    ],
+    "proof_caption": "Dipercaya klien dari berbagai industri",
+    "wa_title": "Hubungi Kami !!",
+    "wa_subtitle": "Konsultasi 100% Gratis",
+    "signin": "Sign In",
+    "faq_lead": "Jawaban singkat yang paling sering ditanyakan sebelum memulai proyek.",
+    "cta_poin": [
+      "Konsultasi gratis",
+      "Estimasi waktu & tim",
+      "Tanpa komitmen di awal"
+    ],
+    "_cta_poin": "CTA penutup: maks 4 frasa pendek (≤6 kata) — urgensi alami + jaminan. cta_text ≤16 kata. Jaminan lengkap tetap di /harga (pricing.json terms + risk_extra). Build memberi WARNING bila lebih."
+  },
+  "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
+  "_nav": "Preset jasa: Layanan ▾ (halaman per keyword) · Portfolio · Blog (· Karir bila ada). Tanpa Harga/White Label/Sign In. Tombol kanan = Konsultasi (WhatsApp).",
+  "og_image": "static/og-image.png",
+  "_og_image": "Gambar pratinjau link 1200×630 (PNG/JPG). Buat: python3 tools/og_image.py (macOS), atau desain sendiri.",
+  "ilustrasi_warna": {
+    "p": "#7B2CFF",
+    "k": "#E83AAE",
+    "o": "#FF8A00",
+    "ink": "#1b1626",
+    "mut": "#6f6880",
+    "line": "#e9e5f0",
+    "soft": "#f8f6fc",
+    "tint": "#f3edff"
+  },
+  "_ilustrasi_warna": "Warna design system produk untuk ilustrasi SVG & og:image (p=primer, k=aksen 2, o=aksen 3). Samakan dengan token di static/style.css.",
+  "footer_trust": [
+    {
+      "ikon": "server",
+      "teks": "Server di Indonesia"
+    },
+    {
+      "ikon": "shield",
+      "teks": "Dirancang patuh UU PDP"
+    },
+    {
+      "ikon": "support",
+      "teks": "Pemasangan dibantu tim lokal"
+    }
+  ],
+  "_footer_trust": "Baris kepercayaan di footer (maks 3). Hanya fakta yang sudah tertulis di BKB/website; ikon: server | shield | support.",
+  "lakukan": {
+    "api": "https://api.lakukan.id/api",
+    "company_slug": "<slug-publik-cms>",
+    "kategori_panduan": "docs",
+    "kategori_blog": "blog",
+    "blog_lead": "Artikel dan wawasan terbaru dari {brand}.",
+    "blog_eyebrow": "Pusat edukasi",
+    "kategori_portfolio": "portfolio",
+    "portfolio_eyebrow": "Studi kasus",
+    "portfolio_lead": "Tantangan klien, solusi yang kami bangun, dan hasilnya."
+  },
+  "legal": [
+    {
+      "slug": "/kebijakan-privasi",
+      "name": "Kebijakan Privasi",
+      "lead": "Data apa yang dicatat {brand}, berapa lama disimpan, siapa yang bisa melihatnya, dan hak Anda atas data tersebut."
+    }
+  ],
+  "_legal": "Preset jasa: cukup Kebijakan Privasi (wajib bila memakai GA/Ads). Syarat Layanan opsional.",
+  "legal_berlaku": "4 Oktober 2026",
+  "logo_tinggi": 22,
+  "alamat": [
+    {
+      "streetAddress": "<jalan>",
+      "addressLocality": "<kota>",
+      "addressRegion": "<provinsi>",
+      "addressCountry": "ID"
+    }
+  ],
+  "_alamat": "Kantor (schema ProfessionalService di beranda, SEO lokal). Boleh lebih dari satu."
+}

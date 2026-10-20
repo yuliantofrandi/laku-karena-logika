@@ -1,4 +1,7 @@
-"""Konten dari API Lakukan (api.lakukan.id), dirender statis: menu Panduan (per kategori) dan Blog.
+"""Konten dari API Lakukan (api.lakukan.id) saat build: validasi, link internal, dan isi awal footer.
+
+Halaman Blog & Panduan yang tayang dirender Cloudflare Pages Functions (functions/_lib/halaman.js,
+port dari fungsi halaman()/blog() di file ini). Ubah markup di KEDUA tempat supaya tetap sama.
 
 Konfigurasi di site.json:
   "lakukan": {"api": "https://api.lakukan.id/api", "company_slug": "<slug>",
@@ -26,6 +29,14 @@ def _get(cfg, path):
         return json.load(r)
 
 
+def _kat(a):
+    """API sekarang mengirim `categories` (array); respons lama memakai `category`. Samakan ke a["category"]."""
+    if not a.get("category"):
+        cs = a.get("categories") or []
+        a["category"] = cs[0] if cs else {"slug": "", "name": ""}
+    return a
+
+
 def ambil(cfg, cache: Path, warn):
     """Ambil pohon kategori + artikel lengkap (Panduan & Blog) dari API; fallback ke cache. Return dict atau None."""
     try:
@@ -33,7 +44,7 @@ def ambil(cfg, cache: Path, warn):
         daftar, page = [], 1
         while True:
             d = _get(cfg, f"/articles?limit=100&page={page}")
-            daftar += d["data"]
+            daftar += [_kat(a) for a in d["data"]]
             if page >= d.get("meta", {}).get("pagination", {}).get("total_pages", 1):
                 break
             page += 1
@@ -44,7 +55,7 @@ def ambil(cfg, cache: Path, warn):
         blog_kat = ([{k: v for k, v in blog.items() if k != "children"}]
                     + sorted(blog.get("children", []), key=lambda k: k["sort_order"])) if blog else []
         boleh = {k["slug"] for k in anak} | {k["slug"] for k in blog_kat}
-        artikel = [_get(cfg, f"/articles/{a['slug']}")["data"] for a in daftar if a["category"]["slug"] in boleh]
+        artikel = [_kat(_get(cfg, f"/articles/{a['slug']}")["data"]) for a in daftar if a["category"]["slug"] in boleh]
         data = {"kategori": anak, "blog_kategori": blog_kat, "artikel": artikel}
         cache.parent.mkdir(parents=True, exist_ok=True)
         cache.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
