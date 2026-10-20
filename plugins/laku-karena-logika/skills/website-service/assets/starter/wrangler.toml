@@ -1,0 +1,9 @@
+# Cloudflare Pages project for venturo.id
+name = "venturo-website"
+pages_build_output_dir = "website"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Lakukan CMS (public API, no API key): company slug + category shown on /portfolio
+CMS_COMPANY_SLUG = "venturo-web"
+CMS_CATEGORY = "portfolio"
