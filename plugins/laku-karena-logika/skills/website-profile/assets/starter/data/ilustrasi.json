@@ -1,0 +1,76 @@
+{
+  "_cara_pakai": "Satu entri = satu gambar. Di konten dipanggil dengan {{gambar:<id>}}; gambar hero diatur di 'hero'. Untuk mengganti dengan gambar asli: simpan WebP/AVIF di static/ilustrasi/<id>.webp, isi \"file\" dan ubah \"auto\" jadi false. Brief = gambar asli seperti apa yang dibutuhkan.",
+  "min_per_halaman": 3,
+  "hero": {
+    "/white-label": "white-label-merek-anda"
+  },
+  "gambar": [
+    {
+      "id": "white-label-merek-anda",
+      "halaman": "/white-label",
+      "section": "Hero",
+      "jenis": "brand",
+      "judul": "Software dengan merek Anda",
+      "alt": "Ilustrasi software white label dengan logo, warna, dan domain merek Anda sendiri",
+      "caption": "Ilustrasi: nama, logo, warna, dan domain Anda",
+      "brief": "Mockup aplikasi dengan logo & warna contoh mitra (fiktif), menunjukkan perbedaan sebelum/sesudah rebranding.",
+      "auto": true,
+      "data": {
+        "items": [
+          "Logo",
+          "Warna",
+          "Domain",
+          "Email notifikasi"
+        ]
+      }
+    },
+    {
+      "id": "white-label-vs-bangun-sendiri",
+      "halaman": "/white-label",
+      "section": "Langganan vs White Label",
+      "jenis": "bars",
+      "judul": "Tagihan langganan vs beli putus",
+      "alt": "Ilustrasi tagihan langganan yang naik seiring jumlah karyawan dibanding white label sekali bayar",
+      "caption": "Langganan naik mengikuti jumlah karyawan; beli putus tidak",
+      "brief": "Grafik batang: tagihan langganan per bulan untuk 50, 100, 200, 400 karyawan (naik lurus) dibanding White Label sekali bayar. Tanpa angka rupiah.",
+      "auto": true,
+      "data": {
+        "items": [
+          {
+            "label": "50 karyawan",
+            "value": 50,
+            "text": "50× / bln"
+          },
+          {
+            "label": "100 karyawan",
+            "value": 100,
+            "text": "100× / bln"
+          },
+          {
+            "label": "200 karyawan",
+            "value": 200,
+            "text": "200× / bln"
+          },
+          {
+            "label": "400 karyawan",
+            "value": 400,
+            "text": "400× / bln",
+            "color": "#FF8A00"
+          },
+          {
+            "label": "White Label",
+            "value": 60,
+            "text": "sekali bayar",
+            "color": "#13a35a"
+          }
+        ],
+        "animasi": true
+      }
+    }
+  ],
+  "_contoh": "Contoh lengkap 35 gambar (semua jenis komponen) ada di references/contoh-ilustrasi-timebase.json di skill. Entri white label di sini adalah bagian copy global, jadi tetap pakai.",
+  "min_per_halaman_khusus": {
+    "/white-label": 2,
+    "/harga": 1
+  }
+}

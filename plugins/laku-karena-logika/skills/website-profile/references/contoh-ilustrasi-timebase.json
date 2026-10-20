@@ -1,0 +1,639 @@
+{
+  "_cara_pakai": "Satu entri = satu gambar. Di konten dipanggil dengan {{gambar:<id>}}; gambar hero diatur di 'hero'. Untuk mengganti dengan gambar asli: simpan WebP/AVIF di static/ilustrasi/<id>.webp, isi \"file\" dan ubah \"auto\" jadi false. Brief = gambar asli seperti apa yang dibutuhkan.",
+  "min_per_halaman": 3,
+  "hero": {
+    "/": "dashboard-rekap-tim",
+    "/aplikasi-monitoring-karyawan": "dashboard-rekap-tim",
+    "/aplikasi-time-tracking": "dashboard-rekap-tim",
+    "/aplikasi-kerja-remote": "dashboard-rekap-tim",
+    "/monitoring-karyawan-uu-pdp": "dashboard-rekap-tim",
+    "/laporan-kerja-harian": "dashboard-rekap-tim",
+    "/produktivitas-karyawan": "dashboard-rekap-tim",
+    "/hris-vs-monitoring-aktivitas": "dashboard-rekap-tim",
+    "/absensi-karyawan-hybrid": "dashboard-rekap-tim",
+    "/harga": "dashboard-rekap-tim",
+    "/white-label": "dashboard-rekap-tim"
+  },
+  "gambar": [
+    {
+      "id": "dashboard-rekap-tim",
+      "halaman": "semua (hero)",
+      "section": "Hero",
+      "alt": "Demo aplikasi Timebase: timeline aktivitas, screenshot sesi kerja, dan rekap karyawan di dashboard",
+      "caption": "Demo aplikasi Timebase",
+      "brief": "Rekaman demo aplikasi asli dari user (9:16, 50 detik, tanpa suara); dikompres ke 540×960 @450 kbps.",
+      "auto": false,
+      "video": "static/video/timebase-demo-aplikasi-9x16.mp4",
+      "file": "static/video/timebase-demo-aplikasi-9x16-poster.jpg",
+      "w": 540,
+      "h": 960
+    },
+    {
+      "id": "laporan-manual-grup-chat",
+      "halaman": "/",
+      "section": "Tim Anda bekerja. Tapi bisakah Anda membuktikannya?",
+      "jenis": "chat",
+      "judul": "Grup Tim Remote",
+      "alt": "Ilustrasi laporan kerja manual lewat grup chat yang sulit dibuktikan",
+      "caption": "Laporan lewat chat: cepat, tapi tidak meninggalkan bukti",
+      "brief": "Ilustrasi/foto layar grup chat kantor berisi laporan 'sudah dikerjakan' yang menumpuk. Boleh ilustrasi flat bergaya brand.",
+      "auto": true,
+      "data": {
+        "messages": [
+          {
+            "who": "Rina",
+            "text": "Desain checkout sudah dikerjakan ya"
+          },
+          {
+            "who": "Dimas",
+            "text": "Fitur login done 👍"
+          },
+          {
+            "text": "Oke, tapi berapa lama dan buktinya mana?",
+            "me": true
+          },
+          {
+            "who": "Sari",
+            "text": "Nanti saya rekap di Excel"
+          }
+        ],
+        "note": "Tidak ada catatan yang bisa ditunjukkan ke klien"
+      }
+    },
+    {
+      "id": "agen-desktop-empat-data",
+      "halaman": "/",
+      "section": "Timebase: data kerja yang bisa dibaca bersama",
+      "alt": "Motion graphic Timebase: dashboard aktivitas seluruh tim dalam satu layar",
+      "caption": "Satu layar untuk aktivitas seluruh tim",
+      "brief": "Motion graphic asli dari user (9:16, 27 detik, tanpa suara).",
+      "auto": false,
+      "video": "static/video/timebase-motion-9x16.mp4",
+      "file": "static/video/timebase-motion-9x16-poster.jpg",
+      "w": 1080,
+      "h": 1920
+    },
+    {
+      "id": "layar-data-karyawan",
+      "halaman": "/",
+      "section": "Akuntabilitas tanpa dicap \"bos mata-mata\"",
+      "jenis": "orang",
+      "alt": "Ilustrasi karyawan bekerja di laptop sambil membuka halaman data pemantauan miliknya sendiri",
+      "caption": "Karyawan bisa melihat dan meminta hapus datanya sendiri",
+      "brief": "Screenshot asli halaman 'Data saya' dari sisi karyawan: daftar apa yang dicatat, persetujuan, dan tombol minta hapus data.",
+      "auto": true,
+      "data": {
+        "kulit": "sedang",
+        "rambut": "hijab",
+        "baju": "p",
+        "kartu": {
+          "icon": "eye",
+          "title": "Apa yang dicatat tentang saya",
+          "lines": [
+            "Status kerja selama sesi aktif",
+            "Aplikasi & situs yang dipakai",
+            "Screenshot tiap 30 menit (sesi aktif)",
+            "Disetujui: 3 Okt 2026"
+          ],
+          "buttons": [
+            "Minta hapus data",
+            "Lihat data saya"
+          ]
+        },
+        "animasi": true
+      }
+    },
+    {
+      "id": "pemakaian-aplikasi-situs",
+      "halaman": "/aplikasi-monitoring-karyawan",
+      "section": "Apa yang dicatat Timebase",
+      "alt": "Demo aplikasi Timebase: detail aktivitas satu karyawan — tracked time, status kerja, tugas, dan screenshot",
+      "caption": "Detail aktivitas satu karyawan di dashboard",
+      "brief": "Motion graphic asli dari user (9:16, 40 detik, tanpa suara): detail aktivitas karyawan.",
+      "auto": false,
+      "video": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas.mp4",
+      "file": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas-poster.jpg",
+      "w": 720,
+      "h": 1280
+    },
+    {
+      "id": "galeri-screenshot-sesi",
+      "halaman": "/aplikasi-monitoring-karyawan",
+      "section": "Employee monitoring yang transparan, bukan pengawasan diam-diam",
+      "alt": "Demo aplikasi Timebase: galeri screenshot sesi kerja per karyawan dan pratinjau layar penuh",
+      "caption": "Screenshot hanya diambil selama sesi kerja aktif",
+      "brief": "Motion graphic asli dari user (9:16, 36 detik, tanpa suara): screenshot per karyawan.",
+      "auto": false,
+      "video": "static/video/aplikasi-screenshot-karyawan-wfa-demo.mp4",
+      "file": "static/video/aplikasi-screenshot-karyawan-wfa-demo-poster.jpg",
+      "w": 720,
+      "h": 1280
+    },
+    {
+      "id": "pemasangan-dibantu",
+      "halaman": "/aplikasi-monitoring-karyawan",
+      "section": "Dipasang dan didampingi tim lokal",
+      "jenis": "chat",
+      "alt": "Ilustrasi tim lokal Timebase membantu pemasangan agen desktop lewat chat berbahasa Indonesia",
+      "caption": "Pemasangan dibantu tim lokal berbahasa Indonesia",
+      "brief": "Foto tim support asli atau screenshot percakapan bantuan pemasangan (nama pelanggan disamarkan).",
+      "auto": true,
+      "data": {
+        "messages": [
+          {
+            "who": "Tim Timebase",
+            "text": "Halo! Kita mulai pasang agen di 12 laptop ya"
+          },
+          {
+            "text": "Ada 2 laptop ditandai antivirus",
+            "me": true
+          },
+          {
+            "who": "Tim Timebase",
+            "text": "Siap, saya pandu langkah pengecualiannya"
+          },
+          {
+            "text": "Sudah aman semua, terima kasih!",
+            "me": true
+          }
+        ]
+      },
+      "judul": "Tim Pendamping Timebase"
+    },
+    {
+      "id": "timesheet-otomatis",
+      "halaman": "/aplikasi-time-tracking",
+      "section": "Timesheet manual vs time tracking otomatis",
+      "jenis": "table",
+      "judul": "Timesheet minggu ini · otomatis",
+      "alt": "Ilustrasi aplikasi timesheet otomatis: jam kerja per tugas terisi sendiri dari time tracking",
+      "caption": "Timesheet terisi sendiri dari catatan waktu",
+      "brief": "Screenshot asli timesheet mingguan per karyawan per tugas.",
+      "auto": true,
+      "data": {
+        "headers": [
+          "Tugas",
+          "Sen",
+          "Sel",
+          "Rab",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Checkout UI",
+            "3j",
+            "2j",
+            "1,5j",
+            "6,5j"
+          ],
+          [
+            "Integrasi bayar",
+            "—",
+            "3j",
+            "2j",
+            "5j"
+          ],
+          [
+            "Bug login",
+            "1j",
+            "—",
+            "0,5j",
+            "1,5j"
+          ],
+          [
+            "Rapat sprint",
+            "1j",
+            "—",
+            "1j",
+            "2j"
+          ]
+        ],
+        "total": [
+          "Total minggu ini",
+          "15 jam"
+        ]
+      }
+    },
+    {
+      "id": "laporan-jam-klien",
+      "halaman": "/aplikasi-time-tracking",
+      "section": "Untuk agensi dan software house: bukti jam tertagih",
+      "alt": "Demo aplikasi Timebase: tracked time, tugas, dan screenshot satu karyawan sebagai bukti jam tertagih",
+      "caption": "Tracked time, tugas, dan screenshot sebagai bukti jam ke klien",
+      "brief": "Memakai ulang motion graphic user 'detail aktivitas' (9:16) dari halaman monitoring.",
+      "auto": false,
+      "video": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas.mp4",
+      "file": "static/video/aplikasi-monitoring-karyawan-detail-aktivitas-poster.jpg",
+      "w": 720,
+      "h": 1280,
+      "kolom": "sama"
+    },
+    {
+      "id": "tiga-kategori-alat",
+      "halaman": "/aplikasi-kerja-remote",
+      "section": "Tiga kategori aplikasi untuk kerja remote",
+      "jenis": "cards",
+      "judul": "Tiga kategori aplikasi kerja remote",
+      "alt": "Tiga kategori aplikasi kerja remote: komunikasi, manajemen proyek, dan monitoring aktivitas",
+      "caption": "Tiga kategori alat dan pertanyaan yang dijawabnya",
+      "brief": "Ilustrasi 3 kategori alat (chat/rapat, papan tugas, monitoring aktivitas) tanpa logo merek apa pun.",
+      "auto": true,
+      "data": {
+        "items": [
+          {
+            "label": "Komunikasi",
+            "sub": "Chat & rapat video",
+            "icon": "chat"
+          },
+          {
+            "label": "Manajemen proyek",
+            "sub": "Papan tugas",
+            "icon": "board"
+          },
+          {
+            "label": "Monitoring aktivitas",
+            "sub": "Data kerja & bukti",
+            "icon": "eye",
+            "highlight": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "pengumuman-aturan-pemantauan",
+      "halaman": "/aplikasi-kerja-remote",
+      "section": "Cara memperkenalkan pemantauan ke tim tanpa resistensi",
+      "alt": "Karyawan tersenyum memegang laptop yang menampilkan dashboard aktivitas tim Timebase",
+      "caption": "Karyawan ikut melihat dashboard, bukan hanya atasan",
+      "brief": "Gambar asli dari user: orang memegang laptop berisi dashboard Timebase (WebP transparan, dikecilkan ke 1100px).",
+      "auto": false,
+      "file": "static/ilustrasi/pengumuman-aturan-pemantauan.webp",
+      "w": 1100,
+      "h": 1006
+    },
+    {
+      "id": "pengendali-dan-prosesor-data",
+      "halaman": "/monitoring-karyawan-uu-pdp",
+      "section": "Pengendali data vs prosesor data",
+      "jenis": "steps",
+      "judul": "Pengendali dan prosesor data",
+      "alt": "Diagram peran pengendali data (perusahaan) dan prosesor data (penyedia layanan) menurut UU PDP",
+      "caption": "Perusahaan menentukan, penyedia layanan memproses",
+      "brief": "Diagram alur pengendali → perjanjian pemrosesan → prosesor, versi desain.",
+      "auto": true,
+      "data": {
+        "items": [
+          {
+            "label": "Perusahaan (pengendali)",
+            "icon": "users"
+          },
+          {
+            "label": "Perjanjian pemrosesan data",
+            "icon": "doc"
+          },
+          {
+            "label": "Penyedia layanan (prosesor)",
+            "icon": "server"
+          }
+        ],
+        "note": "Pengendali menentukan apa yang dipantau; prosesor menyimpan sesuai aturan itu"
+      }
+    },
+    {
+      "id": "layar-persetujuan-karyawan",
+      "halaman": "/monitoring-karyawan-uu-pdp",
+      "section": "Persetujuan tertulis dari karyawan",
+      "jenis": "dialog",
+      "judul": "Persetujuan",
+      "alt": "Ilustrasi layar persetujuan pemantauan yang diberikan karyawan sebelum agen mulai mencatat",
+      "caption": "Persetujuan karyawan dicatat sebelum pencatatan dimulai",
+      "brief": "Screenshot asli layar persetujuan karyawan saat pertama kali memasang agen.",
+      "auto": true,
+      "data": {
+        "icon": "shield",
+        "title": "Persetujuan pemantauan",
+        "lines": [
+          "Status kerja & aplikasi selama sesi",
+          "Screenshot sesi aktif tiap 30 menit",
+          "Disimpan 60 hari, lalu dihapus",
+          "Anda bisa melihat & minta hapus"
+        ],
+        "buttons": [
+          "Pelajari",
+          "Saya setuju"
+        ]
+      }
+    },
+    {
+      "id": "laporan-dari-data-aktivitas",
+      "halaman": "/laporan-kerja-harian",
+      "section": "Laporan dari data aktivitas",
+      "jenis": "grouped",
+      "judul": "Waktu menyusun laporan per minggu",
+      "alt": "Perbandingan waktu menyusun laporan kerja manual dan laporan dari data aktivitas",
+      "caption": "Ilustrasi: waktu menyusun laporan manual vs dari data",
+      "brief": "Grafik asli dari data pelanggan (jika ada) atau ilustrasi perbandingan tanpa angka.",
+      "auto": true,
+      "data": {
+        "items": [
+          {
+            "label": "Karyawan",
+            "a": 75,
+            "b": 15
+          },
+          {
+            "label": "Manajer",
+            "a": 90,
+            "b": 20
+          }
+        ],
+        "legend": [
+          "Laporan manual",
+          "Dari data aktivitas"
+        ]
+      }
+    },
+    {
+      "id": "status-idle-konteks",
+      "halaman": "/produktivitas-karyawan",
+      "section": "Status Idle bukan berarti malas",
+      "jenis": "timeline",
+      "judul": "Konteks status Idle",
+      "alt": "Ilustrasi status Idle saat membaca dokumen atau rapat yang perlu dibaca bersama konteks",
+      "caption": "Idle tinggi = alasan bertanya, bukan menyimpulkan",
+      "brief": "Screenshot asli timeline satu karyawan dengan blok Idle panjang (mis. saat rapat).",
+      "auto": true,
+      "data": {
+        "rows": [
+          {
+            "label": "Analis · pagi",
+            "segs": [
+              [
+                "a",
+                0.35
+              ],
+              [
+                "i",
+                0.45
+              ],
+              [
+                "a",
+                0.2
+              ]
+            ],
+            "total": "Baca laporan",
+            "note": "Idle panjang: membaca dokumen keuangan"
+          },
+          {
+            "label": "Analis · siang",
+            "segs": [
+              [
+                "a",
+                0.55
+              ],
+              [
+                "i",
+                0.3
+              ],
+              [
+                "d",
+                0.15
+              ]
+            ],
+            "total": "Rapat klien",
+            "note": "Idle: rapat tanpa klik"
+          }
+        ]
+      }
+    },
+    {
+      "id": "perbandingan-waktu-tugas",
+      "halaman": "/produktivitas-karyawan",
+      "section": "Di mana data aktivitas benar-benar membantu",
+      "jenis": "grouped",
+      "judul": "Waktu per tugas · sebelum & sesudah perubahan cara kerja",
+      "alt": "Grafik perbandingan waktu per tugas antar periode untuk melihat apakah cara kerja baru lebih cepat",
+      "caption": "Bandingkan waktu per tugas antar periode, bukan antar orang",
+      "brief": "Grafik asli perbandingan waktu per tugas antar sprint/bulan.",
+      "auto": true,
+      "data": {
+        "items": [
+          {
+            "label": "Desain",
+            "a": 9,
+            "b": 7
+          },
+          {
+            "label": "Fitur",
+            "a": 14,
+            "b": 11
+          },
+          {
+            "label": "Bug",
+            "a": 4,
+            "b": 3
+          },
+          {
+            "label": "Rapat",
+            "a": 6,
+            "b": 4
+          }
+        ],
+        "legend": [
+          "Periode lalu",
+          "Periode ini"
+        ]
+      }
+    },
+    {
+      "id": "fitur-umum-hris",
+      "halaman": "/hris-vs-monitoring-aktivitas",
+      "section": "Fitur HRIS yang umum",
+      "jenis": "table",
+      "judul": "Profil karyawan di HRIS",
+      "alt": "Contoh profil karyawan di HRIS: jabatan, kontrak, saldo cuti, lembur, dan jadwal penggajian",
+      "caption": "Yang tersimpan di HRIS adalah status, bukan aktivitas kerja",
+      "brief": "Ilustrasi layar profil karyawan di aplikasi HRIS generik (tanpa merek): jabatan, status kontrak, saldo cuti, lembur, jadwal penggajian.",
+      "auto": true,
+      "data": {
+        "headers": [
+          "Data",
+          "Isi"
+        ],
+        "rows": [
+          [
+            "Jabatan",
+            "Staf Keuangan"
+          ],
+          [
+            "Kontrak",
+            "PKWT s/d Des 2026"
+          ],
+          [
+            "Saldo cuti",
+            "8 hari"
+          ],
+          [
+            "Lembur bulan ini",
+            "6 jam"
+          ],
+          [
+            "Penggajian",
+            "Diproses tgl 25"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "hris-dan-monitoring-berdampingan",
+      "halaman": "/hris-vs-monitoring-aktivitas",
+      "section": "Bisa dipakai berdampingan",
+      "jenis": "venn",
+      "judul": "",
+      "alt": "Diagram HRIS dan monitoring aktivitas yang dipakai berdampingan untuk tim hybrid",
+      "caption": "Administrasi di HRIS, akuntabilitas kerja di monitoring aktivitas",
+      "brief": "Diagram venn versi desain.",
+      "auto": true,
+      "data": {
+        "a": "HRIS",
+        "a_items": [
+          "Presensi",
+          "Cuti",
+          "Gaji"
+        ],
+        "b": "Monitoring",
+        "b_items": [
+          "Status kerja",
+          "Aplikasi",
+          "Screenshot"
+        ],
+        "mid": "Tim remote",
+        "mid2": "dipakai bersama"
+      }
+    },
+    {
+      "id": "metode-absensi-karyawan",
+      "halaman": "/absensi-karyawan-hybrid",
+      "section": "Metode absensi karyawan: mana yang cocok untuk tim hybrid?",
+      "jenis": "cards",
+      "judul": "Metode absensi karyawan",
+      "alt": "Perbandingan metode absensi karyawan: fingerprint, GPS di HP, QR code, dan agen desktop",
+      "caption": "Empat metode absensi, masing-masing punya tempat",
+      "brief": "Ilustrasi 4 metode absensi bergaya brand, tanpa produk/merek alat absensi.",
+      "auto": true,
+      "data": {
+        "items": [
+          {
+            "label": "Fingerprint",
+            "sub": "Satu lokasi kantor",
+            "icon": "finger"
+          },
+          {
+            "label": "GPS di HP",
+            "sub": "Pekerja lapangan",
+            "icon": "pin"
+          },
+          {
+            "label": "QR code",
+            "sub": "Titik masuk tetap",
+            "icon": "qr"
+          },
+          {
+            "label": "Agen desktop",
+            "sub": "Tim hybrid & WFA",
+            "icon": "laptop",
+            "highlight": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "kunci-lokasi-wfo",
+      "halaman": "/absensi-karyawan-hybrid",
+      "section": "Cara kerja add-on Presensi & lokasi",
+      "jenis": "map",
+      "judul": "Kunci lokasi saat WFO",
+      "alt": "Ilustrasi kunci lokasi kantor: sesi kerja hari WFO hanya bisa dimulai dari area kantor",
+      "caption": "Hari WFO: sesi hanya bisa dimulai dari area kantor",
+      "brief": "Screenshot asli pengaturan geofence/lokasi kantor di dashboard.",
+      "auto": true,
+      "data": {
+        "fence": {
+          "x": 330,
+          "y": 290,
+          "r": 130,
+          "label": "Area kantor"
+        },
+        "pins": [
+          {
+            "x": 320,
+            "y": 300,
+            "label": "Di dalam area ✓"
+          },
+          {
+            "x": 640,
+            "y": 380,
+            "label": "Di luar area",
+            "ok": false
+          }
+        ],
+        "card": {
+          "title": "Senin & Kamis: WFO",
+          "lines": [
+            "✓ Kunci lokasi aktif",
+            "Radius 200 m"
+          ]
+        }
+      }
+    },
+    {
+      "id": "white-label-vs-bangun-sendiri",
+      "halaman": "/white-label",
+      "section": "Langganan vs White Label",
+      "jenis": "bars",
+      "judul": "Tagihan langganan vs beli putus",
+      "alt": "Ilustrasi tagihan langganan yang naik seiring jumlah karyawan dibanding white label sekali bayar",
+      "caption": "Langganan naik mengikuti jumlah karyawan; beli putus tidak",
+      "brief": "Grafik batang: tagihan langganan per bulan untuk 50, 100, 200, 400 karyawan (naik lurus) dibanding White Label sekali bayar. Tanpa angka rupiah.",
+      "auto": true,
+      "data": {
+        "items": [
+          {
+            "label": "50 karyawan",
+            "value": 50,
+            "text": "50× / bln"
+          },
+          {
+            "label": "100 karyawan",
+            "value": 100,
+            "text": "100× / bln"
+          },
+          {
+            "label": "200 karyawan",
+            "value": 200,
+            "text": "200× / bln"
+          },
+          {
+            "label": "400 karyawan",
+            "value": 400,
+            "text": "400× / bln",
+            "color": "#FF8A00"
+          },
+          {
+            "label": "White Label",
+            "value": 60,
+            "text": "sekali bayar",
+            "color": "#13a35a"
+          }
+        ],
+        "animasi": true
+      }
+    }
+  ],
+  "min_per_halaman_khusus": {
+    "/harga": 1,
+    "/white-label": 2
+  },
+  "_min_per_halaman_khusus": "/harga: isi utamanya tabel harga + kartu persona paket (permintaan user), cukup gambar hero. /white-label: section 'Cara kerja' dihapus atas permintaan user, cukup hero + grafik tagihan.",
+  "_hero": "Semua halaman memakai video demo aplikasi yang sama di hero (permintaan user: 'hero gambar di sebelah kanan samakan dengan yang ada di sini')."
+}

@@ -1,0 +1,194 @@
+{
+  "brand": "<Nama Produk>",
+  "tagline": "<Tagline dari BKB §2>",
+  "description": "<Category dari BKB §2, satu kalimat>",
+  "eyebrow": "<slogan brand singkat, mis. dari brand guide>",
+  "_eyebrow": "Teks badge pill di hero beranda (slogan brand). Halaman lain memakai nama halamannya, atau 'eyebrow' di extra_pages.",
+  "logo": "static/logo.svg",
+  "site_url": "",
+  "_site_url": "WAJIB diisi sebelum publish, mis. https://domain-anda.id (tanpa garis miring di akhir). Kosong = sitemap & canonical tidak dibuat.",
+  "checkout_url": "",
+  "_checkout_url": "Link halaman langganan/pembayaran. Boleh memuat {paket} (1/2/3) dan {periode} (bulanan/tahunan), mis. https://app.domain-anda.id/daftar?skema={paket}&periode={periode}. Kosong = tombol beli ke /harga#pilih-skema; build publish ditolak.",
+  "signin_url": "",
+  "_signin_url": "Link halaman login aplikasi (tombol 'Sign In' di header, kiri tombol Langganan). Wajib diisi sebelum publish.",
+  "whatsapp": "",
+  "_whatsapp": "WAJIB sebelum publish. Nomor WA tim marketing (format 62812xxxxxxx) untuk tombol melayang 'Hubungi Kami' di setiap halaman.",
+  "whatsapp_text": "Halo, saya ingin konsultasi.",
+  "email": "",
+  "legal_reviewed": {
+    "/<slug-halaman-hukum>": false
+  },
+  "_legal_reviewed": "Halaman hukum tetap noindex & keluar dari sitemap sampai diubah jadi true setelah direview ahli hukum.",
+  "nav": [
+    {
+      "label": "Solusi",
+      "items": [
+        [
+          "/<slug-prioritas-1>",
+          "<Label>",
+          "<deskripsi 1 baris>"
+        ],
+        [
+          "/<slug-lain>",
+          "<Label>",
+          "<deskripsi 1 baris>"
+        ],
+        [
+          "/white-label",
+          "White Label",
+          "Beli putus dengan merek & server sendiri"
+        ]
+      ]
+    },
+    [
+      "/harga",
+      "Harga"
+    ],
+    [
+      "/blog",
+      "Blog"
+    ],
+    [
+      "/panduan",
+      "Panduan"
+    ]
+  ],
+  "extra_pages": [
+    {
+      "slug": "/",
+      "name": "Beranda",
+      "title": "<40–60 karakter, tanpa 'terbaik'/tahun>",
+      "meta": "<120–155 karakter>",
+      "h1": "<hasil terbesar untuk klien>",
+      "primary": "<Nama Produk>",
+      "links": [
+        "/<slug-prioritas-1>",
+        "/harga"
+      ],
+      "min_words": 700
+    },
+    {
+      "slug": "/harga",
+      "name": "Harga",
+      "title": "<40–60 karakter, tanpa 'terbaik'/tahun>",
+      "meta": "<120–155 karakter>",
+      "h1": "<H1 halaman harga>",
+      "primary": "Harga <Nama Produk>",
+      "links": [
+        "/<slug-prioritas-1>"
+      ],
+      "min_words": 300
+    },
+    {
+      "slug": "/white-label",
+      "name": "White Label",
+      "title": "{{brand}} White Label: Sekali Bayar, Tanpa Biaya Bulanan",
+      "meta": "Beli putus {{brand}} dengan merek perusahaan Anda dan pasang di server sendiri. Sekali bayar, tanpa tagihan bulanan per karyawan, data tetap di tangan Anda.",
+      "h1": "White Label: Sekali Bayar, Tanpa Biaya per Karyawan",
+      "primary": "white label",
+      "links": [
+        "/harga"
+      ],
+      "min_words": 600,
+      "eyebrow": "Miliki software-nya, bukan menyewa"
+    }
+  ],
+  "product_pages": [
+    "/harga"
+  ],
+  "copy": {
+    "nav_cta": "Langganan",
+    "cta_primary": "Aktifkan Timebase",
+    "cta_secondary": "Bandingkan Paket",
+    "cta_secondary_href": "/harga",
+    "cta_title": "Mulai catat kerja tim Anda hari ini",
+    "cta_text": "Bayar, akun langsung aktif. Pemasangan dibantu tim lokal.",
+    "risk_label": "Tanpa risiko terkunci",
+    "risk_extra": [
+      "Karyawan bisa membuka datanya sendiri dan meminta datanya dihapus"
+    ],
+    "proof_caption": "Dipakai tim di berbagai industri",
+    "plan_button": "Pilih {nama}",
+    "wa_title": "Hubungi Kami !!",
+    "wa_subtitle": "Konsultasi 100% Gratis",
+    "signin": "Sign In",
+    "faq_lead": "Jawaban singkat yang paling sering ditanyakan sebelum memutuskan berlangganan.",
+    "cta_poin": [
+      "Bayar bulanan, berhenti kapan saja",
+      "Tanpa biaya pemasangan",
+      "Data tercatat mulai minggu ini",
+      "Karyawan bisa melihat datanya sendiri"
+    ],
+    "_cta_poin": "CTA penutup: maks 4 frasa pendek (≤6 kata) — urgensi alami + jaminan. cta_text ≤16 kata. Jaminan lengkap tetap di /harga (pricing.json terms + risk_extra). Build memberi WARNING bila lebih."
+  },
+  "_copy": "Teks CTA mengikuti model penjualan produk. Self-serve (bayar → aktif): seperti di bawah. Kalau produk dijual lewat demo/sales, ganti teks & arahkan checkout_url ke form/WA — tanyakan ke user, jangan mengandaikan.",
+  "_nav": "Item [slug, label] = link biasa. {label, items:[[slug, label, deskripsi]]} = menu group dengan submenu (dropdown tanpa JS). Halaman solusi dikelompokkan di satu group agar menu utama ringkas.",
+  "whitelabel": {
+    "_catatan": "Copy global halaman /white-label (content/white-label.html). Positioning (user 3 Okt 2026): untuk perusahaan dengan banyak karyawan yang tidak mau bayar bulanan per karyawan — beli putus, dipasang di server pembeli, merek sendiri. Sudut 'dijual lagi' hanya 1 jawaban FAQ. Jangan menambah klaim yang belum pasti.",
+    "kustomisasi": [
+      "Nama aplikasi dan logo Anda di seluruh tampilan",
+      "Warna yang mengikuti identitas brand Anda",
+      "Domain atau subdomain milik Anda sendiri",
+      "Halaman login dan email notifikasi atas nama brand Anda",
+      "Materi panduan pengguna dengan merek Anda"
+    ],
+    "ditangani": [
+      "Lisensi sekali bayar, tanpa tagihan bulanan per karyawan",
+      "Software berjalan di server atau cloud milik Anda",
+      "Data karyawan tersimpan di infrastruktur Anda sendiri",
+      "Merek, domain, dan tampilan atas nama perusahaan Anda"
+    ],
+    "wa_text": "Halo, saya tertarik dengan white label {{brand}} (beli putus) untuk perusahaan kami. Boleh minta penawarannya?",
+    "cta_title": "Siap lepas dari tagihan bulanan per karyawan?",
+    "cta_text": "Ceritakan jumlah karyawan, server yang Anda pakai, dan kebutuhan merek. Tim kami menyiapkan penawaran beli putus {{brand}} untuk perusahaan Anda.",
+    "cta_button": "Minta Penawaran"
+  },
+  "og_image": "static/og-image.png",
+  "_og_image": "Gambar pratinjau link 1200×630 (PNG/JPG). Buat: python3 tools/og_image.py (macOS), atau desain sendiri.",
+  "ilustrasi_warna": {
+    "p": "#7B2CFF",
+    "k": "#E83AAE",
+    "o": "#FF8A00",
+    "ink": "#1b1626",
+    "mut": "#6f6880",
+    "line": "#e9e5f0",
+    "soft": "#f8f6fc",
+    "tint": "#f3edff"
+  },
+  "_ilustrasi_warna": "Warna design system produk untuk ilustrasi SVG & og:image (p=primer, k=aksen 2, o=aksen 3). Samakan dengan token di static/style.css.",
+  "_product_pages": "Halaman yang memuat schema SoftwareApplication + Offer (harga). Hanya halaman yang menampilkan harga — bukan beranda.",
+  "pricing_page": "/harga",
+  "_pricing_page": "Satu-satunya halaman yang boleh menampilkan harga (aturan user). Halaman lain hanya menautkan ke sini.",
+  "footer_trust": [
+    {
+      "ikon": "server",
+      "teks": "Server di Indonesia"
+    },
+    {
+      "ikon": "shield",
+      "teks": "Dirancang patuh UU PDP"
+    },
+    {
+      "ikon": "support",
+      "teks": "Pemasangan dibantu tim lokal"
+    }
+  ],
+  "_footer_trust": "Baris kepercayaan di footer (maks 3). Hanya fakta yang sudah tertulis di BKB/website; ikon: server | shield | support.",
+  "langganan": {"api": "", "min_karyawan": 1, "max_karyawan": 999},
+  "lakukan": {"api": "https://api.lakukan.id/api", "company_slug": "", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "Artikel dan wawasan terbaru dari {brand}.", "blog_eyebrow": "Pusat edukasi"},
+  "legal": [
+    {
+      "slug": "/syarat-layanan",
+      "name": "Syarat Layanan",
+      "lead": "Aturan berlangganan {brand}: pembayaran, berhenti kapan saja, dan kewajiban perusahaan sebelum memantau karyawan."
+    },
+    {
+      "slug": "/kebijakan-privasi",
+      "name": "Kebijakan Privasi",
+      "lead": "Data apa yang dicatat {brand}, berapa lama disimpan, siapa yang bisa melihatnya, dan hak Anda atas data tersebut."
+    }
+  ],
+  "_legal": "Link legal di footer bawah. Bila content/<slug>.html belum ada, build membuat halaman placeholder noindex ('dokumen sedang disiapkan' + link WA). Isi dokumennya dari user/ahli hukum; jangan mengarang isi legal. Tiap entri punya 'lead' (ringkasan isi dokumen, {brand} diganti otomatis); badge hero = 'Dokumen legal' agar badge, judul, dan subjudul tidak mengulang pesan yang sama.",
+  "legal_berlaku": "4 Oktober 2026",
+  "logo_tinggi": 22
+}

@@ -1,0 +1,568 @@
+[
+ {
+  "id": "lkh-sampul",
+  "tipe": "kartu",
+  "label": "Laporan kerja harian",
+  "judul": "5 pertanyaan laporan yang baik",
+  "sorot": "laporan yang baik",
+  "sub": "Lebih panjang jarang dibaca, lebih pendek tidak menjawab atasan. Cukup lima pertanyaan ini setiap hari.",
+  "catatan": "Format untuk semua peran",
+  "kartu": [
+   {
+    "ikon": "tugas",
+    "judul": "Apa yang dikerjakan?",
+    "isi": "Per tugas atau proyek, bukan per aktivitas kecil.",
+    "tag": "Per tugas"
+   },
+   {
+    "ikon": "timer",
+    "judul": "Berapa lama?",
+    "isi": "Durasi tiap tugas, dalam jam atau menit.",
+    "tag": "Bisa otomatis"
+   },
+   {
+    "ikon": "target",
+    "judul": "Apa hasilnya?",
+    "isi": "Selesai, sebagian, atau tertahan, plus tautan hasil.",
+    "tag": "Dengan bukti"
+   },
+   {
+    "ikon": "alert",
+    "judul": "Apa kendalanya?",
+    "isi": "Yang butuh bantuan atasan atau tim lain.",
+    "tag": "Diangkat cepat"
+   },
+   {
+    "ikon": "kalender",
+    "judul": "Rencana besok?",
+    "isi": "Satu sampai tiga prioritas hari berikutnya.",
+    "tag": "Maks. 3"
+   }
+  ]
+ },
+ {
+  "id": "lkh-banding",
+  "tipe": "banding",
+  "label": "Manual vs data aktivitas",
+  "judul": "Laporan dari ingatan vs dari data",
+  "sorot": "dari data",
+  "catatan": "Hasil & kendala tetap ditulis karyawan",
+  "kiri": {
+   "judul": "Laporan manual (chat / Excel)",
+   "jenis": "buruk",
+   "baris": [
+    [
+     "Diisi dari ingatan",
+     "durasi hampir selalu dibulatkan"
+    ],
+    [
+     "Tanpa catatan pendukung",
+     "saat klien bertanya \"benarkah tiga jam?\""
+    ],
+    [
+     "Tenggelam di obrolan grup",
+     "sulit dicari seminggu kemudian"
+    ],
+    [
+     "Dua kali kerja",
+     "ditulis karyawan, direkap orang lain"
+    ]
+   ]
+  },
+  "kanan": {
+   "judul": "Dari data aktivitas",
+   "jenis": "baik",
+   "baris": [
+    [
+     "Durasi tercatat saat bekerja",
+     "per tugas, tanpa menebak"
+    ],
+    [
+     "Ada catatan pendukung",
+     "log aplikasi & screenshot sesi aktif"
+    ],
+    [
+     "Satu tempat yang sama",
+     "dashboard, bukan grup chat"
+    ],
+    [
+     "Rekap mingguan otomatis",
+     "tanpa menyusun ulang"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "lkh-alur",
+  "tipe": "alur",
+  "label": "Alur harian",
+  "judul": "Laporan harian yang tidak membebani tim",
+  "sorot": "tidak membebani tim",
+  "catatan": "Sesuaikan jam dengan kebijakan tim",
+  "langkah": [
+   {
+    "waktu": "Pagi",
+    "judul": "Rencana singkat",
+    "poin": [
+     "1–3 prioritas hari ini",
+     "Kendala dari kemarin"
+    ]
+   },
+   {
+    "waktu": "Jam kerja",
+    "judul": "Kerjakan & tercatat",
+    "poin": [
+     "Durasi per tugas tercatat",
+     "Tanpa input manual"
+    ]
+   },
+   {
+    "waktu": "≤ 5 menit",
+    "judul": "Tulis hasil & kendala",
+    "poin": [
+     "Hasil atau tautan",
+     "Kendala yang perlu bantuan"
+    ],
+    "wajib": "Wajib"
+   },
+   {
+    "waktu": "Sebelum 17.00",
+    "judul": "Kirim & dibalas",
+    "poin": [
+     "Satu tempat yang sama",
+     "Atasan menanggapi"
+    ]
+   },
+   {
+    "waktu": "Akhir pekan",
+    "judul": "Rekap mingguan",
+    "poin": [
+     "Tugas selesai",
+     "Kendala terbuka"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "prd-sampul",
+  "tipe": "kartu",
+  "label": "Produktivitas karyawan remote",
+  "judul": "5 metrik yang layak dipakai",
+  "sorot": "layak dipakai",
+  "sub": "Ukur hasil lebih dulu, lalu pakai data aktivitas untuk memahami kenapa hasil naik atau turun.",
+  "catatan": "Kinerja tetap dinilai manusia",
+  "kartu": [
+   {
+    "ikon": "target",
+    "judul": "Hasil sesuai peran",
+    "isi": "Tiket selesai, tugas rilis, materi disetujui.",
+    "tag": "Output"
+   },
+   {
+    "ikon": "timer",
+    "judul": "Waktu per tugas",
+    "isi": "Bandingkan antar periode, termasuk dampak AI.",
+    "tag": "Antar periode"
+   },
+   {
+    "ikon": "timbang",
+    "judul": "Perkiraan vs realisasi",
+    "isi": "Menunjukkan tugas yang sering diremehkan.",
+    "tag": "Perencanaan"
+   },
+   {
+    "ikon": "rekap",
+    "judul": "Pola aplikasi tim",
+    "isi": "Alat mana yang dipakai, mana yang bisa dihentikan.",
+    "tag": "Tingkat tim"
+   },
+   {
+    "ikon": "kilat",
+    "judul": "Kecepatan angkat kendala",
+    "isi": "Sering lebih menentukan hasil daripada jam kerja.",
+    "tag": "Alur kerja"
+   }
+  ]
+ },
+ {
+  "id": "prd-banding",
+  "tipe": "banding",
+  "label": "Metrik yang menyesatkan",
+  "judul": "Terlihat objektif, ternyata menjebak",
+  "sorot": "ternyata menjebak",
+  "catatan": "Pakai metrik di kanan sebagai gantinya",
+  "kiri": {
+   "judul": "Hindari sebagai ukuran",
+   "jenis": "buruk",
+   "baris": [
+    [
+     "Jam online",
+     "mengukur siapa yang membiarkan chat terbuka"
+    ],
+    [
+     "Kecepatan balas chat",
+     "menghukum yang sedang fokus"
+    ],
+    [
+     "% Active sebagai skor",
+     "orang mengejar angkanya, bukan pekerjaannya"
+    ],
+    [
+     "Jumlah laporan",
+     "mengukur kemampuan menulis, bukan hasil"
+    ]
+   ]
+  },
+  "kanan": {
+   "judul": "Pakai sebagai gantinya",
+   "jenis": "baik",
+   "baris": [
+    [
+     "Hasil sesuai peran",
+     "apa yang benar-benar diselesaikan"
+    ],
+    [
+     "Waktu per tugas antar periode",
+     "apakah cara kerja makin cepat"
+    ],
+    [
+     "Perkiraan vs realisasi",
+     "tugas mana yang perlu dibantu"
+    ],
+    [
+     "Kecepatan mengangkat kendala",
+     "siapa yang tertahan dan kenapa"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "prd-alur",
+  "tipe": "alur",
+  "label": "Memulai pengukuran",
+  "judul": "5 langkah mengukur dengan adil",
+  "sorot": "dengan adil",
+  "catatan": "Garis dasar 2–4 minggu tanpa penilaian",
+  "langkah": [
+   {
+    "waktu": "Langkah 1",
+    "judul": "Tetapkan output",
+    "poin": [
+     "Per peran",
+     "Sebelum melihat data"
+    ]
+   },
+   {
+    "waktu": "Langkah 2",
+    "judul": "Umumkan aturan",
+    "poin": [
+     "Apa yang dicatat",
+     "Apa yang tidak dilakukan"
+    ]
+   },
+   {
+    "waktu": "2–4 minggu",
+    "judul": "Garis dasar",
+    "poin": [
+     "Kumpulkan data",
+     "Tanpa penilaian"
+    ],
+    "wajib": "Penting"
+   },
+   {
+    "waktu": "Langkah 4",
+    "judul": "Bahas bersama",
+    "poin": [
+     "Tugas yang melebihi perkiraan",
+     "Bukan mencari kesalahan"
+    ]
+   },
+   {
+    "waktu": "Langkah 5",
+    "judul": "Ubah satu hal",
+    "poin": [
+     "Lalu bandingkan",
+     "Waktu per tugas berikutnya"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "pdp-sampul",
+  "tipe": "kartu",
+  "label": "Monitoring karyawan & UU PDP",
+  "judul": "4 hal wajib sebelum memantau",
+  "sorot": "sebelum memantau",
+  "sub": "Merekam layar dan aktivitas karyawan termasuk memproses data pribadi menurut UU No. 27 Tahun 2022.",
+  "catatan": "Ringkasan umum, bukan nasihat hukum",
+  "kartu": [
+   {
+    "ikon": "dok",
+    "judul": "Kebijakan tertulis",
+    "isi": "Jenis data, tujuan, waktu pencatatan, dan masa simpan.",
+    "tag": "Lebih dulu"
+   },
+   {
+    "ikon": "tanda",
+    "judul": "Persetujuan tercatat",
+    "isi": "Setiap karyawan, beserta tanggalnya.",
+    "tag": "Bukti tersimpan"
+   },
+   {
+    "ikon": "mata",
+    "judul": "Hak akses & hapus",
+    "isi": "Karyawan melihat datanya dan bisa meminta hapus.",
+    "tag": "Hak subjek data"
+   },
+   {
+    "ikon": "lonceng",
+    "judul": "Retensi & notifikasi",
+    "isi": "Masa simpan jelas, kebocoran dilaporkan ≤ 3×24 jam.",
+    "tag": "Prosedur siap"
+   }
+  ]
+ },
+ {
+  "id": "pdp-peran",
+  "tipe": "banding",
+  "label": "Pengendali vs prosesor",
+  "judul": "Siapa bertanggung jawab atas apa",
+  "sorot": "atas apa",
+  "catatan": "Tuangkan dalam perjanjian pemrosesan data",
+  "kiri": {
+   "judul": "Pengendali data: perusahaan",
+   "jenis": "plus",
+   "ikon": "gedung",
+   "baris": [
+    [
+     "Menentukan apa yang dipantau",
+     "dan untuk tujuan apa"
+    ],
+    [
+     "Menetapkan masa simpan",
+     "per jenis data"
+    ],
+    [
+     "Memastikan dasar pemrosesan sah",
+     "termasuk persetujuan karyawan"
+    ],
+    [
+     "Menanggapi hak karyawan",
+     "akses dan permintaan hapus"
+    ]
+   ]
+  },
+  "kanan": {
+   "judul": "Prosesor data: penyedia layanan",
+   "jenis": "netral",
+   "ikon": "laptop",
+   "baris": [
+    [
+     "Memproses sesuai instruksi",
+     "tidak untuk tujuan lain"
+    ],
+    [
+     "Menjaga keamanan data",
+     "akses per peran, server di Indonesia"
+    ],
+    [
+     "Membantu memenuhi hak karyawan",
+     "akses dan penghapusan"
+    ],
+    [
+     "Memberi tahu bila ada kebocoran",
+     "paling lambat 3×24 jam"
+    ]
+   ]
+  }
+ },
+ {
+  "id": "pdp-alur",
+  "tipe": "alur",
+  "label": "Urutan yang benar",
+  "judul": "Kebijakan dulu, agen belakangan",
+  "sorot": "agen belakangan",
+  "catatan": "Konsultasikan detailnya dengan konsultan hukum",
+  "langkah": [
+   {
+    "waktu": "Langkah 1",
+    "judul": "Susun kebijakan",
+    "poin": [
+     "Jenis data & tujuan",
+     "Masa simpan"
+    ],
+    "wajib": "Mulai di sini"
+   },
+   {
+    "waktu": "Langkah 2",
+    "judul": "Atur akses",
+    "poin": [
+     "Sesuai wewenang",
+     "Atasan hanya timnya"
+    ]
+   },
+   {
+    "waktu": "Langkah 3",
+    "judul": "Minta persetujuan",
+    "poin": [
+     "Setiap karyawan",
+     "Simpan buktinya"
+    ]
+   },
+   {
+    "waktu": "Langkah 4",
+    "judul": "Pasang agen",
+    "poin": [
+     "Hanya sesi kerja aktif",
+     "Perangkat kerja"
+    ]
+   },
+   {
+    "waktu": "Berkala",
+    "judul": "Tinjau ulang",
+    "poin": [
+     "Saat jenis data berubah",
+     "Perbarui persetujuan"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "hris-sampul",
+  "tipe": "dua",
+  "label": "HRIS vs monitoring aktivitas",
+  "judul": "Dua alat, dua pertanyaan berbeda",
+  "sorot": "dua pertanyaan berbeda",
+  "catatan": "Bisa dipakai berdampingan",
+  "top": 240,
+  "kiri": {
+   "judul": "HRIS",
+   "ikon": "gedung"
+  },
+  "kanan": {
+   "judul": "Monitoring aktivitas",
+   "ikon": "laptop"
+  },
+  "baris": [
+   [
+    "Menjawab",
+    "Siapa karyawan kita, hadir, digaji berapa?",
+    "Bagaimana jam kerja dipakai, ada buktinya?"
+   ],
+   [
+    "Sumber data",
+    "Input HR & aplikasi presensi",
+    "Agen desktop di laptop kerja"
+   ],
+   [
+    "Aktivitas jam kerja",
+    "Umumnya tidak",
+    "Ya, fitur inti"
+   ],
+   [
+    "Waktu per tugas",
+    "Timesheet manual (sebagian)",
+    "Tercatat saat bekerja"
+   ],
+   [
+    "Penggajian",
+    "Ya",
+    "Umumnya tidak"
+   ],
+   [
+    "Paling cocok untuk",
+    "Semua perusahaan",
+    "Tim remote & hybrid di depan komputer"
+   ]
+  ]
+ },
+ {
+  "id": "hris-catat",
+  "tipe": "kartu",
+  "label": "Monitoring aktivitas",
+  "judul": "Yang dicatat selama jam kerja",
+  "sorot": "selama jam kerja",
+  "sub": "Langsung dari laptop kerja, dan karyawan bisa membuka datanya sendiri.",
+  "catatan": "Fitur sesuai paket Timebase",
+  "kartu": [
+   {
+    "ikon": "aktivitas",
+    "judul": "Status kerja",
+    "isi": "Active, Idle, atau Distraction secara real-time.",
+    "tag": "Semua paket"
+   },
+   {
+    "ikon": "globe",
+    "judul": "Aplikasi & situs",
+    "isi": "Aplikasi dan URL yang dipakai selama bekerja.",
+    "tag": "Semua paket"
+   },
+   {
+    "ikon": "kamera",
+    "judul": "Screenshot",
+    "isi": "Hanya selama sesi kerja aktif.",
+    "tag": "Bukti Visual ke atas"
+   },
+   {
+    "ikon": "timer",
+    "judul": "Waktu per tugas",
+    "isi": "Start/stop per issue, timesheet terisi sendiri.",
+    "tag": "Waktu Per Tugas"
+   }
+  ]
+ },
+ {
+  "id": "hris-kapan",
+  "tipe": "banding",
+  "label": "Patokan cepat",
+  "judul": "Kapan HRIS cukup, kapan perlu tambahan",
+  "sorot": "perlu tambahan",
+  "catatan": "Jawab bersama HR dan manajer tim",
+  "kiri": {
+   "judul": "HRIS saja cukup jika…",
+   "jenis": "netral",
+   "ikon": "gedung",
+   "baris": [
+    [
+     "Tim mayoritas di kantor atau lapangan",
+     ""
+    ],
+    [
+     "Kebutuhan utama presensi, cuti, gaji",
+     ""
+    ],
+    [
+     "Laporan atasan langsung sudah dipercaya",
+     ""
+    ],
+    [
+     "Klien tidak meminta bukti jam kerja",
+     ""
+    ]
+   ]
+  },
+  "kanan": {
+   "judul": "Tambah monitoring aktivitas jika…",
+   "jenis": "plus",
+   "ikon": "laptop",
+   "baris": [
+    [
+     "Tim WFA atau hybrid",
+     ""
+    ],
+    [
+     "Laporan masih lewat chat atau Excel",
+     ""
+    ],
+    [
+     "Klien meminta bukti jam kerja",
+     ""
+    ],
+    [
+     "Proyek sering molor tanpa jelas sebabnya",
+     ""
+    ]
+   ]
+  }
+ }
+]

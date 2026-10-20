@@ -1,0 +1,29 @@
+<!-- lead: <Cara hitung harga dalam 1 kalimat, mis. "Dihitung per pengguna per bulan, turun seiring jumlah pengguna.">. Bayar tahunan: bayar 10 bulan, dapat 12. -->
+<!--
+  TEMPLATE HALAMAN HARGA — wajib ada di setiap website produk (standar disetujui user, website Timebase 2 Okt 2026).
+  Aturan lengkap: references/standar-halaman-harga.md. Urutan section JANGAN diubah:
+  1. Tabel harga (judul ajakan + 1 paragraf ringkasan harga yang memuat primary keyword "Harga {{brand}}")
+  2. Paket mana yang cocok? (3 kartu persona, tanpa gambar, tanpa tombol)
+  3. FAQ harga (3 pertanyaan penting)
+  4. {{cta}}
+-->
+<h2>Pilih paket, aktif hari ini</h2>
+<p><strong>Harga {{brand}}</strong> dihitung per <satuan> per bulan dalam rupiah — <manfaat skala, mis. makin besar tim, makin murah per orang>. Semua paket sudah termasuk <apa saja yang termasuk>.</p>
+{{pricing_table}}
+
+
+<h2>Paket mana yang cocok?</h2>
+<p>Pilih berdasarkan <pembeda utama antarpaket>.</p>
+<div class="grid persona">
+  <div class="card"><span class="ikon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg></span><h3>&lt;Paket 1&gt;</h3><p class="untuk">Untuk &lt;persona 1&gt;</p><ul class="checks"><li>&lt;pembeda 1&gt;</li><li>&lt;pembeda 2&gt;</li></ul></div>
+  <div class="card featured"><span class="badge">Disarankan</span><span class="ikon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg></span><h3>&lt;Paket 2&gt;</h3><p class="untuk">Untuk &lt;persona 2&gt;</p><ul class="checks"><li>&lt;pembeda 1&gt;</li><li>&lt;pembeda 2&gt;</li></ul></div>
+  <div class="card"><span class="ikon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg></span><h3>&lt;Paket 3&gt;</h3><p class="untuk">Untuk &lt;persona 3&gt;</p><ul class="checks"><li>&lt;pembeda 1&gt;</li><li>&lt;pembeda 2&gt;</li></ul></div>
+</div>
+<p class="penutup">Belum yakin? Lihat apa saja yang &lt;dilakukan produk&gt; di halaman <a href="/<halaman-produk-utama>">&lt;halaman produk utama&gt;</a>, atau mulai dari &lt;paket disarankan&gt; bulanan — berhenti kapan saja.</p>
+
+<h2>Masih ragu soal harga?</h2>
+<details class="faq"><summary>Bagaimana harga tahunan dihitung?</summary><p>Harga tahunan sama dengan 10 kali harga bulanan: Anda membayar 10 bulan dan mendapatkan 12 bulan layanan.</p></details>
+<details class="faq"><summary>Apakah ada biaya pemasangan?</summary><p>&lt;Jawab sesuai BKB.&gt;</p></details>
+<details class="faq"><summary>Apakah add-on bisa dibeli tanpa paket?</summary><p>&lt;Jawab sesuai pricing.json addons[].applies_to; hapus pertanyaan ini bila tidak ada add-on.&gt;</p></details>
+
+{{cta}}
