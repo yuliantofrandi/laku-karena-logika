@@ -33,6 +33,9 @@ Riset buying keyword di Google Ads Keyword Planner (lewat browser), lalu susun j
 
 > **Catatan lingkungan:** skill ini butuh **Claude-in-Chrome** (otomasi browser) dan skill **`anthropic-skills:xlsx`**, serta menyimpan hasil ke `/mnt/user-data/outputs/` — jadi ditujukan untuk lingkungan **claude.ai/Chat**, bukan alur file lokal Cowork seperti dua skill di atas.
 
+### `website-seo`
+Membangun website marketing statis dari **BKB + keyword plan**: beranda sebagai **sales page** (AIDA + PAS), halaman Prioritas 1 sebagai landing Ads + SEO, halaman panduan untuk keyword informasional. `scripts/build.py` (Python standar) merakit HTML dengan CSS inline tanpa JavaScript (target hijau PageSpeed) dan **memeriksa aturan**: title 40–60, meta 120–155, primary keyword di paragraf pertama, 1.000–1.500 kata, link internal wajib, tanpa nama kompetitor, tanpa klaim "satu-satunya/termurah". Social proof boleh berupa data contoh untuk preview, tapi build publish menolaknya dan rating bintang hanya dibuat dari ulasan asli. Halaman hukum `noindex` sampai direview. Setiap produk wajib punya menu & halaman **White Label** dengan copy global yang terisi otomatis per produk. Setiap halaman wajib diberi ilustrasi per section (SVG mockup UI/konsep bergaya brand, dengan brief untuk diganti gambar asli) tanpa mengorbankan SEO & PageSpeed. Skill ini dirancang dipakai berulang untuk banyak produk SaaS/GaaS. Untuk website **jasa** (software house, outsourcing) pakai `website-service`.
+
 ### `sosmed-desain`
 Ide → brief (disetujui di chat) → pilih gaya → carousel 5–7 frame atau satu gambar di kanvas Design Claude dengan design system Venturo. Tiga gaya bergantian agar feed tidak monoton: **Style 1 – kartu miring**, **Style 2 – blok warna lembut**, dan **Style 3 – satu gambar padat** (mis. tabel "tanpa vs dengan AI"; detail di `references/gaya.md`). Kanvas 9:16 (1080 × 1920) dengan semua isi di **zona aman 4:5** (y = 285–1635).
 
@@ -80,6 +83,7 @@ Membangun dan merawat **website lini bisnis jasa software** (software house, IT 
 /business-knowledge
 /business-reviewer
 /keyword-research
+/website-seo
 /sosmed-desain
 /sosmed-caption
 /sosmed-posting
@@ -91,7 +95,7 @@ Membangun dan merawat **website lini bisnis jasa software** (software house, IT 
 /website-service
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`); *"buat PDF penawaran"*, *"penawaran baru untuk klien X"* (→ `proposal-pdf`); *"buat website jasa"*, *"tambah halaman layanan"*, *"audit website venturo"*, *"deploy website ke Cloudflare"* (→ `website-service`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat website dari BKB dan keyword plan"*, *"buat sales page/landing page"* (→ `website-seo`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`); *"buat PDF penawaran"*, *"penawaran baru untuk klien X"* (→ `proposal-pdf`); *"buat website jasa"*, *"tambah halaman layanan"*, *"audit website venturo"*, *"deploy website ke Cloudflare"* (→ `website-service`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 

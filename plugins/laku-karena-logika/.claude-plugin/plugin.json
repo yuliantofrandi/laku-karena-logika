@@ -1,7 +1,7 @@
 {
   "name": "laku-karena-logika",
-  "version": "1.11.0",
-  "description": "AI Marketing OS — rangkaian skill yang mengubah pengetahuan produk jadi output marketing untuk SaaS. business-knowledge menulis strategi; business-reviewer menilainya & menganalisis kompetitor; keyword-research menyusun rencana keyword Google Ads/SEO; sosmed-desain, sosmed-caption, dan sosmed-posting memproduksi dan memposting konten sosial media; motion-graphic membuat video demo aplikasi MP4 untuk website dan sosmed; article-docs mengubah dokumentasi aplikasi jadi artikel tutorial di CMS Lakukan (screenshot disamarkan) untuk menu Panduan website; article-blog menulis artikel blog edukatif berinfografis bermerek dan menerbitkannya ke Blog CMS Lakukan; article-portfolio menulis artikel studi kasus proyek (tantangan, solusi, keunggulan, screenshot per aktor, SEO) dan menerbitkannya ke kategori Portfolio CMS Lakukan; proposal-pdf membuat PDF penawaran + form agreement Venturo dari Google Sheet, lengkap dengan tanda tangan dan paraf.",
+  "version": "1.12.0",
+  "description": "AI Marketing OS — rangkaian skill yang mengubah pengetahuan produk jadi output marketing untuk SaaS. business-knowledge menulis strategi; business-reviewer menilainya & menganalisis kompetitor; keyword-research menyusun rencana keyword Google Ads/SEO; website-seo membangun website sales page + landing SEO untuk produk SaaS; website-service membangun website lini bisnis jasa software; sosmed-desain, sosmed-caption, dan sosmed-posting memproduksi dan memposting konten sosial media; motion-graphic membuat video demo aplikasi MP4 untuk website dan sosmed; article-docs mengubah dokumentasi aplikasi jadi artikel tutorial di CMS Lakukan (screenshot disamarkan) untuk menu Panduan website; article-blog menulis artikel blog edukatif berinfografis bermerek dan menerbitkannya ke Blog CMS Lakukan; article-portfolio menulis artikel studi kasus proyek (tantangan, solusi, keunggulan, screenshot per aktor, SEO) dan menerbitkannya ke kategori Portfolio CMS Lakukan; proposal-pdf membuat PDF penawaran + form agreement Venturo dari Google Sheet, lengkap dengan tanda tangan dan paraf.",
   "keywords": [
     "marketing",
     "business-strategy",
@@ -31,7 +31,11 @@
     "portfolio",
     "case-study",
     "proposal",
-    "pdf"
+    "pdf",
+    "website",
+    "landing-page",
+    "sales-page",
+    "pagespeed"
   ],
   "author": {
     "name": "Laku Karena Logika"

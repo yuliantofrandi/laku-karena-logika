@@ -1,0 +1,138 @@
+{
+  "_sumber": "business-knowledge-base.md §3 Pricing Plan. Ubah harga di BKB dulu, lalu salin ke sini — jangan sebaliknya.",
+  "currency": "Rp",
+  "annual_rule": "Bayar 10 bulan, dapat 12",
+  "annual_months_paid": 10,
+  "tiers": [
+    "< 20",
+    "< 50",
+    "< 100",
+    "> 100"
+  ],
+  "tier_labels": [
+    "1–19 karyawan",
+    "20–49 karyawan",
+    "50–99 karyawan",
+    "100+ karyawan"
+  ],
+  "schemes": [
+    {
+      "id": 1,
+      "name": "Aktivitas",
+      "monthly": [
+        12000,
+        10000,
+        8000,
+        6000
+      ],
+      "for": "Tim beranggaran ketat yang cukup butuh status aktivitas, pemakaian aplikasi, dan rekap untuk manajemen sendiri."
+    },
+    {
+      "id": 2,
+      "name": "Bukti Visual",
+      "monthly": [
+        16000,
+        14000,
+        12000,
+        10000
+      ],
+      "featured": true,
+      "for": "Tim remote yang butuh bukti kerja visual — pilihan yang kami sarankan untuk kebanyakan perusahaan."
+    },
+    {
+      "id": 3,
+      "name": "Waktu Per Tugas",
+      "monthly": [
+        18000,
+        16000,
+        14000,
+        12000
+      ],
+      "for": "Agensi, konsultan, dan software house yang harus membuktikan jam tertagih per tugas ke klien."
+    }
+  ],
+  "features": [
+    [
+      "Status aktivitas real-time (Active/Idle/Distraction)",
+      "✓",
+      "✓",
+      "✓"
+    ],
+    [
+      "Pemakaian aplikasi & situs (URL)",
+      "✓",
+      "✓",
+      "✓"
+    ],
+    [
+      "Dashboard rekap aktivitas per user & agregat",
+      "✓",
+      "✓",
+      "✓"
+    ],
+    [
+      "Karyawan membuka datanya sendiri",
+      "✓",
+      "✓",
+      "✓"
+    ],
+    [
+      "Kontrol data sesuai UU PDP",
+      "✓",
+      "✓",
+      "✓"
+    ],
+    [
+      "Manajemen user, Role & Akses, multi-tenant",
+      "✓",
+      "✓",
+      "✓"
+    ],
+    [
+      "Screenshot otomatis sesi aktif",
+      "—",
+      "tiap 30 menit",
+      "tiap 10 menit"
+    ],
+    [
+      "Retensi screenshot",
+      "—",
+      "60 hari",
+      "60 hari"
+    ],
+    [
+      "Retensi data aktivitas & waktu per tugas",
+      "12 bulan",
+      "12 bulan",
+      "12 bulan"
+    ],
+    [
+      "Tracker per issue (waktu per tugas)",
+      "—",
+      "—",
+      "✓"
+    ],
+    [
+      "Dukungan",
+      "Pemasangan dibantu + chat jam kerja",
+      "Pemasangan dibantu + chat prioritas",
+      "Pemasangan dibantu + chat prioritas + pendampingan"
+    ]
+  ],
+  "note": "Harga sudah mencakup infrastruktur, pemeliharaan sistem, dan bantuan pemasangan.",
+  "addons": [
+    {
+      "name": "Presensi & lokasi",
+      "monthly": 2000,
+      "unit": "karyawan/bln",
+      "desc": "Cek lokasi karyawan saat bekerja dan lock lokasi saat WFO",
+      "applies_to": "paket Aktivitas, Bukti Visual, atau Waktu Per Tugas"
+    }
+  ],
+  "terms": [
+    "Bayar bulanan, berhenti kapan saja — tanpa kontrak tahunan wajib",
+    "Tanpa biaya pemasangan terpisah — tim lokal membantu sampai agen terpasang di seluruh tim"
+  ],
+  "_terms": "Keputusan user 1 Okt 2026 (bulanan, berhenti kapan saja). Belum tertulis di BKB §3 — tambahkan di BKB agar satu sumber.",
+  "_schemes": "name = nama paket yang tampil di website (tanpa kata 'Skema'). id dipakai untuk checkout {skema}."
+}

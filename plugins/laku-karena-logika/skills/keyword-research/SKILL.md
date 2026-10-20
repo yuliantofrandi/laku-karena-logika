@@ -100,13 +100,14 @@ Semua Match Type `Phrase` untuk awal. Keyword yang khusus SEO ditandai di kolom 
 Jml Keyword | Title Tag | Char | Cek | Meta Description | Char | Cek | H1 | Primary Keyword |
 Secondary Keyword | Isi Wajib di Halaman | Internal Link ke.
 
-- Title tag **40–60 karakter**, meta description **120–160**. Verifikasi pakai rumus, bukan hitung manual:
+- Title tag **40–60 karakter**, meta description **120–155**. Verifikasi pakai rumus, bukan hitung manual:
   `=LEN(F2)` dan `=IF(LEN(F2)>60,"Terlalu panjang",IF(LEN(F2)<40,"Terlalu pendek","OK"))`
 - Jml Keyword: `=COUNTIF('Keyword Plan'!$B$2:$B$<last>,B2)`
 - Baris TOTAL: `=SUM(...)` + `=IF(E<tot>=<jumlah keyword>,"Semua keyword ter-mapping","Ada keyword tanpa halaman — cek kolom URL Slug di sheet 1")`
 - H1 dibuat **berbeda** dari Title Tag (Title untuk SERP, H1 untuk pembaca).
 - Slug pendek, **tanpa angka tahun** (supaya tidak perlu redirect tiap tahun).
 - Jangan tempel nama brand di Title; sebutkan sisa ruang karakternya ke user.
+- Rumus Cek meta: `=IF(LEN(I2)>155,"Terlalu panjang",IF(LEN(I2)<120,"Terlalu pendek","OK"))` — batas 155 dipakai juga oleh skill `website-seo`.
 
 **Sheet 3 · Negative Keywords (Ads)** — Kategori | Negative Keyword | Match Type | Level Pemasangan | Alasan.
 Kategori wajib: nama kompetitor, pencari gratis, DIY/tutorial, developer/akademik, segmen salah
