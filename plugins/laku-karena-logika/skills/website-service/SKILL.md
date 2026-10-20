@@ -16,6 +16,8 @@ Pengguna punya dua lini bisnis software:
 | **Jasa / service** (software house, outsourcing, dedicated team, managed services) | **website-service** (ini) | Menjual tim & kemampuan. Tanpa harga. CTA ke WhatsApp sales. Banyak halaman layanan per keyword + halaman lokal (kota). Bukti: portfolio, klien, tim, video. |
 | **Produk SaaS** | **website-seo** | Menjual produk. Fitur, harga/paket, trial/daftar, dokumentasi. |
 
+Teknologi keduanya **sama**: Cloudflare Pages + Pages Functions + CMS Lakukan (Blog/Portfolio/Panduan dirender Functions, artikel baru tampil ≤ 10 menit). Bedanya ada di susunan navbar, harga (SaaS tampil, jasa tidak), CTA (checkout vs WhatsApp), dan cara merakit halaman statis (website-seo memakai `build.py` + pemeriksa aturan; website-service menulis HTML langsung).
+
 Kalau ragu, tanya: "yang dijual tim/jasa atau produk/langganan software?"
 
 ## Bahan yang diminta sebelum mulai

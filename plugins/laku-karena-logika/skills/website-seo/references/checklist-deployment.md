@@ -21,13 +21,20 @@
 4. Pastikan setiap fitur yang disebut di website sudah benar-benar tersedia (BKB adalah rancangan; website adalah janji ke pembeli).
 5. Jalankan `python3 build.py`, harus berakhir dengan `OK`.
 
-## Hosting (pilih salah satu: semuanya static + CDN + HTTP/2/3 + Brotli)
-- Cloudflare Pages / Netlify / Vercel: *build command* kosong, *output directory* `dist`.
-- Aktifkan **clean URL** (folder `/slug/index.html` sudah disiapkan) dan arahkan `404.html`.
-- Pastikan `/slug` disajikan **tanpa redirect** ke `/slug/` (canonical, sitemap, dan link internal memakai `/slug`). Cek dengan `curl -I https://domain/slug`, harus `200`, bukan `301`/`308`.
+## Hosting: Cloudflare Pages + Functions (sama dengan website-service)
+Blog & Panduan dirender Functions, jadi hosting statis biasa (Netlify/Vercel/cPanel) **tidak** cukup.
+1. Push folder proyek ke repo GitHub (private). `dist/` boleh tidak di-commit; commit `data/lakukan-cache.json` sebagai cadangan bila API gagal saat build.
+2. Cloudflare → Workers & Pages → Create → Pages → **Connect to Git** → pilih repo.
+   - Root directory: `website` (folder yang berisi `build.py`, `functions/`, `wrangler.toml`).
+   - Build command: `python3 build.py` · Output directory: `dist`. Build ERROR = deploy dibatalkan (gerbang kualitas otomatis).
+3. Setiap `git push` ke `main` → build + deploy otomatis ±1 menit. Branch lain mendapat URL preview.
+4. Custom domain: apex + `www` (CNAME proxied), Redirect Rule `www` → apex 301.
+- `build.py` menulis `slug.html`: Cloudflare Pages menyajikannya di `/slug` **tanpa redirect** (folder `slug/index.html` akan dialihkan 308 ke `/slug/`). Cek `curl -I https://domain/slug` → `200`.
+- `build.py` juga menulis `_routes.json` (Functions tidak dipanggil untuk `/static/*`), `_headers`, `_redirects` (URL lama "(SEO saja)" → `/blog/<slug>` 301), dan `robots.txt`. `404.html` dipakai Pages dan Functions.
+- Artikel CMS tampil ≤ 10 menit (cache edge Functions). Perubahan CSS/menu baru tampil di Blog/Panduan setelah deploy berikutnya (kunci cache memuat id build).
 - Paksa **HTTPS** dan pilih satu versi domain (www atau tanpa www) dengan redirect 301.
 
-## Header cache (contoh `_headers` Netlify/Cloudflare Pages)
+## Header cache (`_headers` dibuat otomatis oleh build; contoh isinya)
 ```
 /*
   Cache-Control: public, max-age=0, must-revalidate

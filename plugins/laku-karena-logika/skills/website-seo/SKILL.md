@@ -1,6 +1,6 @@
 ---
 name: website-seo
-description: Membangun website marketing statis (sales page + landing page SEO/Ads + halaman White Label) untuk produk SaaS/GaaS mana pun dari Business Knowledge Base (BKB) dan keyword plan Excel hasil keyword-research — copywriting AIDA/PAS yang jujur, SEO on-page, schema JSON-LD, dan target hijau PageSpeed (CSS inline, tanpa JS). Pakai skill ini setiap kali user ingin "buat website dari BKB", "buat landing page/sales page", "website dari keyword plan/page brief", "halaman SEO", "landing page Google Ads", menulis isi halaman per slug, atau merevisi website yang sudah dibangun skill ini — bahkan tanpa menyebut kata "website-seo". Skill hilir dari business-knowledge dan keyword-research dalam AI Marketing OS.
+description: Membangun website marketing (halaman statis + Blog/Panduan lewat Cloudflare Pages Functions) berupa (sales page + landing page SEO/Ads + halaman White Label) untuk produk SaaS/GaaS mana pun dari Business Knowledge Base (BKB) dan keyword plan Excel hasil keyword-research — copywriting AIDA/PAS yang jujur, SEO on-page, schema JSON-LD, dan target hijau PageSpeed (CSS inline, tanpa JS di halaman statis). Untuk website JASA (software house, outsourcing) pakai skill website-service. Pakai skill ini setiap kali user ingin "buat website dari BKB", "buat landing page/sales page", "website dari keyword plan/page brief", "halaman SEO", "landing page Google Ads", menulis isi halaman per slug, atau merevisi website yang sudah dibangun skill ini — bahkan tanpa menyebut kata "website-seo". Skill hilir dari business-knowledge dan keyword-research dalam AI Marketing OS.
 ---
 
 # Website SEO dari BKB + Keyword Plan
@@ -14,8 +14,11 @@ Mengubah dua dokumen hulu menjadi website statis siap deploy:
 
 Website = HTML statis + CSS inline, dirakit `scripts/build.py` (Python standar, tanpa dependensi) yang **sekaligus memeriksa aturan** di bawah. Bahasa deliverable: Indonesia.
 
+**Teknologi sama dengan skill `website-service`: Cloudflare Pages + Pages Functions + CMS Lakukan.** Halaman statis (beranda, landing, harga, white label, legal) dirakit `build.py` ke `dist/` sebagai `slug.html`. **Blog & Panduan dirender Functions** (`functions/`) langsung dari API Lakukan memakai kerangka buatan build (`dist/_templates/shell-*.html`), jadi artikel baru/ubahan di CMS tampil ≤ 10 menit **tanpa build ulang**. Kolom footer Blog/Panduan di semua halaman juga ikut CMS (`functions/_middleware.js`). `sitemap.xml` dibuat Functions (statis + semua artikel). Deploy: hubungkan repo GitHub di Cloudflare Pages (lihat `references/checklist-deployment.md`).
+
 Bundel skill ini:
 - `scripts/build.py` — perakit + pemeriksa aturan. Salin ke root folder website.
+- `assets/starter/functions/` + `assets/starter/wrangler.toml` — Cloudflare Pages Functions untuk Blog, Panduan, sitemap, dan footer CMS. Salin apa adanya ke `website/functions/` dan `website/wrangler.toml` (isi `name`). Markup Blog/Panduan ada di `functions/_lib/halaman.js` (port dari `lakukan.py`): ubah di **kedua** file supaya build dan situs tetap sama.
 - `scripts/brief_to_json.py` — Excel → `data/brief.json` (butuh `openpyxl`, cukup di venv sementara).
 - `scripts/ilustrasi.py` — generator ilustrasi SVG (mockup UI & konsep) dari `data/ilustrasi.json`. Salin ke root folder website, di samping `build.py`.
 - `scripts/og_image.py` — og:image 1200×630 PNG dari brand/tagline/deskripsi. Salin ke `website/tools/`.
@@ -52,7 +55,7 @@ Detailnya ada di reference masing-masing. Build memberi ERROR/WARNING untuk seba
 - **Verifikasi** di 1440 dan 375px, termasuk setiap halaman artikel CMS:
   - tanpa scroll samping;
   - kolom seimbang;
-  - pratinjau memakai `scripts/serve.py` (tanpa cache).
+  - pratinjau memakai `npx wrangler@4 pages dev dist` (lengkap dengan Blog/Panduan); `scripts/serve.py` hanya untuk halaman statis.
 
 ## Langkah 0 — Baca input, lalu tanya SEKALI
 
@@ -82,6 +85,8 @@ website/
   data/pricing.json     ← dari BKB §3
   data/social-proof.json
   content/<slug>.html   ← satu file per slug; "/" = index.html
+  functions/            ← assets/starter/functions (Blog, Panduan, sitemap, footer CMS)
+  wrangler.toml         ← assets/starter/wrangler.toml (pages_build_output_dir = "dist")
   static/style.css      ← ganti token warna di :root dengan warna brand
   static/logo.svg       ← wajib punya width & height
   ilustrasi.py          ← scripts/ilustrasi.py
@@ -138,7 +143,7 @@ Target Python 3.9 (bawaan macOS): **jangan pakai backslash di dalam ekspresi f-s
 
 ## Langkah 4 — Verifikasi di browser
 
-Sajikan `dist/` dengan `python3 scripts/serve.py <port> dist` (server tanpa cache, supaya pane tidak menampilkan HTML lama setelah build ulang), lewat `.claude/launch.json` + `preview_start`, lalu periksa:
+Sajikan dengan `npx wrangler@4 pages dev dist --port <port>` dari folder `website/` (menjalankan Functions Blog/Panduan seperti di Cloudflare; `scripts/serve.py <port> dist` cukup untuk halaman statis saja), lewat `.claude/launch.json` + `preview_start`, lalu periksa:
 - Screenshot desktop dan mobile (375px): nav tidak terbungkus dua baris, harga tidak meluber, logo rapat.
 - Lewat `javascript_tool`: `performance.getEntriesByType('resource')` harus **kosong** (nol request eksternal), CLS = 0, `scrollWidth <= innerWidth` di mobile, urutan heading, tipe JSON-LD.
 - **Ilustrasi:** buat lembar kontak semua SVG (satu halaman HTML berisi grid `<img>`) dan periksa satu per satu: teks tidak terpotong, tidak menumpuk, dan warna sesuai brand. Lalu di mobile: CLS 0, elemen LCP = gambar hero atau H1, dan gambar di bawah lipatan `loading="lazy"`.

@@ -11,6 +11,7 @@ tapi wajib dilaporkan ke user.
 """
 import html
 import json
+import time
 import re
 import shutil
 import sys
@@ -71,7 +72,8 @@ def content_file(slug):
 
 
 def out_file(slug):
-    return DIST / ("index.html" if slug == "/" else slug.strip("/") + "/index.html")
+    # Cloudflare Pages menyajikan slug.html di /slug tanpa redirect (folder slug/index.html dialihkan 308 ke /slug/)
+    return DIST / ("index.html" if slug == "/" else slug.strip("/") + ".html")
 
 
 # ---------- komponen dari data ----------
@@ -762,8 +764,8 @@ def render(S, page, body, P, all_pages, indexable):
 <footer class="site-footer"><div class="wrap{' kolom-4' if PANDUAN_FOOT else ''}">
 <div class="foot-brand">{logo(S)}<p>{S["tagline"]}</p><p class="muted">{html.escape(S["description"])}</p>{foot_trust(S)}</div>
 <div><h2>{label_menu}</h2><ul>{flinks(produk)}</ul></div>
-<div class="foot-blog"><h2>Blog</h2><ul>{"".join(f'<li><a href="{u}" title="{html.escape(t)}">{html.escape(judul_pendek(t))}</a></li>' for t, u in BLOG_FOOT)}<li><a href="/blog">Semua artikel <span aria-hidden="true">→</span></a></li></ul></div>
-{('<div><h2>Panduan</h2><ul>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan <span aria-hidden="true">→</span></a></li></ul></div>') if PANDUAN_FOOT else ""}
+<div class="foot-blog"><h2>Blog</h2><ul data-blog-foot>{"".join(f'<li><a href="{u}" title="{html.escape(t)}">{html.escape(judul_pendek(t))}</a></li>' for t, u in BLOG_FOOT)}<li><a href="/blog">Semua artikel <span aria-hidden="true">→</span></a></li></ul></div>
+{('<div><h2>Panduan</h2><ul data-panduan-foot>' + "".join(f'<li><a href="{u}">{html.escape(n)}</a></li>' for n, u in PANDUAN_FOOT) + '<li><a href="/panduan">Semua panduan <span aria-hidden="true">→</span></a></li></ul></div>') if PANDUAN_FOOT else ""}
 </div><div class="wrap foot-bottom"><span>© {TAHUN} {S["brand"]}. Hak cipta dilindungi.</span>{foot_legal(S)}</div></footer>
 {float_bar(S)}
 {LANGGANAN.modal(S, P) if S.get("langganan") is not None else ''}
@@ -1217,39 +1219,52 @@ def main():
                   "h1": lg["name"], "eyebrow": "Dokumen legal",
                   "lead": lg.get("lead", "Ketentuan yang berlaku untuk pengguna {brand}.").replace("{brand}", S["brand"]),
                   "sederhana": True, "dokumen": src.exists()}
-            out = DIST / lg["slug"].strip("/") / "index.html"
+            out = out_file(lg["slug"])
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(render(S, pg, body_lg, P, pages, False), encoding="utf-8")
-        for pg, body_pd, ok in [(a, b, True) for a, b in pd_pages] + bl_pages:
-            out = DIST / pg["slug"].strip("/") / "index.html"
-            out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(render(S, pg, body_pd, P, pages, ok), encoding="utf-8")
-        # pengalihan URL lama halaman "(SEO saja)" → artikel blog (host statis: meta refresh + canonical)
+        # Blog & Panduan TIDAK ditulis statis: dirender Cloudflare Pages Functions (functions/) dari API Lakukan,
+        # jadi artikel baru tampil ≤ 10 menit tanpa build ulang. Build menyiapkan kerangka + konfigurasinya.
+        tpl = DIST / "_templates"
+        tpl.mkdir(parents=True, exist_ok=True)
+        base = S.get("site_url", "")
+        for bagian in ("blog", "panduan"):
+            kerangka = {"slug": f"/{bagian}", "name": "%%EYEBROW%%", "title": "%%TITLE%%", "meta": "%%META%%",
+                        "h1": "%%H1%%", "eyebrow": "%%EYEBROW%%", "lead": "%%LEAD%%", "sederhana": True, "mentah": True}
+            h = render(S, kerangka, "%%BODY%%", P, pages, True)
+            if base:
+                h = (h.replace(f'<link rel="canonical" href="{base}/{bagian}">', f'<link rel="canonical" href="{base}%%PATH%%">')
+                      .replace(f'<meta property="og:url" content="{base}/{bagian}">', f'<meta property="og:url" content="{base}%%PATH%%">'))
+            h = h.replace('<meta name="robots" content="index,follow">', '<meta name="robots" content="%%ROBOTS%%">')
+            h = re.sub(r'<script type="application/ld\+json">.*?</script>', '<script type="application/ld+json">%%JSONLD%%</script>', h, count=1, flags=re.S)
+            (tpl / f"shell-{bagian}.html").write_text(h, encoding="utf-8")
+        noindex = sorted(pg["slug"] for pg, _, ok in bl_pages if not ok and pg["slug"].startswith("/blog/"))
+        (tpl / "lakukan.json").write_text(json.dumps({
+            **{k: v for k, v in LK.items() if k != "company_id"}, "brand": S["brand"], "tagline": S["tagline"],
+            "site_url": base, "panduan": "/panduan" in top_nav, "noindex": noindex, "build": str(int(time.time())),
+            "cta_html": f'<section class="band alt end"><div class="wrap">{cta(S, P)}</div></section>'},
+            ensure_ascii=False), encoding="utf-8")
+        (tpl / "sitemap-statis.txt").write_text("".join(p["slug"] + "\n" for p, _, ok in built if ok), encoding="utf-8")
+        # Functions hanya untuk HTML; aset statis langsung dari CDN tanpa memanggil Functions
+        (DIST / "_routes.json").write_text(json.dumps({"version": 1, "include": ["/*"], "exclude": ["/static/*"]}), encoding="utf-8")
+        (DIST / "_headers").write_text("/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n"
+                                       "/static/*\n  Cache-Control: public, max-age=31536000, immutable\n"
+                                       "/_templates/*\n  X-Robots-Tag: noindex\n", encoding="utf-8")
+        # URL lama halaman "(SEO saja)" → artikel blog: redirect 301 Cloudflare Pages (_redirects)
         ada_blog = {pg["slug"] for pg, _, _ in bl_pages}
+        alih = []
         for p in seo_saja:
             baru = "/blog" + p["slug"]
             if baru not in ada_blog:
                 warn(p["slug"], f'halaman "(SEO saja)" belum ada di Blog CMS ({baru}) → jalankan tools/ekspor_blog.py + tools/unggah_blog.py')
                 continue
-            tujuan = (S["site_url"] + baru) if S.get("site_url") else baru
-            out = DIST / p["slug"].strip("/") / "index.html"
-            out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(f'<!doctype html><html lang="id"><head><meta charset="utf-8"><title>Dipindahkan ke {html.escape(p["h1"])}</title>'
-                           f'<meta name="robots" content="noindex"><link rel="canonical" href="{tujuan}">'
-                           f'<meta http-equiv="refresh" content="0; url={baru}"></head><body><p>Halaman ini pindah ke '
-                           f'<a href="{baru}">{html.escape(p["h1"])}</a>.</p></body></html>', encoding="utf-8")
-        robots = "User-agent: *\nAllow: /\n"
+            alih.append(f"{p['slug']} {baru} 301\n")
+        (DIST / "_redirects").write_text("".join(alih), encoding="utf-8")
+        robots = "User-agent: *\nAllow: /\nDisallow: /_templates/\n"
         if S.get("site_url"):
-            urls = "".join(f"<url><loc>{S['site_url']}{p['slug']}</loc></url>" for p, _, ok in built if ok)
-            urls += "".join(f"<url><loc>{S['site_url']}{pg['slug']}</loc></url>" for pg, _ in pd_pages)
-            urls += "".join(f"<url><loc>{S['site_url']}{pg['slug']}</loc></url>" for pg, _, ok in bl_pages if ok)
-            (DIST / "sitemap.xml").write_text(
-                f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>',
-                encoding="utf-8")
             robots += f"Sitemap: {S['site_url']}/sitemap.xml\n"
         (DIST / "robots.txt").write_text(robots, encoding="utf-8")
 
-    print(f"{len(built)} halaman diperiksa" + (f" + {len(pd_pages)} halaman panduan" if pd_pages else "") + (f" + {sum(ok for _, _, ok in bl_pages)} halaman blog" if bl_pages else ""))
+    print(f"{len(built)} halaman diperiksa" + (f" + {len(pd_pages)} halaman panduan" if pd_pages else "") + (f" + {sum(ok for _, _, ok in bl_pages)} halaman blog" if bl_pages else "") + " (Blog & Panduan dirender Cloudflare Functions)")
     for p, _, ok in built:
         print(f"  {p['slug']:<34} {p.get('_words', 0):>5} kata  {'index' if ok else 'NOINDEX'}")
     for w in warnings:

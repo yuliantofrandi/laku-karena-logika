@@ -1,0 +1,4 @@
+# Cloudflare Pages: website/ = root proyek (functions/ dibaca otomatis), dist/ = hasil build.py
+name = "<nama-proyek>"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"

@@ -1,7 +1,15 @@
-"""Server pratinjau dist/ tanpa cache browser, supaya hasil build terbaru selalu tampil."""
-import http.server, sys, functools
+"""Server pratinjau dist/ tanpa cache browser, supaya hasil build terbaru selalu tampil.
+
+Hanya halaman statis. Blog & Panduan (Cloudflare Functions) dipratinjau dengan: npx wrangler@4 pages dev dist
+"""
+import http.server, sys, functools, os
 
 class NoCache(http.server.SimpleHTTPRequestHandler):
+    def translate_path(self, path):
+        # sama seperti Cloudflare Pages: /slug → slug.html
+        p = super().translate_path(path)
+        return p + ".html" if not os.path.exists(p) and os.path.exists(p + ".html") else p
+
     def end_headers(self):
         self.send_header("Cache-Control", "no-store")
         super().end_headers()

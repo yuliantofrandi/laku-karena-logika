@@ -11,7 +11,8 @@ Disetujui user pada 4 Okt 2026 untuk website Timebase. Instruksi user: "tambahka
 - Hanya **kategori anak dari `kategori_induk`** (default `docs`) yang ditampilkan. Artikel di kategori induk itu sendiri atau di kategori lain (mis. Blog, artikel uji "aaa"/"ccc") dilewati.
 - Konfigurasi di `site.json`: `"lakukan": {"api": …, "company_slug": "<slug>", "kategori_panduan": "docs", "kategori_blog": "blog", "blog_lead": "…"}`. Menu utama berurutan **Solusi · Harga · Blog · Panduan** (`… ["/harga","Harga"], ["/blog","Blog"], ["/panduan","Panduan"]`), mengikuti alur pembeli: kenali → harga → belajar & yakin (Blog) → Panduan untuk pelanggan. Urutan ini dipilih user pada 5 Okt 2026. Menu Panduan opsional (hanya bila produk punya artikel bantuan).
 - Build menyimpan data ke `data/lakukan-cache.json`. Bila API gagal, build memakai cache (WARNING).
-- Artikel baru di CMS baru tampil setelah build ulang dan deploy.
+- **Tayang lewat Cloudflare Pages Functions** (`functions/blog`, `functions/panduan`, `functions/_lib/halaman.js`): artikel baru/ubahan di CMS tampil ≤ 10 menit tanpa build ulang. Build tetap mengambil API untuk validasi, link internal, dan isi awal footer.
+- API sekarang mengirim kategori artikel sebagai **`categories` (array)**, bukan `category`. `lakukan.py` (`_kat`) dan `lakukan.js` (`katSlug`) menangani keduanya. Tanpa ini build diam-diam memakai cache lama.
 
 ## Struktur halaman (`scripts/lakukan.py`)
 - **`/panduan` (hub):**
@@ -89,7 +90,7 @@ User (4 Okt 2026): halaman keyword plan berlabel **"(SEO saja)"** tidak dibuat s
    - **Kunci API hanya lewat env.** Jangan disimpan di file proyek, skill, atau memori. Sarankan user merotasi kunci yang pernah ditempel di chat.
 3. `build.py` mengurus sisanya secara otomatis:
    - halaman `ad_group: "(SEO saja)"` **tidak dibangun statis**;
-   - URL lamanya menjadi halaman pengalihan (meta refresh + canonical ke `/blog/<slug>`, noindex);
+   - URL lamanya dialihkan **301** ke `/blog/<slug>` lewat `dist/_redirects` (Cloudflare Pages);
    - link wajib dari keyword plan diterima sebagai `/blog/<slug>`;
    - gambar halaman itu tidak dianggap "tidak dipakai";
    - `legal_reviewed: false` untuk URL lama ikut membuat artikel blognya noindex (mis. UU PDP yang belum direview ahli hukum).
