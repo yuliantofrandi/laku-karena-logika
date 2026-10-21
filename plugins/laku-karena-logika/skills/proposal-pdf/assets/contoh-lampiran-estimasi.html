@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Lampiran Estimasi Delivery Point - Alldila Seats</title>
+<style>
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+:root{--teal:#259ead;--t7:#1b7a86;--t8:#176a74;--t50:#eaf6f7;--ink:#1f2a2e;--muted:#58585a;--subtle:#6b7072;--border:#d5dfe0;--s2:#f4f7f6;--green:#93cc7c}
+@page{size:A4;margin:16mm 16mm 18mm 16mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:M,sans-serif;color:var(--ink);font-size:9pt;line-height:1.5}
+.hero{position:relative;margin:-16mm -16mm 0;padding:12mm 16mm 4mm;overflow:hidden}
+.hero{background:#fff url(bg_flat.jpg) right top/120mm auto no-repeat}
+
+.hero>*{position:relative;z-index:1}
+.logo{height:19mm;display:block;margin-left:-2mm}
+.eyebrow{margin-top:6mm;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:8.5pt}
+h1{margin:1mm 0 0;font-size:24pt;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h1 span{color:var(--teal)}
+.meta{display:grid;grid-template-columns:1.1fr 1fr;gap:5mm;margin-top:5mm}
+.card{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm;background:#fff}
+.card.soft{background:var(--t50);border-color:var(--t50)}
+.kv{display:grid;grid-template-columns:24mm 1fr;row-gap:1mm}
+.kv b{font-weight:600;color:var(--subtle);font-size:8.5pt}
+.lbl{font-size:8pt;font-weight:600;color:var(--t7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1mm}
+.to{font-weight:700;font-size:10.5pt}
+.intro{margin:5mm 0 0;color:var(--muted);font-size:10pt}
+h2{font-size:12pt;font-weight:700;margin:6mm 0 2.5mm;display:flex;align-items:center;gap:3mm;break-after:avoid}
+h2 i{font-style:normal;display:inline-grid;place-items:center;width:7.5mm;height:7.5mm;border-radius:2mm;background:var(--teal);color:#fff;font-size:10pt}
+.svc{border:1px solid var(--border);border-radius:4mm;padding:3mm 5mm;margin-bottom:3mm;break-inside:avoid}
+.svc h3{margin:0 0 1.5mm;font-size:10.5pt;font-weight:700}
+.svc h3 small{font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm}
+ul{margin:0;padding-left:4.5mm}
+li{margin:.3mm 0}
+li::marker{color:var(--teal)}
+li b{font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:9.2pt;break-inside:avoid}
+th{background:var(--t7);color:#fff;font-weight:600;text-align:left;padding:2.4mm 3mm;font-size:8.6pt}
+th:first-child{border-top-left-radius:2.5mm}th:last-child{border-top-right-radius:2.5mm}
+td{padding:2mm 3mm;border-bottom:1px solid var(--border);vertical-align:top}
+.r{text-align:right;white-space:nowrap}.c{text-align:center}
+td .d{display:block;color:var(--subtle);font-size:8.3pt;margin-top:.8mm}
+tr.sub td{border:0;padding:1.6mm 3mm;font-weight:600}
+tr.sub td:first-child{text-align:right;color:var(--muted)}
+tr.disc td{color:#3c7a2a}
+tr.grand td{background:var(--t50);font-weight:800;font-size:10.5pt;padding:3mm;border:0}
+tr.grand td:first-child{text-align:right;border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{color:var(--t8);border-bottom-right-radius:2.5mm}
+.note{margin-top:3mm}
+.bank{display:flex;gap:4mm;align-items:center;background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0 4mm}
+.bank b{font-weight:700}
+.closing{margin-top:8mm;padding:4mm 5mm;border-left:1.2mm solid var(--green);background:var(--s2);border-radius:0 3mm 3mm 0;color:var(--muted);break-inside:avoid}
+.sign{break-inside:avoid}
+.sign .agree{margin:0 0 3mm}
+.sign .place{margin:0 0 4mm;color:var(--muted)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.sbox{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm}
+.party{font-size:7.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t7)}
+.co{font-weight:700;font-size:10.5pt;margin-top:.5mm}
+.area{position:relative;height:30mm;margin:3mm 0;border-bottom:1px solid var(--ink)}
+.ttd{position:absolute;left:50%;bottom:1mm;transform:translateX(-50%);height:27mm;max-width:95%;object-fit:contain}
+.stamp{position:absolute;right:0;bottom:1mm;font-size:7pt;color:#9aa5a8}
+.meterai{position:absolute;left:2mm;top:3mm;width:20mm;height:22mm;border:1px dashed #9aa5a8;border-radius:1.5mm;display:grid;place-items:center;text-align:center;font-size:6.8pt;color:#9aa5a8;line-height:1.3}
+table.f{font-size:8.8pt;break-inside:auto}
+table.f td{border:0;padding:.8mm 0}
+table.f td:first-child{width:18mm;color:var(--subtle)}
+table.f td.blank{border-bottom:1px dotted #9aa5a8}
+.keep{break-inside:avoid}
+h3.mod{font-size:10.5pt;font-weight:700;margin:4mm 0 2mm;display:flex;justify-content:space-between;break-after:avoid}
+h3.mod small{font-weight:600;color:var(--t7);font-size:9pt}
+table.est{break-inside:auto}
+table.est tr{break-inside:avoid}
+table.est td.n{width:9mm;color:var(--subtle)}
+table.est td.k{width:34mm;color:var(--muted)}
+table.est td.dp,table.est th.dp{width:16mm;text-align:right;white-space:nowrap}
+tr.opt td{color:var(--subtle)}
+.badge{display:inline-block;font-size:7.5pt;font-weight:600;color:var(--t7);background:var(--t50);border-radius:1.5mm;padding:.3mm 1.6mm;margin-left:1.5mm}
+</style></head><body>
+
+<section class="hero">
+  <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
+  <div class="eyebrow">Lampiran Estimasi Delivery Point</div>
+  <h1>Estimasi Delivery Point<br><span>Presentasi Kursi 3D Interaktif</span></h1>
+
+  <div class="meta">
+    <div class="card">
+      <div class="kv">
+        <b>No. Penawaran</b><span>VEN/Kursi3D/2026/001</span>
+        <b>Project</b><span>Presentasi Kursi 3D Interaktif</span>
+        <b>Tanggal</b><span>19 Oktober 2026</span>
+      </div>
+    </div>
+    <div class="card soft">
+      <div class="lbl">Kepada Yth.</div>
+      <div class="to">Bapak Candra</div>
+      <div>Owner, Alldila Seats</div>
+      <div style="color:var(--muted)">Jl. Industri Wendit Barat 59-61, Malang</div>
+    </div>
+  </div>
+
+  <p class="intro">Lampiran ini merinci estimasi Delivery Point (DP) untuk setiap item pekerjaan sebagai dasar paket pada Penawaran No. VEN/Kursi3D/2026/001. Bobot: ringan 0,25 DP · kecil 0,5 DP · menengah 0,75 DP · besar 1 DP; meeting review dan pelatihan 1 DP = 1 jam.</p>
+</section>
+
+<h2><i>1</i>Rincian per Modul</h2>
+
+<h3 class="mod">Web – Konfigurator Kursi 3D <small>Subtotal 27 DP</small></h3>
+<table class="est">
+  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
+  <tbody>
+    <tr><td class="n">1</td><td>Setup viewer 3D dan pemuatan model kursi</td><td class="k">Besar × 6</td><td class="dp">6</td></tr>
+    <tr><td class="n">2</td><td>Kontrol putar 360°, zoom, dan sudut kamera</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
+    <tr><td class="n">3</td><td>Ubah warna per komponen (rangka, jok, sandaran)</td><td class="k">Besar × 5</td><td class="dp">5</td></tr>
+    <tr><td class="n">4</td><td>Panel pilihan warna dan material</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
+    <tr><td class="n">5</td><td>Mode presentasi layar penuh</td><td class="k">Kecil × 4</td><td class="dp">2</td></tr>
+    <tr><td class="n">6</td><td>Ekspor detail konfigurasi ke PDF</td><td class="k">Besar × 5</td><td class="dp">5</td></tr>
+    <tr><td class="n">7</td><td>Optimasi performa dan tampilan responsif tablet</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
+    <tr class="sub"><td colspan="3">Subtotal Web</td><td class="dp">27</td></tr>
+  </tbody>
+</table>
+
+<h3 class="mod">UI/UX <small>Subtotal 9 DP</small></h3>
+<table class="est">
+  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
+  <tbody>
+    <tr><td class="n">1</td><td>Wireframe alur konfigurator</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
+    <tr><td class="n">2</td><td>Desain UI layar konfigurator dan presentasi</td><td class="k">Besar × 4</td><td class="dp">4</td></tr>
+    <tr><td class="n">3</td><td>Desain template PDF hasil ekspor</td><td class="k">Kecil × 4</td><td class="dp">2</td></tr>
+    <tr class="sub"><td colspan="3">Subtotal UI/UX</td><td class="dp">9</td></tr>
+  </tbody>
+</table>
+
+<h3 class="mod">Meeting Review &amp; Pelatihan <small>Subtotal 7 DP</small></h3>
+<table class="est">
+  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
+  <tbody>
+    <tr><td class="n">1</td><td>Kickoff dan review desain</td><td class="k">2 jam</td><td class="dp">2</td></tr>
+    <tr><td class="n">2</td><td>Review progres (3 sesi)</td><td class="k">3 jam</td><td class="dp">3</td></tr>
+    <tr><td class="n">3</td><td>Pelatihan penggunaan untuk tim sales</td><td class="k">2 jam</td><td class="dp">2</td></tr>
+    <tr class="sub"><td colspan="3">Subtotal Meeting &amp; Pelatihan</td><td class="dp">7</td></tr>
+  </tbody>
+</table>
+
+<div class="keep">
+<h2><i>2</i>Ringkasan</h2>
+<table>
+  <thead><tr><th>Modul</th><th class="r">Estimasi DP</th></tr></thead>
+  <tbody>
+    <tr><td>Web – Konfigurator Kursi 3D</td><td class="r">27</td></tr>
+    <tr><td>UI/UX</td><td class="r">9</td></tr>
+    <tr><td>Meeting Review &amp; Pelatihan</td><td class="r">7</td></tr>
+    <tr class="sub"><td>Total estimasi</td><td class="r">43 DP</td></tr>
+    <tr class="sub"><td>DP paket (1 bulan × 50 DP)</td><td class="r">50 DP</td></tr>
+    <tr class="grand"><td>Sisa cadangan revisi / UAT</td><td class="r">7 DP</td></tr>
+  </tbody>
+</table>
+
+<h3 class="mod" style="margin-top:5mm">Item Opsional <small>Tidak termasuk dalam paket</small></h3>
+<table class="est">
+  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
+  <tbody>
+    <tr class="opt"><td class="n">1</td><td>Katalog multi-produk kursi</td><td class="k">Besar × 6</td><td class="dp">+6</td></tr>
+    <tr class="opt"><td class="n">2</td><td>Bagikan konfigurasi lewat tautan</td><td class="k">Menengah × 4</td><td class="dp">+3</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="keep">
+<h2><i>3</i>Asumsi &amp; Catatan</h2>
+<ul>
+  <li>Estimasi dan bobot DP di atas disepakati di awal sebagai dasar pengerjaan.</li>
+  <li>Perubahan atau penambahan scope dihitung ulang dan diajukan untuk persetujuan Klien sebelum dikerjakan.</li>
+  <li>Sisa DP dipakai sebagai cadangan revisi dan UAT dalam periode paket yang sama.</li>
+  <li>File model 3D kursi disediakan oleh Klien dalam format yang dapat dimuat di web (mis. GLB/GLTF).</li>
+  <li>Konfigurator berjalan di peramban modern (Chrome, Safari, Edge) pada desktop dan tablet.</li>
+</ul>
+</div>
+</body></html>
