@@ -32,7 +32,7 @@ Urutan WAJIB: brief → aktor & daftar visual → ambil screenshot → samarkan 
 - **Nama proyek** dan **jenis proyek** (lihat tabel di langkah 1; boleh lebih dari satu, mis. Website + CMS + Mobile).
 - **Klien boleh disebut?** Ya → nama & logo klien. Tidak (NDA) → mode anonim: "sebuah media berita nasional", logo dan nama di screenshot disamarkan. Default: anonim bila user tidak menjawab.
 - **Sumber visual**: URL frontend, URL admin (user login SENDIRI di browser; Claude tidak pernah mengetik password), link/folder screenshot mobile app, atau folder screenshot yang sudah ada.
-- **Cerita proyek**: masalah awal klien, apa yang dibangun, fitur andalan, tech stack, durasi, model kerja sama Venturo (**Dedicated Team** atau **Managed Services**).
+- **Cerita proyek**: masalah awal klien, apa yang dibangun, fitur andalan, model kerja sama Venturo (**Dedicated Team** atau **Managed Services**).
 - **Hasil nyata** bila ada: angka trafik, kecepatan, efisiensi proses, jumlah pengguna, skor PageSpeed.
 - **Keyword target** (opsional; bila kosong, skill mengusulkan dari pola di langkah 6).
 - **API key Lakukan**: minta bila belum ada. Pakai hanya lewat env `LAKUKAN_API_KEY`. Jangan tulis ke file atau memori, dan jangan ulangi di chat. Company slug publik untuk verifikasi sudah diketahui (`venturo-web`), tidak perlu ditanyakan.
@@ -87,7 +87,7 @@ Ikuti aturan privasi `article-docs` langkah 2 (`samarkan.py ocr` → `peta.json`
 ## 5. Tulis artikel (±800–1.300 kata, HTML)
 Struktur tetap untuk semua jenis proyek:
 1. **Pembuka** 1–2 paragraf: siapa klien (atau anonim) dan inti solusinya. Keyword utama di paragraf pertama.
-2. **Kotak ringkasan** (`<table>`): Klien · Industri · Layanan · Platform · Tech stack · Durasi.
+2. **Kotak ringkasan** (`<table>`): Klien · Industri · Layanan · Platform. Jangan menanyakan atau menulis tech stack dan durasi proyek.
 3. `<h2>Tantangan</h2>`: masalah **bisnis** klien (bukan teknis), 2–4 poin konkret.
 4. `<h2>Solusi</h2>`: dibagi `<h3>` per aktor/platform (mis. "Website untuk pembaca", "CMS untuk redaksi", "Aplikasi mobile"), masing-masing dengan screenshot-nya.
 5. `<h2>Keunggulan</h2>`: 3–5 fitur pembeda, tiap poin = manfaat bagi klien + bukti visual.
