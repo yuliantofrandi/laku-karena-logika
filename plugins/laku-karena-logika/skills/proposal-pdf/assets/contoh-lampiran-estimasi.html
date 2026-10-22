@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id"><head><meta charset="utf-8"><title>Lampiran Estimasi Delivery Point - Alldila Seats</title>
+<html lang="id"><head><meta charset="utf-8"><title>VEN-PolicyLab-2026-016-Lampiran-Estimasi</title>
 <style>
 @font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
 @font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
@@ -68,112 +68,59 @@ table.f td{border:0;padding:.8mm 0}
 table.f td:first-child{width:18mm;color:var(--subtle)}
 table.f td.blank{border-bottom:1px dotted #9aa5a8}
 .keep{break-inside:avoid}
-h3.mod{font-size:10.5pt;font-weight:700;margin:4mm 0 2mm;display:flex;justify-content:space-between;break-after:avoid}
-h3.mod small{font-weight:600;color:var(--t7);font-size:9pt}
-table.est{break-inside:auto}
-table.est tr{break-inside:avoid}
-table.est td.n{width:9mm;color:var(--subtle)}
-table.est td.k{width:34mm;color:var(--muted)}
-table.est td.dp,table.est th.dp{width:16mm;text-align:right;white-space:nowrap}
-tr.opt td{color:var(--subtle)}
-.badge{display:inline-block;font-size:7.5pt;font-weight:600;color:var(--t7);background:var(--t50);border-radius:1.5mm;padding:.3mm 1.6mm;margin-left:1.5mm}
-</style></head><body>
-
-<section class="hero">
+tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}
+tr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bottom-right-radius:2.5mm}
+@page{size:A4;margin:11mm 12mm 15mm 12mm}
+.hero{margin:-11mm -12mm 0;padding:8mm 12mm 3mm}
+.logo{margin-left:0}
+.mh td{background:var(--t50);font-weight:700;color:var(--t8);border:0;padding:2.2mm 3mm}
+table.est{break-inside:auto;font-size:8.6pt}table.est td{padding:1.05mm 3mm}table.est td.k{color:var(--subtle);white-space:nowrap}
+table.est tr{break-inside:avoid}tr.st td{font-weight:600;border-bottom:0}tr.st td:first-child{text-align:right;color:var(--muted)}
+.h1s h1{font-size:21pt}
+</style><body>
+<section class="hero h1s">
   <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
-  <div class="eyebrow">Lampiran Estimasi Delivery Point</div>
-  <h1>Estimasi Delivery Point<br><span>Presentasi Kursi 3D Interaktif</span></h1>
-
+  <div class="eyebrow">Lampiran Penawaran Layanan</div>
+  <h1>Estimasi Delivery Point<br><span>Platform Pembelajaran Kebijakan</span></h1>
   <div class="meta">
-    <div class="card">
-      <div class="kv">
-        <b>No. Penawaran</b><span>VEN/Kursi3D/2026/001</span>
-        <b>Project</b><span>Presentasi Kursi 3D Interaktif</span>
-        <b>Tanggal</b><span>19 Oktober 2026</span>
-      </div>
-    </div>
+    <div class="card"><div class="kv"><b>Lampiran</b><span>VEN/PolicyLab/2026/016</span><b>Project</b><span>Platform Pembelajaran Kebijakan</span><b>Tanggal</b><span>22 Oktober 2026</span></div></div>
     <div class="card soft">
       <div class="lbl">Kepada Yth.</div>
-      <div class="to">Bapak Candra</div>
-      <div>Owner, Alldila Seats</div>
-      <div style="color:var(--muted)">Jl. Industri Wendit Barat 59-61, Malang</div>
+      <div class="to">Bapak/Ibu Pimpinan</div>
+      <div>Universitas Sebelas Maret (UNS)</div>
+      <div style="color:var(--muted)">Jl. Ir. Sutami No.36A, Surakarta, Jawa Tengah</div>
     </div>
   </div>
-
-  <p class="intro">Lampiran ini merinci estimasi Delivery Point (DP) untuk setiap item pekerjaan sebagai dasar paket pada Penawaran No. VEN/Kursi3D/2026/001. Bobot: ringan 0,25 DP · kecil 0,5 DP · menengah 0,75 DP · besar 1 DP; meeting review dan pelatihan 1 DP = 1 jam.</p>
+  <p class="intro">Lampiran ini merinci estimasi Delivery Point (selanjutnya disebut Poin) setiap pekerjaan berdasarkan System Requirement Brief Klien, dan merupakan bagian tidak terpisahkan dari dokumen penawaran nomor VEN/PolicyLab/2026/016. Poin setiap item merupakan akumulasi tugas di dalamnya (backend, frontend, pengujian) dengan bobot per tugas: ringan 0,25 Poin · kecil 0,5 Poin · menengah 0,75 Poin · besar 1 Poin.</p>
 </section>
-
-<h2><i>1</i>Rincian per Modul</h2>
-
-<h3 class="mod">Web – Konfigurator Kursi 3D <small>Subtotal 27 DP</small></h3>
-<table class="est">
-  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
-  <tbody>
-    <tr><td class="n">1</td><td>Setup viewer 3D dan pemuatan model kursi</td><td class="k">Besar × 6</td><td class="dp">6</td></tr>
-    <tr><td class="n">2</td><td>Kontrol putar 360°, zoom, dan sudut kamera</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
-    <tr><td class="n">3</td><td>Ubah warna per komponen (rangka, jok, sandaran)</td><td class="k">Besar × 5</td><td class="dp">5</td></tr>
-    <tr><td class="n">4</td><td>Panel pilihan warna dan material</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
-    <tr><td class="n">5</td><td>Mode presentasi layar penuh</td><td class="k">Kecil × 4</td><td class="dp">2</td></tr>
-    <tr><td class="n">6</td><td>Ekspor detail konfigurasi ke PDF</td><td class="k">Besar × 5</td><td class="dp">5</td></tr>
-    <tr><td class="n">7</td><td>Optimasi performa dan tampilan responsif tablet</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
-    <tr class="sub"><td colspan="3">Subtotal Web</td><td class="dp">27</td></tr>
-  </tbody>
-</table>
-
-<h3 class="mod">UI/UX <small>Subtotal 9 DP</small></h3>
-<table class="est">
-  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
-  <tbody>
-    <tr><td class="n">1</td><td>Wireframe alur konfigurator</td><td class="k">Menengah × 4</td><td class="dp">3</td></tr>
-    <tr><td class="n">2</td><td>Desain UI layar konfigurator dan presentasi</td><td class="k">Besar × 4</td><td class="dp">4</td></tr>
-    <tr><td class="n">3</td><td>Desain template PDF hasil ekspor</td><td class="k">Kecil × 4</td><td class="dp">2</td></tr>
-    <tr class="sub"><td colspan="3">Subtotal UI/UX</td><td class="dp">9</td></tr>
-  </tbody>
-</table>
-
-<h3 class="mod">Meeting Review &amp; Pelatihan <small>Subtotal 7 DP</small></h3>
-<table class="est">
-  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
-  <tbody>
-    <tr><td class="n">1</td><td>Kickoff dan review desain</td><td class="k">2 jam</td><td class="dp">2</td></tr>
-    <tr><td class="n">2</td><td>Review progres (3 sesi)</td><td class="k">3 jam</td><td class="dp">3</td></tr>
-    <tr><td class="n">3</td><td>Pelatihan penggunaan untuk tim sales</td><td class="k">2 jam</td><td class="dp">2</td></tr>
-    <tr class="sub"><td colspan="3">Subtotal Meeting &amp; Pelatihan</td><td class="dp">7</td></tr>
-  </tbody>
-</table>
+<h2><i>1</i>Ringkasan Estimasi</h2>
+<table><thead><tr><th>Modul</th><th>Platform</th><th class="r">Poin</th></tr></thead><tbody><tr><td>Fondasi & Administrasi</td><td>Web</td><td class="r">61</td></tr><tr><td>UI/UX</td><td>Web & Mobile</td><td class="r">72</td></tr><tr><td>Kanal 1 – Policy Hackathon & Lab Kebijakan</td><td>Web</td><td class="r">77</td></tr><tr><td>Kanal 2 – Micro-Credentials & Sertifikasi (LMS)</td><td>Web</td><td class="r">132</td></tr><tr><td>Kanal 3 – Community of Practice & Policy Clinic</td><td>Web</td><td class="r">74</td></tr><tr><td>Kanal 4 – Proyek Terapan & Micro-Internship</td><td>Web</td><td class="r">70</td></tr><tr><td>Sistem Notifikasi</td><td>Web & Mobile</td><td class="r">26</td></tr><tr><td>Laporan & Analitik</td><td>Web</td><td class="r">30</td></tr><tr><td>Pembayaran (Payment Gateway)</td><td>Web & Mobile</td><td class="r">24</td></tr><tr><td>Aplikasi Mobile (Android & iOS, cross-platform)</td><td>Mobile</td><td class="r">232</td></tr><tr><td>Meeting Review & Pelatihan</td><td>1 Poin = 1 jam</td><td class="r">20</td></tr>
+<tr class="sub"><td colspan="2">Total estimasi</td><td class="r">818 Poin</td></tr>
+<tr class="sub"><td colspan="2">Paket Managed Service (Nov–Jan 3 × 250 Poin + Feb 100 Poin)</td><td class="r">850 Poin</td></tr>
+<tr class="sub"><td colspan="2">Cadangan penyesuaian &amp; hasil UAT</td><td class="r">32 Poin</td></tr>
+</tbody></table>
+<h2 style="break-before:page;margin-top:2mm"><i>2</i>Rincian per Item Pekerjaan</h2>
+<table class="est"><thead><tr><th class="c" style="width:9mm">No</th><th>Item Pekerjaan</th><th class="r">Poin</th></tr></thead><tbody><tr class="mh"><td colspan="2">Fondasi & Administrasi <span style="font-weight:500;color:var(--subtle)">· Web</span></td><td class="r">61 Poin</td></tr><tr><td class="c">1</td><td>Registrasi & login email/password, verifikasi email, lupa password</td><td class="r">8</td></tr><tr><td class="c">2</td><td>SSO Google</td><td class="r">4</td></tr><tr><td class="c">3</td><td>Integrasi SSO Sistem Informasi Akademik kampus</td><td class="r">10</td></tr><tr><td class="c">4</td><td>Pemetaan akun & role dari data SIAKAD</td><td class="r">4</td></tr><tr><td class="c">5</td><td>Role-based Access Control (Mahasiswa/Peserta, Dosen/Mentor, Administrator)</td><td class="r">10</td></tr><tr><td class="c">6</td><td>Manajemen akun pengguna oleh Administrator (termasuk impor massal)</td><td class="r">8</td></tr><tr><td class="c">7</td><td>Profil pengguna</td><td class="r">3</td></tr><tr><td class="c">8</td><td>Manajemen batch kelas</td><td class="r">6</td></tr><tr><td class="c">9</td><td>Penempatan peserta & dosen ke batch</td><td class="r">3</td></tr><tr><td class="c">10</td><td>Manajemen lisensi</td><td class="r">5</td></tr><tr class="mh"><td colspan="2">UI/UX <span style="font-weight:500;color:var(--subtle)">· Web & Mobile</span></td><td class="r">72 Poin</td></tr><tr><td class="c">11</td><td>Pemetaan alur pengguna & wireframe seluruh peran</td><td class="r">12</td></tr><tr><td class="c">12</td><td>Design system & komponen UI</td><td class="r">12</td></tr><tr><td class="c">13</td><td>Rancangan UI web Mahasiswa/Peserta</td><td class="r">18</td></tr><tr><td class="c">14</td><td>Rancangan UI web Dosen/Mentor</td><td class="r">10</td></tr><tr><td class="c">15</td><td>Rancangan UI web Administrator</td><td class="r">8</td></tr><tr><td class="c">16</td><td>Rancangan UI aplikasi mobile</td><td class="r">12</td></tr><tr class="mh"><td colspan="2">Kanal 1 – Policy Hackathon & Lab Kebijakan <span style="font-weight:500;color:var(--subtle)">· Web</span></td><td class="r">77 Poin</td></tr><tr><td class="c">17</td><td>Manajemen event hackathon (jadwal, kuota, tahapan)</td><td class="r">8</td></tr><tr><td class="c">18</td><td>Pendaftaran peserta event</td><td class="r">4</td></tr><tr><td class="c">19</td><td>Pembentukan tim mandiri (buat, undang, gabung, keluar)</td><td class="r">12</td></tr><tr><td class="c">20</td><td>Repository dataset (.csv, .xlsx, .pdf): unggah & unduh</td><td class="r">8</td></tr><tr><td class="c">21</td><td>Workspace tim</td><td class="r">6</td></tr><tr><td class="c">22</td><td>Unggah luaran Policy Brief/slide + riwayat versi</td><td class="r">8</td></tr><tr><td class="c">23</td><td>Pengaturan kriteria & bobot penilaian</td><td class="r">6</td></tr><tr><td class="c">24</td><td>Penugasan juri/dosen ke tim</td><td class="r">4</td></tr><tr><td class="c">25</td><td>Modul penilaian juri/dosen berdasarkan kriteria</td><td class="r">10</td></tr><tr><td class="c">26</td><td>Rekap nilai & leaderboard</td><td class="r">8</td></tr><tr><td class="c">27</td><td>Pengumuman hasil evaluasi</td><td class="r">3</td></tr><tr class="mh"><td colspan="2">Kanal 2 – Micro-Credentials & Sertifikasi (LMS) <span style="font-weight:500;color:var(--subtle)">· Web</span></td><td class="r">132 Poin</td></tr><tr><td class="c">28</td><td>Manajemen program, kursus & modul</td><td class="r">14</td></tr><tr><td class="c">29</td><td>Halaman belajar peserta (navigasi modul, lanjutkan belajar)</td><td class="r">10</td></tr><tr><td class="c">30</td><td>Unggah & transcoding video ke HLS</td><td class="r">12</td></tr><tr><td class="c">31</td><td>Enkripsi HLS + player terproteksi (anti-unduh, watermark pengguna)</td><td class="r">14</td></tr><tr><td class="c">32</td><td>Bahan bacaan PDF (viewer)</td><td class="r">4</td></tr><tr><td class="c">33</td><td>Bank soal & kuis interaktif dengan penilaian otomatis</td><td class="r">16</td></tr><tr><td class="c">34</td><td>Pengaturan kuis (durasi, jumlah percobaan, nilai minimum)</td><td class="r">6</td></tr><tr><td class="c">35</td><td>Tugas: unggah peserta & penilaian dosen</td><td class="r">12</td></tr><tr><td class="c">36</td><td>Progress tracker real-time</td><td class="r">10</td></tr><tr><td class="c">37</td><td>Jadwal & tautan sesi langsung (input manual Zoom/Google Meet)</td><td class="r">3</td></tr><tr><td class="c">38</td><td>Akses sesi langsung & rekap kehadiran</td><td class="r">6</td></tr><tr><td class="c">39</td><td>Pengaturan kriteria kelulusan</td><td class="r">6</td></tr><tr><td class="c">40</td><td>Template sertifikat (Administrator)</td><td class="r">5</td></tr><tr><td class="c">41</td><td>Generator sertifikat digital ber-QR Code otomatis</td><td class="r">10</td></tr><tr><td class="c">42</td><td>Halaman verifikasi sertifikat (scan QR)</td><td class="r">4</td></tr><tr class="mh"><td colspan="2">Kanal 3 – Community of Practice & Policy Clinic <span style="font-weight:500;color:var(--subtle)">· Web</span></td><td class="r">74 Poin</td></tr><tr><td class="c">43</td><td>Kategori topik forum (Inklusi Keuangan, BUMDes, Perencanaan Daerah, dll.)</td><td class="r">3</td></tr><tr><td class="c">44</td><td>Thread & balasan (teks, lampiran)</td><td class="r">12</td></tr><tr><td class="c">45</td><td>Suka, mention & langganan thread</td><td class="r">6</td></tr><tr><td class="c">46</td><td>Moderasi forum (laporkan, sembunyikan, sematkan)</td><td class="r">6</td></tr><tr><td class="c">47</td><td>Kalender kegiatan</td><td class="r">8</td></tr><tr><td class="c">48</td><td>Manajemen event, webinar & Policy Clinic</td><td class="r">8</td></tr><tr><td class="c">49</td><td>Pendaftaran sesi & kuota peserta</td><td class="r">5</td></tr><tr><td class="c">50</td><td>Pengingat otomatis terjadwal (push & email)</td><td class="r">5</td></tr><tr><td class="c">51</td><td>Pustaka digital: repositori riset, arsip video bedah kasus, best practices</td><td class="r">10</td></tr><tr><td class="c">52</td><td>Pencarian & filter pustaka</td><td class="r">8</td></tr><tr><td class="c">53</td><td>Hak akses & unduh dokumen pustaka</td><td class="r">3</td></tr><tr class="mh"><td colspan="2">Kanal 4 – Proyek Terapan & Micro-Internship <span style="font-weight:500;color:var(--subtle)">· Web</span></td><td class="r">70 Poin</td></tr><tr><td class="c">54</td><td>Akun & profil mitra daerah</td><td class="r">5</td></tr><tr><td class="c">55</td><td>Katalog proyek: posting kebutuhan/isu mitra</td><td class="r">8</td></tr><tr><td class="c">56</td><td>Lamaran proyek oleh tim mahasiswa</td><td class="r">8</td></tr><tr><td class="c">57</td><td>Seleksi & penetapan tim serta mentor</td><td class="r">5</td></tr><tr><td class="c">58</td><td>Digital logbook harian/mingguan</td><td class="r">10</td></tr><tr><td class="c">59</td><td>Persetujuan logbook oleh dosen/mentor</td><td class="r">5</td></tr><tr><td class="c">60</td><td>Milestone & rekap kemajuan proyek</td><td class="r">10</td></tr><tr><td class="c">61</td><td>Dashboard proyek dosen/mentor</td><td class="r">8</td></tr><tr><td class="c">62</td><td>Repository luaran proyek (dashboard data, laporan, rekomendasi)</td><td class="r">6</td></tr><tr><td class="c">63</td><td>Serah terima luaran & umpan balik mitra</td><td class="r">5</td></tr><tr class="mh"><td colspan="2">Sistem Notifikasi <span style="font-weight:500;color:var(--subtle)">· Web & Mobile</span></td><td class="r">26 Poin</td></tr><tr><td class="c">64</td><td>Mesin notifikasi & preferensi pengguna</td><td class="r">6</td></tr><tr><td class="c">65</td><td>Notifikasi in-app web</td><td class="r">6</td></tr><tr><td class="c">66</td><td>Email transaksi/jadwal via SMTP/SendGrid + template</td><td class="r">6</td></tr><tr><td class="c">67</td><td>Push notification (FCM) Android & iOS</td><td class="r">8</td></tr><tr class="mh"><td colspan="2">Laporan & Analitik <span style="font-weight:500;color:var(--subtle)">· Web</span></td><td class="r">30 Poin</td></tr><tr><td class="c">68</td><td>Dashboard analitik Administrator</td><td class="r">12</td></tr><tr><td class="c">69</td><td>Ekspor laporan keaktifan peserta (Excel/PDF)</td><td class="r">5</td></tr><tr><td class="c">70</td><td>Ekspor rekap nilai (Excel/PDF)</td><td class="r">5</td></tr><tr><td class="c">71</td><td>Log aktivitas platform & ekspor</td><td class="r">8</td></tr><tr class="mh"><td colspan="2">Pembayaran (Payment Gateway) <span style="font-weight:500;color:var(--subtle)">· Web & Mobile</span></td><td class="r">24 Poin</td></tr><tr><td class="c">72</td><td>Integrasi payment gateway (Midtrans/Xendit) & notifikasi status pembayaran</td><td class="r">10</td></tr><tr><td class="c">73</td><td>Checkout pendaftaran program/sertifikasi berbayar</td><td class="r">6</td></tr><tr><td class="c">74</td><td>Riwayat transaksi & laporan pembayaran Administrator</td><td class="r">4</td></tr><tr><td class="c">75</td><td>Alur pembayaran di aplikasi mobile</td><td class="r">4</td></tr><tr class="mh"><td colspan="2">Aplikasi Mobile (Android & iOS, cross-platform) <span style="font-weight:500;color:var(--subtle)">· Mobile</span></td><td class="r">232 Poin</td></tr><tr><td class="c">76</td><td>Setup aplikasi, autentikasi & SSO</td><td class="r">16</td></tr><tr><td class="c">77</td><td>Beranda & profil</td><td class="r">8</td></tr><tr><td class="c">78</td><td>Kanal 2: kursus, video terproteksi, PDF, kuis, tugas, progress, sesi langsung, sertifikat</td><td class="r">70</td></tr><tr><td class="c">79</td><td>Kanal 1: event, tim, dataset, unggah luaran, leaderboard</td><td class="r">35</td></tr><tr><td class="c">80</td><td>Kanal 3: forum, event & Policy Clinic, pustaka</td><td class="r">35</td></tr><tr><td class="c">81</td><td>Kanal 4: katalog proyek, lamaran, logbook, milestone</td><td class="r">28</td></tr><tr><td class="c">82</td><td>Fitur Dosen/Mentor: penilaian & persetujuan logbook</td><td class="r">20</td></tr><tr><td class="c">83</td><td>Push notification & deep link</td><td class="r">6</td></tr><tr><td class="c">84</td><td>Pengujian perangkat & rilis Google Play/App Store</td><td class="r">14</td></tr><tr class="mh"><td colspan="2">Meeting Review & Pelatihan <span style="font-weight:500;color:var(--subtle)">· 1 Poin = 1 jam</span></td><td class="r">20 Poin</td></tr><tr><td class="c">85</td><td>Kickoff & meeting review mingguan (16 minggu × 1 jam)</td><td class="r">16</td></tr><tr><td class="c">86</td><td>Pelatihan Administrator (2 jam)</td><td class="r">2</td></tr><tr><td class="c">87</td><td>Pelatihan Dosen/Mentor (2 jam)</td><td class="r">2</td></tr>
+<tr class="grand"><td colspan="2">Total Estimasi</td><td class="r">818 Poin</td></tr></tbody></table>
 
 <div class="keep">
-<h2><i>2</i>Ringkasan</h2>
-<table>
-  <thead><tr><th>Modul</th><th class="r">Estimasi DP</th></tr></thead>
-  <tbody>
-    <tr><td>Web – Konfigurator Kursi 3D</td><td class="r">27</td></tr>
-    <tr><td>UI/UX</td><td class="r">9</td></tr>
-    <tr><td>Meeting Review &amp; Pelatihan</td><td class="r">7</td></tr>
-    <tr class="sub"><td>Total estimasi</td><td class="r">43 DP</td></tr>
-    <tr class="sub"><td>DP paket (1 bulan × 50 DP)</td><td class="r">50 DP</td></tr>
-    <tr class="grand"><td>Sisa cadangan revisi / UAT</td><td class="r">7 DP</td></tr>
-  </tbody>
-</table>
-
-<h3 class="mod" style="margin-top:5mm">Item Opsional <small>Tidak termasuk dalam paket</small></h3>
-<table class="est">
-  <thead><tr><th>No</th><th>Item Pekerjaan</th><th>Kategori</th><th class="dp">DP</th></tr></thead>
-  <tbody>
-    <tr class="opt"><td class="n">1</td><td>Katalog multi-produk kursi</td><td class="k">Besar × 6</td><td class="dp">+6</td></tr>
-    <tr class="opt"><td class="n">2</td><td>Bagikan konfigurasi lewat tautan</td><td class="k">Menengah × 4</td><td class="dp">+3</td></tr>
-  </tbody>
-</table>
+<h2><i>3</i>Pengembangan Tahap Berikutnya <span style="font-weight:500;color:var(--subtle);font-size:9pt">(setelah rilis fitur utama)</span></h2>
+<table><thead><tr><th>Item Pekerjaan</th><th class="r" style="white-space:nowrap">Estimasi Poin</th></tr></thead><tbody>
+<tr><td>Integrasi API Zoom/Google Meet: pembuatan sesi otomatis, sesi tersemat di platform, dan sinkronisasi kehadiran (web & mobile). Pada rilis pertama, sesi langsung memakai tautan yang diinput manual.</td><td class="r">24</td></tr><tr><td>DRM berlisensi (Widevine/FairPlay) untuk proteksi video tingkat lanjut (web & mobile). Pada rilis pertama, video diproteksi dengan enkripsi HLS dan player terproteksi.</td><td class="r">28</td></tr>
+</tbody></table>
+<p class="note" style="color:var(--muted)">Fitur di atas sengaja tidak dimasukkan ke rilis pertama agar fitur utama dapat dirilis lebih cepat dengan biaya yang efisien. Fitur ini dapat ditambahkan setelah rilis melalui Layanan Lanjutan atas persetujuan Klien, dan belum termasuk dalam Total Investasi. Estimasi Poin di atas dikonfirmasi ulang saat fitur akan dikerjakan.</p>
 </div>
 
 <div class="keep">
-<h2><i>3</i>Asumsi &amp; Catatan</h2>
+<h2><i>4</i>Asumsi &amp; Catatan</h2>
 <ul>
-  <li>Estimasi dan bobot DP di atas disepakati di awal sebagai dasar pengerjaan.</li>
-  <li>Perubahan atau penambahan scope dihitung ulang dan diajukan untuk persetujuan Klien sebelum dikerjakan.</li>
-  <li>Sisa DP dipakai sebagai cadangan revisi dan UAT dalam periode paket yang sama.</li>
-  <li>File model 3D kursi disediakan oleh Klien dalam format yang dapat dimuat di web (mis. GLB/GLTF).</li>
-  <li>Konfigurator berjalan di peramban modern (Chrome, Safari, Edge) pada desktop dan tablet.</li>
+  <li>Estimasi disusun dari System Requirement Brief; bobot Poin setiap permintaan disepakati di awal sebelum dikerjakan.</li>
+  <li>Perubahan atau penambahan lingkup di luar brief dihitung ulang dan memotong cadangan Poin, atau dituangkan dalam penawaran baru.</li>
+  <li>Integrasi SSO Sistem Informasi Akademik mengasumsikan kampus menyediakan API/OAuth beserta dokumentasinya.</li>
+  <li>Mitra daerah diasumsikan memiliki akun sendiri untuk memposting proyek dan menerima luaran.</li>
+  <li>Aplikasi mobile mencakup fitur Mahasiswa/Peserta dan Dosen/Mentor; fitur Administrator tersedia di aplikasi web.</li>
+  <li>Jaminan kualitas (testing dan garansi bug), keamanan, dukungan, dan dokumentasi sudah termasuk dan tidak memotong Poin.</li>
 </ul>
 </div>
 </body></html>
