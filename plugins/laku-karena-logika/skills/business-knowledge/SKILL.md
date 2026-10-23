@@ -166,12 +166,17 @@ memakai dokumen:
    section mana pun (DNA, Positioning, Opportunity, `[!]`, Pricing)? Ganti
    dengan jenis alternatif tanpa merek; data kompetitornya milik laporan
    `business-reviewer`, bukan BKB.
+5. DNA: Level 1 dan Level 2 masing-masing **tepat 1 pembeda**? Bila lebih,
+   laporkan dengan rekomendasi mana yang dipertahankan; sisanya dipindah
+   ke §4.
 
 Laporkan temuan sebagai daftar bernomor dengan lokasi (§ dan baris), lalu
 perbaiki yang disetujui.
 
 ## Yang tidak boleh dilakukan
 
+- Menulis lebih dari 1 pembeda di Level 1 atau Level 2. Masing-masing
+  tepat satu; keunggulan lain ditulis di §4.
 - Mengubah file `.md` (BKB, snapshot, atau file lain di folder produk)
   tanpa diminta. Hanya ubah bagian yang user minta. Kalau menemukan hal
   lain yang perlu diperbaiki (section terkait, duplikasi, rekomendasi

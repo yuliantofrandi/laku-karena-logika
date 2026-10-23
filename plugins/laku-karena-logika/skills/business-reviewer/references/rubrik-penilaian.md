@@ -26,7 +26,7 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
 | Dimensi | Bobot | Yang dinilai |
 |---|---:|---|
 | §1 Business Overview | 15 | Vision & Mission lolos ujinya masing-masing |
-| §2 Brand Strategy | 30 | Category, DNA L1/L2 (satu baris to the point per pembeda, tanpa keterangan/alasan), Positioning, Tagline, Opportunity, blok risiko `[!]` — inti strategis, bobot terberat |
+| §2 Brand Strategy | 30 | Category, DNA L1/L2 (masing-masing **tepat 1 pembeda**, satu baris to the point tanpa keterangan/alasan), Positioning, Tagline, Opportunity, blok risiko `[!]` — inti strategis, bobot terberat |
 | §3 Pricing Plan | 15 | Paket bernama (bukan label generik "Skema 1/2") dan dibedakan oleh kapabilitas bukan ukuran; tahunan = bayar 10 bulan dapat 12 (ketetapan user — jangan rekomendasikan pola tahunan lain) dengan harga efektif per bulan; blok fitur per kapabilitas; harga terendah menutup biaya variabel. Harga tidak wajib beralasan di BKB — jangan kurangi skor karena alasan harga tidak ditulis; kelayakan harganya diuji di competitive analysis & Verdict pasar |
 | §4 Product-to-Value Mapping | 15 | Urut dari problem tersakit; benefit ≠ business outcome; kapabilitas terpetakan ke tier; baris "tidak perlu pindah" bila relevan |
 | §5 Target Customer Profile | 15 | Primary/Secondary + "Bukan target"; business type = ciri operasional; persona dengan trigger berupa kejadian; pain point end-user teknis yang bisa diantisipasi |
@@ -42,6 +42,10 @@ Pisahkan dua jenis kekurangan — keduanya mengurangi poin, tapi dilaporkan beda
   tidak mengerucut, atau celah pasar §2 ternyata sudah diisi pemain nyata
   yang lebih murah): −4 sampai −8 di §2, karena merusak fondasi positioning.
 - Cacat kecil/kosmetik (format, satu duplikasi minor): −1.
+- DNA Level 1 atau Level 2 berisi lebih dari 1 pembeda: −2 per level di §2.
+  Di Temuan, sebut pembeda mana yang dipertahankan (yang paling menyaring di
+  funnel) dan sarankan sisanya dipindah ke §4. Funnel tetap dijalankan
+  dengan pembeda yang direkomendasikan itu.
 - BKB memuat nama merek, harga, atau fitur kompetitor (melanggar aturan
   "Tanpa kompetitor"): −1 per kemunculan di dimensi tempatnya, maks −3 per
   dimensi. Data itu dipindah ke competitive analysis laporan, bukan dibuang.
@@ -82,6 +86,10 @@ ada di §2 BKB, sebagai funnel yang makin sempit:
   masih lolos?
 - **Level 3 — Category + DNA Level 1 + Pembeda Level 2.** Tambahkan syarat
   DNA Level 2 §2. Saring ulang daftar Level 2: siapa yang masih lolos?
+
+Tiap level menambah **tepat satu** syarat, karena BKB menulis tepat 1
+pembeda di Level 1 dan tepat 1 di Level 2. Bila BKB memuat lebih dari satu,
+pilih yang paling menyaring sebagai syarat funnel dan catat sebagai temuan.
 
 **Cara membaca hasilnya:** jumlah kompetitor harus **monoton mengerucut**
 Level 1 ≥ Level 2 ≥ Level 3, idealnya nol di Level 3 (blue ocean — positioning

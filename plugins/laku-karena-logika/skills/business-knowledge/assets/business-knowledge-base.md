@@ -120,10 +120,11 @@ pembaca untuk menaruh produk di kotak yang benar — bukan tagline. -->
 ### Level 1 — DNA · paling sulit ditiru
 
 <!-- Inti produk; kalau hanya boleh menyebut satu hal, ini yang disebut.
-Diurutkan dari yang paling SULIT DITIRU, bukan paling mengesankan —
-fitur paling canggih biasanya justru paling cepat disalin.
+TEPAT SATU pembeda — yang paling SULIT DITIRU, bukan paling mengesankan
+(fitur paling canggih biasanya justru paling cepat disalin). Keunggulan
+lain tempatnya di §4, bukan ditambahkan di sini.
 
-TO THE POINT: satu baris tebal per pembeda, langsung dipahami orang
+TO THE POINT: satu baris tebal, langsung dipahami orang
 awam tanpa penjelasan. Tanpa label abstrak + keterangan, tanpa "karena",
 tanpa alasan kenapa sulit ditiru. Maks ±12 kata.
   ✗ **Setup Minimal**: karyawan cukup kirim foto — tanpa install app, ...
@@ -136,8 +137,9 @@ tanpa alasan kenapa sulit ditiru. Maks ±12 kata.
 <!-- Kuat saat produk rilis, tapi kompetitor bisa menyusul. Boleh jadi pendukung
 headline, tidak boleh jadi headline utama.
 
-Format sama dengan Level 1: satu baris tebal per pembeda, to the point,
-tanpa keterangan atau alasan.
+TEPAT SATU pembeda, format sama dengan Level 1: satu baris tebal, to the
+point, tanpa keterangan atau alasan. Keunggulan pendukung lainnya
+tempatnya di §4, bukan ditambahkan di sini.
 
 Syarat masuk pasar (yang semua kompetitor juga punya) TIDAK perlu
 ditulis — dan jangan pernah dijadikan headline. -->

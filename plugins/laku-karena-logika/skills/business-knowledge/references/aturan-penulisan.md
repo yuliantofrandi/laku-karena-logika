@@ -73,7 +73,11 @@ menyertakan pembeda kategori. ✓ "Alat presensi karyawan berbasis WhatsApp
 + verifikasi AI".
 
 **Level 1 DNA — uji:**
-- **To the point.** Satu baris tebal per pembeda, maks ±12 kata, yang
+- **Tepat 1 pembeda.** Level 1 dan Level 2 masing-masing berisi tepat satu
+  pembeda, supaya fokus saat menguatkan produk dan supaya funnel
+  `business-reviewer` menguji satu syarat per level. Keunggulan lain sudah
+  punya rumah di §4 Product-to-Value Mapping — jangan ditambahkan di §2.
+- **To the point.** Satu baris tebal, maks ±12 kata, yang
   langsung dipahami orang awam apa bedanya bisnis ini. Tidak ada label
   abstrak + keterangan, tidak ada "karena", tidak ada alasan kenapa sulit
   ditiru, tidak ada perbandingan panjang.
@@ -87,8 +91,8 @@ menyertakan pembeda kategori. ✓ "Alat presensi karyawan berbasis WhatsApp
   sulit ditirunya tidak ditulis. Apakah benar sulit ditiru diuji
   `business-reviewer`.
 
-**Level 2 — uji:** kuat saat produk dirilis, tapi bisa dikejar 1-2 tahun.
-Format sama dengan Level 1: satu baris tebal per pembeda, to the point,
+**Level 2 — uji:** **tepat 1 pembeda**, kuat saat produk dirilis, tapi bisa
+dikejar 1-2 tahun. Format sama dengan Level 1: satu baris tebal, to the point,
 tanpa keterangan atau alasan. ✓ "**Verifikasi wajah & lokasi otomatis
 dengan AI**".
 
