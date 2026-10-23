@@ -3,7 +3,7 @@
 <!--
 Template video dari SCREENSHOT ASLI aplikasi pengguna (satu file untuk Style 1/2/3).
 Yang diedit hanya blok "ISI VIDEO" di <script> paling bawah:
-  CFG   — ukuran video, jendela tempat screenshot tampil, warna, logo, domain
+  CFG   — ukuran video, jendela tempat screenshot tampil, warna, FILE LOGO ASLI, domain
   SHOTS — daftar screenshot (file PNG di folder shots/ di samping HTML ini) + detik mulai
   MOVES — gerak kursor, CLICKS — detik klik, CAM — zoom/pan kamera
   CAPS  — kicker + headline per scene (Style 1), INTRO/OUTRO — kartu pembuka & penutup
@@ -31,22 +31,25 @@ body{background:radial-gradient(1200px 900px at 15% 10%,var(--bg1),transparent 6
 #dots i.on{width:34px;background:var(--pri)}
 #dom{position:absolute;left:0;right:0;text-align:center;font-weight:800}
 .card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;background:#fff;z-index:20;padding:0 8%}
-.logo{font-weight:900;letter-spacing:-1px;color:var(--pri)}
+.logo{display:block;width:auto;object-fit:contain}
+#nologo{position:absolute;inset:0;z-index:99;display:none;place-items:center;background:#c62828;color:#fff;font:700 40px/1.3 sans-serif;text-align:center;padding:60px}
 .cta{margin-top:1.2em;background:var(--pri);color:#fff;font-weight:800;border-radius:999px;padding:.55em 1.6em}
 </style></head><body>
 <div id="win"><div id="cam"><div id="shots"></div><div id="ripple"></div>
 <svg id="cursor" viewBox="0 0 24 24"><path d="M5 2.5v17l4.3-4.1 2.8 6.3 2.7-1.2-2.8-6.2H18z" fill="#1C252E" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
 </div></div>
 <div id="cap"><span class="kick"></span><div class="hl"></div></div>
-<div id="hdr"><div class="logo" id="hlogo"></div><div id="pill"></div></div>
+<div id="hdr"><img class="logo" id="hlogo" alt=""><div id="pill"></div></div>
 <div id="dots"></div><div id="dom"></div>
-<div class="card" id="intro"><div class="hl" id="ih" style="font-weight:800;letter-spacing:-1px;line-height:1.1"></div><div class="logo" id="il" style="margin-top:.6em"></div></div>
-<div class="card" id="outro"><div class="logo" id="ol"></div><div id="ot" style="color:#637381;font-weight:600;margin-top:.4em"></div><div class="cta" id="oc"></div></div>
+<div class="card" id="intro"><div class="hl" id="ih" style="font-weight:800;letter-spacing:-1px;line-height:1.1"></div><img class="logo" id="il" alt="" style="margin-top:40px"></div>
+<div class="card" id="outro"><img class="logo" id="ol" alt=""><div id="ot" style="color:#637381;font-weight:600;margin-top:.4em"></div><div class="cta" id="oc"></div></div>
+<div id="nologo">LOGO ASLI BELUM ADA<br>Isi CFG.logo dengan file gambar logo produk (PNG/SVG)</div>
 <script>
 /* ===================== ISI VIDEO (edit bagian ini saja) ===================== */
 const GAYA = 2;                 // 1 = promo fitur 9:16, 2 = walkthrough 16:9, 3 = walkthrough 9:16
 const CFG = {
   produk: 'Nama Produk', domain: 'contoh.id', tagline: 'Tagline produk',
+  logo: 'logo.png',             // WAJIB: file gambar logo ASLI produk (PNG transparan/SVG), bukan teks
   pri: '#00A76F',               // warna primer = warna menu aktif aplikasi
   shotW: 1440,                  // lebar viewport tab saat screenshot (window.innerWidth), px CSS
   dur: 24,                      // durasi total video (detik)
@@ -65,9 +68,9 @@ const OUTRO  = 21;              // detik mulai kartu penutup (logo + tagline + d
 /* =========================================================================== */
 
 const PRESET = {
-  1: {W:1080,H:1920, win:[60,620,960,1180], rad:36, cap:[80,170,920], fs:{kick:28,hl:76,logo:150,cta:44,ih:84}},
-  2: {W:1920,H:1080, win:[0,0,1920,1080],  rad:0,  fs:{logo:150,cta:38,ih:84}},
-  3: {W:1080,H:1920, win:[40,330,1000,1170],rad:32, hdr:[60,190,960], dots:1600, dom:1690, fs:{logo:64,pill:30,dom:32,cta:38,ih:84}},
+  1: {W:1080,H:1920, win:[60,620,960,1180], rad:36, cap:[80,170,920], logoH:{intro:120,outro:170}, fs:{kick:28,hl:76,cta:44,ih:84}},
+  2: {W:1920,H:1080, win:[0,0,1920,1080],  rad:0,  logoH:{intro:120,outro:170}, fs:{cta:38,ih:84}},
+  3: {W:1080,H:1920, win:[40,330,1000,1170],rad:32, hdr:[60,190,960], dots:1600, dom:1690, logoH:{hdr:72,intro:120,outro:170}, fs:{pill:30,dom:32,cta:38,ih:84}},
 }[GAYA];
 const $=id=>document.getElementById(id);
 const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), p=(t,a,b)=>cl((t-a)/(b-a));
@@ -83,14 +86,18 @@ const fs=PRESET.fs;
 if(PRESET.cap){const [x,y,w]=PRESET.cap;Object.assign($('cap').style,{left:x+'px',top:y+'px',width:w+'px'});
   $('cap').querySelector('.kick').style.cssText+=`font-size:${fs.kick}px;padding:12px 26px`;$('cap').querySelector('.hl').style.fontSize=fs.hl+'px'}
 if(PRESET.hdr){const [x,y,w]=PRESET.hdr;Object.assign($('hdr').style,{left:x+'px',top:(y-40)+'px',width:w+'px'});
-  $('hlogo').textContent=CFG.produk;$('hlogo').style.fontSize=fs.logo+'px';$('pill').style.cssText=`font-size:${fs.pill}px;padding:12px 26px`;
+  $('hlogo').style.height=PRESET.logoH.hdr+'px';$('pill').style.cssText=`font-size:${fs.pill}px;padding:12px 26px`;
   $('dots').style.cssText+=`left:0;right:0;top:${PRESET.dots}px`;$('dots').innerHTML=SHOTS.map(()=>'<i></i>').join('');
   $('dom').style.cssText+=`top:${PRESET.dom}px;font-size:${fs.dom}px`;$('dom').textContent=CFG.domain}
 else{$('hdr').style.display='none'}
-$('ih').style.fontSize=fs.ih+'px';$('ih').innerHTML=INTRO?INTRO[1]:'';$('il').textContent=CFG.produk;$('il').style.fontSize=(fs.logo*.8)+'px';
-$('ol').textContent=CFG.produk;$('ol').style.fontSize=fs.logo+'px';$('ot').textContent=CFG.tagline;$('ot').style.fontSize=(fs.cta*.75)+'px';
+$('ih').style.fontSize=fs.ih+'px';$('ih').innerHTML=INTRO?INTRO[1]:'';$('il').style.height=PRESET.logoH.intro+'px';
+$('ol').style.height=PRESET.logoH.outro+'px';$('ot').textContent=CFG.tagline;$('ot').style.fontSize=(fs.cta*.75)+'px';
 $('oc').textContent=CFG.domain;$('oc').style.fontSize=fs.cta+'px';
 
+// logo asli (gambar) dipasang di header, intro, dan outro; bila file tidak ada → layar merah peringatan
+['hlogo','il','ol'].forEach(id=>{const im=$(id);im.alt=CFG.produk;im.src=CFG.logo});
+$('ol').addEventListener('error',()=>{$('nologo').style.display='grid'});
+if(!CFG.logo){$('nologo').style.display='grid'}
 // tinggi tiap screenshot (px CSS) diketahui setelah gambar dimuat
 let SH=SHOTS.map(()=>900);
 window.READY=false;
