@@ -36,12 +36,12 @@ SaaS nyata yang dipakai memvalidasi struktur ini — sekadar ilustrasi
    software yang akan dikembangkan. Semua kapabilitas ditulis sebagai
    bagian produk yang dirancang — tanpa membedakan sudah dibangun, sudah
    rilis, atau masih rencana. Status pengembangan bukan alasan memberi
-   `[?]`/`[INPUT-NEEDED]` atau menahan klaim di DNA, Positioning, Tagline,
+   `[INPUT-NEEDED]` atau menahan klaim di DNA, Positioning, Tagline,
    dan Pricing.
 9. **Pikirkan versi terbaik.** Rancang dan tulis strategi paling kuat dan
    ambisius yang masuk akal untuk produk ini. Klaim superlatif ("terbaik",
-   "paling cepat", "satu-satunya") boleh ditulis dan **tidak** diberi
-   `[?]` — jangan melunakkan klaim demi aman. Menguji apakah klaim itu
+   "paling cepat", "satu-satunya") boleh ditulis tegas — BKB tidak memakai
+   penanda ragu `[?]` — jangan melunakkan klaim demi aman. Menguji apakah klaim itu
    bertahan di pasar adalah tugas `business-reviewer`.
 10. **Pilihkan rekomendasi terbaik.** Tujuan BKB adalah membuat produk
     laris. Setiap keputusan strategis yang belum diputuskan user — segmen,
@@ -154,7 +154,7 @@ menjual Level 1. ✓ "_Urus Karyawan Cukup Chat_" menjual zero-install.
 - Harga add-on ditulis per karyawan per bulan (`+Rp .../karyawan/bln`);
   harga tahunan boleh ditambahkan di bawahnya (`<br>(Rp .../thn)`),
   tetap 10 × harga bulanan.
-  Keterangan umum (tidak ikut diskon volume, status `[?]`) ditulis sekali
+  Keterangan umum (mis. tidak ikut diskon volume) ditulis sekali
   di bawah tabel, bukan diulang per baris.
 - Harga **tidak wajib** disertai alasan ("kenapa harga ini"). Apakah harga
   layak dan menang lawan pasar diuji `business-reviewer`. Kalau user tetap

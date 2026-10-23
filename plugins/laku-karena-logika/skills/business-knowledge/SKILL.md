@@ -17,8 +17,8 @@ mempertimbangkan fakta yang sudah ada — apakah fitur sudah dibangun, sudah
 rilis, atau sudah dipakai customer. Semua kapabilitas ditulis sebagai
 bagian produk yang dirancang, dan boleh dipakai penuh di DNA, Positioning,
 Pricing, dan P2V. Jangan menanyakan status pengembangan, jangan memisahkan
-fitur "sudah ada" vs "rencana", dan jangan memberi `[?]` atau
-`[INPUT-NEEDED]` hanya karena fiturnya belum dibuat.
+fitur "sudah ada" vs "rencana", dan jangan memberi `[INPUT-NEEDED]` hanya
+karena fiturnya belum dibuat.
 
 **BKB tidak memuat kompetitor.** Tidak ada nama merek kompetitor, harga,
 maupun fitur mereka di dokumen ini — BKB hanya berisi strategi produk
@@ -59,12 +59,12 @@ yang user minta; bagian lain tidak diubah atas inisiatif sendiri (lihat
 "Yang tidak boleh dilakukan"). Jangan mengarang **fakta**: angka pasar
 yang butuh sumber, atau hal yang hanya user yang tahu (nama produk,
 kendala nyata), ditulis `[INPUT-NEEDED]`. Keputusan strategis bukan
-fakta — itu direkomendasikan, bukan `[INPUT-NEEDED]`. Asumsi tentang pasar
-atau customer yang alasannya masih lemah diberi `[?]` — bukan karena
-fiturnya belum dibangun, dan bukan karena klaimnya superlatif.
+fakta — itu direkomendasikan, bukan `[INPUT-NEEDED]`. BKB **tidak memakai
+penanda `[?]`**: asumsi pasar/customer ditulis tegas, dan kebenarannya diuji
+`business-reviewer`.
 
 Pikirkan dan tulis versi **terbaik** dari strategi produk: klaim yang kuat
-dan ambisius, termasuk superlatif, ditulis tanpa `[?]` dan tanpa
+dan ambisius, termasuk superlatif, ditulis tegas tanpa
 dilunakkan. Kebenarannya diuji `business-reviewer`, bukan dibatasi di
 sini.
 
@@ -153,8 +153,8 @@ Diminta "audit", "cek konsistensi", "rapikan", atau sebelum skill hilir
 memakai dokumen:
 
 1. Duplikasi: satu fakta muncul di dua section? Sisakan di rumahnya.
-2. Penanda: semua `[?]` masih relevan? `[INPUT-NEEDED]` masih kosong?
-   Hapus `[?]` yang hanya menandai klaim superlatif. `[INPUT-NEEDED]` di
+2. Penanda: hapus semua `[?]` lama (BKB tidak lagi memakainya) dan tulis
+   klaimnya secara tegas. `[INPUT-NEEDED]` masih kosong? `[INPUT-NEEDED]` di
    keputusan strategis (bukan fakta) → laporkan dengan rekomendasi
    terbaikmu untuk mengisinya.
 3. Konsistensi lintas section: tiap kapabilitas §4 punya baris ✓ di §3; tiap market §5

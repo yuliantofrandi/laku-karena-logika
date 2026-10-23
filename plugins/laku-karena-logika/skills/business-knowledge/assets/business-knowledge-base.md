@@ -8,10 +8,6 @@ blog-content-writer) membaca dokumen ini apa adanya.
 
 PENANDA (hanya ini, semuanya untuk skill hilir & reviewer):
 
-[?]            — asumsi pasar/customer yang alasannya masih lemah. BUKAN
-                 penanda fitur yang belum dibangun, dan BUKAN penanda
-                 klaim superlatif ("terbaik", "paling X") — klaim
-                 superlatif ditulis tanpa [?] dan diuji business-reviewer.
 [INPUT-NEEDED] — FAKTA yang belum ada (angka pasar bersumber, hal yang hanya
                  user tahu). Keputusan strategis TIDAK memakai penanda
                  ini — diisi rekomendasi terbaik. Skill hilir DILARANG mengarang
@@ -19,7 +15,9 @@ PENANDA (hanya ini, semuanya untuk skill hilir & reviewer):
 `[!]`          — catatan risiko yang harus dibaca sebelum memakai klaim
                  di dekatnya (mis. ketergantungan infrastruktur).
 
-Teks tanpa penanda = berlaku dan aman dipakai.
+Teks tanpa penanda = berlaku dan aman dipakai. Tidak ada penanda ragu
+seperti [?]: BKB ditulis tegas sebagai versi terbaik, dan kebenarannya
+diuji business-reviewer.
 
 Semua kapabilitas di dokumen ini adalah bagian produk yang DIRANCANG —
 tidak dibedakan sudah dibangun, sudah rilis, atau masih rencana. Tulis
