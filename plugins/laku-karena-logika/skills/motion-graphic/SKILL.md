@@ -58,6 +58,12 @@ Detail visual, struktur scene, dan parameter kamera tiap gaya ada di `references
 
 - Pakai Claude in Chrome di tab aplikasi pengguna: lihat setiap menu, tab, dan detail penting (klik kartu → halaman detail, tab di dalamnya, pengaturan). Klik hanya untuk melihat — jangan menyimpan, menghapus, atau mengubah data.
 - Ambil warna primer menu aktif dengan `javascript_tool` (untuk aksen headline, kursor, kartu penutup).
+- **Ambil logo ASLI produk yang dibuatkan video** — logo **sesuai produk masing-masing** (mis. video TimeBase → logo TimeBase), bukan logo Venturo atau logo produk lain — dan simpan ke `<output>/sumber/logo.png` (atau `.svg`). Logo **selalu gambar asli**: jangan pernah menulis nama produk sebagai logo teks atau menggambar ulang logo. Urutan sumber:
+  1. **Website resmi produk itu** (tanyakan URL-nya bila belum diketahui): buka di Claude in Chrome, ambil `src` `<img>` logo di header (atau `outerHTML` bila `<svg>` inline) lewat `javascript_tool`, lalu unduh dengan `curl` di komputer pengguna. Pilih versi resolusi tertinggi (cek juga `srcset`, `og:image`/`apple-touch-icon` bila berisi logo).
+  2. Logo di dalam aplikasi produk (header/sidebar), dengan cara yang sama.
+  3. Bila tidak bisa diunduh: tangkap area logo dari layar dengan `tangkap_layar.sh` memakai `getBoundingClientRect()` elemen logo (piksel asli, bukan rekreasi).
+  4. Bila semua gagal, **tanyakan file logo ke pengguna**; jangan lanjut dengan logo teks.
+  Periksa hasilnya (baca gambarnya): logo produk yang benar, utuh, tidak buram, dan latarnya cocok dengan kartu putih video.
 - Catat daftar layar yang akan masuk video + 1 hal paling menjual di tiap layar, dan kumpulkan **semua nama orang dan nama jabatan** yang terlihat (pakai `get_page_text`) untuk peta penyamaran.
 
 ## 3. Storyboard (tampilkan di chat, tunggu persetujuan)
@@ -93,7 +99,7 @@ Selesai: muat ulang tab agar tampilan asli kembali dan kembalikan ke halaman awa
 
 ## 4b. Susun HTML
 
-Salin `assets/video-screenshot.html` ke `<output>/sumber/video.html` (screenshot di `<output>/sumber/shots/`), lalu isi blok "ISI VIDEO": `GAYA`, `CFG` (`shotW` = `innerWidth` saat screenshot), `SHOTS`, `MOVES` (koordinat dari langkah 4.3), `CLICKS`, `CAM`, dan untuk Style 1 `CAPS` + `INTRO`.
+Salin `assets/video-screenshot.html` ke `<output>/sumber/video.html` (screenshot di `<output>/sumber/shots/`, logo di `<output>/sumber/logo.png`), lalu isi blok "ISI VIDEO": `GAYA`, `CFG` (`logo` = file logo asli — wajib; `shotW` = `innerWidth` saat screenshot), `SHOTS`, `MOVES` (koordinat dari langkah 4.3), `CLICKS`, `CAM`, dan untuk Style 1 `CAPS` + `INTRO`.
 
 Kontrak template, pola kamera tiap gaya, dan jebakan yang sudah ditemui ada di `references/mesin-animasi.md` dan `references/gaya.md`. Wajib baca sebelum mengisi.
 
@@ -101,7 +107,7 @@ Kontrak template, pola kamera tiap gaya, dan jebakan yang sudah ditemui ada di `
 
 1. Ambil snapshot beberapa detik kunci (tiap scene) dan lihat sebagai contact sheet:
    `python3 <folder skill ini>/scripts/render.py <output>/sumber/video.html <output>/.kerja/cek --size 1080x1920 --snap 2,6.5,12,17`
-   Periksa: kamera keluar area/menampilkan ruang kosong, kursor tepat di target saat klik, teks screenshot terbaca di ukuran HP, tidak ada data asli yang lolos penyamaran.
+   Periksa: logo yang tampil adalah gambar logo asli (bukan layar merah "LOGO ASLI BELUM ADA"), kamera keluar area/menampilkan ruang kosong, kursor tepat di target saat klik, teks screenshot terbaca di ukuran HP, tidak ada data asli yang lolos penyamaran.
 2. Perbaiki, lalu render **bahan** resolusi penuh (≈2 dtk proses per 1 dtk video) ke folder kerja sementara — ini bukan hasil ekspor:
    `python3 <folder skill ini>/scripts/render.py <output>/sumber/video.html <output>/.kerja/bahan --size 1920x1080` (Style 1/3: `--size 1080x1920`)
 3. Ekstrak 3–4 frame dari MP4 bahan dengan ffmpeg untuk verifikasi visual.
@@ -124,3 +130,6 @@ Butuh: Python Playwright + Chromium, ffmpeg (libx264), Pillow, Node + `lighthous
 - Ringkas: durasi & format, urutan layar/klik, peta penyamaran yang dipakai (nama & jabatan → dummy, jumlah nomor yang di-blur), batasan (tanpa audio).
 - Laporkan hasil Lighthouse (skor mobile & desktop, LCP, CLS, TBT, berat awal halaman) dan hal yang menjadi tanggung jawab server (cache, kompresi) dari `references/website-seo.md`, plus usulan penempatan video di halaman.
 - Revisi = edit HTML (atau ganti screenshot tertentu) lalu render ulang; jangan bangun dari nol.
+
+## Yang tidak boleh dilakukan
+- Memakai logo teks (nama produk diketik), logo hasil gambar ulang, atau logo produk lain. Logo selalu file gambar logo asli **produk yang dibuatkan video**, diambil dari website resmi produk itu; bila tidak tersedia, tanyakan ke pengguna.

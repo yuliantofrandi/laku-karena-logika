@@ -12,7 +12,8 @@
 | `GAYA` | 1 = promo fitur 9:16, 2 = walkthrough 16:9, 3 = walkthrough 9:16 |
 | `CFG.shotW` | `window.innerWidth` tab saat screenshot diambil (px CSS). Semua screenshot satu video harus diambil dengan lebar jendela yang sama |
 | `CFG.dur` | durasi total (detik) |
-| `CFG.produk / tagline / domain / pri` | teks logo, tagline, domain CTA, warna primer (warna menu aktif aplikasi) |
+| `CFG.logo` | **wajib**: file gambar logo ASLI produk yang dibuatkan video, diambil dari website resmi produk itu (PNG transparan/SVG) di folder yang sama dengan HTML. Dipakai di header Style 3, intro, dan outro sebagai `<img>`; tinggi diatur `PRESET.logoH`. Bila file tidak ada, video menampilkan layar merah "LOGO ASLI BELUM ADA" sehingga tidak mungkin lolos cek |
+| `CFG.produk / tagline / domain / pri` | nama produk (hanya untuk `alt` logo, **bukan** logo teks), tagline, domain CTA, warna primer (warna menu aktif aplikasi) |
 | `SHOTS` | `[file, detikMulai, labelMenu]`. Tiap screenshot tampil sampai screenshot berikutnya; pergantian crossfade 0,35 dtk. `labelMenu` dipakai pill Style 3 |
 | `MOVES` | `[detikTiba, [x,y], lamaGerak]` — kursor bergerak ease-in-out dan tiba di `[x,y]` pada `detikTiba` |
 | `CLICKS` | detik klik → riak warna primer + kursor mengecil. Taruh ±0,1 dtk setelah kursor tiba; screenshot berikutnya mulai ±0,3 dtk setelah klik |
