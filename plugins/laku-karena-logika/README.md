@@ -71,7 +71,7 @@ Dari satu **System Requirement Brief** klien (txt/pdf/docx), membuat **tiga PDF 
 > **Catatan lingkungan (proposal-pdf):** butuh Python **Playwright** + Chromium dan `pdftoppm` (poppler) untuk verifikasi.
 
 ### `proposal-upload`
-Lanjutan `proposal-pdf`: mengunggah 3 PDF penawaran satu set langsung dari folder hasil `proposal-pdf` ke bucket **R2 Cloudflare** di **proposal.venturo.id** (terpisah dari website company profile) langsung tanpa konfirmasi dengan URL sesuai nama file (`https://proposal.venturo.id/VEN-<Project>-<Tahun>-<Rev>.pdf`), hanya revisi terbaru per project; memverifikasi ketiga link, lalu menyusun **pesan WhatsApp pengantar** berisi link dan masa berlaku 14 hari dari tanggal dokumen.
+Lanjutan `proposal-pdf`: mengunggah 3 PDF penawaran satu set langsung dari folder hasil `proposal-pdf` ke bucket **R2 Cloudflare** di **proposal.venturo.id** (terpisah dari website company profile) langsung tanpa konfirmasi dengan URL sesuai nama file (`https://proposal.venturo.id/VEN-<Project>-<Tahun>-<Rev>.pdf`), hanya revisi terbaru per project; memverifikasi ketiga link, lalu menyusun **pesan WhatsApp pengantar 2 bubble** berisi link (Penawaran sebagai dokumen utama), masa berlaku 14 hari dari tanggal dokumen, dan ajakan review — diskon hanya disebut bila ada di PDF. Input = 3 PDF hasil `proposal-pdf` dari sesi chat sebelumnya (folder dan/atau file).
 
 > **Catatan lingkungan (proposal-upload):** butuh `npx wrangler@4` dengan auth Cloudflare (`wrangler login`, atau API token izin *Workers R2 Storage: Edit* di env `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`), bucket R2 `proposal`, dan custom domain `proposal.venturo.id` yang tersambung ke bucket (setup sekali, lihat SKILL.md). Skill hanya menyusun pesan WA; pengguna yang mengirimkannya.
 
