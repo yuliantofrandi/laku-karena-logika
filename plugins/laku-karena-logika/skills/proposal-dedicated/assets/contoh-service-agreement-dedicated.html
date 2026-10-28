@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>VEN-PolicyLab-2026-001-Service-Agreement</title>
+<style>
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+:root{--teal:#259ead;--t7:#1b7a86;--t8:#176a74;--t50:#eaf6f7;--ink:#1f2a2e;--muted:#58585a;--subtle:#6b7072;--border:#d5dfe0;--s2:#f4f7f6;--green:#93cc7c}
+@page{size:A4;margin:16mm 16mm 18mm 16mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:M,sans-serif;color:var(--ink);font-size:9pt;line-height:1.5}
+.hero{position:relative;margin:-16mm -16mm 0;padding:12mm 16mm 4mm;overflow:hidden}
+.hero{background:#fff url(bg_flat.jpg) right top/120mm auto no-repeat}
+
+.hero>*{position:relative;z-index:1}
+.logo{height:19mm;display:block;margin-left:-2mm}
+.eyebrow{margin-top:6mm;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:8.5pt}
+h1{margin:1mm 0 0;font-size:24pt;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h1 span{color:var(--teal)}
+.meta{display:grid;grid-template-columns:1.1fr 1fr;gap:5mm;margin-top:5mm}
+.card{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm;background:#fff}
+.card.soft{background:var(--t50);border-color:var(--t50)}
+.kv{display:grid;grid-template-columns:24mm 1fr;row-gap:1mm}
+.kv b{font-weight:600;color:var(--subtle);font-size:8.5pt}
+.lbl{font-size:8pt;font-weight:600;color:var(--t7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1mm}
+.to{font-weight:700;font-size:10.5pt}
+.intro{margin:5mm 0 0;color:var(--muted);font-size:10pt}
+h2{font-size:12pt;font-weight:700;margin:6mm 0 2.5mm;display:flex;align-items:center;gap:3mm;break-after:avoid}
+h2 i{font-style:normal;display:inline-grid;place-items:center;width:7.5mm;height:7.5mm;border-radius:2mm;background:var(--teal);color:#fff;font-size:10pt}
+.svc{border:1px solid var(--border);border-radius:4mm;padding:3mm 5mm;margin-bottom:3mm;break-inside:avoid}
+.svc h3{margin:0 0 1.5mm;font-size:10.5pt;font-weight:700}
+.svc h3 small{font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm}
+ul{margin:0;padding-left:4.5mm}
+li{margin:.3mm 0}
+li::marker{color:var(--teal)}
+li b{font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:9.2pt;break-inside:avoid}
+th{background:var(--t7);color:#fff;font-weight:600;text-align:left;padding:2.4mm 3mm;font-size:8.6pt}
+th:first-child{border-top-left-radius:2.5mm}th:last-child{border-top-right-radius:2.5mm}
+td{padding:2mm 3mm;border-bottom:1px solid var(--border);vertical-align:top}
+.r{text-align:right;white-space:nowrap}.c{text-align:center}
+td .d{display:block;color:var(--subtle);font-size:8.3pt;margin-top:.8mm}
+tr.sub td{border:0;padding:1.6mm 3mm;font-weight:600}
+tr.sub td:first-child{text-align:right;color:var(--muted)}
+tr.disc td{color:#3c7a2a}
+tr.grand td{background:var(--t50);font-weight:800;font-size:10.5pt;padding:3mm;border:0}
+tr.grand td:first-child{text-align:right;border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{color:var(--t8);border-bottom-right-radius:2.5mm}
+.note{margin-top:3mm}
+.bank{display:flex;gap:4mm;align-items:center;background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0 4mm}
+.bank b{font-weight:700}
+.closing{margin-top:8mm;padding:4mm 5mm;border-left:1.2mm solid var(--green);background:var(--s2);border-radius:0 3mm 3mm 0;color:var(--muted);break-inside:avoid}
+.sign{break-inside:avoid}
+.sign .agree{margin:0 0 3mm}
+.sign .place{margin:0 0 4mm;color:var(--muted)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.sbox{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm}
+.party{font-size:7.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t7)}
+.co{font-weight:700;font-size:10.5pt;margin-top:.5mm}
+.area{position:relative;height:30mm;margin:3mm 0;border-bottom:1px solid var(--ink)}
+.ttd{position:absolute;left:50%;bottom:1mm;transform:translateX(-50%);height:27mm;max-width:95%;object-fit:contain}
+.stamp{position:absolute;right:0;bottom:1mm;font-size:7pt;color:#9aa5a8}
+.meterai{position:absolute;left:2mm;top:3mm;width:20mm;height:22mm;border:1px dashed #9aa5a8;border-radius:1.5mm;display:grid;place-items:center;text-align:center;font-size:6.8pt;color:#9aa5a8;line-height:1.3}
+table.f{font-size:8.8pt;break-inside:auto}
+table.f td{border:0;padding:.8mm 0}
+table.f td:first-child{width:18mm;color:var(--subtle)}
+table.f td.blank{border-bottom:1px dotted #9aa5a8}
+.keep{break-inside:avoid}
+tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}
+tr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bottom-right-radius:2.5mm}
+@page{size:A4;margin:11mm 12mm 15mm 12mm}
+.hero{margin:-11mm -12mm 0;padding:8mm 12mm 3mm}
+.logo{margin-left:0}
+
+ol{margin:0;padding-left:5mm}ol li{margin:.6mm 0;padding-left:1mm}ol li::marker{color:var(--t7);font-weight:600}
+ol.a{list-style:lower-alpha;margin-top:.8mm}ul.b{margin-top:.8mm}
+p{margin:0 0 2mm}.sec{break-inside:auto}.it{font-style:italic}
+li strong,p strong{font-weight:600}
+.pp li{margin-bottom:1.5mm}
+h2{font-size:10.5pt;margin:5mm 0 1.8mm;gap:2.2mm;line-height:1.2}
+h2 i{width:auto;min-width:5.6mm;height:5.6mm;padding:0 1.2mm;border-radius:1.4mm;font-size:8pt;font-weight:700}
+.sec p,.sec ol,.sec ul{font-size:9pt}
+</style><body>
+<section class="hero">
+  <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
+  <div class="eyebrow">Perjanjian Induk Kerja Sama</div>
+  <h1>Service Agreement<br><span>Venturo Dedicated Team</span></h1>
+  <div class="meta">
+    <div class="card"><div class="kv"><b>No.</b><span>VEN/PolicyLab/2026/001</span><b>Penawaran</b><span>VEN/PolicyLab/2026/001</span><b>Tanggal</b><span>22 Oktober 2026</span></div></div>
+    <div class="card soft"><div class="lbl">Klien</div><div class="to">Universitas Sebelas Maret (UNS)</div>
+      <div style="color:var(--muted)">Jl. Ir. Sutami No.36A, Surakarta, Jawa Tengah</div></div>
+  </div>
+</section>
+<div class="sec"><h2><i>1</i>Para Pihak</h2><ol class="pp">
+<li><strong>PT Venturo Pro Indonesia</strong>, beralamat di Jl. Rinjani No. 26, Oro-oro Dowo, Kecamatan Klojen, Kota Malang, Jawa Timur 65119, dalam hal ini diwakili oleh Yulianto Frandi selaku CEO, selanjutnya dalam perjanjian ini disebut <strong>“Venturo”</strong>.</li>
+<li><strong>Universitas Sebelas Maret (UNS)</strong>, beralamat di Jl. Ir. Sutami No. 36A, Surakarta, Jawa Tengah, dalam hal ini diwakili oleh ______________________ selaku Pimpinan, selanjutnya dalam perjanjian ini disebut <strong>“Klien”</strong>.</li></ol>
+<p>Venturo dan Klien selanjutnya secara bersama-sama disebut <strong>“Para Pihak”</strong>.</p></div>
+<div class="sec"><h2><i>2</i>Masa Berlaku</h2><p>Perjanjian ini berlaku sejak tanggal ditandatangani sampai dengan berakhirnya masa kerja sama, kecuali digantikan oleh Service Agreement baru yang disepakati oleh Para Pihak.</p></div>
+<div class="sec"><h2><i>3</i>Lingkup Pengerjaan</h2><p>Perjanjian ini mengatur syarat dan ketentuan umum kerja sama antara Venturo dan Klien dalam penyediaan tim pengembang perangkat lunak dengan model Dedicated Team, yaitu tenaga profesional Venturo yang bekerja penuh waktu dan khusus untuk proyek Klien berdasarkan posisi dan jumlah orang. Komposisi tim, periode kerja, biaya, dan jadwal pembayaran untuk setiap proyek diatur dalam dokumen Penawaran Layanan beserta Lampiran Rincian Biaya (untuk proyek ini nomor VEN/PolicyLab/2026/001), yang menjadi bagian tidak terpisahkan dari perjanjian ini.</p></div>
+<div class="sec"><h2><i>4</i>Support Service</h2><ol>
+<li>Pekerjaan dilakukan di kantor Venturo di Jl. Rinjani No. 26, Oro-oro Dowo, Kec. Klojen, Kota Malang.</li>
+<li>Hari dan jam kerja operasional yang berlaku yakni Senin – Jumat, 08.00 – 17.00 WIB.</li>
+<li>Hari libur nasional dan cuti bersama mengacu pada kalender resmi yang ditetapkan oleh Pemerintah Indonesia, kecuali disepakati lain antara Venturo dan Klien berdasarkan kebutuhan proyek.</li>
+<li>Tim Dedicated mengerjakan pekerjaan sesuai prioritas backlog yang ditetapkan Klien bersama Technical Lead Venturo.</li>
+<li>Selama jam kerja operasional, Venturo menjamin respons melalui WhatsApp maksimal 15 menit. Untuk dukungan di luar jam kerja, Venturo akan berupaya merespons secepatnya dan memastikan respons tetap diberikan pada hari yang sama.</li>
+<li>Setiap kendala teknis atau bug diklasifikasikan berdasarkan dampak operasionalnya pada pengguna sebagai dasar urutan prioritas penanganan:<ul>
+<li><strong>Major Bug</strong>: gangguan yang menyebabkan sistem atau fitur utama tidak dapat digunakan; ditangani dengan prioritas pertama di atas pekerjaan lain.</li>
+<li><strong>Minor Bug</strong>: gangguan ringan yang tidak berdampak signifikan terhadap operasional; ditangani sesuai prioritas backlog.</li></ul></li>
+<li>Dalam hal terjadi kendala atau bug, Klien wajib memberikan akses dan informasi yang diperlukan untuk mempercepat proses penanganan.</li></ol></div>
+<div class="sec"><h2><i>5</i>Komunikasi</h2><p>Venturo menyediakan platform komunikasi dan kolaborasi berikut untuk koordinasi, diskusi, dan pemantauan perkembangan proyek:</p><ol>
+<li><strong>Space (Aplikasi ERP Venturo)</strong> — aplikasi ERP internal Venturo yang mencakup fungsi manajemen tugas, backlog, tiket, hingga monitoring OKR. Seluruh tim mencatat tugas harian dan backlog proyek pada aplikasi ini, dan Klien diberikan akses gratis untuk memantau progres pengembangan secara real-time.</li>
+<li><strong>Grup WhatsApp</strong> — untuk setiap proyek dibuatkan grup WhatsApp khusus sebagai sarana komunikasi operasional harian, diskusi, koordinasi, serta penyampaian permintaan oleh Klien. Seluruh permintaan yang disampaikan melalui grup dicatat oleh tim Project Support ke dalam Modul Ticket di Space sebagai bentuk pertanggungjawaban dan pelacakan.</li>
+<li><strong>Online Meeting (Google Meet/Discord)</strong> — fasilitas meeting daring untuk diskusi proyek, evaluasi sprint, atau kebutuhan lain sesuai kesepakatan. Jadwal meeting difasilitasi oleh tim Project Support.</li>
+<li><strong>GitHub Repository</strong> — seluruh source code hasil pengembangan dikelola melalui repository GitHub untuk kolaborasi, version control, serta audit perkembangan kode.</li></ol></div>
+<div class="sec"><h2><i>6</i>Project Management</h2><p>Venturo menggunakan aplikasi internal yang dirancang untuk mendukung produktivitas, kolaborasi, dan evaluasi tim pengembang perangkat lunak:</p><ol>
+<li><strong>Project Development Management</strong> (space.venturo.id) — pengelolaan proyek, sprint, backlog, dan tiket dalam satu platform terintegrasi.</li>
+<li><strong>Learning Management System</strong> — pengembangan kompetensi tim melalui pelatihan berkelanjutan dengan kurikulum yang disusun Tim R&amp;D Venturo.</li>
+<li><strong>Daily Issue Monitoring</strong> (timebox.venturo.id) — kontrol harian tim; setiap manajer memastikan setiap issue dikerjakan tepat dan dapat diselesaikan di hari yang sama.</li>
+<li><strong>Objective and Key Result</strong> — penilaian kinerja setiap programmer untuk menjaga kualitas dan memberikan pelatihan bagi yang belum optimal.</li></ol></div>
+<div class="sec"><h2><i>7</i>Metode Development</h2><p>Venturo menerapkan metodologi pengembangan perangkat lunak Scrum (bagian dari kerangka kerja Agile), di mana pengembangan dilakukan secara bertahap dan berulang (<span class="it">iterative development</span>). Pendekatan ini memungkinkan tim lebih adaptif terhadap perubahan kebutuhan dan masukan Klien selama siklus proyek, serta memastikan peningkatan berkelanjutan terhadap kualitas produk yang dikembangkan.</p></div>
+<div class="sec"><h2><i>8</i>Deployment Environment</h2><p>Venturo menggunakan tiga (3) lingkungan terpisah untuk menjamin kualitas, keamanan, dan stabilitas aplikasi sebelum digunakan oleh pengguna akhir:</p><ol>
+<li><strong>Development Environment</strong> — area kerja tim pengembang untuk proses pemrograman dan eksperimen fitur tanpa memengaruhi sistem lain.</li>
+<li><strong>Staging Environment</strong> — area simulasi yang dibuat semirip mungkin dengan sistem produksi untuk pengujian fungsi, integrasi, dan performa sebelum fitur dipindahkan ke produksi. Venturo menyediakan server Staging tanpa biaya tambahan.</li>
+<li><strong>Production Environment</strong> — lingkungan final tempat aplikasi digunakan oleh Klien dan pengguna. Seluruh perubahan yang telah lolos pengujian di Staging di-deploy ke Production. Infrastruktur Production disediakan oleh Klien, atau melalui layanan Venturo Cloud apabila dipilih Klien pada Penawaran Layanan.</li></ol></div>
+<div class="sec"><h2><i>9</i>Laporan Pekerjaan</h2><p>Venturo melaporkan progres pengerjaan kepada Klien melalui Grup WhatsApp, Space, dan meeting review dengan ketentuan sebagai berikut:</p><ol>
+<li><strong>Laporan Harian</strong> — ringkasan pekerjaan yang diselesaikan, pekerjaan berjalan, dan kendala (blocker) dikirim setiap hari kerja.</li>
+<li><strong>Meeting Review Mingguan</strong> — pembahasan hasil sprint, hasil pengujian (<span class="it">test run</span>) beserta tindak lanjut error, rencana sprint minggu berikutnya, serta backlog dan issue yang perlu konfirmasi Klien.</li>
+<li><strong>Laporan Bulanan</strong> — rekap keseluruhan pekerjaan dalam satu periode, termasuk rekap kehadiran dan pekerjaan setiap anggota tim.</li></ol></div>
+<div class="sec"><h2><i>10</i>Biaya Out of Pocket</h2><ol>
+<li>Apabila pengerjaan dilakukan di lokasi atas permintaan Klien, maka Klien menanggung dan menyiapkan seluruh biaya akomodasi, transportasi, dan penginapan.</li>
+<li>Biaya belum termasuk penggunaan <span class="it">tools</span> atau layanan pihak ketiga, yang hanya digunakan dengan persetujuan tertulis terlebih dahulu dari Klien.</li></ol></div>
+<div class="sec"><h2><i>11</i>Pekerjaan di Luar Jam Kerja</h2><p>Permintaan pekerjaan di luar hari dan jam kerja operasional (Sabtu, Minggu, dan hari libur nasional) dilakukan dengan persetujuan tertulis terlebih dahulu dari Klien, dengan biaya lembur yang diajukan Venturo dan disetujui Klien sebelum pekerjaan dilakukan.</p></div>
+<div class="sec"><h2><i>12</i>Kerahasiaan</h2><ol>
+<li>Para Pihak wajib menjaga dan menyimpan segala informasi dalam rangka pelaksanaan perjanjian ini (selanjutnya disebut <strong>“Informasi”</strong>) sebagai rahasia, dan masing-masing pihak tidak boleh mengungkapkannya kepada pihak lain dengan cara apa pun tanpa persetujuan tertulis dari pihak lainnya, kecuali hal-hal yang merupakan milik umum (<span class="it">public domain</span>) atau untuk keperluan pelaporan sebagaimana diminta oleh pejabat pemerintah yang berwenang.</li>
+<li>Para Pihak tidak diperkenankan memberitahukan, membuka, atau memberikan informasi menyangkut isi perjanjian kepada badan hukum maupun perorangan tanpa izin tertulis dari pihak lainnya, kecuali:
+<ol class="a"><li>diminta oleh instansi pemerintah yang berwenang mengatur atau mengeluarkan izin tentang hal-hal yang diperjanjikan; atau</li>
+<li>diperintah oleh badan peradilan atau instansi pemerintah lain yang berhubungan dengan penegakan hukum secara tertulis, resmi, dan merupakan putusan final.</li></ol></li>
+<li>Para Pihak menjamin untuk menyimpan asli maupun salinan dokumen dan/atau surat-surat yang berkaitan dengan perjanjian ini.</li>
+<li>Para Pihak wajib memastikan seluruh pimpinan dan staf mematuhi kewajiban menjaga kerahasiaan, baik selama berlangsung maupun setelah perjanjian ini berakhir.</li>
+<li>Kewajiban kerahasiaan tetap berlaku sekalipun perjanjian ini berakhir. Apabila terbukti salah satu pihak membocorkan Informasi dan mengakibatkan kerugian bagi pihak lainnya, pihak yang membocorkan dapat dikenakan upaya hukum sesuai peraturan perundang-undangan.</li></ol></div>
+<div class="sec"><h2><i>13</i>Hak Kekayaan Intelektual</h2><ol>
+<li>Para Pihak sepakat bahwa Hak atas Kekayaan Intelektual (<strong>“HKI”</strong>) adalah seluruh hak cipta, paten, deskripsi teknis (termasuk <span class="it">source code</span>), merek dagang, merek jasa, hak desain, hak desain industri, hak database, nama dagang, hak yang melindungi rahasia dagang dan informasi rahasia, perangkat lunak, naskah, kode dalam bahasa apa pun, temuan, ide, proses, metode, dokumen, laporan, dan materi lainnya dalam bentuk atau media apa pun yang berkaitan dengan pelaksanaan perjanjian ini, baik yang ada saat ini maupun yang akan diciptakan di kemudian hari.</li>
+<li>Para Pihak sepakat bahwa setiap HKI yang timbul atas pelaksanaan perjanjian ini sepenuhnya menjadi milik Klien, dan Venturo berkewajiban menyerahkan HKI tersebut kepada Klien, dengan memperhatikan ketentuan ayat 4.</li>
+<li>Seluruh HKI yang berkaitan dengan perangkat lunak diserahkan oleh Venturo kepada Klien pada saat serah terima pekerjaan, setelah seluruh kewajiban pembayaran dinyatakan lunas.</li>
+<li>Kepemilikan HKI oleh Klien tidak membatasi hak Venturo untuk menggunakan kembali komponen umum, pustaka kode, kerangka dasar aplikasi (Setup Core Venturo/boilerplate), serta pengetahuan dan metode teknis yang tidak spesifik pada bisnis Klien untuk proyek lain, sepanjang tidak memuat Informasi rahasia, data, maupun fitur dan logika bisnis yang khusus dikembangkan untuk Klien.</li>
+<li>Seluruh data dan informasi yang diterbitkan, diperoleh, dan dikumpulkan melalui aplikasi adalah milik Klien.</li></ol></div>
+<div class="sec"><h2><i>14</i>Keterlambatan Pengerjaan</h2><p>Jika pekerjaan mengalami keterlambatan dari target yang disepakati Para Pihak, penyelesaian dilakukan dengan mekanisme berikut:</p><ol>
+<li>Jika keterlambatan diakibatkan oleh Venturo (misalnya kualitas atau kapasitas anggota tim), Venturo melakukan perbaikan kinerja dan/atau menambah dukungan sumber daya tanpa biaya tambahan, dan Para Pihak menyepakati target baru.</li>
+<li>Jika keterlambatan diakibatkan oleh Klien (misalnya keterlambatan persetujuan, data, konten, atau akses pihak ketiga), Para Pihak menyepakati target baru, dan biaya bulanan Dedicated Team tetap berjalan sesuai Penawaran Layanan.</li></ol></div>
+<div class="sec"><h2><i>15</i>Pemenuhan dan Penggantian Talent</h2><ol>
+<li>Venturo menyediakan anggota tim sesuai posisi, level, dan jumlah orang yang tercantum dalam Penawaran Layanan.</li>
+<li>Seluruh hubungan kerja anggota tim adalah dengan Venturo dan diatur dalam perjanjian kerja tertulis berdasarkan ketentuan perundang-undangan ketenagakerjaan. Seluruh urusan gaji, THR, tunjangan, BPJS, PPh 21, kompensasi PKWT, serta kewajiban ketenagakerjaan lainnya menjadi tanggung jawab Venturo.</li>
+<li>Apabila anggota tim tidak memenuhi kualifikasi atau melakukan pelanggaran yang dapat merugikan Klien, Klien berhak meminta penggantian dengan memberitahukan alasannya, tanpa biaya tambahan. Penggantian dilakukan paling lambat 7–14 hari.</li>
+<li>Apabila anggota tim cuti, sakit, atau berhalangan, Venturo tetap menjamin keberlangsungan pekerjaan melalui dukungan Technical Lead atau pengganti sementara tanpa biaya tambahan.</li>
+<li>Penambahan atau pengurangan anggota tim diajukan secara tertulis dan dituangkan dalam addendum Penawaran Layanan.</li></ol></div>
+<div class="sec"><h2><i>16</i>Perekrutan</h2><ol>
+<li>Klien sepakat untuk tidak melibatkan, merekrut, atau mempekerjakan pegawai Venturo selama masa berlakunya perjanjian ini, serta tidak memberikan insentif atau perjanjian apa pun yang bertujuan mengalihkan pegawai Venturo dari pekerjaannya.</li>
+<li>Apabila pegawai yang bersangkutan bersedia direkrut, Klien diperbolehkan merekrutnya dengan dikenakan biaya pengalihan sebesar 6 (enam) kali gaji bulanan terakhir pegawai yang bersangkutan.</li></ol></div>
+<div class="sec"><h2><i>17</i>Terminasi Kontrak</h2><ol>
+<li>Klien berhak mengakhiri perjanjian ini atas dasar performa Venturo yang, dengan bukti sah dan tertulis, tidak memenuhi standar layanan secara berturut-turut meskipun telah dilakukan upaya perbaikan, dengan pemberitahuan tertulis paling lambat 30 (tiga puluh) hari sebelum tanggal efektif pengakhiran.</li>
+<li>Klien berhak mengakhiri perjanjian ini atas dasar pertimbangan bisnis Klien dengan pemberitahuan tertulis paling lambat 60 (enam puluh) hari sebelum tanggal efektif pengakhiran.</li>
+<li>Penghentian Venturo Cloud mengikuti ketentuan pemberitahuan 30 (tiga puluh) hari sebagaimana diatur dalam Penawaran Layanan.</li>
+<li>Klien menyelesaikan seluruh kewajiban finansial yang telah jatuh tempo, termasuk tagihan layanan sampai tanggal terminasi.</li>
+<li>Seluruh pembayaran yang telah diterima, termasuk Engineering Kick-off, bersifat final dan tidak dapat dikembalikan.</li>
+<li>Venturo melakukan serah terima pekerjaan sesuai ketentuan Berita Acara Serah Terima.</li></ol></div>
+<div class="sec"><h2><i>18</i>Berita Acara Serah Terima Pekerjaan</h2><ol>
+<li>Sebelum masa kontrak berakhir, Venturo melakukan serah terima kepada Klien agar seluruh hasil kerja dapat digunakan Klien secara mandiri, meliputi:
+<ol class="a"><li>Source code: file source code dan akses repository;</li>
+<li>Dokumentasi teknis: arsitektur sistem, instalasi &amp; deployment, dan integrasi API;</li>
+<li>Dokumentasi pengujian: skenario uji dan repository automation test;</li>
+<li>Akses environment: staging atau production, serta kredensial akun superadmin aplikasi;</li>
+<li>Penghapusan atau pengembalian seluruh informasi rahasia sesuai ketentuan kerahasiaan; dan</li>
+<li>Penandatanganan Berita Acara Serah Terima (BAST) oleh Para Pihak.</li></ol></li>
+<li>Apabila Klien belum menyelesaikan seluruh kewajiban pembayaran, Venturo berhak menunda serah terima source code, dokumentasi teknis, dokumentasi pengujian, dan akses environment hingga seluruh invoice dinyatakan lunas.</li></ol></div>
+<div class="sec"><h2><i>19</i>Garansi</h2><ol>
+<li>Selama periode kerja, perbaikan bug atas hasil kerja tim dilakukan oleh Dedicated Team sebagai bagian dari pekerjaan bulanan tanpa biaya tambahan.</li>
+<li>Setelah periode kerja berakhir, Venturo memberikan garansi perbaikan bug tanpa biaya tambahan selama 30 (tiga puluh) hari kalender sejak tanggal berakhirnya periode kerja.</li>
+<li>Garansi tidak mencakup permintaan perubahan fitur, penambahan fungsi baru, gangguan akibat integrasi atau layanan pihak ketiga, maupun kesalahan penggunaan di luar spesifikasi yang disepakati.</li></ol></div>
+<div class="sec"><h2><i>20</i>Pembatasan Tanggung Jawab</h2><p>Venturo tidak bertanggung jawab atas kerugian tidak langsung, kerugian konsekuensial, atau kerugian pihak ketiga akibat penggunaan perangkat lunak.</p></div>
+<div class="sec"><h2><i>21</i>Force Majeure</h2><p>Apabila terjadi gempa bumi, bencana alam, tanah longsor, atau kejadian lain yang secara wajar berada di luar kendali Para Pihak sehingga menyebabkan gagal atau tertundanya pelaksanaan kewajiban, Para Pihak sepakat untuk meninjau kembali perjanjian ini.</p></div>
+<div class="sec"><h2><i>22</i>Penyelesaian Perselisihan</h2><ol>
+<li>Semua perselisihan dan hal-hal yang belum diatur dalam perjanjian ini diselesaikan secara musyawarah untuk mufakat.</li>
+<li>Apabila perselisihan tidak dapat diselesaikan secara musyawarah, Para Pihak sepakat menyelesaikannya melalui Badan Arbitrase Nasional Indonesia (BANI) sesuai hukum Republik Indonesia.</li></ol></div>
+<div class="sign">
+  <h2 style="margin-top:8mm"><i>23</i>Persetujuan</h2>
+  <p class="agree">Dengan menandatangani dokumen ini, kedua belah pihak menyatakan telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang tercantum di dalamnya. Dokumen ini berfungsi sebagai perjanjian induk (Service Agreement) yang diikuti dengan dokumen Penawaran Layanan untuk setiap proyek.</p>
+  <p class="place">Ditandatangani di Malang, pada tanggal ____________________ 2026.</p>
+  <div class="sg">
+    <div class="sbox">
+      <div class="party">Penyedia Layanan</div>
+      <div class="co">PT Venturo Pro Indonesia</div>
+      <div class="area"><img class="ttd" src="ttd.png" alt=""></div>
+      <table class="f"><tr><td>Nama</td><td><b>Yulianto Frandi</b></td></tr><tr><td>Jabatan</td><td>CEO</td></tr><tr><td>Tanggal</td><td>22 Oktober 2026</td></tr></table>
+    </div>
+    <div class="sbox">
+      <div class="party">Klien</div>
+      <div class="co">Universitas Sebelas Maret</div>
+      <div class="area"><span class="stamp">Tanda tangan &amp; stempel</span></div>
+      <table class="f"><tr><td>Nama</td><td class="blank"></td></tr><tr><td>Jabatan</td><td>Pimpinan</td></tr><tr><td>Tanggal</td><td class="blank"></td></tr></table>
+    </div>
+  </div>
+</div>
+</body></html>
