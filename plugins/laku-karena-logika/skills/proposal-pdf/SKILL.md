@@ -35,6 +35,7 @@ Folder hasil tidak di-hardcode: pakai folder yang disebut pengguna; bila belum d
 - `assets/contoh-lampiran-estimasi.html` — template Lampiran Estimasi Delivery Point final.
 - `assets/contoh-service-agreement.html` — template Service Agreement final.
 - `scripts/render.py` — `python3 -I <folder skill ini>/scripts/render.py <html> <out.pdf> "<No. dokumen>" ["<prefix footer>"]`; render A4 dengan Playwright Chromium + footer (prefix · No. dokumen | Paraf Venturo [paraf.png] + Paraf Klien | Halaman X dari Y), padding footer 12 mm. Membaca `paraf.png` dari folder yang sama dengan HTML.
+- `references/venturo-cloud.md` — rate card Venturo Cloud (Shared Hosting & VPS) dan aturan pemakaiannya.
 - `references/generator-uns/` — `build.py`, `sla.py`, `fix.py` dari sesi UNS: **contoh** struktur data modul → HTML. Skrip ini membaca file template lama dari folder kerja sesi itu, jadi jadikan acuan pola, bukan untuk dijalankan apa adanya.
 
 ## 1. Alur
@@ -60,7 +61,17 @@ Folder hasil tidak di-hardcode: pakai folder yang disebut pengguna; bila belum d
 - Paket bulanan: 50 / 100 / 150 / 200 / 250 Poin. Boleh beberapa bulan (contoh: 250 × 3 + 100 = 850 Poin).
 - Sisakan **cadangan penyesuaian & hasil UAT** (contoh 32 Poin); beri tahu pengguna bila cadangan < ±5%.
 - Termin: Setup Awal saat tanda tangan; tiap bulan ditagih di akhir bulan.
-- **Layanan Lanjutan Setelah Go-Live** (wajib dicantumkan): default 50 Poin/bulan (Rp7.500.000/bulan), mulai bulan setelah periode proyek, **di luar Total Investasi**.
+- **Layanan Berlangganan Bulanan** (wajib dicantumkan, **di luar Total Investasi**), satu tabel berisi dua baris:
+  1. **Layanan Lanjutan** — *Managed Service – Pemeliharaan & Pengembangan Lanjutan*: default 50 Poin/bulan (Rp7.500.000/bulan), mulai tanggal 1 bulan setelah periode proyek terakhir.
+  2. **Venturo Cloud** — server production dari rate card `references/venturo-cloud.md`, kolom Poin "–", mulai 1 bulan sebelum go-live.
+
+### Tanggal mulai Managed Service
+- Setup Awal dibayar **saat tanda tangan**, sebelum periode kerja pertama dimulai; pembayaran ini tidak memakai jatuh tempo H+14.
+- Periode Managed Service dimulai **tanggal 1 bulan kalender berikutnya** setelah tanda tangan (tanda tangan 28 Okt → mulai 1 Nov; tanda tangan 5 Nov → mulai 1 Des).
+- Hari di antara tanda tangan dan tanggal mulai dipakai untuk pekerjaan **Setup Awal** (kickoff, roadmap, boilerplate, repository, staging) dan tidak memotong Poin.
+- Periode **tidak pernah dimulai di tengah bulan**: kuota Poin bulanan hangus di akhir periode, jadi bulan yang terpotong berarti Poin terbuang.
+- Tanggal mulai mengikuti perkiraan tanggal tanda tangan. Bila tanda tangan bergeser ke bulan berikutnya, geser seluruh periode dan naikkan nomor revisi.
+- Tanggal invoice termin = akhir tiap bulan periode. Layanan Lanjutan mulai tanggal 1 bulan setelah periode terakhir.
 
 ## 4. Dokumen 1 — Penawaran Layanan (`contoh-penawaran.html`)
 **Hero:** "Managed Service" + nama project; kartu No./Project/Tanggal; kartu "Kepada Yth." (Bapak/Ibu [Jabatan], instansi, alamat). Paragraf pembuka: tim IT profesional **"kurang lebih 100 orang"**.
@@ -81,20 +92,26 @@ Folder hasil tidak di-hardcode: pakai folder yang disebut pengguna; bila belum d
 
 **2. Rincian Biaya**
 - Tabel: Setup Awal + satu baris per bulan (deskripsi modul yang dikerjakan bulan itu) → **Total Investasi**.
-- Di bawahnya tabel kecil **"Layanan Lanjutan Setelah Go-Live"** (berlangganan, di luar Total Investasi): Poin/bulan, harga/bulan, mulai tanggal.
+- Di bawahnya tabel **"Layanan Berlangganan Bulanan"** dengan subjudul *"Di luar Total Investasi"* (menggantikan judul lama "Layanan Lanjutan Setelah Go-Live"), satu section dua baris:
+  1. *Managed Service – Pemeliharaan & Pengembangan Lanjutan* — 50 Poin/bulan, Rp7.500.000, mulai bulan setelah periode proyek.
+  2. *Venturo Cloud – [Jenis] [Paket]* — deskripsi fungsi server (web, API mobile, database), spesifikasi, dan opsi upgrade; dukungan tim DevOps disebut **hanya untuk paket VPS**; kolom Poin "–"; mulai 1 bulan sebelum go-live.
+- Istilah **"Layanan Lanjutan"** tetap dipakai untuk baris Managed Service 50 Poin, karena dirujuk di Pembayaran, Batasan, Persetujuan, Lampiran, dan Service Agreement (Pasal 17 & 19).
 
 **3. Pembayaran**
 - Nett, PPh 23 ditanggung klien, PPN tidak ditagihkan; H+14; Setup dimulai setelah pembayaran pertama; layanan dihentikan sementara bila telat bayar.
 - Tambahkan: *"Layanan Lanjutan (bila dipilih pada bagian Persetujuan) ditagihkan setiap akhir bulan mulai [tanggal] dan berlanjut otomatis setiap bulan hingga salah satu pihak menghentikannya dengan pemberitahuan tertulis 30 (tiga puluh) hari sebelumnya."*
-- Rekening BCA + tabel termin → **Total Pembayaran**.
+- Tambahkan: *"Venturo Cloud (bila dipilih pada bagian Persetujuan) ditagihkan setiap akhir bulan mulai [tanggal] dengan ketentuan perpanjangan dan penghentian yang sama dengan Layanan Lanjutan."*
+- Rekening BCA + tabel termin → **Total Pembayaran** (Setup Awal: "Saat tanda tangan").
 
 **4. Batasan dan Pengecualian** — biaya pihak ketiga dari brief (hosting/server, CDN video, DRM berlisensi, lisensi video conference, email/push, akun Apple/Google, akses API kampus/pihak ketiga disediakan klien, akun merchant & biaya transaksi payment gateway, konten disediakan klien), out-of-pocket, pekerjaan mendesak di luar jam kerja 2× bobot Poin, ditambah:
 - *"[Fitur tahap berikutnya] direncanakan pada pengembangan tahap berikutnya setelah rilis fitur utama (lihat Lampiran Estimasi Delivery Point)"*
 - *"Pemeliharaan setelah periode [bulan terakhir] mengikuti ketentuan Layanan Lanjutan pada bagian 2"*
+- *"Server production di luar Venturo Cloud (apabila Klien memilih menyediakan server sendiri), serta domain"*
 - *"Permintaan pekerjaan di luar alokasi Poin dalam dokumen ini akan dituangkan dalam penawaran atau kontrak baru…"*
 
 **5. Persetujuan** — kalimat persetujuan (bagian tidak terpisahkan dari Service Agreement), lalu kotak pilihan:
 ☐ *Lanjutkan Managed Service 50 Poin/bulan mulai [tanggal]* ☐ *Diputuskan kemudian*
+☐ *Venturo Cloud [Paket] Rp[harga]/bulan mulai [tanggal]* ☐ *Server disediakan Klien*
 Blok tanda tangan: Venturo (Yulianto Frandi, CEO, `ttd.png`) · Klien (nama kosong bila belum diketahui, jabatan umum).
 
 ## 5. Dokumen 2 — Lampiran Estimasi Delivery Point (`contoh-lampiran-estimasi.html`)
@@ -122,7 +139,7 @@ Diadaptasi dari SLA Venturo untuk model Managed Service. Hero: "Perjanjian Induk
    - Ayat 7: bila lebih dari 2 jam, Venturo **wajib** menyampaikan penyebab, langkah penanganan, estimasi selesai, dan workaround bila memungkinkan dalam batas 2 jam itu, lalu terus melaporkan perkembangan.
    - Penanganan bug tidak memotong Poin.
 5. Komunikasi — Space, Grup WhatsApp, Online Meeting, **GitHub Repository** (bukan GitLab)
-6. Project Management · 7. Metode Development (Scrum) · 8. Deployment Environment (staging gratis; production disediakan klien)
+6. Project Management · 7. Metode Development (Scrum) · 8. Deployment Environment (staging gratis; production: *"Infrastruktur Production disediakan oleh Klien, atau melalui layanan Venturo Cloud apabila dipilih Klien pada Penawaran Layanan."*)
 9. Laporan Pekerjaan — **harian** (WA), **meeting review mingguan**, **rekap bulanan** termasuk realisasi pemakaian Poin
 10. Biaya Out of Pocket · 11. **Pekerjaan di Luar Jam Kerja** (2× bobot Poin)
 12. Kerahasiaan
