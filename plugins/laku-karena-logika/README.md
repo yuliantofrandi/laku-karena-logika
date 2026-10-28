@@ -70,6 +70,11 @@ Dari satu **System Requirement Brief** klien (txt/pdf/docx), membuat **tiga PDF 
 
 > **Catatan lingkungan (proposal-pdf):** butuh Python **Playwright** + Chromium dan `pdftoppm` (poppler) untuk verifikasi.
 
+### `proposal-dedicated`
+Turunan `proposal-pdf` untuk model **Dedicated Team (man power based)**: dari System Requirement Brief, skill merekomendasikan komposisi tim (posisi, level, jumlah orang, durasi), lalu membuat **tiga PDF**: Penawaran Layanan Dedicated Team, **Lampiran Rincian Biaya per Posisi** (komponen biaya per orang seperti slide pricelist + "You Don't Need to Manage"), dan **Service Agreement Dedicated Team**. Harga dari pricelist: Senior/Pentester/DevOps Rp11.550.000 dan Intermediate/UI/UX/QA/BA Rp9.550.000 per orang per bulan, ditambah Engineering Kick-off sekali per orang; periode mulai tanggal 1 bulan berikutnya; Venturo Cloud tetap ditawarkan.
+
+> **Catatan lingkungan (proposal-dedicated):** sama dengan `proposal-pdf` — Python **Playwright** + Chromium dan `pdftoppm` (poppler).
+
 ### `proposal-upload`
 Lanjutan `proposal-pdf`: mengunggah 3 PDF penawaran satu set langsung dari folder hasil `proposal-pdf` ke bucket **R2 Cloudflare** di **proposal.venturo.id** (terpisah dari website company profile) langsung tanpa konfirmasi dengan URL sesuai nama file (`https://proposal.venturo.id/VEN-<Project>-<Tahun>-<Rev>.pdf`), hanya revisi terbaru per project; memverifikasi ketiga link, lalu menyusun **pesan WhatsApp pengantar 2 bubble** berisi link (Penawaran sebagai dokumen utama), masa berlaku 14 hari dari tanggal dokumen, dan ajakan review — diskon hanya disebut bila ada di PDF. Input = 3 PDF hasil `proposal-pdf` dari sesi chat sebelumnya (folder dan/atau file).
 
@@ -100,12 +105,13 @@ Membangun dan merawat **website lini bisnis jasa software** (software house, IT 
 /article-blog
 /article-portfolio
 /proposal-pdf
+/proposal-dedicated
 /proposal-upload
 /website-service
 /website-profile
 ```
 
-Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat website dari BKB dan keyword plan"*, *"buat sales page/landing page"* (→ `website-seo`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`); *"buat PDF penawaran"*, *"buat penawaran dari brief/requirement ini"*, *"estimasi delivery point"*, *"lampiran estimasi"*, *"service agreement"* (→ `proposal-pdf`); *"upload penawaran"*, *"buat link dan pesan WA penawaran"* (→ `proposal-upload`); *"buat website jasa"*, *"tambah halaman layanan"*, *"audit website venturo"*, *"deploy website ke Cloudflare"* (→ `website-service`); *"buat website profile"*, *"website company profile dengan preset jasa/produk"* (→ `website-profile`). Skill aktif otomatis saat tugasnya cocok.
+Atau cukup minta dengan bahasa biasa: *"buat BKB untuk produk baru X"*, *"isi positioning dan pricing"*, *"audit BKB, cek duplikasi"* (→ `business-knowledge`); *"review BKB, berapa skornya"*, *"analisa kompetitor"*, *"stress test positioning kami"* (→ `business-reviewer`); *"cari kata kunci"*, *"riset keyword"*, *"bikin rencana Google Ads/SEO"* (→ `keyword-research`); *"buat website dari BKB dan keyword plan"*, *"buat sales page/landing page"* (→ `website-seo`); *"buat carousel tentang X"* (→ `sosmed-desain`), *"buat caption"* (→ `sosmed-caption`), *"ekspor dan posting ke TikTok, IG, Threads"* (→ `sosmed-posting`); *"buat motion graphic"*, *"video demo aplikasi"*, *"walkthrough aplikasi untuk landing page"* (→ `motion-graphic`); *"pelajari folder panduan ini lalu posting ke CMS"*, *"jadikan dokumentasi ini artikel di website"*, *"update artikel X"* (→ `article-docs`); *"buatkan blog tentang X"*, *"input aturan ini ke blog dengan infografis"* (→ `article-blog`); *"buat portfolio proyek X"*, *"tulis studi kasus proyek ini"*, *"update portfolio X"* (→ `article-portfolio`); *"buat PDF penawaran"*, *"buat penawaran dari brief/requirement ini"*, *"estimasi delivery point"*, *"lampiran estimasi"*, *"service agreement"* (→ `proposal-pdf`); *"penawaran dedicated team"*, *"proposal man power"* (→ `proposal-dedicated`); *"upload penawaran"*, *"buat link dan pesan WA penawaran"* (→ `proposal-upload`); *"buat website jasa"*, *"tambah halaman layanan"*, *"audit website venturo"*, *"deploy website ke Cloudflare"* (→ `website-service`); *"buat website profile"*, *"website company profile dengan preset jasa/produk"* (→ `website-profile`). Skill aktif otomatis saat tugasnya cocok.
 
 ## Roadmap skill berikutnya
 

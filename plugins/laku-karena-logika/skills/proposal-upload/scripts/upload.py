@@ -9,7 +9,8 @@
 domain : cek custom domain yang tersambung ke bucket. Kosong = semua link akan 404.
 info   : baca teks PDF Penawaran → nama project, tanggal dokumen, tanggal berlaku (+14 hari),
          dan ada/tidaknya diskon di ketiga PDF (kata "gratis" tidak dihitung diskon).
-unggah : cek domain, lalu unggah set lengkap VEN-<Project>-<Tahun>-<Rev>.pdf, ...-Lampiran-Estimasi.pdf,
+unggah : cek domain, lalu unggah set lengkap VEN-<Project>-<Tahun>-<Rev>.pdf, ...-Lampiran-Estimasi.pdf
+         (Managed Service, proposal-pdf) atau ...-Lampiran-Rincian-Biaya.pdf (Dedicated Team, proposal-dedicated),
          ...-Service-Agreement.pdf (revisi tertinggi) ke akar bucket dengan nama file apa adanya
          (URL = <domain>/<nama file>) lewat `npx wrangler@4 r2 object put --remote`, pasang robots.txt
          (Disallow: /), hapus objek revisi lama project yang sama, lalu catat di log tetap.
@@ -23,8 +24,11 @@ Auth: login wrangler (`npx wrangler@4 login`) atau env CLOUDFLARE_API_TOKEN + CL
 """
 import argparse, datetime, json, os, re, shutil, subprocess, sys, tempfile, urllib.request
 
-POLA = re.compile(r"^(VEN-([A-Za-z0-9]+)-(\d{4})-(\d{3}))(|-Lampiran-Estimasi|-Service-Agreement)\.pdf$")
+POLA = re.compile(r"^(VEN-([A-Za-z0-9]+)-(\d{4})-(\d{3}))(|-Lampiran-Estimasi|-Lampiran-Rincian-Biaya|-Service-Agreement)\.pdf$")
+PERAN = {"": "P", "-Lampiran-Estimasi": "L", "-Lampiran-Rincian-Biaya": "L", "-Service-Agreement": "S"}
+NAMA_PERAN = {"P": "Penawaran Layanan", "L": "Lampiran (Estimasi Delivery Point / Rincian Biaya)", "S": "Service Agreement"}
 JENIS = {"": "Penawaran Layanan", "-Lampiran-Estimasi": "Lampiran Estimasi Delivery Point",
+         "-Lampiran-Rincian-Biaya": "Lampiran Rincian Biaya",
          "-Service-Agreement": "Service Agreement"}
 LOG = os.environ.get("PROPOSAL_UPLOAD_LOG", os.path.expanduser("~/.venturo/proposal-upload.json"))
 LOG_LAMA = ".proposal-upload.json"          # lokasi lama (di folder PDF), tetap dibaca untuk migrasi
@@ -70,14 +74,14 @@ def susun(a):
     for f, path in files.items():
         m = POLA.match(f)
         if m:
-            set_.setdefault(m.group(1), {})[m.group(5)] = path
+            set_.setdefault(m.group(1), {})[PERAN[m.group(5)]] = (m.group(5), path)
     for k, v in set_.items():
         if len(v) < 3:
-            kurang = [JENIS[x] for x in JENIS if x not in v]
+            kurang = [NAMA_PERAN[x] for x in NAMA_PERAN if x not in v]
             print(f"PERINGATAN: set {k} tidak lengkap (kurang: {', '.join(kurang)}) — dilewati", file=sys.stderr)
     lengkap = {k: v for k, v in set_.items() if len(v) == 3}
     if not lengkap:
-        sys.exit("Tidak ada set lengkap (Penawaran + Lampiran-Estimasi + Service-Agreement) dengan nomor revisi sama di: " + ", ".join(a.pdf))
+        sys.exit("Tidak ada set lengkap (Penawaran + Lampiran-Estimasi/Lampiran-Rincian-Biaya + Service-Agreement) dengan nomor revisi sama di: " + ", ".join(a.pdf))
     proyek = {POLA.match(k + ".pdf").group(2) for k in lengkap}
     if len(proyek) > 1:
         sys.exit("Ada lebih dari satu project yang lengkap: " + ", ".join(sorted(proyek)) + ". Sebutkan satu dengan --pdf berisi satu project.")
@@ -86,12 +90,14 @@ def susun(a):
     kunci_proyek = f"VEN-{prj}-{thn}"
     lama = baca_log(files.values()).get(kunci_proyek, {})
     objek = []
-    for akh in ["", "-Lampiran-Estimasi", "-Service-Agreement"]:
-        f = os.path.basename(lengkap[nomor][akh])
-        objek.append({"jenis": JENIS[akh], "file": lengkap[nomor][akh], "kunci": f,
+    for peran in ["P", "L", "S"]:
+        akh, path = lengkap[nomor][peran]
+        f = os.path.basename(path)
+        objek.append({"jenis": JENIS[akh], "file": path, "kunci": f,
                       "url": f"{getattr(a, 'domain', 'https://proposal.venturo.id').rstrip('/')}/{f}"})
     hapus = [k for k in lama.get("objek", []) if k not in {o["kunci"] for o in objek}]
-    return {"nomor": f"VEN/{prj}/{thn}/{rev}", "nomor_file": nomor, "kunci_proyek": kunci_proyek,
+    model = "Dedicated Team" if lengkap[nomor]["L"][0] == "-Lampiran-Rincian-Biaya" else "Managed Service"
+    return {"nomor": f"VEN/{prj}/{thn}/{rev}", "nomor_file": nomor, "kunci_proyek": kunci_proyek, "model": model,
             "bucket": getattr(a, "bucket", "proposal"), "objek": objek, "hapus_revisi_lama": hapus}
 
 
@@ -135,7 +141,7 @@ def info(a):
     m = re.search(r"Tanggal\s*[:\n ]\s*(\d{1,2}\s+\w+\s+\d{4})", utama)
     tgl = tanggal(m.group(1)) if m else tanggal(utama)
     temuan = {j: sorted({x.lower() for x in DISKON.findall(t)}) for j, t in teks.items()}
-    out = {"nomor": r["nomor"], "project": project,
+    out = {"nomor": r["nomor"], "model": r["model"], "project": project,
            "tanggal_dokumen": fmt(tgl) if tgl else None,
            "berlaku_hingga": fmt(tgl + datetime.timedelta(days=14)) if tgl else None,
            "ada_diskon": any(temuan.values()),
