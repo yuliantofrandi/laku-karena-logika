@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id"><head><meta charset="utf-8"><title>VEN-PolicyLab-2026-001-Lampiran-Rincian-Biaya</title>
+<html lang="id"><head><meta charset="utf-8"><title>VEN-C360-2026-001-Lampiran-Rincian-Biaya</title>
 <style>
 @font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
 @font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
@@ -38,7 +38,7 @@ li::marker{color:var(--teal)}
 li b{font-weight:400}
 table{width:100%;border-collapse:collapse;font-size:9.2pt;break-inside:avoid}
 th{background:var(--t7);color:#fff;font-weight:600;text-align:left;padding:2.4mm 3mm;font-size:8.6pt}
-th:first-child{border-top-left-radius:2.5mm}th:last-child{border-top-right-radius:2.5mm}
+thead tr:first-child th:first-child{border-top-left-radius:2.5mm}thead tr:first-child th:last-child{border-top-right-radius:2.5mm}
 td{padding:2mm 3mm;border-bottom:1px solid var(--border);vertical-align:top}
 .r{text-align:right;white-space:nowrap}.c{text-align:center}
 td .d{display:block;color:var(--subtle);font-size:8.3pt;margin-top:.8mm}
@@ -74,62 +74,72 @@ tr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bot
 @page{size:A4;margin:11mm 12mm 15mm 12mm}
 .hero{margin:-11mm -12mm 0;padding:8mm 12mm 3mm}
 .logo{margin-left:0}
-</style><body>
+.sm{font-size:8pt}.sm td,.sm th{padding:1.6mm 2mm}.unit{background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0;color:var(--muted);font-size:8.6pt}.unit b{color:var(--ink);font-weight:600}.ph{color:var(--t7);font-weight:700}.z{color:#c3cccd}
+tr.grp td{background:var(--s2);font-weight:700;padding:2mm 3mm;border:0}tr.grp td small{font-weight:500;color:var(--subtle);margin-left:2mm}
+table.cost{break-inside:auto;font-size:8.8pt}table.cost td{padding:1.5mm 3mm}table.cost tr{break-inside:avoid}
+tr.tot td{background:var(--t7);color:#fff;font-weight:700;border:0;padding:2mm 3mm}tr.tot td:first-child{text-align:right}
+ul.sc{padding-left:4mm;margin:0}ul.sc li{margin:.4mm 0}
+</style></head><body>
 <section class="hero">
   <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
   <div class="eyebrow">Lampiran Penawaran Layanan</div>
-  <h1>Rincian Biaya per Posisi<br><span>Platform Pembelajaran Kebijakan</span></h1>
+  <h1>Rincian Biaya &amp; Rencana Kerja<br><span>Customer 360 Dashboard &amp; Analytics</span></h1>
   <div class="meta">
-    <div class="card"><div class="kv"><b>Lampiran</b><span>VEN/PolicyLab/2026/001</span><b>Project</b><span>Platform Pembelajaran Kebijakan</span><b>Tanggal</b><span>22 Oktober 2026</span></div></div>
-    <div class="card soft">
-      <div class="lbl">Kepada Yth.</div>
-      <div class="to">Bapak/Ibu Pimpinan</div>
-      <div>Universitas Sebelas Maret (UNS)</div>
-      <div style="color:var(--muted)">Jl. Ir. Sutami No.36A, Surakarta, Jawa Tengah</div>
-    </div>
+    <div class="card"><div class="kv"><b>Lampiran</b><span>VEN/C360/2026/001</span><b>Project</b><span>Customer 360 Dashboard &amp; Analytics</span><b>Tanggal</b><span>29 Oktober 2026</span></div></div>
+    <div class="card soft"><div class="lbl">Kepada Yth.</div><div class="to">Tim Pengadaan &amp; Digitalisasi</div><div>PT Contoh Utilitas Kota (Perseroda)</div><div style="color:var(--muted)">Jl. Contoh No. 1, Jakarta Pusat 10110</div></div>
   </div>
-  <p class="intro">Lampiran ini merinci komponen biaya setiap posisi Dedicated Team pada Penawaran Layanan, serta hal-hal yang sudah ditangani Venturo sehingga Klien tidak perlu mengelolanya.</p>
+  <p class="intro">Lampiran ini merinci komponen biaya setiap posisi, alokasi tim pada setiap fase, serta fitur dan pekerjaan yang ditargetkan pada setiap fase.</p>
 </section>
-
 <h2><i>1</i>Komponen Biaya per Orang</h2>
 <table>
-  <thead><tr><th>Komponen</th><th class="r">Senior</th><th class="r">Intermediate</th><th class="r">UI/UX / QA / BA</th></tr></thead>
-  <tbody>
-    <tr class="sub"><td style="text-align:left;color:var(--ink)">Sekali bayar</td><td></td><td></td><td></td></tr>
-    <tr><td>Engineering Kick-off</td><td class="r">Rp11.550.000</td><td class="r">Rp9.550.000</td><td class="r">Rp9.550.000</td></tr>
-    <tr class="sub"><td style="text-align:left;color:var(--ink)">Biaya bulanan</td><td></td><td></td><td></td></tr>
-    <tr><td>Development Squad</td><td class="r">Rp6.800.000</td><td class="r">Rp5.500.000</td><td class="r">Rp5.500.000</td></tr><tr><td>Technical Lead</td><td class="r">Rp1.030.000</td><td class="r">Rp1.675.000</td><td class="r">Rp1.675.000</td></tr><tr><td>AI Subscription &amp; RND</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td></tr><tr><td>Engineering Workspace</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td></tr><tr><td>Engineering Management</td><td class="r">Rp2.720.000</td><td class="r">Rp1.375.000</td><td class="r">Rp1.375.000</td></tr>
-    <tr class="grand"><td>Biaya Bulanan per Orang</td><td class="r">Rp11.550.000</td><td class="r">Rp9.550.000</td><td class="r">Rp9.550.000</td></tr>
-  </tbody>
+  <thead><tr><th rowspan="2">Komponen</th><th class="c" colspan="2">Senior · Pentester / DevOps</th><th class="c" colspan="2">Intermediate · UI/UX / QA / BA</th></tr><tr><th class="r">Long Term</th><th class="r">Short Term</th><th class="r">Long Term</th><th class="r">Short Term</th></tr></thead>
+  <tbody><tr class="sub"><td style="text-align:left;color:var(--ink)">Sekali bayar</td><td></td><td></td><td></td><td></td></tr><tr><td>Engineering Kick-off</td><td class="r">Rp11.550.000</td><td class="r z">–</td><td class="r">Rp9.550.000</td><td class="r z">–</td></tr><tr class="sub"><td style="text-align:left;color:var(--ink)">Biaya bulanan</td><td></td><td></td><td></td><td></td></tr><tr><td>Development Squad</td><td class="r">Rp6.800.000</td><td class="r">Rp6.800.000</td><td class="r">Rp5.500.000</td><td class="r">Rp5.500.000</td></tr><tr><td>Technical Lead</td><td class="r">Rp1.030.000</td><td class="r">Rp1.030.000</td><td class="r">Rp1.675.000</td><td class="r">Rp1.675.000</td></tr><tr><td>AI Subscription &amp; RND</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td></tr><tr><td>Engineering Workspace</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td></tr><tr><td>Engineering Management</td><td class="r">Rp2.720.000</td><td class="r">Rp2.720.000</td><td class="r">Rp1.375.000</td><td class="r">Rp1.375.000</td></tr><tr><td>Project Enablement Fee</td><td class="r z">–</td><td class="r">Rp4.620.000</td><td class="r z">–</td><td class="r">Rp3.820.000</td></tr><tr class="grand"><td>Biaya Bulanan per Orang</td><td class="r">Rp11.550.000</td><td class="r">Rp16.170.000</td><td class="r">Rp9.550.000</td><td class="r">Rp13.370.000</td></tr></tbody>
 </table>
-
+<p class="note" style="color:var(--muted)"><b>Long Term</b> untuk posisi yang terlibat 2 bulan atau lebih (dengan Engineering Kick-off). <b>Short Term</b> untuk posisi yang dibutuhkan kurang dari 2 bulan: tanpa Kick-off, dengan Project Enablement Fee untuk onboarding cepat ke proyek berjalan.</p>
+<div class="unit"><b>Satuan.</b> Orang: 1 = penuh waktu (8 jam per hari kerja), ½ = 4 jam per hari kerja, ¼ = 2 jam per hari kerja. Bulan: 1 = 4 minggu kerja, ½ = 2 minggu, ¼ = 1 minggu. Total = tarif per bulan × orang × bulan. Posisi Short Term hanya dilibatkan pada fase tertentu, memakai tarif short term, dan tanpa Engineering Kick-off.</div>
 <h2><i>2</i>Komposisi Tim &amp; Peran</h2>
 <table style="break-inside:auto">
-  <thead><tr><th>Posisi</th><th>Level</th><th class="c">Orang</th><th>Peran</th></tr></thead>
-  <tbody><tr><td>Senior Software Engineer – Backend & Arsitektur</td><td>Senior</td><td class="c">1</td><td>Arsitektur sistem, API, integrasi SSO, dan database.</td></tr><tr><td>Senior Software Engineer – Mobile</td><td>Senior</td><td class="c">1</td><td>Aplikasi Android & iOS untuk peserta dan dosen.</td></tr><tr><td>Software Engineer – Frontend Web</td><td>Intermediate</td><td class="c">2</td><td>Antarmuka web peserta, dosen, dan administrator.</td></tr><tr><td>UI/UX Designer</td><td>UI/UX / QA / BA</td><td class="c">1</td><td>Riset alur pengguna, wireframe, dan desain antarmuka web & mobile.</td></tr><tr><td>QA Engineer</td><td>UI/UX / QA / BA</td><td class="c">1</td><td>Skenario uji, pengujian fungsional, dan automation test.</td></tr>
-    <tr class="grand"><td colspan="2">Total Tim</td><td class="c">6</td><td></td></tr>
-  </tbody>
+  <thead><tr><th>Posisi</th><th>Level &amp; Skema</th><th class="c">Alokasi Maks.</th><th>Peran</th></tr></thead>
+  <tbody><tr><td>Senior Software Engineer – Backend &amp; Arsitektur</td><td>Senior · Long Term</td><td class="c">1</td><td>Arsitektur modular, API, hak akses sisi server, 2FA, serta mesin aturan skor dan klasifikasi risiko pelanggan.</td></tr><tr><td>Senior Software Engineer – Backend (tambahan)</td><td>Senior · Short Term</td><td class="c">1</td><td>Mempercepat integrasi data, hak akses, dan mesin aturan agar fase Fondasi Data &amp; Platform selesai dalam 1 bulan.</td></tr><tr><td>Senior Software Engineer – Integrasi Data</td><td>Senior · Long Term</td><td class="c">2</td><td>Penerimaan data dari sistem sumber, initial load data historis, rekonsiliasi jumlah record dan nilai finansial, data mart, dan penjadwal proses.</td></tr><tr><td>DevOps Engineer</td><td>Pentester / DevOps · Long Term</td><td class="c">1</td><td>Environment Testing dan Production on-premise Klien, deployment, monitoring, backup, dan security hardening. Development dan staging memakai ekosistem Venturo.</td></tr><tr><td>Software Engineer – Backend Analitik</td><td>Intermediate · Long Term</td><td class="c">1</td><td>Perhitungan KPI, laporan dan ekspor Excel/PDF, notifikasi, serta audit trail.</td></tr><tr><td>Software Engineer – Frontend Dashboard</td><td>Intermediate · Long Term</td><td class="c">2</td><td>Halaman dashboard responsif berdasarkan prototype, grafik interaktif, dan peta tematik.</td></tr><tr><td>Software Engineer – Backend Analitik (tambahan)</td><td>Intermediate · Short Term</td><td class="c">1</td><td>Mempercepat perhitungan KPI, agregasi data, dan laporan agar fase Dashboard &amp; Analitik selesai dalam 1 bulan.</td></tr><tr><td>Software Engineer – Frontend Dashboard (tambahan)</td><td>Intermediate · Short Term</td><td class="c">2</td><td>Mempercepat pembuatan halaman dashboard dan grafik agar fase Dashboard &amp; Analitik selesai dalam 1 bulan.</td></tr><tr><td>Business Analyst</td><td>UI/UX / QA / BA · Long Term</td><td class="c">1</td><td>Analisis kebutuhan bersama unit kerja, definisi KPI, Design &amp; Build Report, UAT, serta materi dan pelaksanaan pelatihan.</td></tr><tr><td>QA Engineer</td><td>UI/UX / QA / BA · Long Term</td><td class="c">2</td><td>Test scenario, SIT, pengujian otomatis atas perhitungan angka, Performance Test, regression, dan pendampingan UAT.</td></tr><tr><td>UI/UX Designer</td><td>UI/UX / QA / BA · Short Term</td><td class="c">1</td><td>Review prototype, validasi alur setiap peran pengguna, dan desain antarmuka final.</td></tr><tr><td>Pentester</td><td>Pentester / DevOps · Short Term</td><td class="c">1</td><td>Vulnerability assessment (OWASP Top 10), manual penetration test, laporan temuan, dan retest perbaikan.</td></tr></tbody>
 </table>
-
 <div class="keep">
-<h2><i>3</i>Sudah Ditangani Venturo</h2>
-<p style="margin:0 0 2mm">Seluruh hal berikut sudah termasuk dalam biaya bulanan, sehingga Klien tidak perlu mengelolanya:</p>
-<ul>
-  <li>Basic Salary &amp; THR</li>
-  <li>Benefits &amp; Allowances</li>
-  <li>BPJS Kesehatan &amp; Ketenagakerjaan</li>
-  <li>Income Tax (PPh 21) &amp; kompensasi PKWT</li>
-  <li>Employee Engagement Program</li>
-  <li>Talent Development &amp; Performance Management</li>
-</ul>
+<h2><i>3</i>Alokasi Tim per Fase</h2>
+<table class="sm">
+  <thead><tr><th>Posisi (orang)</th><th class="c">F1</th><th class="c">F2</th><th class="c">F3</th><th class="c">F4</th><th class="c">F5</th><th class="c">F6</th><th class="c">F7</th><th class="c">F8</th></tr></thead>
+  <tbody><tr><td>Senior Software Engineer – Backend &amp; Arsitektur</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">½</td></tr><tr><td>Senior Software Engineer – Backend (tambahan)</td><td class="c z">–</td><td class="c">1</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td></tr><tr><td>Senior Software Engineer – Integrasi Data</td><td class="c">1</td><td class="c">2</td><td class="c">2</td><td class="c">1</td><td class="c">½</td><td class="c">½</td><td class="c">½</td><td class="c">¼</td></tr><tr><td>DevOps Engineer</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c">1</td><td class="c z">–</td><td class="c">1</td><td class="c z">–</td><td class="c">¼</td></tr><tr><td>Software Engineer – Backend Analitik</td><td class="c z">–</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">½</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td></tr><tr><td>Software Engineer – Frontend Dashboard</td><td class="c">1</td><td class="c">2</td><td class="c">2</td><td class="c">1</td><td class="c">1</td><td class="c">½</td><td class="c">½</td><td class="c">½</td></tr><tr><td>Software Engineer – Backend Analitik (tambahan)</td><td class="c z">–</td><td class="c z">–</td><td class="c">1</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td></tr><tr><td>Software Engineer – Frontend Dashboard (tambahan)</td><td class="c z">–</td><td class="c z">–</td><td class="c">2</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td></tr><tr><td>Business Analyst</td><td class="c">1</td><td class="c">½</td><td class="c">½</td><td class="c z">–</td><td class="c">1</td><td class="c">1</td><td class="c">¼</td><td class="c z">–</td></tr><tr><td>QA Engineer</td><td class="c z">–</td><td class="c">1½</td><td class="c">2</td><td class="c">1</td><td class="c">1</td><td class="c">½</td><td class="c">½</td><td class="c">¼</td></tr><tr><td>UI/UX Designer</td><td class="c">1</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td></tr><tr><td>Pentester</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c z">–</td><td class="c">1</td><td class="c">¼</td><td class="c z">–</td><td class="c z">–</td></tr><tr class="sub"><td style="text-align:left">Durasi (bulan)</td><td class="c">1</td><td class="c">1</td><td class="c">1</td><td class="c">½</td><td class="c">½</td><td class="c">1</td><td class="c">3</td><td class="c">12</td></tr><tr class="grand"><td>Total Tim (orang)</td><td class="c">5</td><td class="c">9</td><td class="c">11½</td><td class="c">6</td><td class="c">6</td><td class="c">4¾</td><td class="c">2¾</td><td class="c">1¾</td></tr></tbody>
+</table>
+<p class="note" style="color:var(--muted);font-size:8pt">F1 Requirement &amp; Design · F2 Fondasi Data · F3 Dashboard · F4 SIT &amp; Performance · F5 UAT &amp; Pentest · F6 Go-Live · F7 Hypercare · F8 Annual Support.</p>
 </div>
-
+<h2 style="break-before:page"><i>4</i>Rencana Kerja &amp; Fitur per Fase</h2>
+<p style="margin:0 0 2mm;color:var(--muted)">Kode F dan NF mengikuti dokumen kebutuhan Klien dan dapat dipakai untuk mengisi Matriks Kesesuaian Kebutuhan; LP merujuk butir Lingkup Pekerjaan.</p>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 1</span> · Requirement Analysis &amp; System Design <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">1–31 Jan 2027 · 1 bulan · 5 orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>LP-1</b></td><td><b>Analisis &amp; perancangan</b><span class="d">Analisis kebutuhan setiap modul bersama unit kerja</span></td></tr><tr><td style="white-space:nowrap"><b>UI</b></td><td><b>Desain antarmuka</b><span class="d">Review prototype dan desain antarmuka final</span></td></tr><tr><td style="white-space:nowrap"><b>F-05</b></td><td><b>Definisi KPI</b><span class="d">Penyepakatan definisi dan rumus KPI</span></td></tr><tr><td style="white-space:nowrap"><b>NF-08</b></td><td><b>Rancangan infrastruktur</b><span class="d">Rekomendasi spesifikasi server Development, Testing/UAT, dan Production</span></td></tr></tbody></table></div>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 2</span> · Fondasi Data &amp; Platform <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">1–28 Feb 2027 · 1 bulan · 9 orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>F-01</b></td><td><b>Autentikasi dan akses pengguna</b><span class="d">Login, 2FA, penguncian akun, batas sesi</span></td></tr><tr><td style="white-space:nowrap"><b>F-21</b></td><td><b>Peran dan hak akses</b><span class="d">RBAC dengan cakupan data per peran</span></td></tr><tr><td style="white-space:nowrap"><b>LP-4</b></td><td><b>Initial load &amp; rekonsiliasi</b><span class="d">Pemuatan data historis dan rekonsiliasi jumlah record</span></td></tr><tr><td style="white-space:nowrap"><b>F-06</b></td><td><b>Customer 360</b><span class="d">Profil, status, segmen, dan riwayat pelanggan</span></td></tr></tbody></table></div>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 3</span> · Dashboard &amp; Analitik <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">1–31 Mar 2027 · 1 bulan · 11½ orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>F-02</b></td><td><b>Dashboard utama</b><span class="d">Kartu KPI dan proyeksi terhadap realisasi</span></td></tr><tr><td style="white-space:nowrap"><b>F-09</b></td><td><b>Analitik pembayaran</b><span class="d">Segmentasi dan ketepatan bayar</span></td></tr><tr><td style="white-space:nowrap"><b>F-15</b></td><td><b>Laporan &amp; ekspor</b><span class="d">Laporan periodik, ekspor Excel/PDF</span></td></tr></tbody></table></div>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 4</span> · System Integration Test &amp; Performance Test <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">1–15 Apr 2027 · ½ bulan · 6 orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>NF-02</b></td><td><b>Performance Test</b><span class="d">Load test K6 dan tuning</span></td></tr><tr><td style="white-space:nowrap"><b>LP-6</b></td><td><b>SIT</b><span class="d">End-to-end test scenario dan regression</span></td></tr></tbody></table></div>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 5</span> · User Acceptance Test &amp; Penetration Test <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">16–30 Apr 2027 · ½ bulan · 6 orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>LP-7</b></td><td><b>UAT</b><span class="d">Defect log, Quality Release Checklist, sign-off</span></td></tr><tr><td style="white-space:nowrap"><b>NF-05</b></td><td><b>Penetration Test</b><span class="d">Vulnerability assessment dan manual pentest</span></td></tr></tbody></table></div>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 6</span> · Go-Live &amp; Pelatihan <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">1–31 Mei 2027 · 1 bulan · 4¾ orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>LP-8</b></td><td><b>Go-live</b><span class="d">Deployment ke Production on-premise</span></td></tr><tr><td style="white-space:nowrap"><b>LP-9</b></td><td><b>Pelatihan</b><span class="d">Functional dan key user training</span></td></tr></tbody></table></div>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 7</span> · Hypercare <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">1 Jun – 31 Agu 2027 · 3 bulan · 2¾ orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>LP-10</b></td><td><b>Hypercare</b><span class="d">Pendampingan dan perbaikan cepat pasca go-live</span></td></tr></tbody></table></div>
+<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase 8</span> · Annual Support <small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">1 Sep 2027 – 31 Agu 2028 · 12 bulan · 1¾ orang</small></h3>
+<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody><tr><td style="white-space:nowrap"><b>LP-11</b></td><td><b>Annual Support</b><span class="d">Pemeliharaan, patching, dan helpdesk 12 bulan</span></td></tr></tbody></table></div>
 <div class="keep">
-<h2><i>4</i>Asumsi &amp; Catatan</h2>
+<h2><i>5</i>Sudah Ditangani Venturo</h2>
+<p style="margin:0 0 2mm">Seluruh hal berikut sudah termasuk dalam biaya bulanan, sehingga Klien tidak perlu mengelolanya:</p>
+<ul><li>Basic Salary &amp; THR</li><li>Benefits &amp; Allowances</li><li>BPJS Kesehatan &amp; Ketenagakerjaan</li><li>Income Tax (PPh 21) &amp; kompensasi PKWT</li><li>Employee Engagement Program</li><li>Talent Development &amp; Performance Management</li></ul>
+</div>
+<div class="keep">
+<h2><i>6</i>Asumsi &amp; Catatan</h2>
 <ul>
-  <li>Komposisi tim disusun dari kebutuhan pada System Requirement Brief dan dapat disesuaikan bersama sebelum penandatanganan.</li>
-  <li>Penambahan atau pengurangan anggota tim selama periode kerja diajukan secara tertulis dan dituangkan dalam addendum.</li>
-  <li>Engineering Kick-off berlaku untuk setiap anggota tim baru, termasuk penambahan anggota di tengah periode.</li>
+  <li>Komposisi dan alokasi tim disusun dari kebutuhan pada dokumen Klien dan dapat disesuaikan bersama sebelum penandatanganan.</li>
+  <li>Engineering Kick-off ditagih sekali untuk setiap posisi Long Term sesuai alokasi tertingginya (mis. alokasi tertinggi ½ orang = ½ × tarif Kick-off).</li>
+  <li>Posisi Short Term: Senior Software Engineer – Backend (tambahan) (1 bulan); Software Engineer – Backend Analitik (tambahan) (1 bulan); Software Engineer – Frontend Dashboard (tambahan) (1 bulan); UI/UX Designer (1 bulan); Pentester (1½ bulan).</li>
+  <li>Urutan fitur dapat disesuaikan dengan prioritas Klien selama total alokasi tim pada fase tersebut tetap.</li>
 </ul>
 </div>
 </body></html>

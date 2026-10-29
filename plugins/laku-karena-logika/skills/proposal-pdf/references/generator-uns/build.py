@@ -194,7 +194,7 @@ P+=f'''
 <div class="keep">
 <h2><i>3</i>Pembayaran</h2>
 <ul>
-  <li>Harga yang tertulis adalah harga bersih (nett) yang diterima Venturo. PPh 23 (bila ada) ditanggung oleh Klien. PPN tidak ditagihkan.</li>
+  <li>Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien.</li>
   <li>Tagihan dikirim sesuai tanggal invoice dan wajib dibayarkan paling lambat H+14 (empat belas) dari tanggal invoice.</li>
   <li>Pekerjaan Setup Awal dimulai setelah pembayaran pertama diterima.</li>
   <li>Apabila Klien tidak melakukan pembayaran sesuai jadwal, maka seluruh aktivitas layanan berhak dihentikan sementara.</li>

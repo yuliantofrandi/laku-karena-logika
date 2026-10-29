@@ -13,6 +13,8 @@ Dari satu **System Requirement Brief** klien, skill ini menghasilkan tiga PDF de
 Acuan kualitas: sesi penawaran *Platform Pembelajaran Kebijakan – Universitas Sebelas Maret*, Rev 016. Hasil skill harus setara dengan itu.
 
 ## 0. Cek alat
+Jangan jalankan skrip dengan `python3 -I`: pip di macOS memasang Playwright ke user site-packages, sedangkan `-I` mematikannya (`ModuleNotFoundError`). Jalankan `mkdir -p <folder preview>` sebelum `pdftoppm`.
+
 Skill ini merender PDF di komputer pengguna. Cek dulu:
 ```bash
 python3 -c "import playwright; print('playwright ok')"; command -v pdftoppm
@@ -34,7 +36,7 @@ Folder hasil tidak di-hardcode: pakai folder yang disebut pengguna; bila belum d
 - `assets/contoh-penawaran.html` — template Penawaran final (Rev 016).
 - `assets/contoh-lampiran-estimasi.html` — template Lampiran Estimasi Delivery Point final.
 - `assets/contoh-service-agreement.html` — template Service Agreement final.
-- `scripts/render.py` — `python3 -I <folder skill ini>/scripts/render.py <html> <out.pdf> "<No. dokumen>" ["<prefix footer>"]`; render A4 dengan Playwright Chromium + footer (prefix · No. dokumen | Paraf Venturo [paraf.png] + Paraf Klien | Halaman X dari Y), padding footer 12 mm. Membaca `paraf.png` dari folder yang sama dengan HTML.
+- `scripts/render.py` — `python3 <folder skill ini>/scripts/render.py <html> <out.pdf> "<No. dokumen>" ["<prefix footer>"]`; render A4 dengan Playwright Chromium + footer (prefix · No. dokumen | Paraf Venturo [paraf.png] + Paraf Klien | Halaman X dari Y), padding footer 12 mm. Membaca `paraf.png` dari folder yang sama dengan HTML.
 - `references/venturo-cloud.md` — rate card Venturo Cloud (Shared Hosting & VPS) dan aturan pemakaiannya.
 - `references/generator-uns/` — `build.py`, `sla.py`, `fix.py` dari sesi UNS: **contoh** struktur data modul → HTML. Skrip ini membaca file template lama dari folder kerja sesi itu, jadi jadikan acuan pola, bukan untuk dijalankan apa adanya.
 
@@ -98,7 +100,7 @@ Folder hasil tidak di-hardcode: pakai folder yang disebut pengguna; bila belum d
 - Istilah **"Layanan Lanjutan"** tetap dipakai untuk baris Managed Service 50 Poin, karena dirujuk di Pembayaran, Batasan, Persetujuan, Lampiran, dan Service Agreement (Pasal 17 & 19).
 
 **3. Pembayaran**
-- Nett, PPh 23 ditanggung klien, PPN tidak ditagihkan; H+14; Setup dimulai setelah pembayaran pertama; layanan dihentikan sementara bila telat bayar.
+- Kalimat pajak baku: *"Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien."* (jangan tulis "PPN tidak ditagihkan", jangan ada baris PPN; tinjau ulang bila Venturo sudah PKP); H+14; Setup dimulai setelah pembayaran pertama; layanan dihentikan sementara bila telat bayar.
 - Tambahkan: *"Layanan Lanjutan (bila dipilih pada bagian Persetujuan) ditagihkan setiap akhir bulan mulai [tanggal] dan berlanjut otomatis setiap bulan hingga salah satu pihak menghentikannya dengan pemberitahuan tertulis 30 (tiga puluh) hari sebelumnya."*
 - Tambahkan: *"Venturo Cloud (bila dipilih pada bagian Persetujuan) ditagihkan setiap akhir bulan mulai [tanggal] dengan ketentuan perpanjangan dan penghentian yang sama dengan Layanan Lanjutan."*
 - Rekening BCA + tabel termin → **Total Pembayaran** (Setup Awal: "Saat tanda tangan").
@@ -190,9 +192,9 @@ h2 i{width:auto;min-width:5.6mm;height:5.6mm;padding:0 1.2mm;border-radius:1.4mm
 - `<title>` HTML = nama file (tampil di tab browser saat klien membuka link).
 - Render (salin `assets/*` ke folder kerja lebih dulu):
 ```bash
-python3 -I <folder skill ini>/scripts/render.py penawaran.html "<output>/VEN-<Project>-<Tahun>-<Rev>.pdf" "VEN/<Project>/<Tahun>/<Rev>"
-python3 -I <folder skill ini>/scripts/render.py lampiran.html  "<output>/VEN-<Project>-<Tahun>-<Rev>-Lampiran-Estimasi.pdf" "VEN/<Project>/<Tahun>/<Rev>" "Lampiran Estimasi Delivery Point"
-python3 -I <folder skill ini>/scripts/render.py sla.html       "<output>/VEN-<Project>-<Tahun>-<Rev>-Service-Agreement.pdf" "VEN/<Project>/<Tahun>/<Rev>" "Service Agreement"
+python3 <folder skill ini>/scripts/render.py penawaran.html "<output>/VEN-<Project>-<Tahun>-<Rev>.pdf" "VEN/<Project>/<Tahun>/<Rev>"
+python3 <folder skill ini>/scripts/render.py lampiran.html  "<output>/VEN-<Project>-<Tahun>-<Rev>-Lampiran-Estimasi.pdf" "VEN/<Project>/<Tahun>/<Rev>" "Lampiran Estimasi Delivery Point"
+python3 <folder skill ini>/scripts/render.py sla.html       "<output>/VEN-<Project>-<Tahun>-<Rev>-Service-Agreement.pdf" "VEN/<Project>/<Tahun>/<Rev>" "Service Agreement"
 ```
 
 ## 9. Penamaan, revisi & verifikasi
