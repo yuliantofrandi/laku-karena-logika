@@ -288,25 +288,31 @@ def lampiran(d, fase):
     pos = d["posisi"]
     h = hero(d, "Lampiran Penawaran Layanan", "Rincian Biaya &amp; Rencana Kerja", "Lampiran")
     h += f'  <p class="intro">Lampiran ini merinci komponen biaya setiap posisi, alokasi tim pada setiap fase, serta fitur dan pekerjaan yang ditargetkan pada setiap fase{e(d.get("lampiran_intro_tambahan", ""))}.</p>\n</section>\n'
-    grup = [g for g in ("S", "I") if any(GRUP[p["level"]] == g for p in pos)]
-    nama_g = {"S": "Senior · Pentester / DevOps", "I": "Intermediate · UI/UX / QA / BA"}
-    th1 = "".join(f'<th class="c" colspan="2">{nama_g[g]}</th>' for g in grup)
-    th2 = "".join('<th class="r">Long Term</th><th class="r">Short Term</th>' for g in grup)
-    kos = "<td></td>" * (2 * len(grup))
-    def baris(n, f):
-        return f"<tr><td>{n}</td>" + "".join(f(g) for g in grup) + "</tr>"
-    rows = (f'<tr class="sub"><td style="text-align:left;color:var(--ink)">Sekali bayar</td>{kos}</tr>'
-            + baris("Engineering Kick-off", lambda g: f'<td class="r">{rp(KICKOFF[g])}</td><td class="r z">–</td>')
-            + f'<tr class="sub"><td style="text-align:left;color:var(--ink)">Biaya bulanan</td>{kos}</tr>'
-            + "".join(baris(n, lambda g, s=s, i=i: f'<td class="r">{rp(s if g == "S" else i)}</td>' * 2) for n, s, i in KOMPONEN)
-            + baris("Project Enablement Fee", lambda g: f'<td class="r z">–</td><td class="r">{rp(ENABLEMENT[g])}</td>')
-            + '<tr class="grand"><td>Biaya Bulanan per Orang</td>' + "".join(f'<td class="r">{rp(TARIF[(g, "Long Term")])}</td><td class="r">{rp(TARIF[(g, "Short Term")])}</td>' for g in grup) + "</tr>")
-    h += f'''<h2><i>1</i>Komponen Biaya per Orang</h2>
-<table>
+    # Komponen biaya selalu lengkap: dua tabel (Long Term & Short Term) untuk keempat level.
+    kol = ["Senior", "Intermediate", "Pentester/DevOps", "UI/UX/QA/BA"]
+    th1 = '<th class="c" colspan="2">Software Engineering</th><th class="c" colspan="2">Product Engineering</th>'
+    th2 = "".join(f'<th class="r">{LABEL_LEVEL[k]}</th>' for k in kol)
+    def baris(n, f, cls=""):
+        return f'<tr{cls}><td>{n}</td>' + "".join(f'<td class="r">{f(GRUP[k])}</td>' for k in kol) + "</tr>"
+    def sub(t):
+        return f'<tr class="sub"><td style="text-align:left;color:var(--ink)">{t}</td>' + "<td></td>" * 4 + "</tr>"
+    def tabel(skema):
+        rows = ""
+        if skema == "Long Term":
+            rows += sub("Sekali bayar") + baris("Engineering Kick-off", lambda g: rp(KICKOFF[g]))
+        rows += sub("Biaya bulanan") + "".join(baris(n, lambda g, s=s, i=i: rp(s if g == "S" else i)) for n, s, i in KOMPONEN)
+        if skema == "Short Term":
+            rows += baris("Project Enablement Fee", lambda g: rp(ENABLEMENT[g]))
+        rows += baris(f"Bulanan {skema}", lambda g: rp(TARIF[(g, skema)]), ' class="grand"')
+        return f'''<h3>{skema}</h3>
+<table class="sm" style="break-inside:avoid">
   <thead><tr><th rowspan="2">Komponen</th>{th1}</tr><tr>{th2}</tr></thead>
   <tbody>{rows}</tbody>
 </table>
-<p class="note" style="color:var(--muted)"><b>Long Term</b> untuk posisi yang terlibat 2 bulan atau lebih (dengan Engineering Kick-off). <b>Short Term</b> untuk posisi yang dibutuhkan kurang dari 2 bulan: tanpa Kick-off, dengan Project Enablement Fee untuk onboarding cepat ke proyek berjalan.</p>
+'''
+    h += f'''<h2><i>1</i>Komponen Biaya per Orang</h2>
+{tabel("Long Term")}{tabel("Short Term")}<p class="note" style="color:var(--muted)"><b>Long Term</b> untuk posisi yang terlibat 2 bulan atau lebih (dengan Engineering Kick-off). <b>Short Term</b> untuk posisi yang dibutuhkan kurang dari 2 bulan: tanpa Kick-off, dengan Project Enablement Fee untuk onboarding cepat ke proyek berjalan.</p>
+<div class="unit"><b>Tidak perlu Anda kelola:</b> gaji pokok &amp; THR · tunjangan &amp; benefit · BPJS Kesehatan &amp; Ketenagakerjaan · PPh 21 &amp; kompensasi PKWT · program employee engagement · pengembangan talenta &amp; manajemen kinerja.</div>
 {SATUAN}
 '''
     kom = "".join(f'<tr><td>{e(p["nama"])}</td><td>{LABEL_LEVEL[p["level"]]} · {p["skema"]}</td><td class="c">{frac(p["maks"])}</td><td>{e(p["peran"])}</td></tr>' for p in pos)
