@@ -1,0 +1,406 @@
+{
+ "_catatan": "CONTOH FIKTIF (klien disamarkan). Pola fase, alokasi, dan hitungan mengikuti sesi penawaran Customer 360 rev 015.",
+ "nomor": "VEN/C360/2026/001",
+ "file": "VEN-C360-2026-001",
+ "tanggal": "29 Oktober 2026",
+ "project": "Customer 360 Dashboard & Analytics",
+ "intro_untuk": "Sistem Customer 360 Dashboard & Analytics, mulai dari analisis hingga Annual Support",
+ "klien": {
+  "penerima": "Tim Pengadaan & Digitalisasi",
+  "instansi": "PT Contoh Utilitas Kota (Perseroda)",
+  "singkatan": "Klien",
+  "alamat": "Jl. Contoh No. 1, Jakarta Pusat 10110",
+  "ttd_nama": "",
+  "ttd_jabatan": ""
+ },
+ "catatan_lingkup": "Pemetaan setiap fitur ke kode kebutuhan (F, NF, LP) tercantum di Lampiran Rincian Biaya & Rencana Kerja.",
+ "catatan_kode": "Kode F dan NF mengikuti dokumen kebutuhan Klien dan dapat dipakai untuk mengisi Matriks Kesesuaian Kebutuhan; LP merujuk butir Lingkup Pekerjaan.",
+ "posisi": [
+  {
+   "id": "be",
+   "nama": "Senior Software Engineer – Backend & Arsitektur",
+   "level": "Senior",
+   "peran": "Arsitektur modular, API, hak akses sisi server, 2FA, serta mesin aturan skor dan klasifikasi risiko pelanggan."
+  },
+  {
+   "id": "bet",
+   "nama": "Senior Software Engineer – Backend (tambahan)",
+   "level": "Senior",
+   "peran": "Mempercepat integrasi data, hak akses, dan mesin aturan agar fase Fondasi Data & Platform selesai dalam 1 bulan."
+  },
+  {
+   "id": "di",
+   "nama": "Senior Software Engineer – Integrasi Data",
+   "level": "Senior",
+   "peran": "Penerimaan data dari sistem sumber, initial load data historis, rekonsiliasi jumlah record dan nilai finansial, data mart, dan penjadwal proses."
+  },
+  {
+   "id": "dv",
+   "nama": "DevOps Engineer",
+   "level": "Pentester/DevOps",
+   "peran": "Environment Testing dan Production on-premise Klien, deployment, monitoring, backup, dan security hardening. Development dan staging memakai ekosistem Venturo."
+  },
+  {
+   "id": "an",
+   "nama": "Software Engineer – Backend Analitik",
+   "level": "Intermediate",
+   "peran": "Perhitungan KPI, laporan dan ekspor Excel/PDF, notifikasi, serta audit trail."
+  },
+  {
+   "id": "fe",
+   "nama": "Software Engineer – Frontend Dashboard",
+   "level": "Intermediate",
+   "peran": "Halaman dashboard responsif berdasarkan prototype, grafik interaktif, dan peta tematik."
+  },
+  {
+   "id": "ant",
+   "nama": "Software Engineer – Backend Analitik (tambahan)",
+   "level": "Intermediate",
+   "peran": "Mempercepat perhitungan KPI, agregasi data, dan laporan agar fase Dashboard & Analitik selesai dalam 1 bulan."
+  },
+  {
+   "id": "fet",
+   "nama": "Software Engineer – Frontend Dashboard (tambahan)",
+   "level": "Intermediate",
+   "peran": "Mempercepat pembuatan halaman dashboard dan grafik agar fase Dashboard & Analitik selesai dalam 1 bulan."
+  },
+  {
+   "id": "ba",
+   "nama": "Business Analyst",
+   "level": "UI/UX/QA/BA",
+   "peran": "Analisis kebutuhan bersama unit kerja, definisi KPI, Design & Build Report, UAT, serta materi dan pelaksanaan pelatihan."
+  },
+  {
+   "id": "qa",
+   "nama": "QA Engineer",
+   "level": "UI/UX/QA/BA",
+   "peran": "Test scenario, SIT, pengujian otomatis atas perhitungan angka, Performance Test, regression, dan pendampingan UAT."
+  },
+  {
+   "id": "ux",
+   "nama": "UI/UX Designer",
+   "level": "UI/UX/QA/BA",
+   "peran": "Review prototype, validasi alur setiap peran pengguna, dan desain antarmuka final."
+  },
+  {
+   "id": "pt",
+   "nama": "Pentester",
+   "level": "Pentester/DevOps",
+   "peran": "Vulnerability assessment (OWASP Top 10), manual penetration test, laporan temuan, dan retest perbaikan."
+  }
+ ],
+ "fase": [
+  {
+   "nama": "Requirement Analysis & System Design",
+   "singkat": "Requirement & Design",
+   "mulai": "2027-01-01",
+   "bulan": 1,
+   "lingkup": [
+    "Kick-off meeting dan penyusunan rencana kerja bersama Klien",
+    "Review prototype dan validasi kebutuhan setiap peran pengguna",
+    "Inventaris sistem sumber data, kamus data, dan profil kualitas data",
+    "Penetapan definisi KPI dan target performa",
+    "Desain arsitektur sistem, basis data, dan rekomendasi infrastruktur",
+    "Penyiapan repository serta environment Development dan staging di ekosistem Venturo"
+   ],
+   "fitur": [
+    [
+     "LP-1",
+     "Analisis & perancangan",
+     "Analisis kebutuhan setiap modul bersama unit kerja"
+    ],
+    [
+     "UI",
+     "Desain antarmuka",
+     "Review prototype dan desain antarmuka final"
+    ],
+    [
+     "F-05",
+     "Definisi KPI",
+     "Penyepakatan definisi dan rumus KPI"
+    ],
+    [
+     "NF-08",
+     "Rancangan infrastruktur",
+     "Rekomendasi spesifikasi server Development, Testing/UAT, dan Production"
+    ]
+   ],
+   "alokasi": {
+    "be": 1,
+    "di": 1,
+    "fe": 1,
+    "ba": 1,
+    "ux": 1
+   }
+  },
+  {
+   "nama": "Fondasi Data & Platform",
+   "singkat": "Fondasi Data",
+   "mulai": "2027-02-01",
+   "bulan": 1,
+   "lingkup": [
+    "Integrasi & Pengelolaan Data: penarikan data otomatis dari sistem sumber, validasi, pemuatan data historis, dan rekonsiliasi",
+    "User & Access Management: login, 2FA, peran dan hak akses dengan cakupan data per peran",
+    "Customer 360: profil pelanggan lengkap, pencarian global, filter, dan ekspor sesuai hak akses",
+    "Skor & Prediksi: skor pelanggan 0–100 beserta alasan per faktor, parameter diatur Administrator"
+   ],
+   "fitur": [
+    [
+     "F-01",
+     "Autentikasi dan akses pengguna",
+     "Login, 2FA, penguncian akun, batas sesi"
+    ],
+    [
+     "F-21",
+     "Peran dan hak akses",
+     "RBAC dengan cakupan data per peran"
+    ],
+    [
+     "LP-4",
+     "Initial load & rekonsiliasi",
+     "Pemuatan data historis dan rekonsiliasi jumlah record"
+    ],
+    [
+     "F-06",
+     "Customer 360",
+     "Profil, status, segmen, dan riwayat pelanggan"
+    ]
+   ],
+   "alokasi": {
+    "be": 1,
+    "bet": 1,
+    "di": 2,
+    "an": 1,
+    "fe": 2,
+    "ba": 0.5,
+    "qa": 1.5
+   }
+  },
+  {
+   "nama": "Dashboard & Analitik",
+   "singkat": "Dashboard",
+   "mulai": "2027-03-01",
+   "bulan": 1,
+   "lingkup": [
+    "Dashboard Utama & Executive View: kartu KPI, proyeksi terhadap realisasi, ringkasan per wilayah",
+    "Analitik Pembayaran & Konsumsi: segmentasi, tren, dan deteksi anomali",
+    "Laporan, Ekspor & Notifikasi: laporan periodik, ekspor Excel/PDF, audit trail"
+   ],
+   "fitur": [
+    [
+     "F-02",
+     "Dashboard utama",
+     "Kartu KPI dan proyeksi terhadap realisasi"
+    ],
+    [
+     "F-09",
+     "Analitik pembayaran",
+     "Segmentasi dan ketepatan bayar"
+    ],
+    [
+     "F-15",
+     "Laporan & ekspor",
+     "Laporan periodik, ekspor Excel/PDF"
+    ]
+   ],
+   "alokasi": {
+    "be": 1,
+    "di": 2,
+    "an": 1,
+    "fe": 2,
+    "ant": 1,
+    "fet": 2,
+    "ba": 0.5,
+    "qa": 2
+   }
+  },
+  {
+   "nama": "System Integration Test & Performance Test",
+   "singkat": "SIT & Performance",
+   "mulai": "2027-04-01",
+   "bulan": 0.5,
+   "lingkup": [
+    "End-to-end business process testing sesuai test scenario",
+    "Pengujian kecocokan angka dashboard dengan data sumber",
+    "Negative testing, regression testing, dan compatibility testing",
+    "Load test dengan K6 (baseline → stress → endurance), metrik P95/P99, analisis bottleneck, dan tuning"
+   ],
+   "fitur": [
+    [
+     "NF-02",
+     "Performance Test",
+     "Load test K6 dan tuning"
+    ],
+    [
+     "LP-6",
+     "SIT",
+     "End-to-end test scenario dan regression"
+    ]
+   ],
+   "alokasi": {
+    "be": 1,
+    "di": 1,
+    "dv": 1,
+    "an": 1,
+    "fe": 1,
+    "qa": 1
+   }
+  },
+  {
+   "nama": "User Acceptance Test & Penetration Test",
+   "singkat": "UAT & Pentest",
+   "mulai": "2027-04-16",
+   "bulan": 0.5,
+   "lingkup": [
+    "Sesi UAT bersama key user, defect log, perbaikan, dan retest",
+    "Quality Release Checklist dan sign-off formal sebelum go-live",
+    "Penetration Test: scope & RoE, recon, OWASP Top 10/CVE/dependency scan, manual pentest, laporan severity",
+    "Perbaikan seluruh temuan Critical/High sebelum go-live"
+   ],
+   "fitur": [
+    [
+     "LP-7",
+     "UAT",
+     "Defect log, Quality Release Checklist, sign-off"
+    ],
+    [
+     "NF-05",
+     "Penetration Test",
+     "Vulnerability assessment dan manual pentest"
+    ]
+   ],
+   "alokasi": {
+    "be": 1,
+    "di": 0.5,
+    "an": 0.5,
+    "fe": 1,
+    "ba": 1,
+    "qa": 1,
+    "pt": 1
+   }
+  },
+  {
+   "nama": "Go-Live & Pelatihan",
+   "singkat": "Go-Live",
+   "mulai": "2027-05-01",
+   "bulan": 1,
+   "lingkup": [
+    "Instalasi aplikasi di server on-premise Klien",
+    "Retest keamanan atas perbaikan temuan Penetration Test",
+    "Functional training dan key user training (train the trainer)",
+    "Design & Build Report serta serah terima source code dan dokumentasi"
+   ],
+   "fitur": [
+    [
+     "LP-8",
+     "Go-live",
+     "Deployment ke Production on-premise"
+    ],
+    [
+     "LP-9",
+     "Pelatihan",
+     "Functional dan key user training"
+    ]
+   ],
+   "alokasi": {
+    "be": 1,
+    "di": 0.5,
+    "dv": 1,
+    "fe": 0.5,
+    "ba": 1,
+    "qa": 0.5,
+    "pt": 0.25
+   }
+  },
+  {
+   "nama": "Hypercare",
+   "singkat": "Hypercare",
+   "mulai": "2027-06-01",
+   "bulan": 3,
+   "lingkup": [
+    "Pendampingan intensif pasca go-live dan perbaikan cepat",
+    "Pemantauan kualitas data harian",
+    "Kunjungan tim ke lokasi Klien sesuai Perjalanan Dinas pada Rincian Biaya"
+   ],
+   "fitur": [
+    [
+     "LP-10",
+     "Hypercare",
+     "Pendampingan dan perbaikan cepat pasca go-live"
+    ]
+   ],
+   "alokasi": {
+    "be": 1,
+    "di": 0.5,
+    "fe": 0.5,
+    "ba": 0.25,
+    "qa": 0.5
+   }
+  },
+  {
+   "nama": "Annual Support",
+   "singkat": "Annual Support",
+   "mulai": "2027-09-01",
+   "bulan": 12,
+   "lingkup": [
+    "Memantau performa sistem secara rutin",
+    "Menangani bug atau error setelah sistem berjalan",
+    "Patching dan update keamanan berkala",
+    "Support helpdesk dan laporan periodik"
+   ],
+   "fitur": [
+    [
+     "LP-11",
+     "Annual Support",
+     "Pemeliharaan, patching, dan helpdesk 12 bulan"
+    ]
+   ],
+   "alokasi": {
+    "be": 0.5,
+    "di": 0.25,
+    "dv": 0.25,
+    "fe": 0.5,
+    "qa": 0.25
+   },
+   "annual_support": true
+  }
+ ],
+ "perjalanan": {
+  "judul": "Malang – Jakarta masa Go-Live & Hypercare",
+  "bulan_tagih": [
+   "2027-05",
+   "2027-06"
+  ],
+  "items": [
+   {
+    "jenis": "tiket",
+    "nama": "Tiket pesawat PP Malang – Jakarta, termasuk transport lokal (unit = kali PP)",
+    "orang": 2,
+    "unit": 2
+   },
+   {
+    "jenis": "penginapan",
+    "nama": "Penginapan, 1 kamar untuk 2 orang (unit = malam)",
+    "orang": 2,
+    "unit": 3
+   },
+   {
+    "jenis": "uang_saku",
+    "nama": "Uang saku bulanan (unit = bulan)",
+    "orang": 2,
+    "unit": 2
+   }
+  ]
+ },
+ "batasan": [
+  "Akses data sistem sumber, kamus data, dan PIC teknis per sistem disediakan Klien",
+  "Layanan pihak ketiga seperti layanan AI, API berbayar, peta dasar, serta SMS/WhatsApp/e-mail gateway"
+ ],
+ "venturo_cloud": null,
+ "diskon": null,
+ "cek_tidak_boleh_ada": [
+  "Pimpinan",
+  "PPN tidak ditagihkan",
+  "Total sebelum PPN"
+ ]
+}
