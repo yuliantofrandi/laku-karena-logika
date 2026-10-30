@@ -1,5 +1,5 @@
 ---
-name: proposal-pdf
+name: proposal-managed
 description: Membuat TIGA PDF Venturo langsung jadi dari System Requirement Brief klien (txt/pdf/docx) — (1) Penawaran Layanan + form persetujuan (Managed Service) dengan tanda tangan+stempel dan paraf CEO, (2) Lampiran Estimasi Delivery Point (Poin per modul & item, pengembangan tahap berikutnya), dan (3) Service Agreement 23 pasal — dengan estimasi Poin, paket bulanan, termin, dan Layanan Lanjutan setelah go-live dihitung dari brief. Pakai saat diminta "buat PDF penawaran", "penawaran dari brief", "buat penawaran dari requirement", "estimasi delivery point", "lampiran estimasi", "service agreement", "penawaran baru untuk klien X", atau "export penawaran ke PDF".
 ---
 
@@ -203,7 +203,7 @@ python3 <folder skill ini>/scripts/render.py sla.html       "<output>/VEN-<Proje
 - Verifikasi tiap render (`pdftoppm -r 60` per halaman): jumlah halaman wajar tanpa halaman sisa kecil, logo utuh, TTD/paraf tampil transparan, nomor dokumen konsisten di ketiga file, tidak ada sisa "DP"/"GitLab"/"lebih dari 100", serta total dan termin cocok.
 
 ## 10. Di luar skill ini
-Pesan WhatsApp pengantar dokumen, termasuk masa berlaku penawaran, adalah skill terpisah, bukan bagian `proposal-pdf`.
+Pesan WhatsApp pengantar dokumen, termasuk masa berlaku penawaran, adalah skill terpisah, bukan bagian `proposal-managed`.
 
 ## Mengganti tanda tangan
 Bila pengguna memberi file TTD baru: render PDF/gambar ke PNG 300 dpi, alpha = luminans (gelap → opak, putih → transparan; untuk PNG RGBA, pakai alpha aslinya dan buang yang mendekati putih), crop bbox, simpan menimpa `ttd.png` / `paraf.png` di folder kerja.

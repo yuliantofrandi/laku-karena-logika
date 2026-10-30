@@ -1,11 +1,11 @@
 ---
 name: proposal-upload
-description: Mengunggah 3 PDF penawaran Venturo hasil skill proposal-pdf (Penawaran Layanan, Lampiran Estimasi Delivery Point, Service Agreement) atau proposal-dedicated (Lampiran Rincian Biaya) — file hasil sesi chat sebelumnya — ke bucket R2 Cloudflare di proposal.venturo.id, terpisah dari website company profile, langsung tanpa konfirmasi dengan URL sesuai nama file; mengecek domain, memverifikasi ketiga link, lalu menyusun pesan WhatsApp pengantar 2 bubble berisi link, masa berlaku penawaran 14 hari, dan ajakan review. Pakai saat diminta "upload penawaran", "unggah PDF penawaran", "kirim penawaran ke klien", "buat link penawaran", "pesan WA penawaran", atau setelah proposal-pdf selesai.
+description: Mengunggah 3 PDF penawaran Venturo hasil skill proposal-managed (Penawaran Layanan, Lampiran Estimasi Delivery Point, Service Agreement) atau proposal-dedicated (Lampiran Rincian Biaya) — file hasil sesi chat sebelumnya — ke bucket R2 Cloudflare di proposal.venturo.id, terpisah dari website company profile, langsung tanpa konfirmasi dengan URL sesuai nama file; mengecek domain, memverifikasi ketiga link, lalu menyusun pesan WhatsApp pengantar 2 bubble berisi link, masa berlaku penawaran 14 hari, dan ajakan review. Pakai saat diminta "upload penawaran", "unggah PDF penawaran", "kirim penawaran ke klien", "buat link penawaran", "pesan WA penawaran", atau setelah proposal-managed selesai.
 ---
 
 # Upload Penawaran → proposal.venturo.id (R2) + Pesan WhatsApp
 
-Lanjutan skill `proposal-pdf`. Tiga PDF satu set (nomor dokumen dan revisi sama) diunggah dari **file PDF hasil `proposal-pdf` di sesi chat sebelumnya** ke bucket R2 **`proposal`** yang tersambung ke domain **`proposal.venturo.id`**, terpisah dari website company profile venturo.id. Hasilnya:
+Lanjutan skill `proposal-managed`. Tiga PDF satu set (nomor dokumen dan revisi sama) diunggah dari **file PDF hasil `proposal-managed` di sesi chat sebelumnya** ke bucket R2 **`proposal`** yang tersambung ke domain **`proposal.venturo.id`**, terpisah dari website company profile venturo.id. Hasilnya:
 
 `https://proposal.venturo.id/<nama-file>.pdf` (mis. `https://proposal.venturo.id/VEN-PolicyLab-2026-016.pdf`)
 
@@ -16,9 +16,9 @@ Lanjutan skill `proposal-pdf`. Tiga PDF satu set (nomor dokumen dan revisi sama)
 - Semua laporan dan komunikasi dalam **Bahasa Indonesia**.
 
 ## 0. Persiapan
-- **Input**: 3 PDF yang dihasilkan `proposal-pdf` di **sesi chat sebelumnya** — set lengkap `VEN-<Project>-<Tahun>-<Rev>.pdf`, `…-Lampiran-Estimasi.pdf` (Managed Service, `proposal-pdf`) **atau** `…-Lampiran-Rincian-Biaya.pdf` (Dedicated Team, `proposal-dedicated`), `…-Service-Agreement.pdf`. `--pdf` menerima satu atau beberapa **folder dan/atau file**, jadi file boleh tersebar di lokasi berbeda. Cara menemukannya, berurutan:
+- **Input**: 3 PDF yang dihasilkan `proposal-managed` di **sesi chat sebelumnya** — set lengkap `VEN-<Project>-<Tahun>-<Rev>.pdf`, `…-Lampiran-Estimasi.pdf` (Managed Service, `proposal-managed`) **atau** `…-Lampiran-Rincian-Biaya.pdf` (Dedicated Team, `proposal-dedicated`), `…-Service-Agreement.pdf`. `--pdf` menerima satu atau beberapa **folder dan/atau file**, jadi file boleh tersebar di lokasi berbeda. Cara menemukannya, berurutan:
   1. Path file yang dilampirkan/disebut pengguna di chat.
-  2. Folder hasil `proposal-pdf` (default `penawaran/` di working directory sesi tersebut).
+  2. Folder hasil `proposal-managed` (default `penawaran/` di working directory sesi tersebut).
   3. Bila belum jelas, cari PDF penawaran terbaru (scratchpad sesi Claude ikut dicari), lalu pastikan ke pengguna bila ada lebih dari satu project/revisi:
      ```bash
      find ~ /private/tmp/claude-* -maxdepth 7 -name 'VEN-*-[0-9][0-9][0-9]*.pdf' -mtime -30 -not -path '*/Library/*' 2>/dev/null | xargs ls -t 2>/dev/null | head -20

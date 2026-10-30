@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unggah 3 PDF penawaran (hasil skill proposal-pdf) ke bucket R2 Cloudflare di proposal.venturo.id.
+"""Unggah 3 PDF penawaran (hasil skill proposal-managed) ke bucket R2 Cloudflare di proposal.venturo.id.
 
   python3 upload.py domain [--bucket proposal]
   python3 upload.py info   --pdf <folder dan/atau file PDF ...>
@@ -10,13 +10,13 @@ domain : cek custom domain yang tersambung ke bucket. Kosong = semua link akan 4
 info   : baca teks PDF Penawaran → nama project, tanggal dokumen, tanggal berlaku (+14 hari),
          dan ada/tidaknya diskon di ketiga PDF (kata "gratis" tidak dihitung diskon).
 unggah : cek domain, lalu unggah set lengkap VEN-<Project>-<Tahun>-<Rev>.pdf, ...-Lampiran-Estimasi.pdf
-         (Managed Service, proposal-pdf) atau ...-Lampiran-Rincian-Biaya.pdf (Dedicated Team, proposal-dedicated),
+         (Managed Service, proposal-managed) atau ...-Lampiran-Rincian-Biaya.pdf (Dedicated Team, proposal-dedicated),
          ...-Service-Agreement.pdf (revisi tertinggi) ke akar bucket dengan nama file apa adanya
          (URL = <domain>/<nama file>) lewat `npx wrangler@4 r2 object put --remote`, pasang robots.txt
          (Disallow: /), hapus objek revisi lama project yang sama, lalu catat di log tetap.
 cek    : GET tiap URL: harus 200 dan application/pdf; X-Robots-Tag noindex diperiksa sebagai peringatan.
 
---pdf menerima satu atau beberapa folder dan/atau file PDF (mis. 3 PDF hasil proposal-pdf dari sesi chat
+--pdf menerima satu atau beberapa folder dan/atau file PDF (mis. 3 PDF hasil proposal-managed dari sesi chat
 sebelumnya yang tersimpan di lokasi berbeda).
 Log unggahan disimpan di lokasi tetap ~/.venturo/proposal-upload.json (ubah dengan env PROPOSAL_UPLOAD_LOG),
 karena wrangler tidak bisa menampilkan isi bucket dan revisi lama dikenali dari log ini.
