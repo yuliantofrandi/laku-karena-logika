@@ -14,7 +14,7 @@ S=[]
 def sec(t,body): S.append((t,body))
 sec("Para Pihak",'''<ol class="pp">
 <li><strong>PT Venturo Pro Indonesia</strong>, beralamat di Jl. Rinjani No. 26, Oro-oro Dowo, Kecamatan Klojen, Kota Malang, Jawa Timur 65119, dalam hal ini diwakili oleh Yulianto Frandi selaku CEO, selanjutnya dalam perjanjian ini disebut <strong>“Venturo”</strong>.</li>
-<li><strong>Universitas Sebelas Maret (UNS)</strong>, beralamat di Jl. Ir. Sutami No. 36A, Surakarta, Jawa Tengah, dalam hal ini diwakili oleh ______________________ selaku Pimpinan, selanjutnya dalam perjanjian ini disebut <strong>“Klien”</strong>.</li></ol>
+<li><strong>Universitas Sebelas Maret (UNS)</strong>, beralamat di Jl. Ir. Sutami No. 36A, Surakarta, Jawa Tengah, dalam hal ini diwakili oleh ______________________ selaku ______________________, selanjutnya dalam perjanjian ini disebut <strong>“Klien”</strong>.</li></ol>
 <p>Venturo dan Klien selanjutnya secara bersama-sama disebut <strong>“Para Pihak”</strong>.</p>''')
 sec("Masa Berlaku",'<p>Perjanjian ini berlaku sejak tanggal ditandatangani sampai dengan berakhirnya masa kerja sama, kecuali digantikan oleh Service Agreement baru yang disepakati oleh Para Pihak.</p>')
 sec("Lingkup Pengerjaan",f'<p>Perjanjian ini mengatur syarat dan ketentuan umum kerja sama antara Venturo dan Klien dalam penyediaan layanan pengembangan dan pemeliharaan perangkat lunak dengan model Managed Service berbasis Delivery Point (DP). Lingkup kerja, biaya, dan jadwal pembayaran untuk setiap proyek diatur dalam dokumen <span class="it">Penawaran Layanan</span> beserta Lampiran Estimasi Delivery Point (untuk proyek ini nomor {NO}), yang menjadi bagian tidak terpisahkan dari perjanjian ini.</p>')
@@ -122,7 +122,7 @@ H=css+'<body>\n'+f'''<section class="hero">
 for i,(t,b) in enumerate(S,1):
     H+=f'<div class="sec"><h2><i>{i}</i>{t}</h2>{b}</div>\n'
 sign=T[T.index('<div class="sign">'):T.index('</body>')]
-sign=sign.replace('19 Oktober 2026',TGL).replace('Alldila Seats','Universitas Sebelas Maret').replace('<td><b>Candra</b></td>','<td class="blank"></td>').replace('<td>Owner</td>','<td>Pimpinan</td>')
+sign=sign.replace('19 Oktober 2026',TGL).replace('Alldila Seats','Universitas Sebelas Maret').replace('<td><b>Candra</b></td>','<td class="blank"></td>').replace('<td>Owner</td>','<td class="blank"></td>')
 import re
 sign=re.sub(r'<h2[^>]*>.*?</h2>',f'<h2 style="margin-top:8mm"><i>{len(S)+1}</i>Persetujuan</h2>',sign,count=1,flags=re.S)
 sign=re.sub(r'<p class="agree">.*?</p>','<p class="agree">Dengan menandatangani dokumen ini, kedua belah pihak menyatakan telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang tercantum di dalamnya. Dokumen ini berfungsi sebagai perjanjian induk (Service Agreement) yang diikuti dengan dokumen Penawaran Layanan untuk setiap proyek.</p>',sign,count=1,flags=re.S)

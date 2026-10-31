@@ -1,6 +1,6 @@
 ---
 name: proposal-dedicated
-description: Membuat TIGA PDF penawaran Venturo model DEDICATED TEAM (man power based) dari System Requirement Brief, RFI, atau dokumen tender klien (txt/pdf/docx) — (1) Penawaran Layanan Dedicated Team + form persetujuan dengan tanda tangan+stempel dan paraf CEO, (2) Lampiran Rincian Biaya & Rencana Kerja, dan (3) Service Agreement Dedicated Team. Penawaran disusun PER FASE (Requirement → Fondasi → Fitur Utama → SIT → UAT & Pentest → Go-Live → Hypercare → Annual Support) dengan jumlah orang per fase dalam pecahan (1, ½, ¼), tarif Long Term/Short Term, Engineering Kick-off proporsional, perjalanan dinas, dan termin per bulan — dibangun lewat generator scripts/build.py dari satu file data. Pakai saat diminta "penawaran dedicated team", "proposal dedicated", "penawaran man power", "hire programmer/tim dari Venturo", "outsourcing tim", "respons RFI/tender", atau "buat penawaran dedicated dari brief". Untuk model Managed Service berbasis Poin, pakai proposal-pdf.
+description: Membuat TIGA PDF penawaran Venturo model DEDICATED TEAM (man power based) dari System Requirement Brief, RFI, atau dokumen tender klien (txt/pdf/docx) — (1) Penawaran Layanan Dedicated Team + form persetujuan dengan tanda tangan+stempel dan paraf CEO, (2) Lampiran Rincian Biaya & Rencana Kerja, dan (3) Service Agreement Dedicated Team. Penawaran disusun PER FASE (Requirement → Fondasi → Fitur Utama → SIT → UAT & Pentest → Go-Live → Hypercare → Annual Support) dengan jumlah orang per fase dalam pecahan (1, ½, ¼), tarif Long Term/Short Term, Engineering Kick-off proporsional, perjalanan dinas, dan termin per bulan — dibangun lewat generator scripts/build.py dari satu file data. Pakai saat diminta "penawaran dedicated team", "proposal dedicated", "penawaran man power", "hire programmer/tim dari Venturo", "outsourcing tim", "respons RFI/tender", atau "buat penawaran dedicated dari brief" — juga untuk REVISI penawaran dedicated: "kasih diskon", "ubah DP", "samakan timeline/item dengan klien", "revisi penawaran dedicated", "ubah rate card". Untuk model Managed Service berbasis Poin, pakai proposal-managed.
 ---
 
 # Penawaran Dedicated Team dari Brief → 3 PDF
@@ -18,7 +18,7 @@ Acuan kualitas: sesi penawaran Customer 360 Dashboard & Analytics (rev 015, Okto
 | Satuan | 1 | ½ | ¼ |
 |---|---|---|---|
 | Orang | 8 jam/hari | 4 jam/hari | 2 jam/hari |
-| Bulan | 4 minggu | 2 minggu | 1 minggu |
+| Bulan | 4 minggu | 2 minggu | 1 minggu (satuan terkecil) |
 
 **Biaya = tarif bulanan × orang × bulan.**
 
@@ -29,9 +29,9 @@ Acuan kualitas: sesi penawaran Customer 360 Dashboard & Analytics (rev 015, Okto
 - Folder hasil: folder yang disebut pengguna, atau `penawaran/` di working directory (`<output>`); folder kerja HTML `<output>/src`.
 
 ## Aset & skrip (`<folder skill ini>/`)
-- `scripts/build.py` — **generator**: `python3 <folder skill ini>/scripts/build.py <data.json> <output>/src` membangun `penawaran.html`, `lampiran.html`, `sla.html` (+ salin logo, bg, TTD, paraf, font). Menghitung skema Long/Short Term, Kick-off proporsional, biaya per fase, timeline (satuan ½ bulan), termin per bulan kalender, perjalanan dinas, dan meng-`assert` Total Investasi = Σ termin = Total Pembayaran serta tidak ada sisa teks yang dilarang (`cek_tidak_boleh_ada`). **Revisi = ubah data → build → render ulang.**
+- `scripts/build.py` — **generator**: `python3 <folder skill ini>/scripts/build.py <data.json> <output>/src` membangun `penawaran.html`, `lampiran.html`, `sla.html` (+ salin logo, bg, TTD, paraf, font). Menghitung skema Long/Short Term, Kick-off proporsional, biaya per fase, timeline (satuan ¼ bulan), termin per bulan kalender, perjalanan dinas, dan meng-`assert` Total Investasi = Σ termin = Total Pembayaran serta tidak ada sisa teks yang dilarang (`cek_tidak_boleh_ada`). **Revisi = ubah data → build → render ulang.**
 - `scripts/render.py` — `python3 <folder skill ini>/scripts/render.py <html> <out.pdf> "<No. dokumen>" ["<prefix footer>"]`.
-- `assets/contoh-data.json` — format data lengkap (klien, posisi, fase + lingkup + fitur + alokasi, perjalanan dinas, batasan, Venturo Cloud/on-premise, diskon). Salin lalu ganti isinya.
+- `assets/contoh-data.json` — format data lengkap (klien, posisi, fase + lingkup + fitur + alokasi, perjalanan dinas, batasan, Venturo Cloud/on-premise, diskon, `dp_termin1`, `periode_teks`/`durasi_teks`, `tampilkan_semua_tarif`, `rencana_halaman_baru`). Salin lalu ganti isinya.
 - `assets/dedicated.css`, `assets/sa-dedicated.html` — gaya dan template Service Agreement (dipakai build.py).
 - `assets/contoh-*.html` — hasil build dari contoh data, untuk acuan visual.
 - `references/pricelist-dedicated.md` — pricelist Long Term & Short Term, aturan Kick-off, tarif perjalanan dinas.
@@ -41,9 +41,14 @@ Acuan kualitas: sesi penawaran Customer 360 Dashboard & Analytics (rev 015, Okto
 - Input: System Requirement Brief, RFI, atau dokumen tender (txt/pdf/docx). Data klien yang tidak ada ditanyakan **sekali** di awal.
 - **Penerima**: bila nama/jabatan tidak disebut, pakai nama unit (mis. "Tim Pengadaan & Digitalisasi"). Alamat boleh dari halaman pengumuman resmi (e-proc).
 - **Jabatan dan nama penanda tangan klien yang tidak diketahui dikosongkan** (`ttd_nama`/`ttd_jabatan` = ""): tampil sebagai garis titik-titik di blok tanda tangan dan "diwakili oleh ____ selaku ____" di SA. **Jangan isi "Pimpinan".**
+- **Data klien yang tidak diketahui** (penerima, alamat, nama/jabatan penanda tangan) tidak pernah dibiarkan kosong: build.py otomatis menampilkannya sebagai garis isian `______________________` (mencegah "beralamat di , dalam hal ini…").
+- **Nomor dokumen** `VEN/<Kode>/<Tahun>/<Rev>`: kode project **huruf dan angka saja** — tanpa spasi dan tanpa tanda hubung (`VEN/TGXPortal/2026/001`, bukan `TGX-Portal`), karena `proposal-upload` memecah nama file dengan tanda hubung. Dicek build.py.
+- **Revisi**: satu set = satu nomor revisi. Revisi yang **belum diunggah/dikirim ke klien** boleh diperbaiki tanpa menaikkan nomor. Nomor naik bila isi/harga berubah setelah dokumen dikirim, atau bila perubahan diminta pemilik di sesi baru.
 - **Tanggal mulai**: proyek biasa → tanggal 1 bulan berikutnya setelah tanda tangan; **tender → ±2 bulan setelah tanggal dokumen** (dokumen 28 Okt 2026 → mulai 1 Jan 2027).
 
 ## 2. Posisi & komposisi tim
+**Rate card per level:** Senior Level = Senior Engineer · AI Engineer · DevOps; Intermediate Level = Intermediate Engineer · UI/UX · BA · QA (judul kelompok di Lampiran).
+
 **Hanya jabatan yang ada di Venturo:** Software Engineer (Senior/Intermediate), Pentester, DevOps, UI/UX, QA, BA. Spesialisasi ditulis setelah "–" (mis. *Senior Software Engineer – Backend & Arsitektur*, *Senior Software Engineer – Integrasi Data* untuk ETL/initial load/rekonsiliasi/data mart, *Software Engineer – Backend Analitik*, *Software Engineer – Frontend Dashboard*). **Jangan** memakai jabatan seperti "Data Engineer". Level di data: `Senior`, `Intermediate`, `Pentester/DevOps`, `UI/UX/QA/BA`.
 
 Siapa masuk fase mana:
@@ -60,17 +65,29 @@ Siapa masuk fase mana:
 - terlibat **≥ 2 bulan** → naikkan alokasi posisi Long Term-nya (Kick-off proporsional ikut naik).
 
 ## 3. Harga (`references/pricelist-dedicated.md`)
-- **Long Term** (terlibat ≥ 2 bulan, dari awal fase pertama sampai akhir fase terakhir): Senior/Pentester/DevOps Rp11.550.000, Intermediate/UI/UX/QA/BA Rp9.550.000 per orang/bulan, **dengan** Engineering Kick-off.
-- **Short Term** (< 2 bulan): Rp16.170.000 / Rp13.370.000 (sudah termasuk Project Enablement Fee), **tanpa** Kick-off; label "(short term)". build.py menentukan skema otomatis.
+| | Senior Level | Intermediate Level |
+|---|---|---|
+| Jabatan | Senior Engineer · AI Engineer · DevOps | Intermediate Engineer · UI/UX · BA · QA |
+| Long Term / bulan | Rp11.550.000 | Rp9.550.000 |
+| Short Term / bulan | Rp16.170.000 | Rp13.370.000 |
+| Engineering Kick-off (Long Term) | Rp11.550.000 | Rp9.550.000 |
+
+- **Skema otomatis**: terlibat < 2 bulan (dari awal fase pertama sampai akhir fase terakhir) = **Short Term** (sudah termasuk Project Enablement Fee, **tanpa** Kick-off, label "(short term)"); ≥ 2 bulan = **Long Term** dengan Kick-off. Komponen ditulis "AI Subscription & R&D".
+- **Pemilik boleh memaksa skema** dengan field `"skema"` di data posisi. Bila dipaksa, laporkan perbandingan total kedua skema termasuk Kick-off (build.py mencetaknya di `skema_dipaksa`) — untuk durasi pendek dengan alokasi kecil, Short Term bisa lebih murah daripada Long Term + Kick-off.
 - **Engineering Kick-off proporsional**: sekali per posisi Long Term × **alokasi tertinggi** di seluruh fase; ditagih sebagai **Down Payment** saat tanda tangan.
+- **Tanpa Kick-off** (semua posisi Short Term): build.py otomatis menyembunyikan grup Kick-off di Rincian Biaya, baris/kalimat Down Payment Kick-off di Pembayaran, butir Kick-off di "Sudah termasuk dalam biaya" (diganti **Project Enablement**), asumsi Kick-off di Lampiran, dan rujukan Kick-off di SA.
+- **Down Payment persentase termin pertama** (`dp_termin1 = {persen, label, keterangan}`): DP = persen × termin 1, label termin 1 diberi "(sisa N%)", kalimat Pembayaran memakai `keterangan`. Dipakai bila tidak ada Kick-off tetapi pemilik ingin pembayaran di depan. Bila struktur fase sudah berubah, tanyakan apakah DP dihitung dari "Fase 1" atau "tagihan bulan pertama".
 - **Pajak** — harga selalu nett; kalimat baku di Pembayaran (sudah di build.py): *"Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien."* Berlaku juga untuk BUMN/BUMD dan brief yang meminta "harga termasuk pajak". **Jangan** tulis "PPN tidak ditagihkan" dan **jangan** ada baris PPN. ⚠️ Bila Venturo sudah PKP, tinjau ulang.
-- **Diskon**: hanya bila pemilik menyebutnya (`diskon` di data; dipotong dari Down Payment). Tanpa diskon, tabel langsung ditutup **Total Investasi** (tanpa baris TOTAL).
+- **Diskon**: hanya bila pemilik menyebutnya (`diskon = {nama, nilai}`). Diskon ke target harga bulanan: **diskon = (tarif bulanan − target bulanan) × orang × bulan**; nama baris transparan, mis. "Diskon khusus (Rp… per bulan × n bulan)". Tarif per fase tetap normal, diskon tampil sebagai baris tersendiri sebelum Total Investasi. build.py menyebar diskon rata ke termin **dulu**, baru DP persentase dihitung dari termin setelah diskon; label termin tidak diberi "(setelah diskon)". Tanpa diskon, tabel langsung ditutup **Total Investasi** (tanpa baris TOTAL).
 - **Perjalanan dinas** (klien di luar Malang) dianggarkan sebagai grup baris di Rincian Biaya: tiket PP Rp3.500.000 × orang × kali; penginapan Rp3.000.000 × **kamar** (orang ÷ 2, dibulatkan ke atas) × malam; **uang saku bulanan** Rp3.000.000 × orang × bulan kunjungan (bukan per kunjungan). Ditagih rata di termin bulan kunjungan (umumnya Go-Live dan bulan pertama Hypercare). Batasan otomatis memuat "Perjalanan dinas di luar yang telah dianggarkan".
 - **Server**: bila brief mewajibkan **on-premise**, `venturo_cloud` = null → Venturo Cloud dan kotak pilihan server hilang, Batasan memuat server Testing/UAT & Production (OS, lisensi, domain, SSL) disediakan Klien; Development & staging memakai ekosistem Venturo. Selain itu tawarkan Venturo Cloud (`references/venturo-cloud.md`).
 
 ## 4. Fase & fitur
 Pola fase standar: 1 Requirement Analysis & System Design · 2 Fondasi Data & Platform · 3 Fitur Utama/Dashboard · 4 SIT & Performance Test · 5 UAT & Penetration Test · 6 Go-Live & Pelatihan · 7 **Hypercare 3 bulan** · 8 **Annual Support 12 bulan** (`"annual_support": true` → termin "Maintenance 1…12"). Hypercare dan Annual Support adalah fase dengan alokasi pecahan.
-- Fase pertama mulai tanggal 1; fase berikutnya boleh mulai tanggal 16 (satuan ½ bulan). Fase harus berurutan tanpa celah (dicek build.py).
+- Satuan waktu **¼ bulan (mingguan)**: fase mulai tanggal 1, 8, 16, atau 23, durasi kelipatan ¼ bulan; tagihan per slot = tarif × ¼. Fase harus berurutan tanpa celah (dicek build.py).
+- **Timeline mengikuti jadwal klien**: field opsional per fase `periode_teks` (mis. "2 – 6 Nov 2026") dan `durasi_teks` (mis. "1 minggu") hanya mengubah tampilan; hitungan tetap per slot. `durasi_teks` harus pendek (kolom Timeline tidak membungkus teks).
+- **Klien punya jadwal/daftar kegiatan sendiri** (umumnya vendor/subkon, tender, RFI): nama fase = nama tahap klien; lingkup tiap fase = uraian kegiatan klien **kata per kata**; di Lampiran kolom Kode = nomor kegiatan klien (`No. n`) dengan ringkasan `tanggal · PIC: …`, plus catatan PIC mana yang dikerjakan engineer Venturo; tanggal fase disamakan dengan jadwal klien.
+- **Klien vendor/subkon yang hanya membeli tenaga** — Batasan baku: "Peran [daftar peran] di luar [jumlah & posisi] yang ditawarkan"; peran yang dibantu/ditangani klien ditulis sebagai **klausul terpisah** (mis. "Peran QA dan Implementator akan dibantu oleh [Klien]"), jangan digabung; tenggat dukungan klien (akses data/server) dari jadwal klien disebut di Batasan. Asumsi: PM/administrator dari klien beserta tanggung jawab koordinasinya, pekerjaan dilakukan remote.
 - **Lingkup per fase** (Penawaran) berbahasa mudah dibaca, dikelompokkan per modul dengan pola "Modul: rincian" (dicetak tebal otomatis).
 - **Fitur per fase** (Lampiran): Kode | Fitur | Ringkasan. Pakai kode dari brief (F-xx, NF-xx); pekerjaan tanpa kode diberi LP-n.
 - Teks baku aktivitas uji:
@@ -84,21 +101,28 @@ Pola fase standar: 1 Requirement Analysis & System Design · 2 Fondasi Data & Pl
 **Penawaran:** Hero → 1 Lingkup Pekerjaan & Timeline (tabel per fase: lingkup | periode, durasi, orang) → 2 Rincian Biaya (satu tabel Posisi | Tarif/Bulan | Orang | Bulan | Total; grup Engineering Kick-off → Fase 1…n → Perjalanan Dinas → **Total Investasi**; tiap grup `<tbody style="break-inside:avoid">`; lalu kotak **Satuan** dan **"Sudah termasuk dalam biaya"** (Kick-off, tim sesuai alokasi + Technical Lead/Engineering Management, **jaminan target** — selaras SA Pasal 14, penggantian anggota & WhatsApp, kepemilikan source code/data/dokumentasi, gaji/BPJS/PPh 21/AI/Workspace)) → [Layanan Berlangganan Bulanan bila Venturo Cloud] → 3 Pembayaran (kalimat pajak baku, Kick-off sebagai Down Payment, tagihan akhir bulan sesuai alokasi + H+14, tabel termin per bulan kalender "Termin n – Fase x & y (+ perjalanan dinas)" / "Maintenance n", **Total Pembayaran**) → 4 Batasan (spesifik brief + server + perjalanan + **lembur atas permintaan percepatan dari Klien** berbayar + perubahan scope/timeline) → 5 Persetujuan.
 Tidak ada lagi: bagian Komposisi Tim terpisah, Lingkup Layanan terpisah, tabel Ringkasan Investasi, matriks alokasi di Penawaran, kalimat "Total sebelum PPN". Rincian Biaya mengalir setelah Lingkup tanpa page break paksa; tabel fase panjang tidak dibungkus `.keep`.
 
-**Lampiran "Rincian Biaya & Rencana Kerja"** (file tetap `…-Lampiran-Rincian-Biaya.pdf`): 1 Komponen Biaya per Orang (kolom Long Term | Short Term per kelompok tarif yang dipakai; Project Enablement Fee hanya Short Term; catatan "< 2 bulan = Short Term") → 2 Komposisi Tim & Peran (Posisi | Level & Skema | Alokasi Maks. | Peran) → 3 Alokasi Tim per Fase (matriks Posisi × F1…Fn, "–" bila tidak terlibat, baris Durasi dan Total Tim) → 4 Rencana Kerja & Fitur per Fase (halaman baru) → 5 Sudah Ditangani Venturo → 6 Asumsi & Catatan (komposisi dapat disesuaikan, Kick-off proporsional, daftar posisi Short Term + durasi, fleksibilitas urutan fitur).
+**Lampiran "Rincian Biaya & Rencana Kerja"** (file tetap `…-Lampiran-Rincian-Biaya.pdf`):
+1. **Komponen Biaya per Orang** — selalu menampilkan **seluruh pricelist** (Senior Level & Intermediate Level, masing-masing Long Term | Short Term), walau penawaran hanya memakai satu level; `tampilkan_semua_tarif: false` hanya untuk menyembunyikannya. Kalimat pembuka "Harga per talent, sudah termasuk seluruh biaya ketenagakerjaan. Long Term lebih hemat, Short Term lebih fleksibel."; judul kelompok kapital kecil + daftar jabatan; catatan kecil italic di judul kolom Komponen "Long Term untuk kontrak minimal 2 bulan, makin hemat seiring durasi."; keterangan satu baris di bawah komponen (Kick-off: rekrutmen, onboarding, setup & garansi · Development Squad: engineer dedicated · Technical Lead: review teknis & arahan arsitektur · Engineering Management: kontinuitas layanan & kualitas delivery · Project Enablement Fee: kapasitas cadangan & fleksibilitas kontrak); baris **Total per Talent / Bulan** dengan gaya angka seragam; garis pemisah vertikal antar kelompok; `table-layout:fixed` + `<colgroup>` (kolom tarif 32 mm). Di bawahnya kotak **"You Don’t Need to Manage — Sudah termasuk dalam tarif, dikelola Venturo"** (6 butir centang, grid 3 kolom `max-content`), lalu kotak Satuan.
+2. Komposisi Tim & Peran (Posisi | Level & Skema | Alokasi Maks. | Peran)
+3. Alokasi Tim per Fase (matriks Posisi × F1…Fn, "–" bila tidak terlibat, baris Durasi dan Total Tim)
+4. Rencana Kerja & Fitur per Fase — mulai halaman baru **hanya** bila tim/matriks panjang (≥ 6 posisi atau ≥ 7 fase; paksa dengan `rencana_halaman_baru`), supaya tim kecil tidak menyisakan halaman hampir kosong.
+5. Asumsi & Catatan (komposisi dapat disesuaikan, Kick-off proporsional bila ada, daftar posisi Short Term + durasi, fleksibilitas urutan fitur).
+
+Kotak "Sudah termasuk dalam biaya" di Penawaran merujuk ke "bagian Komponen Biaya per Orang". Blok Persetujuan boleh pindah utuh ke halaman berikutnya asal tidak terpotong.
 
 **Service Agreement**: Pasal 3 "berdasarkan posisi, alokasi waktu (penuh waktu, ½ orang, atau ¼ orang), dan fase pengerjaan" + rujukan ke "Lampiran Rincian Biaya & Rencana Kerja"; Pasal 14 keterlambatan karena Venturo → perbaikan/tambah sumber daya tanpa biaya, karena Klien → target baru dan biaya bulanan tetap berjalan (dasar "Jaminan target"); Pasal 8 & 17 menyesuaikan Venturo Cloud/on-premise. Isi SA adalah dokumen hukum — perubahan pasal lain dikonfirmasi ke pengguna.
 
 ## 6. Langkah kerja
 1. Baca brief → susun `data.json` (salin `assets/contoh-data.json`): klien, posisi + peran, fase + lingkup + fitur + alokasi, perjalanan dinas, batasan, server, `cek_tidak_boleh_ada` (nama klien contoh, "Pimpinan", dll.).
 2. `python3 <folder skill ini>/scripts/build.py data.json <output>/src` — perbaiki data bila ada assert yang gagal.
-3. Render (nomor dokumen `VEN/<Project>/<Tahun>/<Rev>`, nama file tanpa spasi):
+3. Render (nomor dokumen `VEN/<Project>/<Tahun>/<Rev>`, `<Project>` huruf & angka saja, nama file tanpa spasi):
 ```bash
 python3 <folder skill ini>/scripts/render.py <output>/src/penawaran.html "<output>/VEN-<Project>-<Tahun>-<Rev>.pdf" "VEN/<Project>/<Tahun>/<Rev>"
 python3 <folder skill ini>/scripts/render.py <output>/src/lampiran.html  "<output>/VEN-<Project>-<Tahun>-<Rev>-Lampiran-Rincian-Biaya.pdf" "VEN/<Project>/<Tahun>/<Rev>" "Lampiran Rincian Biaya & Rencana Kerja"
 python3 <folder skill ini>/scripts/render.py <output>/src/sla.html       "<output>/VEN-<Project>-<Tahun>-<Rev>-Service-Agreement.pdf" "VEN/<Project>/<Tahun>/<Rev>" "Service Agreement"
 ```
-4. Verifikasi: `mkdir -p <output>/preview && pdftoppm -r 60 -png <pdf> <output>/preview/<nama>` — tanpa halaman sisa kecil, logo utuh, TTD/paraf tampil, nomor dokumen konsisten. Satu set = satu revisi; perubahan → build + render ulang ketiganya, naikkan revisi, hapus versi lama.
-5. Kirim 3 PDF (SendUserFile). Laporan: tabel fase (periode, orang, biaya), Kick-off, tim, perjalanan dinas, **Total Investasi**, posisi Short Term, dan hal yang perlu dicek pemilik.
+4. Verifikasi: `mkdir -p <output>/preview && pdftoppm -r 60 -png <pdf> <output>/preview/<nama>` — tanpa halaman sisa kecil, logo utuh, TTD/paraf tampil, nomor dokumen konsisten. Satu set = satu revisi; perubahan → build + render ulang ketiganya (aturan naik revisi di bagian 1), hapus versi lama.
+5. Kirim 3 PDF (SendUserFile). Laporan: tabel fase (periode, orang, biaya), Kick-off, tim, perjalanan dinas, **Total Investasi**, posisi Short Term, perbandingan skema bila ada yang dipaksa, dan hal yang perlu dicek pemilik.
 6. Unggah & pesan WhatsApp: skill `proposal-upload`.
 
 ## 7. Brief berupa RFI / tender
@@ -130,4 +154,5 @@ python3 <folder skill ini>/scripts/render.py <output>/src/sla.html       "<outpu
 - Menghitung uang saku per kunjungan, atau penginapan per orang.
 - Menaikkan alokasi Long Term untuk orang yang hanya dibutuhkan < 2 bulan (pakai posisi "(tambahan)" Short Term).
 - Mengisi jabatan penanda tangan klien yang tidak diketahui (mis. "Pimpinan").
+- Memakai tanda hubung atau spasi di kode project nomor dokumen.
 - Menjalankan skrip dengan `python3 -I`, atau menulis angka SLA / masa berlaku penawaran / kotak meterai di dokumen.

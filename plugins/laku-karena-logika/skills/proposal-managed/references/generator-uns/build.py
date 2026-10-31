@@ -1,7 +1,7 @@
 import re
 T=open('contoh-penawaran-lama.html').read()
 CSS=T.split('</style>')[0]+'</style>'
-CSS=CSS.replace('</style>','tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}\ntr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}\ntr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bottom-right-radius:2.5mm}\n@page{size:A4;margin:11mm 12mm 15mm 12mm}\n.hero{margin:-11mm -12mm 0;padding:8mm 12mm 3mm}\n.logo{margin-left:0}\n</style>')
+CSS=CSS.replace('</style>','tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}\ntr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}\ntr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bottom-right-radius:2.5mm}\n@page{size:A4;margin:6mm 7mm 14mm 7mm}\n.hero{margin:-6mm -7mm 0;padding:6mm 7mm 3mm}\n.logo{margin-left:0}\n</style>')
 def rp(x): return 'Rp'+f'{int(round(x)):,}'.replace(',','.')
 def dp(x):
     s=('%g'%x).replace('.',',');return s
@@ -122,7 +122,7 @@ hero=lambda eyebrow,title,extra: f'''<section class="hero">
     <div class="card"><div class="kv">{extra}</div></div>
     <div class="card soft">
       <div class="lbl">Kepada Yth.</div>
-      <div class="to">Bapak/Ibu Pimpinan</div>
+      <div class="to">______________________</div>
       <div>Universitas Sebelas Maret (UNS)</div>
       <div style="color:var(--muted)">Jl. Ir. Sutami No.36A, Surakarta, Jawa Tengah</div>
     </div>
@@ -233,7 +233,7 @@ P+='''
 </div>
 '''
 sign=T[T.index('<div class="sign">'):T.index('</body>')]
-sign=sign.replace('19 Oktober 2026',TGL).replace('Alldila Seats','Universitas Sebelas Maret').replace('<td><b>Candra</b></td>','<td class="blank"></td>').replace('<td>Owner</td>','<td>Pimpinan</td>')
+sign=sign.replace('19 Oktober 2026',TGL).replace('Alldila Seats','Universitas Sebelas Maret').replace('<td><b>Candra</b></td>','<td class="blank"></td>').replace('<td>Owner</td>','<td class="blank"></td>')
 opt_html='''<div class="opt" style="border:1px solid var(--border);border-radius:3mm;padding:3mm 4mm;margin:0 0 4mm"><div style="font-weight:600;margin-bottom:1.5mm">Pilihan Layanan Lanjutan Setelah Go-Live (centang salah satu):</div>
 <div style="display:flex;gap:8mm"><span><span style="display:inline-block;width:3.6mm;height:3.6mm;border:1px solid var(--ink);border-radius:.6mm;vertical-align:-.6mm;margin-right:2mm"></span>Lanjutkan Managed Service 50 DP/bulan mulai 1 Maret 2027</span>
 <span><span style="display:inline-block;width:3.6mm;height:3.6mm;border:1px solid var(--ink);border-radius:.6mm;vertical-align:-.6mm;margin-right:2mm"></span>Diputuskan kemudian</span></div></div>
