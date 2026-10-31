@@ -11,7 +11,8 @@ Yang dihitung otomatis (dan di-assert):
   akhir fase terakhir ia terlibat), selain itu Long Term (bisa dipaksa dengan "skema" di data).
 - Tarif dari PRICELIST (Long/Short Term), Engineering Kick-off = tarif Kick-off × alokasi tertinggi
   (hanya Long Term), biaya fase = tarif × orang × bulan.
-- Timeline: satuan ½ bulan (tanggal 1–15 dan 16–akhir bulan); fase harus berurutan tanpa celah.
+- Timeline: satuan ¼ bulan (mulai tanggal 1, 8, 16, atau 23); fase harus berurutan tanpa celah.
+  "periode_teks"/"durasi_teks" per fase hanya mengubah tampilan, hitungan tetap per slot.
 - Termin per bulan kalender (fase dengan "annual_support": true → "Maintenance n"), perjalanan dinas
   dibagi rata ke bulan tagih. Total Investasi = Kick-off + Σ fase + perjalanan = Total Pembayaran.
 Lihat assets/contoh-data.json untuk format data.
@@ -30,7 +31,7 @@ KICKOFF = {"S": 11_550_000, "I": 9_550_000}
 TARIF = {("S", "Long Term"): 11_550_000, ("S", "Short Term"): 16_170_000,
          ("I", "Long Term"): 9_550_000, ("I", "Short Term"): 13_370_000}
 KOMPONEN = [("Development Squad", 6_800_000, 5_500_000), ("Technical Lead", 1_030_000, 1_675_000),
-            ("AI Subscription &amp; RND", 500_000, 500_000), ("Engineering Workspace", 500_000, 500_000),
+            ("AI Subscription &amp; R&amp;D", 500_000, 500_000), ("Engineering Workspace", 500_000, 500_000),
             ("Engineering Management", 2_720_000, 1_375_000)]
 ENABLEMENT = {"S": 4_620_000, "I": 3_820_000}
 TRAVEL_TARIF = {"tiket": 3_500_000, "penginapan": 3_000_000, "uang_saku": 3_000_000}
@@ -40,6 +41,8 @@ BULAN_P = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agus
 
 
 def e(s): return html.escape(str(s), quote=False)
+BLANK = "______________________"
+def garis(v): return e(v) if v else BLANK
 def rp(x):
     x = round(x * 2) / 2
     return "Rp" + (f"{int(x):,}" if x == int(x) else f"{x:,.1f}").replace(",", "#").replace(".", ",").replace("#", ".")
@@ -54,32 +57,36 @@ def bold_prefix(t):  # "Judul: isi" → <b>Judul:</b> isi
     return f"<b>{e(m.group(1))}:</b> {e(m.group(2))}" if m else e(t)
 
 
-# ---------- waktu (slot ½ bulan) ----------
+# ---------- waktu (slot ¼ bulan) ----------
 def slot_dari(tgl):
     d = dt.date.fromisoformat(tgl)
-    assert d.day in (1, 16), f"fase harus mulai tanggal 1 atau 16: {tgl}"
-    return (d.year * 12 + d.month - 1) * 2 + (0 if d.day == 1 else 1)
+    assert d.day in (1, 8, 16, 23), f"fase harus mulai tanggal 1, 8, 16, atau 23: {tgl}"
+    return (d.year * 12 + d.month - 1) * 4 + (1, 8, 16, 23).index(d.day)
 def slot_info(s):
-    y, m = divmod(s // 2, 12)
+    y, m = divmod(s // 4, 12)
     m += 1
     akhir = (dt.date(y + (m == 12), m % 12 + 1, 1) - dt.timedelta(days=1)).day
-    return y, m, (1, 15) if s % 2 == 0 else (16, akhir)
+    return y, m, [(1, 7), (8, 15), (16, 22), (23, akhir)][s % 4]
 def periode(s0, s1):  # slot awal s0 .. slot akhir s1 (inklusif)
     y0, m0, (a, _) = slot_info(s0); y1, m1, (_, b) = slot_info(s1)
     if (y0, m0) == (y1, m1): return f"{a}–{b} {BULAN[m0-1]} {y0}"
     if y0 == y1: return f"{a} {BULAN[m0-1]} – {b} {BULAN[m1-1]} {y1}"
     return f"{a} {BULAN[m0-1]} {y0} – {b} {BULAN[m1-1]} {y1}"
+def per_f(f): return f.get("periode_teks") or periode(f["s0"], f["s1"])
+def dur_f(f): return f.get("durasi_teks") or f"{frac(f['bulan'])} bulan"
 def periode_bulan(y, m):
     akhir = (dt.date(y + (m == 12), m % 12 + 1, 1) - dt.timedelta(days=1)).day
     return f"1–{akhir} {BULAN[m-1]} {y}", f"{akhir} {BULAN[m-1]} {y}"
 
 
 def hitung(d):
+    kode = d["nomor"].split("/")[1] if d["nomor"].count("/") >= 3 else ""
+    assert re.fullmatch(r"[A-Za-z0-9]+", kode), f"kode project di nomor harus huruf & angka saja (tanpa spasi/tanda hubung): {d['nomor']}"
     pos = {p["id"]: p for p in d["posisi"]}
     fase, slot = [], None
     for i, f in enumerate(d["fase"]):
-        s0 = slot_dari(f["mulai"]); n = round(f["bulan"] * 2)
-        assert abs(n - f["bulan"] * 2) < 1e-9, f"durasi fase harus kelipatan ½ bulan: {f['nama']}"
+        s0 = slot_dari(f["mulai"]); n = round(f["bulan"] * 4)
+        assert abs(n - f["bulan"] * 4) < 1e-9, f"durasi fase harus kelipatan ¼ bulan: {f['nama']}"
         assert slot is None or s0 == slot, f"fase {i+1} harus mulai tepat setelah fase sebelumnya"
         for pid in f["alokasi"]: assert pid in pos, f"posisi {pid} tidak dikenal"
         fase.append(dict(f, no=i + 1, s0=s0, s1=s0 + n - 1)); slot = s0 + n
@@ -87,8 +94,10 @@ def hitung(d):
         assert p["level"] in GRUP, f"level tidak dikenal: {p['level']}"
         ikut = [f for f in fase if f["alokasi"].get(p["id"], 0) > 0]
         assert ikut, f"posisi {p['nama']} tidak dipakai di fase mana pun"
-        rentang = (ikut[-1]["s1"] - ikut[0]["s0"] + 1) / 2
-        p["skema"] = p.get("skema") or ("Short Term" if rentang < 2 else "Long Term")
+        rentang = (ikut[-1]["s1"] - ikut[0]["s0"] + 1) / 4
+        otomatis = "Short Term" if rentang < 2 else "Long Term"
+        p["dipaksa"] = bool(p.get("skema")) and p["skema"] != otomatis
+        p["skema"] = p.get("skema") or otomatis
         p["rentang"] = rentang
         p["maks"] = max(f["alokasi"].get(p["id"], 0) for f in fase)
         g = GRUP[p["level"]]
@@ -111,8 +120,9 @@ def hitung(d):
     for f in fase:
         for s in range(f["s0"], f["s1"] + 1):
             y, m, _ = slot_info(s)
-            b = bulan.setdefault((y, m), {"biaya": 0.0, "fase": [], "annual": False})
-            b["biaya"] += sum(p["tarif"] * a * 0.5 for p, a, _ in f["baris"])
+            b = bulan.setdefault((y, m), {"biaya": 0.0, "fase": [], "annual": False, "slot": []})
+            b["slot"].append(s)
+            b["biaya"] += sum(p["tarif"] * a * 0.25 for p, a, _ in f["baris"])
             if f["no"] not in b["fase"]: b["fase"].append(f["no"])
             b["annual"] = b["annual"] or bool(f.get("annual_support"))
     tagih = [tuple(map(int, x.split("-"))) for x in tr.get("bulan_tagih", [])]
@@ -127,7 +137,7 @@ def hitung(d):
             nt += 1
             fs = b["fase"]; label = f"Termin {nt} – Fase " + (" &amp; ".join(map(str, fs)) if len(fs) > 1 else str(fs[0]))
             if (y, m) in tagih: label += " + perjalanan dinas"
-        per, inv = periode_bulan(y, m)
+        per = periode(min(b["slot"]), max(b["slot"])); inv = periode_bulan(y, m)[1]
         termin.append((per, label, inv, nominal))
     total = kick + sum(f["biaya"] for f in fase) + travel
     assert abs(total - (kick + sum(t[3] for t in termin))) < 1, "Total Investasi ≠ Total Pembayaran"
@@ -142,7 +152,7 @@ def hero(d, eyebrow, judul, label_no):
   <h1>{judul}<br><span>{e(d["project"])}</span></h1>
   <div class="meta">
     <div class="card"><div class="kv"><b>{label_no}</b><span>{e(d["nomor"])}</span><b>Project</b><span>{e(d["project"])}</span><b>Tanggal</b><span>{e(d["tanggal"])}</span></div></div>
-    <div class="card soft"><div class="lbl">Kepada Yth.</div><div class="to">{e(k["penerima"])}</div><div>{e(k["instansi"])}</div><div style="color:var(--muted)">{e(k["alamat"])}</div></div>
+    <div class="card soft"><div class="lbl">Kepada Yth.</div><div class="to">{garis(k.get("penerima"))}</div><div>{e(k["instansi"])}</div><div style="color:var(--muted)">{garis(k.get("alamat"))}</div></div>
   </div>
 '''
 
@@ -167,8 +177,8 @@ def penawaran(d, fase, kick, items, travel, termin, total):
     rows = "".join(
         f'<tr><td><span class="ph">Fase {f["no"]}</span> · <b>{e(f["nama"])}</b><ul class="sc">'
         + "".join(f"<li>{bold_prefix(x)}</li>" for x in f["lingkup"])
-        + f'</ul></td><td style="white-space:nowrap">{periode(f["s0"], f["s1"])}<br><span style="color:var(--subtle);font-size:8pt">'
-        + f'{frac(f["bulan"])} bulan{" (2 minggu)" if f["bulan"] == 0.5 else ""} · {frac(f["orang"])} orang</span></td></tr>'
+        + f'</ul></td><td style="white-space:nowrap">{per_f(f)}<br><span style="color:var(--subtle);font-size:8pt">'
+        + f'{dur_f(f)} · {frac(f["orang"])} orang</span></td></tr>'
         for f in fase)
     h += f'''<h2><i>1</i>Lingkup Pekerjaan &amp; Timeline</h2>
 <table style="break-inside:auto">
@@ -183,10 +193,10 @@ def penawaran(d, fase, kick, items, travel, termin, total):
                 f'<td class="c{" z" if bulan == "–" else ""}">{bulan}</td><td class="r">{rp(tot)}</td></tr>')
     st = lambda p: e(p["nama"]) + (" (short term)" if p["skema"] == "Short Term" else "")
     grp = lambda t, sm: f'<tr class="grp"><td colspan="5">{t} <small>{sm}</small></td></tr>'
-    body = '<tbody style="break-inside:avoid">' + grp("Engineering Kick-off", "sekali bayar saat tanda tangan, posisi Long Term") + "".join(
+    body = "" if not kick else '<tbody style="break-inside:avoid">' + grp("Engineering Kick-off", "sekali bayar saat tanda tangan, posisi Long Term") + "".join(
         row(e(p["nama"]), KICKOFF[GRUP[p["level"]]], frac(p["maks"]), "–", p["kickoff"]) for p in d["posisi"] if p["kickoff"]) + "</tbody>"
     for f in fase:
-        body += '<tbody style="break-inside:avoid">' + grp(f"Fase {f['no']} · {e(f['nama'])}", periode(f["s0"], f["s1"])) + "".join(
+        body += '<tbody style="break-inside:avoid">' + grp(f"Fase {f['no']} · {e(f['nama'])}", per_f(f)) + "".join(
             row(st(p), p["tarif"], frac(a), frac(f["bulan"]), t) for p, a, t in f["baris"]) + "</tbody>"
     if items:
         tr = d["perjalanan"]
@@ -198,6 +208,8 @@ def penawaran(d, fase, kick, items, travel, termin, total):
     else:
         total_akhir = total
     body += f'<tbody><tr class="grand"><td colspan="4">Total Investasi</td><td class="r">{rp(total_akhir)}</td></tr></tbody>'
+    KO_LI = ('<li><b>Engineering Kick-off:</b> onboarding tim, kickoff &amp; roadmap, setup core Venturo, akses &amp; environment, serta transfer ilmu</li>' if kick else
+             '<li><b>Project Enablement:</b> onboarding cepat ke proyek berjalan, pemahaman konteks dan jadwal proyek, penyiapan akses &amp; environment, serta transfer ilmu</li>')
     h += f'''<h2><i>2</i>Rincian Biaya</h2>
 <table class="cost">
   <thead><tr><th>Posisi / Item</th><th class="r">Tarif/Bulan</th><th class="c">Orang</th><th class="c">Bulan</th><th class="r">Total</th></tr></thead>
@@ -207,12 +219,12 @@ def penawaran(d, fase, kick, items, travel, termin, total):
 <div class="svc">
   <h3>Sudah termasuk dalam biaya</h3>
   <ul>
-    <li><b>Engineering Kick-off:</b> onboarding tim, kickoff &amp; roadmap, setup core Venturo, akses &amp; environment, serta transfer ilmu</li>
+    {KO_LI}
     <li>Tim bekerja khusus untuk proyek Klien sesuai alokasi setiap fase dan prioritas backlog Klien, didampingi Technical Lead dan Engineering Management Venturo</li>
     <li><b>Jaminan target:</b> bila target yang telah disepakati bersama tidak tercapai karena kendala dari sisi Venturo, Venturo menambah anggota tim dan/atau melakukan lembur tanpa biaya tambahan</li>
     <li>Penggantian anggota tim yang tidak sesuai kualifikasi tanpa biaya tambahan, serta dukungan teknis melalui WhatsApp</li>
     <li>Seluruh source code, basis data, konfigurasi, dan dokumentasi hasil pekerjaan menjadi milik Klien</li>
-    <li>Gaji, BPJS, PPh 21, AI Subscription, dan Engineering Workspace tim ditanggung Venturo (rincian di Lampiran, bagian Sudah Ditangani Venturo)</li>
+    <li>Gaji, BPJS, PPh 21, AI Subscription, dan Engineering Workspace tim ditanggung Venturo (rincian di Lampiran, bagian Komponen Biaya per Orang)</li>
   </ul>
 </div>
 '''
@@ -227,26 +239,25 @@ def penawaran(d, fase, kick, items, travel, termin, total):
     ada_travel = " Biaya perjalanan dinas termasuk dalam termin bulan kunjungan." if items else ""
     vc_li = (f'  <li>Venturo Cloud (bila dipilih pada bagian Persetujuan) ditagihkan setiap akhir bulan mulai {e(vc["tagih_mulai"])} dan berlanjut otomatis setiap bulan hingga salah satu pihak menghentikannya dengan pemberitahuan tertulis 30 (tiga puluh) hari sebelumnya.</li>\n' if vc else "")
     dp, dp_label, termin = kick, "Down Payment – Engineering Kick-off", list(termin)
-    if d.get("diskon"):  # diskon dipotong dari Down Payment; bila lebih besar, disebar rata ke termin
-        nilai = d["diskon"]["nilai"]
-        if nilai <= dp:
-            dp -= nilai; dp_label += " (setelah diskon)"
-        else:
-            per = nilai / len(termin)
-            termin = [(a, b + " (setelah diskon)", c, n - per) for a, b, c, n in termin]
+    if d.get("diskon"):  # diskon disebar rata ke termin; DP persentase dihitung dari termin setelah diskon
+        per = d["diskon"]["nilai"] / len(termin)
+        termin = [(a, b, c, n - per) for a, b, c, n in termin]
+    dpt = d.get("dp_termin1")
+    if dpt:
+        a, b, c, n = termin[0]; dp = n * dpt["persen"] / 100
+        dp_label = e(dpt["label"]); termin[0] = (a, b + f" (sisa {100 - dpt['persen']}%)", c, n - dp)
     assert abs(dp + sum(t[3] for t in termin) - total_akhir) < 1, "Σ termin ≠ Total Pembayaran"
     trows = "".join(f'<tr><td>{p}</td><td>{l}</td><td>{i}</td><td class="r">{rp(n)}</td></tr>' for p, l, i, n in termin)
     h += f'''<h2><i>3</i>Pembayaran</h2>
 <ul>
   <li>Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien.</li>
-  <li>Engineering Kick-off dibayar sebagai Down Payment saat penandatanganan, sebelum periode kerja pertama dimulai.</li>
-  <li>Tagihan dikirim di akhir setiap bulan sesuai alokasi tim pada bulan tersebut dan wajib dibayarkan paling lambat H+14 (empat belas) dari tanggal invoice.{ada_travel}</li>
+{(f"  <li>{e(dpt['keterangan'])}</li>" + chr(10)) if dpt else ("  <li>Engineering Kick-off dibayar sebagai Down Payment saat penandatanganan, sebelum periode kerja pertama dimulai.</li>" + chr(10) if dp else "")}  <li>Tagihan dikirim di akhir setiap bulan sesuai alokasi tim pada bulan tersebut dan wajib dibayarkan paling lambat H+14 (empat belas) dari tanggal invoice.{ada_travel}</li>
   <li>Apabila Klien tidak melakukan pembayaran sesuai jadwal, maka seluruh aktivitas pengembangan berhak dihentikan sementara, yang dapat berdampak pada mundurnya jadwal pekerjaan.</li>
 {vc_li}</ul>
 <div class="bank"><span>Rekening pembayaran</span><span><b>BCA 3680332222</b> a.n. PT Venturo Pro Indonesia</span></div>
 <table class="cost">
   <thead><tr><th>Periode Kerja</th><th>Termin</th><th>Tgl Invoice</th><th class="r">Nominal</th></tr></thead>
-  <tbody><tr><td>Penandatanganan</td><td>{dp_label}</td><td>Saat tanda tangan</td><td class="r">{rp(dp)}</td></tr>{trows}
+  <tbody>{f'<tr><td>Penandatanganan</td><td>{dp_label}</td><td>Saat tanda tangan</td><td class="r">{rp(dp)}</td></tr>' if dp else ""}{trows}
   <tr class="grand"><td colspan="3">Total Pembayaran</td><td class="r">{rp(total_akhir)}</td></tr></tbody>
 </table>
 '''
@@ -288,31 +299,41 @@ def lampiran(d, fase):
     pos = d["posisi"]
     h = hero(d, "Lampiran Penawaran Layanan", "Rincian Biaya &amp; Rencana Kerja", "Lampiran")
     h += f'  <p class="intro">Lampiran ini merinci komponen biaya setiap posisi, alokasi tim pada setiap fase, serta fitur dan pekerjaan yang ditargetkan pada setiap fase{e(d.get("lampiran_intro_tambahan", ""))}.</p>\n</section>\n'
-    # Komponen biaya selalu lengkap: dua tabel (Long Term & Short Term) untuk keempat level.
-    kol = ["Senior", "Intermediate", "Pentester/DevOps", "UI/UX/QA/BA"]
-    th1 = '<th class="c" colspan="2">Software Engineering</th><th class="c" colspan="2">Product Engineering</th>'
-    th2 = "".join(f'<th class="r">{LABEL_LEVEL[k]}</th>' for k in kol)
-    def baris(n, f, cls=""):
-        return f'<tr{cls}><td>{n}</td>' + "".join(f'<td class="r">{f(GRUP[k])}</td>' for k in kol) + "</tr>"
-    def sub(t):
-        return f'<tr class="sub"><td style="text-align:left;color:var(--ink)">{t}</td>' + "<td></td>" * 4 + "</tr>"
-    def tabel(skema):
-        rows = ""
-        if skema == "Long Term":
-            rows += sub("Sekali bayar") + baris("Engineering Kick-off", lambda g: rp(KICKOFF[g]))
-        rows += sub("Biaya bulanan") + "".join(baris(n, lambda g, s=s, i=i: rp(s if g == "S" else i)) for n, s, i in KOMPONEN)
-        if skema == "Short Term":
-            rows += baris("Project Enablement Fee", lambda g: rp(ENABLEMENT[g]))
-        rows += baris(f"Bulanan {skema}", lambda g: rp(TARIF[(g, skema)]), ' class="grand"')
-        return f'''<h3>{skema}</h3>
-<table class="sm" style="break-inside:avoid">
-  <thead><tr><th rowspan="2">Komponen</th>{th1}</tr><tr>{th2}</tr></thead>
+    grup = [g for g in ("S", "I") if d.get("tampilkan_semua_tarif", True) or any(GRUP[p["level"]] == g for p in pos)]
+    nama_g = {"S": ("Senior Level", "Senior Engineer · AI Engineer · DevOps"), "I": ("Intermediate Level", "Intermediate Engineer · UI/UX · BA · QA")}
+    th1 = "".join(f'<th class="c" colspan="2" style="white-space:nowrap;font-size:8pt;vertical-align:bottom;padding-bottom:1.2mm"><span style="display:block;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:7.5pt">{nama_g[g][0]}</span>{nama_g[g][1]}</th>' for g in grup)
+    DESK = {"Engineering Kick-off": "Rekrutmen, onboarding, setup &amp; garansi", "Development Squad": "Engineer dedicated untuk proyek Anda",
+            "Technical Lead": "Review teknis &amp; arahan arsitektur", "Engineering Management": "Kontinuitas layanan &amp; kualitas delivery",
+            "Project Enablement Fee": "Kapasitas cadangan &amp; fleksibilitas kontrak"}
+    nm = lambda n: f'<b>{n}</b>' + (f'<span class="d" style="white-space:nowrap;font-size:7.6pt">{DESK[n]}</span>' if n in DESK else "")
+    seksi = lambda t: f'<tr class="sub"><td style="text-align:left;color:var(--t7);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:7.8pt">{t}</td>{kos}</tr>'
+    th2 = "".join('<th class="r" style="padding-top:1.2mm">Long Term</th><th class="r" style="padding-top:1.2mm">Short Term</th>' for g in grup)
+    kos = "<td></td>" * (2 * len(grup))
+    TOT = "font-size:9.5pt;font-weight:800;color:var(--ink);border-radius:0"
+    def baris(n, f):
+        return f"<tr><td>{nm(n)}</td>" + "".join(f(g) for g in grup) + "</tr>"
+    rows = (seksi("Sekali bayar")
+            + baris("Engineering Kick-off", lambda g: f'<td class="r">{rp(KICKOFF[g])}</td><td class="r z">–</td>')
+            + seksi("Biaya bulanan")
+            + "".join(baris(n, lambda g, s=s, i=i: f'<td class="r">{rp(s if g == "S" else i)}</td>' * 2) for n, s, i in KOMPONEN)
+            + baris("Project Enablement Fee", lambda g: f'<td class="r z">–</td><td class="r">{rp(ENABLEMENT[g])}</td>')
+            + '<tr class="grand"><td>Total per Talent / Bulan</td>' + "".join(f'<td class="r" style="{TOT}">{rp(TARIF[(g, "Long Term")])}</td><td class="r" style="{TOT}">{rp(TARIF[(g, "Short Term")])}</td>' for g in grup) + "</tr>")
+    h += f'''<h2><i>1</i>Komponen Biaya per Orang</h2>
+<p style="margin:0 0 2mm;color:var(--muted)">Harga per talent, sudah termasuk seluruh biaya ketenagakerjaan. Long Term lebih hemat, Short Term lebih fleksibel.</p>
+<style>
+.rate thead tr:first-child th:not(:first-child),.rate thead tr:nth-child(2) th:nth-child(odd){{border-left:.3mm solid rgba(255,255,255,.45)}}
+.rate thead tr:nth-child(2) th{{border-top:.3mm solid rgba(255,255,255,.45)}}
+.rate tbody td:first-child{{border-left:.3mm solid var(--border)}}.rate tbody td:last-child{{border-right:.3mm solid var(--border)}}
+.rate tbody td:nth-child(2),.rate tbody td:nth-child(4){{border-left:.3mm solid var(--border)}}
+</style>
+<table class="rate" style="table-layout:fixed;width:100%"><colgroup><col style="width:{196 - 32 * 2 * len(grup)}mm">{"<col style='width:32mm'>" * (2 * len(grup))}</colgroup>
+  <thead><tr><th rowspan="2">Komponen<span style="display:block;font-weight:400;font-style:italic;font-size:6.3pt;line-height:1.35;opacity:.85;margin-top:.8mm">Long Term untuk kontrak minimal 2 bulan, makin hemat seiring durasi.</span></th>{th1}</tr><tr>{th2}</tr></thead>
   <tbody>{rows}</tbody>
 </table>
-'''
-    h += f'''<h2><i>1</i>Komponen Biaya per Orang</h2>
-{tabel("Long Term")}{tabel("Short Term")}<p class="note" style="color:var(--muted)"><b>Long Term</b> untuk posisi yang terlibat 2 bulan atau lebih (dengan Engineering Kick-off). <b>Short Term</b> untuk posisi yang dibutuhkan kurang dari 2 bulan: tanpa Kick-off, dengan Project Enablement Fee untuk onboarding cepat ke proyek berjalan.</p>
-<div class="unit"><b>Tidak perlu Anda kelola:</b> gaji pokok &amp; THR · tunjangan &amp; benefit · BPJS Kesehatan &amp; Ketenagakerjaan · PPh 21 &amp; kompensasi PKWT · program employee engagement · pengembangan talenta &amp; manajemen kinerja.</div>
+<div class="svc" style="background:var(--t50);margin-top:3mm"><h3>You Don’t Need to Manage <small>Sudah termasuk dalam tarif, dikelola Venturo</small></h3>
+<div style="display:grid;grid-template-columns:repeat(3,max-content);justify-content:space-between;gap:.8mm 6mm;font-size:8.5pt;white-space:nowrap">
+<span>✓ Basic Salary &amp; THR</span><span>✓ BPJS Health &amp; Employment</span><span>✓ Income Tax (PPh 21) &amp; PKWT Compensation</span>
+<span>✓ Benefits &amp; Allowances</span><span>✓ Employee Engagement Program</span><span>✓ Talent Development &amp; Performance Management</span></div></div>
 {SATUAN}
 '''
     kom = "".join(f'<tr><td>{e(p["nama"])}</td><td>{LABEL_LEVEL[p["level"]]} · {p["skema"]}</td><td class="c">{frac(p["maks"])}</td><td>{e(p["peran"])}</td></tr>' for p in pos)
@@ -337,25 +358,20 @@ def lampiran(d, fase):
 <p class="note" style="color:var(--muted);font-size:8pt">{leg}.</p>
 </div>
 '''
-    h += f'<h2 style="break-before:page"><i>4</i>Rencana Kerja &amp; Fitur per Fase</h2>\n<p style="margin:0 0 2mm;color:var(--muted)">{e(d.get("catatan_kode", "Kode F dan NF mengikuti dokumen kebutuhan Klien; LP merujuk butir Lingkup Pekerjaan."))}</p>\n'
+    pb = d.get("rencana_halaman_baru", len(pos) >= 6 or len(fase) >= 7)
+    h += f'<h2 style="{"break-before:page" if pb else "break-after:avoid"}"><i>4</i>Rencana Kerja &amp; Fitur per Fase</h2>\n<p style="margin:0 0 2mm;color:var(--muted)">{e(d.get("catatan_kode", "Kode F dan NF mengikuti dokumen kebutuhan Klien; LP merujuk butir Lingkup Pekerjaan."))}</p>\n'
     for f in fase:
         rows = "".join(f'<tr><td style="white-space:nowrap"><b>{e(k)}</b></td><td><b>{e(j)}</b><span class="d">{e(r)}</span></td></tr>' for k, j, r in f.get("fitur", []))
         h += (f'<div style="margin-bottom:4mm"><h3 style="font-size:10.5pt;margin:4mm 0 1mm;break-after:avoid"><span class="ph">Fase {f["no"]}</span> · {e(f["nama"])} '
-              f'<small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">{periode(f["s0"], f["s1"])} · {frac(f["bulan"])} bulan · {frac(f["orang"])} orang</small></h3>\n'
+              f'<small style="font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm">{per_f(f)} · {dur_f(f)} · {frac(f["orang"])} orang</small></h3>\n'
               f'<table class="sm" style="break-inside:auto"><thead><tr><th style="width:16mm">Kode</th><th>Fitur / Pekerjaan</th></tr></thead><tbody>{rows}</tbody></table></div>\n')
     st = [p for p in pos if p["skema"] == "Short Term"]
     st_txt = "; ".join(f'{e(p["nama"])} ({frac(p["rentang"])} bulan)' for p in st) or "tidak ada"
     h += f'''<div class="keep">
-<h2><i>5</i>Sudah Ditangani Venturo</h2>
-<p style="margin:0 0 2mm">Seluruh hal berikut sudah termasuk dalam biaya bulanan, sehingga Klien tidak perlu mengelolanya:</p>
-<ul><li>Basic Salary &amp; THR</li><li>Benefits &amp; Allowances</li><li>BPJS Kesehatan &amp; Ketenagakerjaan</li><li>Income Tax (PPh 21) &amp; kompensasi PKWT</li><li>Employee Engagement Program</li><li>Talent Development &amp; Performance Management</li></ul>
-</div>
-<div class="keep">
-<h2><i>6</i>Asumsi &amp; Catatan</h2>
+<h2><i>5</i>Asumsi &amp; Catatan</h2>
 <ul>
   <li>Komposisi dan alokasi tim disusun dari kebutuhan pada dokumen Klien dan dapat disesuaikan bersama sebelum penandatanganan.</li>
-  <li>Engineering Kick-off ditagih sekali untuk setiap posisi Long Term sesuai alokasi tertingginya (mis. alokasi tertinggi ½ orang = ½ × tarif Kick-off).</li>
-  <li>Posisi Short Term: {st_txt}.</li>
+{"  <li>Engineering Kick-off ditagih sekali untuk setiap posisi Long Term sesuai alokasi tertingginya (mis. alokasi tertinggi ½ orang = ½ × tarif Kick-off).</li>" + chr(10) if any(p["kickoff"] for p in pos) else ""}  <li>Posisi Short Term: {st_txt}.</li>
   <li>Urutan fitur dapat disesuaikan dengan prioritas Klien selama total alokasi tim pada fase tersebut tetap.</li>
 {"".join(f"  <li>{e(x)}</li>{chr(10)}" for x in d.get("asumsi", []))}</ul>
 </div>'''
@@ -368,7 +384,7 @@ def sla(d):
     blank = "______________________"
     td = lambda v: f"<td><b>{e(v)}</b></td>" if v else '<td class="blank"></td>'
     isi = {"FILE": d["file"], "NOMOR": e(d["nomor"]), "TANGGAL": e(d["tanggal"]), "KLIEN": e(k["instansi"]),
-           "ALAMAT": e(k["alamat"]), "TAHUN": d["tanggal"].split()[-1],
+           "ALAMAT": garis(k.get("alamat")), "TAHUN": d["tanggal"].split()[-1],
            "TTD_NAMA": e(k.get("ttd_nama") or blank), "TTD_JABATAN": e(k.get("ttd_jabatan") or blank),
            "TTD_NAMA_TD": td(k.get("ttd_nama")), "TTD_JABATAN_TD": td(k.get("ttd_jabatan")),
            "PRODUCTION_VC": ", atau melalui layanan Venturo Cloud apabila dipilih Klien pada Penawaran Layanan." if vc else ".",
@@ -377,7 +393,18 @@ def sla(d):
         assert "{{" + kk + "}}" in s, kk
         s = s.replace("{{" + kk + "}}", v)
     assert "{{" not in s, re.findall(r"\{\{\w+\}\}", s)
+    if not any(p.get("kickoff") for p in d["posisi"]):  # tanpa Kick-off: hilangkan rujukannya
+        ko = ", termasuk Engineering Kick-off,"
+        assert ko in s; s = s.replace(ko, "")
     return s
+
+
+def banding(p, fase):
+    """Perbandingan total satu posisi di kedua skema (termasuk Kick-off) bila skemanya dipaksa."""
+    g = GRUP[p["level"]]; ob = sum(f["alokasi"].get(p["id"], 0) * f["bulan"] for f in fase)
+    tot = {sk: TARIF[(g, sk)] * ob + (KICKOFF[g] * p["maks"] if sk == "Long Term" else 0) for sk in ("Long Term", "Short Term")}
+    lain = "Short Term" if p["skema"] == "Long Term" else "Long Term"
+    return f"{p['nama']}: {p['skema']} (dipaksa) {rp(tot[p['skema']])} vs {lain} {rp(tot[lain])} (termasuk Kick-off)"
 
 
 def main():
@@ -400,7 +427,8 @@ def main():
                       "perjalanan_dinas": rp(travel), "total_investasi": rp(total_akhir),
                       "fase": [f"F{f['no']} {f['nama']}: {periode(f['s0'], f['s1'])} · {frac(f['orang'])} orang · {rp(f['biaya'])}" for f in fase],
                       "short_term": [f"{p['nama']} ({frac(p['rentang'])} bln)" for p in d["posisi"] if p["skema"] == "Short Term"],
-                      "termin": len(termin)}, ensure_ascii=False, indent=2))
+                      "termin": len(termin),
+                      "skema_dipaksa": [banding(p, fase) for p in d["posisi"] if p["dipaksa"]]}, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

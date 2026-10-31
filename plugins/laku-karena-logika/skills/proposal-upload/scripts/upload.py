@@ -24,7 +24,8 @@ Auth: login wrangler (`npx wrangler@4 login`) atau env CLOUDFLARE_API_TOKEN + CL
 """
 import argparse, datetime, json, os, re, shutil, subprocess, sys, tempfile, urllib.request
 
-POLA = re.compile(r"^(VEN-([A-Za-z0-9]+)-(\d{4})-(\d{3}))(|-Lampiran-Estimasi|-Lampiran-Rincian-Biaya|-Service-Agreement)\.pdf$")
+# Kode project semestinya huruf & angka saja; tanda hubung tetap diterima (non-greedy sampai -<Tahun>-<Rev>).
+POLA = re.compile(r"^(VEN-([A-Za-z0-9-]+?)-(\d{4})-(\d{3}))(|-Lampiran-Estimasi|-Lampiran-Rincian-Biaya|-Service-Agreement)\.pdf$")
 PERAN = {"": "P", "-Lampiran-Estimasi": "L", "-Lampiran-Rincian-Biaya": "L", "-Service-Agreement": "S"}
 NAMA_PERAN = {"P": "Penawaran Layanan", "L": "Lampiran (Estimasi Delivery Point / Rincian Biaya)", "S": "Service Agreement"}
 JENIS = {"": "Penawaran Layanan", "-Lampiran-Estimasi": "Lampiran Estimasi Delivery Point",
@@ -128,6 +129,33 @@ def tanggal(s):
     return datetime.date(int(m.group(3)), BULAN.index(m.group(2)) + 1, int(m.group(1))) if m else None
 
 
+BLN = r"(Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember|Jan|Feb|Mar|Apr|Jun|Jul|Agu|Sep|Okt|Nov|Des)"
+
+
+def bulan_ke(nama):
+    return [b[:3] for b in BULAN].index(nama[:3]) + 1
+
+
+def mulai_kerja(s, tgl):
+    """Tanggal paling awal sesudah tanggal dokumen yang tertulis sebagai awal periode kerja
+    ("8–31 Jan 2027", "1 Jan – 28 Feb 2027", "1 Januari 2027")."""
+    calon = []
+    for m in re.finditer(r"\b(\d{1,2})\s+" + BLN + r"(?:\s+(\d{4}))?\s*[–-]\s*\d{1,2}\s+" + BLN + r"\s+(\d{4})\b", s):
+        y = int(m.group(3) or m.group(5)) - (not m.group(3) and bulan_ke(m.group(2)) > bulan_ke(m.group(4)))
+        calon.append((y, bulan_ke(m.group(2)), int(m.group(1))))
+    for m in re.finditer(r"\b(\d{1,2})(?:\s*[–-]\s*\d{1,2})?\s+" + BLN + r"\s+(\d{4})\b", s):
+        calon.append((int(m.group(3)), bulan_ke(m.group(2)), int(m.group(1))))
+    hasil = []
+    for y, mo, d in calon:
+        try:
+            t = datetime.date(y, mo, d)
+        except ValueError:
+            continue
+        if t > tgl:
+            hasil.append(t)
+    return min(hasil) if hasil else None
+
+
 def fmt(d):
     return f"{d.day} {BULAN[d.month - 1]} {d.year}"
 
@@ -147,6 +175,12 @@ def info(a):
            "ada_diskon": any(temuan.values()),
            "kata_diskon": {j: v for j, v in temuan.items() if v},
            "url": [o["url"] for o in r["objek"]]}
+    if tgl:
+        mk = mulai_kerja(utama, tgl); batas = tgl + datetime.timedelta(days=14)
+        out["mulai_kerja"] = fmt(mk) if mk else None
+        if mk and mk <= batas:
+            out["peringatan_mulai_kerja"] = (f"Tanggal mulai kerja {fmt(mk)} jatuh sebelum/pada akhir masa berlaku {fmt(batas)}. "
+                                             f"Ingatkan pemilik; di pesan WA minta konfirmasi sebelum {fmt(mk)}.")
     if not project or not tgl:
         print("PERINGATAN: nama project/tanggal tidak terbaca otomatis — periksa teks PDF.", file=sys.stderr)
     print(json.dumps(out, ensure_ascii=False, indent=2))

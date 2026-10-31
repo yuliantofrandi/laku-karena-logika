@@ -60,7 +60,9 @@ Ketiganya harus `OK` (200, `application/pdf`). Jangan menyusun pesan WA sebelum 
 ```bash
 python3 <folder skill ini>/scripts/upload.py info --pdf <folder/file PDF> [<folder/file PDF> ...]
 ```
-Membaca teks PDF (PDFKit bawaan macOS; cadangan `pdftotext`/`pypdf`) → **nama project**, **tanggal dokumen**, **berlaku hingga** (+14 hari), dan **ada/tidaknya diskon** di ketiga PDF (kata kunci: diskon, potongan, discount, promo; kata "gratis" di Service Agreement — akses pantau progres — **bukan** diskon). Bila nama/tanggal tidak terbaca, periksa teks PDF secara manual.
+Membaca teks PDF (PDFKit bawaan macOS; cadangan `pdftotext`/`pypdf`) → **nama project**, **tanggal dokumen**, **berlaku hingga** (+14 hari), dan **ada/tidaknya diskon** di ketiga PDF (kata kunci: diskon, potongan, discount, promo; kata "gratis" di Service Agreement — akses pantau progres — **bukan** diskon). Juga **tanggal mulai kerja** (`mulai_kerja`: tanggal periode kerja paling awal sesudah tanggal dokumen); bila jatuh sebelum atau pada akhir masa berlaku, keluar `peringatan_mulai_kerja`. Bila nama/tanggal tidak terbaca, periksa teks PDF secara manual.
+
+Nama file mengikuti `VEN-<Kode>-<Tahun>-<Rev>…pdf`. Kode project semestinya huruf & angka saja (aturan proposal-managed/proposal-dedicated); kode bertanda hubung (`TGX-Portal`) tetap dikenali skrip, tapi laporkan ke pemilik agar revisi berikutnya memakai kode tanpa tanda hubung.
 
 ## 5. Pesan WhatsApp pengantar
 Tampilkan di chat sebagai **2 bubble** (dua blok teks terpisah); pengguna menyalin dan mengirim sendiri — skill **tidak** mengirim pesan.
@@ -71,7 +73,8 @@ Aturan:
 - **Tanpa nomor dokumen**, tanpa "Bapak/Ibu" di badan pesan.
 - **Penawaran Layanan = dokumen utama**; Lampiran dan Service Agreement disebut sebagai pelengkap. Nama lampiran mengikuti `model` dari `info`: Managed Service → "Lampiran Estimasi Delivery Point"; Dedicated Team → "Lampiran Rincian Biaya".
 - **Masa berlaku 14 hari** dari tanggal dokumen, ditulis lengkap, beserta alasannya (persiapan tim & setup) dan akibat bila lewat (ketersediaan tim dan harga berbeda → penawaran diperbarui).
-- **Diskon**: bila `info` → `ada_diskon: false`, **jangan menyebut diskon sama sekali**. Bila `true`, tambahkan tepat setelah kalimat masa berlaku: "Potongan harga hanya berlaku dalam masa penawaran ini, karena kondisi project dan ratecard dapat berubah setelahnya."
+- **Diskon**: bila `info` → `ada_diskon: false`, **jangan menyebut diskon sama sekali**. Bila `true`, tambahkan tepat setelah kalimat masa berlaku: "Potongan harga hanya berlaku dalam masa penawaran ini, karena kondisi project dan ratecard dapat berubah setelahnya." Deteksi ini memakai kata "Diskon" di baris diskon penawaran — jangan diganti istilah lain di dokumen.
+- **Mulai kerja sebelum masa berlaku habis** (`peringatan_mulai_kerja` dari `info`): peringatkan pemilik di laporan, dan ganti ajakan di pesan WA menjadi "mohon konfirmasi sebelum *<tanggal mulai kerja>*" karena Down Payment dibayar saat tanda tangan.
 - **Tidak meminta tanda tangan**; arahkan ke kontak langsung atau meeting.
 - **Tanpa salam penutup** dan tanpa nama pengirim; penutup = meminta review & feedback.
 - Tanpa angka harga dan angka SLA. Format WhatsApp `*tebal*` seperlunya.
@@ -103,7 +106,8 @@ Saya tunggu review dan feedbacknya .. 🙏
 ## 6. Laporan (Bahasa Indonesia)
 - Status domain, 3 URL beserta hasil `cek`, dan objek revisi lama yang dihapus.
 - Pesan WhatsApp (2 bubble di atas).
-- Ingatkan: link revisi lama tidak aktif lagi; bila klien sudah menerima link lama, kirim ulang link revisi terbaru. Bila domain/Transform Rule belum disetel, sebutkan langkahnya.
+- Peringatan tanggal mulai kerja vs masa berlaku (bila ada).
+- Ingatkan: mengunggah revisi baru **otomatis menghapus link revisi lama**; bila klien sudah menerima link lama, kirim ulang link revisi terbaru. Bila domain/Transform Rule belum disetel, sebutkan langkahnya.
 
 ## Yang tidak boleh dilakukan
 - Mengunggah set yang tidak lengkap atau mencampur revisi.

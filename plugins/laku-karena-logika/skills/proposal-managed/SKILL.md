@@ -1,6 +1,6 @@
 ---
 name: proposal-managed
-description: Membuat TIGA PDF Venturo langsung jadi dari System Requirement Brief klien (txt/pdf/docx) — (1) Penawaran Layanan + form persetujuan (Managed Service) dengan tanda tangan+stempel dan paraf CEO, (2) Lampiran Estimasi Delivery Point (Poin per modul & item, pengembangan tahap berikutnya), dan (3) Service Agreement 23 pasal — dengan estimasi Poin, paket bulanan, termin, dan Layanan Lanjutan setelah go-live dihitung dari brief. Pakai saat diminta "buat PDF penawaran", "penawaran dari brief", "buat penawaran dari requirement", "estimasi delivery point", "lampiran estimasi", "service agreement", "penawaran baru untuk klien X", atau "export penawaran ke PDF".
+description: Membuat TIGA PDF Venturo langsung jadi dari System Requirement Brief klien (txt/pdf/docx) — (1) Penawaran Layanan + form persetujuan (Managed Service) dengan tanda tangan+stempel dan paraf CEO, (2) Lampiran Estimasi Delivery Point (Poin per modul & item, pengembangan tahap berikutnya), dan (3) Service Agreement 23 pasal — dengan estimasi Poin, paket bulanan, termin, dan Layanan Lanjutan setelah go-live dihitung dari brief. Pakai saat diminta "buat PDF penawaran", "penawaran dari brief", "buat penawaran dari requirement", "estimasi delivery point", "lampiran estimasi", "service agreement", "penawaran baru untuk klien X", atau "export penawaran ke PDF". Revisi penawaran model Dedicated Team (diskon, DP, timeline, rate card) pakai proposal-dedicated, bukan skill ini.
 ---
 
 # Penawaran Venturo dari Brief → 3 PDF
@@ -42,7 +42,7 @@ Folder hasil tidak di-hardcode: pakai folder yang disebut pengguna; bila belum d
 
 ## 1. Alur
 1. **Input:** System Requirement Brief (txt/pdf/docx). Baca seluruh isinya.
-2. **Data klien:** bila nama, jabatan, instansi, atau alamat tidak ada di brief, **tanyakan sekali di awal** dalam satu pesan, dan jangan tanyakan hal lain. Jabatan boleh umum (mis. "Pimpinan"); nama penanda tangan klien dikosongkan bila tidak diketahui.
+2. **Data klien:** bila nama, jabatan, instansi, atau alamat tidak ada di brief, **tanyakan sekali di awal** dalam satu pesan, dan jangan tanyakan hal lain. Data klien yang tetap tidak diketahui (alamat, nama, atau jabatan penanda tangan) **tidak pernah dibiarkan kosong**: tulis garis isian `______________________` (cegah "beralamat di , dalam hal ini…" di Pasal 1 SA). Jangan mengarang jabatan seperti "Pimpinan".
 3. **Estimasi Poin** per modul → item (§2), lalu pilih paket (§3).
 4. **Susun 3 HTML** dari template (§4–§6), dengan nomor dokumen dan revisi yang sama.
 5. **Render ketiganya** (§8) → **verifikasi** (§9) → kirim **3 file** dengan SendUserFile.
@@ -114,7 +114,7 @@ Folder hasil tidak di-hardcode: pakai folder yang disebut pengguna; bila belum d
 **5. Persetujuan** — kalimat persetujuan (bagian tidak terpisahkan dari Service Agreement), lalu kotak pilihan:
 ☐ *Lanjutkan Managed Service 50 Poin/bulan mulai [tanggal]* ☐ *Diputuskan kemudian*
 ☐ *Venturo Cloud [Paket] Rp[harga]/bulan mulai [tanggal]* ☐ *Server disediakan Klien*
-Blok tanda tangan: Venturo (Yulianto Frandi, CEO, `ttd.png`) · Klien (nama kosong bila belum diketahui, jabatan umum).
+Blok tanda tangan: Venturo (Yulianto Frandi, CEO, `ttd.png`) · Klien (nama/jabatan yang belum diketahui berupa garis isian).
 
 ## 5. Dokumen 2 — Lampiran Estimasi Delivery Point (`contoh-lampiran-estimasi.html`)
 - Hero: "Lampiran Penawaran Layanan" / "Estimasi Delivery Point" + nama project; kartu Lampiran (No. penawaran), Project, Tanggal; kartu Kepada Yth.
@@ -132,7 +132,7 @@ Blok tanda tangan: Venturo (Yulianto Frandi, CEO, `ttd.png`) · Klien (nama koso
 Diadaptasi dari SLA Venturo untuk model Managed Service. Hero: "Perjanjian Induk Kerja Sama" / "Service Agreement" / "Venturo Managed Service"; kartu No., Penawaran, Tanggal; kartu Klien.
 
 23 pasal (judul bernomor):
-1. **Para Pihak** — PT Venturo Pro Indonesia, Jl. Rinjani No. 26 Oro-oro Dowo, Klojen, Malang 65119, diwakili Yulianto Frandi selaku CEO; Klien diwakili "______ selaku [Jabatan]".
+1. **Para Pihak** — PT Venturo Pro Indonesia, Jl. Rinjani No. 26 Oro-oro Dowo, Klojen, Malang 65119, diwakili Yulianto Frandi selaku CEO; Klien beralamat di [alamat] dan diwakili "[Nama] selaku [Jabatan]" — bagian yang tidak diketahui diganti garis isian `______________________`.
 2. Masa Berlaku · 3. Lingkup Pengerjaan (rujuk nomor Penawaran & Lampiran)
 4. **Support Service**:
    - Jam kerja Senin–Jumat 08.00–17.00 WIB; respons WhatsApp maks. 15 menit pada jam kerja; di luar jam kerja respons pada hari yang sama, kecuali laporan bug yang ditangani sesuai ayat 6.
@@ -169,14 +169,14 @@ Bersihkan sisa template klien lain (mis. kode "YPIA" di footer, "PT Kuda Pacu").
 | Format | Bahasa Indonesia formal; rupiah bertitik (`Rp10.000.000`); desimal koma (`0,75`); tanggal "22 Oktober 2026" |
 | Tipografi | ’ untuk apostrof, “ ” untuk kutipan, – untuk rentang |
 
-**Nomor dokumen:** `KODE/Project/Tahun/Revisi` → `VEN/PolicyLab/2026/016`. KODE = kode perusahaan (Venturo = VEN; tanyakan bila bukan Venturo). Project = singkatan maks 2 kata, tanpa spasi. Tahun 4 digit. Revisi 001, 002, …
+**Nomor dokumen:** `KODE/Project/Tahun/Revisi` → `VEN/PolicyLab/2026/016`. KODE = kode perusahaan (Venturo = VEN; tanyakan bila bukan Venturo). Project = singkatan maks 2 kata, **huruf dan angka saja** — tanpa spasi dan tanpa tanda hubung (`VEN/TGXPortal/2026/001`, bukan `TGX-Portal`), karena `proposal-upload` memecah nama file dengan tanda hubung. Tahun 4 digit. Revisi 001, 002, …
 
 ## 8. Desain & teknis
 - Warna: brand-teal #259ead, teal-700 #1b7a86, teal-800 #176a74, teal-50 #eaf6f7, ink #1f2a2e, muted #58585a, subtle #6b7072, border #d5dfe0, surface-200 #f4f7f6, hijau diskon #3c7a2a. Sumber design system lengkap: artifact https://claude.ai/artifact/9Xz8mMr54wVGngfEdtyfFn.
 - Template sudah memuat override berikut; pertahankan saat mengisi:
 ```css
-@page{size:A4;margin:11mm 12mm 15mm 12mm}
-.hero{margin:-11mm -12mm 0;padding:8mm 12mm 3mm}
+@page{size:A4;margin:6mm 7mm 14mm 7mm}
+.hero{margin:-6mm -7mm 0;padding:6mm 7mm 3mm}
 .logo{margin-left:0}
 tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}
 tr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}
@@ -199,7 +199,7 @@ python3 <folder skill ini>/scripts/render.py sla.html       "<output>/VEN-<Proje
 
 ## 9. Penamaan, revisi & verifikasi
 - Nama file **tanpa spasi**, pakai "-": `VEN-<Project>-<Tahun>-<Rev>.pdf` · `…-Lampiran-Estimasi.pdf` · `…-Service-Agreement.pdf`.
-- Satu set = satu nomor revisi. Setiap perubahan (isi maupun tampilan) → render ulang **ketiganya**, naikkan nomor revisi, dan hapus file versi lama dari `<output>`.
+- Satu set = satu nomor revisi. Setiap perubahan → render ulang **ketiganya** dan hapus file versi lama dari `<output>`. Revisi yang **belum diunggah/dikirim ke klien** boleh diperbaiki tanpa menaikkan nomor; nomor revisi naik bila isi atau harga berubah setelah dokumen dikirim, atau bila perubahan diminta pemilik di sesi baru.
 - Verifikasi tiap render (`pdftoppm -r 60` per halaman): jumlah halaman wajar tanpa halaman sisa kecil, logo utuh, TTD/paraf tampil transparan, nomor dokumen konsisten di ketiga file, tidak ada sisa "DP"/"GitLab"/"lebih dari 100", serta total dan termin cocok.
 
 ## 10. Di luar skill ini
