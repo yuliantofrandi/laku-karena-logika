@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>VEN-AksaraWeb-2026-001</title>
+<style>
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+:root{--teal:#259ead;--t7:#1b7a86;--t8:#176a74;--t50:#eaf6f7;--ink:#1f2a2e;--muted:#58585a;--subtle:#6b7072;--border:#d5dfe0;--s2:#f4f7f6;--green:#93cc7c}
+@page{size:A4;margin:16mm 16mm 18mm 16mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:M,sans-serif;color:var(--ink);font-size:9pt;line-height:1.5}
+.hero{position:relative;margin:-16mm -16mm 0;padding:12mm 16mm 4mm;overflow:hidden}
+.hero{background:#fff url(bg_flat.jpg) right top/120mm auto no-repeat}
+
+.hero>*{position:relative;z-index:1}
+.logo{height:19mm;display:block;margin-left:-2mm}
+.eyebrow{margin-top:6mm;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:8.5pt}
+h1{margin:1mm 0 0;font-size:24pt;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h1 span{color:var(--teal)}
+.meta{display:grid;grid-template-columns:1.1fr 1fr;gap:5mm;margin-top:5mm}
+.card{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm;background:#fff}
+.card.soft{background:var(--t50);border-color:var(--t50)}
+.kv{display:grid;grid-template-columns:24mm 1fr;row-gap:1mm}
+.kv b{font-weight:600;color:var(--subtle);font-size:8.5pt}
+.lbl{font-size:8pt;font-weight:600;color:var(--t7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1mm}
+.to{font-weight:700;font-size:10.5pt}
+.intro{margin:5mm 0 0;color:var(--muted);font-size:10pt}
+h2{font-size:12pt;font-weight:700;margin:6mm 0 2.5mm;display:flex;align-items:center;gap:3mm;break-after:avoid}
+h2 i{font-style:normal;display:inline-grid;place-items:center;width:7.5mm;height:7.5mm;border-radius:2mm;background:var(--teal);color:#fff;font-size:10pt}
+.svc{border:1px solid var(--border);border-radius:4mm;padding:3mm 5mm;margin-bottom:3mm;break-inside:avoid}
+.svc h3{margin:0 0 1.5mm;font-size:10.5pt;font-weight:700}
+.svc h3 small{font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm}
+ul{margin:0;padding-left:4.5mm}
+li{margin:.3mm 0}
+li::marker{color:var(--teal)}
+li b{font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:9.2pt;break-inside:avoid}
+th{background:var(--t7);color:#fff;font-weight:600;text-align:left;padding:2.4mm 3mm;font-size:8.6pt}
+thead tr:first-child th:first-child{border-top-left-radius:2.5mm}thead tr:first-child th:last-child{border-top-right-radius:2.5mm}
+td{padding:2mm 3mm;border-bottom:1px solid var(--border);vertical-align:top}
+.r{text-align:right;white-space:nowrap}.c{text-align:center}
+td .d{display:block;color:var(--subtle);font-size:8.3pt;margin-top:.8mm}
+tr.sub td{border:0;padding:1.6mm 3mm;font-weight:600}
+tr.sub td:first-child{text-align:right;color:var(--muted)}
+tr.disc td{color:#3c7a2a}
+tr.grand td{background:var(--t50);font-weight:800;font-size:10.5pt;padding:3mm;border:0}
+tr.grand td:first-child{text-align:right;border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{color:var(--t8);border-bottom-right-radius:2.5mm}
+.note{margin-top:3mm}
+.bank{display:flex;gap:4mm;align-items:center;background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0 4mm}
+.bank b{font-weight:700}
+.closing{margin-top:8mm;padding:4mm 5mm;border-left:1.2mm solid var(--green);background:var(--s2);border-radius:0 3mm 3mm 0;color:var(--muted);break-inside:avoid}
+.sign{break-inside:avoid}
+.sign .agree{margin:0 0 3mm}
+.sign .place{margin:0 0 4mm;color:var(--muted)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.sbox{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm}
+.party{font-size:7.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t7)}
+.co{font-weight:700;font-size:10.5pt;margin-top:.5mm}
+.area{position:relative;height:30mm;margin:3mm 0;border-bottom:1px solid var(--ink)}
+.ttd{position:absolute;left:50%;bottom:1mm;transform:translateX(-50%);height:27mm;max-width:95%;object-fit:contain}
+.stamp{position:absolute;right:0;bottom:1mm;font-size:7pt;color:#9aa5a8}
+.meterai{position:absolute;left:2mm;top:3mm;width:20mm;height:22mm;border:1px dashed #9aa5a8;border-radius:1.5mm;display:grid;place-items:center;text-align:center;font-size:6.8pt;color:#9aa5a8;line-height:1.3}
+table.f{font-size:8.8pt;break-inside:auto}
+table.f td{border:0;padding:.8mm 0}
+table.f td:first-child{width:18mm;color:var(--subtle)}
+table.f td.blank{border-bottom:1px dotted #9aa5a8}
+.keep{break-inside:avoid}
+tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}
+tr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bottom-right-radius:2.5mm}
+@page{size:A4;margin:6mm 7mm 14mm 7mm}
+.hero{margin:-6mm -7mm 0;padding:6mm 7mm 3mm}
+.logo{margin-left:0}
+.sm{font-size:8pt}.sm td,.sm th{padding:1.6mm 2mm}.unit{background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0;color:var(--muted);font-size:8.6pt}.unit b{color:var(--ink);font-weight:600}.ph{color:var(--t7);font-weight:700}.z{color:#c3cccd}
+tr.grp td{background:var(--s2);font-weight:700;padding:2mm 3mm;border:0}tr.grp td small{font-weight:500;color:var(--subtle);margin-left:2mm}
+table.cost{break-inside:auto;font-size:8.8pt}table.cost td{padding:1.5mm 3mm}table.cost tr{break-inside:avoid}
+tr.tot td{background:var(--t7);color:#fff;font-weight:700;border:0;padding:2mm 3mm}tr.tot td:first-child{text-align:right}
+ul.sc{padding-left:4mm;margin:0}ul.sc li{margin:.4mm 0}
+
+/* paket website */
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin:1mm 0 3mm}
+.pkc{position:relative;border:1px solid var(--border);border-radius:3.5mm;padding:4mm 4mm 3mm;display:flex;flex-direction:column;break-inside:avoid}
+.pkc.on{border:.6mm solid var(--t7)}
+.pkc.dark{background:#1f2a2e;color:#fff;border-color:#1f2a2e}
+.pkc .badge{position:absolute;top:-2.6mm;left:50%;transform:translateX(-50%);background:var(--green);color:#1f2a2e;font-weight:700;font-size:7.4pt;padding:.6mm 3mm;border-radius:3mm;white-space:nowrap}
+.pkc h3{margin:0;font-size:11pt;font-weight:700}
+.pkc .tg{color:var(--subtle);font-size:8pt;margin:.5mm 0 2mm}
+.pkc.dark .tg{color:#c9d3d4}
+.pkc .hg{font-size:17pt;font-weight:800;color:var(--t7);line-height:1.1;margin-bottom:2mm}
+.pkc.dark .hg{color:var(--green);font-size:13pt}
+.pkc ul{font-size:8.2pt;flex:1}
+.pkc li{margin:.6mm 0}
+.pkc .wk{margin-top:3mm;text-align:center;font-weight:700;font-size:8.4pt;padding:1.6mm;border-radius:2mm;background:var(--t50);color:var(--t7)}
+.pkc.on .wk{background:var(--t7);color:#fff}
+.pkc.dark .wk{background:#2c393d;color:#fff}
+.why{background:var(--t50);border-radius:3mm;padding:3mm 4mm;margin:0 0 3mm}
+.why b{font-weight:700;color:var(--t7)}
+.std{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm;margin-bottom:3mm}
+.std div{border:1px solid var(--border);border-radius:3mm;padding:2.5mm 3.5mm;break-inside:avoid}
+.std b{display:block;font-weight:700;font-size:9.2pt}
+.std span{color:var(--subtle);font-size:8.3pt}
+.renew{background:#1f2a2e;color:#fff;border-radius:3.5mm;padding:3.5mm 5mm;break-inside:avoid;margin-bottom:3mm}
+.renew h3{margin:0;font-size:10.5pt;font-weight:700;color:var(--green)}
+.renew .tg{color:#c9d3d4;font-size:8.3pt;margin-bottom:1.5mm}
+.renew .ck{display:grid;grid-template-columns:repeat(3,max-content);justify-content:space-between;gap:1mm 5mm;font-size:8.8pt;white-space:nowrap;margin-bottom:2mm}
+.renew p{margin:.8mm 0 0;font-size:8.3pt;color:#dfe6e7}.renew p b{color:var(--green);font-weight:700}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:2mm;margin-bottom:3mm}
+.steps div{border:1px solid var(--border);border-radius:3mm;padding:2.5mm 3mm;break-inside:avoid}
+.steps div:last-child{background:#1f2a2e;color:#fff;border-color:#1f2a2e}
+.steps i{font-style:normal;display:inline-grid;place-items:center;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--t50);color:var(--t7);font-weight:700;font-size:8pt}
+.steps div:last-child i{background:var(--t7);color:#fff}
+.steps b{display:block;font-weight:700;margin:1.5mm 0 .5mm;font-size:9pt}
+.steps span{font-size:7.8pt;color:var(--subtle);line-height:1.4;display:block}
+.steps div:last-child span{color:#c9d3d4}
+</style></head><body>
+<section class="hero">
+  <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
+  <div class="eyebrow">Penawaran Layanan &amp; Persetujuan Kerja Sama</div>
+  <h1>Paket Website<br><span>Website Company Profile Aksara Interior</span></h1>
+  <div class="meta">
+    <div class="card"><div class="kv"><b>No.</b><span>VEN/AksaraWeb/2026/001</span><b>Project</b><span>Website Company Profile Aksara Interior</span><b>Tanggal</b><span>10 November 2026</span></div></div>
+    <div class="card soft"><div class="lbl">Kepada Yth.</div><div class="to">Tim Marketing</div><div>CV Contoh Aksara Interior</div><div style="color:var(--muted)">Jl. Contoh No. 10, Malang 65145</div></div>
+  </div>
+  <p class="intro">Terima kasih atas kesempatan yang diberikan kepada Venturo. Sejak 2013, lebih dari 200 project telah kami selesaikan bersama lebih dari 100 engineer in-house. Melalui penawaran ini, kami merekomendasikan paket website yang paling sesuai untuk Aksara Interior yang ingin tampil kredibel dan rutin membagikan inspirasi desain, dengan satu harga di awal yang sudah mencakup desain, CMS, dan hosting tahun pertama.</p>
+</section>
+<h2><i>1</i>Paket yang Kami Rekomendasikan</h2>
+<div class="why"><b>Kenapa Company Profile Pro?</b><ul style="margin-top:1mm"><li>Anda ingin menampilkan 12 halaman: profil, 6 layanan, portfolio proyek, testimoni, dan kontak — melebihi batas 7 halaman paket Company Profile.</li><li>Tim marketing berencana rutin menerbitkan artikel inspirasi interior, sehingga butuh modul berita &amp; artikel untuk mendatangkan pengunjung dari Google.</li></ul></div>
+<div class="pk"><div class="pkc"><h3>Landing Page</h3><div class="tg">Untuk promosi produk atau kampanye</div><div class="hg">Rp2,5 jt</div><ul><li>1 halaman dengan alur marketing</li><li>Ajakan aksi jelas ke WhatsApp</li><li>Desain custom sesuai brand</li><li>Perpanjangan mulai tahun ke-2: Rp1 jt/thn</li></ul><div class="wk">Selesai 3 hari kerja</div></div><div class="pkc"><h3>Company Profile</h3><div class="tg">Untuk bisnis yang ingin tampil lengkap</div><div class="hg">Rp5 jt</div><ul><li>Hingga 7 halaman desain custom</li><li>Profil, layanan, portfolio, kontak</li><li>Admin dashboard (CMS)</li><li>Perpanjangan mulai tahun ke-2: Rp2 jt/thn</li></ul><div class="wk">Selesai 5 hari kerja</div></div><div class="pkc on"><span class="badge">Rekomendasi kami</span><h3>Company Profile Pro</h3><div class="tg">Untuk bisnis yang rutin update konten</div><div class="hg">Rp7,5 jt</div><ul><li>Semua fitur Company Profile</li><li>Hingga 15 halaman custom</li><li>Modul berita &amp; artikel</li><li>Perpanjangan mulai tahun ke-2: Rp3 jt/thn</li></ul><div class="wk">Selesai 7 hari kerja</div></div></div>
+<div class="keep"><h2><i>2</i>Sudah Termasuk di Setiap Paket</h2>
+<div class="std"><div><b>Desain responsive</b><span>Rapi di PC, tablet, dan smartphone</span></div><div><b>Keamanan SSL</b><span>Terlindungi dari malware dan spam</span></div><div><b>SEO-ready &amp; cepat</b><span>SEO on-page &amp; loading di bawah 3 detik, mudah ditemukan di Google</span></div><div><b>Copywriting menjual</b><span>Naskah persuasif yang mengajak pengunjung menghubungi Anda</span></div></div>
+<div class="renew"><h3>Perpanjangan tahunan mencakup</h3><div class="tg">Tahun pertama sudah termasuk harga paket</div>
+<div class="ck"><span>✓ Hosting, domain, SSL &amp; storage 5 GB</span><span>✓ Update sistem, backup &amp; support</span><span>✓ CMS berlangganan, selalu ter-update</span></div>
+<p><b>Kepemilikan:</b> CMS adalah platform milik Venturo. Domain atas nama Anda, konten bisa diekspor.</p>
+<p><b>Di luar paket:</b> payment gateway, ongkir &amp; akomodasi meeting luar Malang.</p></div></div>
+<div class="keep"><h2><i>3</i>Cara Kerja Kami</h2>
+<div class="steps"><div><i>01</i><b>Konsultasi</b><span>Kami gali tujuan bisnis dan kebutuhan fitur Anda</span></div><div><i>02</i><b>Desain</b><span>Tampilan custom sesuai brand, Anda review dulu</span></div><div><i>03</i><b>Development</b><span>Programmer expert membangun fitur dan konten</span></div><div><i>04</i><b>Uji coba</b><span>Cek kecepatan, keamanan, dan tampilan di semua layar</span></div><div><i>05</i><b>Go-live</b><span>Website online, tim Anda kami ajari cara mengelolanya</span></div></div>
+<p style="margin:0 0 2mm;color:var(--muted)">Website <b style="color:var(--ink);font-weight:700">selesai 7 hari kerja</b>, dihitung sejak Down Payment diterima dan materi konten dari Klien (logo, foto, dan informasi bisnis) lengkap.</p></div>
+<div class="keep"><h2><i>4</i>Investasi &amp; Pembayaran</h2>
+<table class="cost">
+  <thead><tr><th>Item</th><th class="r">Harga</th></tr></thead>
+  <tbody><tr><td><b style="font-weight:600">Paket Company Profile Pro</b><span class="d">Termasuk hosting, domain, SSL, dan CMS tahun pertama</span></td><td class="r">Rp7.500.000</td></tr><tr class="grand"><td>Total Investasi</td><td class="r">Rp7.500.000</td></tr></tbody>
+</table>
+<ul style="margin-top:3mm">
+  <li>Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien.</li>
+  <li>Down Payment 50% dibayar saat penandatanganan; pelunasan 50% dibayar setelah uji coba disetujui Klien, sebelum website go-live.</li>
+  <li>Perpanjangan mulai tahun ke-2: Rp3.000.000/tahun, mencakup hosting, domain, SSL, storage 5 GB, update sistem, backup, support, dan CMS. Ketentuan perpanjangan diatur dalam Service Agreement.</li>
+</ul>
+<div class="bank"><span>Rekening pembayaran</span><span><b>BCA 3680332222</b> a.n. PT Venturo Pro Indonesia</span></div>
+<table class="cost">
+  <thead><tr><th>Tahap</th><th>Termin</th><th>Waktu</th><th class="r">Nominal</th></tr></thead>
+  <tbody><tr><td>Penandatanganan</td><td>Down Payment 50%</td><td>Saat tanda tangan</td><td class="r">Rp3.750.000</td></tr><tr><td>Sebelum go-live</td><td>Pelunasan 50%</td><td>Setelah uji coba disetujui Klien</td><td class="r">Rp3.750.000</td></tr><tr class="grand"><td colspan="3">Total Pembayaran</td><td class="r">Rp7.500.000</td></tr></tbody>
+</table></div>
+<div class="keep">
+<h2><i>5</i>Batasan dan Pengecualian</h2>
+<p style="margin:0 0 2mm">Harga yang tercantum belum termasuk:</p>
+<ul>
+  <li>Biaya transaksi payment gateway dan biaya pengiriman (ongkir) dari penyedia pihak ketiga</li>
+  <li>Akomodasi dan transportasi untuk meeting di luar Malang</li>
+  <li>Halaman atau fitur di luar isi Paket Company Profile Pro, yang akan diajukan dalam penawaran terpisah setelah disetujui Klien</li>
+  <li>Penambahan kapasitas penyimpanan di atas 5 GB sesuai ketentuan dalam Service Agreement</li>
+</ul>
+</div>
+<div class="sign">
+  <h2 style="margin-top:8mm"><i>6</i>Persetujuan</h2>
+  <p class="agree">Dengan menandatangani dokumen ini, kedua belah pihak menyatakan bahwa mereka telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang tercantum dalam dokumen ini, yang merupakan bagian tidak terpisahkan dari dokumen Service Agreement Paket Website Venturo.</p>
+<p class="place">Ditandatangani di Malang, pada tanggal ____________________ 2026.</p>
+  <div class="sg">
+    <div class="sbox"><div class="party">Penyedia Layanan</div><div class="co">PT Venturo Pro Indonesia</div>
+      <div class="area"><img class="ttd" src="ttd.png" alt=""></div>
+      <table class="f"><tr><td>Nama</td><td><b>Yulianto Frandi</b></td></tr><tr><td>Jabatan</td><td>CEO</td></tr><tr><td>Tanggal</td><td>10 November 2026</td></tr></table></div>
+    <div class="sbox"><div class="party">Klien</div><div class="co">CV Contoh Aksara Interior</div>
+      <div class="area"><span class="stamp">Tanda tangan &amp; stempel</span></div>
+      <table class="f"><tr><td>Nama</td><td class="blank"></td></tr><tr><td>Jabatan</td><td class="blank"></td></tr><tr><td>Tanggal</td><td class="blank"></td></tr></table></div>
+  </div>
+</div>
+</body></html>
