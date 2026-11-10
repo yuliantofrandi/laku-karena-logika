@@ -1,6 +1,6 @@
 ---
 name: proposal-upload
-description: Mengunggah 3 PDF penawaran Venturo hasil skill proposal-managed (Penawaran Layanan, Lampiran Estimasi Delivery Point, Service Agreement) atau proposal-dedicated (Lampiran Rincian Biaya) — file hasil sesi chat sebelumnya — ke bucket R2 Cloudflare di proposal.venturo.id, terpisah dari website company profile, langsung tanpa konfirmasi dengan URL sesuai nama file; mengecek domain, memverifikasi ketiga link, lalu menyusun pesan WhatsApp pengantar 2 bubble berisi link, masa berlaku penawaran 14 hari, dan ajakan review. Pakai saat diminta "upload penawaran", "unggah PDF penawaran", "kirim penawaran ke klien", "buat link penawaran", "pesan WA penawaran", atau setelah proposal-managed selesai.
+description: Mengunggah PDF penawaran Venturo — 3 PDF hasil skill proposal-managed (Penawaran Layanan, Lampiran Estimasi Delivery Point, Service Agreement) atau proposal-dedicated (Lampiran Rincian Biaya), atau 2 PDF hasil proposal-website (Penawaran + Service Agreement Paket Website) — file hasil sesi chat sebelumnya — ke bucket R2 Cloudflare di proposal.venturo.id, terpisah dari website company profile, langsung tanpa konfirmasi dengan URL sesuai nama file; mengecek domain, memverifikasi semua link, lalu menyusun pesan WhatsApp pengantar 2 bubble berisi link, masa berlaku penawaran 14 hari, dan ajakan review. Pakai saat diminta "upload penawaran", "unggah PDF penawaran", "kirim penawaran ke klien", "buat link penawaran", "pesan WA penawaran", atau setelah proposal-managed/proposal-dedicated/proposal-website selesai.
 ---
 
 # Upload Penawaran → proposal.venturo.id (R2) + Pesan WhatsApp
@@ -16,7 +16,7 @@ Lanjutan skill `proposal-managed`. Tiga PDF satu set (nomor dokumen dan revisi s
 - Semua laporan dan komunikasi dalam **Bahasa Indonesia**.
 
 ## 0. Persiapan
-- **Input**: 3 PDF yang dihasilkan `proposal-managed` di **sesi chat sebelumnya** — set lengkap `VEN-<Project>-<Tahun>-<Rev>.pdf`, `…-Lampiran-Estimasi.pdf` (Managed Service, `proposal-managed`) **atau** `…-Lampiran-Rincian-Biaya.pdf` (Dedicated Team, `proposal-dedicated`), `…-Service-Agreement.pdf`. `--pdf` menerima satu atau beberapa **folder dan/atau file**, jadi file boleh tersebar di lokasi berbeda. Cara menemukannya, berurutan:
+- **Input**: 3 PDF yang dihasilkan `proposal-managed` di **sesi chat sebelumnya** — set lengkap `VEN-<Project>-<Tahun>-<Rev>.pdf`, `…-Lampiran-Estimasi.pdf` (Managed Service, `proposal-managed`) **atau** `…-Lampiran-Rincian-Biaya.pdf` (Dedicated Team, `proposal-dedicated`), `…-Service-Agreement.pdf`; **atau** set Paket Website (`proposal-website`) yang hanya 2 PDF: `VEN-<Project>-<Tahun>-<Rev>.pdf` + `…-Service-Agreement-Website.pdf`. `--pdf` menerima satu atau beberapa **folder dan/atau file**, jadi file boleh tersebar di lokasi berbeda. Cara menemukannya, berurutan:
   1. Path file yang dilampirkan/disebut pengguna di chat.
   2. Folder hasil `proposal-managed` (default `penawaran/` di working directory sesi tersebut).
   3. Bila belum jelas, cari PDF penawaran terbaru (scratchpad sesi Claude ikut dicari), lalu pastikan ke pengguna bila ada lebih dari satu project/revisi:
@@ -71,7 +71,7 @@ Aturan:
 - **Bubble 1**: sapaan sesuai jam WIB saat ini (pagi < 11.00, siang < 15.00, sore < 18.00, malam) + `...` sebagai tempat sapaan & nama (diisi pengguna) + ucapan terima kasih.
 - **Bubble 2**: dari link penawaran sampai permintaan feedback.
 - **Tanpa nomor dokumen**, tanpa "Bapak/Ibu" di badan pesan.
-- **Penawaran Layanan = dokumen utama**; Lampiran dan Service Agreement disebut sebagai pelengkap. Nama lampiran mengikuti `model` dari `info`: Managed Service → "Lampiran Estimasi Delivery Point"; Dedicated Team → "Lampiran Rincian Biaya".
+- **Penawaran Layanan = dokumen utama**; Lampiran dan Service Agreement disebut sebagai pelengkap. Nama lampiran mengikuti `model` dari `info`: Managed Service → "Lampiran Estimasi Delivery Point"; Dedicated Team → "Lampiran Rincian Biaya"; **Paket Website** → tanpa lampiran, pelengkapnya hanya "Service Agreement Paket Website" (link `…-Service-Agreement-Website.pdf`), dan alasan masa berlaku ditulis "menyiapkan jadwal pengerjaan" (bukan menyiapkan tim).
 - **Masa berlaku 14 hari** dari tanggal dokumen, ditulis lengkap, beserta alasannya (persiapan tim & setup) dan akibat bila lewat (ketersediaan tim dan harga berbeda → penawaran diperbarui).
 - **Diskon**: bila `info` → `ada_diskon: false`, **jangan menyebut diskon sama sekali**. Bila `true`, tambahkan tepat setelah kalimat masa berlaku: "Potongan harga hanya berlaku dalam masa penawaran ini, karena kondisi project dan ratecard dapat berubah setelahnya." Deteksi ini memakai kata "Diskon" di baris diskon penawaran — jangan diganti istilah lain di dokumen.
 - **Mulai kerja sebelum masa berlaku habis** (`peringatan_mulai_kerja` dari `info`): peringatkan pemilik di laporan, dan ganti ajakan di pesan WA menjadi "mohon konfirmasi sebelum *<tanggal mulai kerja>*" karena Down Payment dibayar saat tanda tangan.
