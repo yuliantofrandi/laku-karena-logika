@@ -116,7 +116,7 @@ def penawaran(d):
     p, items, subtotal, total, termin = hitung(d)
     h = hero(d, "Penawaran Layanan &amp; Persetujuan Kerja Sama", "Paket Website", "No.")
     h += ('  <p class="intro">Melalui penawaran ini, kami menegaskan kesiapan tim IT profesional kami yang berjumlah kurang lebih 100 orang '
-          'untuk membangun, mengembangkan, dan memelihara aplikasi Klien secara berkelanjutan. Dokumen ini memuat ruang lingkup layanan, output, '
+          'untuk membangun, mengembangkan, dan memelihara website Klien secara berkelanjutan. Dokumen ini memuat ruang lingkup layanan, output, '
           'dan rincian biaya sebagai acuan kesepakatan bersama kedua belah pihak.</p>\n</section>\n')
     # 1. Lingkup Layanan — kotak .svc (judul + keterangan kecil + daftar), gaya sama dengan proposal-managed
     box = lambda judul, ket, isi: (f'<div class="svc"><h3>{judul} <small>{ket}</small></h3><ul>'
