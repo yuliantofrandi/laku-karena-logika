@@ -8,8 +8,8 @@ Render dengan scripts/render.py.
 
 Yang dihitung otomatis (dan di-assert):
 - Harga, perpanjangan, waktu kerja, dan isi paket dari PAKET (references/paket-website.md).
-- Kartu perbandingan: paket satu keluarga (Company Profile atau Toko Online), paket pilihan diberi
-  "Rekomendasi kami".
+- Rincian Biaya: Pembuatan Website (harga paket − perpanjangan) + Hosting, Domain & CMS Tahun ke-1
+  (= perpanjangan); Total Investasi = harga paket.
 - Pembayaran 50% Down Payment saat tanda tangan + 50% pelunasan sebelum go-live; Total = Σ termin.
 - Diskon (hanya bila pemilik/CEO menyebutnya) maksimal 10% dan wajib punya imbalan.
 Lihat assets/contoh-data.json untuk format data.
@@ -39,13 +39,24 @@ PAKET = {
                             isi=["Semua fitur Toko Katalog (termasuk desain custom &amp; artikel)",
                                  "Keranjang, checkout &amp; payment gateway (VA, QRIS, e-wallet)", "Ongkir otomatis &amp; laporan penjualan"]),
 }
-URUTAN = {"cp": ["landing-page", "company-profile", "company-profile-pro"], "toko": ["toko-katalog", "toko-online-pro"]}
-STANDAR = [("Desain responsive", "Rapi di PC, tablet, dan smartphone"), ("Keamanan SSL", "Terlindungi dari malware dan spam"),
-           ("SEO-ready &amp; cepat", "SEO on-page &amp; loading di bawah 3 detik, mudah ditemukan di Google"),
-           ("Copywriting menjual", "Naskah persuasif yang mengajak pengunjung menghubungi Anda")]
-LANGKAH = [("Konsultasi", "Kami gali tujuan bisnis dan kebutuhan fitur Anda"), ("Desain", "Tampilan custom sesuai brand, Anda review dulu"),
-           ("Development", "Programmer expert membangun fitur dan konten"), ("Uji coba", "Cek kecepatan, keamanan, dan tampilan di semua layar"),
-           ("Go-live", "Website online, tim Anda kami ajari cara mengelolanya")]
+# Fitur admin dashboard (CMS) per paket — tampil di Lingkup Layanan bersama ketentuan kepemilikan.
+CMS_DASAR = ["Mengubah teks dan gambar di setiap halaman secara mandiri, tanpa bantuan programmer",
+             "Mengelola informasi kontak, alamat, jam operasional, serta tautan WhatsApp dan media sosial",
+             "Pustaka media untuk mengunggah dan mengelola foto (kapasitas penyimpanan 5 GB)",
+             "Pengaturan SEO per halaman: judul, deskripsi, dan gambar saat tautan dibagikan",
+             "Akun admin untuk tim Klien"]
+CMS = {
+    "landing-page": CMS_DASAR,
+    "company-profile": CMS_DASAR[:1] + ["Mengelola daftar layanan dan portfolio (tambah, ubah, hapus)"] + CMS_DASAR[1:],
+    "company-profile-pro": CMS_DASAR[:1] + ["Mengelola daftar layanan dan portfolio (tambah, ubah, hapus)",
+                                           "Modul berita &amp; artikel: menulis, mengatur kategori, dan menjadwalkan terbit"] + CMS_DASAR[1:],
+    "toko-katalog": CMS_DASAR[:1] + ["Mengelola produk, kategori, harga, dan foto produk",
+                                    "Modul artikel/blog: menulis, mengatur kategori, dan menjadwalkan terbit"] + CMS_DASAR[1:],
+    "toko-online-pro": CMS_DASAR[:1] + ["Mengelola produk, kategori, harga, stok, dan foto produk",
+                                       "Mengelola pesanan, status pembayaran, dan pengiriman",
+                                       "Laporan penjualan",
+                                       "Modul artikel/blog: menulis, mengatur kategori, dan menjadwalkan terbit"] + CMS_DASAR[1:],
+}
 
 
 def e(s): return html.escape(str(s), quote=False)
@@ -77,19 +88,14 @@ def dokumen(title, body):
     return f'<!doctype html>\n<html lang="id"><head><meta charset="utf-8"><title>{title}</title>\n<style>\n{css}</style></head><body>\n{body}\n</body></html>\n'
 
 
-def kartu(kode, pilih):
-    p = PAKET[kode]; on = kode == pilih
-    return (f'<div class="pkc{" on" if on else ""}">' + ('<span class="badge">Rekomendasi kami</span>' if on else "")
-            + f'<h3>{p["nama"]}</h3><div class="tg">{p["tagline"]}</div><div class="hg">{jt(p["harga"])}</div><ul>'
-            + "".join(f"<li>{x}</li>" for x in p["isi"])
-            + f'<li>Perpanjangan mulai tahun ke-2: {jt(p["perpanjangan"])}/thn</li></ul><div class="wk">Selesai {p["hari"]} hari kerja</div></div>')
-
-
 def hitung(d):
     p = PAKET[d["paket"]]
-    items = [(f'Paket {p["nama"]}', "Termasuk hosting, domain, SSL, dan CMS tahun pertama", p["harga"])]
-    items += [(e(a["nama"]), e(a.get("keterangan", "")), a["harga"]) for a in d.get("addon", [])]
-    subtotal = sum(x[2] for x in items)
+    # Harga paket dipecah: pembuatan website + layanan tahun ke-1 (= nilai perpanjangan). Total tetap = harga paket.
+    items = [(f'Pembuatan Website — Paket {p["nama"]}', "Desain custom, development, uji coba, dan go-live", f'{p["hari"]} hari kerja', p["harga"] - p["perpanjangan"]),
+             ("Hosting, Domain &amp; CMS — Tahun ke-1", f'Hosting, domain, SSL, storage 5 GB, update sistem, backup, support, dan CMS; '
+              f'mulai tahun ke-2 diperpanjang {rp(p["perpanjangan"])}/tahun', "1 tahun sejak go-live", p["perpanjangan"])]
+    items += [(e(a["nama"]), e(a.get("keterangan", "")), e(a.get("waktu", "–")), a["harga"]) for a in d.get("addon", [])]
+    subtotal = sum(x[3] for x in items)
     dis = d.get("diskon")
     if dis:
         assert dis.get("imbalan"), "diskon wajib punya imbalan (bayar lunas, kontrak perpanjangan 2 tahun, portfolio/testimoni, referensi)"
@@ -100,7 +106,7 @@ def hitung(d):
     else:
         dp = round(total / 2)
         termin = [("Penandatanganan", "Down Payment 50%", "Saat tanda tangan", dp),
-                  ("Sebelum go-live", "Pelunasan 50%", "Setelah uji coba disetujui Klien", total - dp)]
+                  ("Uji coba disetujui Klien", "Pelunasan 50%", "Sebelum go-live", total - dp)]
     assert abs(sum(t[3] for t in termin) - total) < 1, "Σ termin ≠ Total"
     return p, items, subtotal, total, termin
 
@@ -109,64 +115,61 @@ def penawaran(d):
     k = d["klien"]; tahun = d["tanggal"].split()[-1]
     p, items, subtotal, total, termin = hitung(d)
     h = hero(d, "Penawaran Layanan &amp; Persetujuan Kerja Sama", "Paket Website", "No.")
-    h += (f'  <p class="intro">Terima kasih atas kesempatan yang diberikan kepada Venturo. Sejak 2013, lebih dari 200 project telah kami selesaikan '
-          f'bersama lebih dari 100 engineer in-house. Melalui penawaran ini, kami merekomendasikan paket website yang paling sesuai untuk {e(d["intro_untuk"])}, '
-          f'dengan satu harga di awal yang sudah mencakup desain, CMS, dan hosting tahun pertama.</p>\n</section>\n')
-    # 1. Paket
-    kel = URUTAN[p["keluarga"]]
-    custom = ('<div class="pkc dark"><h3>Custom</h3><div class="tg">Butuh lebih dari website?</div><div class="hg">Sesuai kebutuhan</div>'
-              '<ul style="list-style:none;padding:0"><li>Booking, membership, marketplace, integrasi ERP atau sistem internal Anda.</li></ul>'
-              '<div class="wk">Timeline dibahas saat konsultasi</div></div>') if len(kel) < 3 else ""
-    alasan = "".join(f"<li>{e(x)}</li>" for x in d["alasan"])
-    h += f'''<h2><i>1</i>Paket yang Kami Rekomendasikan</h2>
-<div class="why"><b>Kenapa {p["nama"]}?</b><ul style="margin-top:1mm">{alasan}</ul></div>
-<div class="pk">{"".join(kartu(x, d["paket"]) for x in kel)}{custom}</div>
-'''
-    nilai = d.get("nilai_tambah", [])
-    if nilai:
-        h += '<div class="svc"><h3>Nilai tambah untuk Anda <small>Tanpa biaya tambahan</small></h3><ul>' + "".join(f"<li>{e(x)}</li>" for x in nilai) + "</ul></div>\n"
-    # 2. Sudah termasuk
-    std = "".join(f"<div><b>{a}</b><span>{b}</span></div>" for a, b in STANDAR)
-    domain = ('<p><b>Sudah punya domain &amp; hosting?</b> Domain tetap dipakai. Tampilan website bisa di hosting Anda, CMS tetap di platform Venturo; '
-              'penyesuaiannya dibahas saat konsultasi.</p>') if d.get("punya_domain_hosting") else ""
-    h += f'''<div class="keep"><h2><i>2</i>Sudah Termasuk di Setiap Paket</h2>
-<div class="std">{std}</div>
-<div class="renew"><h3>Perpanjangan tahunan mencakup</h3><div class="tg">Tahun pertama sudah termasuk harga paket</div>
-<div class="ck"><span>✓ Hosting, domain, SSL &amp; storage 5 GB</span><span>✓ Update sistem, backup &amp; support</span><span>✓ CMS berlangganan, selalu ter-update</span></div>
-<p><b>Kepemilikan:</b> CMS adalah platform milik Venturo. Domain atas nama Anda, konten bisa diekspor.</p>
-<p><b>Di luar paket:</b> payment gateway, ongkir &amp; akomodasi meeting luar Malang.</p>{domain}</div></div>
-'''
-    # 3. Cara kerja
-    stp = "".join(f'<div><i>{i:02d}</i><b>{a}</b><span>{b}</span></div>' for i, (a, b) in enumerate(LANGKAH, 1))
-    h += f'''<div class="keep"><h2><i>3</i>Cara Kerja Kami</h2>
-<div class="steps">{stp}</div>
-<p style="margin:0 0 2mm;color:var(--muted)">Website <b style="color:var(--ink);font-weight:700">selesai {p["hari"]} hari kerja</b>, dihitung sejak Down Payment diterima dan materi konten dari Klien (logo, foto, dan informasi bisnis) lengkap.</p></div>
-'''
-    # 4. Investasi & pembayaran
-    rows = "".join(f'<tr><td><b style="font-weight:600">{n}</b>' + (f'<span class="d">{k_}</span>' if k_ else "") + f'</td><td class="r">{rp(v)}</td></tr>' for n, k_, v in items)
+    h += ('  <p class="intro">Melalui penawaran ini, kami menegaskan kesiapan tim IT profesional kami yang berjumlah kurang lebih 100 orang '
+          'untuk membangun, mengembangkan, dan memelihara website Klien secara berkelanjutan. Dokumen ini memuat ruang lingkup layanan, output, '
+          'dan rincian biaya sebagai acuan kesepakatan bersama kedua belah pihak.</p>\n</section>\n')
+    # 1. Lingkup Layanan — kotak .svc (judul + keterangan kecil + daftar), gaya sama dengan proposal-managed
+    box = lambda judul, ket, isi: (f'<div class="svc"><h3>{judul} <small>{ket}</small></h3><ul>'
+                                   + "".join(f"<li>{x}</li>" for x in isi) + "</ul></div>\n")
+    halaman = [x for x in p["isi"] if "CMS" not in x]
+    buat = halaman + [
+        "Desain responsive: rapi di PC, tablet, dan smartphone",
+        "Keamanan SSL: terlindungi dari malware dan spam",
+        "SEO-ready &amp; cepat: SEO on-page dan loading di bawah 3 detik",
+        "Copywriting: naskah persuasif yang mengajak pengunjung menghubungi Klien",
+        "Uji coba &amp; go-live: cek kecepatan, keamanan, dan tampilan, lalu tim Klien diajari mengelola website"]
+    cms = CMS[d["paket"]] + ["Kepemilikan: CMS adalah platform milik Venturo; seluruh konten website (teks, foto, dan data) milik Klien dan dapat diekspor sewaktu-waktu"]
+    host = ["Hosting dengan kapasitas penyimpanan 5 GB",
+            "Domain didaftarkan atas nama Klien, termasuk sertifikat SSL",
+            "Update sistem dan backup berkala",
+            "Dukungan teknis melalui WhatsApp pada hari dan jam kerja"]
+    if d.get("punya_domain_hosting"):
+        host.append("Sudah punya domain &amp; hosting: domain tetap dipakai dan tampilan website dapat di hosting Klien, CMS tetap di platform Venturo; penyesuaian biaya dibahas terpisah")
+    h += '<h2><i>1</i>Lingkup Layanan</h2>\n'
+    h += box("Pembuatan Website", f'Paket {p["nama"]}', buat)
+    h += box("Admin Dashboard (CMS)", "Layanan berlangganan, kelola konten secara mandiri", cms)
+    h += box("Hosting, Domain &amp; Support", "Tahun ke-1 sudah termasuk, diperpanjang setiap tahun", host)
+    if d.get("nilai_tambah"):
+        h += box("Nilai Tambah", "Tanpa biaya tambahan", [e(x) for x in d["nilai_tambah"]])
+    # 2. Rincian Biaya & 3. Pembayaran
+    rows = "".join(f'<tr><td><b style="font-weight:600">{n}</b>' + (f'<span class="d">{k_}</span>' if k_ else "") + f'</td><td style="white-space:nowrap">{w}</td><td class="r">{rp(v)}</td></tr>' for n, k_, w, v in items)
     dis = d.get("diskon")
     if dis:
-        rows += f'<tr class="sub"><td>Total</td><td class="r">{rp(subtotal)}</td></tr><tr class="sub disc"><td>{e(dis["nama"])}</td><td class="r">– {rp(dis["nilai"])}</td></tr>'
+        rows += f'<tr class="sub"><td colspan="2">Total</td><td class="r">{rp(subtotal)}</td></tr><tr class="sub disc"><td colspan="2">{e(dis["nama"])}</td><td class="r">– {rp(dis["nilai"])}</td></tr>'
     trows = "".join(f'<tr><td>{a}</td><td>{b}</td><td>{c}</td><td class="r">{rp(n)}</td></tr>' for a, b, c, n in termin)
-    dp_li = ("Pembayaran dilakukan lunas saat penandatanganan." if d.get("bayar_lunas") else
-             "Down Payment 50% dibayar saat penandatanganan; pelunasan 50% dibayar setelah uji coba disetujui Klien, sebelum website go-live.")
     dperp = d.get("diskon_perpanjangan")
     perp = (f'Perpanjangan mulai tahun ke-2: {rp(p["perpanjangan"])}/tahun'
             + (f'; tahun ke-2 diskon {dperp["persen"]}% menjadi {rp(p["perpanjangan"] * (100 - dperp["persen"]) / 100)} ({e(dperp["imbalan"])})' if dperp else "")
             + ', mencakup hosting, domain, SSL, storage 5 GB, update sistem, backup, support, dan CMS. Ketentuan perpanjangan diatur dalam Service Agreement.')
-    h += f'''<div class="keep"><h2><i>4</i>Investasi &amp; Pembayaran</h2>
+    h += f'''<div class="keep"><h2><i>2</i>Rincian Biaya</h2>
 <table class="cost">
-  <thead><tr><th>Item</th><th class="r">Harga</th></tr></thead>
-  <tbody>{rows}<tr class="grand"><td>Total Investasi</td><td class="r">{rp(total)}</td></tr></tbody>
+  <thead><tr><th>Layanan</th><th>Periode</th><th class="r">Harga</th></tr></thead>
+  <tbody>{rows}<tr class="grand"><td colspan="2">Total Investasi</td><td class="r">{rp(total)}</td></tr></tbody>
 </table>
 <ul style="margin-top:3mm">
-  <li>Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien.</li>
-  <li>{dp_li}</li>
   <li>{perp}</li>
+</ul></div>
+<div class="keep"><h2><i>3</i>Pembayaran</h2>
+<ul style="margin:0 0 3mm">
+  <li>Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien.</li>
+  <li>Tagihan dikirim sesuai tanggal invoice dan wajib dibayarkan paling lambat H+14 (empat belas) dari tanggal invoice.</li>
+  <li>Waktu pengerjaan dihitung sejak {"pembayaran" if d.get("bayar_lunas") else "Down Payment"} diterima dan materi konten dari Klien (logo, foto, dan informasi bisnis) lengkap; website go-live setelah {"pembayaran" if d.get("bayar_lunas") else "pelunasan"} diterima.</li>
+  <li>Apabila Klien tidak melakukan pembayaran sesuai jadwal, maka seluruh aktivitas layanan berhak dihentikan sementara.</li>
+  <li>Perpanjangan tahunan ditagihkan 30 (tiga puluh) hari sebelum tanggal jatuh tempo mulai tahun ke-2 dan berlanjut setiap tahun hingga Klien menghentikannya dengan pemberitahuan tertulis sebelum tanggal jatuh tempo.</li>
 </ul>
 <div class="bank"><span>Rekening pembayaran</span><span><b>BCA 3680332222</b> a.n. PT Venturo Pro Indonesia</span></div>
 <table class="cost">
-  <thead><tr><th>Tahap</th><th>Termin</th><th>Waktu</th><th class="r">Nominal</th></tr></thead>
+  <thead><tr><th>Periode Kerja</th><th>Termin</th><th>Tgl Invoice</th><th class="r">Nominal</th></tr></thead>
   <tbody>{trows}<tr class="grand"><td colspan="3">Total Pembayaran</td><td class="r">{rp(total)}</td></tr></tbody>
 </table></div>
 '''
@@ -175,12 +178,12 @@ def penawaran(d):
            "Akomodasi dan transportasi untuk meeting di luar Malang",
            f'Halaman atau fitur di luar isi Paket {p["nama"]}, yang akan diajukan dalam penawaran terpisah setelah disetujui Klien',
            "Penambahan kapasitas penyimpanan di atas 5 GB sesuai ketentuan dalam Service Agreement"] + list(d.get("batasan", []))
-    h += ('<div class="keep">\n<h2><i>5</i>Batasan dan Pengecualian</h2>\n<p style="margin:0 0 2mm">Harga yang tercantum belum termasuk:</p>\n<ul>\n'
+    h += ('<div class="keep">\n<h2><i>4</i>Batasan dan Pengecualian</h2>\n<p style="margin:0 0 2mm">Harga yang tercantum belum termasuk:</p>\n<ul>\n'
           + "".join(f"  <li>{x}</li>\n" for x in bat) + "</ul>\n</div>\n")
     # 6. Persetujuan
     td = lambda v: f"<td><b>{e(v)}</b></td>" if v else '<td class="blank"></td>'
     h += f'''<div class="sign">
-  <h2 style="margin-top:8mm"><i>6</i>Persetujuan</h2>
+  <h2 style="margin-top:8mm"><i>5</i>Persetujuan</h2>
   <p class="agree">Dengan menandatangani dokumen ini, kedua belah pihak menyatakan bahwa mereka telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang tercantum dalam dokumen ini, yang merupakan bagian tidak terpisahkan dari dokumen Service Agreement Paket Website Venturo.</p>
 <p class="place">Ditandatangani di Malang, pada tanggal ____________________ {tahun}.</p>
   <div class="sg">
@@ -217,7 +220,6 @@ def main():
     assert d["paket"] in PAKET, f"paket tidak dikenal: {d['paket']} (Custom → pakai proposal-managed atau proposal-dedicated)"
     kode = d["nomor"].split("/")[1] if d["nomor"].count("/") >= 3 else ""
     assert re.fullmatch(r"[A-Za-z0-9]+", kode), f"kode project di nomor harus huruf & angka saja: {d['nomor']}"
-    assert d.get("alasan"), "isi 'alasan' (kenapa paket ini cocok, dari brief)"
     os.makedirs(out, exist_ok=True)
     p, total = penawaran(d)
     s = sla(d)

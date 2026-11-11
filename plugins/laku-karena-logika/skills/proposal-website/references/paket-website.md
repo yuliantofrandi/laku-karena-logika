@@ -7,6 +7,7 @@ Sumber: deck "VENTURO - Website Package - 2026" dan catatan keputusan pemilik. H
 - Mulai **tahun ke-2** klien bayar **perpanjangan tahunan**.
 - CMS adalah **layanan berlangganan milik Venturo** (bukan jual putus). **Domain atas nama klien**, **konten milik klien dan bisa diekspor**.
 - Tujuan: klien melihat satu angka untuk mulai, tidak merasa ada biaya tambahan tersembunyi.
+- Di dokumen penawaran (Rincian Biaya), harga paket dipecah: **Pembuatan Website** = harga paket − perpanjangan, dan **Hosting, Domain & CMS Tahun ke-1** = nilai perpanjangan. Total Investasi tetap = harga paket (mis. Company Profile: Rp3.000.000 + Rp2.000.000 = Rp5.000.000).
 
 ## Daftar harga
 | Kode data | Paket | Harga (termasuk tahun ke-1) | Perpanjangan mulai tahun ke-2 | Waktu kerja |
@@ -26,6 +27,13 @@ Sumber: deck "VENTURO - Website Package - 2026" dan catatan keputusan pemilik. H
 - **Toko Online Pro** — order, bayar, kirim otomatis: semua fitur Toko Katalog · keranjang, checkout & payment gateway (VA, QRIS, e-wallet) · ongkir otomatis & laporan penjualan.
 - **Custom** — booking, membership, marketplace, integrasi ERP/sistem internal, atau klien yang ingin jual putus / hosting sendiri penuh.
 
+## Fitur admin dashboard (CMS) per paket
+- **Semua paket:** ubah teks & gambar tiap halaman · kontak, alamat, jam operasional, WhatsApp & media sosial · pustaka media 5 GB · SEO per halaman (judul, deskripsi, gambar saat dibagikan) · akun admin.
+- **Company Profile:** + kelola layanan & portfolio.
+- **Company Profile Pro:** + kelola layanan & portfolio · modul berita & artikel (kategori, jadwal terbit).
+- **Toko Katalog:** + produk, kategori, harga, foto · artikel/blog.
+- **Toko Online Pro:** + produk & stok · pesanan, status pembayaran & pengiriman · laporan penjualan · artikel/blog.
+
 ## Standar semua paket
 Desain responsive · Keamanan SSL · SEO-ready & cepat (SEO on-page, loading di bawah 3 detik) · Copywriting menjual.
 
@@ -39,7 +47,7 @@ Desain responsive · Keamanan SSL · SEO-ready & cepat (SEO on-page, loading di 
 01 Konsultasi → 02 Desain (klien review dulu) → 03 Development → 04 Uji coba (kecepatan, keamanan, tampilan) → 05 Go-live (tim klien diajari mengelola).
 
 ## Pembayaran
-50% Down Payment saat tanda tangan, 50% pelunasan setelah uji coba disetujui, sebelum go-live. Bisa lunas di depan (imbalan diskon yang sah).
+50% Down Payment saat tanda tangan, 50% pelunasan setelah uji coba disetujui, sebelum go-live. Bisa lunas di depan (imbalan diskon yang sah). Tagihan dibayar paling lambat H+14 dari tanggal invoice; telat bayar → layanan berhak dihentikan sementara; perpanjangan ditagih 30 hari sebelum jatuh tempo mulai tahun ke-2.
 
 ## Kebijakan negosiasi
 - Jangan turunkan harga paket; tukar dengan **nilai tambah**: halaman tambahan, 3 artikel SEO pertama, setup Google Business/Search Console, revisi tambahan.
