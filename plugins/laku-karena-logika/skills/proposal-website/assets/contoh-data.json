@@ -3,7 +3,6 @@
   "file": "VEN-AksaraWeb-2026-001",
   "tanggal": "10 November 2026",
   "project": "Website Company Profile Aksara Interior",
-  "intro_untuk": "Aksara Interior yang ingin tampil kredibel dan rutin membagikan inspirasi desain",
   "klien": {
     "instansi": "CV Contoh Aksara Interior",
     "penerima": "Tim Marketing",
@@ -12,10 +11,6 @@
     "ttd_jabatan": ""
   },
   "paket": "company-profile-pro",
-  "alasan": [
-    "Anda ingin menampilkan 12 halaman: profil, 6 layanan, portfolio proyek, testimoni, dan kontak — melebihi batas 7 halaman paket Company Profile.",
-    "Tim marketing berencana rutin menerbitkan artikel inspirasi interior, sehingga butuh modul berita & artikel untuk mendatangkan pengunjung dari Google."
-  ],
   "nilai_tambah": [],
   "addon": [],
   "diskon": null,
@@ -23,5 +18,7 @@
   "bayar_lunas": false,
   "punya_domain_hosting": false,
   "batasan": [],
-  "cek_tidak_boleh_ada": ["Pimpinan"]
+  "cek_tidak_boleh_ada": [
+    "Pimpinan"
+  ]
 }
