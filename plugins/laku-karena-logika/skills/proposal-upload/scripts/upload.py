@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unggah PDF penawaran (3 PDF proposal-managed/proposal-dedicated, atau 2 PDF proposal-website) ke bucket R2 Cloudflare di proposal.venturo.id.
+"""Unggah PDF penawaran (3 PDF proposal-managed/proposal-dedicated, atau 2 PDF proposal-website/proposal-onsite) ke bucket R2 Cloudflare di proposal.venturo.id.
 
   python3 upload.py domain [--bucket proposal]
   python3 upload.py info   --pdf <folder dan/atau file PDF ...>
@@ -25,13 +25,14 @@ Auth: login wrangler (`npx wrangler@4 login`) atau env CLOUDFLARE_API_TOKEN + CL
 import argparse, datetime, json, os, re, shutil, subprocess, sys, tempfile, urllib.request
 
 # Kode project semestinya huruf & angka saja; tanda hubung tetap diterima (non-greedy sampai -<Tahun>-<Rev>).
-POLA = re.compile(r"^(VEN-([A-Za-z0-9-]+?)-(\d{4})-(\d{3}))(|-Lampiran-Estimasi|-Lampiran-Rincian-Biaya|-Service-Agreement-Website|-Service-Agreement)\.pdf$")
+POLA = re.compile(r"^(VEN-([A-Za-z0-9-]+?)-(\d{4})-(\d{3}))(|-Lampiran-Estimasi|-Lampiran-Rincian-Biaya|-Service-Agreement-Website|-Service-Agreement-Onsite|-Service-Agreement)\.pdf$")
 PERAN = {"": "P", "-Lampiran-Estimasi": "L", "-Lampiran-Rincian-Biaya": "L", "-Service-Agreement": "S",
-         "-Service-Agreement-Website": "S"}
-NAMA_PERAN = {"P": "Penawaran Layanan", "L": "Lampiran (Estimasi Delivery Point / Rincian Biaya)", "S": "Service Agreement"}
-JENIS = {"": "Penawaran Layanan", "-Lampiran-Estimasi": "Lampiran Estimasi Delivery Point",
+         "-Service-Agreement-Website": "S", "-Service-Agreement-Onsite": "S"}
+NAMA_PERAN = {"P": "Penawaran Layanan", "L": "Lampiran (Estimasi Fitur / Rincian Biaya)", "S": "Service Agreement"}
+JENIS = {"": "Penawaran Layanan", "-Lampiran-Estimasi": "Lampiran Estimasi Fitur",
          "-Lampiran-Rincian-Biaya": "Lampiran Rincian Biaya",
-         "-Service-Agreement": "Service Agreement", "-Service-Agreement-Website": "Service Agreement Paket Website"}
+         "-Service-Agreement": "Service Agreement", "-Service-Agreement-Website": "Service Agreement Paket Website",
+         "-Service-Agreement-Onsite": "Service Agreement Onsite Engineer"}
 LOG = os.environ.get("PROPOSAL_UPLOAD_LOG", os.path.expanduser("~/.venturo/proposal-upload.json"))
 LOG_LAMA = ".proposal-upload.json"          # lokasi lama (di folder PDF), tetap dibaca untuk migrasi
 BULAN = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
@@ -77,16 +78,17 @@ def susun(a):
         m = POLA.match(f)
         if m:
             set_.setdefault(m.group(1), {})[PERAN[m.group(5)]] = (m.group(5), path)
-    # set Paket Website (proposal-website) hanya 2 PDF: Penawaran + Service-Agreement-Website
+    # set Paket Website (proposal-website) dan Onsite Engineer (proposal-onsite) hanya 2 PDF: Penawaran + Service Agreement
     web = lambda v: "S" in v and v["S"][0] == "-Service-Agreement-Website"
-    perlu = lambda v: ["P", "S"] if web(v) else ["P", "L", "S"]
+    onsite = lambda v: "S" in v and v["S"][0] == "-Service-Agreement-Onsite"
+    perlu = lambda v: ["P", "S"] if web(v) or onsite(v) else ["P", "L", "S"]
     for k, v in set_.items():
         if any(x not in v for x in perlu(v)):
             kurang = [NAMA_PERAN[x] for x in perlu(v) if x not in v]
             print(f"PERINGATAN: set {k} tidak lengkap (kurang: {', '.join(kurang)}) — dilewati", file=sys.stderr)
     lengkap = {k: v for k, v in set_.items() if all(x in v for x in perlu(v))}
     if not lengkap:
-        sys.exit("Tidak ada set lengkap (Penawaran + Lampiran-Estimasi/Lampiran-Rincian-Biaya + Service-Agreement, atau Penawaran + Service-Agreement-Website) dengan nomor revisi sama di: " + ", ".join(a.pdf))
+        sys.exit("Tidak ada set lengkap (Penawaran + Lampiran-Estimasi/Lampiran-Rincian-Biaya + Service-Agreement, atau Penawaran + Service-Agreement-Website/Service-Agreement-Onsite) dengan nomor revisi sama di: " + ", ".join(a.pdf))
     proyek = {POLA.match(k + ".pdf").group(2) for k in lengkap}
     if len(proyek) > 1:
         sys.exit("Ada lebih dari satu project yang lengkap: " + ", ".join(sorted(proyek)) + ". Sebutkan satu dengan --pdf berisi satu project.")
@@ -101,7 +103,7 @@ def susun(a):
         objek.append({"jenis": JENIS[akh], "file": path, "kunci": f,
                       "url": f"{getattr(a, 'domain', 'https://proposal.venturo.id').rstrip('/')}/{f}"})
     hapus = [k for k in lama.get("objek", []) if k not in {o["kunci"] for o in objek}]
-    model = ("Paket Website" if web(lengkap[nomor]) else
+    model = ("Paket Website" if web(lengkap[nomor]) else "Onsite Engineer" if onsite(lengkap[nomor]) else
              "Dedicated Team" if lengkap[nomor]["L"][0] == "-Lampiran-Rincian-Biaya" else "Managed Service")
     return {"nomor": f"VEN/{prj}/{thn}/{rev}", "nomor_file": nomor, "kunci_proyek": kunci_proyek, "model": model,
             "bucket": getattr(a, "bucket", "proposal"), "objek": objek, "hapus_revisi_lama": hapus}
