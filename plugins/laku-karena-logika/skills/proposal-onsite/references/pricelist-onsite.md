@@ -16,19 +16,20 @@ Programmer bekerja **di kantor Klien** (onsite), tetapi hubungan kerjanya hanya 
 
 Management fee sudah mencakup: monitoring harian, talent cadangan, laporan bulanan, Account Manager, payroll & pajak.
 
-## Preset kota & level (simulasi harga slide 9)
-| Kode preset | Kota · Level | Gaji pokok (rekomendasi) | BPJS | THR | Kompensasi PKWT | Biaya dasar |
-|---|---|---|---|---|---|---|
-| `jakarta-intermediate` | Jakarta · Intermediate | Rp6.500.000 | Rp675.000 | Rp550.000 | Rp550.000 | Rp9.425.000 ⚠️ |
-| `jakarta-senior` | Jakarta · Senior | Rp10.000.000 | Rp935.000 | Rp760.000 | Rp760.000 | Rp13.605.000 ⚠️ |
-| `surabaya` | Surabaya · Intermediate | Rp6.500.000 | Rp630.000 | Rp510.000 | Rp510.000 | Rp9.300.000 |
-| `malang` | Malang · Intermediate | Rp4.500.000 | Rp440.000 | Rp360.000 | Rp360.000 | Rp6.810.000 |
+## Rumus komponen (deck slide 8–9)
+- **BPJS** Ketenagakerjaan & Kesehatan = 10,24% × gaji pokok
+- **Provisi THR** = gaji pokok ÷ 12 · **Provisi kompensasi PKWT** = gaji pokok ÷ 12 (dibulatkan ke rupiah)
+- **Tarif per talent / bulan** = total biaya dasar × (1 + fee), **dibulatkan ke atas ke ribuan terdekat**
 
-Biaya dasar = komponen talent + biaya penempatan Rp1.150.000. Contoh tarif Malang: 3 bulan Rp7.831.500 · 6 bulan Rp7.661.250 · 12 bulan Rp7.491.000.
+## Preset gaji pokok rekomendasi (simulasi harga slide 9)
+| Kode preset | Kota · Level | Gaji pokok | BPJS | THR | Kompensasi PKWT | Biaya dasar | 3 bln (15%) | 6 bln (12,5%) | 12 bln (10%) |
+|---|---|---|---|---|---|---|---|---|---|
+| `jakarta-senior` | Jakarta · Senior | Rp10.000.000 | Rp1.024.000 | Rp833.333 | Rp833.333 | Rp13.840.666 | Rp15.917.000 | Rp15.571.000 | Rp15.225.000 |
+| `jakarta-intermediate` | Jakarta · Intermediate | Rp6.500.000 | Rp665.600 | Rp541.667 | Rp541.667 | Rp9.398.934 | Rp10.809.000 | Rp10.574.000 | Rp10.339.000 |
+| `surabaya` | Surabaya · Intermediate | Rp6.500.000 | Rp665.600 | Rp541.667 | Rp541.667 | Rp9.398.934 | Rp10.809.000 | Rp10.574.000 | Rp10.339.000 |
+| `malang` | Malang · Intermediate | Rp4.500.000 | Rp460.800 | Rp375.000 | Rp375.000 | Rp6.860.800 | Rp7.890.000 | Rp7.719.000 | Rp7.547.000 |
 
-⚠️ **Jakarta di deck slide 9 tidak konsisten:** total biaya dasar tertulis Rp9.925.000 (Intermediate) dan Rp13.105.000 (Senior), padahal jumlah komponennya Rp9.425.000 dan Rp13.605.000. build.py selalu menjumlah komponen; bila angka di deck yang benar, perbaiki komponen di PRESET.
-
-- Kota/level lain, atau gaji mengikuti kandidat yang dipilih Klien: **komponen gaji, BPJS, THR, dan PKWT diminta dari pemilik** lalu diisi di `komponen` — jangan menghitung sendiri.
+- Kota/level lain, atau gaji mengikuti kandidat yang dipilih Klien: **gaji pokok diminta dari pemilik** lalu diisi `gaji` + `kota` + `level`; komponen lain dihitung build.py dengan rumus di atas.
 - Harga final mengikuti kandidat yang dipilih Klien.
 
 ## Ketentuan kerja sama

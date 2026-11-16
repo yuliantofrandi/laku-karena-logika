@@ -20,7 +20,7 @@ Harga dan ketentuan: `references/pricelist-onsite.md` (sumber: deck "VENTURO - O
 - Folder hasil: folder yang disebut pengguna, atau `penawaran/` di working directory (`<output>`); folder kerja HTML `<output>/src`.
 
 ## Aset & skrip (`<folder skill ini>/`)
-- `scripts/build.py` — **generator**: `python3 <folder skill ini>/scripts/build.py <data.json> <output>/src` membangun `penawaran.html` dan `sla.html` (+ salin logo, bg, TTD, paraf, font). Mengambil komponen biaya dari tabel `PRESET` (atau `komponen` di data), menghitung tarif per talent, Kick-off, tagihan bulanan, termin per bulan kalender, dan meng-`assert` Σ termin = Total, durasi ≥ 3 bulan, maksimal 4 baris talent, kode project huruf & angka saja, dan tidak ada sisa teks di `cek_tidak_boleh_ada`. **Revisi = ubah data → build → render ulang.**
+- `scripts/build.py` — **generator**: `python3 <folder skill ini>/scripts/build.py <data.json> <output>/src` membangun `penawaran.html` dan `sla.html` (+ salin logo, bg, TTD, paraf, font). Menghitung komponen biaya dari gaji pokok (tabel `PRESET` atau `gaji` di data), menghitung tarif per talent, Kick-off, tagihan bulanan, termin per bulan kalender, dan meng-`assert` Σ termin = Total, durasi ≥ 3 bulan, maksimal 4 baris talent, kode project huruf & angka saja, dan tidak ada sisa teks di `cek_tidak_boleh_ada`. **Revisi = ubah data → build → render ulang.**
 - `scripts/render.py` — `python3 <folder skill ini>/scripts/render.py <html> <out.pdf> "<No. dokumen>" ["<prefix footer>"]`.
 - `assets/contoh-data.json` — format data. Salin lalu ganti isinya.
 - `assets/onsite.css`, `assets/sa-onsite.html` — gaya dan template Service Agreement (dipakai build.py).
@@ -35,10 +35,11 @@ Harga dan ketentuan: `references/pricelist-onsite.md` (sumber: deck "VENTURO - O
 - `project`: nama singkat kebutuhan (mis. "Tim Engineer Sistem Logistik") — judul hero sudah bertuliskan "Onsite Engineer", jangan diulang.
 
 ## 2. Talent & harga
-- `talent = [{posisi, preset | (kota, level, komponen), jumlah, keahlian}]`, maksimal **4 baris** (posisi sejenis digabung dengan `jumlah`).
+- `talent = [{posisi, preset | (kota, level, gaji), jumlah, keahlian}]`, maksimal **4 baris** (posisi sejenis digabung dengan `jumlah`).
 - **Jabatan hanya yang ada di Venturo**: Software Engineer (Senior/Intermediate, spesialisasi setelah "–", mis. *Software Engineer – Frontend*), DevOps, UI/UX, QA, BA. `keahlian` = tech stack dari brief.
-- **Preset** (`references/pricelist-onsite.md`): `jakarta-intermediate`, `jakarta-senior`, `surabaya`, `malang`. Kota/level lain atau gaji mengikuti kandidat pilihan klien → **minta gaji, BPJS, THR, dan PKWT dari pemilik** lalu isi `komponen = {gaji, bpjs, thr, pkwt}` + `kota` + `level`. **Jangan menghitung komponen sendiri.**
-- **Tarif per talent / bulan** = (gaji + BPJS + THR + PKWT + AI Engineering Platform Rp500.000 + Laptop Rp500.000 + Training Rp150.000) × (1 + management fee).
+- **Preset gaji pokok** (`references/pricelist-onsite.md`): `jakarta-senior` Rp10 jt, `jakarta-intermediate` Rp6,5 jt, `surabaya` Rp6,5 jt, `malang` Rp4,5 jt. Kota/level lain atau gaji mengikuti kandidat pilihan klien → **minta gaji pokok dari pemilik** lalu isi `gaji` + `kota` + `level`. **Jangan menebak gaji sendiri.**
+- **Komponen** dihitung build.py dari gaji: BPJS 10,24%, Provisi THR 1/12, Provisi kompensasi PKWT 1/12.
+- **Tarif per talent / bulan** = (gaji + BPJS + THR + PKWT + AI Engineering Platform Rp500.000 + Laptop Rp500.000 + Training Rp150.000) × (1 + management fee), **dibulatkan ke atas ke ribuan terdekat**.
 - **Management fee** dari `durasi_bulan` (sama untuk semua talent): 3–5 bulan 15% · 6–11 bulan 12,5% · ≥ 12 bulan 10%. Minimal 3 bulan.
 - **Engineering Kick-off** = 1× tarif bulanan per talent, sekali bayar sebagai Down Payment saat tanda tangan.
 - **Venturo Cloud** (opsional, bila klien butuh server): `venturo_cloud = [{paket, jumlah, keterangan}]`, kode paket di pricelist; ditagih per bulan bersama invoice talent.
@@ -59,11 +60,11 @@ python3 <folder skill ini>/scripts/render.py <output>/src/penawaran.html "<outpu
 python3 <folder skill ini>/scripts/render.py <output>/src/sla.html "<output>/VEN-<Kode>-<Tahun>-<Rev>-Service-Agreement-Onsite.pdf" "VEN/<Kode>/<Tahun>/<Rev>" "Service Agreement Onsite Engineer"
 ```
 4. Verifikasi: `mkdir -p <output>/preview && pdftoppm -r 60 -png <pdf> <output>/preview/<nama>` — tabel komponen dan termin utuh, TTD/paraf tampil, tanpa halaman sisa kecil.
-5. Kirim 2 PDF (SendUserFile). Laporan: talent & tarif per talent, management fee, Kick-off (DP), tagihan bulanan, Total Investasi, dan hal yang perlu dicek pemilik (mis. komponen manual).
+5. Kirim 2 PDF (SendUserFile). Laporan: talent & tarif per talent, management fee, Kick-off (DP), tagihan bulanan, Total Investasi, dan hal yang perlu dicek pemilik (mis. gaji dari pemilik).
 6. Unggah & pesan WhatsApp: skill `proposal-upload` (mengenali set onsite dari akhiran `-Service-Agreement-Onsite`).
 
 ## Yang tidak boleh dilakukan
-- Menghitung sendiri gaji/BPJS/THR/PKWT di luar preset, atau management fee di luar tier durasi.
+- Menebak gaji pokok di luar preset, mengubah rumus BPJS/THR/PKWT, atau management fee di luar tier durasi.
 - Memakai jabatan yang tidak ada di Venturo.
 - Menambahkan PPN, menulis "PPN tidak ditagihkan", atau diskon tanpa instruksi pemilik.
 - Mengisi jabatan penanda tangan klien yang tidak diketahui (mis. "Pimpinan"), atau memakai tanda hubung/spasi di kode project.

@@ -7,25 +7,27 @@ Hasil di <folder kerja>: penawaran.html dan sla.html (+ logo, bg, ttd, paraf, fo
 Render dengan scripts/render.py.
 
 Yang dihitung otomatis (dan di-assert):
-- Komponen biaya per talent dari PRESET (references/pricelist-onsite.md) atau `komponen` dari pemilik.
-- Tarif per talent / bulan = (biaya talent + biaya penempatan) × (1 + management fee sesuai durasi kontrak).
+- Komponen biaya per talent dari gaji pokok (PRESET atau `gaji` di data): BPJS 10,24%, THR 1/12, kompensasi PKWT 1/12.
+- Tarif per talent / bulan = (biaya talent + biaya penempatan) × (1 + management fee sesuai durasi kontrak),
+  dibulatkan ke atas ke ribuan terdekat.
 - Engineering Kick-off 1× tarif bulanan per talent sebagai Down Payment; invoice bulanan di awal bulan.
 - Venturo Cloud (opsional) per bulan; diskon hanya bila pemilik menyebutnya, disebar rata ke invoice bulanan.
 - Total Investasi = Σ termin = Total Pembayaran.
 Lihat assets/contoh-data.json untuk format data.
 """
-import html, json, os, re, shutil, sys
+import html, json, math, os, re, shutil, sys
 
 SKILL = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(SKILL, "assets")
 
-# Simulasi harga 2026 (deck slide 9). Gaji pokok = rekomendasi; kandidat lain → `komponen` dari pemilik.
+# Gaji pokok rekomendasi (deck slide 9). Kandidat/kota lain → `gaji` dari pemilik (+ kota, level).
 PRESET = {
-    "jakarta-intermediate": dict(kota="Jakarta", level="Intermediate", gaji=6_500_000, bpjs=675_000, thr=550_000, pkwt=550_000),
-    "jakarta-senior": dict(kota="Jakarta", level="Senior", gaji=10_000_000, bpjs=935_000, thr=760_000, pkwt=760_000),
-    "surabaya": dict(kota="Surabaya", level="Intermediate", gaji=6_500_000, bpjs=630_000, thr=510_000, pkwt=510_000),
-    "malang": dict(kota="Malang", level="Intermediate", gaji=4_500_000, bpjs=440_000, thr=360_000, pkwt=360_000),
+    "jakarta-senior": dict(kota="Jakarta", level="Senior", gaji=10_000_000),
+    "jakarta-intermediate": dict(kota="Jakarta", level="Intermediate", gaji=6_500_000),
+    "surabaya": dict(kota="Surabaya", level="Intermediate", gaji=6_500_000),
+    "malang": dict(kota="Malang", level="Intermediate", gaji=4_500_000),
 }
+BPJS = 0.1024   # BPJS Ketenagakerjaan & Kesehatan; THR dan kompensasi PKWT masing-masing 1/12 gaji
 PENEMPATAN = [("AI Engineering Platform", 500_000), ("Laptop kerja", 500_000), ("Training &amp; sertifikasi", 150_000)]
 CLOUD = {
     "shared-mini": ("Shared Hosting Mini", "1 CPU · 2 GB RAM · 5 GB storage", 200_000),
@@ -89,16 +91,17 @@ def talent(d):
     n, f = d["durasi_bulan"], fee(d["durasi_bulan"])
     out = []
     for t in d["talent"]:
-        if t.get("komponen"):
-            k = dict(t["komponen"]); assert t.get("kota") and t.get("level"), "talent dengan `komponen` wajib punya kota & level"
-            k.update(kota=t["kota"], level=t["level"])
+        if t.get("gaji"):
+            assert t.get("kota") and t.get("level"), "talent dengan `gaji` sendiri wajib punya kota & level"
+            k = dict(kota=t["kota"], level=t["level"], gaji=t["gaji"])
         else:
-            assert t.get("preset") in PRESET, f"preset tidak dikenal: {t.get('preset')} (kota/level lain → isi `komponen` dari pemilik)"
+            assert t.get("preset") in PRESET, f"preset tidak dikenal: {t.get('preset')} (kota/level lain → isi `gaji` dari pemilik)"
             k = dict(PRESET[t["preset"]])
-        for x in ("gaji", "bpjs", "thr", "pkwt"):
-            assert k.get(x, 0) > 0, f"komponen {x} kosong untuk {t['posisi']}"
-        dasar = k["gaji"] + k["bpjs"] + k["thr"] + k["pkwt"] + sum(v for _, v in PENEMPATAN)
-        out.append(dict(t, **k, dasar=dasar, fee=f, tarif=round(dasar * (1 + f)), jumlah=t.get("jumlah", 1)))
+        g = k["gaji"]
+        k.update(bpjs=round(g * BPJS), thr=round(g / 12), pkwt=round(g / 12))
+        dasar = g + k["bpjs"] + k["thr"] + k["pkwt"] + sum(v for _, v in PENEMPATAN)
+        tarif = math.ceil(round(dasar * (1 + f), 2) / 1000) * 1000  # dibulatkan ke atas ke ribuan terdekat
+        out.append(dict(t, **k, dasar=dasar, fee=f, tarif=tarif, jumlah=t.get("jumlah", 1)))
     return out
 
 
@@ -171,13 +174,14 @@ def penawaran(d):
             + rk("Provisi THR", [t["thr"] for t in ts]) + rk("Provisi kompensasi PKWT", [t["pkwt"] for t in ts])
             + "".join(rk(nm, [v] * len(ts)) for nm, v in PENEMPATAN)
             + rk("<b>Total Biaya Dasar</b>", [t["dasar"] for t in ts], ' style="font-weight:600;background:var(--s2)"')
-            + rk(f"Management Fee {pct(f)}", [t["tarif"] - t["dasar"] for t in ts]))
+            + rk(f"Management Fee {pct(f)}", [round(t["dasar"] * f) for t in ts])
+            + rk("Pembulatan ke ribuan", [t["tarif"] - t["dasar"] - round(t["dasar"] * f) for t in ts]))
     h += f'''<div class="keep"><h2><i>2</i>Rincian Biaya</h2>
 <table class="cost" style="table-layout:fixed">{cg}
   <thead><tr><th>Komponen per Talent / Bulan</th>{col}</tr></thead>
   <tbody>{komp}<tr class="grand"><td>Tarif per Talent / Bulan</td>{"".join(f'<td class="r">{rp(t["tarif"])}</td>' for t in ts)}</tr></tbody>
 </table>
-<p style="margin:2mm 0 4mm;color:var(--muted);font-size:8.3pt">Management Fee {pct(f)} untuk kontrak {n} bulan (3–5 bulan 15%, 6–11 bulan 12,5%, 12 bulan atau lebih 10%). Gaji pokok adalah rekomendasi; harga final mengikuti kandidat yang dipilih Klien.</p></div>
+<p style="margin:2mm 0 4mm;color:var(--muted);font-size:8.3pt">Management Fee {pct(f)} untuk kontrak {n} bulan (3–5 bulan 15%, 6–11 bulan 12,5%, 12 bulan atau lebih 10%). Tarif dibulatkan ke atas ke ribuan terdekat. Gaji pokok adalah rekomendasi; harga final mengikuti kandidat yang dipilih Klien.</p></div>
 '''
     grp = lambda judul, ket: f'<tr class="grp"><td colspan="5">{judul}<small>{ket}</small></td></tr>'
     row = lambda nama, ket, tarif, jml, bln: (f'<tr><td><b style="font-weight:600">{nama}</b>' + (f'<span class="d">{ket}</span>' if ket else "")
