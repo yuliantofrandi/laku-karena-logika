@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>VEN-NusaOnsite-2026-001</title>
+<style>
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+:root{--teal:#259ead;--t7:#1b7a86;--t8:#176a74;--t50:#eaf6f7;--ink:#1f2a2e;--muted:#58585a;--subtle:#6b7072;--border:#d5dfe0;--s2:#f4f7f6;--green:#93cc7c}
+@page{size:A4;margin:16mm 16mm 18mm 16mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:M,sans-serif;color:var(--ink);font-size:9pt;line-height:1.5}
+.hero{position:relative;margin:-16mm -16mm 0;padding:12mm 16mm 4mm;overflow:hidden}
+.hero{background:#fff url(bg_flat.jpg) right top/120mm auto no-repeat}
+
+.hero>*{position:relative;z-index:1}
+.logo{height:19mm;display:block;margin-left:-2mm}
+.eyebrow{margin-top:6mm;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:8.5pt}
+h1{margin:1mm 0 0;font-size:24pt;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h1 span{color:var(--teal)}
+.meta{display:grid;grid-template-columns:1.1fr 1fr;gap:5mm;margin-top:5mm}
+.card{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm;background:#fff}
+.card.soft{background:var(--t50);border-color:var(--t50)}
+.kv{display:grid;grid-template-columns:24mm 1fr;row-gap:1mm}
+.kv b{font-weight:600;color:var(--subtle);font-size:8.5pt}
+.lbl{font-size:8pt;font-weight:600;color:var(--t7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1mm}
+.to{font-weight:700;font-size:10.5pt}
+.intro{margin:5mm 0 0;color:var(--muted);font-size:10pt}
+h2{font-size:12pt;font-weight:700;margin:6mm 0 2.5mm;display:flex;align-items:center;gap:3mm;break-after:avoid}
+h2 i{font-style:normal;display:inline-grid;place-items:center;width:7.5mm;height:7.5mm;border-radius:2mm;background:var(--teal);color:#fff;font-size:10pt}
+.svc{border:1px solid var(--border);border-radius:4mm;padding:3mm 5mm;margin-bottom:3mm;break-inside:avoid}
+.svc h3{margin:0 0 1.5mm;font-size:10.5pt;font-weight:700}
+.svc h3 small{font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm}
+ul{margin:0;padding-left:4.5mm}
+li{margin:.3mm 0}
+li::marker{color:var(--teal)}
+li b{font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:9.2pt;break-inside:avoid}
+th{background:var(--t7);color:#fff;font-weight:600;text-align:left;padding:2.4mm 3mm;font-size:8.6pt}
+thead tr:first-child th:first-child{border-top-left-radius:2.5mm}thead tr:first-child th:last-child{border-top-right-radius:2.5mm}
+td{padding:2mm 3mm;border-bottom:1px solid var(--border);vertical-align:top}
+.r{text-align:right;white-space:nowrap}.c{text-align:center}
+td .d{display:block;color:var(--subtle);font-size:8.3pt;margin-top:.8mm}
+tr.sub td{border:0;padding:1.6mm 3mm;font-weight:600}
+tr.sub td:first-child{text-align:right;color:var(--muted)}
+tr.disc td{color:#3c7a2a}
+tr.grand td{background:var(--t50);font-weight:800;font-size:10.5pt;padding:3mm;border:0}
+tr.grand td:first-child{text-align:right;border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{color:var(--t8);border-bottom-right-radius:2.5mm}
+.note{margin-top:3mm}
+.bank{display:flex;gap:4mm;align-items:center;background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0 4mm}
+.bank b{font-weight:700}
+.closing{margin-top:8mm;padding:4mm 5mm;border-left:1.2mm solid var(--green);background:var(--s2);border-radius:0 3mm 3mm 0;color:var(--muted);break-inside:avoid}
+.sign{break-inside:avoid}
+.sign .agree{margin:0 0 3mm}
+.sign .place{margin:0 0 4mm;color:var(--muted)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.sbox{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm}
+.party{font-size:7.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t7)}
+.co{font-weight:700;font-size:10.5pt;margin-top:.5mm}
+.area{position:relative;height:30mm;margin:3mm 0;border-bottom:1px solid var(--ink)}
+.ttd{position:absolute;left:50%;bottom:1mm;transform:translateX(-50%);height:27mm;max-width:95%;object-fit:contain}
+.stamp{position:absolute;right:0;bottom:1mm;font-size:7pt;color:#9aa5a8}
+.meterai{position:absolute;left:2mm;top:3mm;width:20mm;height:22mm;border:1px dashed #9aa5a8;border-radius:1.5mm;display:grid;place-items:center;text-align:center;font-size:6.8pt;color:#9aa5a8;line-height:1.3}
+table.f{font-size:8.8pt;break-inside:auto}
+table.f td{border:0;padding:.8mm 0}
+table.f td:first-child{width:18mm;color:var(--subtle)}
+table.f td.blank{border-bottom:1px dotted #9aa5a8}
+.keep{break-inside:avoid}
+tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}
+tr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bottom-right-radius:2.5mm}
+@page{size:A4;margin:6mm 7mm 14mm 7mm}
+.hero{margin:-6mm -7mm 0;padding:6mm 7mm 3mm}
+.logo{margin-left:0}
+.sm{font-size:8pt}.sm td,.sm th{padding:1.6mm 2mm}.unit{background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0;color:var(--muted);font-size:8.6pt}.unit b{color:var(--ink);font-weight:600}.ph{color:var(--t7);font-weight:700}.z{color:#c3cccd}
+tr.grp td{background:var(--s2);font-weight:700;padding:2mm 3mm;border:0}tr.grp td small{font-weight:500;color:var(--subtle);margin-left:2mm}
+table.cost{break-inside:auto;font-size:8.8pt}table.cost td{padding:1.5mm 3mm}table.cost tr{break-inside:avoid}
+tr.tot td{background:var(--t7);color:#fff;font-weight:700;border:0;padding:2mm 3mm}tr.tot td:first-child{text-align:right}
+ul.sc{padding-left:4mm;margin:0}ul.sc li{margin:.4mm 0}
+</style></head><body>
+<section class="hero">
+  <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
+  <div class="eyebrow">Penawaran Layanan &amp; Persetujuan Kerja Sama</div>
+  <h1>Onsite Engineer<br><span>Tim Engineer Sistem Logistik</span></h1>
+  <div class="meta">
+    <div class="card"><div class="kv"><b>No.</b><span>VEN/NusaOnsite/2026/001</span><b>Project</b><span>Tim Engineer Sistem Logistik</span><b>Tanggal</b><span>16 November 2026</span></div></div>
+    <div class="card soft"><div class="lbl">Kepada Yth.</div><div class="to">Tim IT</div><div>PT Contoh Nusa Logistik</div><div style="color:var(--muted)">Jl. Contoh Raya No. 1, Jakarta Selatan 12950</div></div>
+  </div>
+  <p class="intro">Melalui penawaran ini, kami menegaskan kesiapan tim IT profesional kami yang berjumlah kurang lebih 100 orang untuk menempatkan engineer di lokasi Klien, dengan rekrutmen, monitoring, dan pengelolaan talent sepenuhnya menjadi tanggung jawab Venturo. Dokumen ini memuat ruang lingkup layanan dan rincian biaya sebagai acuan kesepakatan bersama kedua belah pihak.</p>
+</section>
+<h2><i>1</i>Lingkup Layanan</h2>
+<div class="keep"><table class="cost" style="margin-bottom:3mm">
+  <thead><tr><th>Talent yang Ditempatkan</th><th>Level</th><th>Kota</th><th class="r">Orang</th></tr></thead>
+  <tbody><tr><td><b style="font-weight:600">Senior Software Engineer – Backend</b><span class="d">Golang, PostgreSQL, arsitektur microservice</span></td><td>Senior</td><td>Jakarta</td><td class="r">1</td></tr><tr><td><b style="font-weight:600">Software Engineer – Frontend</b><span class="d">React, Next.js</span></td><td>Intermediate</td><td>Jakarta</td><td class="r">2</td></tr><tr class="grand"><td colspan="3">Total Talent</td><td class="r">3 orang</td></tr></tbody>
+</table></div>
+<div class="svc"><h3>Penempatan &amp; Jam Kerja <small>12 bulan, Jan 2027 – Des 2027</small></h3><ul><li>Lokasi kerja: Kantor PT Contoh Nusa Logistik, Jakarta Selatan</li><li>8 jam per hari atau 40 jam per minggu, jadwal ditentukan Klien; talent mengikuti SOP dan peraturan perusahaan Klien</li><li>Klien menyediakan meja kerja, internet, dan akses sistem</li><li>Talent hanya mengerjakan pekerjaan yang berkaitan dengan pengembangan software</li></ul></div>
+<div class="svc"><h3>Dikelola Venturo <small>Sudah termasuk dalam tarif</small></h3><ul><li>Seleksi kandidat: screening dan tes teknis oleh Venturo, Klien cukup interview akhir</li><li>Monitoring harian lewat Engineering ERP Venturo: pekerjaan, kendala, dan aktivitas kerja tercatat setiap hari</li><li>Supervisor mendampingi secara berkala, membantu saat ada kendala, dan menjaga kualitas kode</li><li>Laporan bulanan kehadiran dan kinerja, dengan penilaian KPI 360°</li><li>Account Manager sebagai satu pintu komunikasi dengan Klien</li><li>Talent cadangan: pengganti sementara saat talent cuti atau sakit panjang</li><li>Payroll, BPJS, THR, kompensasi PKWT, dan pajak penghasilan talent diurus Venturo</li><li>Pelatihan dan upskilling bila proyek membutuhkan skill baru, tanpa biaya tambahan</li><li>Hubungan kerja talent hanya dengan Venturo; Klien dibebaskan dari tuntutan hubungan industrial talent</li></ul></div>
+<div class="svc"><h3>Penggantian Talent <small>Klien berhak meminta pengganti bila terjadi salah satu kondisi berikut</small></h3><ul><li>Ketidakcocokan budaya kerja atau komunikasi dengan tim</li><li>Sering absen, terlambat, atau izin tanpa keterangan</li><li>Melanggar tata tertib, disiplin, atau sopan santun di lokasi Klien</li><li>Memanipulasi absensi atau timesheet</li><li>Membocorkan data atau menyalahgunakan akses sistem</li><li>Tidak jujur atau melakukan tindak pidana</li><li>Permintaan disampaikan secara tertulis kepada Account Manager Venturo; biaya rekrutmen dan onboarding pengganti sepenuhnya ditanggung Venturo</li><li>Talent yang resign langsung disiapkan penggantinya oleh Venturo</li></ul></div>
+<div class="keep"><h2><i>2</i>Rincian Biaya</h2>
+<table class="cost" style="table-layout:fixed"><colgroup><col style="width:62mm"><col><col></colgroup>
+  <thead><tr><th>Komponen per Talent / Bulan</th><th class="r">Senior Software Engineer – Backend<br><small style="font-weight:500;opacity:.85">Jakarta · Senior</small></th><th class="r">Software Engineer – Frontend<br><small style="font-weight:500;opacity:.85">Jakarta · Intermediate</small></th></tr></thead>
+  <tbody><tr><td>Gaji pokok</td><td class="r">Rp10.000.000</td><td class="r">Rp6.500.000</td></tr><tr><td>BPJS Ketenagakerjaan &amp; Kesehatan</td><td class="r">Rp935.000</td><td class="r">Rp675.000</td></tr><tr><td>Provisi THR</td><td class="r">Rp760.000</td><td class="r">Rp550.000</td></tr><tr><td>Provisi kompensasi PKWT</td><td class="r">Rp760.000</td><td class="r">Rp550.000</td></tr><tr><td>AI Engineering Platform</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td></tr><tr><td>Laptop kerja</td><td class="r">Rp500.000</td><td class="r">Rp500.000</td></tr><tr><td>Training &amp; sertifikasi</td><td class="r">Rp150.000</td><td class="r">Rp150.000</td></tr><tr style="font-weight:600;background:var(--s2)"><td><b>Total Biaya Dasar</b></td><td class="r">Rp13.605.000</td><td class="r">Rp9.425.000</td></tr><tr><td>Management Fee 10%</td><td class="r">Rp1.360.500</td><td class="r">Rp942.500</td></tr><tr class="grand"><td>Tarif per Talent / Bulan</td><td class="r">Rp14.965.500</td><td class="r">Rp10.367.500</td></tr></tbody>
+</table>
+<p style="margin:2mm 0 4mm;color:var(--muted);font-size:8.3pt">Management Fee 10% untuk kontrak 12 bulan (3–5 bulan 15%, 6–11 bulan 12,5%, 12 bulan atau lebih 10%). Gaji pokok adalah rekomendasi; harga final mengikuti kandidat yang dipilih Klien.</p></div>
+<table class="cost">
+  <thead><tr><th>Layanan</th><th class="r">Tarif/Bulan</th><th class="r">Orang</th><th class="r">Bulan</th><th class="r">Total</th></tr></thead>
+  <tbody><tr class="grp"><td colspan="5">Engineering Kick-off<small>Sekali bayar sebagai Down Payment: rekrutmen &amp; seleksi, onboarding, setup kerja, garansi penggantian talent</small></td></tr><tr><td><b style="font-weight:600">Senior Software Engineer – Backend</b></td><td class="r">Rp14.965.500</td><td class="r">1</td><td class="r">1</td><td class="r">Rp14.965.500</td></tr><tr><td><b style="font-weight:600">Software Engineer – Frontend</b></td><td class="r">Rp10.367.500</td><td class="r">2</td><td class="r">1</td><td class="r">Rp20.735.000</td></tr><tr class="grp"><td colspan="5">Talent Onsite<small>12 bulan, Jan 2027 – Des 2027</small></td></tr><tr><td><b style="font-weight:600">Senior Software Engineer – Backend</b><span class="d">Jakarta · Senior</span></td><td class="r">Rp14.965.500</td><td class="r">1</td><td class="r">12</td><td class="r">Rp179.586.000</td></tr><tr><td><b style="font-weight:600">Software Engineer – Frontend</b><span class="d">Jakarta · Intermediate</span></td><td class="r">Rp10.367.500</td><td class="r">2</td><td class="r">12</td><td class="r">Rp248.820.000</td></tr><tr class="grand"><td colspan="4">Total Investasi</td><td class="r">Rp464.106.500</td></tr></tbody>
+</table>
+<div class="keep"><h2><i>3</i>Pembayaran</h2>
+<ul style="margin:0 0 3mm">
+  <li>Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien.</li>
+  <li>Engineering Kick-off sebesar 1× tarif bulanan per talent dibayar sekali sebagai Down Payment saat penandatanganan, sebelum proses seleksi dimulai.</li>
+  <li>Invoice bulanan dikirim di awal bulan dan wajib dibayarkan paling lambat 14 (empat belas) hari kalender dari tanggal invoice.</li>
+  <li>Apabila Klien tidak melakukan pembayaran sesuai jadwal, maka seluruh aktivitas layanan berhak dihentikan sementara.</li>
+  <li>Tarif disesuaikan apabila terdapat perubahan UMP/UMK atau regulasi ketenagakerjaan, dengan pemberitahuan tertulis kepada Klien.</li>
+  <li>Perpanjangan kontrak dikonfirmasi secara tertulis paling lambat 2 (dua) bulan sebelum kontrak berakhir.</li>
+</ul>
+<div class="bank"><span>Rekening pembayaran</span><span><b>BCA 3680332222</b> a.n. PT Venturo Pro Indonesia</span></div></div>
+<table class="cost">
+  <thead><tr><th>Periode Kerja</th><th>Termin</th><th>Tgl Invoice</th><th class="r">Nominal</th></tr></thead>
+  <tbody><tr><td>Penandatanganan</td><td>Engineering Kick-off (Down Payment)</td><td>Saat tanda tangan</td><td class="r">Rp35.700.500</td></tr><tr><td>Januari 2027</td><td>Bulan ke-1</td><td>1 Jan 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Februari 2027</td><td>Bulan ke-2</td><td>1 Feb 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Maret 2027</td><td>Bulan ke-3</td><td>1 Mar 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>April 2027</td><td>Bulan ke-4</td><td>1 Apr 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Mei 2027</td><td>Bulan ke-5</td><td>1 Mei 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Juni 2027</td><td>Bulan ke-6</td><td>1 Jun 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Juli 2027</td><td>Bulan ke-7</td><td>1 Jul 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Agustus 2027</td><td>Bulan ke-8</td><td>1 Agu 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>September 2027</td><td>Bulan ke-9</td><td>1 Sep 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Oktober 2027</td><td>Bulan ke-10</td><td>1 Okt 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>November 2027</td><td>Bulan ke-11</td><td>1 Nov 2027</td><td class="r">Rp35.700.500</td></tr><tr><td>Desember 2027</td><td>Bulan ke-12</td><td>1 Des 2027</td><td class="r">Rp35.700.500</td></tr><tr class="grand"><td colspan="3">Total Pembayaran</td><td class="r">Rp464.106.500</td></tr></tbody>
+</table>
+<div class="keep">
+<h2><i>4</i>Batasan dan Pengecualian</h2>
+<p style="margin:0 0 2mm">Harga yang tercantum belum termasuk:</p>
+<ul>
+  <li>Lembur, dihitung per jam sesuai formulir perintah lembur tertulis dari Klien</li>
+  <li>Perjalanan dinas di luar kota penempatan</li>
+  <li>Lisensi software, server, atau hardware khusus permintaan Klien, termasuk server aplikasi</li>
+  <li>Sertifikasi vendor di luar program training Venturo</li>
+</ul>
+<p style="margin:2mm 0 0">Seluruh item di atas tetap dapat disediakan Venturo, ditagih sesuai biaya aktual ditambah biaya layanan, atas persetujuan tertulis Klien.</p>
+</div>
+<div class="sign">
+  <h2 style="margin-top:8mm"><i>5</i>Persetujuan</h2>
+  <p class="agree">Dengan menandatangani dokumen ini, kedua belah pihak menyatakan bahwa mereka telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang tercantum dalam dokumen ini, yang merupakan bagian tidak terpisahkan dari dokumen Service Agreement Onsite Engineer Venturo.</p>
+<p class="place">Ditandatangani di Malang, pada tanggal ____________________ 2026.</p>
+  <div class="sg">
+    <div class="sbox"><div class="party">Penyedia Layanan</div><div class="co">PT Venturo Pro Indonesia</div>
+      <div class="area"><img class="ttd" src="ttd.png" alt=""></div>
+      <table class="f"><tr><td>Nama</td><td><b>Yulianto Frandi</b></td></tr><tr><td>Jabatan</td><td>CEO</td></tr><tr><td>Tanggal</td><td>16 November 2026</td></tr></table></div>
+    <div class="sbox"><div class="party">Klien</div><div class="co">PT Contoh Nusa Logistik</div>
+      <div class="area"><span class="stamp">Tanda tangan &amp; stempel</span></div>
+      <table class="f"><tr><td>Nama</td><td class="blank"></td></tr><tr><td>Jabatan</td><td class="blank"></td></tr><tr><td>Tanggal</td><td class="blank"></td></tr></table></div>
+  </div>
+</div>
+</body></html>

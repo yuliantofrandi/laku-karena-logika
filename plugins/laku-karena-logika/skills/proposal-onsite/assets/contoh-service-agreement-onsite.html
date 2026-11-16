@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>VEN-NusaOnsite-2026-001-Service-Agreement-Onsite</title>
+<style>
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-normal.woff2);font-weight:400}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-400-italic.woff2);font-weight:400;font-style:italic}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:M;src:url(fonts/montserrat-latin-800-normal.woff2);font-weight:800}
+:root{--teal:#259ead;--t7:#1b7a86;--t8:#176a74;--t50:#eaf6f7;--ink:#1f2a2e;--muted:#58585a;--subtle:#6b7072;--border:#d5dfe0;--s2:#f4f7f6;--green:#93cc7c}
+@page{size:A4;margin:16mm 16mm 18mm 16mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:M,sans-serif;color:var(--ink);font-size:9pt;line-height:1.5}
+.hero{position:relative;margin:-16mm -16mm 0;padding:12mm 16mm 4mm;overflow:hidden}
+.hero{background:#fff url(bg_flat.jpg) right top/120mm auto no-repeat}
+
+.hero>*{position:relative;z-index:1}
+.logo{height:19mm;display:block;margin-left:-2mm}
+.eyebrow{margin-top:6mm;font-style:italic;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:8.5pt}
+h1{margin:1mm 0 0;font-size:24pt;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h1 span{color:var(--teal)}
+.meta{display:grid;grid-template-columns:1.1fr 1fr;gap:5mm;margin-top:5mm}
+.card{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm;background:#fff}
+.card.soft{background:var(--t50);border-color:var(--t50)}
+.kv{display:grid;grid-template-columns:24mm 1fr;row-gap:1mm}
+.kv b{font-weight:600;color:var(--subtle);font-size:8.5pt}
+.lbl{font-size:8pt;font-weight:600;color:var(--t7);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1mm}
+.to{font-weight:700;font-size:10.5pt}
+.intro{margin:5mm 0 0;color:var(--muted);font-size:10pt}
+h2{font-size:12pt;font-weight:700;margin:6mm 0 2.5mm;display:flex;align-items:center;gap:3mm;break-after:avoid}
+h2 i{font-style:normal;display:inline-grid;place-items:center;width:7.5mm;height:7.5mm;border-radius:2mm;background:var(--teal);color:#fff;font-size:10pt}
+.svc{border:1px solid var(--border);border-radius:4mm;padding:3mm 5mm;margin-bottom:3mm;break-inside:avoid}
+.svc h3{margin:0 0 1.5mm;font-size:10.5pt;font-weight:700}
+.svc h3 small{font-weight:500;color:var(--subtle);font-size:8.5pt;margin-left:2mm}
+ul{margin:0;padding-left:4.5mm}
+li{margin:.3mm 0}
+li::marker{color:var(--teal)}
+li b{font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:9.2pt;break-inside:avoid}
+th{background:var(--t7);color:#fff;font-weight:600;text-align:left;padding:2.4mm 3mm;font-size:8.6pt}
+thead tr:first-child th:first-child{border-top-left-radius:2.5mm}thead tr:first-child th:last-child{border-top-right-radius:2.5mm}
+td{padding:2mm 3mm;border-bottom:1px solid var(--border);vertical-align:top}
+.r{text-align:right;white-space:nowrap}.c{text-align:center}
+td .d{display:block;color:var(--subtle);font-size:8.3pt;margin-top:.8mm}
+tr.sub td{border:0;padding:1.6mm 3mm;font-weight:600}
+tr.sub td:first-child{text-align:right;color:var(--muted)}
+tr.disc td{color:#3c7a2a}
+tr.grand td{background:var(--t50);font-weight:800;font-size:10.5pt;padding:3mm;border:0}
+tr.grand td:first-child{text-align:right;border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{color:var(--t8);border-bottom-right-radius:2.5mm}
+.note{margin-top:3mm}
+.bank{display:flex;gap:4mm;align-items:center;background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0 4mm}
+.bank b{font-weight:700}
+.closing{margin-top:8mm;padding:4mm 5mm;border-left:1.2mm solid var(--green);background:var(--s2);border-radius:0 3mm 3mm 0;color:var(--muted);break-inside:avoid}
+.sign{break-inside:avoid}
+.sign .agree{margin:0 0 3mm}
+.sign .place{margin:0 0 4mm;color:var(--muted)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.sbox{border:1px solid var(--border);border-radius:4mm;padding:4mm 5mm}
+.party{font-size:7.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t7)}
+.co{font-weight:700;font-size:10.5pt;margin-top:.5mm}
+.area{position:relative;height:30mm;margin:3mm 0;border-bottom:1px solid var(--ink)}
+.ttd{position:absolute;left:50%;bottom:1mm;transform:translateX(-50%);height:27mm;max-width:95%;object-fit:contain}
+.stamp{position:absolute;right:0;bottom:1mm;font-size:7pt;color:#9aa5a8}
+.meterai{position:absolute;left:2mm;top:3mm;width:20mm;height:22mm;border:1px dashed #9aa5a8;border-radius:1.5mm;display:grid;place-items:center;text-align:center;font-size:6.8pt;color:#9aa5a8;line-height:1.3}
+table.f{font-size:8.8pt;break-inside:auto}
+table.f td{border:0;padding:.8mm 0}
+table.f td:first-child{width:18mm;color:var(--subtle)}
+table.f td.blank{border-bottom:1px dotted #9aa5a8}
+.keep{break-inside:avoid}
+tr.grand td{background:var(--t50);border:0;border-top:.5mm solid var(--teal);padding:3mm;vertical-align:middle}
+tr.grand td:first-child{text-align:left;font-size:8.5pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t7);border-bottom-left-radius:2.5mm}
+tr.grand td:last-child{font-size:11pt;font-weight:800;color:var(--t8);border-bottom-right-radius:2.5mm}
+@page{size:A4;margin:6mm 7mm 14mm 7mm}
+.hero{margin:-6mm -7mm 0;padding:6mm 7mm 3mm}
+.logo{margin-left:0}
+.sm{font-size:8pt}.sm td,.sm th{padding:1.6mm 2mm}.unit{background:var(--s2);border-radius:3mm;padding:3mm 4mm;margin:3mm 0;color:var(--muted);font-size:8.6pt}.unit b{color:var(--ink);font-weight:600}.ph{color:var(--t7);font-weight:700}.z{color:#c3cccd}
+tr.grp td{background:var(--s2);font-weight:700;padding:2mm 3mm;border:0}tr.grp td small{font-weight:500;color:var(--subtle);margin-left:2mm}
+table.cost{break-inside:auto;font-size:8.8pt}table.cost td{padding:1.5mm 3mm}table.cost tr{break-inside:avoid}
+tr.tot td{background:var(--t7);color:#fff;font-weight:700;border:0;padding:2mm 3mm}tr.tot td:first-child{text-align:right}
+ul.sc{padding-left:4mm;margin:0}ul.sc li{margin:.4mm 0}
+
+ol{margin:0;padding-left:5mm}ol li{margin:.6mm 0;padding-left:1mm}ol li::marker{color:var(--t7);font-weight:600}
+p{margin:0 0 2mm}.sec{break-inside:auto}
+li strong,p strong{font-weight:600}
+.pp li{margin-bottom:1.5mm}
+h2{font-size:10.5pt;margin:5mm 0 1.8mm;gap:2.2mm;line-height:1.2}
+h2 i{width:auto;min-width:5.6mm;height:5.6mm;padding:0 1.2mm;border-radius:1.4mm;font-size:8pt;font-weight:700}
+.sec p,.sec ol,.sec ul{font-size:9pt}
+ol.a{list-style:lower-alpha;margin-top:.8mm}.it{font-style:italic}
+</style></head><body>
+<section class="hero">
+  <img class="logo" src="logo.png" alt="Venturo Expert Programmers">
+  <div class="eyebrow">Perjanjian Kerja Sama</div>
+  <h1>Service Agreement<br><span>Onsite Engineer Venturo</span></h1>
+  <div class="meta">
+    <div class="card"><div class="kv"><b>No.</b><span>VEN/NusaOnsite/2026/001</span><b>Penawaran</b><span>VEN/NusaOnsite/2026/001</span><b>Tanggal</b><span>16 November 2026</span></div></div>
+    <div class="card soft"><div class="lbl">Klien</div><div class="to">PT Contoh Nusa Logistik</div>
+      <div style="color:var(--muted)">Jl. Contoh Raya No. 1, Jakarta Selatan 12950</div></div>
+  </div>
+</section>
+<div class="sec"><h2><i>1</i>Para Pihak</h2><ol class="pp">
+<li><strong>PT Venturo Pro Indonesia</strong>, beralamat di Jl. Rinjani No. 26, Oro-oro Dowo, Kecamatan Klojen, Kota Malang, Jawa Timur 65119, dalam hal ini diwakili oleh Yulianto Frandi selaku CEO, selanjutnya dalam perjanjian ini disebut <strong>“Venturo”</strong>.</li>
+<li><strong>PT Contoh Nusa Logistik</strong>, beralamat di Jl. Contoh Raya No. 1, Jakarta Selatan 12950, dalam hal ini diwakili oleh ______________________ selaku ______________________, selanjutnya dalam perjanjian ini disebut <strong>“Klien”</strong>.</li></ol>
+<p>Venturo dan Klien selanjutnya secara bersama-sama disebut <strong>“Para Pihak”</strong>.</p></div>
+<div class="sec"><h2><i>2</i>Ruang Lingkup</h2><ol>
+<li>Venturo menempatkan tenaga ahli pengembangan software (selanjutnya disebut <strong>“Talent”</strong>) di lokasi Klien sesuai posisi, level, jumlah, lokasi, dan periode yang tercantum dalam Penawaran Layanan.</li>
+<li>Talent bekerja di bawah arahan pekerjaan harian dari Klien. Venturo bertanggung jawab atas rekrutmen, kualitas kerja, kedisiplinan, pemantauan, pengembangan kompetensi, dan keberlangsungan Talent.</li>
+<li>Penambahan, pengurangan, atau perubahan posisi Talent diajukan secara tertulis dan dituangkan dalam addendum Penawaran Layanan.</li></ol></div>
+<div class="sec"><h2><i>3</i>Masa Berlaku dan Perpanjangan</h2><ol>
+<li>Perjanjian ini berlaku sejak tanggal ditandatangani sampai berakhirnya periode penempatan yang tercantum dalam Penawaran Layanan.</li>
+<li>Perpanjangan dikonfirmasi secara tertulis oleh Klien paling lambat 2 (dua) bulan sebelum periode penempatan berakhir, dan dituangkan dalam addendum atau Penawaran Layanan baru.</li></ol></div>
+<div class="sec"><h2><i>4</i>Biaya dan Pembayaran</h2><ol>
+<li>Biaya layanan terdiri atas Engineering Kick-off dan tarif bulanan per Talent sesuai Penawaran Layanan. Tarif bulanan sudah mencakup gaji, BPJS, provisi THR, provisi kompensasi PKWT, AI Engineering Platform, laptop kerja, training, dan management fee.</li>
+<li>Engineering Kick-off sebesar 1 (satu) kali tarif bulanan per Talent dibayar sekali sebagai Down Payment saat penandatanganan, dan mencakup rekrutmen dan seleksi, onboarding, setup kerja, serta garansi penggantian Talent.</li>
+<li>Invoice bulanan dikirim di awal bulan dan wajib dibayarkan paling lambat 14 (empat belas) hari kalender dari tanggal invoice.</li>
+<li>Seluruh harga bersifat nett. Venturo belum berstatus Pengusaha Kena Pajak (PKP), sehingga tidak memungut PPN. PPh 23 ditanggung Klien.</li>
+<li>Tarif disesuaikan apabila terdapat perubahan UMP/UMK atau regulasi ketenagakerjaan, dengan pemberitahuan tertulis kepada Klien sebelum berlaku.</li>
+<li>Apabila Klien tidak melakukan pembayaran sesuai jadwal, Venturo berhak menghentikan sementara seluruh aktivitas layanan sampai pembayaran diterima.</li></ol></div>
+<div class="sec"><h2><i>5</i>Seleksi dan Penempatan</h2><ol>
+<li>Venturo melakukan screening dan tes teknis terhadap kandidat sesuai role, tech stack, dan level yang disepakati. Klien melakukan interview akhir dan menyetujui kandidat secara tertulis.</li>
+<li>Sebelum penempatan, Talent menandatangani perjanjian kerahasiaan (NDA), menerima akses sistem dari Klien, dan mengikuti orientasi SOP Klien.</li>
+<li>Talent mulai bekerja di lokasi Klien sesuai jadwal penempatan yang disepakati Para Pihak.</li></ol></div>
+<div class="sec"><h2><i>6</i>Jam Kerja dan Lembur</h2><ol>
+<li>Talent bekerja 8 (delapan) jam per hari atau 40 (empat puluh) jam per minggu, dengan jadwal yang ditentukan Klien, serta mengikuti SOP dan peraturan perusahaan Klien sepanjang tidak bertentangan dengan peraturan ketenagakerjaan.</li>
+<li>Pekerjaan di luar jam kerja dilakukan atas perintah tertulis Klien melalui formulir perintah lembur, dihitung per jam, dan ditagih terpisah pada invoice bulan berikutnya.</li>
+<li>Cuti dan izin Talent mengikuti peraturan ketenagakerjaan dan dikoordinasikan dengan Klien. Selama Talent cuti atau sakit panjang, Venturo menyediakan pengganti sementara tanpa biaya tambahan.</li></ol></div>
+<div class="sec"><h2><i>7</i>Kewajiban Klien</h2><ol>
+<li>Menyediakan meja kerja, koneksi internet, serta akses sistem yang dibutuhkan Talent untuk bekerja.</li>
+<li>Memberikan pekerjaan yang berkaitan dengan pengembangan software saja, dan tidak menugaskan Talent di luar lokasi penempatan tanpa persetujuan Venturo.</li>
+<li>Menyediakan lingkungan kerja yang aman dan layak sesuai peraturan yang berlaku.</li>
+<li>Menyampaikan masalah kinerja atau perilaku Talent kepada Account Manager Venturo, bukan menyelesaikan sendiri hubungan kerja dengan Talent.</li></ol></div>
+<div class="sec"><h2><i>8</i>Monitoring dan Pelaporan</h2><ol>
+<li>Setiap Talent terhubung ke Engineering ERP Venturo. Pekerjaan, kendala, dan aktivitas kerja Talent tercatat setiap hari dan dipantau oleh Venturo.</li>
+<li>Supervisor Venturo mendampingi Talent secara berkala, membantu saat ada kendala, dan menjaga kualitas kode.</li>
+<li>Venturo menyampaikan laporan bulanan kehadiran dan kinerja Talent kepada Klien. Kinerja Talent dinilai melalui KPI 360°.</li>
+<li>Venturo menunjuk Account Manager sebagai penghubung utama dengan Klien.</li></ol></div>
+<div class="sec"><h2><i>9</i>Penggantian Talent</h2><ol>
+<li>Klien berhak meminta penggantian Talent apabila terjadi salah satu kondisi berikut:<ol class="a"><li>Ketidakcocokan budaya kerja atau komunikasi dengan tim</li><li>Sering absen, terlambat, atau izin tanpa keterangan</li><li>Melanggar tata tertib, disiplin, atau sopan santun di lokasi Klien</li><li>Memanipulasi absensi atau timesheet</li><li>Membocorkan data atau menyalahgunakan akses sistem</li><li>Tidak jujur atau melakukan tindak pidana</li></ol></li>
+<li>Permintaan penggantian disampaikan secara tertulis kepada Account Manager Venturo beserta alasannya. Penggantian dilakukan paling lambat 14 (empat belas) hari sejak permintaan diterima.</li>
+<li>Apabila Talent mengundurkan diri, Venturo segera menyiapkan pengganti.</li>
+<li>Biaya rekrutmen dan onboarding Talent pengganti sepenuhnya ditanggung Venturo.</li></ol></div>
+<div class="sec"><h2><i>10</i>Hubungan Ketenagakerjaan</h2><ol>
+<li>Seluruh hubungan kerja Talent adalah dengan Venturo dan diatur dalam perjanjian kerja tertulis berdasarkan peraturan perundang-undangan ketenagakerjaan. Tidak ada hubungan kerja antara Klien dan Talent.</li>
+<li>Seluruh urusan gaji, THR, tunjangan, BPJS, PPh 21, kompensasi PKWT, serta kewajiban ketenagakerjaan lainnya menjadi tanggung jawab Venturo.</li>
+<li>Klien dibebaskan dari tuntutan yang timbul dari hubungan industrial antara Venturo dan Talent.</li></ol></div>
+<div class="sec"><h2><i>11</i>Perekrutan</h2><ol>
+<li>Klien sepakat untuk tidak melibatkan, merekrut, atau mempekerjakan pegawai Venturo selama masa berlakunya perjanjian ini, serta tidak memberikan insentif atau perjanjian apa pun yang bertujuan mengalihkan pegawai Venturo dari pekerjaannya.</li>
+<li>Apabila pegawai yang bersangkutan bersedia direkrut, Klien diperbolehkan merekrutnya dengan dikenakan biaya pengalihan sebesar 6 (enam) kali gaji bulanan terakhir pegawai yang bersangkutan.</li></ol></div>
+<div class="sec"><h2><i>12</i>Kerahasiaan</h2><ol>
+<li>Para Pihak wajib menjaga dan menyimpan segala informasi dalam rangka pelaksanaan perjanjian ini sebagai rahasia, dan tidak mengungkapkannya kepada pihak lain dengan cara apa pun tanpa persetujuan tertulis dari pihak lainnya, kecuali hal-hal yang merupakan milik umum (<span class="it">public domain</span>) atau diminta secara resmi oleh instansi pemerintah atau badan peradilan yang berwenang.</li>
+<li>Venturo memastikan setiap Talent menandatangani perjanjian kerahasiaan dan mematuhi kebijakan keamanan informasi Klien.</li>
+<li>Kewajiban kerahasiaan tetap berlaku sekalipun perjanjian ini berakhir.</li></ol></div>
+<div class="sec"><h2><i>13</i>Hak Kekayaan Intelektual</h2><ol>
+<li>Seluruh hasil kerja Talent selama penempatan, termasuk <span class="it">source code</span>, desain, dokumentasi, dan data, sepenuhnya menjadi milik Klien.</li>
+<li>Kepemilikan tersebut tidak membatasi hak Venturo untuk menggunakan kembali pengetahuan dan metode teknis umum yang tidak spesifik pada bisnis Klien, sepanjang tidak memuat informasi rahasia, data, maupun logika bisnis Klien.</li></ol></div>
+<div class="sec"><h2><i>14</i>Terminasi Kontrak</h2><ol>
+<li>Klien berhak mengakhiri perjanjian ini atas dasar performa Venturo yang, dengan bukti sah dan tertulis, tidak memenuhi standar layanan secara berturut-turut meskipun telah dilakukan upaya perbaikan, dengan pemberitahuan tertulis paling lambat 30 (tiga puluh) hari sebelum tanggal efektif pengakhiran.</li>
+<li>Klien berhak mengakhiri perjanjian ini atas dasar pertimbangan bisnis Klien dengan pemberitahuan tertulis paling lambat 60 (enam puluh) hari sebelum tanggal efektif pengakhiran.</li>
+<li>Klien menyelesaikan seluruh kewajiban finansial yang telah jatuh tempo, termasuk tagihan layanan sampai tanggal terminasi.</li>
+<li>Seluruh pembayaran yang telah diterima, termasuk Engineering Kick-off, bersifat final dan tidak dapat dikembalikan.</li></ol></div>
+<div class="sec"><h2><i>15</i>Pembatasan Tanggung Jawab</h2><p>Venturo tidak bertanggung jawab atas kerugian tidak langsung, kerugian konsekuensial, atau kerugian pihak ketiga akibat penggunaan perangkat lunak atau pelaksanaan arahan kerja dari Klien.</p></div>
+<div class="sec"><h2><i>16</i>Force Majeure</h2><p>Apabila terjadi gempa bumi, bencana alam, tanah longsor, atau kejadian lain yang secara wajar berada di luar kendali Para Pihak sehingga menyebabkan gagal atau tertundanya pelaksanaan kewajiban, Para Pihak sepakat untuk meninjau kembali perjanjian ini secara musyawarah.</p></div>
+<div class="sec"><h2><i>17</i>Penyelesaian Perselisihan</h2><ol>
+<li>Semua perselisihan dan hal-hal yang belum diatur dalam perjanjian ini diselesaikan secara musyawarah untuk mufakat.</li>
+<li>Apabila perselisihan tidak dapat diselesaikan secara musyawarah, Para Pihak sepakat menyelesaikannya melalui Badan Arbitrase Nasional Indonesia (BANI) sesuai hukum Republik Indonesia.</li></ol></div>
+<div class="sign">
+  <h2 style="margin-top:8mm"><i>18</i>Persetujuan</h2>
+  <p class="agree">Dengan menandatangani dokumen ini, kedua belah pihak menyatakan telah membaca, memahami, dan menyetujui seluruh syarat dan ketentuan yang tercantum di dalamnya. Dokumen ini berlaku bersama Penawaran Layanan Onsite Engineer dengan nomor yang sama.</p>
+  <p class="place">Ditandatangani di Malang, pada tanggal ____________________ 2026.</p>
+  <div class="sg">
+    <div class="sbox">
+      <div class="party">Penyedia Layanan</div>
+      <div class="co">PT Venturo Pro Indonesia</div>
+      <div class="area"><img class="ttd" src="ttd.png" alt=""></div>
+      <table class="f"><tr><td>Nama</td><td><b>Yulianto Frandi</b></td></tr><tr><td>Jabatan</td><td>CEO</td></tr><tr><td>Tanggal</td><td>16 November 2026</td></tr></table>
+    </div>
+    <div class="sbox">
+      <div class="party">Klien</div>
+      <div class="co">PT Contoh Nusa Logistik</div>
+      <div class="area"><span class="stamp">Tanda tangan &amp; stempel</span></div>
+      <table class="f"><tr><td>Nama</td><td class="blank"></td></tr><tr><td>Jabatan</td><td class="blank"></td></tr><tr><td>Tanggal</td><td class="blank"></td></tr></table>
+    </div>
+  </div>
+</div>
+</body></html>

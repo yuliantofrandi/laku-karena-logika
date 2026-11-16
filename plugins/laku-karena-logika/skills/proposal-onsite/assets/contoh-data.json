@@ -1,0 +1,24 @@
+{
+  "nomor": "VEN/NusaOnsite/2026/001",
+  "file": "VEN-NusaOnsite-2026-001",
+  "tanggal": "16 November 2026",
+  "project": "Tim Engineer Sistem Logistik",
+  "klien": {
+    "instansi": "PT Contoh Nusa Logistik",
+    "penerima": "Tim IT",
+    "alamat": "Jl. Contoh Raya No. 1, Jakarta Selatan 12950",
+    "ttd_nama": "",
+    "ttd_jabatan": ""
+  },
+  "lokasi": "Kantor PT Contoh Nusa Logistik, Jakarta Selatan",
+  "mulai": "Januari 2027",
+  "durasi_bulan": 12,
+  "talent": [
+    {"posisi": "Senior Software Engineer – Backend", "preset": "jakarta-senior", "jumlah": 1, "keahlian": "Golang, PostgreSQL, arsitektur microservice"},
+    {"posisi": "Software Engineer – Frontend", "preset": "jakarta-intermediate", "jumlah": 2, "keahlian": "React, Next.js"}
+  ],
+  "venturo_cloud": [],
+  "diskon": null,
+  "batasan": [],
+  "cek_tidak_boleh_ada": ["Pimpinan"]
+}
