@@ -92,7 +92,7 @@ Struktur tetap untuk semua jenis proyek:
 4. `<h2>Solusi</h2>`: dibagi `<h3>` per aktor/platform (mis. "Website untuk pembaca", "CMS untuk redaksi", "Aplikasi mobile"), masing-masing dengan screenshot-nya.
 5. `<h2>Keunggulan</h2>`: 3–5 fitur pembeda, tiap poin = manfaat bagi klien + bukti visual.
 6. `<h2>Hasil</h2>`: angka nyata dari user. **Jangan mengarang angka dan jangan menerbitkan placeholder**: bila angka tidak ada, tulis hasil kualitatif yang dikonfirmasi user (mis. "redaksi kini menerbitkan artikel tanpa bantuan programmer").
-7. **Penutup + CTA lembut** ke halaman layanan yang sesuai (lihat daftar URL di langkah 6) atau konsultasi. Tanpa harga, tanpa klaim superlatif, tanpa nama kompetitor. Untuk proyek Managed Services, sebut satuan kerjanya **Delivery Point** (bukan "poin").
+7. **Penutup + CTA lembut** ke halaman layanan yang sesuai (lihat daftar URL di langkah 6) atau konsultasi. Tanpa harga, tanpa klaim superlatif, tanpa nama kompetitor. Untuk proyek Managed Services, sebut satuan kerjanya **kuota fitur bulanan** (bukan "Delivery Point" atau "poin").
 
 - Gambar: `{{img:nama-file.jpg|Keterangan satu kalimat.}}` setelah paragraf yang menjelaskannya; tambahkan "Data pribadi pada gambar disamarkan" bila relevan.
 - Tag yang dipakai: `h2 h3 p ul ol li strong em blockquote table tr th td img`. Tanpa `h1`, `script`, `iframe`, `style`, `on*`.
@@ -109,7 +109,7 @@ Struktur tetap untuk semua jenis proyek:
 | Proyek / model | URL |
 |---|---|
 | Model Dedicated Team (outsourcing programmer) | `/outsourcing-programmer/` |
-| Model Managed Services (bangun & rawat, Delivery Point bulanan) | `/jasa-maintenance-aplikasi/` |
+| Model Managed Services (bangun & rawat, kuota fitur bulanan) | `/jasa-maintenance-aplikasi/` |
 | Aplikasi/software custom, sistem informasi | `/jasa-pembuatan-aplikasi/` |
 | Aplikasi web, dashboard, portal, e-commerce custom | `/jasa-pembuatan-aplikasi-web/` |
 | Aplikasi mobile Android & iOS | `/jasa-pembuatan-aplikasi-android/` |

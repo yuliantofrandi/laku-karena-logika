@@ -38,7 +38,7 @@ Halaman jasa harus **menjual**: pembaca paham masalahnya dipahami, percaya Ventu
 ## Model kerja sama (pola Venturo, pakai ulang bila cocok)
 
 - **Dedicated Team**: tim/talent dikontrak bulanan, dikelola klien. Long Term (>3 bulan) / Short Term (<3 bulan).
-- **Managed Services**: target hasil dikelola Venturo, memakai **Delivery Point** (kuota pekerjaan per bulan; Delivery Point **hangus tiap bulan**, tulis sebagai catatan kecil). Termasuk: **Jaminan Kualitas** dan **Dukungan**.
+- **Managed Services**: target hasil dikelola Venturo, memakai **kuota fitur bulanan** (setiap permintaan diukur dalam satuan fitur yang disepakati sebelum dikerjakan; paket 2–10 fitur per bulan; sisa kuota **hangus tiap bulan**, tulis sebagai catatan kecil). Satuan lama "Delivery Point"/"Poin" tidak dipakai lagi. Termasuk: **Jaminan Kualitas** dan **Dukungan**.
 - Ganti talent atau akhiri kontrak: **pemberitahuan 30 hari**.
 - Hindari menyebut angka minimal yang belum disetujui pengguna.
 

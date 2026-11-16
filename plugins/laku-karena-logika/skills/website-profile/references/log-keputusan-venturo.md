@@ -48,7 +48,7 @@ PDF company profile (link langsung, noindex, tidak dipublikasikan): `/VENTURO-Ma
 ## Keputusan konten
 
 - Tanpa harga di semua halaman. Estimator di halaman harga: deskripsi fitur bebas (textarea), tanpa pilihan integrasi.
-- Model: **Dedicated Team** dan **Managed Services** (dengan Delivery Point, hangus tiap bulan). Long Term >3 bulan / Short Term <3 bulan (di beberapa tempat cukup tanpa menyebut "3 bulan").
+- Model: **Dedicated Team** dan **Managed Services** (dengan kuota fitur bulanan, hangus tiap bulan; menggantikan Delivery Point sejak November 2026). Long Term >3 bulan / Short Term <3 bulan (di beberapa tempat cukup tanpa menyebut "3 bulan").
 - Yang termasuk Managed Services hanya **Jaminan Kualitas** dan **Dukungan**.
 - Ganti talent / akhiri kontrak: pemberitahuan 30 hari (Dedicated Team & Managed Services).
 - Section Bayar Bulanan ("Dedicated Team / Managed Services Venturo", "Bayar Bulanan, Anda Terima Beres") di 6 halaman, termasuk halaman AI dengan catatan tim kecil. Pengguna menolak versi dua kartu; pakai layout lama.
