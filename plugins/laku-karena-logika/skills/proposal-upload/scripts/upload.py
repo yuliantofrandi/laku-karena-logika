@@ -28,8 +28,8 @@ import argparse, datetime, json, os, re, shutil, subprocess, sys, tempfile, urll
 POLA = re.compile(r"^(VEN-([A-Za-z0-9-]+?)-(\d{4})-(\d{3}))(|-Lampiran-Estimasi|-Lampiran-Rincian-Biaya|-Service-Agreement-Website|-Service-Agreement-Onsite|-Service-Agreement)\.pdf$")
 PERAN = {"": "P", "-Lampiran-Estimasi": "L", "-Lampiran-Rincian-Biaya": "L", "-Service-Agreement": "S",
          "-Service-Agreement-Website": "S", "-Service-Agreement-Onsite": "S"}
-NAMA_PERAN = {"P": "Penawaran Layanan", "L": "Lampiran (Estimasi Delivery Point / Rincian Biaya)", "S": "Service Agreement"}
-JENIS = {"": "Penawaran Layanan", "-Lampiran-Estimasi": "Lampiran Estimasi Delivery Point",
+NAMA_PERAN = {"P": "Penawaran Layanan", "L": "Lampiran (Estimasi Fitur / Rincian Biaya)", "S": "Service Agreement"}
+JENIS = {"": "Penawaran Layanan", "-Lampiran-Estimasi": "Lampiran Estimasi Fitur",
          "-Lampiran-Rincian-Biaya": "Lampiran Rincian Biaya",
          "-Service-Agreement": "Service Agreement", "-Service-Agreement-Website": "Service Agreement Paket Website",
          "-Service-Agreement-Onsite": "Service Agreement Onsite Engineer"}

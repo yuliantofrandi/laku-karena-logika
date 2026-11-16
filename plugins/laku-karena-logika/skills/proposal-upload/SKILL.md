@@ -1,6 +1,6 @@
 ---
 name: proposal-upload
-description: Mengunggah PDF penawaran Venturo — 3 PDF hasil skill proposal-managed (Penawaran Layanan, Lampiran Estimasi Delivery Point, Service Agreement) atau proposal-dedicated (Lampiran Rincian Biaya), atau 2 PDF hasil proposal-website (Penawaran + Service Agreement Paket Website) atau proposal-onsite (Penawaran + Service Agreement Onsite Engineer) — file hasil sesi chat sebelumnya — ke bucket R2 Cloudflare di proposal.venturo.id, terpisah dari website company profile, langsung tanpa konfirmasi dengan URL sesuai nama file; mengecek domain, memverifikasi semua link, lalu menyusun pesan WhatsApp pengantar 2 bubble berisi link, masa berlaku penawaran 14 hari, dan ajakan review. Pakai saat diminta "upload penawaran", "unggah PDF penawaran", "kirim penawaran ke klien", "buat link penawaran", "pesan WA penawaran", atau setelah proposal-managed/proposal-dedicated/proposal-website/proposal-onsite selesai.
+description: Mengunggah PDF penawaran Venturo — 3 PDF hasil skill proposal-managed (Penawaran Layanan, Lampiran Estimasi Fitur, Service Agreement) atau proposal-dedicated (Lampiran Rincian Biaya), atau 2 PDF hasil proposal-website (Penawaran + Service Agreement Paket Website) atau proposal-onsite (Penawaran + Service Agreement Onsite Engineer) — file hasil sesi chat sebelumnya — ke bucket R2 Cloudflare di proposal.venturo.id, terpisah dari website company profile, langsung tanpa konfirmasi dengan URL sesuai nama file; mengecek domain, memverifikasi semua link, lalu menyusun pesan WhatsApp pengantar 2 bubble berisi link, masa berlaku penawaran 14 hari, dan ajakan review. Pakai saat diminta "upload penawaran", "unggah PDF penawaran", "kirim penawaran ke klien", "buat link penawaran", "pesan WA penawaran", atau setelah proposal-managed/proposal-dedicated/proposal-website/proposal-onsite selesai.
 ---
 
 # Upload Penawaran → proposal.venturo.id (R2) + Pesan WhatsApp
@@ -71,7 +71,7 @@ Aturan:
 - **Bubble 1**: sapaan sesuai jam WIB saat ini (pagi < 11.00, siang < 15.00, sore < 18.00, malam) + `...` sebagai tempat sapaan & nama (diisi pengguna) + ucapan terima kasih.
 - **Bubble 2**: dari link penawaran sampai permintaan feedback.
 - **Tanpa nomor dokumen**, tanpa "Bapak/Ibu" di badan pesan.
-- **Penawaran Layanan = dokumen utama**; Lampiran dan Service Agreement disebut sebagai pelengkap. Nama lampiran mengikuti `model` dari `info`: Managed Service → "Lampiran Estimasi Delivery Point"; Dedicated Team → "Lampiran Rincian Biaya"; **Paket Website** → tanpa lampiran, pelengkapnya hanya "Service Agreement Paket Website" (link `…-Service-Agreement-Website.pdf`), dan alasan masa berlaku ditulis "menyiapkan jadwal pengerjaan" (bukan menyiapkan tim); **Onsite Engineer** → tanpa lampiran, pelengkapnya hanya "Service Agreement Onsite Engineer" (link `…-Service-Agreement-Onsite.pdf`), dan alasan masa berlaku ditulis "menyiapkan seleksi kandidat".
+- **Penawaran Layanan = dokumen utama**; Lampiran dan Service Agreement disebut sebagai pelengkap. Nama lampiran mengikuti `model` dari `info`: Managed Service → "Lampiran Estimasi Fitur"; Dedicated Team → "Lampiran Rincian Biaya"; **Paket Website** → tanpa lampiran, pelengkapnya hanya "Service Agreement Paket Website" (link `…-Service-Agreement-Website.pdf`), dan alasan masa berlaku ditulis "menyiapkan jadwal pengerjaan" (bukan menyiapkan tim); **Onsite Engineer** → tanpa lampiran, pelengkapnya hanya "Service Agreement Onsite Engineer" (link `…-Service-Agreement-Onsite.pdf`), dan alasan masa berlaku ditulis "menyiapkan seleksi kandidat".
 - **Masa berlaku 14 hari** dari tanggal dokumen, ditulis lengkap, beserta alasannya (persiapan tim & setup) dan akibat bila lewat (ketersediaan tim dan harga berbeda → penawaran diperbarui).
 - **Diskon**: bila `info` → `ada_diskon: false`, **jangan menyebut diskon sama sekali**. Bila `true`, tambahkan tepat setelah kalimat masa berlaku: "Potongan harga hanya berlaku dalam masa penawaran ini, karena kondisi project dan ratecard dapat berubah setelahnya." Deteksi ini memakai kata "Diskon" di baris diskon penawaran — jangan diganti istilah lain di dokumen.
 - **Mulai kerja sebelum masa berlaku habis** (`peringatan_mulai_kerja` dari `info`): peringatkan pemilik di laporan, dan ganti ajakan di pesan WA menjadi "mohon konfirmasi sebelum *<tanggal mulai kerja>*" karena Down Payment dibayar saat tanda tangan.
@@ -91,7 +91,7 @@ Berikut kami sampaikan penawaran layanan untuk *<Nama Project>*:
 https://proposal.venturo.id/<VEN-Project-Tahun-Rev>.pdf
 
 Sebagai pelengkap, kami lampirkan juga:
-• Lampiran Estimasi Delivery Point   ← Dedicated Team: "Lampiran Rincian Biaya"
+• Lampiran Estimasi Fitur   ← Dedicated Team: "Lampiran Rincian Biaya"
 https://proposal.venturo.id/<VEN-Project-Tahun-Rev>-Lampiran-Estimasi.pdf   ← Dedicated Team: …-Lampiran-Rincian-Biaya.pdf
 • Service Agreement
 https://proposal.venturo.id/<VEN-Project-Tahun-Rev>-Service-Agreement.pdf
