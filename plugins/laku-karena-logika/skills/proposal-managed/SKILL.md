@@ -21,7 +21,7 @@ Tiga PDF, satu nomor dokumen dan satu nomor revisi:
 ## Aset & skrip (`<folder skill ini>/`)
 - `scripts/build.py` — **generator**: `python3 <folder skill ini>/scripts/build.py <data.json> <output>/src` membangun `penawaran.html`, `lampiran.html`, `sla.html` (+ salin logo, bg, TTD, paraf, font). Menghitung harga paket, ukuran item, total estimasi, kuota, cadangan, periode & termin, Layanan Lanjutan, Venturo Cloud, dan meng-`assert`: paket hanya 2/4/6/8/10 fitur, item ≤ 2 fitur, estimasi ≤ kuota, kode project huruf & angka, tidak ada istilah lama ("Delivery Point", "Poin", "GitLab", "MVP", "lebih dari 100 orang", "PPN tidak ditagihkan") atau sisa teks di `cek_tidak_boleh_ada`. Mencetak ringkasan + `peringatan_cadangan` bila cadangan < 5%. **Revisi = ubah data → build → render ulang.**
 - `scripts/render.py` — `python3 <folder skill ini>/scripts/render.py <html> <out.pdf> "<No. dokumen>" ["<prefix footer>"]`.
-- `assets/contoh-data.json` — format data (contoh HRIS: alur sistem 3 lajur, 4 kategori fitur, tahap berikutnya, Venturo Cloud). Salin lalu ganti isinya.
+- `assets/contoh-data.json` — format data (contoh HRIS: alur sistem 3 lajur 9 langkah, 4 kategori fitur, tahap berikutnya, Venturo Cloud). Salin lalu ganti isinya.
 - `assets/managed.css`, `assets/sa-managed.html` — gaya dan template Service Agreement (dipakai build.py).
 - `assets/contoh-*.html` — hasil build dari contoh data, untuk acuan visual.
 - `references/paket-fitur.md` — harga paket, ukuran fitur per kategori, yang sudah termasuk, layanan berlangganan.
@@ -48,13 +48,14 @@ Tiga PDF, satu nomor dokumen dan satu nomor revisi:
 - Fitur yang disebut brief sebagai "opsional" tapi diputuskan pengguna masuk pekerjaan → modul biasa.
 
 ## 2a. Alur Sistem (Lampiran bagian 1, wajib)
-Sebelum melihat angka, klien harus paham dulu **alur software yang akan dibangun**. build.py menggambar diagram SVG dari `alur` (gaya swimlane: lajur per aktor/sistem, langkah bernomor dengan panah, layanan luar bergaris putus oranye, sumber data di bawah, catatan gelap di akhir) dan menolak data tanpa `alur`.
-- `alur = {judul, pengantar, lajur, langkah, sumber_judul, sumber, catatan}`.
-- **`lajur`** 2–4 kolom, kiri → kanan mengikuti arah data: pengguna (mis. "Karyawan & Atasan", ket = aplikasi mobile & web) → sistem yang kami bangun (`"sistem": true`, latar teal muda) → pihak ketiga (`"eksternal": true`: WhatsApp API, AI, payment gateway, ERP, akuntansi). `ket` pendek (platform/perangkat).
-- **`langkah`** 5–8 langkah alur bisnis inti, berurutan (panah otomatis dari langkah n ke n+1): `{lajur, judul (2–4 kata, kata kerja), ket (≤ 10 kata), label (1–2 kata untuk panah masuk), baris_sama (true = sebaris dengan langkah sebelumnya), utama (true = hasil akhir yang dilihat pengguna, kotak teal penuh)}`. Langkah terakhir biasanya `utama`.
+Sebelum melihat angka, klien harus paham dulu **alur software yang akan dibangun**. build.py menggambar diagram SVG dari `alur` (gaya swimlane: lajur per aktor/sistem, langkah bernomor dengan panah, layanan luar bergaris putus oranye, catatan gelap di akhir) dan menolak data tanpa `alur`.
+- `alur = {judul, pengantar, lajur, langkah, catatan}`.
+- **`lajur`** 2–4 kolom, kiri → kanan mengikuti arah data: pengguna (mis. "Karyawan & Atasan", ket = aplikasi mobile & web) → sistem yang kami bangun (`"sistem": true`, latar teal muda) → pihak ketiga (`"eksternal": true`: mesin/perangkat, WhatsApp API, AI, payment gateway, ERP, akuntansi). `ket` pendek (platform/perangkat).
+- **`langkah`** 5–9 langkah alur bisnis inti, berurutan (panah otomatis dari langkah n ke n+1): `{lajur, judul (2–4 kata, kata kerja), ket (≤ 10 kata), label (1–2 kata untuk panah masuk), baris_sama (true = sebaris dengan langkah sebelumnya), utama (true = hasil akhir yang dilihat pengguna, kotak teal penuh)}`. Langkah terakhir biasanya `utama`.
 - Bahasa klien, bukan teknis: "Validasi & simpan", bukan "POST /api/leave". Setiap langkah harus terwakili di modul estimasi.
-- **`sumber`** (opsional, 1–3): sumber data yang sudah ada (mesin fingerprint, Excel lama, database ERP). **`catatan`** 1–2 kalimat jaminan penting (angka dihitung sistem, data di server Klien, akses baca-saja).
-- Diagram dibatasi `tinggi_maks_mm` (default 148) agar muat di halaman 1 setelah hero; alur panjang otomatis diperkecil — lebih dari 8 langkah, ringkas atau gabungkan dengan `baris_sama`.
+- **Sumber data penting dijadikan langkah alur**, bukan kotak terpisah — mis. langkah "Mesin fingerprint" di lajur eksternal yang panahnya masuk ke "Rekap kehadiran", agar klien melihat ke mana datanya mengalir. Data yang hanya dipindah sekali (migrasi Excel) cukup di Rincian & Asumsi. Field `sumber` (kotak di bawah diagram, tanpa panah) masih ada tetapi **tidak dipakai** kecuali pemilik memintanya.
+- **`catatan`** 1–2 kalimat jaminan penting (angka dihitung sistem, data di server Klien, akses baca-saja).
+- Diagram dibatasi `tinggi_maks_mm` (default 148) agar muat di halaman 1 setelah hero; alur panjang otomatis diperkecil — pakai `baris_sama` untuk langkah yang berpasangan (input → sistem) agar diagram tetap pendek.
 
 ## 3. Paket & biaya
 - Paket per bulan: **2 fitur Rp7,5 jt · 4 fitur Rp14 jt · 6 fitur Rp19,5 jt · 8 fitur Rp24 jt · 10 fitur Rp27,5 jt**. Paket boleh berbeda tiap bulan (mis. 10 + 10 + 2): besar saat membangun, kecil saat stabil.

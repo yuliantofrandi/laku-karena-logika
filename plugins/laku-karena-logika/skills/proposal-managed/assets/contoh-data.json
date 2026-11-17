@@ -30,22 +30,33 @@
       {
         "id": "luar",
         "nama": "Layanan Luar",
-        "ket": "WhatsApp API · AI · akuntansi",
+        "ket": "fingerprint · WhatsApp API · akuntansi",
         "eksternal": true
       }
     ],
     "langkah": [
       {
-        "lajur": "user",
-        "judul": "Absen & ajukan cuti",
-        "ket": "absensi GPS + foto, pengajuan cuti/izin di aplikasi mobile"
+        "lajur": "luar",
+        "judul": "Mesin fingerprint",
+        "ket": "kehadiran di kantor terkirim otomatis"
       },
       {
         "lajur": "hris",
-        "judul": "Validasi & simpan",
-        "ket": "cek lokasi kantor, sisa cuti, dan jadwal shift",
-        "baris_sama": true,
-        "label": "pengajuan"
+        "judul": "Rekap kehadiran",
+        "ket": "digabung dengan absensi GPS dan jadwal shift",
+        "baris_sama": true
+      },
+      {
+        "lajur": "user",
+        "judul": "Ajukan cuti & izin",
+        "ket": "pengajuan dari aplikasi mobile",
+        "label": "sisa cuti"
+      },
+      {
+        "lajur": "hris",
+        "judul": "Validasi & kirim approval",
+        "ket": "cek sisa cuti dan jadwal shift",
+        "baris_sama": true
       },
       {
         "lajur": "luar",
@@ -56,20 +67,20 @@
       {
         "lajur": "user",
         "judul": "Atasan menyetujui",
-        "ket": "approve/tolak dari aplikasi, karyawan diberi tahu",
+        "ket": "approve/tolak dari aplikasi",
         "label": "buka tautan"
       },
       {
         "lajur": "hris",
         "judul": "Proses payroll bulanan",
-        "ket": "rekap kehadiran, cuti & lembur → gaji, PPh 21, BPJS",
+        "ket": "kehadiran, cuti & lembur → gaji, PPh 21, BPJS",
         "label": "data final"
       },
       {
         "lajur": "luar",
         "judul": "Jurnal ke akuntansi",
         "ket": "jurnal payroll dikirim lewat API",
-        "label": "jurnal"
+        "baris_sama": true
       },
       {
         "lajur": "user",
@@ -77,17 +88,6 @@
         "ket": "slip gaji di aplikasi; chatbot AI menjawab sisa cuti",
         "utama": true,
         "label": "slip terbit"
-      }
-    ],
-    "sumber_judul": "Sumber data",
-    "sumber": [
-      {
-        "nama": "Mesin fingerprint",
-        "ket": "data kehadiran kantor"
-      },
-      {
-        "nama": "Excel data karyawan",
-        "ket": "dimigrasi sekali di awal"
       }
     ],
     "catatan": "Semua angka gaji, pajak, dan BPJS dihitung sistem dari data kehadiran, bukan diinput manual. Data karyawan tersimpan di server Klien; chatbot AI hanya membaca data milik karyawan yang bertanya."
