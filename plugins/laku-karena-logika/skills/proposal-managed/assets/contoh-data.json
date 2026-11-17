@@ -12,44 +12,254 @@
   },
   "aplikasi_berjalan": false,
   "mulai": "Desember 2026",
+  "alur": {
+    "judul": "Alur Sistem HRIS",
+    "pengantar": "Gambaran alur sistem yang akan kami bangun, dari karyawan mengajukan cuti dan absen sampai slip gaji terbit. Setiap langkah di bawah dirinci ukurannya pada bagian Ringkasan dan Rincian Estimasi.",
+    "lajur": [
+      {
+        "id": "user",
+        "nama": "Karyawan & Atasan",
+        "ket": "aplikasi mobile & web"
+      },
+      {
+        "id": "hris",
+        "nama": "Sistem HRIS",
+        "ket": "web admin HR · server aplikasi",
+        "sistem": true
+      },
+      {
+        "id": "luar",
+        "nama": "Layanan Luar",
+        "ket": "WhatsApp API · AI · akuntansi",
+        "eksternal": true
+      }
+    ],
+    "langkah": [
+      {
+        "lajur": "user",
+        "judul": "Absen & ajukan cuti",
+        "ket": "absensi GPS + foto, pengajuan cuti/izin di aplikasi mobile"
+      },
+      {
+        "lajur": "hris",
+        "judul": "Validasi & simpan",
+        "ket": "cek lokasi kantor, sisa cuti, dan jadwal shift",
+        "baris_sama": true,
+        "label": "pengajuan"
+      },
+      {
+        "lajur": "luar",
+        "judul": "Notifikasi WhatsApp",
+        "ket": "atasan menerima permintaan approval",
+        "label": "kirim pesan"
+      },
+      {
+        "lajur": "user",
+        "judul": "Atasan menyetujui",
+        "ket": "approve/tolak dari aplikasi, karyawan diberi tahu",
+        "label": "buka tautan"
+      },
+      {
+        "lajur": "hris",
+        "judul": "Proses payroll bulanan",
+        "ket": "rekap kehadiran, cuti & lembur → gaji, PPh 21, BPJS",
+        "label": "data final"
+      },
+      {
+        "lajur": "luar",
+        "judul": "Jurnal ke akuntansi",
+        "ket": "jurnal payroll dikirim lewat API",
+        "label": "jurnal"
+      },
+      {
+        "lajur": "user",
+        "judul": "Lihat slip & tanya chatbot",
+        "ket": "slip gaji di aplikasi; chatbot AI menjawab sisa cuti",
+        "utama": true,
+        "label": "slip terbit"
+      }
+    ],
+    "sumber_judul": "Sumber data",
+    "sumber": [
+      {
+        "nama": "Mesin fingerprint",
+        "ket": "data kehadiran kantor"
+      },
+      {
+        "nama": "Excel data karyawan",
+        "ket": "dimigrasi sekali di awal"
+      }
+    ],
+    "catatan": "Semua angka gaji, pajak, dan BPJS dihitung sistem dari data kehadiran, bukan diinput manual. Data karyawan tersimpan di server Klien; chatbot AI hanya membaca data milik karyawan yang bertanya."
+  },
   "bulan": [
-    {"fitur": 10, "ringkasan": "Fondasi & hak akses, kepegawaian, cuti & izin, absensi mobile, serta migrasi data karyawan."},
-    {"fitur": 10, "ringkasan": "Payroll & slip gaji, laporan PPh 21 & BPJS, integrasi fingerprint & akuntansi, serta otomasi WhatsApp."},
-    {"fitur": 2, "ringkasan": "Chatbot AI HR, dashboard HR, UAT, pelatihan pengguna, serta cadangan untuk penyesuaian hasil UAT."}
+    {
+      "fitur": 10,
+      "ringkasan": "Fondasi & hak akses, kepegawaian, cuti & izin, absensi mobile, serta migrasi data karyawan."
+    },
+    {
+      "fitur": 10,
+      "ringkasan": "Payroll & slip gaji, laporan PPh 21 & BPJS, integrasi fingerprint & akuntansi, serta otomasi WhatsApp."
+    },
+    {
+      "fitur": 2,
+      "ringkasan": "Chatbot AI HR, dashboard HR, UAT, pelatihan pengguna, serta cadangan untuk penyesuaian hasil UAT."
+    }
   ],
   "modul": [
-    {"nama": "Fondasi & Administrasi", "kategori": "Pengembangan aplikasi", "platform": "Web & Mobile", "item": [
-      {"nama": "Login, role & hak akses (HR, atasan, karyawan)", "fitur": 1},
-      {"nama": "Manajemen pengguna & impor massal", "fitur": 0.5},
-      {"nama": "Pengaturan perusahaan, cabang & struktur organisasi", "fitur": 1}]},
-    {"nama": "Kepegawaian", "kategori": "Pengembangan aplikasi", "platform": "Web", "item": [
-      {"nama": "Data karyawan & dokumen", "fitur": 1},
-      {"nama": "Kontrak & riwayat jabatan", "fitur": 1},
-      {"nama": "Tambah 3 field custom pada data karyawan", "fitur": 0.3}]},
-    {"nama": "Cuti, Izin & Lembur", "kategori": "Pengembangan aplikasi", "platform": "Web & Mobile", "item": [
-      {"nama": "Modul Cuti lengkap (master, pengajuan, approval, laporan, notifikasi WA)", "fitur": 1},
-      {"nama": "Izin & lembur dengan approval atasan", "fitur": 1}]},
-    {"nama": "Absensi", "kategori": "Pengembangan aplikasi", "platform": "Web & Mobile", "item": [
-      {"nama": "Absensi mobile dengan GPS & foto, termasuk validasi lokasi kantor", "fitur": 2},
-      {"nama": "Jadwal shift & rekap kehadiran", "fitur": 1}]},
-    {"nama": "Payroll", "kategori": "Pengembangan aplikasi", "platform": "Web", "item": [
-      {"nama": "Komponen gaji, tunjangan & potongan", "fitur": 1},
-      {"nama": "Proses payroll bulanan & slip gaji", "fitur": 2},
-      {"nama": "Laporan PPh 21 & BPJS", "fitur": 1}]},
-    {"nama": "Otomasi & AI", "kategori": "Otomasi & AI", "platform": "WhatsApp", "item": [
-      {"nama": "Pengingat WhatsApp terjadwal: kontrak habis & masa percobaan", "fitur": 1},
-      {"nama": "Chatbot AI HR untuk cek sisa cuti & slip gaji", "fitur": 2}]},
-    {"nama": "Integrasi", "kategori": "Integrasi sistem", "platform": "Web", "item": [
-      {"nama": "Integrasi mesin fingerprint", "fitur": 1},
-      {"nama": "Integrasi jurnal payroll ke sistem akuntansi", "fitur": 1}]},
-    {"nama": "Migrasi Data", "kategori": "Pengelolaan data", "platform": "Web", "item": [
-      {"nama": "Migrasi data karyawan dari Excel", "fitur": 1}]},
-    {"nama": "Laporan & Dashboard", "kategori": "Pengembangan aplikasi", "platform": "Web", "item": [
-      {"nama": "Dashboard HR & ekspor laporan (Excel/PDF)", "fitur": 1}]}
+    {
+      "nama": "Fondasi & Administrasi",
+      "kategori": "Pengembangan aplikasi",
+      "platform": "Web & Mobile",
+      "item": [
+        {
+          "nama": "Login, role & hak akses (HR, atasan, karyawan)",
+          "fitur": 1
+        },
+        {
+          "nama": "Manajemen pengguna & impor massal",
+          "fitur": 0.5
+        },
+        {
+          "nama": "Pengaturan perusahaan, cabang & struktur organisasi",
+          "fitur": 1
+        }
+      ]
+    },
+    {
+      "nama": "Kepegawaian",
+      "kategori": "Pengembangan aplikasi",
+      "platform": "Web",
+      "item": [
+        {
+          "nama": "Data karyawan & dokumen",
+          "fitur": 1
+        },
+        {
+          "nama": "Kontrak & riwayat jabatan",
+          "fitur": 1
+        },
+        {
+          "nama": "Tambah 3 field custom pada data karyawan",
+          "fitur": 0.3
+        }
+      ]
+    },
+    {
+      "nama": "Cuti, Izin & Lembur",
+      "kategori": "Pengembangan aplikasi",
+      "platform": "Web & Mobile",
+      "item": [
+        {
+          "nama": "Modul Cuti lengkap (master, pengajuan, approval, laporan, notifikasi WA)",
+          "fitur": 1
+        },
+        {
+          "nama": "Izin & lembur dengan approval atasan",
+          "fitur": 1
+        }
+      ]
+    },
+    {
+      "nama": "Absensi",
+      "kategori": "Pengembangan aplikasi",
+      "platform": "Web & Mobile",
+      "item": [
+        {
+          "nama": "Absensi mobile dengan GPS & foto, termasuk validasi lokasi kantor",
+          "fitur": 2
+        },
+        {
+          "nama": "Jadwal shift & rekap kehadiran",
+          "fitur": 1
+        }
+      ]
+    },
+    {
+      "nama": "Payroll",
+      "kategori": "Pengembangan aplikasi",
+      "platform": "Web",
+      "item": [
+        {
+          "nama": "Komponen gaji, tunjangan & potongan",
+          "fitur": 1
+        },
+        {
+          "nama": "Proses payroll bulanan & slip gaji",
+          "fitur": 2
+        },
+        {
+          "nama": "Laporan PPh 21 & BPJS",
+          "fitur": 1
+        }
+      ]
+    },
+    {
+      "nama": "Otomasi & AI",
+      "kategori": "Otomasi & AI",
+      "platform": "WhatsApp",
+      "item": [
+        {
+          "nama": "Pengingat WhatsApp terjadwal: kontrak habis & masa percobaan",
+          "fitur": 1
+        },
+        {
+          "nama": "Chatbot AI HR untuk cek sisa cuti & slip gaji",
+          "fitur": 2
+        }
+      ]
+    },
+    {
+      "nama": "Integrasi",
+      "kategori": "Integrasi sistem",
+      "platform": "Web",
+      "item": [
+        {
+          "nama": "Integrasi mesin fingerprint",
+          "fitur": 1
+        },
+        {
+          "nama": "Integrasi jurnal payroll ke sistem akuntansi",
+          "fitur": 1
+        }
+      ]
+    },
+    {
+      "nama": "Migrasi Data",
+      "kategori": "Pengelolaan data",
+      "platform": "Web",
+      "item": [
+        {
+          "nama": "Migrasi data karyawan dari Excel",
+          "fitur": 1
+        }
+      ]
+    },
+    {
+      "nama": "Laporan & Dashboard",
+      "kategori": "Pengembangan aplikasi",
+      "platform": "Web",
+      "item": [
+        {
+          "nama": "Dashboard HR & ekspor laporan (Excel/PDF)",
+          "fitur": 1
+        }
+      ]
+    }
   ],
   "tahap_berikutnya": [
-    {"nama": "Rekrutmen (lowongan, pelamar, tahapan seleksi).", "singkat": "Modul rekrutmen", "kondisi": "Pada rilis pertama, data karyawan baru diinput manual oleh HR.", "fitur": 2},
-    {"nama": "Penilaian kinerja berbasis KPI.", "singkat": "penilaian kinerja", "kondisi": "Pada rilis pertama, penilaian kinerja tetap memakai proses yang berjalan.", "fitur": 2}
+    {
+      "nama": "Rekrutmen (lowongan, pelamar, tahapan seleksi).",
+      "singkat": "Modul rekrutmen",
+      "kondisi": "Pada rilis pertama, data karyawan baru diinput manual oleh HR.",
+      "fitur": 2
+    },
+    {
+      "nama": "Penilaian kinerja berbasis KPI.",
+      "singkat": "penilaian kinerja",
+      "kondisi": "Pada rilis pertama, penilaian kinerja tetap memakai proses yang berjalan.",
+      "fitur": 2
+    }
   ],
   "asumsi": [
     "Mesin fingerprint mendukung koneksi SDK/API dan Klien menyediakan akses jaringannya.",
@@ -59,7 +269,16 @@
     "Biaya layanan WhatsApp API dan biaya pemakaian model AI sesuai volume",
     "Akun Apple Developer Program dan Google Play Console"
   ],
-  "layanan_lanjutan": {"fitur": 2},
-  "venturo_cloud": {"paket": "vps-small", "keterangan": "Server production untuk web, API aplikasi mobile, dan database"},
-  "cek_tidak_boleh_ada": ["Pimpinan", "PolicyLab", "Sebelas Maret"]
+  "layanan_lanjutan": {
+    "fitur": 2
+  },
+  "venturo_cloud": {
+    "paket": "vps-small",
+    "keterangan": "Server production untuk web, API aplikasi mobile, dan database"
+  },
+  "cek_tidak_boleh_ada": [
+    "Pimpinan",
+    "PolicyLab",
+    "Sebelas Maret"
+  ]
 }

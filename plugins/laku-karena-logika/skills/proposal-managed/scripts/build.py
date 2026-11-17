@@ -243,6 +243,155 @@ def penawaran(d):
     return dokumen(d["file"], h), total
 
 
+# ---------- Diagram alur sistem (Lampiran bagian 1) ----------
+WARNA = dict(teal="#259ead", t7="#1b7a86", t8="#176a74", t50="#eaf6f7", ink="#1f2a2e", muted="#58585a",
+             border="#c9d8da", s2="#f4f7f6", amber="#b8741a", amber_bg="#fdf5ea", amber_bd="#e2b46c")
+
+
+def bungkus(teks, maks):
+    """Pecah teks menjadi baris ≤ maks karakter (per kata)."""
+    baris, cur = [], ""
+    for w in str(teks).split():
+        if cur and len(cur) + 1 + len(w) > maks:
+            baris.append(cur); cur = w
+        else:
+            cur = (cur + " " + w).strip()
+    return baris + ([cur] if cur else [])
+
+
+def alur_svg(a):
+    """SVG alur sistem: lajur (kolom) per aktor/sistem, langkah bernomor berurutan dengan panah,
+    lajur eksternal bergaris putus oranye, sumber data di bawah, dan catatan gelap di akhir."""
+    C = WARNA; W = 1000; GAP = 14; PAD = 16; HEAD = 54; ROWGAP = 34
+    lajur = a["lajur"]; ids = [l["id"] for l in lajur]
+    assert 2 <= len(lajur) <= 4, "alur: 2–4 lajur"
+    bobot = [l.get("lebar", 0.8 if l.get("eksternal") else 1) for l in lajur]
+    tot = sum(bobot); lebar_total = W - GAP * (len(lajur) - 1)
+    x0, xs = 0, []
+    for b in bobot:
+        w = lebar_total * b / tot; xs.append((x0, w)); x0 += w + GAP
+    langkah = a["langkah"]
+    # baris: default berurutan; `"baris_sama": true` → satu baris dengan langkah sebelumnya
+    r = -1
+    for i, st in enumerate(langkah):
+        assert st["lajur"] in ids, f"alur: lajur tidak dikenal '{st['lajur']}'"
+        r = r if (st.get("baris_sama") and i) else r + 1
+        st["_r"] = r
+    nrow = r + 1
+    # ukuran kotak per baris
+    def isi(st):
+        x, w = xs[ids.index(st["lajur"])]
+        bw = w - 2 * PAD
+        jt = bungkus(f'{st["_no"]}. {st["judul"]}', int(bw / 9.2))
+        kt = bungkus(st.get("ket", ""), int(bw / 6.9)) if st.get("ket") else []
+        return x + PAD, bw, jt, kt
+    for i, st in enumerate(langkah):
+        st["_no"] = i + 1
+        st["_x"], st["_w"], st["_jt"], st["_kt"] = isi(st)
+    tinggi = [0] * nrow
+    for st in langkah:
+        tinggi[st["_r"]] = max(tinggi[st["_r"]], 20 + 20 * len(st["_jt"]) + 16 * len(st["_kt"]) + 8)
+    ytop = [HEAD + 8]
+    for rr in range(1, nrow):
+        ytop.append(ytop[-1] + tinggi[rr - 1] + ROWGAP)
+    lane_bot = ytop[-1] + tinggi[-1] + 16
+    o = []
+    # lajur
+    for (x, w), l in zip(xs, lajur):
+        if l.get("eksternal"):
+            o.append(f'<rect x="{x:.0f}" y="0" width="{w:.0f}" height="{lane_bot}" rx="14" fill="{C["amber_bg"]}" stroke="{C["amber_bd"]}" stroke-dasharray="7 6" stroke-width="1.5"/>')
+            hc, sc = C["amber"], C["amber"]
+        else:
+            o.append(f'<rect x="{x:.0f}" y="0" width="{w:.0f}" height="{lane_bot}" rx="14" fill="{C["t50"] if l.get("sistem") else C["s2"]}"/>')
+            hc, sc = C["t7"], C["muted"]
+        cx = x + w / 2
+        o.append(f'<text x="{cx:.0f}" y="25" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="2" fill="{hc}">{e(l["nama"]).upper()}</text>')
+        if l.get("ket"):
+            o.append(f'<text x="{cx:.0f}" y="43" text-anchor="middle" font-size="11.5" fill="{sc}">{e(l["ket"])}</text>')
+    # panah antar langkah berurutan
+    def kotak(st):
+        y = ytop[st["_r"]]; return st["_x"], y, st["_w"], tinggi[st["_r"]]
+    def bebas(lj, r1, r2):  # tidak ada kotak di lajur lj pada baris di antara r1 dan r2 (eksklusif)
+        return not any(s["lajur"] == lj and min(r1, r2) < s["_r"] < max(r1, r2) for s in langkah)
+    def panah(d_, warna, putus=False, label=None, lx=0, ly=0):
+        da = ' stroke-dasharray="6 5"' if putus else ""
+        mk = "aa" if warna == C["amber"] else "at"
+        o.append(f'<path d="{d_}" fill="none" stroke="{warna}" stroke-width="2.2"{da} marker-end="url(#{mk})"/>')
+        if label:
+            o.append(f'<text x="{lx:.0f}" y="{ly:.0f}" font-size="11.5" fill="{C["t7"]}">{e(label)}</text>')
+    for a_, b_ in zip(langkah, langkah[1:]):
+        ax, ay, aw, ah = kotak(a_); bx, by, bw, bh = kotak(b_)
+        eks = any(l["id"] in (a_["lajur"], b_["lajur"]) and l.get("eksternal") for l in lajur)
+        warna = C["amber"] if eks else C["t7"]; lab = b_.get("label")
+        if a_["_r"] == b_["_r"]:
+            y = ay + ah / 2
+            celah = abs(bx - (ax + aw)) if bx > ax else abs(ax - (bx + bw))
+            lab = lab if lab and len(lab) * 6.6 < celah - 6 else None
+            if bx > ax:
+                panah(f"M{ax + aw:.0f},{y:.0f} H{bx - 2:.0f}", warna, label=lab, lx=ax + aw + 3, ly=y - 7)
+            else:
+                panah(f"M{ax:.0f},{y:.0f} H{bx + bw + 2:.0f}", warna, label=lab, lx=bx + bw + 3, ly=y - 7)
+        elif a_["lajur"] == b_["lajur"]:
+            cx = ax + aw / 2
+            panah(f"M{cx:.0f},{ay + ah:.0f} V{by - 2:.0f}", warna, label=lab, lx=cx + 8, ly=(ay + ah + by) / 2 + 4)
+        else:
+            sx = ax + aw / 2; tx = bx + bw / 2
+            naik = b_["_r"] < a_["_r"]
+            if naik:   # kembali ke atas: keluar dari sisi kotak, naik di celah lajur
+                sisi = ax if tx < sx else ax + aw
+                gx = sisi - PAD / 2 - GAP / 2 if tx < sx else sisi + PAD / 2 + GAP / 2
+                ty = by + bh / 2
+                ex = bx + bw + 4 if tx < sx else bx - 4
+                panah(f"M{sisi:.0f},{ay + ah / 2:.0f} H{gx:.0f} V{ty:.0f} H{ex:.0f}", warna, putus=True, label=lab, lx=gx + 6, ly=(ay + ty) / 2)
+            else:
+                ya = ay + ah + ROWGAP / 2; yb = by - ROWGAP / 2
+                yt = ya if bebas(b_["lajur"], a_["_r"], b_["_r"]) or not bebas(a_["lajur"], a_["_r"], b_["_r"]) else yb
+                panah(f"M{sx:.0f},{ay + ah:.0f} V{yt:.0f} H{tx:.0f} V{by - 2:.0f}", warna, label=lab, lx=min(sx, tx) + 8, ly=yt - 6)
+    # kotak langkah
+    for st in langkah:
+        x, y, w, h = kotak(st)
+        eks = next(l for l in lajur if l["id"] == st["lajur"]).get("eksternal")
+        if st.get("utama"):
+            fill, bd, tc, kc = C["teal"], C["teal"], "#fff", "#eafafc"
+        else:
+            fill, bd, tc, kc = "#fff", (C["amber_bd"] if eks else C["teal"]), C["ink"], C["muted"]
+        o.append(f'<rect x="{x:.0f}" y="{y:.0f}" width="{w:.0f}" height="{h:.0f}" rx="10" fill="{fill}" stroke="{bd}" stroke-width="2"/>')
+        isi_h = 20 * len(st["_jt"]) + 16 * len(st["_kt"])
+        yy = y + (h - isi_h) / 2 + 14
+        for t in st["_jt"]:
+            o.append(f'<text x="{x + w / 2:.0f}" y="{yy:.0f}" text-anchor="middle" font-size="15" font-weight="700" fill="{tc}">{e(t)}</text>'); yy += 20
+        yy += 2
+        for t in st["_kt"]:
+            o.append(f'<text x="{x + w / 2:.0f}" y="{yy:.0f}" text-anchor="middle" font-size="12" fill="{kc}">{e(t)}</text>'); yy += 16
+    H = lane_bot
+    # sumber data
+    sumber = a.get("sumber") or []
+    if sumber:
+        y0 = H + 14; bh = 62; n = len(sumber)
+        o.append(f'<rect x="0" y="{y0}" width="{W}" height="{bh + 28}" rx="14" fill="{C["s2"]}" stroke="#a9b5b7" stroke-dasharray="6 5" stroke-width="1.3"/>')
+        o.append(f'<text x="22" y="{y0 + 30}" font-size="13" font-weight="700" letter-spacing="2" fill="{C["muted"]}">{e(a.get("sumber_judul", "Sumber data")).upper()}</text>')
+        bw = min(300, (W - 200 - 24 * (n - 1)) / n); gx = 190 + ((W - 210) - (bw * n + 24 * (n - 1))) / 2
+        for i, sb in enumerate(sumber):
+            x = gx + i * (bw + 24); y = y0 + 14
+            o.append(f'<rect x="{x:.0f}" y="{y}" width="{bw:.0f}" height="{bh}" rx="10" fill="#fff" stroke="#6b7072" stroke-width="1.8"/>')
+            o.append(f'<text x="{x + bw / 2:.0f}" y="{y + 26}" text-anchor="middle" font-size="14" font-weight="700" fill="{C["ink"]}">{e(sb["nama"])}</text>')
+            if sb.get("ket"):
+                o.append(f'<text x="{x + bw / 2:.0f}" y="{y + 46}" text-anchor="middle" font-size="12" fill="{C["muted"]}">{e(sb["ket"])}</text>')
+        H = y0 + bh + 28
+    # catatan
+    if a.get("catatan"):
+        bar = bungkus(a["catatan"], 128); y0 = H + 14; hh = 22 + 19 * len(bar)
+        o.append(f'<rect x="0" y="{y0}" width="{W}" height="{hh}" rx="12" fill="{C["ink"]}"/>')
+        for i, t in enumerate(bar):
+            o.append(f'<text x="24" y="{y0 + 28 + 19 * i}" font-size="13" fill="#fff">{e(t)}</text>')
+        H = y0 + hh
+    defs = "<defs>" + "".join(f'<marker id="{i}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4.2" markerHeight="4.2" markerUnits="strokeWidth" orient="auto">'
+                              f'<path d="M0,0 L10,5 L0,10 z" fill="{c}"/></marker>' for i, c in (("at", C["t7"]), ("aa", C["amber"]))) + "</defs>"
+    # tinggi maks agar muat di halaman 1 setelah hero; alur panjang diperkecil proporsional
+    return (f'<svg viewBox="-2 -2 {W + 4} {H + 4}" width="100%" style="display:block;max-height:{a.get("tinggi_maks_mm", 148)}mm" xmlns="http://www.w3.org/2000/svg" font-family="M, sans-serif">'
+            + defs + "".join(o) + "</svg>")
+
+
 def lampiran(d):
     modul, est, kuota, termin, total = hitung(d)
     h = hero(d, "Lampiran Penawaran Layanan", "Estimasi Fitur", "Lampiran", " h1s")
@@ -250,7 +399,11 @@ def lampiran(d):
           'Ukuran fitur: kecil (kurang dari 1 fitur, dinilai desimal) · standar (1 fitur) · besar (2 fitur). Setiap fitur sudah termasuk meeting analisa, rancangan aplikasi, penyesuaian (maksimal 2× revisi), dan dokumentasi.</p>\n</section>\n')
     ring = "".join(f'<tr><td>{e(m["nama"])}</td><td>{e(m.get("kategori", "Pengembangan aplikasi"))} · {e(m.get("platform", "Web"))}</td><td class="r">{fz(m["total"])}</td></tr>' for m in modul)
     pk = " + ".join(f'{b["fitur"]}' for b in d["bulan"])
-    h += f'''<h2><i>1</i>Ringkasan Estimasi</h2>
+    al = d["alur"]
+    h += (f'<div class="keep"><h2><i>1</i>{e(al.get("judul", "Alur Sistem"))}</h2>\n'
+          + (f'<p style="margin:0 0 3mm;color:var(--muted)">{e(al["pengantar"])}</p>\n' if al.get("pengantar") else "")
+          + alur_svg(al) + "</div>\n")
+    h += f'''<h2 style="break-before:page;margin-top:2mm"><i>2</i>Ringkasan Estimasi</h2>
 <table><thead><tr><th>Modul</th><th>Kategori · Platform</th><th class="r">Fitur</th></tr></thead><tbody>{ring}
 <tr class="sub"><td colspan="2">Total estimasi</td><td class="r">{fz(est)} fitur</td></tr>
 <tr class="sub"><td colspan="2">Kuota paket Managed Service ({len(d["bulan"])} bulan: {pk} fitur)</td><td class="r">{kuota} fitur</td></tr>
@@ -263,28 +416,28 @@ def lampiran(d):
         for it in m["item"]:
             no += 1
             rows += f'<tr><td class="c">{no}</td><td>{e(it["nama"])}</td><td class="k">{ukuran(it["fitur"])}</td><td class="r">{fz(it["fitur"])}</td></tr>'
-    brk = ' style="break-before:page;margin-top:2mm"' if no > 12 else ""
-    h += f'''<h2{brk}><i>2</i>Rincian per Item Pekerjaan</h2>
+    brk = ""
+    h += f'''<h2{brk}><i>3</i>Rincian per Item Pekerjaan</h2>
 <table class="est"><thead><tr><th class="c" style="width:9mm">No</th><th>Item Pekerjaan</th><th>Ukuran</th><th class="r">Fitur</th></tr></thead><tbody>{rows}
 <tr class="grand"><td colspan="3">Total Estimasi</td><td class="r">{fz(est)} fitur</td></tr></tbody></table>
 '''
     uk = "".join(f'<tr><td><b style="font-weight:600">{a}</b></td><td>{b}</td><td>{c}</td><td>{x}</td><td>{y}</td></tr>' for a, b, c, x, y in UKURAN)
     h += f'''<div class="keep">
-<h2><i>3</i>Panduan Ukuran Fitur</h2>
+<h2><i>4</i>Panduan Ukuran Fitur</h2>
 <table style="font-size:8pt"><thead><tr><th style="width:24mm">Kategori</th><th>&lt; 1 fitur<br><small style="font-weight:500">Kecil</small></th><th>1 fitur<br><small style="font-weight:500">Standar</small></th><th>2 fitur<br><small style="font-weight:500">Besar</small></th><th>&gt; 2 fitur<br><small style="font-weight:500">Dipecah saat analisa</small></th></tr></thead><tbody>{uk}</tbody></table>
 <p class="note" style="color:var(--muted);font-size:8.3pt;margin-top:2mm">Contoh: Modul Cuti lengkap (master + pengajuan + approval + laporan + notifikasi WA) = 1 fitur. Fitur kecil dinilai desimal sesuai besar pekerjaan (mis. tambah 1 field = 0,1 fitur). Pelatihan tambahan di luar rilis fitur: ½ hari = ½ fitur.</p>
 </div>
 '''
-    n = 4
+    n = 5
     if d.get("tahap_berikutnya"):
         tb = "".join(f'<tr><td>{e(x["nama"])}{" " + e(x["kondisi"]) if x.get("kondisi") else ""}</td><td class="r">{fz(x["fitur"])}</td></tr>' for x in d["tahap_berikutnya"])
         h += f'''<div class="keep">
-<h2><i>4</i>Pengembangan Tahap Berikutnya <span style="font-weight:500;color:var(--subtle);font-size:9pt">(setelah rilis fitur utama)</span></h2>
+<h2><i>5</i>Pengembangan Tahap Berikutnya <span style="font-weight:500;color:var(--subtle);font-size:9pt">(setelah rilis fitur utama)</span></h2>
 <table><thead><tr><th>Item Pekerjaan</th><th class="r" style="white-space:nowrap">Estimasi Fitur</th></tr></thead><tbody>{tb}</tbody></table>
 <p class="note" style="color:var(--muted)">Fitur di atas sengaja tidak dimasukkan ke rilis pertama agar fitur utama dapat dirilis lebih cepat dengan biaya yang efisien. Fitur ini dapat ditambahkan setelah rilis melalui Layanan Lanjutan atas persetujuan Klien, dan belum termasuk dalam Total Investasi. Estimasi ukuran fitur di atas dikonfirmasi ulang saat fitur akan dikerjakan.</p>
 </div>
 '''
-        n = 5
+        n = 6
     asumsi = ["Estimasi disusun dari kebutuhan Klien; ukuran setiap permintaan disepakati di awal sebelum dikerjakan.",
               "Perubahan atau penambahan lingkup di luar kebutuhan awal dihitung ulang dan memotong cadangan kuota, atau dituangkan dalam penawaran baru.",
               "Apabila pengerjaan melebihi ukuran yang disepakati, selisihnya ditanggung Venturo dan tidak memotong kuota."] + list(d.get("asumsi", [])) + [
@@ -314,6 +467,7 @@ def main():
     d = json.load(open(data))
     kode = d["nomor"].split("/")[1] if d["nomor"].count("/") >= 3 else ""
     assert re.fullmatch(r"[A-Za-z0-9]+", kode), f"kode project di nomor harus huruf & angka saja: {d['nomor']}"
+    assert d.get("alur", {}).get("langkah"), "isi `alur` (lajur + langkah) untuk diagram Alur Sistem di Lampiran"
     assert d["mulai"].split()[0] in BULAN, f"`mulai` harus '<Bulan> <Tahun>', mis. 'November 2026': {d['mulai']}"
     for m in d["modul"]:
         assert m.get("kategori", KATEGORI[0]) in KATEGORI, f"kategori tidak dikenal: {m.get('kategori')} (pilihan: {KATEGORI})"
