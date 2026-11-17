@@ -380,10 +380,12 @@ def alur_svg(a):
         H = y0 + bh + 28
     # catatan
     if a.get("catatan"):
-        bar = bungkus(a["catatan"], 128); y0 = H + 14; hh = 22 + 19 * len(bar)
+        bar = bungkus(a["catatan"], 128); y0 = H + 14
+        blok = 19 * (len(bar) - 1) + 13          # tinggi teks: jarak baris + tinggi huruf (font 13)
+        hh = blok + 2 * 16                        # padding atas = bawah
         o.append(f'<rect x="0" y="{y0}" width="{W}" height="{hh}" rx="12" fill="{C["ink"]}"/>')
-        for i, t in enumerate(bar):
-            o.append(f'<text x="24" y="{y0 + 28 + 19 * i}" font-size="13" fill="#fff">{e(t)}</text>')
+        for i, t in enumerate(bar):               # baseline = atas blok + tinggi huruf kapital (≈ 0,72 × 13)
+            o.append(f'<text x="24" y="{y0 + 16 + 9.5 + 19 * i:.1f}" font-size="13" fill="#fff">{e(t)}</text>')
         H = y0 + hh
     defs = "<defs>" + "".join(f'<marker id="{i}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4.2" markerHeight="4.2" markerUnits="strokeWidth" orient="auto">'
                               f'<path d="M0,0 L10,5 L0,10 z" fill="{c}"/></marker>' for i, c in (("at", C["t7"]), ("aa", C["amber"]))) + "</defs>"
